@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "huaweicloud",
-  "server": "https://github.com/huaweicloud/pulumi-huaweicloud/releases/download/${VERSION}"
-}
