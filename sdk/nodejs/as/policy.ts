@@ -103,7 +103,7 @@ import * as utilities from "../utilities";
  * AS policies can be imported by their `id`, e.g. bash
  *
  * ```sh
- *  $ pulumi import huaweicloud:As/policy:Policy test 9fcb65fe-fd79-4407-8fa0-07602044e1c3
+ *  $ pulumi import huaweicloud:As/policy:Policy test <id>
  * ```
  */
 export class Policy extends pulumi.CustomResource {
@@ -147,6 +147,10 @@ export class Policy extends pulumi.CustomResource {
      * The value ranges from 0 to 86400 and is 300 by default.
      */
     public readonly coolDownTime!: pulumi.Output<number>;
+    /**
+     * The creation time of the AS policy, in UTC format.
+     */
+    public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
      * Specifies the region in which to create the AS policy. If omitted, the
      * provider-level region will be used. Changing this creates a new AS policy.
@@ -200,6 +204,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["alarmId"] = state ? state.alarmId : undefined;
             resourceInputs["coolDownTime"] = state ? state.coolDownTime : undefined;
+            resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["scalingGroupId"] = state ? state.scalingGroupId : undefined;
             resourceInputs["scalingPolicyAction"] = state ? state.scalingPolicyAction : undefined;
@@ -227,6 +232,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["scalingPolicyName"] = args ? args.scalingPolicyName : undefined;
             resourceInputs["scalingPolicyType"] = args ? args.scalingPolicyType : undefined;
             resourceInputs["scheduledPolicy"] = args ? args.scheduledPolicy : undefined;
+            resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -251,6 +257,10 @@ export interface PolicyState {
      * The value ranges from 0 to 86400 and is 300 by default.
      */
     coolDownTime?: pulumi.Input<number>;
+    /**
+     * The creation time of the AS policy, in UTC format.
+     */
+    createTime?: pulumi.Input<string>;
     /**
      * Specifies the region in which to create the AS policy. If omitted, the
      * provider-level region will be used. Changing this creates a new AS policy.

@@ -22,7 +22,10 @@ class GetActiveStandbyPoolsResult:
     """
     A collection of values returned by getActiveStandbyPools.
     """
-    def __init__(__self__, description=None, healthmonitor_id=None, id=None, listener_id=None, loadbalancer_id=None, member_address=None, member_instance_id=None, name=None, pool_id=None, pools=None, protocol=None, region=None, type=None, vpc_id=None):
+    def __init__(__self__, connection_drain=None, description=None, healthmonitor_id=None, id=None, ip_version=None, lb_algorithm=None, listener_id=None, loadbalancer_id=None, member_address=None, member_instance_id=None, name=None, pool_id=None, pools=None, protocol=None, region=None, type=None, vpc_id=None):
+        if connection_drain and not isinstance(connection_drain, str):
+            raise TypeError("Expected argument 'connection_drain' to be a str")
+        pulumi.set(__self__, "connection_drain", connection_drain)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -32,6 +35,12 @@ class GetActiveStandbyPoolsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ip_version and not isinstance(ip_version, str):
+            raise TypeError("Expected argument 'ip_version' to be a str")
+        pulumi.set(__self__, "ip_version", ip_version)
+        if lb_algorithm and not isinstance(lb_algorithm, str):
+            raise TypeError("Expected argument 'lb_algorithm' to be a str")
+        pulumi.set(__self__, "lb_algorithm", lb_algorithm)
         if listener_id and not isinstance(listener_id, str):
             raise TypeError("Expected argument 'listener_id' to be a str")
         pulumi.set(__self__, "listener_id", listener_id)
@@ -67,6 +76,11 @@ class GetActiveStandbyPoolsResult:
         pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
+    @pulumi.getter(name="connectionDrain")
+    def connection_drain(self) -> Optional[str]:
+        return pulumi.get(self, "connection_drain")
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[str]:
         """
@@ -88,8 +102,28 @@ class GetActiveStandbyPoolsResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[str]:
+        """
+        The IP version supported by the member.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="lbAlgorithm")
+    def lb_algorithm(self) -> Optional[str]:
+        """
+        The load balancing algorithm used by the load balancer to route requests to backend servers in the
+        associated pool.
+        """
+        return pulumi.get(self, "lb_algorithm")
+
+    @property
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> Optional[str]:
+        """
+        The ID of the listener associated with the backend server.
+        """
         return pulumi.get(self, "listener_id")
 
     @property
@@ -165,9 +199,12 @@ class AwaitableGetActiveStandbyPoolsResult(GetActiveStandbyPoolsResult):
         if False:
             yield self
         return GetActiveStandbyPoolsResult(
+            connection_drain=self.connection_drain,
             description=self.description,
             healthmonitor_id=self.healthmonitor_id,
             id=self.id,
+            ip_version=self.ip_version,
+            lb_algorithm=self.lb_algorithm,
             listener_id=self.listener_id,
             loadbalancer_id=self.loadbalancer_id,
             member_address=self.member_address,
@@ -181,8 +218,11 @@ class AwaitableGetActiveStandbyPoolsResult(GetActiveStandbyPoolsResult):
             vpc_id=self.vpc_id)
 
 
-def get_active_standby_pools(description: Optional[str] = None,
+def get_active_standby_pools(connection_drain: Optional[str] = None,
+                             description: Optional[str] = None,
                              healthmonitor_id: Optional[str] = None,
+                             ip_version: Optional[str] = None,
+                             lb_algorithm: Optional[str] = None,
                              listener_id: Optional[str] = None,
                              loadbalancer_id: Optional[str] = None,
                              member_address: Optional[str] = None,
@@ -209,8 +249,18 @@ def get_active_standby_pools(description: Optional[str] = None,
     ```
 
 
+    :param str connection_drain: Specifies whether delayed logout is enabled. Value options:
+           + **false**: Disable this option.
+           + **true**: Enable this option.
     :param str description: Specifies supplementary information about the active-standby pool.
     :param str healthmonitor_id: Specifies the ID of the health check configured for the active-standby pool.
+    :param str ip_version: Specifies the IP address version supported by the pool.
+    :param str lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route requests
+           to backend servers in the associated pool. Value options:
+           + **ROUND_ROBIN**: weighted round robin.
+           + **LEAST_CONNECTIONS**: weighted least connections.
+           + **SOURCE_IP**: source IP hash.
+           + **QUIC_CID**: connection ID.
     :param str listener_id: Specifies the ID of the listener to which the forwarding policy is added.
     :param str loadbalancer_id: Specifies the ID of the load balancer with which the active-standby pool is
            associated.
@@ -231,8 +281,11 @@ def get_active_standby_pools(description: Optional[str] = None,
     :param str vpc_id: Specifies the ID of the VPC where the active-standby pool works.
     """
     __args__ = dict()
+    __args__['connectionDrain'] = connection_drain
     __args__['description'] = description
     __args__['healthmonitorId'] = healthmonitor_id
+    __args__['ipVersion'] = ip_version
+    __args__['lbAlgorithm'] = lb_algorithm
     __args__['listenerId'] = listener_id
     __args__['loadbalancerId'] = loadbalancer_id
     __args__['memberAddress'] = member_address
@@ -247,9 +300,12 @@ def get_active_standby_pools(description: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('huaweicloud:DedicatedElb/getActiveStandbyPools:getActiveStandbyPools', __args__, opts=opts, typ=GetActiveStandbyPoolsResult).value
 
     return AwaitableGetActiveStandbyPoolsResult(
+        connection_drain=__ret__.connection_drain,
         description=__ret__.description,
         healthmonitor_id=__ret__.healthmonitor_id,
         id=__ret__.id,
+        ip_version=__ret__.ip_version,
+        lb_algorithm=__ret__.lb_algorithm,
         listener_id=__ret__.listener_id,
         loadbalancer_id=__ret__.loadbalancer_id,
         member_address=__ret__.member_address,
@@ -264,8 +320,11 @@ def get_active_standby_pools(description: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_active_standby_pools)
-def get_active_standby_pools_output(description: Optional[pulumi.Input[Optional[str]]] = None,
+def get_active_standby_pools_output(connection_drain: Optional[pulumi.Input[Optional[str]]] = None,
+                                    description: Optional[pulumi.Input[Optional[str]]] = None,
                                     healthmonitor_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                    ip_version: Optional[pulumi.Input[Optional[str]]] = None,
+                                    lb_algorithm: Optional[pulumi.Input[Optional[str]]] = None,
                                     listener_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     loadbalancer_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     member_address: Optional[pulumi.Input[Optional[str]]] = None,
@@ -292,8 +351,18 @@ def get_active_standby_pools_output(description: Optional[pulumi.Input[Optional[
     ```
 
 
+    :param str connection_drain: Specifies whether delayed logout is enabled. Value options:
+           + **false**: Disable this option.
+           + **true**: Enable this option.
     :param str description: Specifies supplementary information about the active-standby pool.
     :param str healthmonitor_id: Specifies the ID of the health check configured for the active-standby pool.
+    :param str ip_version: Specifies the IP address version supported by the pool.
+    :param str lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route requests
+           to backend servers in the associated pool. Value options:
+           + **ROUND_ROBIN**: weighted round robin.
+           + **LEAST_CONNECTIONS**: weighted least connections.
+           + **SOURCE_IP**: source IP hash.
+           + **QUIC_CID**: connection ID.
     :param str listener_id: Specifies the ID of the listener to which the forwarding policy is added.
     :param str loadbalancer_id: Specifies the ID of the load balancer with which the active-standby pool is
            associated.

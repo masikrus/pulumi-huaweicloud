@@ -45,10 +45,20 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// The ELB IP group can be imported using the `id`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import huaweicloud:DedicatedElb/ipgroup:Ipgroup test <id>
+//
+// ```
 type Ipgroup struct {
 	pulumi.CustomResourceState
 
-	// The create time of the ip group.
+	// The creation time of the ip group.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Human-readable description for the ip.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -56,7 +66,7 @@ type Ipgroup struct {
 	// creates a new ip group.
 	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
 	// Specifies an array of one or more ip addresses. The ipList object structure is
-	// documented below.
+	// documented below. The ipList structure is documented below.
 	IpLists IpgroupIpListArrayOutput `pulumi:"ipLists"`
 	// The listener IDs which the ip group associated with.
 	ListenerIds pulumi.StringArrayOutput `pulumi:"listenerIds"`
@@ -102,7 +112,7 @@ func GetIpgroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Ipgroup resources.
 type ipgroupState struct {
-	// The create time of the ip group.
+	// The creation time of the ip group.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Human-readable description for the ip.
 	Description *string `pulumi:"description"`
@@ -110,7 +120,7 @@ type ipgroupState struct {
 	// creates a new ip group.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies an array of one or more ip addresses. The ipList object structure is
-	// documented below.
+	// documented below. The ipList structure is documented below.
 	IpLists []IpgroupIpList `pulumi:"ipLists"`
 	// The listener IDs which the ip group associated with.
 	ListenerIds []string `pulumi:"listenerIds"`
@@ -124,7 +134,7 @@ type ipgroupState struct {
 }
 
 type IpgroupState struct {
-	// The create time of the ip group.
+	// The creation time of the ip group.
 	CreatedAt pulumi.StringPtrInput
 	// Human-readable description for the ip.
 	Description pulumi.StringPtrInput
@@ -132,7 +142,7 @@ type IpgroupState struct {
 	// creates a new ip group.
 	EnterpriseProjectId pulumi.StringPtrInput
 	// Specifies an array of one or more ip addresses. The ipList object structure is
-	// documented below.
+	// documented below. The ipList structure is documented below.
 	IpLists IpgroupIpListArrayInput
 	// The listener IDs which the ip group associated with.
 	ListenerIds pulumi.StringArrayInput
@@ -156,7 +166,7 @@ type ipgroupArgs struct {
 	// creates a new ip group.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies an array of one or more ip addresses. The ipList object structure is
-	// documented below.
+	// documented below. The ipList structure is documented below.
 	IpLists []IpgroupIpList `pulumi:"ipLists"`
 	// Human-readable name for the ip group.
 	Name *string `pulumi:"name"`
@@ -173,7 +183,7 @@ type IpgroupArgs struct {
 	// creates a new ip group.
 	EnterpriseProjectId pulumi.StringPtrInput
 	// Specifies an array of one or more ip addresses. The ipList object structure is
-	// documented below.
+	// documented below. The ipList structure is documented below.
 	IpLists IpgroupIpListArrayInput
 	// Human-readable name for the ip group.
 	Name pulumi.StringPtrInput
@@ -269,7 +279,7 @@ func (o IpgroupOutput) ToIpgroupOutputWithContext(ctx context.Context) IpgroupOu
 	return o
 }
 
-// The create time of the ip group.
+// The creation time of the ip group.
 func (o IpgroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ipgroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -286,7 +296,7 @@ func (o IpgroupOutput) EnterpriseProjectId() pulumi.StringOutput {
 }
 
 // Specifies an array of one or more ip addresses. The ipList object structure is
-// documented below.
+// documented below. The ipList structure is documented below.
 func (o IpgroupOutput) IpLists() IpgroupIpListArrayOutput {
 	return o.ApplyT(func(v *Ipgroup) IpgroupIpListArrayOutput { return v.IpLists }).(IpgroupIpListArrayOutput)
 }

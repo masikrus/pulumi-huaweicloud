@@ -11,36 +11,6 @@ import (
 )
 
 // Use this data source to query the detailed information list of the EVS disks within HuaweiCloud.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/huaweicloud/pulumi-huaweicloud/sdk/go/huaweicloud/Evs"
-//	"github.com/pulumi/pulumi-huaweicloud/sdk/go/huaweicloud/Evs"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cfg := config.New(ctx, "")
-//			targetServer := cfg.RequireObject("targetServer")
-//			_, err := Evs.GetVolumes(ctx, &evs.GetVolumesArgs{
-//				ServerId: pulumi.StringRef(targetServer),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetVolumes(ctx *pulumi.Context, args *GetVolumesArgs, opts ...pulumi.InvokeOption) (*GetVolumesResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetVolumesResult
@@ -55,8 +25,23 @@ func GetVolumes(ctx *pulumi.Context, args *GetVolumesArgs, opts ...pulumi.Invoke
 type GetVolumesArgs struct {
 	// Specifies the availability zone for the disks.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
+	// Specifies the dedicated storage pool ID. All disks in the dedicated storage
+	// pool can be filtered by exact match.
+	DedicatedStorageId *string `pulumi:"dedicatedStorageId"`
+	// Specifies the dedicated storage pool name. All disks in the dedicated
+	// storage pool can be filtered by fuzzy match.
+	DedicatedStorageName *string `pulumi:"dedicatedStorageName"`
 	// Specifies the enterprise project ID for filtering.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
+	// Specifies the disk IDs. The value is in the ids=['id1','id2',...,'idx'] format.
+	// In the response, the `ids` value contains valid disk IDs only. Invalid disk IDs are ignored.
+	// The details about a maximum of `60` disks can be queried. If `volumeId` and `ids` are both specified in the request,
+	// `volumeId` will be ignored.
+	// Please pay attention to escape special characters before use. Please refer to the usage of example.
+	Ids *string `pulumi:"ids"`
+	// Specifies the disk metadata.
+	// Please pay attention to escape special characters before use. Please refer to the usage of example.
+	Metadata *string `pulumi:"metadata"`
 	// Specifies the name for the disks. This field will undergo a fuzzy matching query, the
 	// query result is for all disks whose names contain this value.
 	Name *string `pulumi:"name"`
@@ -65,8 +50,17 @@ type GetVolumesArgs struct {
 	Region *string `pulumi:"region"`
 	// Specifies the server ID to which the disks are attached.
 	ServerId *string `pulumi:"serverId"`
+	// Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
+	ServiceType *string `pulumi:"serviceType"`
 	// Specifies whether the disk is shareable.
 	Shareable *bool `pulumi:"shareable"`
+	// Specifies the result sorting order. The default value is **desc**.
+	// + **desc**: The descending order.
+	// + **asc**: The ascending order.
+	SortDir *string `pulumi:"sortDir"`
+	// Specifies the keyword based on which the returned results are sorted.
+	// The value can be **id**, **status**, **size**, or **created_at**, and the default value is **created_at**.
+	SortKey *string `pulumi:"sortKey"`
 	// Specifies the disk status. The valid values are as following:
 	// + **FREEZED**
 	// + **BIND_ERROR**
@@ -94,23 +88,47 @@ type GetVolumesArgs struct {
 type GetVolumesResult struct {
 	// The availability zone of the disk.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
+	// The ID of the dedicated storage pool housing the disk.
+	DedicatedStorageId *string `pulumi:"dedicatedStorageId"`
+	// The name of the dedicated storage pool housing the disk.
+	DedicatedStorageName *string `pulumi:"dedicatedStorageName"`
 	// The ID of the enterprise project associated with the disk.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id  string  `pulumi:"id"`
+	Ids *string `pulumi:"ids"`
+	// The key-value pair disk metadata. Valid key-value pairs are as follows:
+	// + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+	//   for encryption.
+	// + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+	//   If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+	//   If the disk is not created from a data source, the disk is not encrypted by default.
+	// + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+	// + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+	//   access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+	//   the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+	//   If this attribute is not specified, the disk device type is VBD.
+	// + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+	//   is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+	Metadata *string `pulumi:"metadata"`
 	// The disk name.
 	Name   *string `pulumi:"name"`
 	Region *string `pulumi:"region"`
 	// The ID of the server to which the disk is attached.
 	ServerId *string `pulumi:"serverId"`
+	// The service type, such as EVS, DSS or DESS.
+	ServiceType *string `pulumi:"serviceType"`
 	// Whether the disk is shareable.
-	Shareable *bool `pulumi:"shareable"`
+	Shareable *bool   `pulumi:"shareable"`
+	SortDir   *string `pulumi:"sortDir"`
+	SortKey   *string `pulumi:"sortKey"`
 	// The disk status.
 	Status *string `pulumi:"status"`
 	// The disk tags.
-	Tags         map[string]string `pulumi:"tags"`
-	VolumeId     *string           `pulumi:"volumeId"`
-	VolumeTypeId *string           `pulumi:"volumeTypeId"`
+	Tags map[string]string `pulumi:"tags"`
+	// The disk ID.
+	VolumeId     *string `pulumi:"volumeId"`
+	VolumeTypeId *string `pulumi:"volumeTypeId"`
 	// The detailed information of the disks. Structure is documented below.
 	Volumes []GetVolumesVolume `pulumi:"volumes"`
 }
@@ -132,8 +150,23 @@ func GetVolumesOutput(ctx *pulumi.Context, args GetVolumesOutputArgs, opts ...pu
 type GetVolumesOutputArgs struct {
 	// Specifies the availability zone for the disks.
 	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
+	// Specifies the dedicated storage pool ID. All disks in the dedicated storage
+	// pool can be filtered by exact match.
+	DedicatedStorageId pulumi.StringPtrInput `pulumi:"dedicatedStorageId"`
+	// Specifies the dedicated storage pool name. All disks in the dedicated
+	// storage pool can be filtered by fuzzy match.
+	DedicatedStorageName pulumi.StringPtrInput `pulumi:"dedicatedStorageName"`
 	// Specifies the enterprise project ID for filtering.
 	EnterpriseProjectId pulumi.StringPtrInput `pulumi:"enterpriseProjectId"`
+	// Specifies the disk IDs. The value is in the ids=['id1','id2',...,'idx'] format.
+	// In the response, the `ids` value contains valid disk IDs only. Invalid disk IDs are ignored.
+	// The details about a maximum of `60` disks can be queried. If `volumeId` and `ids` are both specified in the request,
+	// `volumeId` will be ignored.
+	// Please pay attention to escape special characters before use. Please refer to the usage of example.
+	Ids pulumi.StringPtrInput `pulumi:"ids"`
+	// Specifies the disk metadata.
+	// Please pay attention to escape special characters before use. Please refer to the usage of example.
+	Metadata pulumi.StringPtrInput `pulumi:"metadata"`
 	// Specifies the name for the disks. This field will undergo a fuzzy matching query, the
 	// query result is for all disks whose names contain this value.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -142,8 +175,17 @@ type GetVolumesOutputArgs struct {
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// Specifies the server ID to which the disks are attached.
 	ServerId pulumi.StringPtrInput `pulumi:"serverId"`
+	// Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
+	ServiceType pulumi.StringPtrInput `pulumi:"serviceType"`
 	// Specifies whether the disk is shareable.
 	Shareable pulumi.BoolPtrInput `pulumi:"shareable"`
+	// Specifies the result sorting order. The default value is **desc**.
+	// + **desc**: The descending order.
+	// + **asc**: The ascending order.
+	SortDir pulumi.StringPtrInput `pulumi:"sortDir"`
+	// Specifies the keyword based on which the returned results are sorted.
+	// The value can be **id**, **status**, **size**, or **created_at**, and the default value is **created_at**.
+	SortKey pulumi.StringPtrInput `pulumi:"sortKey"`
 	// Specifies the disk status. The valid values are as following:
 	// + **FREEZED**
 	// + **BIND_ERROR**
@@ -191,6 +233,16 @@ func (o GetVolumesResultOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the dedicated storage pool housing the disk.
+func (o GetVolumesResultOutput) DedicatedStorageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.DedicatedStorageId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the dedicated storage pool housing the disk.
+func (o GetVolumesResultOutput) DedicatedStorageName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.DedicatedStorageName }).(pulumi.StringPtrOutput)
+}
+
 // The ID of the enterprise project associated with the disk.
 func (o GetVolumesResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
@@ -199,6 +251,27 @@ func (o GetVolumesResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetVolumesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetVolumesResultOutput) Ids() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.Ids }).(pulumi.StringPtrOutput)
+}
+
+// The key-value pair disk metadata. Valid key-value pairs are as follows:
+//   - **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+//     for encryption.
+//   - **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+//     If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+//     If the disk is not created from a data source, the disk is not encrypted by default.
+//   - **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+//   - **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+//     access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+//     the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+//     If this attribute is not specified, the disk device type is VBD.
+//   - **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+//     is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+func (o GetVolumesResultOutput) Metadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.Metadata }).(pulumi.StringPtrOutput)
 }
 
 // The disk name.
@@ -215,9 +288,22 @@ func (o GetVolumesResultOutput) ServerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *string { return v.ServerId }).(pulumi.StringPtrOutput)
 }
 
+// The service type, such as EVS, DSS or DESS.
+func (o GetVolumesResultOutput) ServiceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.ServiceType }).(pulumi.StringPtrOutput)
+}
+
 // Whether the disk is shareable.
 func (o GetVolumesResultOutput) Shareable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *bool { return v.Shareable }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetVolumesResultOutput) SortDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.SortDir }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVolumesResultOutput) SortKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.SortKey }).(pulumi.StringPtrOutput)
 }
 
 // The disk status.
@@ -230,6 +316,7 @@ func (o GetVolumesResultOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetVolumesResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
+// The disk ID.
 func (o GetVolumesResultOutput) VolumeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
 }

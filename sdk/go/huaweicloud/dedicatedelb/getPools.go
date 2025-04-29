@@ -53,10 +53,23 @@ func GetPools(ctx *pulumi.Context, args *GetPoolsArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getPools.
 type GetPoolsArgs struct {
+	// Specifies whether forward to same port for a backend server group is enabled.
+	// Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	AnyPortEnable *string `pulumi:"anyPortEnable"`
+	// Specifies whether delayed logout is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	ConnectionDrain *string `pulumi:"connectionDrain"`
 	// Specifies the description of the ELB pool.
 	Description *string `pulumi:"description"`
+	// Specifies the ID of the enterprise project.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies the health monitor ID of the ELB pool.
 	HealthmonitorId *string `pulumi:"healthmonitorId"`
+	// Specifies the IP address version supported by the backend server group.
+	IpVersion *string `pulumi:"ipVersion"`
 	// Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
 	// **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
 	LbMethod *string `pulumi:"lbMethod"`
@@ -64,8 +77,22 @@ type GetPoolsArgs struct {
 	ListenerId *string `pulumi:"listenerId"`
 	// Specifies the loadbalancer ID of the ELB pool.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
+	// Specifies the private IP address bound to the backend server.
+	MemberAddress *string `pulumi:"memberAddress"`
+	// Specifies whether deletion protection is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	MemberDeletionProtectionEnable *string `pulumi:"memberDeletionProtectionEnable"`
+	// Specifies the ID of the cloud server that serves as a backend server.
+	MemberDeviceId *string `pulumi:"memberDeviceId"`
+	// Specifies the backend server ID.
+	MemberInstanceId *string `pulumi:"memberInstanceId"`
 	// Specifies the name of the ELB pool.
 	Name *string `pulumi:"name"`
+	// Specifies whether pool health is enabled. Value options:
+	// + **minimum_healthy_member_count=0**
+	// + **minimum_healthy_member_count=1**
+	PoolHealth *string `pulumi:"poolHealth"`
 	// Specifies the ID of the ELB pool.
 	PoolId *string `pulumi:"poolId"`
 	// Specifies the protection status for update.
@@ -74,6 +101,12 @@ type GetPoolsArgs struct {
 	// Specifies the protocol of the ELB pool. Value options: **TCP**, **UDP**, **HTTP**,
 	// **HTTPS**, **QUIC**, **GRPC** or **TLS**.
 	Protocol *string `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
+	// Specifies the QUIC connection ID len.
+	QuicCidLen *int `pulumi:"quicCidLen"`
+	// Specifies the QUIC connection ID offset.
+	QuicCidOffset *int `pulumi:"quicCidOffset"`
 	// Specifies the region in which to query the data source.
 	// If omitted, the provider-level region will be used.
 	Region *string `pulumi:"region"`
@@ -85,19 +118,32 @@ type GetPoolsArgs struct {
 
 // A collection of values returned by getPools.
 type GetPoolsResult struct {
+	// Whether forward to same port for a backend server group is enabled
+	AnyPortEnable   *string `pulumi:"anyPortEnable"`
+	ConnectionDrain *string `pulumi:"connectionDrain"`
 	// The description of pool.
 	Description *string `pulumi:"description"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// The health monitor ID of the LB pool.
 	HealthmonitorId *string `pulumi:"healthmonitorId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// The IP version of the LB pool.
+	IpVersion *string `pulumi:"ipVersion"`
 	// The load balancing algorithm to distribute traffic to the pool's members.
 	LbMethod       *string `pulumi:"lbMethod"`
 	ListenerId     *string `pulumi:"listenerId"`
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
+	MemberAddress  *string `pulumi:"memberAddress"`
+	// Whether deletion protection is enabled
+	MemberDeletionProtectionEnable *string `pulumi:"memberDeletionProtectionEnable"`
+	MemberDeviceId                 *string `pulumi:"memberDeviceId"`
+	MemberInstanceId               *string `pulumi:"memberInstanceId"`
 	// The pool name.
-	Name   *string `pulumi:"name"`
-	PoolId *string `pulumi:"poolId"`
+	Name       *string `pulumi:"name"`
+	PoolHealth *string `pulumi:"poolHealth"`
+	PoolId     *string `pulumi:"poolId"`
 	// Pool list. For details, see data structure of the pool field.
 	// The object structure is documented below.
 	Pools []GetPoolsPool `pulumi:"pools"`
@@ -105,7 +151,11 @@ type GetPoolsResult struct {
 	ProtectionStatus *string `pulumi:"protectionStatus"`
 	// The protocol of pool.
 	Protocol *string `pulumi:"protocol"`
-	Region   string  `pulumi:"region"`
+	// The public border group.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
+	QuicCidLen        *int    `pulumi:"quicCidLen"`
+	QuicCidOffset     *int    `pulumi:"quicCidOffset"`
+	Region            string  `pulumi:"region"`
 	// The type of persistence mode.
 	Type *string `pulumi:"type"`
 	// The ID of the VPC where the backend server group works.
@@ -127,10 +177,23 @@ func GetPoolsOutput(ctx *pulumi.Context, args GetPoolsOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getPools.
 type GetPoolsOutputArgs struct {
+	// Specifies whether forward to same port for a backend server group is enabled.
+	// Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	AnyPortEnable pulumi.StringPtrInput `pulumi:"anyPortEnable"`
+	// Specifies whether delayed logout is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	ConnectionDrain pulumi.StringPtrInput `pulumi:"connectionDrain"`
 	// Specifies the description of the ELB pool.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Specifies the ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringPtrInput `pulumi:"enterpriseProjectId"`
 	// Specifies the health monitor ID of the ELB pool.
 	HealthmonitorId pulumi.StringPtrInput `pulumi:"healthmonitorId"`
+	// Specifies the IP address version supported by the backend server group.
+	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
 	// Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
 	// **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
 	LbMethod pulumi.StringPtrInput `pulumi:"lbMethod"`
@@ -138,8 +201,22 @@ type GetPoolsOutputArgs struct {
 	ListenerId pulumi.StringPtrInput `pulumi:"listenerId"`
 	// Specifies the loadbalancer ID of the ELB pool.
 	LoadbalancerId pulumi.StringPtrInput `pulumi:"loadbalancerId"`
+	// Specifies the private IP address bound to the backend server.
+	MemberAddress pulumi.StringPtrInput `pulumi:"memberAddress"`
+	// Specifies whether deletion protection is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	MemberDeletionProtectionEnable pulumi.StringPtrInput `pulumi:"memberDeletionProtectionEnable"`
+	// Specifies the ID of the cloud server that serves as a backend server.
+	MemberDeviceId pulumi.StringPtrInput `pulumi:"memberDeviceId"`
+	// Specifies the backend server ID.
+	MemberInstanceId pulumi.StringPtrInput `pulumi:"memberInstanceId"`
 	// Specifies the name of the ELB pool.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Specifies whether pool health is enabled. Value options:
+	// + **minimum_healthy_member_count=0**
+	// + **minimum_healthy_member_count=1**
+	PoolHealth pulumi.StringPtrInput `pulumi:"poolHealth"`
 	// Specifies the ID of the ELB pool.
 	PoolId pulumi.StringPtrInput `pulumi:"poolId"`
 	// Specifies the protection status for update.
@@ -148,6 +225,12 @@ type GetPoolsOutputArgs struct {
 	// Specifies the protocol of the ELB pool. Value options: **TCP**, **UDP**, **HTTP**,
 	// **HTTPS**, **QUIC**, **GRPC** or **TLS**.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringPtrInput `pulumi:"publicBorderGroup"`
+	// Specifies the QUIC connection ID len.
+	QuicCidLen pulumi.IntPtrInput `pulumi:"quicCidLen"`
+	// Specifies the QUIC connection ID offset.
+	QuicCidOffset pulumi.IntPtrInput `pulumi:"quicCidOffset"`
 	// Specifies the region in which to query the data source.
 	// If omitted, the provider-level region will be used.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -176,9 +259,23 @@ func (o GetPoolsResultOutput) ToGetPoolsResultOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Whether forward to same port for a backend server group is enabled
+func (o GetPoolsResultOutput) AnyPortEnable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.AnyPortEnable }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) ConnectionDrain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.ConnectionDrain }).(pulumi.StringPtrOutput)
+}
+
 // The description of pool.
 func (o GetPoolsResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the enterprise project.
+func (o GetPoolsResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The health monitor ID of the LB pool.
@@ -189,6 +286,11 @@ func (o GetPoolsResultOutput) HealthmonitorId() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetPoolsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IP version of the LB pool.
+func (o GetPoolsResultOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
 }
 
 // The load balancing algorithm to distribute traffic to the pool's members.
@@ -204,9 +306,30 @@ func (o GetPoolsResultOutput) LoadbalancerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.LoadbalancerId }).(pulumi.StringPtrOutput)
 }
 
+func (o GetPoolsResultOutput) MemberAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.MemberAddress }).(pulumi.StringPtrOutput)
+}
+
+// Whether deletion protection is enabled
+func (o GetPoolsResultOutput) MemberDeletionProtectionEnable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.MemberDeletionProtectionEnable }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) MemberDeviceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.MemberDeviceId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) MemberInstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.MemberInstanceId }).(pulumi.StringPtrOutput)
+}
+
 // The pool name.
 func (o GetPoolsResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) PoolHealth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.PoolHealth }).(pulumi.StringPtrOutput)
 }
 
 func (o GetPoolsResultOutput) PoolId() pulumi.StringPtrOutput {
@@ -227,6 +350,19 @@ func (o GetPoolsResultOutput) ProtectionStatus() pulumi.StringPtrOutput {
 // The protocol of pool.
 func (o GetPoolsResultOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// The public border group.
+func (o GetPoolsResultOutput) PublicBorderGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.PublicBorderGroup }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) QuicCidLen() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *int { return v.QuicCidLen }).(pulumi.IntPtrOutput)
+}
+
+func (o GetPoolsResultOutput) QuicCidOffset() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *int { return v.QuicCidOffset }).(pulumi.IntPtrOutput)
 }
 
 func (o GetPoolsResultOutput) Region() pulumi.StringOutput {

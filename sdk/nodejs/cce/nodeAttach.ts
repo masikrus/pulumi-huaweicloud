@@ -89,6 +89,11 @@ export class NodeAttach extends pulumi.CustomResource {
      */
     public /*out*/ readonly enterpriseProjectId!: pulumi.Output<string>;
     /**
+     * The extension NICs of the node.
+     * The object structure is documented below.
+     */
+    public /*out*/ readonly extensionNics!: pulumi.Output<outputs.Cce.NodeAttachExtensionNic[]>;
+    /**
      * The flavor ID of the CCE node.
      */
     public /*out*/ readonly flavorId!: pulumi.Output<string>;
@@ -247,6 +252,7 @@ export class NodeAttach extends pulumi.CustomResource {
             resourceInputs["dockerBaseSize"] = state ? state.dockerBaseSize : undefined;
             resourceInputs["ecsGroupId"] = state ? state.ecsGroupId : undefined;
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
+            resourceInputs["extensionNics"] = state ? state.extensionNics : undefined;
             resourceInputs["flavorId"] = state ? state.flavorId : undefined;
             resourceInputs["hostnameConfig"] = state ? state.hostnameConfig : undefined;
             resourceInputs["imageId"] = state ? state.imageId : undefined;
@@ -315,6 +321,7 @@ export class NodeAttach extends pulumi.CustomResource {
             resourceInputs["dataVolumes"] = undefined /*out*/;
             resourceInputs["ecsGroupId"] = undefined /*out*/;
             resourceInputs["enterpriseProjectId"] = undefined /*out*/;
+            resourceInputs["extensionNics"] = undefined /*out*/;
             resourceInputs["flavorId"] = undefined /*out*/;
             resourceInputs["privateIp"] = undefined /*out*/;
             resourceInputs["publicIp"] = undefined /*out*/;
@@ -361,6 +368,11 @@ export interface NodeAttachState {
      * The enterprise project ID of the CCE node.
      */
     enterpriseProjectId?: pulumi.Input<string>;
+    /**
+     * The extension NICs of the node.
+     * The object structure is documented below.
+     */
+    extensionNics?: pulumi.Input<pulumi.Input<inputs.Cce.NodeAttachExtensionNic>[]>;
     /**
      * The flavor ID of the CCE node.
      */

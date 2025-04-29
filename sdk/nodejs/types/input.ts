@@ -7,7 +7,8 @@ import { input as inputs, output as outputs } from "../types";
 export interface ProviderAssumeRole {
     agencyName: pulumi.Input<string>;
     domainId?: pulumi.Input<string>;
-    domainName: pulumi.Input<string>;
+    domainName?: pulumi.Input<string>;
+    duration?: pulumi.Input<number>;
 }
 export namespace Aom {
     export interface AlarmRuleDimension {
@@ -114,25 +115,75 @@ export namespace Aom {
 }
 
 export namespace As {
-    export interface BandwidthPolicyScalingPolicyAction {
+    export interface BandwidthPolicyIntervalAlarmAction {
         /**
-         * Specifies the operation restrictions.
-         * - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-         * - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-         * - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+         * Specifies the operation restrictions, unit is Mbit/s.
+         * The valid values from `1` to `2,000`.
+         * If `operation` is not **SET**, this parameter takes effect.
+         * If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+         * If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
          */
         limits?: pulumi.Input<number>;
         /**
-         * Specifies the operation to be performed. The default operation is ADD.
-         * The options are as follows:
-         * - **ADD**: indicates adding the bandwidth size.
-         * - **REDUCE**: indicates reducing the bandwidth size.
-         * - **SET**: indicates setting the bandwidth size to a specified value.
+         * Specifies the lower limit of the value range.
+         * The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+         */
+        lowerBound?: pulumi.Input<string>;
+        /**
+         * Specifies the operation to be performed.
+         * The valid values are as follows:
+         * + **ADD** (default): Indicates adding the bandwidth size.
+         * + **REDUCE**: Indicates reducing the bandwidth size.
+         * + **SET**: Indicates setting the bandwidth size to a specified value.
          */
         operation?: pulumi.Input<string>;
         /**
-         * Specifies the bandwidth (Mbit/s).
-         * The value is an integer from 1 to 2000. The default value is 1.
+         * Specifies the operation size, unit is Mbit/s.
+         * The valid values from `1` to `300`, the default value is `1`.
+         */
+        size?: pulumi.Input<number>;
+        /**
+         * Specifies the upper limit of the value range.
+         * The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+         */
+        upperBound?: pulumi.Input<string>;
+    }
+
+    export interface BandwidthPolicyMetaData {
+        /**
+         * The bandwidth sharing type in the bandwidth policy.
+         */
+        metadataBandwidthShareType?: pulumi.Input<string>;
+        /**
+         * The EIP IP address for the bandwidth in the bandwidth policy.
+         */
+        metadataEipAddress?: pulumi.Input<string>;
+        /**
+         * The EIP ID for the bandwidth in the bandwidth policy.
+         */
+        metadataEipId?: pulumi.Input<string>;
+    }
+
+    export interface BandwidthPolicyScalingPolicyAction {
+        /**
+         * Specifies the operation restrictions, unit is Mbit/s.
+         * The valid values from `1` to `2,000`.
+         * If `operation` is not **SET**, this parameter takes effect.
+         * If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+         * If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+         */
+        limits?: pulumi.Input<number>;
+        /**
+         * Specifies the operation to be performed.
+         * The valid values are as follows:
+         * + **ADD** (default): Indicates adding the bandwidth size.
+         * + **REDUCE**: Indicates reducing the bandwidth size.
+         * + **SET**: Indicates setting the bandwidth size to a specified value.
+         */
+        operation?: pulumi.Input<string>;
+        /**
+         * Specifies the operation size, unit is Mbit/s.
+         * The valid values from `1` to `300`, the default value is `1`.
          */
         size?: pulumi.Input<number>;
     }
@@ -142,38 +193,40 @@ export namespace As {
          * Specifies the end time of the scaling action triggered periodically.
          * The time format complies with UTC. This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
          * When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-         * The time format is YYYY-MM-DDThh:mmZ.
+         * The time format is **YYYY-MM-DDThh:mmZ**.
          */
         endTime?: pulumi.Input<string>;
         /**
          * Specifies the time when the scaling action is triggered.
          * The time format complies with UTC.
-         * - If scalingPolicyType is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-         * - If scalingPolicyType is set to RECURRENCE, the time format is hh:mm.
+         * If `scalingPolicyType` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+         * If `scalingPolicyType` is set to **RECURRENCE**, the time format is **hh:mm**.
          */
         launchTime: pulumi.Input<string>;
         /**
          * Specifies the periodic triggering type.
-         * This parameter is mandatory when scalingPolicyType is set to RECURRENCE. The options are as follows:
-         * - **Daily**: indicates that the scaling action is triggered once a day.
-         * - **Weekly**: indicates that the scaling action is triggered once a week.
-         * - **Monthly**: indicates that the scaling action is triggered once a month.
+         * This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+         * The valid values are as follows:
+         * + **Daily**: Indicates that the scaling action is triggered once a day.
+         * + **Weekly**: Indicates that the scaling action is triggered once a week.
+         * + **Monthly**: Indicates that the scaling action is triggered once a month.
          */
         recurrenceType?: pulumi.Input<string>;
         /**
          * Specifies the day when a periodic scaling action is triggered.
-         * This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
-         * - If recurrenceType is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-         * - If recurrenceType is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-         * The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-         * - If recurrenceType is set to Monthly, the value ranges from 1 to 31.
-         * The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+         * This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+         * <br/>If `recurrenceType` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+         * once a day.
+         * <br/>If `recurrenceType` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+         * The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+         * <br/>If `recurrenceType` is set to **Monthly**, the value ranges from `1` to `31`.
+         * The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
          */
         recurrenceValue?: pulumi.Input<string>;
         /**
          * Specifies the start time of the scaling action triggered periodically.
          * The time format complies with UTC. The default value is the local time.
-         * The time format is YYYY-MM-DDThh:mmZ.
+         * The time format is **YYYY-MM-DDThh:mmZ**.
          */
         startTime?: pulumi.Input<string>;
     }
@@ -228,6 +281,10 @@ export namespace As {
          * Changing this will create a new resource.
          */
         instanceId?: pulumi.Input<string>;
+        /**
+         * The fingerprint of the SSH key pair used to log in to the instance.
+         */
+        keyFingerprint?: pulumi.Input<string>;
         /**
          * Specifies the name of the SSH key pair used to log in to the instance.
          * Changing this will create a new resource.
@@ -388,6 +445,10 @@ export namespace As {
     }
 
     export interface GroupLbaasListener {
+        /**
+         * The ID of the listener assocaite with the ELB.
+         */
+        listenerId?: pulumi.Input<string>;
         /**
          * Specifies the backend ECS group ID.
          */
@@ -958,6 +1019,13 @@ export namespace Cce {
         volumetype?: pulumi.Input<string>;
     }
 
+    export interface NodeAttachExtensionNic {
+        /**
+         * The ID of the subnet to which the NIC belongs.
+         */
+        subnetId?: pulumi.Input<string>;
+    }
+
     export interface NodeAttachHostnameConfig {
         /**
          * Specifies the hostname type of the kubernetes node.
@@ -1141,7 +1209,6 @@ export namespace Cce {
     export interface NodeDataVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for
-         * dedicated storage. Changing this parameter will create a new resource.
          */
         dssPoolId?: pulumi.Input<string>;
         /**
@@ -1151,7 +1218,6 @@ export namespace Cce {
         /**
          * Specifies the extended parameters.
          * The object structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         extendParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         hwPassthrough?: pulumi.Input<boolean>;
@@ -1162,13 +1228,11 @@ export namespace Cce {
         iops?: pulumi.Input<number>;
         /**
          * Specifies the ID of a KMS key. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId?: pulumi.Input<string>;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: pulumi.Input<number>;
         /**
@@ -1178,7 +1242,6 @@ export namespace Cce {
         throughput?: pulumi.Input<number>;
         /**
          * Specifies the disk type.
-         * Changing this parameter will create a new resource.
          */
         volumetype: pulumi.Input<string>;
     }
@@ -1186,59 +1249,56 @@ export namespace Cce {
     export interface NodeExtendParams {
         /**
          * Specifies the agency name.
-         * Changing this parameter will create a new resource.
          */
         agencyName?: pulumi.Input<string>;
         /**
          * Specifies the available disk space of a single container on a node,
-         * in GB. Changing this parameter will create a new resource.
+         * in GB.
          */
         dockerBaseSize?: pulumi.Input<number>;
         /**
          * Specifies the reserved node memory, which is reserved for
-         * Kubernetes-related components. Changing this parameter will create a new resource.
+         * Kubernetes-related components.
          */
         kubeReservedMem?: pulumi.Input<number>;
         marketType?: pulumi.Input<string>;
         /**
          * Specifies the maximum number of instances a node is allowed to create.
-         * Changing this parameter will create a new resource.
          */
         maxPods?: pulumi.Input<number>;
         /**
          * Specifies the ENI pre-binding thresholds.
-         * Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+         * Example setting: **"0.3:0.6"**.
          */
         nicThreshold?: pulumi.Input<string>;
         /**
          * Specifies the image ID to create the node.
-         * Changing this parameter will create a new resource.
          */
         nodeImageId?: pulumi.Input<string>;
         /**
          * Specifies the number of ENI queues.
-         * Example setting: **"[{\"queue\":4}]"**. Changing this parameter will create a new resource.
+         * Example setting: **"[{\"queue\":4}]"**.
          */
         nodeMultiQueue?: pulumi.Input<string>;
         /**
          * Specifies the script to be executed after installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
         postinstall?: pulumi.Input<string>;
         /**
          * Specifies the script to be executed before installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
         preinstall?: pulumi.Input<string>;
         /**
          * Specifies the security reinforcement type.
-         * The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+         * The value can be: **null** or **cybersecurity**.
          */
         securityReinforcementType?: pulumi.Input<string>;
         spotPrice?: pulumi.Input<string>;
         /**
          * Specifies the reserved node memory, which is reserved
-         * value for system components. Changing this parameter will create a new resource.
+         * value for system components.
          */
         systemReservedMem?: pulumi.Input<number>;
     }
@@ -1246,7 +1306,6 @@ export namespace Cce {
     export interface NodeExtensionNic {
         /**
          * Specifies the ID of the subnet to which the NIC belongs.
-         * Changing this parameter will create a new resource.
          */
         subnetId: pulumi.Input<string>;
     }
@@ -1264,7 +1323,6 @@ export namespace Cce {
     export interface NodePoolDataVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for dedicated storage.
-         * Changing this parameter will create a new resource.
          */
         dssPoolId?: pulumi.Input<string>;
         /**
@@ -1273,7 +1331,6 @@ export namespace Cce {
         extendParam?: pulumi.Input<string>;
         /**
          * Specifies the disk expansion parameters.
-         * Changing this parameter will create a new resource.
          */
         extendParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         hwPassthrough?: pulumi.Input<boolean>;
@@ -1284,13 +1341,11 @@ export namespace Cce {
         iops?: pulumi.Input<number>;
         /**
          * Specifies the KMS key ID. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId?: pulumi.Input<string>;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: pulumi.Input<number>;
         /**
@@ -1299,7 +1354,7 @@ export namespace Cce {
          */
         throughput?: pulumi.Input<number>;
         /**
-         * Specifies the disk type. Changing this parameter will create a new resource.
+         * Specifies the disk type.
          */
         volumetype: pulumi.Input<string>;
     }
@@ -1307,59 +1362,56 @@ export namespace Cce {
     export interface NodePoolExtendParams {
         /**
          * Specifies the agency name.
-         * Changing this parameter will create a new resource.
          */
         agencyName?: pulumi.Input<string>;
         /**
          * Specifies the available disk space of a single container on a node,
-         * in GB. Changing this parameter will create a new resource.
+         * in GB.
          */
         dockerBaseSize?: pulumi.Input<number>;
         /**
          * Specifies the reserved node memory, which is reserved for
-         * Kubernetes-related components. Changing this parameter will create a new resource.
+         * Kubernetes-related components.
          */
         kubeReservedMem?: pulumi.Input<number>;
         marketType?: pulumi.Input<string>;
         /**
          * Specifies the maximum number of instances a node is allowed to create.
-         * Changing this parameter will create a new resource.
          */
         maxPods?: pulumi.Input<number>;
         /**
          * Specifies the ENI pre-binding thresholds.
-         * Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+         * Example setting: **"0.3:0.6"**.
          */
         nicThreshold?: pulumi.Input<string>;
         /**
          * Specifies the image ID to create the node.
-         * Changing this parameter will create a new resource.
          */
         nodeImageId?: pulumi.Input<string>;
         /**
          * Specifies the number of ENI queues.
-         * Example setting: **"[{\"queue\":4}]"**. Changing this parameter will create a new resource.
+         * Example setting: **"[{\"queue\":4}]"**.
          */
         nodeMultiQueue?: pulumi.Input<string>;
         /**
          * Specifies the script to be executed after installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
         postinstall?: pulumi.Input<string>;
         /**
          * Specifies the script to be executed before installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
         preinstall?: pulumi.Input<string>;
         /**
          * Specifies the security reinforcement type.
-         * The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+         * The value can be: **null** or **cybersecurity**.
          */
         securityReinforcementType?: pulumi.Input<string>;
         spotPrice?: pulumi.Input<string>;
         /**
          * Specifies the reserved node memory, which is reserved
-         * value for system components. Changing this parameter will create a new resource.
+         * value for system components.
          */
         systemReservedMem?: pulumi.Input<number>;
     }
@@ -1467,7 +1519,6 @@ export namespace Cce {
     export interface NodePoolRootVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for dedicated storage.
-         * Changing this parameter will create a new resource.
          */
         dssPoolId?: pulumi.Input<string>;
         /**
@@ -1476,7 +1527,6 @@ export namespace Cce {
         extendParam?: pulumi.Input<string>;
         /**
          * Specifies the disk expansion parameters.
-         * Changing this parameter will create a new resource.
          */
         extendParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         hwPassthrough?: pulumi.Input<boolean>;
@@ -1487,13 +1537,11 @@ export namespace Cce {
         iops?: pulumi.Input<number>;
         /**
          * Specifies the KMS key ID. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId?: pulumi.Input<string>;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: pulumi.Input<number>;
         /**
@@ -1502,7 +1550,7 @@ export namespace Cce {
          */
         throughput?: pulumi.Input<number>;
         /**
-         * Specifies the disk type. Changing this parameter will create a new resource.
+         * Specifies the disk type.
          */
         volumetype: pulumi.Input<string>;
     }
@@ -1511,13 +1559,11 @@ export namespace Cce {
         /**
          * Specifies the storage group consists of multiple storage devices.
          * This is used to divide storage space. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         groups: pulumi.Input<pulumi.Input<inputs.Cce.NodePoolStorageGroup>[]>;
         /**
          * Specifies the disk selection.
          * Matched disks are managed according to match labels and storage type. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         selectors: pulumi.Input<pulumi.Input<inputs.Cce.NodePoolStorageSelector>[]>;
     }
@@ -1526,7 +1572,6 @@ export namespace Cce {
         /**
          * Specifies the whether the storage space is for **kubernetes** and
          * **runtime** components. Only one group can be set to true. The default value is **false**.
-         * Changing this parameter will create a new resource.
          */
         cceManaged?: pulumi.Input<boolean>;
         /**
@@ -1538,12 +1583,11 @@ export namespace Cce {
         /**
          * Specifies the list of names of selectors to match.
          * This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-         * but a selector can match only one group. Changing this parameter will create a new resource.
+         * but a selector can match only one group.
          */
         selectorNames: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * Specifies the detailed management of space configuration in a group.
-         * Changing this parameter will create a new resource.
          */
         virtualSpaces: pulumi.Input<pulumi.Input<inputs.Cce.NodePoolStorageGroupVirtualSpace>[]>;
     }
@@ -1551,13 +1595,12 @@ export namespace Cce {
     export interface NodePoolStorageGroupVirtualSpace {
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-         * a new resource.
+         * This parameter takes effect only in **kubernetes** and **user** configuration.
          */
         lvmLvType?: pulumi.Input<string>;
         /**
          * Specifies the absolute path to which the disk is attached.
-         * This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **user** configuration.
          */
         lvmPath?: pulumi.Input<string>;
         /**
@@ -1568,13 +1611,12 @@ export namespace Cce {
         name: pulumi.Input<string>;
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **runtime** configuration.
          */
         runtimeLvType?: pulumi.Input<string>;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: pulumi.Input<string>;
     }
@@ -1582,29 +1624,28 @@ export namespace Cce {
     export interface NodePoolStorageSelector {
         /**
          * Specifies the number of disks to be selected. If omitted,
-         * all disks of this type are selected. Changing this parameter will create a new resource.
+         * all disks of this type are selected.
          */
         matchLabelCount?: pulumi.Input<string>;
         /**
          * Specifies the customer master key ID of an encrypted
-         * disk. Changing this parameter will create a new resource.
+         * disk.
          */
         matchLabelMetadataCmkid?: pulumi.Input<string>;
         /**
          * Specifies the disk encryption identifier.
          * Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-         * If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+         * If omitted, whether the disk is encrypted is not limited.
          */
         matchLabelMetadataEncrypted?: pulumi.Input<string>;
         /**
          * Specifies the matched disk size. If omitted,
-         * the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+         * the disk size is not limited. Example: 100.
          */
         matchLabelSize?: pulumi.Input<string>;
         /**
          * Specifies the EVS disk type. Currently,
          * **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-         * Changing this parameter will create a new resource.
          */
         matchLabelVolumeType?: pulumi.Input<string>;
         /**
@@ -1643,7 +1684,6 @@ export namespace Cce {
     export interface NodeRootVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for
-         * dedicated storage. Changing this parameter will create a new resource.
          */
         dssPoolId?: pulumi.Input<string>;
         /**
@@ -1653,7 +1693,6 @@ export namespace Cce {
         /**
          * Specifies the extended parameters.
          * The object structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         extendParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         hwPassthrough?: pulumi.Input<boolean>;
@@ -1664,13 +1703,11 @@ export namespace Cce {
         iops?: pulumi.Input<number>;
         /**
          * Specifies the ID of a KMS key. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId?: pulumi.Input<string>;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: pulumi.Input<number>;
         /**
@@ -1680,7 +1717,6 @@ export namespace Cce {
         throughput?: pulumi.Input<number>;
         /**
          * Specifies the disk type.
-         * Changing this parameter will create a new resource.
          */
         volumetype: pulumi.Input<string>;
     }
@@ -1689,13 +1725,11 @@ export namespace Cce {
         /**
          * Specifies the storage group consists of multiple storage devices.
          * This is used to divide storage space. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         groups: pulumi.Input<pulumi.Input<inputs.Cce.NodeStorageGroup>[]>;
         /**
          * Specifies the disk selection.
          * Matched disks are managed according to match labels and storage type. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         selectors: pulumi.Input<pulumi.Input<inputs.Cce.NodeStorageSelector>[]>;
     }
@@ -1704,23 +1738,21 @@ export namespace Cce {
         /**
          * Specifies the whether the storage space is for **kubernetes** and
          * **runtime** components. Only one group can be set to true. The default value is **false**.
-         * Changing this parameter will create a new resource.
          */
         cceManaged?: pulumi.Input<boolean>;
         /**
          * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-         * and **user** are supported. Changing this parameter will create a new resource.
+         * and **user** are supported.
          */
         name: pulumi.Input<string>;
         /**
          * Specifies the list of names of selectors to match.
          * This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-         * but a selector can match only one group. Changing this parameter will create a new resource.
+         * but a selector can match only one group.
          */
         selectorNames: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * Specifies the detailed management of space configuration in a group.
-         * Changing this parameter will create a new resource.
          */
         virtualSpaces: pulumi.Input<pulumi.Input<inputs.Cce.NodeStorageGroupVirtualSpace>[]>;
     }
@@ -1728,29 +1760,27 @@ export namespace Cce {
     export interface NodeStorageGroupVirtualSpace {
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-         * a new resource.
+         * This parameter takes effect only in **kubernetes** and **user** configuration.
          */
         lvmLvType?: pulumi.Input<string>;
         /**
          * Specifies the absolute path to which the disk is attached.
-         * This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **user** configuration.
          */
         lvmPath?: pulumi.Input<string>;
         /**
          * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-         * and **user** are supported. Changing this parameter will create a new resource.
+         * and **user** are supported.
          */
         name: pulumi.Input<string>;
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **runtime** configuration.
          */
         runtimeLvType?: pulumi.Input<string>;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: pulumi.Input<string>;
     }
@@ -1758,34 +1788,33 @@ export namespace Cce {
     export interface NodeStorageSelector {
         /**
          * Specifies the number of disks to be selected. If omitted,
-         * all disks of this type are selected. Changing this parameter will create a new resource.
+         * all disks of this type are selected.
          */
         matchLabelCount?: pulumi.Input<string>;
         /**
          * Specifies the customer master key ID of an encrypted
-         * disk. Changing this parameter will create a new resource.
+         * disk.
          */
         matchLabelMetadataCmkid?: pulumi.Input<string>;
         /**
          * Specifies the disk encryption identifier.
          * Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-         * If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+         * If omitted, whether the disk is encrypted is not limited.
          */
         matchLabelMetadataEncrypted?: pulumi.Input<string>;
         /**
          * Specifies the matched disk size. If omitted,
-         * the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+         * the disk size is not limited. Example: 100.
          */
         matchLabelSize?: pulumi.Input<string>;
         /**
          * Specifies the EVS disk type. Currently,
          * **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-         * Changing this parameter will create a new resource.
          */
         matchLabelVolumeType?: pulumi.Input<string>;
         /**
          * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-         * and **user** are supported. Changing this parameter will create a new resource.
+         * and **user** are supported.
          */
         name: pulumi.Input<string>;
         /**
@@ -1800,19 +1829,17 @@ export namespace Cce {
     export interface NodeTaint {
         /**
          * Available options are NoSchedule, PreferNoSchedule, and NoExecute.
-         * Changing this parameter will create a new resource.
          */
         effect: pulumi.Input<string>;
         /**
          * A key must contain 1 to 63 characters starting with a letter or digit.
          * Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-         * as the prefix of a key. Changing this parameter will create a new resource.
+         * as the prefix of a key.
          */
         key: pulumi.Input<string>;
         /**
          * A value must start with a letter or digit and can contain a maximum of 63
-         * characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
-         * create a new resource.
+         * characters, including letters, digits, hyphens (-), underscores (_), and periods (.).
          */
         value?: pulumi.Input<string>;
     }
@@ -3140,6 +3167,295 @@ export namespace Cdn {
          */
         weight?: pulumi.Input<number>;
     }
+}
+
+export namespace Cfw {
+    export interface AclRuleCustomService {
+        /**
+         * The destination port.
+         */
+        destPort: pulumi.Input<string>;
+        /**
+         * The protocol type.
+         */
+        protocol: pulumi.Input<number>;
+        /**
+         * The source port.
+         */
+        sourcePort: pulumi.Input<string>;
+    }
+
+    export interface AclRuleCustomServiceGroups {
+        /**
+         * The IDs of the predefined service groups.
+         */
+        groupIds: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The protocols used in the predefined service groups.
+         */
+        protocols: pulumi.Input<pulumi.Input<number>[]>;
+    }
+
+    export interface AclRuleDestinationRegionList {
+        /**
+         * The Chinese description of the region.
+         */
+        descriptionCn?: pulumi.Input<string>;
+        /**
+         * The English description of the region.
+         */
+        descriptionEn?: pulumi.Input<string>;
+        /**
+         * The region ID.
+         */
+        regionId: pulumi.Input<string>;
+        /**
+         * The region type.
+         */
+        regionType: pulumi.Input<number>;
+    }
+
+    export interface AclRulePredefinedServiceGroups {
+        /**
+         * The IDs of the predefined service groups.
+         */
+        groupIds: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The protocols used in the predefined service groups.
+         */
+        protocols: pulumi.Input<pulumi.Input<number>[]>;
+    }
+
+    export interface AclRuleSequence {
+        /**
+         * Whether to pin on bottom.
+         * The options are as follows:
+         * + **0**: no;
+         * + **1**: yes;
+         */
+        bottom?: pulumi.Input<number>;
+        /**
+         * The ID of the rule that the added rule will follow.
+         */
+        destRuleId?: pulumi.Input<string>;
+        /**
+         * Whether to pin on top.
+         * The options are as follows:
+         * + **0**: no;
+         * + **1**: yes;
+         */
+        top?: pulumi.Input<number>;
+    }
+
+    export interface AclRuleSourceRegionList {
+        /**
+         * The Chinese description of the region.
+         */
+        descriptionCn?: pulumi.Input<string>;
+        /**
+         * The English description of the region.
+         */
+        descriptionEn?: pulumi.Input<string>;
+        /**
+         * The region ID.
+         */
+        regionId: pulumi.Input<string>;
+        /**
+         * The region type.
+         */
+        regionType: pulumi.Input<number>;
+    }
+
+    export interface AntiVirusScanProtocolConfig {
+        /**
+         * The anti virus action. The valid value can be **0** (observe) or **1** (block).
+         */
+        action: pulumi.Input<number>;
+        /**
+         * The protocol type.
+         * The valid values are as follows:
+         * + **0**: HTTP;
+         * + **1**: SMTP;
+         * + **2**: POP3;
+         * + **3**: IMAP4;
+         * + **4**: FTP;
+         * + **5**: SMB;
+         * + **6**: Malicious Access Control;
+         */
+        protocolType: pulumi.Input<number>;
+    }
+
+    export interface CaptureTaskDestination {
+        /**
+         * Specifies the address.
+         */
+        address: pulumi.Input<string>;
+        /**
+         * Specifies the address type.
+         * The valid values are:
+         * + **0**: indicates IPv4;
+         * + **1**: indicates IPv6.
+         */
+        addressType: pulumi.Input<number>;
+    }
+
+    export interface CaptureTaskService {
+        /**
+         * Specifies the destination port.
+         */
+        destPort?: pulumi.Input<string>;
+        /**
+         * Specifies the protocol type.
+         * The valid values are:
+         * + **6**: indicates TCP;
+         * + **17**: indicates UDP;
+         * + **1**: indicates ICMP;
+         * + **58**: indicates ICMPv6;
+         * + **-1**: indicates any protocol.
+         */
+        protocol: pulumi.Input<number>;
+        /**
+         * Specifies the source port.
+         */
+        sourcePort?: pulumi.Input<string>;
+    }
+
+    export interface CaptureTaskSource {
+        /**
+         * Specifies the address.
+         */
+        address: pulumi.Input<string>;
+        /**
+         * Specifies the address type.
+         * The valid values are:
+         * + **0**: indicates IPv4;
+         * + **1**: indicates IPv6.
+         */
+        addressType: pulumi.Input<number>;
+    }
+
+    export interface DomainNameGroupDomainName {
+        /**
+         * Specifies the description.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The DNS IP list.
+         */
+        dnsIps?: pulumi.Input<string>;
+        /**
+         * The domain address ID.
+         */
+        domainAddressId?: pulumi.Input<string>;
+        /**
+         * Specifies the domain name.
+         */
+        domainName: pulumi.Input<string>;
+    }
+
+    export interface EipProtectionProtectedEip {
+        /**
+         * The ID of the protected EIP.
+         */
+        id: pulumi.Input<string>;
+        /**
+         * The IPv4 address of the protected EIP.
+         */
+        publicIpv4?: pulumi.Input<string>;
+        /**
+         * The IPv6 address of the protected EIP.
+         */
+        publicIpv6?: pulumi.Input<string>;
+    }
+
+    export interface FirewallFlavor {
+        /**
+         * The bandwidth of the firewall.
+         */
+        bandwidth?: pulumi.Input<number>;
+        /**
+         * The default bandwidth of the firewall.
+         */
+        defaultBandwidth?: pulumi.Input<number>;
+        /**
+         * The default EIP number of the firewall.
+         */
+        defaultEipCount?: pulumi.Input<number>;
+        /**
+         * The default log storage of the firewall.
+         */
+        defaultLogStorage?: pulumi.Input<number>;
+        /**
+         * The default VPC number of the firewall.
+         */
+        defaultVpcCount?: pulumi.Input<number>;
+        /**
+         * The EIP number of the firewall.
+         */
+        eipCount?: pulumi.Input<number>;
+        /**
+         * Specifies the extend bandwidth of the firewall.
+         * Only works when the chargingMode is **prePaid**.
+         * Changing this parameter will create a new resource.
+         */
+        extendBandwidth?: pulumi.Input<number>;
+        /**
+         * Specifies the extend EIP number of the firewall.
+         * Only works when the chargingMode is **prePaid**.
+         * Changing this parameter will create a new resource.
+         */
+        extendEipCount?: pulumi.Input<number>;
+        /**
+         * Specifies the extend VPC number of the firewall.
+         * Only works when the chargingMode is **prePaid**.
+         * Changing this parameter will create a new resource.
+         */
+        extendVpcCount?: pulumi.Input<number>;
+        /**
+         * The log storage of the firewall.
+         */
+        logStorage?: pulumi.Input<number>;
+        /**
+         * The total rule count of the firewall.
+         */
+        totalRuleCount?: pulumi.Input<number>;
+        /**
+         * The used rule count of the firewall.
+         */
+        usedRuleCount?: pulumi.Input<number>;
+        /**
+         * Specifies the version of the firewall.
+         * When the chargingMode is **prePaid**: the value can be **Standard** and **Prefessional**.
+         * When the chargingMode is **postPaid**: the value can be **Prefessional**.
+         * Changing this parameter will create a new resource.
+         */
+        version: pulumi.Input<string>;
+        /**
+         * The VPC bandwidth of the firewall.
+         */
+        vpcBandwidth?: pulumi.Input<number>;
+        /**
+         * The VPC number of the firewall.
+         */
+        vpcCount?: pulumi.Input<number>;
+    }
+
+    export interface FirewallProtectObject {
+        /**
+         * The protected object ID.
+         */
+        objectId?: pulumi.Input<string>;
+        /**
+         * The protected object name.
+         */
+        objectName?: pulumi.Input<string>;
+        /**
+         * The object type.
+         * The options are as follows: 0: north-south; 1: east-west.
+         */
+        type?: pulumi.Input<number>;
+    }
+
 }
 
 export namespace Cse {
@@ -4907,7 +5223,12 @@ export namespace DedicatedApig {
          */
         id?: pulumi.Input<string>;
         /**
-         * Specifies the domain name. The valid must comply with the domian name specifications.
+         * Specifies the variable name.  
+         * The valid length is limited from `3` to `32` characters.
+         * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+         * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+         * It is replaced by the actual value when the API is published in an environment.
+         * The variable names are not allowed to be repeated for an API group.
          */
         name: pulumi.Input<string>;
         /**
@@ -4924,20 +5245,22 @@ export namespace DedicatedApig {
 
     export interface GroupUrlDomain {
         /**
-         * Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-         * The default value is `false`.
+         * Whether to enable redirection from `HTTP` to `HTTPS`.
          */
         isHttpRedirectToHttps?: pulumi.Input<boolean>;
         /**
-         * Specifies the minimum TLS version that can be used to access the domain name,
-         * the default value is `TLSv1.2`.
-         * The valid values are as follows:
+         * The minimum SSL protocol version.
          * + **TLSv1.1**
          * + **TLSv1.2**
          */
         minSslVersion?: pulumi.Input<string>;
         /**
-         * Specifies the domain name. The valid must comply with the domian name specifications.
+         * Specifies the variable name.  
+         * The valid length is limited from `3` to `32` characters.
+         * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+         * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+         * It is replaced by the actual value when the API is published in an environment.
+         * The variable names are not allowed to be repeated for an API group.
          */
         name: pulumi.Input<string>;
     }
@@ -5194,7 +5517,10 @@ export namespace DedicatedElb {
          */
         name?: pulumi.Input<string>;
         /**
-         * The health status of the member.
+         * The health status of the backend server. The value can be:
+         * + **ONLINE**: The backend server is running normally.
+         * + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+         * + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
          */
         operatingStatus?: pulumi.Input<string>;
         /**
@@ -5204,11 +5530,22 @@ export namespace DedicatedElb {
          */
         protocolPort?: pulumi.Input<number>;
         /**
+         * Why health check fails.
+         * The reason structure is documented below.
+         */
+        reasons?: pulumi.Input<pulumi.Input<inputs.DedicatedElb.ActiveStandbyPoolMemberReason>[]>;
+        /**
          * Specifies the type of the member. Value options:
          * + **master**: active backend server.
          * + **slave**: standby backend server.
          */
         role: pulumi.Input<string>;
+        /**
+         * The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+         * status is not specified, operatingStatus of member takes precedence.
+         * The status structure is documented below.
+         */
+        statuses?: pulumi.Input<pulumi.Input<inputs.DedicatedElb.ActiveStandbyPoolMemberStatus>[]>;
         /**
          * Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
          * + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
@@ -5217,6 +5554,71 @@ export namespace DedicatedElb {
          * **HTTPS**.
          */
         subnetId?: pulumi.Input<string>;
+    }
+
+    export interface ActiveStandbyPoolMemberReason {
+        /**
+         * The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+         * **HTTPS** or **GRPC**.
+         * + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+         * to other values, the status code ranges from **200** to **599**.
+         * + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+         * + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+         */
+        expectedResponse?: pulumi.Input<string>;
+        /**
+         * The returned HTTP status code in the response. This parameter will take effect only when `type`
+         * is set to **HTTP**, **HTTPS** or **GRPC**.
+         * + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+         * other values, the status code ranges from **200** to **599**.
+         */
+        healthcheckResponse?: pulumi.Input<string>;
+        /**
+         * The code of the health check failures. The value can be:
+         * + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+         * + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+         * + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+         * + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+         * + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+         * + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+         * + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+         * duration during a health check.
+         * + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+         * check.
+         * + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+         * timeout duration.
+         * + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+         * + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+         */
+        reasonCode?: pulumi.Input<string>;
+    }
+
+    export interface ActiveStandbyPoolMemberStatus {
+        /**
+         * Specifies the ID of the listener with which the active-standby pool is
+         * associated. Changing this parameter will create a new resource.
+         */
+        listenerId?: pulumi.Input<string>;
+        /**
+         * The health status of the backend server. The value can be:
+         * + **ONLINE**: The backend server is running normally.
+         * + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+         * + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+         */
+        operatingStatus?: pulumi.Input<string>;
+    }
+
+    export interface ActiveStandbyPoolQuicCidHashStrategy {
+        /**
+         * The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lbAlgorithm`
+         * is **QUIC_CID**. Value range: **1** to **20**.
+         */
+        len?: pulumi.Input<number>;
+        /**
+         * The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+         * `lbAlgorithm` is **QUIC_CID**. Value range: **0** to **19**.
+         */
+        offset?: pulumi.Input<number>;
     }
 
     export interface IpgroupIpList {
@@ -5636,6 +6038,52 @@ export namespace DedicatedElb {
          * Specifies the start port. Changing this creates a new listener.
          */
         startPort: pulumi.Input<number>;
+    }
+
+    export interface MemberReason {
+        /**
+         * The code of the health check failures.
+         */
+        expectedResponse?: pulumi.Input<string>;
+        /**
+         * The expected HTTP status code.
+         */
+        healthcheckResponse?: pulumi.Input<string>;
+        /**
+         * The returned HTTP status code in the response.
+         */
+        reasonCode?: pulumi.Input<string>;
+    }
+
+    export interface MemberStatus {
+        /**
+         * The listener ID.
+         */
+        listenerId?: pulumi.Input<string>;
+        /**
+         * The health status of the backend server.
+         */
+        operatingStatus?: pulumi.Input<string>;
+        /**
+         * Why health check fails.
+         * The reason structure is documented below.
+         */
+        reasons?: pulumi.Input<pulumi.Input<inputs.DedicatedElb.MemberStatusReason>[]>;
+    }
+
+    export interface MemberStatusReason {
+        /**
+         * The code of the health check failures.
+         */
+        expectedResponse?: pulumi.Input<string>;
+        /**
+         * The expected HTTP status code.
+         */
+        healthcheckResponse?: pulumi.Input<string>;
+        /**
+         * The returned HTTP status code in the response.
+         */
+        reasonCode?: pulumi.Input<string>;
     }
 
     export interface PoolPersistence {
@@ -6772,6 +7220,24 @@ export namespace Eip {
 }
 
 export namespace Elb {
+    export interface ListenerInsertHeaders {
+        /**
+         * Specifies whether to transparently transmit the load balancer EIP to backend
+         * servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+         * Value options:
+         * + **true**: This function is enabled.
+         * + **false (default)**: The function is disabled.
+         */
+        xForwardedElbIp?: pulumi.Input<string>;
+        /**
+         * Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+         * enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+         * + **true (default)**: This function is enabled.
+         * + **false**: The function is disabled.
+         */
+        xForwardedHost?: pulumi.Input<string>;
+    }
+
     export interface PoolPersistence {
         /**
          * The name of the cookie if persistence mode is set appropriately. Required
@@ -6791,15 +7257,29 @@ export namespace Elb {
          */
         type: pulumi.Input<string>;
     }
+}
 
+export namespace Er {
 }
 
 export namespace Evs {
     export interface VolumeAttachment {
         /**
+         * The time when the disk was attached.
+         */
+        attachedAt?: pulumi.Input<string>;
+        /**
+         * The ID of the attached disk.
+         */
+        attachedVolumeId?: pulumi.Input<string>;
+        /**
          * The device name.
          */
         device?: pulumi.Input<string>;
+        /**
+         * The name of the physical host housing the cloud server to which the disk is attached.
+         */
+        hostName?: pulumi.Input<string>;
         /**
          * The ID of the attachment information.
          */
@@ -6808,7 +7288,53 @@ export namespace Evs {
          * The ID of the server to which the disk is attached.
          */
         instanceId?: pulumi.Input<string>;
+        /**
+         * The disk ID.
+         */
+        volumeId?: pulumi.Input<string>;
     }
+
+    export interface VolumeIopsAttribute {
+        /**
+         * The frozen tag.
+         */
+        frozened?: pulumi.Input<boolean>;
+        /**
+         * The ID of the attachment information.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The throughput.
+         */
+        totalVal?: pulumi.Input<number>;
+    }
+
+    export interface VolumeLink {
+        /**
+         * The corresponding shortcut link.
+         */
+        href?: pulumi.Input<string>;
+        /**
+         * The shortcut link marker name.
+         */
+        rel?: pulumi.Input<string>;
+    }
+
+    export interface VolumeThroughputAttribute {
+        /**
+         * The frozen tag.
+         */
+        frozened?: pulumi.Input<boolean>;
+        /**
+         * The ID of the attachment information.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The throughput.
+         */
+        totalVal?: pulumi.Input<number>;
+    }
+
 }
 
 export namespace FunctionGraph {
@@ -8136,6 +8662,9 @@ export namespace Iec {
         volumeId?: pulumi.Input<string>;
     }
 
+}
+
+export namespace Ims {
 }
 
 export namespace IoTDA {
@@ -9714,13 +10243,9 @@ export namespace Mrs {
          */
         assignedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: pulumi.Input<number>;
         /**
@@ -9751,7 +10276,8 @@ export namespace Mrs {
          */
         hostIps?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: pulumi.Input<number>;
         /**
@@ -9773,13 +10299,9 @@ export namespace Mrs {
          */
         assignedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: pulumi.Input<number>;
         /**
@@ -9810,7 +10332,8 @@ export namespace Mrs {
          */
         hostIps?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: pulumi.Input<number>;
         /**
@@ -9914,13 +10437,9 @@ export namespace Mrs {
          */
         assignedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: pulumi.Input<number>;
         /**
@@ -9944,7 +10463,8 @@ export namespace Mrs {
          */
         flavor: pulumi.Input<string>;
         /**
-         * Specifies the name of nodes for the node group.
+         * Specifies the name of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         groupName: pulumi.Input<string>;
         /**
@@ -9955,7 +10475,8 @@ export namespace Mrs {
          */
         hostIps?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: pulumi.Input<number>;
         /**
@@ -10007,13 +10528,9 @@ export namespace Mrs {
          */
         assignedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: pulumi.Input<number>;
         /**
@@ -10044,7 +10561,8 @@ export namespace Mrs {
          */
         hostIps?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: pulumi.Input<number>;
         /**
@@ -10079,13 +10597,9 @@ export namespace Mrs {
          */
         assignedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: pulumi.Input<number>;
         /**
@@ -10116,7 +10630,8 @@ export namespace Mrs {
          */
         hostIps?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: pulumi.Input<number>;
         /**
@@ -10138,13 +10653,9 @@ export namespace Mrs {
          */
         assignedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: pulumi.Input<number>;
         /**
@@ -10175,7 +10686,8 @@ export namespace Mrs {
          */
         hostIps?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: pulumi.Input<number>;
         /**

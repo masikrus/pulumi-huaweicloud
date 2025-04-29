@@ -429,14 +429,14 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Specifies the informations about analysis core nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `analysisCoreNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     public readonly analysisCoreNodes!: pulumi.Output<outputs.Mrs.ClusterAnalysisCoreNodes | undefined>;
     /**
      * Specifies the informations about analysis task nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `analysisTaskNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     public readonly analysisTaskNodes!: pulumi.Output<outputs.Mrs.ClusterAnalysisTaskNodes | undefined>;
@@ -480,8 +480,8 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
-     * Specifies the informations about custom nodes in the MapReduce cluster.
-     * The `nodes` object structure of the `customNodes` is documented below.
+     * Specifies the informations about custom nodes in the MapReduce cluster.  
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     public readonly customNodes!: pulumi.Output<outputs.Mrs.ClusterCustomNode[] | undefined>;
@@ -520,7 +520,7 @@ export class Cluster extends pulumi.CustomResource {
     public /*out*/ readonly masterNodeIp!: pulumi.Output<string>;
     /**
      * Specifies the informations about master nodes in the MapReduce cluster.
-     * The `nodes` object structure of the `masterNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     public readonly masterNodes!: pulumi.Output<outputs.Mrs.ClusterMasterNodes>;
@@ -596,14 +596,14 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Specifies the informations about streaming core nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `streamingCoreNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     public readonly streamingCoreNodes!: pulumi.Output<outputs.Mrs.ClusterStreamingCoreNodes | undefined>;
     /**
      * Specifies the informations about streaming task nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `streamingTaskNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     public readonly streamingTaskNodes!: pulumi.Output<outputs.Mrs.ClusterStreamingTaskNodes | undefined>;
@@ -781,14 +781,14 @@ export interface ClusterState {
     /**
      * Specifies the informations about analysis core nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `analysisCoreNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     analysisCoreNodes?: pulumi.Input<inputs.Mrs.ClusterAnalysisCoreNodes>;
     /**
      * Specifies the informations about analysis task nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `analysisTaskNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     analysisTaskNodes?: pulumi.Input<inputs.Mrs.ClusterAnalysisTaskNodes>;
@@ -832,8 +832,8 @@ export interface ClusterState {
      */
     createTime?: pulumi.Input<string>;
     /**
-     * Specifies the informations about custom nodes in the MapReduce cluster.
-     * The `nodes` object structure of the `customNodes` is documented below.
+     * Specifies the informations about custom nodes in the MapReduce cluster.  
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     customNodes?: pulumi.Input<pulumi.Input<inputs.Mrs.ClusterCustomNode>[]>;
@@ -872,7 +872,7 @@ export interface ClusterState {
     masterNodeIp?: pulumi.Input<string>;
     /**
      * Specifies the informations about master nodes in the MapReduce cluster.
-     * The `nodes` object structure of the `masterNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     masterNodes?: pulumi.Input<inputs.Mrs.ClusterMasterNodes>;
@@ -948,14 +948,14 @@ export interface ClusterState {
     /**
      * Specifies the informations about streaming core nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `streamingCoreNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     streamingCoreNodes?: pulumi.Input<inputs.Mrs.ClusterStreamingCoreNodes>;
     /**
      * Specifies the informations about streaming task nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `streamingTaskNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     streamingTaskNodes?: pulumi.Input<inputs.Mrs.ClusterStreamingTaskNodes>;
@@ -1014,14 +1014,14 @@ export interface ClusterArgs {
     /**
      * Specifies the informations about analysis core nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `analysisCoreNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     analysisCoreNodes?: pulumi.Input<inputs.Mrs.ClusterAnalysisCoreNodes>;
     /**
      * Specifies the informations about analysis task nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `analysisTaskNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     analysisTaskNodes?: pulumi.Input<inputs.Mrs.ClusterAnalysisTaskNodes>;
@@ -1057,8 +1057,8 @@ export interface ClusterArgs {
      */
     componentLists: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the informations about custom nodes in the MapReduce cluster.
-     * The `nodes` object structure of the `customNodes` is documented below.
+     * Specifies the informations about custom nodes in the MapReduce cluster.  
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     customNodes?: pulumi.Input<pulumi.Input<inputs.Mrs.ClusterCustomNode>[]>;
@@ -1093,7 +1093,7 @@ export interface ClusterArgs {
     managerAdminPass: pulumi.Input<string>;
     /**
      * Specifies the informations about master nodes in the MapReduce cluster.
-     * The `nodes` object structure of the `masterNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     masterNodes: pulumi.Input<inputs.Mrs.ClusterMasterNodes>;
@@ -1161,14 +1161,14 @@ export interface ClusterArgs {
     /**
      * Specifies the informations about streaming core nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `streamingCoreNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     streamingCoreNodes?: pulumi.Input<inputs.Mrs.ClusterStreamingCoreNodes>;
     /**
      * Specifies the informations about streaming task nodes in the
      * MapReduce cluster.
-     * The `nodes` object structure of the `streamingTaskNodes` is documented below.
+     * The masterNodes structure is documented below.
      * Changing this will create a new MapReduce cluster resource.
      */
     streamingTaskNodes?: pulumi.Input<inputs.Mrs.ClusterStreamingTaskNodes>;

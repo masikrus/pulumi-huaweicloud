@@ -31,6 +31,7 @@ export function getMonitors(args?: GetMonitorsArgs, opts?: pulumi.InvokeOptions)
     return pulumi.runtime.invoke("huaweicloud:DedicatedElb/getMonitors:getMonitors", {
         "domainName": args.domainName,
         "enterpriseProjectId": args.enterpriseProjectId,
+        "httpMethod": args.httpMethod,
         "interval": args.interval,
         "maxRetries": args.maxRetries,
         "maxRetriesDown": args.maxRetriesDown,
@@ -59,6 +60,10 @@ export interface GetMonitorsArgs {
      * Specifies the enterprise project ID.
      */
     enterpriseProjectId?: string;
+    /**
+     * Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+     */
+    httpMethod?: string;
     /**
      * Specifies the interval between health checks, in seconds.  
      * The value ranges from `1` to `50`.
@@ -129,6 +134,10 @@ export interface GetMonitorsResult {
      */
     readonly domainName?: string;
     readonly enterpriseProjectId?: string;
+    /**
+     * The HTTP method
+     */
+    readonly httpMethod?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -201,6 +210,10 @@ export interface GetMonitorsOutputArgs {
      * Specifies the enterprise project ID.
      */
     enterpriseProjectId?: pulumi.Input<string>;
+    /**
+     * Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+     */
+    httpMethod?: pulumi.Input<string>;
     /**
      * Specifies the interval between health checks, in seconds.  
      * The value ranges from `1` to `50`.

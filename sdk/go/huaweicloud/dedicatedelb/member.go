@@ -61,17 +61,38 @@ type Member struct {
 	// The IP address of the member to receive traffic from the load balancer.
 	// Changing this creates a new member.
 	Address pulumi.StringOutput `pulumi:"address"`
+	// The time when the backend server was added. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The ID of the instance associated with the backend server. If this parameter is left blank, the backend
+	// server is not a real device. It may be an IP address.
+	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
+	// The IP version supported by the backend server. The value can be **v4 (IPv4)** or **v6 (IPv6)**, depending
+	// on the value of address returned by the system.
+	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
+	// The type of the backend server. The value can be:
+	// + **ip**: IP as backend servers
+	// + **instance**: ECSs used as backend servers
+	MemberType pulumi.StringOutput `pulumi:"memberType"`
 	// Human-readable name for the member.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The health status of the backend server.
+	OperatingStatus pulumi.StringOutput `pulumi:"operatingStatus"`
 	// The id of the pool that this member will be assigned to.
 	PoolId pulumi.StringOutput `pulumi:"poolId"`
-	// The port on which to listen for client traffic. It must be set to `0`
-	// for gateway load balancers with IP backend server groups associated. It can be left blank because it does not take
-	// effect if `anyPortEnable` is set to **true** for a backend server group. Changing this creates a new member.
+	// The port on which to listen for client traffic. It must be set to `0` for gateway
+	// load balancers with IP backend server groups associated. It can be left blank because it does not take effect if
+	// `anyPortEnable` is set to **true** for a backend server group.
 	ProtocolPort pulumi.IntOutput `pulumi:"protocolPort"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons MemberReasonArrayOutput `pulumi:"reasons"`
 	// The region in which to create the ELB member resource. If omitted, the the
 	// provider-level region will be used. Changing this creates a new member.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// `status` is not specified, `operatingStatus` of member takes precedence.
+	// The status structure is documented below.
+	Statuses MemberStatusArrayOutput `pulumi:"statuses"`
 	// The **IPv4 or IPv6 subnet ID** of the subnet in which to access the member.
 	// + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
 	// + This parameter must be specified for gateway load balancers. The subnet of the backend server must be in the same
@@ -80,6 +101,8 @@ type Member struct {
 	//   In this case, cross-VPC backend servers must use private IPv4 addresses,
 	//   and the protocol of the backend server group must be TCP, HTTP, or HTTPS.
 	SubnetId pulumi.StringPtrOutput `pulumi:"subnetId"`
+	// The time when the backend server was updated. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// A positive integer value that indicates the relative portion of traffic that this member
 	// should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a
 	// member with a weight of 2.
@@ -125,17 +148,38 @@ type memberState struct {
 	// The IP address of the member to receive traffic from the load balancer.
 	// Changing this creates a new member.
 	Address *string `pulumi:"address"`
+	// The time when the backend server was added. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The ID of the instance associated with the backend server. If this parameter is left blank, the backend
+	// server is not a real device. It may be an IP address.
+	InstanceId *string `pulumi:"instanceId"`
+	// The IP version supported by the backend server. The value can be **v4 (IPv4)** or **v6 (IPv6)**, depending
+	// on the value of address returned by the system.
+	IpVersion *string `pulumi:"ipVersion"`
+	// The type of the backend server. The value can be:
+	// + **ip**: IP as backend servers
+	// + **instance**: ECSs used as backend servers
+	MemberType *string `pulumi:"memberType"`
 	// Human-readable name for the member.
 	Name *string `pulumi:"name"`
+	// The health status of the backend server.
+	OperatingStatus *string `pulumi:"operatingStatus"`
 	// The id of the pool that this member will be assigned to.
 	PoolId *string `pulumi:"poolId"`
-	// The port on which to listen for client traffic. It must be set to `0`
-	// for gateway load balancers with IP backend server groups associated. It can be left blank because it does not take
-	// effect if `anyPortEnable` is set to **true** for a backend server group. Changing this creates a new member.
+	// The port on which to listen for client traffic. It must be set to `0` for gateway
+	// load balancers with IP backend server groups associated. It can be left blank because it does not take effect if
+	// `anyPortEnable` is set to **true** for a backend server group.
 	ProtocolPort *int `pulumi:"protocolPort"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons []MemberReason `pulumi:"reasons"`
 	// The region in which to create the ELB member resource. If omitted, the the
 	// provider-level region will be used. Changing this creates a new member.
 	Region *string `pulumi:"region"`
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// `status` is not specified, `operatingStatus` of member takes precedence.
+	// The status structure is documented below.
+	Statuses []MemberStatus `pulumi:"statuses"`
 	// The **IPv4 or IPv6 subnet ID** of the subnet in which to access the member.
 	// + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
 	// + This parameter must be specified for gateway load balancers. The subnet of the backend server must be in the same
@@ -144,6 +188,8 @@ type memberState struct {
 	//   In this case, cross-VPC backend servers must use private IPv4 addresses,
 	//   and the protocol of the backend server group must be TCP, HTTP, or HTTPS.
 	SubnetId *string `pulumi:"subnetId"`
+	// The time when the backend server was updated. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+	UpdatedAt *string `pulumi:"updatedAt"`
 	// A positive integer value that indicates the relative portion of traffic that this member
 	// should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a
 	// member with a weight of 2.
@@ -154,17 +200,38 @@ type MemberState struct {
 	// The IP address of the member to receive traffic from the load balancer.
 	// Changing this creates a new member.
 	Address pulumi.StringPtrInput
+	// The time when the backend server was added. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+	CreatedAt pulumi.StringPtrInput
+	// The ID of the instance associated with the backend server. If this parameter is left blank, the backend
+	// server is not a real device. It may be an IP address.
+	InstanceId pulumi.StringPtrInput
+	// The IP version supported by the backend server. The value can be **v4 (IPv4)** or **v6 (IPv6)**, depending
+	// on the value of address returned by the system.
+	IpVersion pulumi.StringPtrInput
+	// The type of the backend server. The value can be:
+	// + **ip**: IP as backend servers
+	// + **instance**: ECSs used as backend servers
+	MemberType pulumi.StringPtrInput
 	// Human-readable name for the member.
 	Name pulumi.StringPtrInput
+	// The health status of the backend server.
+	OperatingStatus pulumi.StringPtrInput
 	// The id of the pool that this member will be assigned to.
 	PoolId pulumi.StringPtrInput
-	// The port on which to listen for client traffic. It must be set to `0`
-	// for gateway load balancers with IP backend server groups associated. It can be left blank because it does not take
-	// effect if `anyPortEnable` is set to **true** for a backend server group. Changing this creates a new member.
+	// The port on which to listen for client traffic. It must be set to `0` for gateway
+	// load balancers with IP backend server groups associated. It can be left blank because it does not take effect if
+	// `anyPortEnable` is set to **true** for a backend server group.
 	ProtocolPort pulumi.IntPtrInput
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons MemberReasonArrayInput
 	// The region in which to create the ELB member resource. If omitted, the the
 	// provider-level region will be used. Changing this creates a new member.
 	Region pulumi.StringPtrInput
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// `status` is not specified, `operatingStatus` of member takes precedence.
+	// The status structure is documented below.
+	Statuses MemberStatusArrayInput
 	// The **IPv4 or IPv6 subnet ID** of the subnet in which to access the member.
 	// + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
 	// + This parameter must be specified for gateway load balancers. The subnet of the backend server must be in the same
@@ -173,6 +240,8 @@ type MemberState struct {
 	//   In this case, cross-VPC backend servers must use private IPv4 addresses,
 	//   and the protocol of the backend server group must be TCP, HTTP, or HTTPS.
 	SubnetId pulumi.StringPtrInput
+	// The time when the backend server was updated. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+	UpdatedAt pulumi.StringPtrInput
 	// A positive integer value that indicates the relative portion of traffic that this member
 	// should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a
 	// member with a weight of 2.
@@ -191,9 +260,9 @@ type memberArgs struct {
 	Name *string `pulumi:"name"`
 	// The id of the pool that this member will be assigned to.
 	PoolId string `pulumi:"poolId"`
-	// The port on which to listen for client traffic. It must be set to `0`
-	// for gateway load balancers with IP backend server groups associated. It can be left blank because it does not take
-	// effect if `anyPortEnable` is set to **true** for a backend server group. Changing this creates a new member.
+	// The port on which to listen for client traffic. It must be set to `0` for gateway
+	// load balancers with IP backend server groups associated. It can be left blank because it does not take effect if
+	// `anyPortEnable` is set to **true** for a backend server group.
 	ProtocolPort *int `pulumi:"protocolPort"`
 	// The region in which to create the ELB member resource. If omitted, the the
 	// provider-level region will be used. Changing this creates a new member.
@@ -221,9 +290,9 @@ type MemberArgs struct {
 	Name pulumi.StringPtrInput
 	// The id of the pool that this member will be assigned to.
 	PoolId pulumi.StringInput
-	// The port on which to listen for client traffic. It must be set to `0`
-	// for gateway load balancers with IP backend server groups associated. It can be left blank because it does not take
-	// effect if `anyPortEnable` is set to **true** for a backend server group. Changing this creates a new member.
+	// The port on which to listen for client traffic. It must be set to `0` for gateway
+	// load balancers with IP backend server groups associated. It can be left blank because it does not take effect if
+	// `anyPortEnable` is set to **true** for a backend server group.
 	ProtocolPort pulumi.IntPtrInput
 	// The region in which to create the ELB member resource. If omitted, the the
 	// provider-level region will be used. Changing this creates a new member.
@@ -335,9 +404,38 @@ func (o MemberOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
+// The time when the backend server was added. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+func (o MemberOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the instance associated with the backend server. If this parameter is left blank, the backend
+// server is not a real device. It may be an IP address.
+func (o MemberOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The IP version supported by the backend server. The value can be **v4 (IPv4)** or **v6 (IPv6)**, depending
+// on the value of address returned by the system.
+func (o MemberOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// The type of the backend server. The value can be:
+// + **ip**: IP as backend servers
+// + **instance**: ECSs used as backend servers
+func (o MemberOutput) MemberType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.MemberType }).(pulumi.StringOutput)
+}
+
 // Human-readable name for the member.
 func (o MemberOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server.
+func (o MemberOutput) OperatingStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.OperatingStatus }).(pulumi.StringOutput)
 }
 
 // The id of the pool that this member will be assigned to.
@@ -345,17 +443,30 @@ func (o MemberOutput) PoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.PoolId }).(pulumi.StringOutput)
 }
 
-// The port on which to listen for client traffic. It must be set to `0`
-// for gateway load balancers with IP backend server groups associated. It can be left blank because it does not take
-// effect if `anyPortEnable` is set to **true** for a backend server group. Changing this creates a new member.
+// The port on which to listen for client traffic. It must be set to `0` for gateway
+// load balancers with IP backend server groups associated. It can be left blank because it does not take effect if
+// `anyPortEnable` is set to **true** for a backend server group.
 func (o MemberOutput) ProtocolPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Member) pulumi.IntOutput { return v.ProtocolPort }).(pulumi.IntOutput)
+}
+
+// Why health check fails.
+// The reason structure is documented below.
+func (o MemberOutput) Reasons() MemberReasonArrayOutput {
+	return o.ApplyT(func(v *Member) MemberReasonArrayOutput { return v.Reasons }).(MemberReasonArrayOutput)
 }
 
 // The region in which to create the ELB member resource. If omitted, the the
 // provider-level region will be used. Changing this creates a new member.
 func (o MemberOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+// `status` is not specified, `operatingStatus` of member takes precedence.
+// The status structure is documented below.
+func (o MemberOutput) Statuses() MemberStatusArrayOutput {
+	return o.ApplyT(func(v *Member) MemberStatusArrayOutput { return v.Statuses }).(MemberStatusArrayOutput)
 }
 
 // The **IPv4 or IPv6 subnet ID** of the subnet in which to access the member.
@@ -367,6 +478,11 @@ func (o MemberOutput) Region() pulumi.StringOutput {
 //     and the protocol of the backend server group must be TCP, HTTP, or HTTPS.
 func (o MemberOutput) SubnetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Member) pulumi.StringPtrOutput { return v.SubnetId }).(pulumi.StringPtrOutput)
+}
+
+// The time when the backend server was updated. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
+func (o MemberOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Member) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // A positive integer value that indicates the relative portion of traffic that this member

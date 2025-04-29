@@ -13,6 +13,9 @@ from . import outputs
 __all__ = [
     'ActiveStandbyPoolHealthmonitor',
     'ActiveStandbyPoolMember',
+    'ActiveStandbyPoolMemberReason',
+    'ActiveStandbyPoolMemberStatus',
+    'ActiveStandbyPoolQuicCidHashStrategy',
     'IpgroupIpList',
     'L7policyFixedResponseConfig',
     'L7policyFixedResponseConfigInsertHeadersConfig',
@@ -36,6 +39,9 @@ __all__ = [
     'L7policyRedirectUrlConfigRemoveHeadersConfigConfig',
     'L7ruleCondition',
     'ListenerPortRange',
+    'MemberReason',
+    'MemberStatus',
+    'MemberStatusReason',
     'PoolPersistence',
     'SecurityPolicyListener',
     'GetActiveStandbyPoolsPoolResult',
@@ -43,6 +49,9 @@ __all__ = [
     'GetActiveStandbyPoolsPoolListenerResult',
     'GetActiveStandbyPoolsPoolLoadbalancerResult',
     'GetActiveStandbyPoolsPoolMemberResult',
+    'GetActiveStandbyPoolsPoolMemberReasonResult',
+    'GetActiveStandbyPoolsPoolMemberStatusResult',
+    'GetActiveStandbyPoolsPoolQuicCidHashStrategyResult',
     'GetAllMembersMemberResult',
     'GetAllMembersMemberReasonResult',
     'GetAllMembersMemberStatusResult',
@@ -56,15 +65,38 @@ __all__ = [
     'GetIpgroupsIpgroupListenerResult',
     'GetL7policiesL7policyResult',
     'GetL7policiesL7policyFixedResponseConfigResult',
+    'GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigResult',
+    'GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigResult',
+    'GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigResult',
+    'GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigResult',
+    'GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigResult',
+    'GetL7policiesL7policyRedirectPoolsConfigResult',
     'GetL7policiesL7policyRedirectPoolsExtendConfigResult',
+    'GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigResult',
+    'GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigResult',
+    'GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigResult',
+    'GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigResult',
     'GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigResult',
+    'GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigResult',
+    'GetL7policiesL7policyRedirectPoolsStickySessionConfigResult',
     'GetL7policiesL7policyRedirectUrlConfigResult',
+    'GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigResult',
+    'GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigResult',
+    'GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigResult',
+    'GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigResult',
     'GetL7policiesL7policyRuleResult',
     'GetL7rulesL7ruleResult',
     'GetL7rulesL7ruleConditionResult',
     'GetListenersListenerResult',
+    'GetListenersListenerIpgroupResult',
+    'GetListenersListenerPortRangeResult',
+    'GetListenersListenerQuicConfigResult',
     'GetLoadbalancerFeatureConfigurationsFeatureResult',
     'GetLoadbalancersLoadbalancerResult',
+    'GetLoadbalancersLoadbalancerGlobalEipResult',
+    'GetLoadbalancersLoadbalancerListenerResult',
+    'GetLoadbalancersLoadbalancerPoolResult',
+    'GetLoadbalancersLoadbalancerPublicipResult',
     'GetLogtanksLogtankResult',
     'GetMonitorsMonitorResult',
     'GetPoolsPoolResult',
@@ -72,6 +104,7 @@ __all__ = [
     'GetPoolsPoolLoadbalancerResult',
     'GetPoolsPoolMemberResult',
     'GetPoolsPoolPersistenceResult',
+    'GetPoolsPoolQuicCidHashStrategyResult',
     'GetSecurityPoliciesSecurityPolicyResult',
     'GetSecurityPoliciesSecurityPolicyListenerResult',
 ]
@@ -353,6 +386,8 @@ class ActiveStandbyPoolMember(dict):
                  name: Optional[str] = None,
                  operating_status: Optional[str] = None,
                  protocol_port: Optional[int] = None,
+                 reasons: Optional[Sequence['outputs.ActiveStandbyPoolMemberReason']] = None,
+                 statuses: Optional[Sequence['outputs.ActiveStandbyPoolMemberStatus']] = None,
                  subnet_id: Optional[str] = None):
         """
         :param str address: Specifies the private IP address bound to the member.
@@ -369,10 +404,18 @@ class ActiveStandbyPoolMember(dict):
         :param str member_type: The type of the member.
         :param str name: Specifies the health check name. The length range of value is from `1` to `255`.
                Changing this parameter will create a new resource.
-        :param str operating_status: The health status of the member.
+        :param str operating_status: The health status of the backend server. The value can be:
+               + **ONLINE**: The backend server is running normally.
+               + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+               + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
         :param int protocol_port: Specifies the port used by the member to receive requests. It is mandatory
                if `any_port_enable` is **false**, and it does not take effect if `any_port_enable` is set to **true**. The value range
                is from `1` to `65,535`. Changing this parameter will create a new resource.
+        :param Sequence['ActiveStandbyPoolMemberReasonArgs'] reasons: Why health check fails.
+               The reason structure is documented below.
+        :param Sequence['ActiveStandbyPoolMemberStatusArgs'] statuses: The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+               status is not specified, operating_status of member takes precedence.
+               The status structure is documented below.
         :param str subnet_id: Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
                + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
                + If this parameter is not passed, IP as a Backend has been enabled for the load balancer. In this case, IP as backend
@@ -395,6 +438,10 @@ class ActiveStandbyPoolMember(dict):
             pulumi.set(__self__, "operating_status", operating_status)
         if protocol_port is not None:
             pulumi.set(__self__, "protocol_port", protocol_port)
+        if reasons is not None:
+            pulumi.set(__self__, "reasons", reasons)
+        if statuses is not None:
+            pulumi.set(__self__, "statuses", statuses)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
 
@@ -465,7 +512,10 @@ class ActiveStandbyPoolMember(dict):
     @pulumi.getter(name="operatingStatus")
     def operating_status(self) -> Optional[str]:
         """
-        The health status of the member.
+        The health status of the backend server. The value can be:
+        + **ONLINE**: The backend server is running normally.
+        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
         """
         return pulumi.get(self, "operating_status")
 
@@ -480,6 +530,25 @@ class ActiveStandbyPoolMember(dict):
         return pulumi.get(self, "protocol_port")
 
     @property
+    @pulumi.getter
+    def reasons(self) -> Optional[Sequence['outputs.ActiveStandbyPoolMemberReason']]:
+        """
+        Why health check fails.
+        The reason structure is documented below.
+        """
+        return pulumi.get(self, "reasons")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Optional[Sequence['outputs.ActiveStandbyPoolMemberStatus']]:
+        """
+        The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+        status is not specified, operating_status of member takes precedence.
+        The status structure is documented below.
+        """
+        return pulumi.get(self, "statuses")
+
+    @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
         """
@@ -490,6 +559,207 @@ class ActiveStandbyPoolMember(dict):
         **HTTPS**.
         """
         return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class ActiveStandbyPoolMemberReason(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expectedResponse":
+            suggest = "expected_response"
+        elif key == "healthcheckResponse":
+            suggest = "healthcheck_response"
+        elif key == "reasonCode":
+            suggest = "reason_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ActiveStandbyPoolMemberReason. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ActiveStandbyPoolMemberReason.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ActiveStandbyPoolMemberReason.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expected_response: Optional[str] = None,
+                 healthcheck_response: Optional[str] = None,
+                 reason_code: Optional[str] = None):
+        """
+        :param str expected_response: The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+               **HTTPS** or **GRPC**.
+               + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+               to other values, the status code ranges from **200** to **599**.
+               + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+               + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+        :param str healthcheck_response: The returned HTTP status code in the response. This parameter will take effect only when `type`
+               is set to **HTTP**, **HTTPS** or **GRPC**.
+               + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+               other values, the status code ranges from **200** to **599**.
+        :param str reason_code: The code of the health check failures. The value can be:
+               + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+               + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+               + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+               + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+               + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+               + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+               + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+               duration during a health check.
+               + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+               check.
+               + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+               timeout duration.
+               + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+               + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+        """
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if healthcheck_response is not None:
+            pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        if reason_code is not None:
+            pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[str]:
+        """
+        The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+        **HTTPS** or **GRPC**.
+        + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+        to other values, the status code ranges from **200** to **599**.
+        + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+        + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> Optional[str]:
+        """
+        The returned HTTP status code in the response. This parameter will take effect only when `type`
+        is set to **HTTP**, **HTTPS** or **GRPC**.
+        + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+        other values, the status code ranges from **200** to **599**.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> Optional[str]:
+        """
+        The code of the health check failures. The value can be:
+        + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+        + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+        + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+        + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+        + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+        + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+        + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+        duration during a health check.
+        + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+        check.
+        + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+        timeout duration.
+        + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+        + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+        """
+        return pulumi.get(self, "reason_code")
+
+
+@pulumi.output_type
+class ActiveStandbyPoolMemberStatus(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "listenerId":
+            suggest = "listener_id"
+        elif key == "operatingStatus":
+            suggest = "operating_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ActiveStandbyPoolMemberStatus. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ActiveStandbyPoolMemberStatus.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ActiveStandbyPoolMemberStatus.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 listener_id: Optional[str] = None,
+                 operating_status: Optional[str] = None):
+        """
+        :param str listener_id: Specifies the ID of the listener with which the active-standby pool is
+               associated. Changing this parameter will create a new resource.
+        :param str operating_status: The health status of the backend server. The value can be:
+               + **ONLINE**: The backend server is running normally.
+               + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+               + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+        """
+        if listener_id is not None:
+            pulumi.set(__self__, "listener_id", listener_id)
+        if operating_status is not None:
+            pulumi.set(__self__, "operating_status", operating_status)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> Optional[str]:
+        """
+        Specifies the ID of the listener with which the active-standby pool is
+        associated. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> Optional[str]:
+        """
+        The health status of the backend server. The value can be:
+        + **ONLINE**: The backend server is running normally.
+        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+        """
+        return pulumi.get(self, "operating_status")
+
+
+@pulumi.output_type
+class ActiveStandbyPoolQuicCidHashStrategy(dict):
+    def __init__(__self__, *,
+                 len: Optional[int] = None,
+                 offset: Optional[int] = None):
+        """
+        :param int len: The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lb_algorithm`
+               is **QUIC_CID**. Value range: **1** to **20**.
+        :param int offset: The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+               `lb_algorithm` is **QUIC_CID**. Value range: **0** to **19**.
+        """
+        if len is not None:
+            pulumi.set(__self__, "len", len)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
+
+    @property
+    @pulumi.getter
+    def len(self) -> Optional[int]:
+        """
+        The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lb_algorithm`
+        is **QUIC_CID**. Value range: **1** to **20**.
+        """
+        return pulumi.get(self, "len")
+
+    @property
+    @pulumi.getter
+    def offset(self) -> Optional[int]:
+        """
+        The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+        `lb_algorithm` is **QUIC_CID**. Value range: **0** to **19**.
+        """
+        return pulumi.get(self, "offset")
 
 
 @pulumi.output_type
@@ -1747,6 +2017,198 @@ class ListenerPortRange(dict):
 
 
 @pulumi.output_type
+class MemberReason(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expectedResponse":
+            suggest = "expected_response"
+        elif key == "healthcheckResponse":
+            suggest = "healthcheck_response"
+        elif key == "reasonCode":
+            suggest = "reason_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberReason. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberReason.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberReason.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expected_response: Optional[str] = None,
+                 healthcheck_response: Optional[str] = None,
+                 reason_code: Optional[str] = None):
+        """
+        :param str expected_response: The code of the health check failures.
+        :param str healthcheck_response: The expected HTTP status code.
+        :param str reason_code: The returned HTTP status code in the response.
+        """
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if healthcheck_response is not None:
+            pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        if reason_code is not None:
+            pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[str]:
+        """
+        The code of the health check failures.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> Optional[str]:
+        """
+        The expected HTTP status code.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> Optional[str]:
+        """
+        The returned HTTP status code in the response.
+        """
+        return pulumi.get(self, "reason_code")
+
+
+@pulumi.output_type
+class MemberStatus(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "listenerId":
+            suggest = "listener_id"
+        elif key == "operatingStatus":
+            suggest = "operating_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberStatus. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberStatus.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberStatus.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 listener_id: Optional[str] = None,
+                 operating_status: Optional[str] = None,
+                 reasons: Optional[Sequence['outputs.MemberStatusReason']] = None):
+        """
+        :param str listener_id: The listener ID.
+        :param str operating_status: The health status of the backend server.
+        :param Sequence['MemberStatusReasonArgs'] reasons: Why health check fails.
+               The reason structure is documented below.
+        """
+        if listener_id is not None:
+            pulumi.set(__self__, "listener_id", listener_id)
+        if operating_status is not None:
+            pulumi.set(__self__, "operating_status", operating_status)
+        if reasons is not None:
+            pulumi.set(__self__, "reasons", reasons)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> Optional[str]:
+        """
+        The listener ID.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> Optional[str]:
+        """
+        The health status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @property
+    @pulumi.getter
+    def reasons(self) -> Optional[Sequence['outputs.MemberStatusReason']]:
+        """
+        Why health check fails.
+        The reason structure is documented below.
+        """
+        return pulumi.get(self, "reasons")
+
+
+@pulumi.output_type
+class MemberStatusReason(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expectedResponse":
+            suggest = "expected_response"
+        elif key == "healthcheckResponse":
+            suggest = "healthcheck_response"
+        elif key == "reasonCode":
+            suggest = "reason_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberStatusReason. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberStatusReason.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberStatusReason.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expected_response: Optional[str] = None,
+                 healthcheck_response: Optional[str] = None,
+                 reason_code: Optional[str] = None):
+        """
+        :param str expected_response: The code of the health check failures.
+        :param str healthcheck_response: The expected HTTP status code.
+        :param str reason_code: The returned HTTP status code in the response.
+        """
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if healthcheck_response is not None:
+            pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        if reason_code is not None:
+            pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[str]:
+        """
+        The code of the health check failures.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> Optional[str]:
+        """
+        The expected HTTP status code.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> Optional[str]:
+        """
+        The returned HTTP status code in the response.
+        """
+        return pulumi.get(self, "reason_code")
+
+
+@pulumi.output_type
 class PoolPersistence(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1846,24 +2308,39 @@ class GetActiveStandbyPoolsPoolResult(dict):
                  any_port_enable: bool,
                  connection_drain_enabled: bool,
                  connection_drain_timeout: int,
+                 created_at: str,
                  description: str,
+                 enterprise_project_id: str,
                  healthmonitors: Sequence['outputs.GetActiveStandbyPoolsPoolHealthmonitorResult'],
                  id: str,
+                 ip_version: str,
+                 lb_algorithm: str,
                  listeners: Sequence['outputs.GetActiveStandbyPoolsPoolListenerResult'],
                  loadbalancers: Sequence['outputs.GetActiveStandbyPoolsPoolLoadbalancerResult'],
                  members: Sequence['outputs.GetActiveStandbyPoolsPoolMemberResult'],
                  name: str,
                  protocol: str,
+                 quic_cid_hash_strategies: Sequence['outputs.GetActiveStandbyPoolsPoolQuicCidHashStrategyResult'],
                  type: str,
+                 updated_at: str,
                  vpc_id: str):
         """
         :param bool any_port_enable: Whether to enable Forward to same Port for a pool.
         :param bool connection_drain_enabled: Whether to enable delayed logout.
         :param int connection_drain_timeout: The timeout of the delayed logout in seconds.
+        :param str created_at: The time when the backend server group was created.
         :param str description: Specifies supplementary information about the active-standby pool.
+        :param str enterprise_project_id: The ID of the enterprise project.
         :param Sequence['GetActiveStandbyPoolsPoolHealthmonitorArgs'] healthmonitors: The health check configured for the active-standby pool.
                The healthmonitor structure is documented below.
         :param str id: The health check ID.
+        :param str ip_version: Specifies the IP address version supported by the pool.
+        :param str lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route requests
+               to backend servers in the associated pool. Value options:
+               + **ROUND_ROBIN**: weighted round robin.
+               + **LEAST_CONNECTIONS**: weighted least connections.
+               + **SOURCE_IP**: source IP hash.
+               + **QUIC_CID**: connection ID.
         :param Sequence['GetActiveStandbyPoolsPoolListenerArgs'] listeners: The IDs of the listeners with which the active-standby pool is associated.
                The listeners structure is documented below.
         :param Sequence['GetActiveStandbyPoolsPoolLoadbalancerArgs'] loadbalancers: The IDs of the load balancers with which the active-standby pool is associated.
@@ -1873,24 +2350,33 @@ class GetActiveStandbyPoolsPoolResult(dict):
         :param str name: Specifies the name of the active-standby pool.
         :param str protocol: Specifies the protocol used by the active-standby pool to receive requests from the
                load balancer. Value options: **TCP**, **UDP**, **QUIC** or **TLS**.
+        :param Sequence['GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs'] quic_cid_hash_strategies: The multi-path distribution configuration based on destination connection IDs.
+               The quic_cid_hash_strategy structure is documented below.
         :param str type: Specifies the type of the active-standby pool.
                The valid values are as follows:
                + **instance**: Any type of backend servers can be added.
                + **ip**: Only IP as backend servers can be added.
+        :param str updated_at: The time when the backend server group was updated.
         :param str vpc_id: Specifies the ID of the VPC where the active-standby pool works.
         """
         pulumi.set(__self__, "any_port_enable", any_port_enable)
         pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         pulumi.set(__self__, "healthmonitors", healthmonitors)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "lb_algorithm", lb_algorithm)
         pulumi.set(__self__, "listeners", listeners)
         pulumi.set(__self__, "loadbalancers", loadbalancers)
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "quic_cid_hash_strategies", quic_cid_hash_strategies)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
@@ -1918,12 +2404,28 @@ class GetActiveStandbyPoolsPoolResult(dict):
         return pulumi.get(self, "connection_drain_timeout")
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The time when the backend server group was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
     @pulumi.getter
     def description(self) -> str:
         """
         Specifies supplementary information about the active-standby pool.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> str:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter
@@ -1941,6 +2443,27 @@ class GetActiveStandbyPoolsPoolResult(dict):
         The health check ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> str:
+        """
+        Specifies the IP address version supported by the pool.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="lbAlgorithm")
+    def lb_algorithm(self) -> str:
+        """
+        Specifies the load balancing algorithm used by the load balancer to route requests
+        to backend servers in the associated pool. Value options:
+        + **ROUND_ROBIN**: weighted round robin.
+        + **LEAST_CONNECTIONS**: weighted least connections.
+        + **SOURCE_IP**: source IP hash.
+        + **QUIC_CID**: connection ID.
+        """
+        return pulumi.get(self, "lb_algorithm")
 
     @property
     @pulumi.getter
@@ -1987,6 +2510,15 @@ class GetActiveStandbyPoolsPoolResult(dict):
         return pulumi.get(self, "protocol")
 
     @property
+    @pulumi.getter(name="quicCidHashStrategies")
+    def quic_cid_hash_strategies(self) -> Sequence['outputs.GetActiveStandbyPoolsPoolQuicCidHashStrategyResult']:
+        """
+        The multi-path distribution configuration based on destination connection IDs.
+        The quic_cid_hash_strategy structure is documented below.
+        """
+        return pulumi.get(self, "quic_cid_hash_strategies")
+
+    @property
     @pulumi.getter
     def type(self) -> str:
         """
@@ -1996,6 +2528,14 @@ class GetActiveStandbyPoolsPoolResult(dict):
         + **ip**: Only IP as backend servers can be added.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The time when the backend server group was updated.
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -2202,18 +2742,28 @@ class GetActiveStandbyPoolsPoolMemberResult(dict):
                  name: str,
                  operating_status: str,
                  protocol_port: int,
+                 reasons: Sequence['outputs.GetActiveStandbyPoolsPoolMemberReasonResult'],
                  role: str,
+                 statuses: Sequence['outputs.GetActiveStandbyPoolsPoolMemberStatusResult'],
                  subnet_id: str):
         """
         :param str address: The private IP address bound to the member.
         :param str id: The health check ID.
         :param str instance_id: The ID of the ECS used as the member.
-        :param str ip_version: The IP version supported by the member.
+        :param str ip_version: Specifies the IP address version supported by the pool.
         :param str member_type: The type of the member.
         :param str name: Specifies the name of the active-standby pool.
-        :param str operating_status: The health status of the member.
+        :param str operating_status: The health status of the backend server. The value can be:
+               + **ONLINE**: The backend server is running normally.
+               + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+               + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
         :param int protocol_port: The port used by the member to receive requests.
+        :param Sequence['GetActiveStandbyPoolsPoolMemberReasonArgs'] reasons: Why health check fails.
+               The reason structure is documented below.
         :param str role: The active-standby status of the member.
+        :param Sequence['GetActiveStandbyPoolsPoolMemberStatusArgs'] statuses: The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+               status is not specified, operating_status of member takes precedence.
+               The status structure is documented below.
         :param str subnet_id: The ID of the IPv4 or IPv6 subnet where the member resides.
         """
         pulumi.set(__self__, "address", address)
@@ -2224,7 +2774,9 @@ class GetActiveStandbyPoolsPoolMemberResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "operating_status", operating_status)
         pulumi.set(__self__, "protocol_port", protocol_port)
+        pulumi.set(__self__, "reasons", reasons)
         pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "statuses", statuses)
         pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
@@ -2255,7 +2807,7 @@ class GetActiveStandbyPoolsPoolMemberResult(dict):
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> str:
         """
-        The IP version supported by the member.
+        Specifies the IP address version supported by the pool.
         """
         return pulumi.get(self, "ip_version")
 
@@ -2279,7 +2831,10 @@ class GetActiveStandbyPoolsPoolMemberResult(dict):
     @pulumi.getter(name="operatingStatus")
     def operating_status(self) -> str:
         """
-        The health status of the member.
+        The health status of the backend server. The value can be:
+        + **ONLINE**: The backend server is running normally.
+        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
         """
         return pulumi.get(self, "operating_status")
 
@@ -2293,11 +2848,30 @@ class GetActiveStandbyPoolsPoolMemberResult(dict):
 
     @property
     @pulumi.getter
+    def reasons(self) -> Sequence['outputs.GetActiveStandbyPoolsPoolMemberReasonResult']:
+        """
+        Why health check fails.
+        The reason structure is documented below.
+        """
+        return pulumi.get(self, "reasons")
+
+    @property
+    @pulumi.getter
     def role(self) -> str:
         """
         The active-standby status of the member.
         """
         return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Sequence['outputs.GetActiveStandbyPoolsPoolMemberStatusResult']:
+        """
+        The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+        status is not specified, operating_status of member takes precedence.
+        The status structure is documented below.
+        """
+        return pulumi.get(self, "statuses")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -2309,11 +2883,160 @@ class GetActiveStandbyPoolsPoolMemberResult(dict):
 
 
 @pulumi.output_type
+class GetActiveStandbyPoolsPoolMemberReasonResult(dict):
+    def __init__(__self__, *,
+                 expected_response: str,
+                 healthcheck_response: str,
+                 reason_code: str):
+        """
+        :param str expected_response: The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+               **HTTPS** or **GRPC**.
+               + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+               to other values, the status code ranges from **200** to **599**.
+               + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+               + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+        :param str healthcheck_response: The returned HTTP status code in the response. This parameter will take effect only when `type`
+               is set to **HTTP**, **HTTPS** or **GRPC**.
+               + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+               other values, the status code ranges from **200** to **599**.
+        :param str reason_code: The code of the health check failures. The value can be:
+               + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+               + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+               + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+               + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+               + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+               + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+               + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+               duration during a health check.
+               + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+               check.
+               + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+               timeout duration.
+               + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+               + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+        """
+        pulumi.set(__self__, "expected_response", expected_response)
+        pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> str:
+        """
+        The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+        **HTTPS** or **GRPC**.
+        + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+        to other values, the status code ranges from **200** to **599**.
+        + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+        + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> str:
+        """
+        The returned HTTP status code in the response. This parameter will take effect only when `type`
+        is set to **HTTP**, **HTTPS** or **GRPC**.
+        + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+        other values, the status code ranges from **200** to **599**.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> str:
+        """
+        The code of the health check failures. The value can be:
+        + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+        + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+        + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+        + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+        + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+        + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+        + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+        duration during a health check.
+        + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+        check.
+        + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+        timeout duration.
+        + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+        + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+        """
+        return pulumi.get(self, "reason_code")
+
+
+@pulumi.output_type
+class GetActiveStandbyPoolsPoolMemberStatusResult(dict):
+    def __init__(__self__, *,
+                 listener_id: str,
+                 operating_status: str):
+        """
+        :param str listener_id: Specifies the ID of the listener to which the forwarding policy is added.
+        :param str operating_status: The health status of the backend server. The value can be:
+               + **ONLINE**: The backend server is running normally.
+               + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+               + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+        """
+        pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "operating_status", operating_status)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> str:
+        """
+        Specifies the ID of the listener to which the forwarding policy is added.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> str:
+        """
+        The health status of the backend server. The value can be:
+        + **ONLINE**: The backend server is running normally.
+        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+        """
+        return pulumi.get(self, "operating_status")
+
+
+@pulumi.output_type
+class GetActiveStandbyPoolsPoolQuicCidHashStrategyResult(dict):
+    def __init__(__self__, *,
+                 len: int,
+                 offset: int):
+        """
+        :param int len: The length of the hash factor in the connection ID, in byte.
+        :param int offset: The start position in the connection ID as the hash factor, in byte.
+        """
+        pulumi.set(__self__, "len", len)
+        pulumi.set(__self__, "offset", offset)
+
+    @property
+    @pulumi.getter
+    def len(self) -> int:
+        """
+        The length of the hash factor in the connection ID, in byte.
+        """
+        return pulumi.get(self, "len")
+
+    @property
+    @pulumi.getter
+    def offset(self) -> int:
+        """
+        The start position in the connection ID as the hash factor, in byte.
+        """
+        return pulumi.get(self, "offset")
+
+
+@pulumi.output_type
 class GetAllMembersMemberResult(dict):
     def __init__(__self__, *,
                  address: str,
                  created_at: str,
                  id: str,
+                 instance_id: str,
                  ip_version: str,
                  loadbalancer_id: str,
                  member_type: str,
@@ -2332,6 +3055,7 @@ class GetAllMembersMemberResult(dict):
                Multiple IP addresses can be queried.
         :param str created_at: Indicates the time when a backend server was added.
         :param str id: Indicates the backend server ID.
+        :param str instance_id: Indicates the ID of the instance associated with the backend server.
         :param str ip_version: Specifies the IP address version supported by the backend server group.
                The value can be **v4** or **v6**.
                Multiple versions can be queried.
@@ -2362,6 +3086,7 @@ class GetAllMembersMemberResult(dict):
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "ip_version", ip_version)
         pulumi.set(__self__, "loadbalancer_id", loadbalancer_id)
         pulumi.set(__self__, "member_type", member_type)
@@ -2400,6 +3125,14 @@ class GetAllMembersMemberResult(dict):
         Indicates the backend server ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Indicates the ID of the instance associated with the backend server.
+        """
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="ipVersion")
@@ -2870,19 +3603,35 @@ class GetFeatureConfigurationsConfigResult(dict):
 class GetFlavorsFlavorResult(dict):
     def __init__(__self__, *,
                  bandwidth: int,
+                 category: int,
                  cps: int,
+                 flavor_sold_out: bool,
+                 https_cps: int,
                  id: str,
+                 lcu: int,
                  max_connections: int,
                  name: str,
+                 public_border_group: str,
                  qps: int,
+                 shared: bool,
                  type: str):
         """
         :param int bandwidth: Specifies the bandwidth size(Mbit/s) in the flavor.
+        :param int category: Specifies the category.
         :param int cps: Specifies the cps in the flavor.
-        :param str id: ID of the flavor.
+        :param bool flavor_sold_out: Specifies whether the flavor is available.
+               + **true**: indicates the flavor is unavailable.
+               + **false**: indicates the flavor is available.
+        :param int https_cps: Indicates the number of new HTTPS connections.
+        :param str id: Indicates the ID of the flavor.
+        :param int lcu: Indicates the number of LCUs in the flavor.
         :param int max_connections: Specifies the maximum connections in the flavor.
         :param str name: Specifies the flavor name.
+        :param str public_border_group: Specifies the public border group.
         :param int qps: Specifies the qps in the L7 flavor.
+        :param bool shared: Specifies whether the flavor is available to all users. Value options:
+               + **true**: indicates that the flavor is available to all users.
+               + **false**: indicates that the flavor is available only to a specific user.
         :param str type: Specifies the flavor type. Values options:
                + **L4**: indicates Layer-4 flavor.
                + **L7**: indicates Layer-7 flavor.
@@ -2892,11 +3641,17 @@ class GetFlavorsFlavorResult(dict):
                + **L7_elastic_max**: indicates maximum Layer-7 flavor for elastic scaling
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "category", category)
         pulumi.set(__self__, "cps", cps)
+        pulumi.set(__self__, "flavor_sold_out", flavor_sold_out)
+        pulumi.set(__self__, "https_cps", https_cps)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lcu", lcu)
         pulumi.set(__self__, "max_connections", max_connections)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "public_border_group", public_border_group)
         pulumi.set(__self__, "qps", qps)
+        pulumi.set(__self__, "shared", shared)
         pulumi.set(__self__, "type", type)
 
     @property
@@ -2909,6 +3664,14 @@ class GetFlavorsFlavorResult(dict):
 
     @property
     @pulumi.getter
+    def category(self) -> int:
+        """
+        Specifies the category.
+        """
+        return pulumi.get(self, "category")
+
+    @property
+    @pulumi.getter
     def cps(self) -> int:
         """
         Specifies the cps in the flavor.
@@ -2916,12 +3679,38 @@ class GetFlavorsFlavorResult(dict):
         return pulumi.get(self, "cps")
 
     @property
+    @pulumi.getter(name="flavorSoldOut")
+    def flavor_sold_out(self) -> bool:
+        """
+        Specifies whether the flavor is available.
+        + **true**: indicates the flavor is unavailable.
+        + **false**: indicates the flavor is available.
+        """
+        return pulumi.get(self, "flavor_sold_out")
+
+    @property
+    @pulumi.getter(name="httpsCps")
+    def https_cps(self) -> int:
+        """
+        Indicates the number of new HTTPS connections.
+        """
+        return pulumi.get(self, "https_cps")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
-        ID of the flavor.
+        Indicates the ID of the flavor.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def lcu(self) -> int:
+        """
+        Indicates the number of LCUs in the flavor.
+        """
+        return pulumi.get(self, "lcu")
 
     @property
     @pulumi.getter(name="maxConnections")
@@ -2940,12 +3729,30 @@ class GetFlavorsFlavorResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> str:
+        """
+        Specifies the public border group.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @property
     @pulumi.getter
     def qps(self) -> int:
         """
         Specifies the qps in the L7 flavor.
         """
         return pulumi.get(self, "qps")
+
+    @property
+    @pulumi.getter
+    def shared(self) -> bool:
+        """
+        Specifies whether the flavor is available to all users. Value options:
+        + **true**: indicates that the flavor is available to all users.
+        + **false**: indicates that the flavor is available only to a specific user.
+        """
+        return pulumi.get(self, "shared")
 
     @property
     @pulumi.getter
@@ -2967,6 +3774,7 @@ class GetIpgroupsIpgroupResult(dict):
     def __init__(__self__, *,
                  created_at: str,
                  description: str,
+                 enterprise_project_id: str,
                  id: str,
                  ip_lists: Sequence['outputs.GetIpgroupsIpgroupIpListResult'],
                  listeners: Sequence['outputs.GetIpgroupsIpgroupListenerResult'],
@@ -2976,6 +3784,7 @@ class GetIpgroupsIpgroupResult(dict):
         """
         :param str created_at: The time when the IP address group was created.
         :param str description: Specifies the description of the IP address group.
+        :param str enterprise_project_id: Specifies the enterprise project ID.
         :param str id: The listener ID.
         :param Sequence['GetIpgroupsIpgroupIpListArgs'] ip_lists: The IP addresses or CIDR blocks in the IP address group. The ip_list structure is
                documented below.
@@ -2987,6 +3796,7 @@ class GetIpgroupsIpgroupResult(dict):
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_lists", ip_lists)
         pulumi.set(__self__, "listeners", listeners)
@@ -3009,6 +3819,14 @@ class GetIpgroupsIpgroupResult(dict):
         Specifies the description of the IP address group.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> str:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter
@@ -3114,14 +3932,18 @@ class GetL7policiesL7policyResult(dict):
                  action: str,
                  created_at: str,
                  description: str,
+                 enterprise_project_id: str,
                  fixed_response_configs: Sequence['outputs.GetL7policiesL7policyFixedResponseConfigResult'],
                  id: str,
                  listener_id: str,
                  name: str,
                  priority: int,
+                 provisioning_status: str,
                  redirect_listener_id: str,
                  redirect_pool_id: str,
+                 redirect_pools_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsConfigResult'],
                  redirect_pools_extend_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigResult'],
+                 redirect_pools_sticky_session_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsStickySessionConfigResult'],
                  redirect_url_configs: Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigResult'],
                  rules: Sequence['outputs.GetL7policiesL7policyRuleResult'],
                  updated_at: str):
@@ -3133,32 +3955,45 @@ class GetL7policiesL7policyResult(dict):
                + **FIXED_RESPONSE**: A fixed response body is returned.
         :param str created_at: The time when the forwarding policy was created.
         :param str description: Specifies the supplementary information about the forwarding policy.
+        :param str enterprise_project_id: Specifies the enterprise project ID.
         :param Sequence['GetL7policiesL7policyFixedResponseConfigArgs'] fixed_response_configs: The configuration of the page that will be returned.
                The fixed_response_config structure is documented below.
         :param str id: The forwarding rule ID.
         :param str listener_id: Specifies the ID of the listener to which the forwarding policy is added.
         :param str name: Specifies the forwarding policy name.
         :param int priority: Specifies the forwarding policy priority.
+        :param str provisioning_status: Specifies the provisioning status of the forwarding policy.
         :param str redirect_listener_id: Specifies the ID of the listener to which requests are redirected.
         :param str redirect_pool_id: Specifies the ID of the backend server group to which requests will be forwarded.
+        :param Sequence['GetL7policiesL7policyRedirectPoolsConfigArgs'] redirect_pools_configs: The list of the backend server groups to which traffic is forwarded.
+               The redirect_pools_config structure is documented below.
         :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigArgs'] redirect_pools_extend_configs: The backend server group that the requests are forwarded to.
                The redirect_pools_extend_config structure is documented below.
-        :param Sequence['GetL7policiesL7policyRedirectUrlConfigArgs'] redirect_url_configs: The URL to which requests are forwarded. The redirect_url_config
-               structure is documented below.
-        :param Sequence['GetL7policiesL7policyRuleArgs'] rules: The forwarding rules in the forwarding policy. The rules structure is documented below.
+        :param Sequence['GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs'] redirect_pools_sticky_session_configs: The session persistence between backend server groups which associated with
+               the policy.
+               The redirect_pools_sticky_session_config structure is documented
+               below.
+        :param Sequence['GetL7policiesL7policyRedirectUrlConfigArgs'] redirect_url_configs: The URL to which requests are forwarded.
+               The redirect_url_config structure is documented below.
+        :param Sequence['GetL7policiesL7policyRuleArgs'] rules: The forwarding rules in the forwarding policy.
+               The rules structure is documented below.
         :param str updated_at: The time when the forwarding policy was updated.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         pulumi.set(__self__, "fixed_response_configs", fixed_response_configs)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "listener_id", listener_id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
         pulumi.set(__self__, "redirect_listener_id", redirect_listener_id)
         pulumi.set(__self__, "redirect_pool_id", redirect_pool_id)
+        pulumi.set(__self__, "redirect_pools_configs", redirect_pools_configs)
         pulumi.set(__self__, "redirect_pools_extend_configs", redirect_pools_extend_configs)
+        pulumi.set(__self__, "redirect_pools_sticky_session_configs", redirect_pools_sticky_session_configs)
         pulumi.set(__self__, "redirect_url_configs", redirect_url_configs)
         pulumi.set(__self__, "rules", rules)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -3190,6 +4025,14 @@ class GetL7policiesL7policyResult(dict):
         Specifies the supplementary information about the forwarding policy.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> str:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter(name="fixedResponseConfigs")
@@ -3233,6 +4076,14 @@ class GetL7policiesL7policyResult(dict):
         return pulumi.get(self, "priority")
 
     @property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> str:
+        """
+        Specifies the provisioning status of the forwarding policy.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @property
     @pulumi.getter(name="redirectListenerId")
     def redirect_listener_id(self) -> str:
         """
@@ -3249,6 +4100,15 @@ class GetL7policiesL7policyResult(dict):
         return pulumi.get(self, "redirect_pool_id")
 
     @property
+    @pulumi.getter(name="redirectPoolsConfigs")
+    def redirect_pools_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsConfigResult']:
+        """
+        The list of the backend server groups to which traffic is forwarded.
+        The redirect_pools_config structure is documented below.
+        """
+        return pulumi.get(self, "redirect_pools_configs")
+
+    @property
     @pulumi.getter(name="redirectPoolsExtendConfigs")
     def redirect_pools_extend_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigResult']:
         """
@@ -3258,11 +4118,22 @@ class GetL7policiesL7policyResult(dict):
         return pulumi.get(self, "redirect_pools_extend_configs")
 
     @property
+    @pulumi.getter(name="redirectPoolsStickySessionConfigs")
+    def redirect_pools_sticky_session_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsStickySessionConfigResult']:
+        """
+        The session persistence between backend server groups which associated with
+        the policy.
+        The redirect_pools_sticky_session_config structure is documented
+        below.
+        """
+        return pulumi.get(self, "redirect_pools_sticky_session_configs")
+
+    @property
     @pulumi.getter(name="redirectUrlConfigs")
     def redirect_url_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigResult']:
         """
-        The URL to which requests are forwarded. The redirect_url_config
-        structure is documented below.
+        The URL to which requests are forwarded.
+        The redirect_url_config structure is documented below.
         """
         return pulumi.get(self, "redirect_url_configs")
 
@@ -3270,7 +4141,8 @@ class GetL7policiesL7policyResult(dict):
     @pulumi.getter
     def rules(self) -> Sequence['outputs.GetL7policiesL7policyRuleResult']:
         """
-        The forwarding rules in the forwarding policy. The rules structure is documented below.
+        The forwarding rules in the forwarding policy.
+        The rules structure is documented below.
         """
         return pulumi.get(self, "rules")
 
@@ -3287,16 +4159,28 @@ class GetL7policiesL7policyResult(dict):
 class GetL7policiesL7policyFixedResponseConfigResult(dict):
     def __init__(__self__, *,
                  content_type: str,
+                 insert_headers_configs: Sequence['outputs.GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigResult'],
                  message_body: str,
-                 status_code: str):
+                 remove_headers_configs: Sequence['outputs.GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigResult'],
+                 status_code: str,
+                 traffic_limit_configs: Sequence['outputs.GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigResult']):
         """
         :param str content_type: The format of the response body.
+        :param Sequence['GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs'] insert_headers_configs: (Optional, List) The header parameters to be added.
+               The insert_headers_config structure is documented below.
         :param str message_body: The content of the response message body.
+        :param Sequence['GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs'] remove_headers_configs: (Optional, List) The header parameters to be removed.
+               The remove_headers_config structure is documented below.
         :param str status_code: The status code returned after the requests are redirected.
+        :param Sequence['GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs'] traffic_limit_configs: (Optional, List) The traffic limit config of the policy.
+               The traffic_limit_config structure is documented below.
         """
         pulumi.set(__self__, "content_type", content_type)
+        pulumi.set(__self__, "insert_headers_configs", insert_headers_configs)
         pulumi.set(__self__, "message_body", message_body)
+        pulumi.set(__self__, "remove_headers_configs", remove_headers_configs)
         pulumi.set(__self__, "status_code", status_code)
+        pulumi.set(__self__, "traffic_limit_configs", traffic_limit_configs)
 
     @property
     @pulumi.getter(name="contentType")
@@ -3307,12 +4191,30 @@ class GetL7policiesL7policyFixedResponseConfigResult(dict):
         return pulumi.get(self, "content_type")
 
     @property
+    @pulumi.getter(name="insertHeadersConfigs")
+    def insert_headers_configs(self) -> Sequence['outputs.GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigResult']:
+        """
+        (Optional, List) The header parameters to be added.
+        The insert_headers_config structure is documented below.
+        """
+        return pulumi.get(self, "insert_headers_configs")
+
+    @property
     @pulumi.getter(name="messageBody")
     def message_body(self) -> str:
         """
         The content of the response message body.
         """
         return pulumi.get(self, "message_body")
+
+    @property
+    @pulumi.getter(name="removeHeadersConfigs")
+    def remove_headers_configs(self) -> Sequence['outputs.GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigResult']:
+        """
+        (Optional, List) The header parameters to be removed.
+        The remove_headers_config structure is documented below.
+        """
+        return pulumi.get(self, "remove_headers_configs")
 
     @property
     @pulumi.getter(name="statusCode")
@@ -3322,19 +4224,225 @@ class GetL7policiesL7policyFixedResponseConfigResult(dict):
         """
         return pulumi.get(self, "status_code")
 
+    @property
+    @pulumi.getter(name="trafficLimitConfigs")
+    def traffic_limit_configs(self) -> Sequence['outputs.GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigResult']:
+        """
+        (Optional, List) The traffic limit config of the policy.
+        The traffic_limit_config structure is documented below.
+        """
+        return pulumi.get(self, "traffic_limit_configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigResult']):
+        """
+        :param Sequence['GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs'] configs: The list of request header parameters to be removed.
+               The remove_header_configs structure is documented below.
+        """
+        pulumi.set(__self__, "configs", configs)
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigResult']:
+        """
+        The list of request header parameters to be removed.
+        The remove_header_configs structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str,
+                 value_type: str):
+        """
+        :param str key: The parameter name of the removed request header.
+        :param str value: The value of the parameter.
+        :param str value_type: The value type of the parameter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "value_type", value_type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The parameter name of the removed request header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> str:
+        """
+        The value type of the parameter.
+        """
+        return pulumi.get(self, "value_type")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigResult']):
+        """
+        :param Sequence['GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs'] configs: The list of request header parameters to be removed.
+               The remove_header_configs structure is documented below.
+        """
+        pulumi.set(__self__, "configs", configs)
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigResult']:
+        """
+        The list of request header parameters to be removed.
+        The remove_header_configs structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigResult(dict):
+    def __init__(__self__, *,
+                 key: str):
+        """
+        :param str key: The parameter name of the removed request header.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The parameter name of the removed request header.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigResult(dict):
+    def __init__(__self__, *,
+                 burst: int,
+                 per_source_ip_qps: int,
+                 qps: int):
+        """
+        :param int burst: (The qps buffer.
+        :param int per_source_ip_qps: The single source qps of the policy.
+        :param int qps: The overall qps of the policy.
+        """
+        pulumi.set(__self__, "burst", burst)
+        pulumi.set(__self__, "per_source_ip_qps", per_source_ip_qps)
+        pulumi.set(__self__, "qps", qps)
+
+    @property
+    @pulumi.getter
+    def burst(self) -> int:
+        """
+        (The qps buffer.
+        """
+        return pulumi.get(self, "burst")
+
+    @property
+    @pulumi.getter(name="perSourceIpQps")
+    def per_source_ip_qps(self) -> int:
+        """
+        The single source qps of the policy.
+        """
+        return pulumi.get(self, "per_source_ip_qps")
+
+    @property
+    @pulumi.getter
+    def qps(self) -> int:
+        """
+        The overall qps of the policy.
+        """
+        return pulumi.get(self, "qps")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsConfigResult(dict):
+    def __init__(__self__, *,
+                 pool_id: str,
+                 weight: int):
+        """
+        :param str pool_id: The ID of the backend server group.
+        :param int weight: The weight of the backend server group.
+        """
+        pulumi.set(__self__, "pool_id", pool_id)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="poolId")
+    def pool_id(self) -> str:
+        """
+        The ID of the backend server group.
+        """
+        return pulumi.get(self, "pool_id")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the backend server group.
+        """
+        return pulumi.get(self, "weight")
+
 
 @pulumi.output_type
 class GetL7policiesL7policyRedirectPoolsExtendConfigResult(dict):
     def __init__(__self__, *,
+                 insert_headers_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigResult'],
+                 remove_headers_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigResult'],
                  rewrite_url_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigResult'],
-                 rewrite_url_enabled: bool):
+                 rewrite_url_enabled: bool,
+                 traffic_limit_configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigResult']):
         """
+        :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs'] insert_headers_configs: (Optional, List) The header parameters to be added.
+               The insert_headers_config structure is documented below.
+        :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs'] remove_headers_configs: (Optional, List) The header parameters to be removed.
+               The remove_headers_config structure is documented below.
         :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArgs'] rewrite_url_configs: The URL for the backend server group that requests are forwarded to.
                The rewrite_url_config structure is documented below.
         :param bool rewrite_url_enabled: Whether to enable URL redirection.
+        :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs'] traffic_limit_configs: (Optional, List) The traffic limit config of the policy.
+               The traffic_limit_config structure is documented below.
         """
+        pulumi.set(__self__, "insert_headers_configs", insert_headers_configs)
+        pulumi.set(__self__, "remove_headers_configs", remove_headers_configs)
         pulumi.set(__self__, "rewrite_url_configs", rewrite_url_configs)
         pulumi.set(__self__, "rewrite_url_enabled", rewrite_url_enabled)
+        pulumi.set(__self__, "traffic_limit_configs", traffic_limit_configs)
+
+    @property
+    @pulumi.getter(name="insertHeadersConfigs")
+    def insert_headers_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigResult']:
+        """
+        (Optional, List) The header parameters to be added.
+        The insert_headers_config structure is documented below.
+        """
+        return pulumi.get(self, "insert_headers_configs")
+
+    @property
+    @pulumi.getter(name="removeHeadersConfigs")
+    def remove_headers_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigResult']:
+        """
+        (Optional, List) The header parameters to be removed.
+        The remove_headers_config structure is documented below.
+        """
+        return pulumi.get(self, "remove_headers_configs")
 
     @property
     @pulumi.getter(name="rewriteUrlConfigs")
@@ -3352,6 +4460,113 @@ class GetL7policiesL7policyRedirectPoolsExtendConfigResult(dict):
         Whether to enable URL redirection.
         """
         return pulumi.get(self, "rewrite_url_enabled")
+
+    @property
+    @pulumi.getter(name="trafficLimitConfigs")
+    def traffic_limit_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigResult']:
+        """
+        (Optional, List) The traffic limit config of the policy.
+        The traffic_limit_config structure is documented below.
+        """
+        return pulumi.get(self, "traffic_limit_configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigResult']):
+        """
+        :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs'] configs: The list of request header parameters to be removed.
+               The remove_header_configs structure is documented below.
+        """
+        pulumi.set(__self__, "configs", configs)
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigResult']:
+        """
+        The list of request header parameters to be removed.
+        The remove_header_configs structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str,
+                 value_type: str):
+        """
+        :param str key: The parameter name of the removed request header.
+        :param str value: The value of the parameter.
+        :param str value_type: The value type of the parameter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "value_type", value_type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The parameter name of the removed request header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> str:
+        """
+        The value type of the parameter.
+        """
+        return pulumi.get(self, "value_type")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigResult']):
+        """
+        :param Sequence['GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs'] configs: The list of request header parameters to be removed.
+               The remove_header_configs structure is documented below.
+        """
+        pulumi.set(__self__, "configs", configs)
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigResult']:
+        """
+        The list of request header parameters to be removed.
+        The remove_header_configs structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigResult(dict):
+    def __init__(__self__, *,
+                 key: str):
+        """
+        :param str key: The parameter name of the removed request header.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The parameter name of the removed request header.
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type
@@ -3395,27 +4610,104 @@ class GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigResult(dict)
 
 
 @pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigResult(dict):
+    def __init__(__self__, *,
+                 burst: int,
+                 per_source_ip_qps: int,
+                 qps: int):
+        """
+        :param int burst: (The qps buffer.
+        :param int per_source_ip_qps: The single source qps of the policy.
+        :param int qps: The overall qps of the policy.
+        """
+        pulumi.set(__self__, "burst", burst)
+        pulumi.set(__self__, "per_source_ip_qps", per_source_ip_qps)
+        pulumi.set(__self__, "qps", qps)
+
+    @property
+    @pulumi.getter
+    def burst(self) -> int:
+        """
+        (The qps buffer.
+        """
+        return pulumi.get(self, "burst")
+
+    @property
+    @pulumi.getter(name="perSourceIpQps")
+    def per_source_ip_qps(self) -> int:
+        """
+        The single source qps of the policy.
+        """
+        return pulumi.get(self, "per_source_ip_qps")
+
+    @property
+    @pulumi.getter
+    def qps(self) -> int:
+        """
+        The overall qps of the policy.
+        """
+        return pulumi.get(self, "qps")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectPoolsStickySessionConfigResult(dict):
+    def __init__(__self__, *,
+                 enable: bool,
+                 timeout: int):
+        """
+        :param bool enable: Whether enable config session persistence between backend server groups.
+        :param int timeout: The timeout of the session persistence.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "timeout", timeout)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Whether enable config session persistence between backend server groups.
+        """
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> int:
+        """
+        The timeout of the session persistence.
+        """
+        return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
 class GetL7policiesL7policyRedirectUrlConfigResult(dict):
     def __init__(__self__, *,
                  host: str,
+                 insert_headers_configs: Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigResult'],
                  path: str,
                  port: str,
                  protocol: str,
                  query: str,
+                 remove_headers_configs: Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigResult'],
                  status_code: str):
         """
         :param str host: The url host.
+        :param Sequence['GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs'] insert_headers_configs: (Optional, List) The header parameters to be added.
+               The insert_headers_config structure is documented below.
         :param str path: The URL path.
         :param str port: The port that requests are redirected to.
         :param str protocol: The protocol for redirection.The value can be **HTTP**, **HTTPS**, or **${protocol}**.
         :param str query: The URL query character string.
+        :param Sequence['GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs'] remove_headers_configs: (Optional, List) The header parameters to be removed.
+               The remove_headers_config structure is documented below.
         :param str status_code: The status code returned after the requests are redirected.
         """
         pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "insert_headers_configs", insert_headers_configs)
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "remove_headers_configs", remove_headers_configs)
         pulumi.set(__self__, "status_code", status_code)
 
     @property
@@ -3425,6 +4717,15 @@ class GetL7policiesL7policyRedirectUrlConfigResult(dict):
         The url host.
         """
         return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="insertHeadersConfigs")
+    def insert_headers_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigResult']:
+        """
+        (Optional, List) The header parameters to be added.
+        The insert_headers_config structure is documented below.
+        """
+        return pulumi.get(self, "insert_headers_configs")
 
     @property
     @pulumi.getter
@@ -3459,12 +4760,119 @@ class GetL7policiesL7policyRedirectUrlConfigResult(dict):
         return pulumi.get(self, "query")
 
     @property
+    @pulumi.getter(name="removeHeadersConfigs")
+    def remove_headers_configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigResult']:
+        """
+        (Optional, List) The header parameters to be removed.
+        The remove_headers_config structure is documented below.
+        """
+        return pulumi.get(self, "remove_headers_configs")
+
+    @property
     @pulumi.getter(name="statusCode")
     def status_code(self) -> str:
         """
         The status code returned after the requests are redirected.
         """
         return pulumi.get(self, "status_code")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigResult']):
+        """
+        :param Sequence['GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs'] configs: The list of request header parameters to be removed.
+               The remove_header_configs structure is documented below.
+        """
+        pulumi.set(__self__, "configs", configs)
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigResult']:
+        """
+        The list of request header parameters to be removed.
+        The remove_header_configs structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str,
+                 value_type: str):
+        """
+        :param str key: The parameter name of the removed request header.
+        :param str value: The value of the parameter.
+        :param str value_type: The value type of the parameter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "value_type", value_type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The parameter name of the removed request header.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> str:
+        """
+        The value type of the parameter.
+        """
+        return pulumi.get(self, "value_type")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigResult']):
+        """
+        :param Sequence['GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs'] configs: The list of request header parameters to be removed.
+               The remove_header_configs structure is documented below.
+        """
+        pulumi.set(__self__, "configs", configs)
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigResult']:
+        """
+        The list of request header parameters to be removed.
+        The remove_header_configs structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+
+@pulumi.output_type
+class GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigResult(dict):
+    def __init__(__self__, *,
+                 key: str):
+        """
+        :param str key: The parameter name of the removed request header.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The parameter name of the removed request header.
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type
@@ -3609,79 +5017,155 @@ class GetListenersListenerResult(dict):
     def __init__(__self__, *,
                  advanced_forwarding_enabled: bool,
                  ca_certificate: str,
+                 cps: int,
+                 created_at: str,
                  default_pool_id: str,
                  description: str,
+                 enable_member_retry: bool,
+                 enterprise_project_id: str,
                  forward_eip: bool,
+                 forward_elb: bool,
                  forward_host: bool,
                  forward_port: bool,
+                 forward_proto: bool,
                  forward_request_port: bool,
+                 forward_tls_certificate: bool,
+                 forward_tls_cipher: bool,
+                 forward_tls_protocol: bool,
+                 gzip_enable: bool,
                  http2_enable: bool,
                  id: str,
                  idle_timeout: int,
+                 ipgroups: Sequence['outputs.GetListenersListenerIpgroupResult'],
                  loadbalancer_id: str,
+                 max_connection: int,
                  name: str,
+                 port_ranges: Sequence['outputs.GetListenersListenerPortRangeResult'],
                  protection_reason: str,
                  protection_status: str,
                  protocol: str,
                  protocol_port: int,
+                 proxy_protocol_enable: bool,
+                 quic_configs: Sequence['outputs.GetListenersListenerQuicConfigResult'],
+                 real_ip: bool,
                  request_timeout: int,
                  response_timeout: int,
+                 security_policy_id: str,
                  server_certificate: str,
                  sni_certificates: Sequence[str],
-                 tls_ciphers_policy: str):
+                 sni_match_algo: str,
+                 ssl_early_data_enable: bool,
+                 tags: Mapping[str, str],
+                 tls_ciphers_policy: str,
+                 updated_at: str):
         """
-        :param bool advanced_forwarding_enabled: Whether to enable advanced forwarding.
-        :param str ca_certificate: The ID of the CA certificate used by the listener.
-        :param str default_pool_id: The ID of the default backend server group.
+        :param bool advanced_forwarding_enabled: Specifies whether the advanced forwarding is enabled. Value options:
+               **true**, **false**.
+        :param str ca_certificate: Specifies the ID of the CA certificate used by the listener.
+        :param int cps: The maximum number of new connections that a listener can handle per second.
+        :param str created_at: The creation time of the listener.
+        :param str default_pool_id: Specifies the ID of the default pool with which the listener is associated.
         :param str description: Specifies the description of the ELB listener.
+        :param bool enable_member_retry: Specifies whether the health check retries for backend servers is enabled.
+               Value options: **true**, **false**.
+        :param str enterprise_project_id: Specifies the enterprise project ID.
         :param bool forward_eip: Whether to transparently transmit the load balancer EIP to backend servers.
+        :param bool forward_elb: Whether to transfer the load balancer ID to backend servers through the HTTP header of the packet.
         :param bool forward_host: Whether to rewrite the X-Forwarded-Host header.
         :param bool forward_port: Whether to transparently transmit the listening port of the load balancer to backend servers.
+        :param bool forward_proto: Whether to transfer the listener protocol of the load balancer to backend servers through the HTTP
+               header of the packet.
         :param bool forward_request_port: Whether to transparently transmit the source port of the client to backend servers.
-        :param bool http2_enable: Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+        :param bool forward_tls_certificate: Whether to transfer the certificate ID of the load balancer to backend servers through the
+               HTTP header of the packet.
+        :param bool forward_tls_cipher: Whether to transfer the algorithm suite of the load balancer to backend servers through the HTTP
+               header of the packet.
+        :param bool forward_tls_protocol: Whether to transfer the algorithm protocol of the load balancer to backend servers through the
+               HTTP header of the packet.
+        :param bool gzip_enable: Whether the gzip compression for a load balancer is enabled.
+        :param bool http2_enable: Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
         :param str id: The listener ID.
-        :param int idle_timeout: The idle timeout duration, in seconds.
+        :param int idle_timeout: Specifies the idle timeout for the listener.
+        :param Sequence['GetListenersListenerIpgroupArgs'] ipgroups: The IP address group associated with the listener.
+               The ipgroup structure is documented below.
         :param str loadbalancer_id: Specifies the ID of the load balancer that the listener is added to.
+        :param int max_connection: The maximum number of concurrent connections that a listener can handle per second.
         :param str name: Specifies the name of the ELB listener.
+        :param Sequence['GetListenersListenerPortRangeArgs'] port_ranges: The port range, including the start and end port numbers.
+               The port_ranges structure is documented below.
         :param str protection_reason: The reason for update protection.
-        :param str protection_status: The protection status for update.
+        :param str protection_status: Specifies the protection status.
         :param str protocol: Specifies the protocol of the ELB listener. Value options:
                **TCP**, **UDP**, **HTTP**, **HTTPS** or **QUIC**.
         :param int protocol_port: Specifies the port used by the listener.
-        :param int request_timeout: The timeout duration for waiting for a response from a client, in seconds.
-        :param int response_timeout: The timeout duration for waiting for a response from a backend server, in seconds.
-        :param str server_certificate: The ID of the server certificate used by the listener.
+        :param bool proxy_protocol_enable: Specifies whether the proxy protocol option to pass the source IP addresses
+               of the clients to backend servers is enabled. Value options: **true**, **false**.
+        :param Sequence['GetListenersListenerQuicConfigArgs'] quic_configs: The QUIC configuration for the current listener.
+               The quic_config structure is documented below.
+        :param bool real_ip: Whether to transfer the source IP address of the client to backend servers through the HTTP header of the
+               packet.
+        :param int request_timeout: Specifies the request timeout for the listener. Value range: **1** to **300**.
+        :param int response_timeout: Specifies the response timeout for the listener.
+        :param str security_policy_id: The ID of the custom security policy.
+        :param str server_certificate: Specifies the ID of the server certificate used by the listener.
         :param Sequence[str] sni_certificates: The IDs of SNI certificates (server certificates with domain names) used by the listener.
-        :param str tls_ciphers_policy: The security policy used by the listener.
+        :param str sni_match_algo: How wildcard domain name matches with the SNI certificates used by the listener.
+        :param bool ssl_early_data_enable: Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+               **false**.
+        :param Mapping[str, str] tags: The key/value pairs to associate with the listener.
+        :param str tls_ciphers_policy: Specifies the TLS cipher policy for the listener.
+        :param str updated_at: The update time of the listener.
         """
         pulumi.set(__self__, "advanced_forwarding_enabled", advanced_forwarding_enabled)
         pulumi.set(__self__, "ca_certificate", ca_certificate)
+        pulumi.set(__self__, "cps", cps)
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "default_pool_id", default_pool_id)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable_member_retry", enable_member_retry)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         pulumi.set(__self__, "forward_eip", forward_eip)
+        pulumi.set(__self__, "forward_elb", forward_elb)
         pulumi.set(__self__, "forward_host", forward_host)
         pulumi.set(__self__, "forward_port", forward_port)
+        pulumi.set(__self__, "forward_proto", forward_proto)
         pulumi.set(__self__, "forward_request_port", forward_request_port)
+        pulumi.set(__self__, "forward_tls_certificate", forward_tls_certificate)
+        pulumi.set(__self__, "forward_tls_cipher", forward_tls_cipher)
+        pulumi.set(__self__, "forward_tls_protocol", forward_tls_protocol)
+        pulumi.set(__self__, "gzip_enable", gzip_enable)
         pulumi.set(__self__, "http2_enable", http2_enable)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "idle_timeout", idle_timeout)
+        pulumi.set(__self__, "ipgroups", ipgroups)
         pulumi.set(__self__, "loadbalancer_id", loadbalancer_id)
+        pulumi.set(__self__, "max_connection", max_connection)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port_ranges", port_ranges)
         pulumi.set(__self__, "protection_reason", protection_reason)
         pulumi.set(__self__, "protection_status", protection_status)
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "protocol_port", protocol_port)
+        pulumi.set(__self__, "proxy_protocol_enable", proxy_protocol_enable)
+        pulumi.set(__self__, "quic_configs", quic_configs)
+        pulumi.set(__self__, "real_ip", real_ip)
         pulumi.set(__self__, "request_timeout", request_timeout)
         pulumi.set(__self__, "response_timeout", response_timeout)
+        pulumi.set(__self__, "security_policy_id", security_policy_id)
         pulumi.set(__self__, "server_certificate", server_certificate)
         pulumi.set(__self__, "sni_certificates", sni_certificates)
+        pulumi.set(__self__, "sni_match_algo", sni_match_algo)
+        pulumi.set(__self__, "ssl_early_data_enable", ssl_early_data_enable)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "tls_ciphers_policy", tls_ciphers_policy)
+        pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="advancedForwardingEnabled")
     def advanced_forwarding_enabled(self) -> bool:
         """
-        Whether to enable advanced forwarding.
+        Specifies whether the advanced forwarding is enabled. Value options:
+        **true**, **false**.
         """
         return pulumi.get(self, "advanced_forwarding_enabled")
 
@@ -3689,15 +5173,31 @@ class GetListenersListenerResult(dict):
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> str:
         """
-        The ID of the CA certificate used by the listener.
+        Specifies the ID of the CA certificate used by the listener.
         """
         return pulumi.get(self, "ca_certificate")
+
+    @property
+    @pulumi.getter
+    def cps(self) -> int:
+        """
+        The maximum number of new connections that a listener can handle per second.
+        """
+        return pulumi.get(self, "cps")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The creation time of the listener.
+        """
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="defaultPoolId")
     def default_pool_id(self) -> str:
         """
-        The ID of the default backend server group.
+        Specifies the ID of the default pool with which the listener is associated.
         """
         return pulumi.get(self, "default_pool_id")
 
@@ -3710,12 +5210,37 @@ class GetListenersListenerResult(dict):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableMemberRetry")
+    def enable_member_retry(self) -> bool:
+        """
+        Specifies whether the health check retries for backend servers is enabled.
+        Value options: **true**, **false**.
+        """
+        return pulumi.get(self, "enable_member_retry")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> str:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @property
     @pulumi.getter(name="forwardEip")
     def forward_eip(self) -> bool:
         """
         Whether to transparently transmit the load balancer EIP to backend servers.
         """
         return pulumi.get(self, "forward_eip")
+
+    @property
+    @pulumi.getter(name="forwardElb")
+    def forward_elb(self) -> bool:
+        """
+        Whether to transfer the load balancer ID to backend servers through the HTTP header of the packet.
+        """
+        return pulumi.get(self, "forward_elb")
 
     @property
     @pulumi.getter(name="forwardHost")
@@ -3734,6 +5259,15 @@ class GetListenersListenerResult(dict):
         return pulumi.get(self, "forward_port")
 
     @property
+    @pulumi.getter(name="forwardProto")
+    def forward_proto(self) -> bool:
+        """
+        Whether to transfer the listener protocol of the load balancer to backend servers through the HTTP
+        header of the packet.
+        """
+        return pulumi.get(self, "forward_proto")
+
+    @property
     @pulumi.getter(name="forwardRequestPort")
     def forward_request_port(self) -> bool:
         """
@@ -3742,10 +5276,45 @@ class GetListenersListenerResult(dict):
         return pulumi.get(self, "forward_request_port")
 
     @property
+    @pulumi.getter(name="forwardTlsCertificate")
+    def forward_tls_certificate(self) -> bool:
+        """
+        Whether to transfer the certificate ID of the load balancer to backend servers through the
+        HTTP header of the packet.
+        """
+        return pulumi.get(self, "forward_tls_certificate")
+
+    @property
+    @pulumi.getter(name="forwardTlsCipher")
+    def forward_tls_cipher(self) -> bool:
+        """
+        Whether to transfer the algorithm suite of the load balancer to backend servers through the HTTP
+        header of the packet.
+        """
+        return pulumi.get(self, "forward_tls_cipher")
+
+    @property
+    @pulumi.getter(name="forwardTlsProtocol")
+    def forward_tls_protocol(self) -> bool:
+        """
+        Whether to transfer the algorithm protocol of the load balancer to backend servers through the
+        HTTP header of the packet.
+        """
+        return pulumi.get(self, "forward_tls_protocol")
+
+    @property
+    @pulumi.getter(name="gzipEnable")
+    def gzip_enable(self) -> bool:
+        """
+        Whether the gzip compression for a load balancer is enabled.
+        """
+        return pulumi.get(self, "gzip_enable")
+
+    @property
     @pulumi.getter(name="http2Enable")
     def http2_enable(self) -> bool:
         """
-        Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+        Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
         """
         return pulumi.get(self, "http2_enable")
 
@@ -3761,9 +5330,18 @@ class GetListenersListenerResult(dict):
     @pulumi.getter(name="idleTimeout")
     def idle_timeout(self) -> int:
         """
-        The idle timeout duration, in seconds.
+        Specifies the idle timeout for the listener.
         """
         return pulumi.get(self, "idle_timeout")
+
+    @property
+    @pulumi.getter
+    def ipgroups(self) -> Sequence['outputs.GetListenersListenerIpgroupResult']:
+        """
+        The IP address group associated with the listener.
+        The ipgroup structure is documented below.
+        """
+        return pulumi.get(self, "ipgroups")
 
     @property
     @pulumi.getter(name="loadbalancerId")
@@ -3774,12 +5352,29 @@ class GetListenersListenerResult(dict):
         return pulumi.get(self, "loadbalancer_id")
 
     @property
+    @pulumi.getter(name="maxConnection")
+    def max_connection(self) -> int:
+        """
+        The maximum number of concurrent connections that a listener can handle per second.
+        """
+        return pulumi.get(self, "max_connection")
+
+    @property
     @pulumi.getter
     def name(self) -> str:
         """
         Specifies the name of the ELB listener.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRanges")
+    def port_ranges(self) -> Sequence['outputs.GetListenersListenerPortRangeResult']:
+        """
+        The port range, including the start and end port numbers.
+        The port_ranges structure is documented below.
+        """
+        return pulumi.get(self, "port_ranges")
 
     @property
     @pulumi.getter(name="protectionReason")
@@ -3793,7 +5388,7 @@ class GetListenersListenerResult(dict):
     @pulumi.getter(name="protectionStatus")
     def protection_status(self) -> str:
         """
-        The protection status for update.
+        Specifies the protection status.
         """
         return pulumi.get(self, "protection_status")
 
@@ -3815,10 +5410,37 @@ class GetListenersListenerResult(dict):
         return pulumi.get(self, "protocol_port")
 
     @property
+    @pulumi.getter(name="proxyProtocolEnable")
+    def proxy_protocol_enable(self) -> bool:
+        """
+        Specifies whether the proxy protocol option to pass the source IP addresses
+        of the clients to backend servers is enabled. Value options: **true**, **false**.
+        """
+        return pulumi.get(self, "proxy_protocol_enable")
+
+    @property
+    @pulumi.getter(name="quicConfigs")
+    def quic_configs(self) -> Sequence['outputs.GetListenersListenerQuicConfigResult']:
+        """
+        The QUIC configuration for the current listener.
+        The quic_config structure is documented below.
+        """
+        return pulumi.get(self, "quic_configs")
+
+    @property
+    @pulumi.getter(name="realIp")
+    def real_ip(self) -> bool:
+        """
+        Whether to transfer the source IP address of the client to backend servers through the HTTP header of the
+        packet.
+        """
+        return pulumi.get(self, "real_ip")
+
+    @property
     @pulumi.getter(name="requestTimeout")
     def request_timeout(self) -> int:
         """
-        The timeout duration for waiting for a response from a client, in seconds.
+        Specifies the request timeout for the listener. Value range: **1** to **300**.
         """
         return pulumi.get(self, "request_timeout")
 
@@ -3826,15 +5448,23 @@ class GetListenersListenerResult(dict):
     @pulumi.getter(name="responseTimeout")
     def response_timeout(self) -> int:
         """
-        The timeout duration for waiting for a response from a backend server, in seconds.
+        Specifies the response timeout for the listener.
         """
         return pulumi.get(self, "response_timeout")
+
+    @property
+    @pulumi.getter(name="securityPolicyId")
+    def security_policy_id(self) -> str:
+        """
+        The ID of the custom security policy.
+        """
+        return pulumi.get(self, "security_policy_id")
 
     @property
     @pulumi.getter(name="serverCertificate")
     def server_certificate(self) -> str:
         """
-        The ID of the server certificate used by the listener.
+        Specifies the ID of the server certificate used by the listener.
         """
         return pulumi.get(self, "server_certificate")
 
@@ -3847,12 +5477,143 @@ class GetListenersListenerResult(dict):
         return pulumi.get(self, "sni_certificates")
 
     @property
+    @pulumi.getter(name="sniMatchAlgo")
+    def sni_match_algo(self) -> str:
+        """
+        How wildcard domain name matches with the SNI certificates used by the listener.
+        """
+        return pulumi.get(self, "sni_match_algo")
+
+    @property
+    @pulumi.getter(name="sslEarlyDataEnable")
+    def ssl_early_data_enable(self) -> bool:
+        """
+        Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+        **false**.
+        """
+        return pulumi.get(self, "ssl_early_data_enable")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        """
+        The key/value pairs to associate with the listener.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="tlsCiphersPolicy")
     def tls_ciphers_policy(self) -> str:
         """
-        The security policy used by the listener.
+        Specifies the TLS cipher policy for the listener.
         """
         return pulumi.get(self, "tls_ciphers_policy")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of the listener.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetListenersListenerIpgroupResult(dict):
+    def __init__(__self__, *,
+                 enable_ipgroup: bool,
+                 ipgroup_id: str,
+                 type: str):
+        """
+        :param bool enable_ipgroup: Whether access control is enabled.
+        :param str ipgroup_id: The ID of the IP address group associated with the listener.
+        :param str type: How access to the listener is controlled.
+        """
+        pulumi.set(__self__, "enable_ipgroup", enable_ipgroup)
+        pulumi.set(__self__, "ipgroup_id", ipgroup_id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="enableIpgroup")
+    def enable_ipgroup(self) -> bool:
+        """
+        Whether access control is enabled.
+        """
+        return pulumi.get(self, "enable_ipgroup")
+
+    @property
+    @pulumi.getter(name="ipgroupId")
+    def ipgroup_id(self) -> str:
+        """
+        The ID of the IP address group associated with the listener.
+        """
+        return pulumi.get(self, "ipgroup_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        How access to the listener is controlled.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetListenersListenerPortRangeResult(dict):
+    def __init__(__self__, *,
+                 end_port: int,
+                 start_port: int):
+        """
+        :param int end_port: The end port.
+        :param int start_port: The start port.
+        """
+        pulumi.set(__self__, "end_port", end_port)
+        pulumi.set(__self__, "start_port", start_port)
+
+    @property
+    @pulumi.getter(name="endPort")
+    def end_port(self) -> int:
+        """
+        The end port.
+        """
+        return pulumi.get(self, "end_port")
+
+    @property
+    @pulumi.getter(name="startPort")
+    def start_port(self) -> int:
+        """
+        The start port.
+        """
+        return pulumi.get(self, "start_port")
+
+
+@pulumi.output_type
+class GetListenersListenerQuicConfigResult(dict):
+    def __init__(__self__, *,
+                 enable_quic_upgrade: bool,
+                 quic_listener_id: str):
+        """
+        :param bool enable_quic_upgrade: Whether to enable QUIC upgrade.
+        :param str quic_listener_id: The ID of the QUIC listener.
+        """
+        pulumi.set(__self__, "enable_quic_upgrade", enable_quic_upgrade)
+        pulumi.set(__self__, "quic_listener_id", quic_listener_id)
+
+    @property
+    @pulumi.getter(name="enableQuicUpgrade")
+    def enable_quic_upgrade(self) -> bool:
+        """
+        Whether to enable QUIC upgrade.
+        """
+        return pulumi.get(self, "enable_quic_upgrade")
+
+    @property
+    @pulumi.getter(name="quicListenerId")
+    def quic_listener_id(self) -> str:
+        """
+        The ID of the QUIC listener.
+        """
+        return pulumi.get(self, "quic_listener_id")
 
 
 @pulumi.output_type
@@ -3905,9 +5666,15 @@ class GetLoadbalancersLoadbalancerResult(dict):
                  autoscaling_enabled: bool,
                  availability_zones: Sequence[str],
                  backend_subnets: Sequence[str],
+                 billing_info: str,
+                 charge_mode: str,
+                 created_at: str,
                  cross_vpc_backend: bool,
+                 deletion_protection_enable: bool,
                  description: str,
                  enterprise_project_id: str,
+                 frozen_scene: str,
+                 global_eips: Sequence['outputs.GetLoadbalancersLoadbalancerGlobalEipResult'],
                  gw_flavor_id: str,
                  id: str,
                  ipv4_address: str,
@@ -3915,47 +5682,97 @@ class GetLoadbalancersLoadbalancerResult(dict):
                  ipv4_subnet_id: str,
                  ipv6_address: str,
                  ipv6_network_id: str,
+                 ipv6_vip_port_id: str,
                  l4_flavor_id: str,
                  l7_flavor_id: str,
+                 listeners: Sequence['outputs.GetLoadbalancersLoadbalancerListenerResult'],
                  loadbalancer_type: str,
+                 log_group_id: str,
+                 log_topic_id: str,
                  min_l7_flavor_id: str,
                  name: str,
+                 operating_status: str,
+                 pools: Sequence['outputs.GetLoadbalancersLoadbalancerPoolResult'],
                  protection_reason: str,
                  protection_status: str,
+                 provisioning_status: str,
+                 public_border_group: str,
+                 publicips: Sequence['outputs.GetLoadbalancersLoadbalancerPublicipResult'],
                  type: str,
-                 vpc_id: str):
+                 updated_at: str,
+                 vpc_id: str,
+                 waf_failure_action: str):
         """
         :param bool autoscaling_enabled: Whether the current load balancer enables elastic expansion.
-        :param Sequence[str] availability_zones: The list of AZs where the load balancer is created.
+        :param Sequence[str] availability_zones: Specifies the list of AZ where the load balancer is created.
         :param Sequence[str] backend_subnets: Lists the IDs of subnets on the downstream plane.
+        :param str billing_info: Specifies the provides resource billing information.
+        :param str charge_mode: The charge mode when of the load balancer.
+        :param str created_at: The time when the load balancer was created.
         :param bool cross_vpc_backend: Whether to enable IP as a Backend Server.
+        :param bool deletion_protection_enable: Specifies whether the deletion protection is enabled. Value options:
+               **true**, **false**.
         :param str description: Specifies the description of the ELB load balancer.
         :param str enterprise_project_id: Specifies the enterprise project ID.
+        :param str frozen_scene: The scenario where the load balancer is frozen.
+        :param Sequence['GetLoadbalancersLoadbalancerGlobalEipArgs'] global_eips: Specifies the global EIPs bound to the load balancer. It can be queried by different
+               conditions:
+               + If `global_eip_id` is used as the query condition, the format is **global_eip_id=xxx**
+               + If `global_eip_address` is used as the query condition, the format is **global_eip_address=xxx**
+               + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
         :param str gw_flavor_id: The flavor ID of the gateway load balancer.
-        :param str id: The load balancer ID.
-        :param str ipv4_address: The private IPv4 address bound to the load balancer.
-        :param str ipv4_port_id: The ID of the port bound to the private IPv4 address of the load balancer.
+        :param str id: The pool ID.
+        :param str ipv4_address: Specifies the private IPv4 address bound to the load balancer.
+        :param str ipv4_port_id: Specifies the ID of the port bound to the private IPv4 address of the load balancer.
         :param str ipv4_subnet_id: Specifies the ID of the IPv4 subnet where the load balancer resides.
-        :param str ipv6_address: The IPv6 address bound to the load balancer.
+        :param str ipv6_address: Specifies the IPv6 address bound to the load balancer.
         :param str ipv6_network_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
+        :param str ipv6_vip_port_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
         :param str l4_flavor_id: Specifies the ID of a flavor at Layer 4.
         :param str l7_flavor_id: Specifies the ID of a flavor at Layer 7.
+        :param Sequence['GetLoadbalancersLoadbalancerListenerArgs'] listeners: The list of listeners added to the load balancer.
+               The listeners structure is documented below.
         :param str loadbalancer_type: The type of the load balancer.
+        :param str log_group_id: Specifies the ID of the log group that is associated with the load balancer.
+        :param str log_topic_id: Specifies the ID of the log topic that is associated with the load balancer.
         :param str min_l7_flavor_id: The minimum seven-layer specification ID (specification type L7_elastic) for elastic expansion
                and contraction
         :param str name: Specifies the name of the ELB load balancer.
+        :param str operating_status: Specifies the operating status of the load balancer. Value options:
+               + **ONLINE**: indicates that the load balancer is running normally.
+               + **FROZEN**: indicates that the load balancer is frozen.
+        :param Sequence['GetLoadbalancersLoadbalancerPoolArgs'] pools: The list of pools associated with the load balancer.
+               The pools structure is documented below.
         :param str protection_reason: The reason for update protection.
-        :param str protection_status: The protection status for update.
+        :param str protection_status: Specifies the protection status. Value options:
+               + **nonProtection**: The load balancer is not protected.
+               + **consoleProtection**: Modification Protection is enabled on the console.
+        :param str provisioning_status: Specifies the provisioning status of the load balancer. Value options:
+               + **ACTIVE**: The load balancer is successfully provisioned.
+               + **PENDING_DELETE**: The load balancer is being deleted.
+        :param str public_border_group: The AZ group to which the load balancer belongs.
+        :param Sequence['GetLoadbalancersLoadbalancerPublicipArgs'] publicips: Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+               + If `publicip_id` is used as the query condition, the format is **publicip_id=xxx**
+               + If `publicip_address` is used as the query condition, the format is **publicip_address=xxx**
+               + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
         :param str type: Specifies whether the load balancer is a dedicated load balancer, Value options:
                **dedicated**, **share**.
+        :param str updated_at: The time when the load balancer was updated.
         :param str vpc_id: Specifies the ID of the VPC where the load balancer resides.
+        :param str waf_failure_action: The traffic distributing policies when the WAF is faulty.
         """
         pulumi.set(__self__, "autoscaling_enabled", autoscaling_enabled)
         pulumi.set(__self__, "availability_zones", availability_zones)
         pulumi.set(__self__, "backend_subnets", backend_subnets)
+        pulumi.set(__self__, "billing_info", billing_info)
+        pulumi.set(__self__, "charge_mode", charge_mode)
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "cross_vpc_backend", cross_vpc_backend)
+        pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "frozen_scene", frozen_scene)
+        pulumi.set(__self__, "global_eips", global_eips)
         pulumi.set(__self__, "gw_flavor_id", gw_flavor_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ipv4_address", ipv4_address)
@@ -3963,15 +5780,26 @@ class GetLoadbalancersLoadbalancerResult(dict):
         pulumi.set(__self__, "ipv4_subnet_id", ipv4_subnet_id)
         pulumi.set(__self__, "ipv6_address", ipv6_address)
         pulumi.set(__self__, "ipv6_network_id", ipv6_network_id)
+        pulumi.set(__self__, "ipv6_vip_port_id", ipv6_vip_port_id)
         pulumi.set(__self__, "l4_flavor_id", l4_flavor_id)
         pulumi.set(__self__, "l7_flavor_id", l7_flavor_id)
+        pulumi.set(__self__, "listeners", listeners)
         pulumi.set(__self__, "loadbalancer_type", loadbalancer_type)
+        pulumi.set(__self__, "log_group_id", log_group_id)
+        pulumi.set(__self__, "log_topic_id", log_topic_id)
         pulumi.set(__self__, "min_l7_flavor_id", min_l7_flavor_id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "pools", pools)
         pulumi.set(__self__, "protection_reason", protection_reason)
         pulumi.set(__self__, "protection_status", protection_status)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        pulumi.set(__self__, "public_border_group", public_border_group)
+        pulumi.set(__self__, "publicips", publicips)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "waf_failure_action", waf_failure_action)
 
     @property
     @pulumi.getter(name="autoscalingEnabled")
@@ -3985,7 +5813,7 @@ class GetLoadbalancersLoadbalancerResult(dict):
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> Sequence[str]:
         """
-        The list of AZs where the load balancer is created.
+        Specifies the list of AZ where the load balancer is created.
         """
         return pulumi.get(self, "availability_zones")
 
@@ -3998,12 +5826,45 @@ class GetLoadbalancersLoadbalancerResult(dict):
         return pulumi.get(self, "backend_subnets")
 
     @property
+    @pulumi.getter(name="billingInfo")
+    def billing_info(self) -> str:
+        """
+        Specifies the provides resource billing information.
+        """
+        return pulumi.get(self, "billing_info")
+
+    @property
+    @pulumi.getter(name="chargeMode")
+    def charge_mode(self) -> str:
+        """
+        The charge mode when of the load balancer.
+        """
+        return pulumi.get(self, "charge_mode")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The time when the load balancer was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
     @pulumi.getter(name="crossVpcBackend")
     def cross_vpc_backend(self) -> bool:
         """
         Whether to enable IP as a Backend Server.
         """
         return pulumi.get(self, "cross_vpc_backend")
+
+    @property
+    @pulumi.getter(name="deletionProtectionEnable")
+    def deletion_protection_enable(self) -> bool:
+        """
+        Specifies whether the deletion protection is enabled. Value options:
+        **true**, **false**.
+        """
+        return pulumi.get(self, "deletion_protection_enable")
 
     @property
     @pulumi.getter
@@ -4022,6 +5883,26 @@ class GetLoadbalancersLoadbalancerResult(dict):
         return pulumi.get(self, "enterprise_project_id")
 
     @property
+    @pulumi.getter(name="frozenScene")
+    def frozen_scene(self) -> str:
+        """
+        The scenario where the load balancer is frozen.
+        """
+        return pulumi.get(self, "frozen_scene")
+
+    @property
+    @pulumi.getter(name="globalEips")
+    def global_eips(self) -> Sequence['outputs.GetLoadbalancersLoadbalancerGlobalEipResult']:
+        """
+        Specifies the global EIPs bound to the load balancer. It can be queried by different
+        conditions:
+        + If `global_eip_id` is used as the query condition, the format is **global_eip_id=xxx**
+        + If `global_eip_address` is used as the query condition, the format is **global_eip_address=xxx**
+        + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
+        """
+        return pulumi.get(self, "global_eips")
+
+    @property
     @pulumi.getter(name="gwFlavorId")
     def gw_flavor_id(self) -> str:
         """
@@ -4033,7 +5914,7 @@ class GetLoadbalancersLoadbalancerResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The load balancer ID.
+        The pool ID.
         """
         return pulumi.get(self, "id")
 
@@ -4041,7 +5922,7 @@ class GetLoadbalancersLoadbalancerResult(dict):
     @pulumi.getter(name="ipv4Address")
     def ipv4_address(self) -> str:
         """
-        The private IPv4 address bound to the load balancer.
+        Specifies the private IPv4 address bound to the load balancer.
         """
         return pulumi.get(self, "ipv4_address")
 
@@ -4049,7 +5930,7 @@ class GetLoadbalancersLoadbalancerResult(dict):
     @pulumi.getter(name="ipv4PortId")
     def ipv4_port_id(self) -> str:
         """
-        The ID of the port bound to the private IPv4 address of the load balancer.
+        Specifies the ID of the port bound to the private IPv4 address of the load balancer.
         """
         return pulumi.get(self, "ipv4_port_id")
 
@@ -4065,7 +5946,7 @@ class GetLoadbalancersLoadbalancerResult(dict):
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> str:
         """
-        The IPv6 address bound to the load balancer.
+        Specifies the IPv6 address bound to the load balancer.
         """
         return pulumi.get(self, "ipv6_address")
 
@@ -4076,6 +5957,14 @@ class GetLoadbalancersLoadbalancerResult(dict):
         Specifies the ID of the port bound to the IPv6 address of the load balancer.
         """
         return pulumi.get(self, "ipv6_network_id")
+
+    @property
+    @pulumi.getter(name="ipv6VipPortId")
+    def ipv6_vip_port_id(self) -> str:
+        """
+        Specifies the ID of the port bound to the IPv6 address of the load balancer.
+        """
+        return pulumi.get(self, "ipv6_vip_port_id")
 
     @property
     @pulumi.getter(name="l4FlavorId")
@@ -4094,12 +5983,37 @@ class GetLoadbalancersLoadbalancerResult(dict):
         return pulumi.get(self, "l7_flavor_id")
 
     @property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetLoadbalancersLoadbalancerListenerResult']:
+        """
+        The list of listeners added to the load balancer.
+        The listeners structure is documented below.
+        """
+        return pulumi.get(self, "listeners")
+
+    @property
     @pulumi.getter(name="loadbalancerType")
     def loadbalancer_type(self) -> str:
         """
         The type of the load balancer.
         """
         return pulumi.get(self, "loadbalancer_type")
+
+    @property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> str:
+        """
+        Specifies the ID of the log group that is associated with the load balancer.
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @property
+    @pulumi.getter(name="logTopicId")
+    def log_topic_id(self) -> str:
+        """
+        Specifies the ID of the log topic that is associated with the load balancer.
+        """
+        return pulumi.get(self, "log_topic_id")
 
     @property
     @pulumi.getter(name="minL7FlavorId")
@@ -4119,6 +6033,25 @@ class GetLoadbalancersLoadbalancerResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> str:
+        """
+        Specifies the operating status of the load balancer. Value options:
+        + **ONLINE**: indicates that the load balancer is running normally.
+        + **FROZEN**: indicates that the load balancer is frozen.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @property
+    @pulumi.getter
+    def pools(self) -> Sequence['outputs.GetLoadbalancersLoadbalancerPoolResult']:
+        """
+        The list of pools associated with the load balancer.
+        The pools structure is documented below.
+        """
+        return pulumi.get(self, "pools")
+
+    @property
     @pulumi.getter(name="protectionReason")
     def protection_reason(self) -> str:
         """
@@ -4130,9 +6063,40 @@ class GetLoadbalancersLoadbalancerResult(dict):
     @pulumi.getter(name="protectionStatus")
     def protection_status(self) -> str:
         """
-        The protection status for update.
+        Specifies the protection status. Value options:
+        + **nonProtection**: The load balancer is not protected.
+        + **consoleProtection**: Modification Protection is enabled on the console.
         """
         return pulumi.get(self, "protection_status")
+
+    @property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> str:
+        """
+        Specifies the provisioning status of the load balancer. Value options:
+        + **ACTIVE**: The load balancer is successfully provisioned.
+        + **PENDING_DELETE**: The load balancer is being deleted.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> str:
+        """
+        The AZ group to which the load balancer belongs.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @property
+    @pulumi.getter
+    def publicips(self) -> Sequence['outputs.GetLoadbalancersLoadbalancerPublicipResult']:
+        """
+        Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+        + If `publicip_id` is used as the query condition, the format is **publicip_id=xxx**
+        + If `publicip_address` is used as the query condition, the format is **publicip_address=xxx**
+        + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
+        """
+        return pulumi.get(self, "publicips")
 
     @property
     @pulumi.getter
@@ -4144,12 +6108,144 @@ class GetLoadbalancersLoadbalancerResult(dict):
         return pulumi.get(self, "type")
 
     @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The time when the load balancer was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
         """
         Specifies the ID of the VPC where the load balancer resides.
         """
         return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="wafFailureAction")
+    def waf_failure_action(self) -> str:
+        """
+        The traffic distributing policies when the WAF is faulty.
+        """
+        return pulumi.get(self, "waf_failure_action")
+
+
+@pulumi.output_type
+class GetLoadbalancersLoadbalancerGlobalEipResult(dict):
+    def __init__(__self__, *,
+                 global_eip_address: str,
+                 global_eip_id: str,
+                 ip_version: int):
+        """
+        :param str global_eip_address: The global EIP address
+        :param str global_eip_id: The ID of the global EIP.
+        :param int ip_version: The IP version.
+        """
+        pulumi.set(__self__, "global_eip_address", global_eip_address)
+        pulumi.set(__self__, "global_eip_id", global_eip_id)
+        pulumi.set(__self__, "ip_version", ip_version)
+
+    @property
+    @pulumi.getter(name="globalEipAddress")
+    def global_eip_address(self) -> str:
+        """
+        The global EIP address
+        """
+        return pulumi.get(self, "global_eip_address")
+
+    @property
+    @pulumi.getter(name="globalEipId")
+    def global_eip_id(self) -> str:
+        """
+        The ID of the global EIP.
+        """
+        return pulumi.get(self, "global_eip_id")
+
+    @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> int:
+        """
+        The IP version.
+        """
+        return pulumi.get(self, "ip_version")
+
+
+@pulumi.output_type
+class GetLoadbalancersLoadbalancerListenerResult(dict):
+    def __init__(__self__, *,
+                 id: str):
+        """
+        :param str id: The pool ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The pool ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetLoadbalancersLoadbalancerPoolResult(dict):
+    def __init__(__self__, *,
+                 id: str):
+        """
+        :param str id: The pool ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The pool ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetLoadbalancersLoadbalancerPublicipResult(dict):
+    def __init__(__self__, *,
+                 ip_version: int,
+                 publicip_address: str,
+                 publicip_id: str):
+        """
+        :param int ip_version: The IP version.
+        :param str publicip_address: The IP address.
+        :param str publicip_id: The EIP ID.
+        """
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "publicip_address", publicip_address)
+        pulumi.set(__self__, "publicip_id", publicip_id)
+
+    @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> int:
+        """
+        The IP version.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="publicipAddress")
+    def publicip_address(self) -> str:
+        """
+        The IP address.
+        """
+        return pulumi.get(self, "publicip_address")
+
+    @property
+    @pulumi.getter(name="publicipId")
+    def publicip_id(self) -> str:
+        """
+        The EIP ID.
+        """
+        return pulumi.get(self, "publicip_id")
 
 
 @pulumi.output_type
@@ -4206,7 +6302,9 @@ class GetLogtanksLogtankResult(dict):
 @pulumi.output_type
 class GetMonitorsMonitorResult(dict):
     def __init__(__self__, *,
+                 created_at: str,
                  domain_name: str,
+                 http_method: str,
                  id: str,
                  interval: int,
                  max_retries: int,
@@ -4217,10 +6315,13 @@ class GetMonitorsMonitorResult(dict):
                  protocol: str,
                  status_code: str,
                  timeout: int,
+                 updated_at: str,
                  url_path: str):
         """
+        :param str created_at: The time when the health check was configured.
         :param str domain_name: Specifies the domain name to which HTTP requests are sent during the health check.
                The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
+        :param str http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
         :param str id: The health check ID.
         :param int interval: Specifies the interval between health checks, in seconds.  
                The value ranges from `1` to `50`.
@@ -4240,10 +6341,13 @@ class GetMonitorsMonitorResult(dict):
                + A value range, for example, **200**-**204**
         :param int timeout: Specifies the maximum time required for waiting for a response from the health check, in
                seconds.
+        :param str updated_at: The time when the health check was updated.
         :param str url_path: Specifies the HTTP request path for the health check. The value must start with a slash
                (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
         """
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "http_method", http_method)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "max_retries", max_retries)
@@ -4254,7 +6358,16 @@ class GetMonitorsMonitorResult(dict):
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "status_code", status_code)
         pulumi.set(__self__, "timeout", timeout)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "url_path", url_path)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The time when the health check was configured.
+        """
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="domainName")
@@ -4264,6 +6377,14 @@ class GetMonitorsMonitorResult(dict):
         The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
         """
         return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> str:
+        """
+        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+        """
+        return pulumi.get(self, "http_method")
 
     @property
     @pulumi.getter
@@ -4355,6 +6476,14 @@ class GetMonitorsMonitorResult(dict):
         return pulumi.get(self, "timeout")
 
     @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The time when the health check was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
     @pulumi.getter(name="urlPath")
     def url_path(self) -> str:
         """
@@ -4367,15 +6496,19 @@ class GetMonitorsMonitorResult(dict):
 @pulumi.output_type
 class GetPoolsPoolResult(dict):
     def __init__(__self__, *,
+                 any_port_enable: bool,
                  connection_drain_enabled: bool,
                  connection_drain_timeout: int,
+                 created_at: str,
                  description: str,
+                 enterprise_project_id: str,
                  healthmonitor_id: str,
                  id: str,
                  ip_version: str,
                  lb_method: str,
                  listeners: Sequence['outputs.GetPoolsPoolListenerResult'],
                  loadbalancers: Sequence['outputs.GetPoolsPoolLoadbalancerResult'],
+                 member_deletion_protection_enable: bool,
                  members: Sequence['outputs.GetPoolsPoolMemberResult'],
                  minimum_healthy_member_count: int,
                  name: str,
@@ -4383,21 +6516,33 @@ class GetPoolsPoolResult(dict):
                  protection_reason: str,
                  protection_status: str,
                  protocol: str,
+                 public_border_group: str,
+                 quic_cid_hash_strategies: Sequence['outputs.GetPoolsPoolQuicCidHashStrategyResult'],
                  slow_start_duration: int,
                  slow_start_enabled: bool,
                  type: str,
+                 updated_at: str,
                  vpc_id: str):
         """
+        :param bool any_port_enable: Specifies whether forward to same port for a backend server group is enabled.
+               Value options:
+               + **false**: Disable this option.
+               + **true**: Enable this option.
         :param bool connection_drain_enabled: Whether to enable delayed logout.
         :param int connection_drain_timeout: The timeout of the delayed logout in seconds.
+        :param str created_at: The time when the backend server group was created
         :param str description: Specifies the description of the ELB pool.
+        :param str enterprise_project_id: Specifies the ID of the enterprise project.
         :param str healthmonitor_id: Specifies the health monitor ID of the ELB pool.
         :param str id: The listener, loadbalancer or member ID.
-        :param str ip_version: The IP version of the LB pool.
+        :param str ip_version: Specifies the IP address version supported by the backend server group.
         :param str lb_method: Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
                **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
         :param Sequence['GetPoolsPoolListenerArgs'] listeners: The listener list. The object structure is documented below.
         :param Sequence['GetPoolsPoolLoadbalancerArgs'] loadbalancers: The loadbalancer list. The object structure is documented below.
+        :param bool member_deletion_protection_enable: Specifies whether deletion protection is enabled. Value options:
+               + **false**: Disable this option.
+               + **true**: Enable this option.
         :param Sequence['GetPoolsPoolMemberArgs'] members: The member list. The object structure is documented below.
         :param int minimum_healthy_member_count: The minimum healthy member count.
         :param str name: Specifies the name of the ELB pool.
@@ -4408,20 +6553,28 @@ class GetPoolsPoolResult(dict):
                Value options: **nonProtection**, **consoleProtection**.
         :param str protocol: Specifies the protocol of the ELB pool. Value options: **TCP**, **UDP**, **HTTP**,
                **HTTPS**, **QUIC**, **GRPC** or **TLS**.
+        :param str public_border_group: Specifies the public border group.
+        :param Sequence['GetPoolsPoolQuicCidHashStrategyArgs'] quic_cid_hash_strategies: The multi-path forwarding policy based on destination connection IDs.
+               The quic_cid_hash_strategy structure is documented below.
         :param int slow_start_duration: The slow start duration, in seconds.
         :param bool slow_start_enabled: Whether to enable slow start.
         :param str type: Specifies the type of the backend server group. Value options: **instance**, **ip**.
+        :param str updated_at: The time when the backend server group was updated.
         :param str vpc_id: Specifies the ID of the VPC where the backend server group works.
         """
+        pulumi.set(__self__, "any_port_enable", any_port_enable)
         pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         pulumi.set(__self__, "healthmonitor_id", healthmonitor_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_version", ip_version)
         pulumi.set(__self__, "lb_method", lb_method)
         pulumi.set(__self__, "listeners", listeners)
         pulumi.set(__self__, "loadbalancers", loadbalancers)
+        pulumi.set(__self__, "member_deletion_protection_enable", member_deletion_protection_enable)
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "minimum_healthy_member_count", minimum_healthy_member_count)
         pulumi.set(__self__, "name", name)
@@ -4429,10 +6582,24 @@ class GetPoolsPoolResult(dict):
         pulumi.set(__self__, "protection_reason", protection_reason)
         pulumi.set(__self__, "protection_status", protection_status)
         pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "public_border_group", public_border_group)
+        pulumi.set(__self__, "quic_cid_hash_strategies", quic_cid_hash_strategies)
         pulumi.set(__self__, "slow_start_duration", slow_start_duration)
         pulumi.set(__self__, "slow_start_enabled", slow_start_enabled)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="anyPortEnable")
+    def any_port_enable(self) -> bool:
+        """
+        Specifies whether forward to same port for a backend server group is enabled.
+        Value options:
+        + **false**: Disable this option.
+        + **true**: Enable this option.
+        """
+        return pulumi.get(self, "any_port_enable")
 
     @property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -4451,12 +6618,28 @@ class GetPoolsPoolResult(dict):
         return pulumi.get(self, "connection_drain_timeout")
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The time when the backend server group was created
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
     @pulumi.getter
     def description(self) -> str:
         """
         Specifies the description of the ELB pool.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> str:
+        """
+        Specifies the ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter(name="healthmonitorId")
@@ -4478,7 +6661,7 @@ class GetPoolsPoolResult(dict):
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> str:
         """
-        The IP version of the LB pool.
+        Specifies the IP address version supported by the backend server group.
         """
         return pulumi.get(self, "ip_version")
 
@@ -4506,6 +6689,16 @@ class GetPoolsPoolResult(dict):
         The loadbalancer list. The object structure is documented below.
         """
         return pulumi.get(self, "loadbalancers")
+
+    @property
+    @pulumi.getter(name="memberDeletionProtectionEnable")
+    def member_deletion_protection_enable(self) -> bool:
+        """
+        Specifies whether deletion protection is enabled. Value options:
+        + **false**: Disable this option.
+        + **true**: Enable this option.
+        """
+        return pulumi.get(self, "member_deletion_protection_enable")
 
     @property
     @pulumi.getter
@@ -4567,6 +6760,23 @@ class GetPoolsPoolResult(dict):
         return pulumi.get(self, "protocol")
 
     @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> str:
+        """
+        Specifies the public border group.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @property
+    @pulumi.getter(name="quicCidHashStrategies")
+    def quic_cid_hash_strategies(self) -> Sequence['outputs.GetPoolsPoolQuicCidHashStrategyResult']:
+        """
+        The multi-path forwarding policy based on destination connection IDs.
+        The quic_cid_hash_strategy structure is documented below.
+        """
+        return pulumi.get(self, "quic_cid_hash_strategies")
+
+    @property
     @pulumi.getter(name="slowStartDuration")
     def slow_start_duration(self) -> int:
         """
@@ -4589,6 +6799,14 @@ class GetPoolsPoolResult(dict):
         Specifies the type of the backend server group. Value options: **instance**, **ip**.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The time when the backend server group was updated.
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -4691,6 +6909,35 @@ class GetPoolsPoolPersistenceResult(dict):
         Specifies the type of the backend server group. Value options: **instance**, **ip**.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetPoolsPoolQuicCidHashStrategyResult(dict):
+    def __init__(__self__, *,
+                 len: int,
+                 offset: int):
+        """
+        :param int len: The length of the hash factor in the connection ID, in byte.
+        :param int offset: The start position in the connection ID as the hash factor, in byte.
+        """
+        pulumi.set(__self__, "len", len)
+        pulumi.set(__self__, "offset", offset)
+
+    @property
+    @pulumi.getter
+    def len(self) -> int:
+        """
+        The length of the hash factor in the connection ID, in byte.
+        """
+        return pulumi.get(self, "len")
+
+    @property
+    @pulumi.getter
+    def offset(self) -> int:
+        """
+        The start position in the connection ID as the hash factor, in byte.
+        """
+        return pulumi.get(self, "offset")
 
 
 @pulumi.output_type

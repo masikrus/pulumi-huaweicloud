@@ -285,6 +285,11 @@ type Function struct {
 	LogStreamId pulumi.StringOutput `pulumi:"logStreamId"`
 	// Specifies the LTS stream name for collecting logs.
 	LogStreamName pulumi.StringOutput `pulumi:"logStreamName"`
+	// Specifies the custom tags configuration that used to filter the LTS logs.
+	LtsCustomTag pulumi.StringMapOutput `pulumi:"ltsCustomTag"`
+	// The script configuration value of this change is also the original value used for comparison with the new value next
+	// time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+	LtsCustomTagOrigin pulumi.StringMapOutput `pulumi:"ltsCustomTagOrigin"`
 	// Specifies the maximum number of instances of the function.\
 	// The valid value is range from `-1` to `1,000`, defaults to `400`.
 	// + The minimum value is `-1` and means the number of instances is unlimited.
@@ -512,6 +517,11 @@ type functionState struct {
 	LogStreamId *string `pulumi:"logStreamId"`
 	// Specifies the LTS stream name for collecting logs.
 	LogStreamName *string `pulumi:"logStreamName"`
+	// Specifies the custom tags configuration that used to filter the LTS logs.
+	LtsCustomTag map[string]string `pulumi:"ltsCustomTag"`
+	// The script configuration value of this change is also the original value used for comparison with the new value next
+	// time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+	LtsCustomTagOrigin map[string]string `pulumi:"ltsCustomTagOrigin"`
 	// Specifies the maximum number of instances of the function.\
 	// The valid value is range from `-1` to `1,000`, defaults to `400`.
 	// + The minimum value is `-1` and means the number of instances is unlimited.
@@ -701,6 +711,11 @@ type FunctionState struct {
 	LogStreamId pulumi.StringPtrInput
 	// Specifies the LTS stream name for collecting logs.
 	LogStreamName pulumi.StringPtrInput
+	// Specifies the custom tags configuration that used to filter the LTS logs.
+	LtsCustomTag pulumi.StringMapInput
+	// The script configuration value of this change is also the original value used for comparison with the new value next
+	// time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+	LtsCustomTagOrigin pulumi.StringMapInput
 	// Specifies the maximum number of instances of the function.\
 	// The valid value is range from `-1` to `1,000`, defaults to `400`.
 	// + The minimum value is `-1` and means the number of instances is unlimited.
@@ -894,6 +909,8 @@ type functionArgs struct {
 	LogStreamId *string `pulumi:"logStreamId"`
 	// Specifies the LTS stream name for collecting logs.
 	LogStreamName *string `pulumi:"logStreamName"`
+	// Specifies the custom tags configuration that used to filter the LTS logs.
+	LtsCustomTag map[string]string `pulumi:"ltsCustomTag"`
 	// Specifies the maximum number of instances of the function.\
 	// The valid value is range from `-1` to `1,000`, defaults to `400`.
 	// + The minimum value is `-1` and means the number of instances is unlimited.
@@ -1080,6 +1097,8 @@ type FunctionArgs struct {
 	LogStreamId pulumi.StringPtrInput
 	// Specifies the LTS stream name for collecting logs.
 	LogStreamName pulumi.StringPtrInput
+	// Specifies the custom tags configuration that used to filter the LTS logs.
+	LtsCustomTag pulumi.StringMapInput
 	// Specifies the maximum number of instances of the function.\
 	// The valid value is range from `-1` to `1,000`, defaults to `400`.
 	// + The minimum value is `-1` and means the number of instances is unlimited.
@@ -1442,6 +1461,17 @@ func (o FunctionOutput) LogStreamId() pulumi.StringOutput {
 // Specifies the LTS stream name for collecting logs.
 func (o FunctionOutput) LogStreamName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.LogStreamName }).(pulumi.StringOutput)
+}
+
+// Specifies the custom tags configuration that used to filter the LTS logs.
+func (o FunctionOutput) LtsCustomTag() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.LtsCustomTag }).(pulumi.StringMapOutput)
+}
+
+// The script configuration value of this change is also the original value used for comparison with the new value next
+// time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+func (o FunctionOutput) LtsCustomTagOrigin() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.LtsCustomTagOrigin }).(pulumi.StringMapOutput)
 }
 
 // Specifies the maximum number of instances of the function.\

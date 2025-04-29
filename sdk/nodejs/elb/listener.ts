@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -25,10 +26,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * ELB listener can be imported using the listener ID, e.g. bash
+ * ELB listener can be imported using the `id`, e.g. bash
  *
  * ```sh
- *  $ pulumi import huaweicloud:Elb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+ *  $ pulumi import huaweicloud:Elb/listener:Listener test <id>
  * ```
  */
 export class Listener extends pulumi.CustomResource {
@@ -59,35 +60,51 @@ export class Listener extends pulumi.CustomResource {
         return obj['__pulumiType'] === Listener.__pulumiType;
     }
 
+    /**
+     * @deprecated admin_state_up is deprecated
+     */
     public readonly adminStateUp!: pulumi.Output<boolean | undefined>;
     /**
-     * The maximum number of connections allowed for the listener. The value ranges from
-     * -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-     * number of connections.
+     * Specifies the ID of the CA certificate used by the listener. This
+     * parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+     */
+    public readonly clientCaTlsContainerRef!: pulumi.Output<string>;
+    /**
+     * @deprecated connection_limit is deprecated
      */
     public readonly connectionLimit!: pulumi.Output<number>;
     /**
+     * The creation time of the listener.
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
      * The ID of the default pool with which the listener is associated.
-     * Changing this creates a new listener.
      */
     public readonly defaultPoolId!: pulumi.Output<string>;
     /**
      * Specifies the ID of the server certificate used by the listener. This
-     * parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+     * parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
      */
-    public readonly defaultTlsContainerRef!: pulumi.Output<string | undefined>;
+    public readonly defaultTlsContainerRef!: pulumi.Output<string>;
     /**
      * Human-readable description for the listener.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-     * only when the protocol is set to *TERMINATED_HTTPS*.
+     * only when the `protocol` is set to **TERMINATED_HTTPS**.
      */
     public readonly http2Enable!: pulumi.Output<boolean | undefined>;
     /**
-     * The load balancer on which to provision this listener. Changing this
-     * creates a new listener.
+     * Specifies whether to insert HTTP extension headers and sent them to backend servers.
+     * All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+     * servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+     * set to **TERMINATED_HTTPS**.
+     * The insertHeaders structure is documented below.
+     */
+    public readonly insertHeaders!: pulumi.Output<outputs.Elb.ListenerInsertHeaders>;
+    /**
+     * The load balancer on which to provision this listener.
      */
     public readonly loadbalancerId!: pulumi.Output<string>;
     /**
@@ -95,13 +112,22 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-     * creates a new listener.
+     * The reason to enable modification protection. This parameter is valid only when
+     * `protectionStatus` is set to **consoleProtection**.
+     */
+    public readonly protectionReason!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies whether modification protection is enabled. Value options:
+     * + **nonProtection (default)**: Modification protection is not enabled.
+     * + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+     */
+    public readonly protectionStatus!: pulumi.Output<string>;
+    /**
+     * The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
-     * The port on which to listen for client traffic. Changing this creates a
-     * new listener.
+     * The port on which to listen for client traffic.
      */
     public readonly protocolPort!: pulumi.Output<number>;
     /**
@@ -111,17 +137,27 @@ export class Listener extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * Lists the IDs of SNI certificates (server certificates with a domain name)
-     * used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+     * used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
      */
-    public readonly sniContainerRefs!: pulumi.Output<string[] | undefined>;
+    public readonly sniContainerRefs!: pulumi.Output<string[]>;
     /**
-     * The key/value pairs to associate with the listener.
+     * Specifies the reason to enable modification protection.
      */
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * @deprecated tenant_id is deprecated
      */
     public readonly tenantId!: pulumi.Output<string>;
+    /**
+     * Specifies the security policy used by the listener. This parameter takes effect
+     * only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+     * **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+     */
+    public readonly tlsCiphersPolicy!: pulumi.Output<string>;
+    /**
+     * The update time of the listener.
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a Listener resource with the given unique name, arguments, and options.
@@ -137,19 +173,26 @@ export class Listener extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ListenerState | undefined;
             resourceInputs["adminStateUp"] = state ? state.adminStateUp : undefined;
+            resourceInputs["clientCaTlsContainerRef"] = state ? state.clientCaTlsContainerRef : undefined;
             resourceInputs["connectionLimit"] = state ? state.connectionLimit : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["defaultPoolId"] = state ? state.defaultPoolId : undefined;
             resourceInputs["defaultTlsContainerRef"] = state ? state.defaultTlsContainerRef : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["http2Enable"] = state ? state.http2Enable : undefined;
+            resourceInputs["insertHeaders"] = state ? state.insertHeaders : undefined;
             resourceInputs["loadbalancerId"] = state ? state.loadbalancerId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protectionReason"] = state ? state.protectionReason : undefined;
+            resourceInputs["protectionStatus"] = state ? state.protectionStatus : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["protocolPort"] = state ? state.protocolPort : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["sniContainerRefs"] = state ? state.sniContainerRefs : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["tlsCiphersPolicy"] = state ? state.tlsCiphersPolicy : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as ListenerArgs | undefined;
             if ((!args || args.loadbalancerId === undefined) && !opts.urn) {
@@ -162,19 +205,26 @@ export class Listener extends pulumi.CustomResource {
                 throw new Error("Missing required property 'protocolPort'");
             }
             resourceInputs["adminStateUp"] = args ? args.adminStateUp : undefined;
+            resourceInputs["clientCaTlsContainerRef"] = args ? args.clientCaTlsContainerRef : undefined;
             resourceInputs["connectionLimit"] = args ? args.connectionLimit : undefined;
             resourceInputs["defaultPoolId"] = args ? args.defaultPoolId : undefined;
             resourceInputs["defaultTlsContainerRef"] = args ? args.defaultTlsContainerRef : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["http2Enable"] = args ? args.http2Enable : undefined;
+            resourceInputs["insertHeaders"] = args ? args.insertHeaders : undefined;
             resourceInputs["loadbalancerId"] = args ? args.loadbalancerId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protectionReason"] = args ? args.protectionReason : undefined;
+            resourceInputs["protectionStatus"] = args ? args.protectionStatus : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["protocolPort"] = args ? args.protocolPort : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["sniContainerRefs"] = args ? args.sniContainerRefs : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["tlsCiphersPolicy"] = args ? args.tlsCiphersPolicy : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Listener.__pulumiType, name, resourceInputs, opts);
@@ -185,21 +235,30 @@ export class Listener extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Listener resources.
  */
 export interface ListenerState {
+    /**
+     * @deprecated admin_state_up is deprecated
+     */
     adminStateUp?: pulumi.Input<boolean>;
     /**
-     * The maximum number of connections allowed for the listener. The value ranges from
-     * -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-     * number of connections.
+     * Specifies the ID of the CA certificate used by the listener. This
+     * parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+     */
+    clientCaTlsContainerRef?: pulumi.Input<string>;
+    /**
+     * @deprecated connection_limit is deprecated
      */
     connectionLimit?: pulumi.Input<number>;
     /**
+     * The creation time of the listener.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
      * The ID of the default pool with which the listener is associated.
-     * Changing this creates a new listener.
      */
     defaultPoolId?: pulumi.Input<string>;
     /**
      * Specifies the ID of the server certificate used by the listener. This
-     * parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+     * parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
      */
     defaultTlsContainerRef?: pulumi.Input<string>;
     /**
@@ -208,12 +267,19 @@ export interface ListenerState {
     description?: pulumi.Input<string>;
     /**
      * Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-     * only when the protocol is set to *TERMINATED_HTTPS*.
+     * only when the `protocol` is set to **TERMINATED_HTTPS**.
      */
     http2Enable?: pulumi.Input<boolean>;
     /**
-     * The load balancer on which to provision this listener. Changing this
-     * creates a new listener.
+     * Specifies whether to insert HTTP extension headers and sent them to backend servers.
+     * All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+     * servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+     * set to **TERMINATED_HTTPS**.
+     * The insertHeaders structure is documented below.
+     */
+    insertHeaders?: pulumi.Input<inputs.Elb.ListenerInsertHeaders>;
+    /**
+     * The load balancer on which to provision this listener.
      */
     loadbalancerId?: pulumi.Input<string>;
     /**
@@ -221,13 +287,22 @@ export interface ListenerState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-     * creates a new listener.
+     * The reason to enable modification protection. This parameter is valid only when
+     * `protectionStatus` is set to **consoleProtection**.
+     */
+    protectionReason?: pulumi.Input<string>;
+    /**
+     * Specifies whether modification protection is enabled. Value options:
+     * + **nonProtection (default)**: Modification protection is not enabled.
+     * + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+     */
+    protectionStatus?: pulumi.Input<string>;
+    /**
+     * The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * The port on which to listen for client traffic. Changing this creates a
-     * new listener.
+     * The port on which to listen for client traffic.
      */
     protocolPort?: pulumi.Input<number>;
     /**
@@ -237,38 +312,53 @@ export interface ListenerState {
     region?: pulumi.Input<string>;
     /**
      * Lists the IDs of SNI certificates (server certificates with a domain name)
-     * used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+     * used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
      */
     sniContainerRefs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The key/value pairs to associate with the listener.
+     * Specifies the reason to enable modification protection.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * @deprecated tenant_id is deprecated
      */
     tenantId?: pulumi.Input<string>;
+    /**
+     * Specifies the security policy used by the listener. This parameter takes effect
+     * only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+     * **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+     */
+    tlsCiphersPolicy?: pulumi.Input<string>;
+    /**
+     * The update time of the listener.
+     */
+    updatedAt?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Listener resource.
  */
 export interface ListenerArgs {
+    /**
+     * @deprecated admin_state_up is deprecated
+     */
     adminStateUp?: pulumi.Input<boolean>;
     /**
-     * The maximum number of connections allowed for the listener. The value ranges from
-     * -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-     * number of connections.
+     * Specifies the ID of the CA certificate used by the listener. This
+     * parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+     */
+    clientCaTlsContainerRef?: pulumi.Input<string>;
+    /**
+     * @deprecated connection_limit is deprecated
      */
     connectionLimit?: pulumi.Input<number>;
     /**
      * The ID of the default pool with which the listener is associated.
-     * Changing this creates a new listener.
      */
     defaultPoolId?: pulumi.Input<string>;
     /**
      * Specifies the ID of the server certificate used by the listener. This
-     * parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+     * parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
      */
     defaultTlsContainerRef?: pulumi.Input<string>;
     /**
@@ -277,12 +367,19 @@ export interface ListenerArgs {
     description?: pulumi.Input<string>;
     /**
      * Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-     * only when the protocol is set to *TERMINATED_HTTPS*.
+     * only when the `protocol` is set to **TERMINATED_HTTPS**.
      */
     http2Enable?: pulumi.Input<boolean>;
     /**
-     * The load balancer on which to provision this listener. Changing this
-     * creates a new listener.
+     * Specifies whether to insert HTTP extension headers and sent them to backend servers.
+     * All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+     * servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+     * set to **TERMINATED_HTTPS**.
+     * The insertHeaders structure is documented below.
+     */
+    insertHeaders?: pulumi.Input<inputs.Elb.ListenerInsertHeaders>;
+    /**
+     * The load balancer on which to provision this listener.
      */
     loadbalancerId: pulumi.Input<string>;
     /**
@@ -290,13 +387,22 @@ export interface ListenerArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-     * creates a new listener.
+     * The reason to enable modification protection. This parameter is valid only when
+     * `protectionStatus` is set to **consoleProtection**.
+     */
+    protectionReason?: pulumi.Input<string>;
+    /**
+     * Specifies whether modification protection is enabled. Value options:
+     * + **nonProtection (default)**: Modification protection is not enabled.
+     * + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+     */
+    protectionStatus?: pulumi.Input<string>;
+    /**
+     * The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
      */
     protocol: pulumi.Input<string>;
     /**
-     * The port on which to listen for client traffic. Changing this creates a
-     * new listener.
+     * The port on which to listen for client traffic.
      */
     protocolPort: pulumi.Input<number>;
     /**
@@ -306,15 +412,21 @@ export interface ListenerArgs {
     region?: pulumi.Input<string>;
     /**
      * Lists the IDs of SNI certificates (server certificates with a domain name)
-     * used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+     * used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
      */
     sniContainerRefs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The key/value pairs to associate with the listener.
+     * Specifies the reason to enable modification protection.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * @deprecated tenant_id is deprecated
      */
     tenantId?: pulumi.Input<string>;
+    /**
+     * Specifies the security policy used by the listener. This parameter takes effect
+     * only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+     * **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+     */
+    tlsCiphersPolicy?: pulumi.Input<string>;
 }

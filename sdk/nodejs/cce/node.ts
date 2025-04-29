@@ -285,18 +285,15 @@ export class Node extends pulumi.CustomResource {
      */
     public readonly autoRenew!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the name of the available partition (AZ). Changing this
-     * parameter will create a new resource.
+     * Specifies the name of the available partition (AZ).
      */
     public readonly availabilityZone!: pulumi.Output<string>;
     /**
      * Specifies the bandwidth billing type.
-     * Changing this parameter will create a new resource.
      */
     public readonly bandwidthChargeMode!: pulumi.Output<string | undefined>;
     /**
      * Specifies the bandwidth size.
-     * Changing this parameter will create a new resource.
      */
     public readonly bandwidthSize!: pulumi.Output<number | undefined>;
     /**
@@ -305,27 +302,24 @@ export class Node extends pulumi.CustomResource {
     public readonly billingMode!: pulumi.Output<number>;
     /**
      * Specifies the charging mode of the CCE node. Valid values are *prePaid*
-     * and *postPaid*, defaults to *postPaid*. Changing this creates a new resource.
+     * and *postPaid*, defaults to *postPaid*.
      */
     public readonly chargingMode!: pulumi.Output<string>;
     /**
      * Specifies the ID of the cluster.
-     * Changing this parameter will create a new resource.
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
      * Specifies the configurations of the data disk.
-     * Changing this parameter will create a new resource.
      */
     public readonly dataVolumes!: pulumi.Output<outputs.Cce.NodeDataVolume[]>;
     /**
      * Specifies the ID of the DeH to which the node is scheduled.
-     * Changing this parameter will create a new resource.
      */
     public readonly dedicatedHostId!: pulumi.Output<string | undefined>;
     /**
      * Specifies the ECS group ID. If specified, the node will be created under
-     * the cloud server group. Changing this parameter will create a new resource.
+     * the cloud server group.
      */
     public readonly ecsGroupId!: pulumi.Output<string | undefined>;
     /**
@@ -334,16 +328,15 @@ export class Node extends pulumi.CustomResource {
     public readonly ecsPerformanceType!: pulumi.Output<string | undefined>;
     /**
      * Specifies the ID of the EIP.
-     * Changing this parameter will create a new resource.
      */
     public readonly eipId!: pulumi.Output<string | undefined>;
     /**
      * @deprecated use eip_id instead
      */
     public readonly eipIds!: pulumi.Output<string[] | undefined>;
+    public readonly enableForceNew!: pulumi.Output<string | undefined>;
     /**
      * Specifies the enterprise project ID of the CCE node.
-     * Changing this parameter will create a new resource.
      */
     public readonly enterpriseProjectId!: pulumi.Output<string>;
     /**
@@ -357,22 +350,19 @@ export class Node extends pulumi.CustomResource {
     /**
      * Specifies the extended parameters.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     public readonly extendParams!: pulumi.Output<outputs.Cce.NodeExtendParams | undefined>;
     /**
      * Specifies extension NICs of the node.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     public readonly extensionNics!: pulumi.Output<outputs.Cce.NodeExtensionNic[] | undefined>;
     /**
      * Specifies the fixed IP of the NIC.
-     * Changing this parameter will create a new resource.
      */
     public readonly fixedIp!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the flavor ID. Changing this parameter will create a new
+     * Specifies the flavor ID.
      * resource.
      */
     public readonly flavorId!: pulumi.Output<string>;
@@ -380,17 +370,14 @@ export class Node extends pulumi.CustomResource {
      * Specifies the hostname config of the kubernetes node,
      * which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     public readonly hostnameConfig!: pulumi.Output<outputs.Cce.NodeHostnameConfig>;
     /**
      * Specifies the custom initialization flags.
-     * Changing this parameter will create a new resource.
      */
     public readonly initializedConditions!: pulumi.Output<string[]>;
     /**
      * Specifies the elastic IP type.
-     * Changing this parameter will create a new resource.
      */
     public readonly iptype!: pulumi.Output<string | undefined>;
     /**
@@ -404,17 +391,15 @@ export class Node extends pulumi.CustomResource {
     public readonly keyPair!: pulumi.Output<string | undefined>;
     /**
      * Specifies the tags of a Kubernetes node, key/value pair format.
-     * Changing this parameter will create a new resource.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies the maximum number of instances a node is allowed to create.
-     * Changing this parameter will create a new resource.
      */
     public readonly maxPods!: pulumi.Output<number | undefined>;
     /**
      * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-     * and **user** are supported. Changing this parameter will create a new resource.
+     * and **user** are supported.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -426,7 +411,6 @@ export class Node extends pulumi.CustomResource {
      * The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
      * please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
      * This parameter is required when the `nodeImageId` in `extendParams` is not specified.
-     * Changing this parameter will create a new resource.
      */
     public readonly os!: pulumi.Output<string>;
     /**
@@ -443,23 +427,22 @@ export class Node extends pulumi.CustomResource {
     /**
      * Specifies the charging period of the CCE node. If `periodUnit` is set to *month*
      * , the value ranges from 1 to 9. If `periodUnit` is set to *year*, the value ranges from 1 to 3. This parameter is
-     * mandatory if `chargingMode` is set to *prePaid*. Changing this creates a new resource.
+     * mandatory if `chargingMode` is set to *prePaid*.
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
      * Specifies the charging period unit of the CCE node.
      * Valid values are *month* and *year*. This parameter is mandatory if `chargingMode` is set to *prePaid*.
-     * Changing this creates a new resource.
      */
     public readonly periodUnit!: pulumi.Output<string | undefined>;
     /**
      * Specifies the script to be executed after installation.
-     * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+     * The input value can be a Base64 encoded string or not.
      */
     public readonly postinstall!: pulumi.Output<string | undefined>;
     /**
      * Specifies the script to be executed before installation.
-     * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+     * The input value can be a Base64 encoded string or not.
      */
     public readonly preinstall!: pulumi.Output<string | undefined>;
     /**
@@ -490,12 +473,11 @@ export class Node extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * Specifies the configuration of the system disk.
-     * Changing this parameter will create a new resource.
      */
     public readonly rootVolume!: pulumi.Output<outputs.Cce.NodeRootVolume>;
     /**
      * Specifies the runtime of the CCE node. Valid values are *docker* and
-     * *containerd*. Changing this creates a new resource.
+     * *containerd*.
      */
     public readonly runtime!: pulumi.Output<string>;
     /**
@@ -504,7 +486,6 @@ export class Node extends pulumi.CustomResource {
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
      * Specifies the bandwidth sharing type.
-     * Changing this parameter will create a new resource.
      */
     public readonly sharetype!: pulumi.Output<string | undefined>;
     /**
@@ -521,12 +502,10 @@ export class Node extends pulumi.CustomResource {
      * If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
      * this parameter must be specified.
      * If you want to store system components in the system disk, this parameter must be specified.
-     * Changing this parameter will create a new resource.
      */
     public readonly storage!: pulumi.Output<outputs.Cce.NodeStorage | undefined>;
     /**
      * Specifies the ID of the subnet to which the NIC belongs.
-     * Changing this parameter will create a new resource.
      */
     public readonly subnetId!: pulumi.Output<string>;
     /**
@@ -535,7 +514,7 @@ export class Node extends pulumi.CustomResource {
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies the taints configuration of the nodes to set anti-affinity.
-     * Changing this parameter will create a new resource. Each taint contains the following parameters:
+     * Each taint contains the following parameters:
      */
     public readonly taints!: pulumi.Output<outputs.Cce.NodeTaint[] | undefined>;
 
@@ -567,6 +546,7 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["ecsPerformanceType"] = state ? state.ecsPerformanceType : undefined;
             resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["eipIds"] = state ? state.eipIds : undefined;
+            resourceInputs["enableForceNew"] = state ? state.enableForceNew : undefined;
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["extendParam"] = state ? state.extendParam : undefined;
             resourceInputs["extendParamChargingMode"] = state ? state.extendParamChargingMode : undefined;
@@ -634,6 +614,7 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["ecsPerformanceType"] = args ? args.ecsPerformanceType : undefined;
             resourceInputs["eipId"] = args ? args.eipId : undefined;
             resourceInputs["eipIds"] = args ? args.eipIds : undefined;
+            resourceInputs["enableForceNew"] = args ? args.enableForceNew : undefined;
             resourceInputs["enterpriseProjectId"] = args ? args.enterpriseProjectId : undefined;
             resourceInputs["extendParam"] = args ? args.extendParam : undefined;
             resourceInputs["extendParamChargingMode"] = args ? args.extendParamChargingMode : undefined;
@@ -695,18 +676,15 @@ export interface NodeState {
      */
     autoRenew?: pulumi.Input<string>;
     /**
-     * Specifies the name of the available partition (AZ). Changing this
-     * parameter will create a new resource.
+     * Specifies the name of the available partition (AZ).
      */
     availabilityZone?: pulumi.Input<string>;
     /**
      * Specifies the bandwidth billing type.
-     * Changing this parameter will create a new resource.
      */
     bandwidthChargeMode?: pulumi.Input<string>;
     /**
      * Specifies the bandwidth size.
-     * Changing this parameter will create a new resource.
      */
     bandwidthSize?: pulumi.Input<number>;
     /**
@@ -715,27 +693,24 @@ export interface NodeState {
     billingMode?: pulumi.Input<number>;
     /**
      * Specifies the charging mode of the CCE node. Valid values are *prePaid*
-     * and *postPaid*, defaults to *postPaid*. Changing this creates a new resource.
+     * and *postPaid*, defaults to *postPaid*.
      */
     chargingMode?: pulumi.Input<string>;
     /**
      * Specifies the ID of the cluster.
-     * Changing this parameter will create a new resource.
      */
     clusterId?: pulumi.Input<string>;
     /**
      * Specifies the configurations of the data disk.
-     * Changing this parameter will create a new resource.
      */
     dataVolumes?: pulumi.Input<pulumi.Input<inputs.Cce.NodeDataVolume>[]>;
     /**
      * Specifies the ID of the DeH to which the node is scheduled.
-     * Changing this parameter will create a new resource.
      */
     dedicatedHostId?: pulumi.Input<string>;
     /**
      * Specifies the ECS group ID. If specified, the node will be created under
-     * the cloud server group. Changing this parameter will create a new resource.
+     * the cloud server group.
      */
     ecsGroupId?: pulumi.Input<string>;
     /**
@@ -744,16 +719,15 @@ export interface NodeState {
     ecsPerformanceType?: pulumi.Input<string>;
     /**
      * Specifies the ID of the EIP.
-     * Changing this parameter will create a new resource.
      */
     eipId?: pulumi.Input<string>;
     /**
      * @deprecated use eip_id instead
      */
     eipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    enableForceNew?: pulumi.Input<string>;
     /**
      * Specifies the enterprise project ID of the CCE node.
-     * Changing this parameter will create a new resource.
      */
     enterpriseProjectId?: pulumi.Input<string>;
     /**
@@ -767,22 +741,19 @@ export interface NodeState {
     /**
      * Specifies the extended parameters.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     extendParams?: pulumi.Input<inputs.Cce.NodeExtendParams>;
     /**
      * Specifies extension NICs of the node.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     extensionNics?: pulumi.Input<pulumi.Input<inputs.Cce.NodeExtensionNic>[]>;
     /**
      * Specifies the fixed IP of the NIC.
-     * Changing this parameter will create a new resource.
      */
     fixedIp?: pulumi.Input<string>;
     /**
-     * Specifies the flavor ID. Changing this parameter will create a new
+     * Specifies the flavor ID.
      * resource.
      */
     flavorId?: pulumi.Input<string>;
@@ -790,17 +761,14 @@ export interface NodeState {
      * Specifies the hostname config of the kubernetes node,
      * which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     hostnameConfig?: pulumi.Input<inputs.Cce.NodeHostnameConfig>;
     /**
      * Specifies the custom initialization flags.
-     * Changing this parameter will create a new resource.
      */
     initializedConditions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the elastic IP type.
-     * Changing this parameter will create a new resource.
      */
     iptype?: pulumi.Input<string>;
     /**
@@ -814,17 +782,15 @@ export interface NodeState {
     keyPair?: pulumi.Input<string>;
     /**
      * Specifies the tags of a Kubernetes node, key/value pair format.
-     * Changing this parameter will create a new resource.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the maximum number of instances a node is allowed to create.
-     * Changing this parameter will create a new resource.
      */
     maxPods?: pulumi.Input<number>;
     /**
      * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-     * and **user** are supported. Changing this parameter will create a new resource.
+     * and **user** are supported.
      */
     name?: pulumi.Input<string>;
     /**
@@ -836,7 +802,6 @@ export interface NodeState {
      * The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
      * please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
      * This parameter is required when the `nodeImageId` in `extendParams` is not specified.
-     * Changing this parameter will create a new resource.
      */
     os?: pulumi.Input<string>;
     /**
@@ -853,23 +818,22 @@ export interface NodeState {
     /**
      * Specifies the charging period of the CCE node. If `periodUnit` is set to *month*
      * , the value ranges from 1 to 9. If `periodUnit` is set to *year*, the value ranges from 1 to 3. This parameter is
-     * mandatory if `chargingMode` is set to *prePaid*. Changing this creates a new resource.
+     * mandatory if `chargingMode` is set to *prePaid*.
      */
     period?: pulumi.Input<number>;
     /**
      * Specifies the charging period unit of the CCE node.
      * Valid values are *month* and *year*. This parameter is mandatory if `chargingMode` is set to *prePaid*.
-     * Changing this creates a new resource.
      */
     periodUnit?: pulumi.Input<string>;
     /**
      * Specifies the script to be executed after installation.
-     * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+     * The input value can be a Base64 encoded string or not.
      */
     postinstall?: pulumi.Input<string>;
     /**
      * Specifies the script to be executed before installation.
-     * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+     * The input value can be a Base64 encoded string or not.
      */
     preinstall?: pulumi.Input<string>;
     /**
@@ -900,12 +864,11 @@ export interface NodeState {
     region?: pulumi.Input<string>;
     /**
      * Specifies the configuration of the system disk.
-     * Changing this parameter will create a new resource.
      */
     rootVolume?: pulumi.Input<inputs.Cce.NodeRootVolume>;
     /**
      * Specifies the runtime of the CCE node. Valid values are *docker* and
-     * *containerd*. Changing this creates a new resource.
+     * *containerd*.
      */
     runtime?: pulumi.Input<string>;
     /**
@@ -914,7 +877,6 @@ export interface NodeState {
     serverId?: pulumi.Input<string>;
     /**
      * Specifies the bandwidth sharing type.
-     * Changing this parameter will create a new resource.
      */
     sharetype?: pulumi.Input<string>;
     /**
@@ -931,12 +893,10 @@ export interface NodeState {
      * If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
      * this parameter must be specified.
      * If you want to store system components in the system disk, this parameter must be specified.
-     * Changing this parameter will create a new resource.
      */
     storage?: pulumi.Input<inputs.Cce.NodeStorage>;
     /**
      * Specifies the ID of the subnet to which the NIC belongs.
-     * Changing this parameter will create a new resource.
      */
     subnetId?: pulumi.Input<string>;
     /**
@@ -945,7 +905,7 @@ export interface NodeState {
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the taints configuration of the nodes to set anti-affinity.
-     * Changing this parameter will create a new resource. Each taint contains the following parameters:
+     * Each taint contains the following parameters:
      */
     taints?: pulumi.Input<pulumi.Input<inputs.Cce.NodeTaint>[]>;
 }
@@ -967,18 +927,15 @@ export interface NodeArgs {
      */
     autoRenew?: pulumi.Input<string>;
     /**
-     * Specifies the name of the available partition (AZ). Changing this
-     * parameter will create a new resource.
+     * Specifies the name of the available partition (AZ).
      */
     availabilityZone: pulumi.Input<string>;
     /**
      * Specifies the bandwidth billing type.
-     * Changing this parameter will create a new resource.
      */
     bandwidthChargeMode?: pulumi.Input<string>;
     /**
      * Specifies the bandwidth size.
-     * Changing this parameter will create a new resource.
      */
     bandwidthSize?: pulumi.Input<number>;
     /**
@@ -987,27 +944,24 @@ export interface NodeArgs {
     billingMode?: pulumi.Input<number>;
     /**
      * Specifies the charging mode of the CCE node. Valid values are *prePaid*
-     * and *postPaid*, defaults to *postPaid*. Changing this creates a new resource.
+     * and *postPaid*, defaults to *postPaid*.
      */
     chargingMode?: pulumi.Input<string>;
     /**
      * Specifies the ID of the cluster.
-     * Changing this parameter will create a new resource.
      */
     clusterId: pulumi.Input<string>;
     /**
      * Specifies the configurations of the data disk.
-     * Changing this parameter will create a new resource.
      */
     dataVolumes?: pulumi.Input<pulumi.Input<inputs.Cce.NodeDataVolume>[]>;
     /**
      * Specifies the ID of the DeH to which the node is scheduled.
-     * Changing this parameter will create a new resource.
      */
     dedicatedHostId?: pulumi.Input<string>;
     /**
      * Specifies the ECS group ID. If specified, the node will be created under
-     * the cloud server group. Changing this parameter will create a new resource.
+     * the cloud server group.
      */
     ecsGroupId?: pulumi.Input<string>;
     /**
@@ -1016,16 +970,15 @@ export interface NodeArgs {
     ecsPerformanceType?: pulumi.Input<string>;
     /**
      * Specifies the ID of the EIP.
-     * Changing this parameter will create a new resource.
      */
     eipId?: pulumi.Input<string>;
     /**
      * @deprecated use eip_id instead
      */
     eipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    enableForceNew?: pulumi.Input<string>;
     /**
      * Specifies the enterprise project ID of the CCE node.
-     * Changing this parameter will create a new resource.
      */
     enterpriseProjectId?: pulumi.Input<string>;
     /**
@@ -1039,22 +992,19 @@ export interface NodeArgs {
     /**
      * Specifies the extended parameters.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     extendParams?: pulumi.Input<inputs.Cce.NodeExtendParams>;
     /**
      * Specifies extension NICs of the node.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     extensionNics?: pulumi.Input<pulumi.Input<inputs.Cce.NodeExtensionNic>[]>;
     /**
      * Specifies the fixed IP of the NIC.
-     * Changing this parameter will create a new resource.
      */
     fixedIp?: pulumi.Input<string>;
     /**
-     * Specifies the flavor ID. Changing this parameter will create a new
+     * Specifies the flavor ID.
      * resource.
      */
     flavorId: pulumi.Input<string>;
@@ -1062,17 +1012,14 @@ export interface NodeArgs {
      * Specifies the hostname config of the kubernetes node,
      * which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
      * The object structure is documented below.
-     * Changing this parameter will create a new resource.
      */
     hostnameConfig?: pulumi.Input<inputs.Cce.NodeHostnameConfig>;
     /**
      * Specifies the custom initialization flags.
-     * Changing this parameter will create a new resource.
      */
     initializedConditions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the elastic IP type.
-     * Changing this parameter will create a new resource.
      */
     iptype?: pulumi.Input<string>;
     /**
@@ -1086,17 +1033,15 @@ export interface NodeArgs {
     keyPair?: pulumi.Input<string>;
     /**
      * Specifies the tags of a Kubernetes node, key/value pair format.
-     * Changing this parameter will create a new resource.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the maximum number of instances a node is allowed to create.
-     * Changing this parameter will create a new resource.
      */
     maxPods?: pulumi.Input<number>;
     /**
      * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-     * and **user** are supported. Changing this parameter will create a new resource.
+     * and **user** are supported.
      */
     name?: pulumi.Input<string>;
     /**
@@ -1108,7 +1053,6 @@ export interface NodeArgs {
      * The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
      * please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
      * This parameter is required when the `nodeImageId` in `extendParams` is not specified.
-     * Changing this parameter will create a new resource.
      */
     os?: pulumi.Input<string>;
     /**
@@ -1125,23 +1069,22 @@ export interface NodeArgs {
     /**
      * Specifies the charging period of the CCE node. If `periodUnit` is set to *month*
      * , the value ranges from 1 to 9. If `periodUnit` is set to *year*, the value ranges from 1 to 3. This parameter is
-     * mandatory if `chargingMode` is set to *prePaid*. Changing this creates a new resource.
+     * mandatory if `chargingMode` is set to *prePaid*.
      */
     period?: pulumi.Input<number>;
     /**
      * Specifies the charging period unit of the CCE node.
      * Valid values are *month* and *year*. This parameter is mandatory if `chargingMode` is set to *prePaid*.
-     * Changing this creates a new resource.
      */
     periodUnit?: pulumi.Input<string>;
     /**
      * Specifies the script to be executed after installation.
-     * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+     * The input value can be a Base64 encoded string or not.
      */
     postinstall?: pulumi.Input<string>;
     /**
      * Specifies the script to be executed before installation.
-     * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+     * The input value can be a Base64 encoded string or not.
      */
     preinstall?: pulumi.Input<string>;
     /**
@@ -1164,17 +1107,15 @@ export interface NodeArgs {
     region?: pulumi.Input<string>;
     /**
      * Specifies the configuration of the system disk.
-     * Changing this parameter will create a new resource.
      */
     rootVolume: pulumi.Input<inputs.Cce.NodeRootVolume>;
     /**
      * Specifies the runtime of the CCE node. Valid values are *docker* and
-     * *containerd*. Changing this creates a new resource.
+     * *containerd*.
      */
     runtime?: pulumi.Input<string>;
     /**
      * Specifies the bandwidth sharing type.
-     * Changing this parameter will create a new resource.
      */
     sharetype?: pulumi.Input<string>;
     /**
@@ -1187,12 +1128,10 @@ export interface NodeArgs {
      * If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
      * this parameter must be specified.
      * If you want to store system components in the system disk, this parameter must be specified.
-     * Changing this parameter will create a new resource.
      */
     storage?: pulumi.Input<inputs.Cce.NodeStorage>;
     /**
      * Specifies the ID of the subnet to which the NIC belongs.
-     * Changing this parameter will create a new resource.
      */
     subnetId?: pulumi.Input<string>;
     /**
@@ -1201,7 +1140,7 @@ export interface NodeArgs {
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the taints configuration of the nodes to set anti-affinity.
-     * Changing this parameter will create a new resource. Each taint contains the following parameters:
+     * Each taint contains the following parameters:
      */
     taints?: pulumi.Input<pulumi.Input<inputs.Cce.NodeTaint>[]>;
 }

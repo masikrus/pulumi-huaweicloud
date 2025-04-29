@@ -149,7 +149,7 @@ def get_project(id: Optional[str] = None,
     EG  | huaweicloud_eg_custom_event_channel
     EIP | huaweicloud_vpc_eip<br>huaweicloud_vpc_bandwidth
     ELB | huaweicloud_elb_loadbalancer<br>huaweicloud_elb_certificate<br>huaweicloud_elb_ipgroup<br>huaweicloud_elb_security_policy
-    ER  | huaweicloud_er_instance
+    ER  | Er.Instance
     EVS | Evs.Volume
     FGS | FunctionGraph.Function
     GA  | huaweicloud_ga_accelerator
@@ -252,7 +252,7 @@ def get_project_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     EG  | huaweicloud_eg_custom_event_channel
     EIP | huaweicloud_vpc_eip<br>huaweicloud_vpc_bandwidth
     ELB | huaweicloud_elb_loadbalancer<br>huaweicloud_elb_certificate<br>huaweicloud_elb_ipgroup<br>huaweicloud_elb_security_policy
-    ER  | huaweicloud_er_instance
+    ER  | Er.Instance
     EVS | Evs.Volume
     FGS | FunctionGraph.Function
     GA  | huaweicloud_ga_accelerator

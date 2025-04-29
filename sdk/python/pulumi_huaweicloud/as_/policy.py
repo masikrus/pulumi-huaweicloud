@@ -188,6 +188,7 @@ class _PolicyState:
                  action: Optional[pulumi.Input[str]] = None,
                  alarm_id: Optional[pulumi.Input[str]] = None,
                  cool_down_time: Optional[pulumi.Input[int]] = None,
+                 create_time: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_group_id: Optional[pulumi.Input[str]] = None,
                  scaling_policy_action: Optional[pulumi.Input['PolicyScalingPolicyActionArgs']] = None,
@@ -203,6 +204,7 @@ class _PolicyState:
                + **pause**: Disables the AS policy.
         :param pulumi.Input[int] cool_down_time: Specifies the cooling duration (in seconds).
                The value ranges from 0 to 86400 and is 300 by default.
+        :param pulumi.Input[str] create_time: The creation time of the AS policy, in UTC format.
         :param pulumi.Input[str] region: Specifies the region in which to create the AS policy. If omitted, the
                provider-level region will be used. Changing this creates a new AS policy.
         :param pulumi.Input[str] scaling_group_id: Specifies the AS group ID. Changing this creates a new AS policy.
@@ -225,6 +227,8 @@ class _PolicyState:
             pulumi.set(__self__, "alarm_id", alarm_id)
         if cool_down_time is not None:
             pulumi.set(__self__, "cool_down_time", cool_down_time)
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if scaling_group_id is not None:
@@ -276,6 +280,18 @@ class _PolicyState:
     @cool_down_time.setter
     def cool_down_time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cool_down_time", value)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The creation time of the AS policy, in UTC format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create_time", value)
 
     @property
     @pulumi.getter
@@ -479,7 +495,7 @@ class Policy(pulumi.CustomResource):
         AS policies can be imported by their `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:As/policy:Policy test 9fcb65fe-fd79-4407-8fa0-07602044e1c3
+         $ pulumi import huaweicloud:As/policy:Policy test <id>
         ```
 
         :param str resource_name: The name of the resource.
@@ -605,7 +621,7 @@ class Policy(pulumi.CustomResource):
         AS policies can be imported by their `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:As/policy:Policy test 9fcb65fe-fd79-4407-8fa0-07602044e1c3
+         $ pulumi import huaweicloud:As/policy:Policy test <id>
         ```
 
         :param str resource_name: The name of the resource.
@@ -656,6 +672,7 @@ class Policy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'scaling_policy_type'")
             __props__.__dict__["scaling_policy_type"] = scaling_policy_type
             __props__.__dict__["scheduled_policy"] = scheduled_policy
+            __props__.__dict__["create_time"] = None
             __props__.__dict__["status"] = None
         super(Policy, __self__).__init__(
             'huaweicloud:As/policy:Policy',
@@ -670,6 +687,7 @@ class Policy(pulumi.CustomResource):
             action: Optional[pulumi.Input[str]] = None,
             alarm_id: Optional[pulumi.Input[str]] = None,
             cool_down_time: Optional[pulumi.Input[int]] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             scaling_group_id: Optional[pulumi.Input[str]] = None,
             scaling_policy_action: Optional[pulumi.Input[pulumi.InputType['PolicyScalingPolicyActionArgs']]] = None,
@@ -690,6 +708,7 @@ class Policy(pulumi.CustomResource):
                + **pause**: Disables the AS policy.
         :param pulumi.Input[int] cool_down_time: Specifies the cooling duration (in seconds).
                The value ranges from 0 to 86400 and is 300 by default.
+        :param pulumi.Input[str] create_time: The creation time of the AS policy, in UTC format.
         :param pulumi.Input[str] region: Specifies the region in which to create the AS policy. If omitted, the
                provider-level region will be used. Changing this creates a new AS policy.
         :param pulumi.Input[str] scaling_group_id: Specifies the AS group ID. Changing this creates a new AS policy.
@@ -713,6 +732,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["action"] = action
         __props__.__dict__["alarm_id"] = alarm_id
         __props__.__dict__["cool_down_time"] = cool_down_time
+        __props__.__dict__["create_time"] = create_time
         __props__.__dict__["region"] = region
         __props__.__dict__["scaling_group_id"] = scaling_group_id
         __props__.__dict__["scaling_policy_action"] = scaling_policy_action
@@ -746,6 +766,14 @@ class Policy(pulumi.CustomResource):
         The value ranges from 0 to 86400 and is 300 by default.
         """
         return pulumi.get(self, "cool_down_time")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> pulumi.Output[str]:
+        """
+        The creation time of the AS policy, in UTC format.
+        """
+        return pulumi.get(self, "create_time")
 
     @property
     @pulumi.getter

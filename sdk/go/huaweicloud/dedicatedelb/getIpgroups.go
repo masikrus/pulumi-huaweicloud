@@ -55,6 +55,8 @@ func GetIpgroups(ctx *pulumi.Context, args *GetIpgroupsArgs, opts ...pulumi.Invo
 type GetIpgroupsArgs struct {
 	// Specifies the description of the IP address group.
 	Description *string `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies the IP address of the IP address group.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Specifies the ID of the IP address group.
@@ -70,6 +72,8 @@ type GetIpgroupsArgs struct {
 type GetIpgroupsResult struct {
 	// The description of the IP address group.
 	Description *string `pulumi:"description"`
+	// The enterprise project ID.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	IpAddress *string `pulumi:"ipAddress"`
@@ -99,6 +103,8 @@ func GetIpgroupsOutput(ctx *pulumi.Context, args GetIpgroupsOutputArgs, opts ...
 type GetIpgroupsOutputArgs struct {
 	// Specifies the description of the IP address group.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId pulumi.StringPtrInput `pulumi:"enterpriseProjectId"`
 	// Specifies the IP address of the IP address group.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// Specifies the ID of the IP address group.
@@ -132,6 +138,11 @@ func (o GetIpgroupsResultOutput) ToGetIpgroupsResultOutputWithContext(ctx contex
 // The description of the IP address group.
 func (o GetIpgroupsResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpgroupsResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The enterprise project ID.
+func (o GetIpgroupsResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpgroupsResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

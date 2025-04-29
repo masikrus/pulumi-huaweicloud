@@ -110,25 +110,75 @@ export namespace Aom {
 }
 
 export namespace As {
-    export interface BandwidthPolicyScalingPolicyAction {
+    export interface BandwidthPolicyIntervalAlarmAction {
         /**
-         * Specifies the operation restrictions.
-         * - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-         * - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-         * - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+         * Specifies the operation restrictions, unit is Mbit/s.
+         * The valid values from `1` to `2,000`.
+         * If `operation` is not **SET**, this parameter takes effect.
+         * If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+         * If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
          */
         limits: number;
         /**
-         * Specifies the operation to be performed. The default operation is ADD.
-         * The options are as follows:
-         * - **ADD**: indicates adding the bandwidth size.
-         * - **REDUCE**: indicates reducing the bandwidth size.
-         * - **SET**: indicates setting the bandwidth size to a specified value.
+         * Specifies the lower limit of the value range.
+         * The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+         */
+        lowerBound: string;
+        /**
+         * Specifies the operation to be performed.
+         * The valid values are as follows:
+         * + **ADD** (default): Indicates adding the bandwidth size.
+         * + **REDUCE**: Indicates reducing the bandwidth size.
+         * + **SET**: Indicates setting the bandwidth size to a specified value.
          */
         operation: string;
         /**
-         * Specifies the bandwidth (Mbit/s).
-         * The value is an integer from 1 to 2000. The default value is 1.
+         * Specifies the operation size, unit is Mbit/s.
+         * The valid values from `1` to `300`, the default value is `1`.
+         */
+        size: number;
+        /**
+         * Specifies the upper limit of the value range.
+         * The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+         */
+        upperBound: string;
+    }
+
+    export interface BandwidthPolicyMetaData {
+        /**
+         * The bandwidth sharing type in the bandwidth policy.
+         */
+        metadataBandwidthShareType: string;
+        /**
+         * The EIP IP address for the bandwidth in the bandwidth policy.
+         */
+        metadataEipAddress: string;
+        /**
+         * The EIP ID for the bandwidth in the bandwidth policy.
+         */
+        metadataEipId: string;
+    }
+
+    export interface BandwidthPolicyScalingPolicyAction {
+        /**
+         * Specifies the operation restrictions, unit is Mbit/s.
+         * The valid values from `1` to `2,000`.
+         * If `operation` is not **SET**, this parameter takes effect.
+         * If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+         * If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+         */
+        limits: number;
+        /**
+         * Specifies the operation to be performed.
+         * The valid values are as follows:
+         * + **ADD** (default): Indicates adding the bandwidth size.
+         * + **REDUCE**: Indicates reducing the bandwidth size.
+         * + **SET**: Indicates setting the bandwidth size to a specified value.
+         */
+        operation: string;
+        /**
+         * Specifies the operation size, unit is Mbit/s.
+         * The valid values from `1` to `300`, the default value is `1`.
          */
         size: number;
     }
@@ -138,38 +188,40 @@ export namespace As {
          * Specifies the end time of the scaling action triggered periodically.
          * The time format complies with UTC. This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
          * When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-         * The time format is YYYY-MM-DDThh:mmZ.
+         * The time format is **YYYY-MM-DDThh:mmZ**.
          */
         endTime: string;
         /**
          * Specifies the time when the scaling action is triggered.
          * The time format complies with UTC.
-         * - If scalingPolicyType is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-         * - If scalingPolicyType is set to RECURRENCE, the time format is hh:mm.
+         * If `scalingPolicyType` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+         * If `scalingPolicyType` is set to **RECURRENCE**, the time format is **hh:mm**.
          */
         launchTime: string;
         /**
          * Specifies the periodic triggering type.
-         * This parameter is mandatory when scalingPolicyType is set to RECURRENCE. The options are as follows:
-         * - **Daily**: indicates that the scaling action is triggered once a day.
-         * - **Weekly**: indicates that the scaling action is triggered once a week.
-         * - **Monthly**: indicates that the scaling action is triggered once a month.
+         * This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+         * The valid values are as follows:
+         * + **Daily**: Indicates that the scaling action is triggered once a day.
+         * + **Weekly**: Indicates that the scaling action is triggered once a week.
+         * + **Monthly**: Indicates that the scaling action is triggered once a month.
          */
         recurrenceType: string;
         /**
          * Specifies the day when a periodic scaling action is triggered.
-         * This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
-         * - If recurrenceType is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-         * - If recurrenceType is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-         * The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-         * - If recurrenceType is set to Monthly, the value ranges from 1 to 31.
-         * The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+         * This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+         * <br/>If `recurrenceType` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+         * once a day.
+         * <br/>If `recurrenceType` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+         * The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+         * <br/>If `recurrenceType` is set to **Monthly**, the value ranges from `1` to `31`.
+         * The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
          */
         recurrenceValue: string;
         /**
          * Specifies the start time of the scaling action triggered periodically.
          * The time format complies with UTC. The default value is the local time.
-         * The time format is YYYY-MM-DDThh:mmZ.
+         * The time format is **YYYY-MM-DDThh:mmZ**.
          */
         startTime: string;
     }
@@ -224,6 +276,10 @@ export namespace As {
          * Changing this will create a new resource.
          */
         instanceId: string;
+        /**
+         * The fingerprint of the SSH key pair used to log in to the instance.
+         */
+        keyFingerprint: string;
         /**
          * Specifies the name of the SSH key pair used to log in to the instance.
          * Changing this will create a new resource.
@@ -384,6 +440,10 @@ export namespace As {
     }
 
     export interface GroupLbaasListener {
+        /**
+         * The ID of the listener assocaite with the ELB.
+         */
+        listenerId: string;
         /**
          * Specifies the backend ECS group ID.
          */
@@ -1738,6 +1798,13 @@ export namespace Cce {
         volumetype: string;
     }
 
+    export interface NodeAttachExtensionNic {
+        /**
+         * The ID of the subnet to which the NIC belongs.
+         */
+        subnetId: string;
+    }
+
     export interface NodeAttachHostnameConfig {
         /**
          * Specifies the hostname type of the kubernetes node.
@@ -1921,7 +1988,6 @@ export namespace Cce {
     export interface NodeDataVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for
-         * dedicated storage. Changing this parameter will create a new resource.
          */
         dssPoolId: string;
         /**
@@ -1931,7 +1997,6 @@ export namespace Cce {
         /**
          * Specifies the extended parameters.
          * The object structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         extendParams: {[key: string]: string};
         hwPassthrough: boolean;
@@ -1942,13 +2007,11 @@ export namespace Cce {
         iops: number;
         /**
          * Specifies the ID of a KMS key. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId: string;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: number;
         /**
@@ -1958,7 +2021,6 @@ export namespace Cce {
         throughput: number;
         /**
          * Specifies the disk type.
-         * Changing this parameter will create a new resource.
          */
         volumetype: string;
     }
@@ -1966,59 +2028,56 @@ export namespace Cce {
     export interface NodeExtendParams {
         /**
          * Specifies the agency name.
-         * Changing this parameter will create a new resource.
          */
         agencyName?: string;
         /**
          * Specifies the available disk space of a single container on a node,
-         * in GB. Changing this parameter will create a new resource.
+         * in GB.
          */
         dockerBaseSize?: number;
         /**
          * Specifies the reserved node memory, which is reserved for
-         * Kubernetes-related components. Changing this parameter will create a new resource.
+         * Kubernetes-related components.
          */
         kubeReservedMem?: number;
         marketType?: string;
         /**
          * Specifies the maximum number of instances a node is allowed to create.
-         * Changing this parameter will create a new resource.
          */
         maxPods?: number;
         /**
          * Specifies the ENI pre-binding thresholds.
-         * Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+         * Example setting: **"0.3:0.6"**.
          */
         nicThreshold?: string;
         /**
          * Specifies the image ID to create the node.
-         * Changing this parameter will create a new resource.
          */
         nodeImageId?: string;
         /**
          * Specifies the number of ENI queues.
-         * Example setting: **"[{\"queue\":4}]"**. Changing this parameter will create a new resource.
+         * Example setting: **"[{\"queue\":4}]"**.
          */
         nodeMultiQueue?: string;
         /**
          * Specifies the script to be executed after installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
         postinstall?: string;
         /**
          * Specifies the script to be executed before installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
         preinstall?: string;
         /**
          * Specifies the security reinforcement type.
-         * The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+         * The value can be: **null** or **cybersecurity**.
          */
         securityReinforcementType?: string;
         spotPrice?: string;
         /**
          * Specifies the reserved node memory, which is reserved
-         * value for system components. Changing this parameter will create a new resource.
+         * value for system components.
          */
         systemReservedMem?: number;
     }
@@ -2026,7 +2085,6 @@ export namespace Cce {
     export interface NodeExtensionNic {
         /**
          * Specifies the ID of the subnet to which the NIC belongs.
-         * Changing this parameter will create a new resource.
          */
         subnetId: string;
     }
@@ -2044,7 +2102,6 @@ export namespace Cce {
     export interface NodePoolDataVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for dedicated storage.
-         * Changing this parameter will create a new resource.
          */
         dssPoolId: string;
         /**
@@ -2053,7 +2110,6 @@ export namespace Cce {
         extendParam?: string;
         /**
          * Specifies the disk expansion parameters.
-         * Changing this parameter will create a new resource.
          */
         extendParams: {[key: string]: string};
         hwPassthrough: boolean;
@@ -2064,13 +2120,11 @@ export namespace Cce {
         iops: number;
         /**
          * Specifies the KMS key ID. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId: string;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: number;
         /**
@@ -2079,7 +2133,7 @@ export namespace Cce {
          */
         throughput: number;
         /**
-         * Specifies the disk type. Changing this parameter will create a new resource.
+         * Specifies the disk type.
          */
         volumetype: string;
     }
@@ -2087,61 +2141,58 @@ export namespace Cce {
     export interface NodePoolExtendParams {
         /**
          * Specifies the agency name.
-         * Changing this parameter will create a new resource.
          */
-        agencyName?: string;
+        agencyName: string;
         /**
          * Specifies the available disk space of a single container on a node,
-         * in GB. Changing this parameter will create a new resource.
+         * in GB.
          */
-        dockerBaseSize?: number;
+        dockerBaseSize: number;
         /**
          * Specifies the reserved node memory, which is reserved for
-         * Kubernetes-related components. Changing this parameter will create a new resource.
+         * Kubernetes-related components.
          */
-        kubeReservedMem?: number;
-        marketType?: string;
+        kubeReservedMem: number;
+        marketType: string;
         /**
          * Specifies the maximum number of instances a node is allowed to create.
-         * Changing this parameter will create a new resource.
          */
-        maxPods?: number;
+        maxPods: number;
         /**
          * Specifies the ENI pre-binding thresholds.
-         * Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+         * Example setting: **"0.3:0.6"**.
          */
-        nicThreshold?: string;
+        nicThreshold: string;
         /**
          * Specifies the image ID to create the node.
-         * Changing this parameter will create a new resource.
          */
-        nodeImageId?: string;
+        nodeImageId: string;
         /**
          * Specifies the number of ENI queues.
-         * Example setting: **"[{\"queue\":4}]"**. Changing this parameter will create a new resource.
+         * Example setting: **"[{\"queue\":4}]"**.
          */
-        nodeMultiQueue?: string;
+        nodeMultiQueue: string;
         /**
          * Specifies the script to be executed after installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
-        postinstall?: string;
+        postinstall: string;
         /**
          * Specifies the script to be executed before installation.
-         * The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+         * The input value can be a Base64 encoded string or not.
          */
-        preinstall?: string;
+        preinstall: string;
         /**
          * Specifies the security reinforcement type.
-         * The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+         * The value can be: **null** or **cybersecurity**.
          */
-        securityReinforcementType?: string;
-        spotPrice?: string;
+        securityReinforcementType: string;
+        spotPrice: string;
         /**
          * Specifies the reserved node memory, which is reserved
-         * value for system components. Changing this parameter will create a new resource.
+         * value for system components.
          */
-        systemReservedMem?: number;
+        systemReservedMem: number;
     }
 
     export interface NodePoolExtensionScaleGroup {
@@ -2247,7 +2298,6 @@ export namespace Cce {
     export interface NodePoolRootVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for dedicated storage.
-         * Changing this parameter will create a new resource.
          */
         dssPoolId: string;
         /**
@@ -2256,7 +2306,6 @@ export namespace Cce {
         extendParam?: string;
         /**
          * Specifies the disk expansion parameters.
-         * Changing this parameter will create a new resource.
          */
         extendParams: {[key: string]: string};
         hwPassthrough: boolean;
@@ -2267,13 +2316,11 @@ export namespace Cce {
         iops: number;
         /**
          * Specifies the KMS key ID. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId: string;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: number;
         /**
@@ -2282,7 +2329,7 @@ export namespace Cce {
          */
         throughput: number;
         /**
-         * Specifies the disk type. Changing this parameter will create a new resource.
+         * Specifies the disk type.
          */
         volumetype: string;
     }
@@ -2291,13 +2338,11 @@ export namespace Cce {
         /**
          * Specifies the storage group consists of multiple storage devices.
          * This is used to divide storage space. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         groups: outputs.Cce.NodePoolStorageGroup[];
         /**
          * Specifies the disk selection.
          * Matched disks are managed according to match labels and storage type. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         selectors: outputs.Cce.NodePoolStorageSelector[];
     }
@@ -2306,7 +2351,6 @@ export namespace Cce {
         /**
          * Specifies the whether the storage space is for **kubernetes** and
          * **runtime** components. Only one group can be set to true. The default value is **false**.
-         * Changing this parameter will create a new resource.
          */
         cceManaged?: boolean;
         /**
@@ -2318,12 +2362,11 @@ export namespace Cce {
         /**
          * Specifies the list of names of selectors to match.
          * This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-         * but a selector can match only one group. Changing this parameter will create a new resource.
+         * but a selector can match only one group.
          */
         selectorNames: string[];
         /**
          * Specifies the detailed management of space configuration in a group.
-         * Changing this parameter will create a new resource.
          */
         virtualSpaces: outputs.Cce.NodePoolStorageGroupVirtualSpace[];
     }
@@ -2331,13 +2374,12 @@ export namespace Cce {
     export interface NodePoolStorageGroupVirtualSpace {
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-         * a new resource.
+         * This parameter takes effect only in **kubernetes** and **user** configuration.
          */
         lvmLvType?: string;
         /**
          * Specifies the absolute path to which the disk is attached.
-         * This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **user** configuration.
          */
         lvmPath?: string;
         /**
@@ -2348,13 +2390,12 @@ export namespace Cce {
         name: string;
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **runtime** configuration.
          */
         runtimeLvType?: string;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: string;
     }
@@ -2362,29 +2403,28 @@ export namespace Cce {
     export interface NodePoolStorageSelector {
         /**
          * Specifies the number of disks to be selected. If omitted,
-         * all disks of this type are selected. Changing this parameter will create a new resource.
+         * all disks of this type are selected.
          */
         matchLabelCount?: string;
         /**
          * Specifies the customer master key ID of an encrypted
-         * disk. Changing this parameter will create a new resource.
+         * disk.
          */
         matchLabelMetadataCmkid?: string;
         /**
          * Specifies the disk encryption identifier.
          * Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-         * If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+         * If omitted, whether the disk is encrypted is not limited.
          */
         matchLabelMetadataEncrypted?: string;
         /**
          * Specifies the matched disk size. If omitted,
-         * the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+         * the disk size is not limited. Example: 100.
          */
         matchLabelSize?: string;
         /**
          * Specifies the EVS disk type. Currently,
          * **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-         * Changing this parameter will create a new resource.
          */
         matchLabelVolumeType?: string;
         /**
@@ -2423,7 +2463,6 @@ export namespace Cce {
     export interface NodeRootVolume {
         /**
          * Specifies the DSS pool ID. This field is used only for
-         * dedicated storage. Changing this parameter will create a new resource.
          */
         dssPoolId: string;
         /**
@@ -2433,7 +2472,6 @@ export namespace Cce {
         /**
          * Specifies the extended parameters.
          * The object structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         extendParams: {[key: string]: string};
         hwPassthrough: boolean;
@@ -2444,13 +2482,11 @@ export namespace Cce {
         iops: number;
         /**
          * Specifies the ID of a KMS key. This is used to encrypt the volume.
-         * Changing this parameter will create a new resource.
          */
         kmsKeyId: string;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: number;
         /**
@@ -2460,7 +2496,6 @@ export namespace Cce {
         throughput: number;
         /**
          * Specifies the disk type.
-         * Changing this parameter will create a new resource.
          */
         volumetype: string;
     }
@@ -2469,13 +2504,11 @@ export namespace Cce {
         /**
          * Specifies the storage group consists of multiple storage devices.
          * This is used to divide storage space. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         groups: outputs.Cce.NodeStorageGroup[];
         /**
          * Specifies the disk selection.
          * Matched disks are managed according to match labels and storage type. Structure is documented below.
-         * Changing this parameter will create a new resource.
          */
         selectors: outputs.Cce.NodeStorageSelector[];
     }
@@ -2484,23 +2517,21 @@ export namespace Cce {
         /**
          * Specifies the whether the storage space is for **kubernetes** and
          * **runtime** components. Only one group can be set to true. The default value is **false**.
-         * Changing this parameter will create a new resource.
          */
         cceManaged?: boolean;
         /**
          * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-         * and **user** are supported. Changing this parameter will create a new resource.
+         * and **user** are supported.
          */
         name: string;
         /**
          * Specifies the list of names of selectors to match.
          * This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-         * but a selector can match only one group. Changing this parameter will create a new resource.
+         * but a selector can match only one group.
          */
         selectorNames: string[];
         /**
          * Specifies the detailed management of space configuration in a group.
-         * Changing this parameter will create a new resource.
          */
         virtualSpaces: outputs.Cce.NodeStorageGroupVirtualSpace[];
     }
@@ -2508,29 +2539,27 @@ export namespace Cce {
     export interface NodeStorageGroupVirtualSpace {
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-         * a new resource.
+         * This parameter takes effect only in **kubernetes** and **user** configuration.
          */
         lvmLvType?: string;
         /**
          * Specifies the absolute path to which the disk is attached.
-         * This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **user** configuration.
          */
         lvmPath?: string;
         /**
          * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-         * and **user** are supported. Changing this parameter will create a new resource.
+         * and **user** are supported.
          */
         name: string;
         /**
          * Specifies the LVM write mode, values can be **linear** and **striped**.
-         * This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+         * This parameter takes effect only in **runtime** configuration.
          */
         runtimeLvType?: string;
         /**
          * Specifies the size of a virtual space. Only an integer percentage is supported.
          * Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-         * Changing this parameter will create a new resource.
          */
         size: string;
     }
@@ -2538,34 +2567,33 @@ export namespace Cce {
     export interface NodeStorageSelector {
         /**
          * Specifies the number of disks to be selected. If omitted,
-         * all disks of this type are selected. Changing this parameter will create a new resource.
+         * all disks of this type are selected.
          */
         matchLabelCount?: string;
         /**
          * Specifies the customer master key ID of an encrypted
-         * disk. Changing this parameter will create a new resource.
+         * disk.
          */
         matchLabelMetadataCmkid?: string;
         /**
          * Specifies the disk encryption identifier.
          * Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-         * If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+         * If omitted, whether the disk is encrypted is not limited.
          */
         matchLabelMetadataEncrypted?: string;
         /**
          * Specifies the matched disk size. If omitted,
-         * the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+         * the disk size is not limited. Example: 100.
          */
         matchLabelSize?: string;
         /**
          * Specifies the EVS disk type. Currently,
          * **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-         * Changing this parameter will create a new resource.
          */
         matchLabelVolumeType?: string;
         /**
          * Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-         * and **user** are supported. Changing this parameter will create a new resource.
+         * and **user** are supported.
          */
         name: string;
         /**
@@ -2580,19 +2608,17 @@ export namespace Cce {
     export interface NodeTaint {
         /**
          * Available options are NoSchedule, PreferNoSchedule, and NoExecute.
-         * Changing this parameter will create a new resource.
          */
         effect: string;
         /**
          * A key must contain 1 to 63 characters starting with a letter or digit.
          * Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-         * as the prefix of a key. Changing this parameter will create a new resource.
+         * as the prefix of a key.
          */
         key: string;
         /**
          * A value must start with a letter or digit and can contain a maximum of 63
-         * characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
-         * create a new resource.
+         * characters, including letters, digits, hyphens (-), underscores (_), and periods (.).
          */
         value?: string;
     }
@@ -4031,6 +4057,1641 @@ export namespace Cdn {
          * A larger value indicates a larger number of times that content is pulled from this IP address.
          */
         weight: number;
+    }
+
+}
+
+export namespace Cfw {
+    export interface AclRuleCustomService {
+        /**
+         * The destination port.
+         */
+        destPort: string;
+        /**
+         * The protocol type.
+         */
+        protocol: number;
+        /**
+         * The source port.
+         */
+        sourcePort: string;
+    }
+
+    export interface AclRuleCustomServiceGroups {
+        /**
+         * The IDs of the predefined service groups.
+         */
+        groupIds: string[];
+        /**
+         * The protocols used in the predefined service groups.
+         */
+        protocols: number[];
+    }
+
+    export interface AclRuleDestinationRegionList {
+        /**
+         * The Chinese description of the region.
+         */
+        descriptionCn?: string;
+        /**
+         * The English description of the region.
+         */
+        descriptionEn?: string;
+        /**
+         * The region ID.
+         */
+        regionId: string;
+        /**
+         * The region type.
+         */
+        regionType: number;
+    }
+
+    export interface AclRulePredefinedServiceGroups {
+        /**
+         * The IDs of the predefined service groups.
+         */
+        groupIds: string[];
+        /**
+         * The protocols used in the predefined service groups.
+         */
+        protocols: number[];
+    }
+
+    export interface AclRuleSequence {
+        /**
+         * Whether to pin on bottom.
+         * The options are as follows:
+         * + **0**: no;
+         * + **1**: yes;
+         */
+        bottom?: number;
+        /**
+         * The ID of the rule that the added rule will follow.
+         */
+        destRuleId: string;
+        /**
+         * Whether to pin on top.
+         * The options are as follows:
+         * + **0**: no;
+         * + **1**: yes;
+         */
+        top?: number;
+    }
+
+    export interface AclRuleSourceRegionList {
+        /**
+         * The Chinese description of the region.
+         */
+        descriptionCn?: string;
+        /**
+         * The English description of the region.
+         */
+        descriptionEn?: string;
+        /**
+         * The region ID.
+         */
+        regionId: string;
+        /**
+         * The region type.
+         */
+        regionType: number;
+    }
+
+    export interface AntiVirusScanProtocolConfig {
+        /**
+         * The anti virus action. The valid value can be **0** (observe) or **1** (block).
+         */
+        action: number;
+        /**
+         * The protocol type.
+         * The valid values are as follows:
+         * + **0**: HTTP;
+         * + **1**: SMTP;
+         * + **2**: POP3;
+         * + **3**: IMAP4;
+         * + **4**: FTP;
+         * + **5**: SMB;
+         * + **6**: Malicious Access Control;
+         */
+        protocolType: number;
+    }
+
+    export interface CaptureTaskDestination {
+        /**
+         * Specifies the address.
+         */
+        address: string;
+        /**
+         * Specifies the address type.
+         * The valid values are:
+         * + **0**: indicates IPv4;
+         * + **1**: indicates IPv6.
+         */
+        addressType: number;
+    }
+
+    export interface CaptureTaskService {
+        /**
+         * Specifies the destination port.
+         */
+        destPort?: string;
+        /**
+         * Specifies the protocol type.
+         * The valid values are:
+         * + **6**: indicates TCP;
+         * + **17**: indicates UDP;
+         * + **1**: indicates ICMP;
+         * + **58**: indicates ICMPv6;
+         * + **-1**: indicates any protocol.
+         */
+        protocol: number;
+        /**
+         * Specifies the source port.
+         */
+        sourcePort?: string;
+    }
+
+    export interface CaptureTaskSource {
+        /**
+         * Specifies the address.
+         */
+        address: string;
+        /**
+         * Specifies the address type.
+         * The valid values are:
+         * + **0**: indicates IPv4;
+         * + **1**: indicates IPv6.
+         */
+        addressType: number;
+    }
+
+    export interface DomainNameGroupDomainName {
+        /**
+         * Specifies the description.
+         */
+        description: string;
+        /**
+         * The DNS IP list.
+         */
+        dnsIps: string;
+        /**
+         * The domain address ID.
+         */
+        domainAddressId: string;
+        /**
+         * Specifies the domain name.
+         */
+        domainName: string;
+    }
+
+    export interface EipProtectionProtectedEip {
+        /**
+         * The ID of the protected EIP.
+         */
+        id: string;
+        /**
+         * The IPv4 address of the protected EIP.
+         */
+        publicIpv4: string;
+        /**
+         * The IPv6 address of the protected EIP.
+         */
+        publicIpv6: string;
+    }
+
+    export interface FirewallFlavor {
+        /**
+         * The bandwidth of the firewall.
+         */
+        bandwidth: number;
+        /**
+         * The default bandwidth of the firewall.
+         */
+        defaultBandwidth: number;
+        /**
+         * The default EIP number of the firewall.
+         */
+        defaultEipCount: number;
+        /**
+         * The default log storage of the firewall.
+         */
+        defaultLogStorage: number;
+        /**
+         * The default VPC number of the firewall.
+         */
+        defaultVpcCount: number;
+        /**
+         * The EIP number of the firewall.
+         */
+        eipCount: number;
+        /**
+         * Specifies the extend bandwidth of the firewall.
+         * Only works when the chargingMode is **prePaid**.
+         * Changing this parameter will create a new resource.
+         */
+        extendBandwidth?: number;
+        /**
+         * Specifies the extend EIP number of the firewall.
+         * Only works when the chargingMode is **prePaid**.
+         * Changing this parameter will create a new resource.
+         */
+        extendEipCount?: number;
+        /**
+         * Specifies the extend VPC number of the firewall.
+         * Only works when the chargingMode is **prePaid**.
+         * Changing this parameter will create a new resource.
+         */
+        extendVpcCount?: number;
+        /**
+         * The log storage of the firewall.
+         */
+        logStorage: number;
+        /**
+         * The total rule count of the firewall.
+         */
+        totalRuleCount: number;
+        /**
+         * The used rule count of the firewall.
+         */
+        usedRuleCount: number;
+        /**
+         * Specifies the version of the firewall.
+         * When the chargingMode is **prePaid**: the value can be **Standard** and **Prefessional**.
+         * When the chargingMode is **postPaid**: the value can be **Prefessional**.
+         * Changing this parameter will create a new resource.
+         */
+        version: string;
+        /**
+         * The VPC bandwidth of the firewall.
+         */
+        vpcBandwidth: number;
+        /**
+         * The VPC number of the firewall.
+         */
+        vpcCount: number;
+    }
+
+    export interface FirewallProtectObject {
+        /**
+         * The protected object ID.
+         */
+        objectId: string;
+        /**
+         * The protected object name.
+         */
+        objectName: string;
+        /**
+         * The object type.
+         * The options are as follows: 0: north-south; 1: east-west.
+         */
+        type: number;
+    }
+
+    export interface GetAccessControlLogsRecord {
+        /**
+         * Specifies the action. The values can be **allow** and **deny**.
+         */
+        action: string;
+        /**
+         * Specifies the application protocol.
+         */
+        app: string;
+        /**
+         * The destination city ID.
+         */
+        dstCityId: string;
+        /**
+         * Specifies the destination city name.
+         */
+        dstCityName: string;
+        /**
+         * The destination host.
+         */
+        dstHost: string;
+        /**
+         * Specifies the destination IP address.
+         */
+        dstIp: string;
+        /**
+         * Specifies the destination port.
+         */
+        dstPort: number;
+        /**
+         * The destination province ID.
+         */
+        dstProvinceId: string;
+        /**
+         * Specifies the destination province name.
+         */
+        dstProvinceName: string;
+        /**
+         * The destination region ID.
+         */
+        dstRegionId: string;
+        /**
+         * Specifies the destination region name.
+         */
+        dstRegionName: string;
+        /**
+         * The hit time.
+         */
+        hitTime: string;
+        /**
+         * The document ID.
+         */
+        logId: string;
+        /**
+         * The protocol type.
+         */
+        protocol: string;
+        /**
+         * The rule ID.
+         */
+        ruleId: string;
+        /**
+         * Specifies the rule name.
+         */
+        ruleName: string;
+        /**
+         * The source city ID.
+         */
+        srcCityId: string;
+        /**
+         * Specifies the source city name.
+         */
+        srcCityName: string;
+        /**
+         * Specifies the source IP address.
+         */
+        srcIp: string;
+        /**
+         * Specifies the source port.
+         */
+        srcPort: number;
+        /**
+         * The source province ID.
+         */
+        srcProvinceId: string;
+        /**
+         * Specifies the source province name.
+         */
+        srcProvinceName: string;
+        /**
+         * The source region ID.
+         */
+        srcRegionId: string;
+        /**
+         * Specifies the source region name.
+         */
+        srcRegionName: string;
+    }
+
+    export interface GetAddressGroupMembersRecord {
+        /**
+         * Specifies the IP address
+         */
+        address: string;
+        /**
+         * The address type.
+         */
+        addressType: number;
+        /**
+         * The address group member description.
+         */
+        description: string;
+        /**
+         * Specifies the address group member ID.
+         */
+        itemId: string;
+    }
+
+    export interface GetAddressGroupsAddressGroup {
+        /**
+         * Specifies the IP address type.
+         * The value can be **0** (IPv4) or **1** (IPv6).
+         */
+        addressType: number;
+        /**
+         * The address groups description.
+         */
+        description: string;
+        /**
+         * The ID of the IP address group.
+         */
+        id: string;
+        /**
+         * Specifies the name of the address group.
+         */
+        name: string;
+        /**
+         * Specifies the protected object ID.
+         */
+        objectId: string;
+        /**
+         * The number of times this address group has been referenced.
+         */
+        refCount: number;
+        /**
+         * The address group type.
+         */
+        type: number;
+    }
+
+    export interface GetAttackLogsRecord {
+        /**
+         * The action.
+         */
+        action: string;
+        /**
+         * Specifies the application protocol.
+         */
+        app: string;
+        /**
+         * Specifies the intrusion event rule.
+         */
+        attackRule: string;
+        /**
+         * Specifies the attack rule ID.
+         */
+        attackRuleId: string;
+        /**
+         * Specifies the intrusion event type.
+         */
+        attackType: string;
+        /**
+         * The direction.
+         */
+        direction: string;
+        /**
+         * The destination city ID.
+         */
+        dstCityId: string;
+        /**
+         * Specifies the destination city name.
+         */
+        dstCityName: string;
+        /**
+         * Specifies the destination IP address.
+         */
+        dstIp: string;
+        /**
+         * Specifies the destination port.
+         */
+        dstPort: number;
+        /**
+         * The destination province ID.
+         */
+        dstProvinceId: string;
+        /**
+         * Specifies the destination province name.
+         */
+        dstProvinceName: string;
+        /**
+         * The destination region ID.
+         */
+        dstRegionId: string;
+        /**
+         * Specifies the destination region name.
+         */
+        dstRegionName: string;
+        /**
+         * The event time.
+         */
+        eventTime: string;
+        /**
+         * Specifies the threat level.
+         */
+        level: string;
+        /**
+         * The log ID.
+         */
+        logId: string;
+        /**
+         * The attack log packet.
+         */
+        packet: string;
+        /**
+         * The packet length.
+         */
+        packetLength: number;
+        /**
+         * The packet messages.
+         */
+        packetMessages: outputs.Cfw.GetAttackLogsRecordPacketMessage[];
+        /**
+         * The protocol.
+         */
+        protocol: string;
+        /**
+         * The source.
+         */
+        source: string;
+        /**
+         * The source city ID.
+         */
+        srcCityId: string;
+        /**
+         * Specifies the source city name.
+         */
+        srcCityName: string;
+        /**
+         * Specifies the source IP address.
+         */
+        srcIp: string;
+        /**
+         * Specifies the source port.
+         */
+        srcPort: number;
+        /**
+         * The source province ID.
+         */
+        srcProvinceId: string;
+        /**
+         * Specifies the source province name.
+         */
+        srcProvinceName: string;
+        /**
+         * The source region ID.
+         */
+        srcRegionId: string;
+        /**
+         * Specifies the source region name.
+         */
+        srcRegionName: string;
+    }
+
+    export interface GetAttackLogsRecordPacketMessage {
+        /**
+         * The hexadecimal index.
+         */
+        hexIndex: string;
+        /**
+         * The hexadecimal series.
+         */
+        hexs: string[];
+        /**
+         * The utf-8 string.
+         */
+        utf8String: string;
+    }
+
+    export interface GetBlackWhiteListsRecord {
+        /**
+         * Specifies the IP address.
+         */
+        address: string;
+        /**
+         * Specifies the IP address type.
+         * The valid value can be **0** (IPv4).
+         */
+        addressType: string;
+        /**
+         * Specifies the description.
+         */
+        description: string;
+        /**
+         * Specifies the direction of a black or white address.
+         * The options are as follows:
+         * + **0**: source address;
+         * + **1**: destination address;
+         */
+        direction: string;
+        /**
+         * Specifies the blacklist/whitelist ID.
+         */
+        listId: string;
+        /**
+         * Specifies the port.
+         */
+        port: string;
+        /**
+         * Specifies The protocol type.
+         * The options are as follows:
+         * + **6**: TCP;
+         * + **17**: UDP;
+         * + **1**: ICMP;
+         * + **-1**: any protocol;
+         */
+        protocol: number;
+    }
+
+    export interface GetCaptureTaskResultsFileList {
+        /**
+         * The file name.
+         */
+        fileName: string;
+        /**
+         * The file path.
+         */
+        filePath: string;
+        /**
+         * The download link.
+         */
+        url: string;
+    }
+
+    export interface GetCaptureTaskResultsRequestHeader {
+        /**
+         * The host header information.
+         */
+        host: string;
+    }
+
+    export interface GetCaptureTasksRecord {
+        /**
+         * The capture task size.
+         */
+        captureSize: string;
+        /**
+         * The creation time of the capture task.
+         */
+        createdAt: string;
+        /**
+         * The destination address.
+         */
+        destAddress: string;
+        /**
+         * The destination address type.
+         */
+        destAddressType: number;
+        /**
+         * The destination port.
+         */
+        destPort: string;
+        /**
+         * The capture task duration.
+         */
+        duration: number;
+        /**
+         * Whether is deleted.
+         */
+        isDeleted: number;
+        /**
+         * The max packets.
+         */
+        maxPackets: number;
+        /**
+         * The capture task name.
+         */
+        name: string;
+        /**
+         * The protocol type.
+         */
+        protocol: number;
+        /**
+         * The remaining days.
+         */
+        remainingDays: number;
+        /**
+         * The source address.
+         */
+        sourceAddress: string;
+        /**
+         * The source address type.
+         */
+        sourceAddressType: number;
+        /**
+         * The source port.
+         */
+        sourcePort: string;
+        /**
+         * The capture task status.
+         */
+        status: number;
+        /**
+         * The capture task ID.
+         */
+        taskId: string;
+        /**
+         * The update time of the capture task.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetDomainNameGroupsRecord {
+        /**
+         * Specifies the configuration status.
+         * The valid values are as follows:
+         * + **-1**: not configured.
+         * + **0**: configuration failed.
+         * + **1**: configuration succeeded.
+         * + **2**: configuration in progress.
+         * + **3**: normal.
+         * + **4**: configuration exception - domain group usage.
+         */
+        configStatus: string;
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * The list of domain names.
+         */
+        domainNames: outputs.Cfw.GetDomainNameGroupsRecordDomainName[];
+        /**
+         * Specifies the domain name group ID.
+         */
+        groupId: string;
+        /**
+         * The configuration message.
+         */
+        message: string;
+        /**
+         * Specifies the name of a domain name group.
+         */
+        name: string;
+        /**
+         * Specifies the domain name group reference count.
+         */
+        refCount: string;
+        /**
+         * The used rule list.
+         */
+        rules: outputs.Cfw.GetDomainNameGroupsRecordRule[];
+        /**
+         * Specifies the domain name group type.
+         * The value can be:
+         * + **0**: means application type;
+         * + **1**: means network type.
+         */
+        type: string;
+    }
+
+    export interface GetDomainNameGroupsRecordDomainName {
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * The domain address ID.
+         */
+        domainAddressId: string;
+        /**
+         * The domain name.
+         */
+        domainName: string;
+    }
+
+    export interface GetDomainNameGroupsRecordRule {
+        /**
+         * The rule ID.
+         */
+        id: string;
+        /**
+         * Specifies the name of a domain name group.
+         */
+        name: string;
+    }
+
+    export interface GetFirewallsRecord {
+        /**
+         * The billing mode. The value can be 0 (yearly/monthly) or 1 (pay-per-use).
+         */
+        chargeMode: number;
+        /**
+         * The engine type.
+         */
+        engineType: number;
+        /**
+         * The map of feature toggle.
+         */
+        featureToggle: {[key: string]: boolean};
+        /**
+         * The flavor of the firewall.
+         * The Flavor structure is documented below.
+         */
+        flavors: outputs.Cfw.GetFirewallsRecordFlavor[];
+        /**
+         * Specifies the firewall instance ID.
+         * If not specified, the first instance will be returned.
+         */
+        fwInstanceId: string;
+        /**
+         * The cluster type.
+         */
+        haType: number;
+        /**
+         * Whether the engine is an old engine.
+         */
+        isOldFirewallInstance: boolean;
+        /**
+         * The firewall name.
+         */
+        name: string;
+        /**
+         * The project list.
+         * The Protect Object structure is documented below.
+         */
+        protectObjects: outputs.Cfw.GetFirewallsRecordProtectObject[];
+        /**
+         * The firewall instance resources.
+         * The Firewall Instance Resource structure is
+         * documented below.
+         */
+        resources: outputs.Cfw.GetFirewallsRecordResource[];
+        /**
+         * Specifies the service type. The value can be:
+         * + **0**: North-south firewall;
+         * + **1**: East-west firewall;
+         */
+        serviceType: number;
+        /**
+         * The firewall status. The options are as follows:
+         * + **-1**: waiting for payment;
+         * + **0**: creating;
+         * + **1**: deleting;
+         * + **2**: running;
+         * + **3**: upgrading;
+         * + **4**: deletion completed;
+         * + **5**: freezing;
+         * + **6**: creation failed;
+         * + **7**: deletion failed;
+         * + **8**: freezing failed;
+         * + **9**: storage in progress;
+         * + **10**: storage failed;
+         * + **11**: upgrade failed;
+         */
+        status: number;
+        /**
+         * Whether IPv6 is supported.
+         */
+        supportIpv6: boolean;
+    }
+
+    export interface GetFirewallsRecordFlavor {
+        /**
+         * The bandwidth.
+         */
+        bandwidth: number;
+        /**
+         * The number of EIPs.
+         */
+        eipCount: number;
+        /**
+         * The log storage.
+         */
+        logStorage: number;
+        /**
+         * The firewall version. The value can be 0 (standard edition), 1 (professional edition),
+         * 2 (platinum edition), or 3 (basic edition).
+         */
+        version: number;
+        /**
+         * The number of VPCs.
+         */
+        vpcCount: number;
+    }
+
+    export interface GetFirewallsRecordProtectObject {
+        /**
+         * The protected object ID.
+         */
+        objectId: string;
+        /**
+         * The protected object name.
+         */
+        objectName: string;
+        /**
+         * The project type. The options are as follows:
+         * + **0**: north-south;
+         * + **1**: east-west;
+         */
+        type: number;
+    }
+
+    export interface GetFirewallsRecordResource {
+        /**
+         * Service type, which is used by CBC. The value is **hws.service.type.cfw**.
+         */
+        cloudServiceType: string;
+        /**
+         * Resource ID.
+         */
+        resourceId: string;
+        /**
+         * Resource quantity.
+         */
+        resourceSize: number;
+        /**
+         * Resource unit name.
+         */
+        resourceSizeMeasureId: number;
+        /**
+         * Inventory unit code.
+         */
+        resourceSpecCode: string;
+        /**
+         * Resource type. The options are as follows:
+         * + **CFW**: hws.resource.type.cfw;
+         * + **EIP**: hws.resource.type.cfw.exp.eip;
+         * + **Bandwidth**: hws.resource.type.cfw.exp.bandwidth;
+         * + **VPC**: hws.resource.type.cfw.exp.vpc;
+         * + **Log storage**: hws.resource.type.cfw.exp.logaudit;
+         */
+        resourceType: string;
+    }
+
+    export interface GetFlowLogsRecord {
+        /**
+         * Specifies the application protocol.
+         */
+        app: string;
+        /**
+         * The flow log bytes.
+         */
+        bytes: number;
+        /**
+         * Specifies the direction. The values can be **out2in** and **in2out**.
+         */
+        direction: string;
+        /**
+         * The destination city ID.
+         */
+        dstCityId: string;
+        /**
+         * Specifies the destination city name.
+         */
+        dstCityName: string;
+        /**
+         * The destination host.
+         */
+        dstHost: string;
+        /**
+         * Specifies the destination IP address.
+         */
+        dstIp: string;
+        /**
+         * Specifies the destination port.
+         */
+        dstPort: number;
+        /**
+         * The destination province ID.
+         */
+        dstProvinceId: string;
+        /**
+         * Specifies the destination province name.
+         */
+        dstProvinceName: string;
+        /**
+         * The destination region ID.
+         */
+        dstRegionId: string;
+        /**
+         * Specifies the destination region name.
+         */
+        dstRegionName: string;
+        /**
+         * Specifies the end time. The time is in UTC.
+         * The format is **yyyy-MM-dd HH:mm:ss**.
+         */
+        endTime: string;
+        /**
+         * The document ID.
+         */
+        logId: string;
+        /**
+         * The number of packets.
+         */
+        packets: number;
+        /**
+         * The protocol type.
+         */
+        protocol: string;
+        /**
+         * The source city ID.
+         */
+        srcCityId: string;
+        /**
+         * Specifies the source city name.
+         */
+        srcCityName: string;
+        /**
+         * Specifies the source IP address.
+         */
+        srcIp: string;
+        /**
+         * Specifies the source port.
+         */
+        srcPort: number;
+        /**
+         * The source province ID.
+         */
+        srcProvinceId: string;
+        /**
+         * Specifies the source province name.
+         */
+        srcProvinceName: string;
+        /**
+         * The source region ID.
+         */
+        srcRegionId: string;
+        /**
+         * Specifies the source region name.
+         */
+        srcRegionName: string;
+        /**
+         * Specifies the start time. The time is in UTC.
+         * The format is **yyyy-MM-dd HH:mm:ss**.
+         */
+        startTime: string;
+    }
+
+    export interface GetIpsCustomRulesRecord {
+        /**
+         * The action.
+         */
+        action: number;
+        /**
+         * Specifies the affected OS.
+         * The valid values are as follows:
+         * + **1**: Windows;
+         * + **2**: Linux;
+         * + **3**: FreeBSD;
+         * + **4**: Solaris;
+         * + **5**: Other Unix;
+         * + **6**: Network device;
+         * + **7**: MAC OS;
+         * + **8**: IOS;
+         * + **9**: Android;
+         * + **10**: Other;
+         */
+        affectedOs: number;
+        /**
+         * Specifies the attack type.
+         * The valid values are as follows:
+         * + **1**: access control;
+         * + **2**: vulnerability scan;
+         * + **3**: email phishing;
+         * + **4**: vulnerability exploits;
+         * + **5**: web attack;
+         * + **6**: password cracking;
+         * + **7**: hijacking attack;
+         * + **8**: protocol exception;
+         * + **9**: trojan;
+         * + **10**: worm;
+         * + **11**: buffer overflow;
+         * + **12**: hacker tool;
+         * + **13**: spyware;
+         * + **14**: DDoS flood;
+         * + **15**: application-layer DDoS attack;
+         * + **16**: other suspicious behavior;
+         * + **17**: suspicious DNS activity;
+         * + **18**: phishing;
+         * + **19**: spam;
+         */
+        attackType: number;
+        /**
+         * The rule status.
+         */
+        configStatus: number;
+        /**
+         * The content storage in JSON format.
+         */
+        content: string;
+        /**
+         * The destination port type.
+         */
+        dstPortType: number;
+        /**
+         * The destination port.
+         */
+        dstPorts: string;
+        /**
+         * The firewall cluster ID.
+         */
+        groupId: string;
+        /**
+         * The ID of a custom IPS rule in CFW.
+         */
+        ipsCfwId: string;
+        /**
+         * The ID of a rule in Hillstone.
+         */
+        ipsId: string;
+        /**
+         * Specifies the IPS custom rule name.
+         */
+        ipsName: string;
+        /**
+         * Specifies the protocol.
+         * The valid values are as follows:
+         * + **1**: FTP;
+         * + **2**: TELNET;
+         * + **3**: SMTP;
+         * + **4**: DNS-TCP;
+         * + **5**: DNS-UDP;
+         * + **6**: DHCP;
+         * + **7**: TFTP;
+         * + **8**: FINGER;
+         * + **9**: HTTP;
+         * + **10**: POP3;
+         * + **11**: SUNRPC-TCP;
+         * + **12**: SUNRPC-UDP;
+         * + **13**: NNTP;
+         * + **14**: MSRPC-TCP;
+         * + **15**: MSRPC-UDP;
+         * + **16**: NETBIOS-NAME_TCP;
+         * + **17**: NETBIOS-NAME_UDP;
+         * + **18**: NETBIOS-SMB;
+         * + **19**: NETBIOS-DATAGRAM;
+         * + **20**: IMAP4;
+         * + **21**: SNMP;
+         * + **22**: LDAP;
+         * + **23**: MSSQL;
+         * + **24**: ORACLE;
+         * + **25**: MYSQL;
+         * + **26**: VOIP-SIP-TCP;
+         * + **27**: VOIP-SIP-UDP;
+         * + **28**: VOIP-H245;
+         * + **29**: VOIP-Q931;
+         * + **30**: OTHER-TCP;
+         * + **31**: OTHER-UDP;
+         */
+        protocol: number;
+        /**
+         * Specifies the severity.
+         * The valid values are as follows:
+         * + **0**: critical;
+         * + **1**: high;
+         * + **2**: medium;
+         * + **3**: low;
+         */
+        severity: number;
+        /**
+         * Specifies the affected software.
+         * The valid values are as follows:
+         * + **1**: ADOBE;
+         * + **2**: APACHE;
+         * + **3**: APPLE;
+         * + **4**: CA;
+         * + **5**: CISCO;
+         * + **6**: GOOGLE CHROME;
+         * + **7**: HP;
+         * + **8**: IBM;
+         * + **9**: IE;
+         * + **10**: IIS;
+         * + **11**: MCAFEE;
+         * + **12**: MEDIAPLAYER;
+         * + **13**: MICROSOFT.NET;
+         * + **14**: MICROSOFT EDGE;
+         * + **15**: MICROSOFT EXCHANGE;
+         * + **16**: MICROSOFT OFFICE;
+         * + **17**: MICROSOFT OUTLOOK;
+         * + **18**: MICROSOFT SHAREPOINT;
+         * + **19**: MICROSOFT WINDOWS;
+         * + **20**: MOZILLA;
+         * + **21**: MSSQL;
+         * + **22**: MYSQL;
+         * + **23**: NOVELL;
+         * + **24**: ORACLE;
+         * + **25**: SAMBA;
+         * + **26**: SAMSUNG;
+         * + **27**: SAP;
+         * + **28**: SCADA;
+         * + **29**: SQUID;
+         * + **30**: SUN;
+         * + **31**: SYMANTEC;
+         * + **32**: TREND MICRO;
+         * + **33**: VMWARE;
+         * + **34**: WORDPRESS;
+         * + **35**: OTHER;
+         */
+        software: number;
+        /**
+         * The source port type.
+         */
+        srcPortType: number;
+        /**
+         * The source port.
+         */
+        srcPorts: string;
+    }
+
+    export interface GetIpsRuleDetailsData {
+        /**
+         * The IPS type.
+         */
+        ipsType: number;
+        /**
+         * The IPS version.
+         */
+        ipsVersion: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GetIpsRulesRecord {
+        /**
+         * The application affected by the rule.
+         */
+        affectedApplication: string;
+        /**
+         * The creation time.
+         */
+        createTime: string;
+        /**
+         * The default status of the IPS rule.
+         */
+        defaultStatus: string;
+        /**
+         * The CVE.
+         */
+        ipsCve: string;
+        /**
+         * The IPS rule group.
+         */
+        ipsGroup: string;
+        /**
+         * Specifies the IPS rule ID.
+         */
+        ipsId: string;
+        /**
+         * The risk level.
+         */
+        ipsLevel: string;
+        /**
+         * The IPS rule name.
+         */
+        ipsName: string;
+        /**
+         * The IPS rule type.
+         */
+        ipsRulesType: string;
+        /**
+         * Specifies the IPS rule status.
+         * The valid value can be **OBSERVE**, **ENABLE**, or **CLOSE**.
+         */
+        ipsStatus: string;
+    }
+
+    export interface GetProtectionRulesRecord {
+        /**
+         * Specifies the rule action type.
+         * The options are as follows:
+         * + **0**: allow;
+         * + **1**: deny.
+         */
+        actionType: string;
+        /**
+         * The address type.
+         */
+        addressType: number;
+        /**
+         * The created time of a rule.
+         */
+        createdDate: string;
+        /**
+         * The custom service description.
+         */
+        description: string;
+        /**
+         * Specifies the destination address.
+         */
+        destinations: outputs.Cfw.GetProtectionRulesRecordDestination[];
+        /**
+         * Specifies the rule direction.
+         * The options are as follows:
+         * + **0**: inbound;
+         * + **1**: outbound.
+         */
+        direction: string;
+        /**
+         * The last open time.
+         */
+        lastOpenTime: string;
+        /**
+         * Whether to support persistent connections.
+         */
+        longConnectEnable: number;
+        /**
+         * The persistent connection duration.
+         */
+        longConnectTime: number;
+        /**
+         * The persistent connection duration (hour).
+         */
+        longConnectTimeHour: number;
+        /**
+         * The persistent connection duration (minute).
+         */
+        longConnectTimeMinute: number;
+        /**
+         * The persistent connection duration (second).
+         */
+        longConnectTimeSecond: number;
+        /**
+         * Specifies the rule name.
+         */
+        name: string;
+        /**
+         * Specifies the rule ID.
+         */
+        ruleId: string;
+        /**
+         * The service.
+         */
+        services: outputs.Cfw.GetProtectionRulesRecordService[];
+        /**
+         * Specifies the source address.
+         */
+        sources: outputs.Cfw.GetProtectionRulesRecordSource[];
+        /**
+         * Specifies the rule status.
+         * The options are as follows:
+         * + **0**: disabled;
+         * + **1**: enabled.
+         */
+        status: string;
+        /**
+         * Specifies the key/value pairs to associate with the protection rule.
+         * Tags should have only one key/value pair.
+         */
+        tags: {[key: string]: string};
+        /**
+         * Specifies the rule type.
+         * The value can be **0** (Internet rule), **1** (VPC rule), or **2** (NAT rule).
+         */
+        type: string;
+    }
+
+    export interface GetProtectionRulesRecordDestination {
+        /**
+         * The source IP address.
+         */
+        address: string;
+        /**
+         * The address group.
+         */
+        addressGroups: string[];
+        /**
+         * The ID of the associated IP address group.
+         */
+        addressSetId: string;
+        /**
+         * The IP address group name.
+         */
+        addressSetName: string;
+        /**
+         * The address set type.
+         */
+        addressSetType: number;
+        /**
+         * The address type.
+         */
+        addressType: number;
+        /**
+         * The name of the domain address.
+         */
+        domainAddressName: string;
+        /**
+         * The ID of the domain group.
+         */
+        domainSetId: string;
+        /**
+         * The name of domain group.
+         */
+        domainSetName: string;
+        /**
+         * The IP address list.
+         */
+        ipAddresses: string[];
+        /**
+         * The region list of a rule.
+         */
+        regionLists: outputs.Cfw.GetProtectionRulesRecordDestinationRegionList[];
+        /**
+         * Specifies the rule type.
+         * The value can be **0** (Internet rule), **1** (VPC rule), or **2** (NAT rule).
+         */
+        type: number;
+    }
+
+    export interface GetProtectionRulesRecordDestinationRegionList {
+        /**
+         * The Chinese description of a region.
+         */
+        descriptionCn: string;
+        /**
+         * The English description of a region.
+         */
+        descriptionEn: string;
+        /**
+         * The region ID.
+         */
+        regionId: string;
+        /**
+         * The region type.
+         */
+        regionType: number;
+    }
+
+    export interface GetProtectionRulesRecordService {
+        /**
+         * The custom service.
+         */
+        customServices: outputs.Cfw.GetProtectionRulesRecordServiceCustomService[];
+        /**
+         * The destination port.
+         */
+        destPort: string;
+        /**
+         * The protocol type of the custom service.
+         */
+        protocol: number;
+        /**
+         * The protocols.
+         */
+        protocols: number[];
+        /**
+         * The service group list.
+         */
+        serviceGroups: string[];
+        /**
+         * The service group ID.
+         */
+        serviceSetId: string;
+        /**
+         * The service group name.
+         */
+        serviceSetName: string;
+        /**
+         * The service set type.
+         */
+        serviceSetType: number;
+        /**
+         * The source port of the custom service.
+         */
+        sourcePort: string;
+        /**
+         * Specifies the rule type.
+         * The value can be **0** (Internet rule), **1** (VPC rule), or **2** (NAT rule).
+         */
+        type: number;
+    }
+
+    export interface GetProtectionRulesRecordServiceCustomService {
+        /**
+         * The custom service description.
+         */
+        description: string;
+        /**
+         * The destination port.
+         */
+        destPort: string;
+        /**
+         * Specifies the rule name.
+         */
+        name: string;
+        /**
+         * The protocol type of the custom service.
+         */
+        protocol: number;
+        /**
+         * The source port of the custom service.
+         */
+        sourcePort: string;
+    }
+
+    export interface GetProtectionRulesRecordSource {
+        /**
+         * The source IP address.
+         */
+        address: string;
+        /**
+         * The address group.
+         */
+        addressGroups: string[];
+        /**
+         * The ID of the associated IP address group.
+         */
+        addressSetId: string;
+        /**
+         * The IP address group name.
+         */
+        addressSetName: string;
+        /**
+         * The address set type.
+         */
+        addressSetType: number;
+        /**
+         * The address type.
+         */
+        addressType: number;
+        /**
+         * The name of the domain address.
+         */
+        domainAddressName: string;
+        /**
+         * The IP address list.
+         */
+        ipAddresses: string[];
+        /**
+         * The region list of a rule.
+         */
+        regionLists: outputs.Cfw.GetProtectionRulesRecordSourceRegionList[];
+        /**
+         * Specifies the rule type.
+         * The value can be **0** (Internet rule), **1** (VPC rule), or **2** (NAT rule).
+         */
+        type: number;
+    }
+
+    export interface GetProtectionRulesRecordSourceRegionList {
+        /**
+         * The Chinese description of a region.
+         */
+        descriptionCn: string;
+        /**
+         * The English description of a region.
+         */
+        descriptionEn: string;
+        /**
+         * The region ID.
+         */
+        regionId: string;
+        /**
+         * The region type.
+         */
+        regionType: number;
+    }
+
+    export interface GetResourceTagsTag {
+        /**
+         * The tag key.
+         */
+        key: string;
+        /**
+         * The tag value.
+         */
+        value: string;
+    }
+
+    export interface GetServiceGroupMembersRecord {
+        /**
+         * The service group member description.
+         */
+        description: string;
+        /**
+         * Specifies the destination port.
+         */
+        destPort: string;
+        /**
+         * Specifies the service group member ID.
+         */
+        itemId: string;
+        /**
+         * Specifies the protocol type.
+         * The options are as follows:
+         * + **6**: TCP;
+         * + **17**: UDP;
+         * + **1**: ICMP.
+         */
+        protocol: number;
+        /**
+         * Specifies the source port.
+         */
+        sourcePort: string;
+    }
+
+    export interface GetServiceGroupsServiceGroup {
+        /**
+         * The description of the service group.
+         */
+        description: string;
+        /**
+         * The service group ID.
+         */
+        id: string;
+        /**
+         * Specifies the name of the service group.
+         */
+        name: string;
+        /**
+         * The protocols of the service group.
+         */
+        protocols: number[];
+        /**
+         * The number of times this service group has been referenced.
+         */
+        refCount: number;
+        /**
+         * The type of the Service group.
+         */
+        type: number;
+    }
+
+    export interface GetTagsTag {
+        /**
+         * The tag key.
+         */
+        key: string;
+        /**
+         * The tag values.
+         */
+        values: string[];
     }
 
 }
@@ -5950,7 +7611,12 @@ export namespace DedicatedApig {
          */
         id: string;
         /**
-         * Specifies the domain name. The valid must comply with the domian name specifications.
+         * Specifies the variable name.  
+         * The valid length is limited from `3` to `32` characters.
+         * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+         * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+         * It is replaced by the actual value when the API is published in an environment.
+         * The variable names are not allowed to be repeated for an API group.
          */
         name: string;
         /**
@@ -5967,20 +7633,22 @@ export namespace DedicatedApig {
 
     export interface GroupUrlDomain {
         /**
-         * Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-         * The default value is `false`.
+         * Whether to enable redirection from `HTTP` to `HTTPS`.
          */
         isHttpRedirectToHttps: boolean;
         /**
-         * Specifies the minimum TLS version that can be used to access the domain name,
-         * the default value is `TLSv1.2`.
-         * The valid values are as follows:
+         * The minimum SSL protocol version.
          * + **TLSv1.1**
          * + **TLSv1.2**
          */
         minSslVersion: string;
         /**
-         * Specifies the domain name. The valid must comply with the domian name specifications.
+         * Specifies the variable name.  
+         * The valid length is limited from `3` to `32` characters.
+         * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+         * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+         * It is replaced by the actual value when the API is published in an environment.
+         * The variable names are not allowed to be repeated for an API group.
          */
         name: string;
     }
@@ -6238,7 +7906,10 @@ export namespace DedicatedElb {
          */
         name: string;
         /**
-         * The health status of the member.
+         * The health status of the backend server. The value can be:
+         * + **ONLINE**: The backend server is running normally.
+         * + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+         * + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
          */
         operatingStatus: string;
         /**
@@ -6248,11 +7919,22 @@ export namespace DedicatedElb {
          */
         protocolPort: number;
         /**
+         * Why health check fails.
+         * The reason structure is documented below.
+         */
+        reasons: outputs.DedicatedElb.ActiveStandbyPoolMemberReason[];
+        /**
          * Specifies the type of the member. Value options:
          * + **master**: active backend server.
          * + **slave**: standby backend server.
          */
         role: string;
+        /**
+         * The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+         * status is not specified, operatingStatus of member takes precedence.
+         * The status structure is documented below.
+         */
+        statuses: outputs.DedicatedElb.ActiveStandbyPoolMemberStatus[];
         /**
          * Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
          * + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
@@ -6261,6 +7943,71 @@ export namespace DedicatedElb {
          * **HTTPS**.
          */
         subnetId: string;
+    }
+
+    export interface ActiveStandbyPoolMemberReason {
+        /**
+         * The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+         * **HTTPS** or **GRPC**.
+         * + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+         * to other values, the status code ranges from **200** to **599**.
+         * + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+         * + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+         */
+        expectedResponse: string;
+        /**
+         * The returned HTTP status code in the response. This parameter will take effect only when `type`
+         * is set to **HTTP**, **HTTPS** or **GRPC**.
+         * + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+         * other values, the status code ranges from **200** to **599**.
+         */
+        healthcheckResponse: string;
+        /**
+         * The code of the health check failures. The value can be:
+         * + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+         * + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+         * + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+         * + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+         * + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+         * + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+         * + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+         * duration during a health check.
+         * + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+         * check.
+         * + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+         * timeout duration.
+         * + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+         * + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+         */
+        reasonCode: string;
+    }
+
+    export interface ActiveStandbyPoolMemberStatus {
+        /**
+         * Specifies the ID of the listener with which the active-standby pool is
+         * associated. Changing this parameter will create a new resource.
+         */
+        listenerId: string;
+        /**
+         * The health status of the backend server. The value can be:
+         * + **ONLINE**: The backend server is running normally.
+         * + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+         * + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+         */
+        operatingStatus: string;
+    }
+
+    export interface ActiveStandbyPoolQuicCidHashStrategy {
+        /**
+         * The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lbAlgorithm`
+         * is **QUIC_CID**. Value range: **1** to **20**.
+         */
+        len: number;
+        /**
+         * The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+         * `lbAlgorithm` is **QUIC_CID**. Value range: **0** to **19**.
+         */
+        offset: number;
     }
 
     export interface GetActiveStandbyPoolsPool {
@@ -6277,9 +8024,17 @@ export namespace DedicatedElb {
          */
         connectionDrainTimeout: number;
         /**
+         * The time when the backend server group was created.
+         */
+        createdAt: string;
+        /**
          * Specifies supplementary information about the active-standby pool.
          */
         description: string;
+        /**
+         * The ID of the enterprise project.
+         */
+        enterpriseProjectId: string;
         /**
          * The health check configured for the active-standby pool.
          * The healthmonitor structure is documented below.
@@ -6289,6 +8044,19 @@ export namespace DedicatedElb {
          * The health check ID.
          */
         id: string;
+        /**
+         * Specifies the IP address version supported by the pool.
+         */
+        ipVersion: string;
+        /**
+         * Specifies the load balancing algorithm used by the load balancer to route requests
+         * to backend servers in the associated pool. Value options:
+         * + **ROUND_ROBIN**: weighted round robin.
+         * + **LEAST_CONNECTIONS**: weighted least connections.
+         * + **SOURCE_IP**: source IP hash.
+         * + **QUIC_CID**: connection ID.
+         */
+        lbAlgorithm: string;
         /**
          * The IDs of the listeners with which the active-standby pool is associated.
          * The listeners structure is documented below.
@@ -6314,12 +8082,21 @@ export namespace DedicatedElb {
          */
         protocol: string;
         /**
+         * The multi-path distribution configuration based on destination connection IDs.
+         * The quicCidHashStrategy structure is documented below.
+         */
+        quicCidHashStrategies: outputs.DedicatedElb.GetActiveStandbyPoolsPoolQuicCidHashStrategy[];
+        /**
          * Specifies the type of the active-standby pool.
          * The valid values are as follows:
          * + **instance**: Any type of backend servers can be added.
          * + **ip**: Only IP as backend servers can be added.
          */
         type: string;
+        /**
+         * The time when the backend server group was updated.
+         */
+        updatedAt: string;
         /**
          * Specifies the ID of the VPC where the active-standby pool works.
          */
@@ -6410,7 +8187,7 @@ export namespace DedicatedElb {
          */
         instanceId: string;
         /**
-         * The IP version supported by the member.
+         * Specifies the IP address version supported by the pool.
          */
         ipVersion: string;
         /**
@@ -6422,7 +8199,10 @@ export namespace DedicatedElb {
          */
         name: string;
         /**
-         * The health status of the member.
+         * The health status of the backend server. The value can be:
+         * + **ONLINE**: The backend server is running normally.
+         * + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+         * + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
          */
         operatingStatus: string;
         /**
@@ -6430,13 +8210,86 @@ export namespace DedicatedElb {
          */
         protocolPort: number;
         /**
+         * Why health check fails.
+         * The reason structure is documented below.
+         */
+        reasons: outputs.DedicatedElb.GetActiveStandbyPoolsPoolMemberReason[];
+        /**
          * The active-standby status of the member.
          */
         role: string;
         /**
+         * The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+         * status is not specified, operatingStatus of member takes precedence.
+         * The status structure is documented below.
+         */
+        statuses: outputs.DedicatedElb.GetActiveStandbyPoolsPoolMemberStatus[];
+        /**
          * The ID of the IPv4 or IPv6 subnet where the member resides.
          */
         subnetId: string;
+    }
+
+    export interface GetActiveStandbyPoolsPoolMemberReason {
+        /**
+         * The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+         * **HTTPS** or **GRPC**.
+         * + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+         * to other values, the status code ranges from **200** to **599**.
+         * + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+         * + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+         */
+        expectedResponse: string;
+        /**
+         * The returned HTTP status code in the response. This parameter will take effect only when `type`
+         * is set to **HTTP**, **HTTPS** or **GRPC**.
+         * + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+         * other values, the status code ranges from **200** to **599**.
+         */
+        healthcheckResponse: string;
+        /**
+         * The code of the health check failures. The value can be:
+         * + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+         * + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+         * + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+         * + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+         * + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+         * + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+         * + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+         * duration during a health check.
+         * + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+         * check.
+         * + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+         * timeout duration.
+         * + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+         * + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+         */
+        reasonCode: string;
+    }
+
+    export interface GetActiveStandbyPoolsPoolMemberStatus {
+        /**
+         * Specifies the ID of the listener to which the forwarding policy is added.
+         */
+        listenerId: string;
+        /**
+         * The health status of the backend server. The value can be:
+         * + **ONLINE**: The backend server is running normally.
+         * + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+         * + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+         */
+        operatingStatus: string;
+    }
+
+    export interface GetActiveStandbyPoolsPoolQuicCidHashStrategy {
+        /**
+         * The length of the hash factor in the connection ID, in byte.
+         */
+        len: number;
+        /**
+         * The start position in the connection ID as the hash factor, in byte.
+         */
+        offset: number;
     }
 
     export interface GetAllMembersMember {
@@ -6453,6 +8306,10 @@ export namespace DedicatedElb {
          * Indicates the backend server ID.
          */
         id: string;
+        /**
+         * Indicates the ID of the instance associated with the backend server.
+         */
+        instanceId: string;
         /**
          * Specifies the IP address version supported by the backend server group.
          * The value can be **v4** or **v6**.
@@ -6659,13 +8516,31 @@ export namespace DedicatedElb {
          */
         bandwidth: number;
         /**
+         * Specifies the category.
+         */
+        category: number;
+        /**
          * Specifies the cps in the flavor.
          */
         cps: number;
         /**
-         * ID of the flavor.
+         * Specifies whether the flavor is available.
+         * + **true**: indicates the flavor is unavailable.
+         * + **false**: indicates the flavor is available.
+         */
+        flavorSoldOut: boolean;
+        /**
+         * Indicates the number of new HTTPS connections.
+         */
+        httpsCps: number;
+        /**
+         * Indicates the ID of the flavor.
          */
         id: string;
+        /**
+         * Indicates the number of LCUs in the flavor.
+         */
+        lcu: number;
         /**
          * Specifies the maximum connections in the flavor.
          */
@@ -6675,9 +8550,19 @@ export namespace DedicatedElb {
          */
         name: string;
         /**
+         * Specifies the public border group.
+         */
+        publicBorderGroup: string;
+        /**
          * Specifies the qps in the L7 flavor.
          */
         qps: number;
+        /**
+         * Specifies whether the flavor is available to all users. Value options:
+         * + **true**: indicates that the flavor is available to all users.
+         * + **false**: indicates that the flavor is available only to a specific user.
+         */
+        shared: boolean;
         /**
          * Specifies the flavor type. Values options:
          * + **L4**: indicates Layer-4 flavor.
@@ -6699,6 +8584,10 @@ export namespace DedicatedElb {
          * Specifies the description of the IP address group.
          */
         description: string;
+        /**
+         * Specifies the enterprise project ID.
+         */
+        enterpriseProjectId: string;
         /**
          * The listener ID.
          */
@@ -6763,6 +8652,10 @@ export namespace DedicatedElb {
          */
         description: string;
         /**
+         * Specifies the enterprise project ID.
+         */
+        enterpriseProjectId: string;
+        /**
          * The configuration of the page that will be returned.
          * The fixedResponseConfig structure is documented below.
          */
@@ -6784,6 +8677,10 @@ export namespace DedicatedElb {
          */
         priority: number;
         /**
+         * Specifies the provisioning status of the forwarding policy.
+         */
+        provisioningStatus: string;
+        /**
          * Specifies the ID of the listener to which requests are redirected.
          */
         redirectListenerId: string;
@@ -6792,17 +8689,30 @@ export namespace DedicatedElb {
          */
         redirectPoolId: string;
         /**
+         * The list of the backend server groups to which traffic is forwarded.
+         * The redirectPoolsConfig structure is documented below.
+         */
+        redirectPoolsConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsConfig[];
+        /**
          * The backend server group that the requests are forwarded to.
          * The redirectPoolsExtendConfig structure is documented below.
          */
         redirectPoolsExtendConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsExtendConfig[];
         /**
-         * The URL to which requests are forwarded. The redirectUrlConfig
-         * structure is documented below.
+         * The session persistence between backend server groups which associated with
+         * the policy.
+         * The redirectPoolsStickySessionConfig structure is documented
+         * below.
+         */
+        redirectPoolsStickySessionConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsStickySessionConfig[];
+        /**
+         * The URL to which requests are forwarded.
+         * The redirectUrlConfig structure is documented below.
          */
         redirectUrlConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectUrlConfig[];
         /**
-         * The forwarding rules in the forwarding policy. The rules structure is documented below.
+         * The forwarding rules in the forwarding policy.
+         * The rules structure is documented below.
          */
         rules: outputs.DedicatedElb.GetL7policiesL7policyRule[];
         /**
@@ -6817,16 +8727,105 @@ export namespace DedicatedElb {
          */
         contentType: string;
         /**
+         * (Optional, List) The header parameters to be added.
+         * The insertHeadersConfig structure is documented below.
+         */
+        insertHeadersConfigs: outputs.DedicatedElb.GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig[];
+        /**
          * The content of the response message body.
          */
         messageBody: string;
         /**
+         * (Optional, List) The header parameters to be removed.
+         * The removeHeadersConfig structure is documented below.
+         */
+        removeHeadersConfigs: outputs.DedicatedElb.GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig[];
+        /**
          * The status code returned after the requests are redirected.
          */
         statusCode: string;
+        /**
+         * (Optional, List) The traffic limit config of the policy.
+         * The trafficLimitConfig structure is documented below.
+         */
+        trafficLimitConfigs: outputs.DedicatedElb.GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig[];
+    }
+
+    export interface GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig {
+        /**
+         * The list of request header parameters to be removed.
+         * The removeHeaderConfigs structure is documented below.
+         */
+        configs: outputs.DedicatedElb.GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig[];
+    }
+
+    export interface GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig {
+        /**
+         * The parameter name of the removed request header.
+         */
+        key: string;
+        /**
+         * The value of the parameter.
+         */
+        value: string;
+        /**
+         * The value type of the parameter.
+         */
+        valueType: string;
+    }
+
+    export interface GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig {
+        /**
+         * The list of request header parameters to be removed.
+         * The removeHeaderConfigs structure is documented below.
+         */
+        configs: outputs.DedicatedElb.GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig[];
+    }
+
+    export interface GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig {
+        /**
+         * The parameter name of the removed request header.
+         */
+        key: string;
+    }
+
+    export interface GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig {
+        /**
+         * (The qps buffer.
+         */
+        burst: number;
+        /**
+         * The single source qps of the policy.
+         */
+        perSourceIpQps: number;
+        /**
+         * The overall qps of the policy.
+         */
+        qps: number;
+    }
+
+    export interface GetL7policiesL7policyRedirectPoolsConfig {
+        /**
+         * The ID of the backend server group.
+         */
+        poolId: string;
+        /**
+         * The weight of the backend server group.
+         */
+        weight: number;
     }
 
     export interface GetL7policiesL7policyRedirectPoolsExtendConfig {
+        /**
+         * (Optional, List) The header parameters to be added.
+         * The insertHeadersConfig structure is documented below.
+         */
+        insertHeadersConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig[];
+        /**
+         * (Optional, List) The header parameters to be removed.
+         * The removeHeadersConfig structure is documented below.
+         */
+        removeHeadersConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig[];
         /**
          * The URL for the backend server group that requests are forwarded to.
          * The rewriteUrlConfig structure is documented below.
@@ -6836,6 +8835,49 @@ export namespace DedicatedElb {
          * Whether to enable URL redirection.
          */
         rewriteUrlEnabled: boolean;
+        /**
+         * (Optional, List) The traffic limit config of the policy.
+         * The trafficLimitConfig structure is documented below.
+         */
+        trafficLimitConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig[];
+    }
+
+    export interface GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig {
+        /**
+         * The list of request header parameters to be removed.
+         * The removeHeaderConfigs structure is documented below.
+         */
+        configs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig[];
+    }
+
+    export interface GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig {
+        /**
+         * The parameter name of the removed request header.
+         */
+        key: string;
+        /**
+         * The value of the parameter.
+         */
+        value: string;
+        /**
+         * The value type of the parameter.
+         */
+        valueType: string;
+    }
+
+    export interface GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig {
+        /**
+         * The list of request header parameters to be removed.
+         * The removeHeaderConfigs structure is documented below.
+         */
+        configs: outputs.DedicatedElb.GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig[];
+    }
+
+    export interface GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig {
+        /**
+         * The parameter name of the removed request header.
+         */
+        key: string;
     }
 
     export interface GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfig {
@@ -6853,11 +8895,42 @@ export namespace DedicatedElb {
         query: string;
     }
 
+    export interface GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig {
+        /**
+         * (The qps buffer.
+         */
+        burst: number;
+        /**
+         * The single source qps of the policy.
+         */
+        perSourceIpQps: number;
+        /**
+         * The overall qps of the policy.
+         */
+        qps: number;
+    }
+
+    export interface GetL7policiesL7policyRedirectPoolsStickySessionConfig {
+        /**
+         * Whether enable config session persistence between backend server groups.
+         */
+        enable: boolean;
+        /**
+         * The timeout of the session persistence.
+         */
+        timeout: number;
+    }
+
     export interface GetL7policiesL7policyRedirectUrlConfig {
         /**
          * The url host.
          */
         host: string;
+        /**
+         * (Optional, List) The header parameters to be added.
+         * The insertHeadersConfig structure is documented below.
+         */
+        insertHeadersConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig[];
         /**
          * The URL path.
          */
@@ -6875,9 +8948,52 @@ export namespace DedicatedElb {
          */
         query: string;
         /**
+         * (Optional, List) The header parameters to be removed.
+         * The removeHeadersConfig structure is documented below.
+         */
+        removeHeadersConfigs: outputs.DedicatedElb.GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig[];
+        /**
          * The status code returned after the requests are redirected.
          */
         statusCode: string;
+    }
+
+    export interface GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig {
+        /**
+         * The list of request header parameters to be removed.
+         * The removeHeaderConfigs structure is documented below.
+         */
+        configs: outputs.DedicatedElb.GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig[];
+    }
+
+    export interface GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig {
+        /**
+         * The parameter name of the removed request header.
+         */
+        key: string;
+        /**
+         * The value of the parameter.
+         */
+        value: string;
+        /**
+         * The value type of the parameter.
+         */
+        valueType: string;
+    }
+
+    export interface GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig {
+        /**
+         * The list of request header parameters to be removed.
+         * The removeHeaderConfigs structure is documented below.
+         */
+        configs: outputs.DedicatedElb.GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig[];
+    }
+
+    export interface GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig {
+        /**
+         * The parameter name of the removed request header.
+         */
+        key: string;
     }
 
     export interface GetL7policiesL7policyRule {
@@ -6934,15 +9050,24 @@ export namespace DedicatedElb {
 
     export interface GetListenersListener {
         /**
-         * Whether to enable advanced forwarding.
+         * Specifies whether the advanced forwarding is enabled. Value options:
+         * **true**, **false**.
          */
         advancedForwardingEnabled: boolean;
         /**
-         * The ID of the CA certificate used by the listener.
+         * Specifies the ID of the CA certificate used by the listener.
          */
         caCertificate: string;
         /**
-         * The ID of the default backend server group.
+         * The maximum number of new connections that a listener can handle per second.
+         */
+        cps: number;
+        /**
+         * The creation time of the listener.
+         */
+        createdAt: string;
+        /**
+         * Specifies the ID of the default pool with which the listener is associated.
          */
         defaultPoolId: string;
         /**
@@ -6950,9 +9075,22 @@ export namespace DedicatedElb {
          */
         description: string;
         /**
+         * Specifies whether the health check retries for backend servers is enabled.
+         * Value options: **true**, **false**.
+         */
+        enableMemberRetry: boolean;
+        /**
+         * Specifies the enterprise project ID.
+         */
+        enterpriseProjectId: string;
+        /**
          * Whether to transparently transmit the load balancer EIP to backend servers.
          */
         forwardEip: boolean;
+        /**
+         * Whether to transfer the load balancer ID to backend servers through the HTTP header of the packet.
+         */
+        forwardElb: boolean;
         /**
          * Whether to rewrite the X-Forwarded-Host header.
          */
@@ -6962,11 +9100,35 @@ export namespace DedicatedElb {
          */
         forwardPort: boolean;
         /**
+         * Whether to transfer the listener protocol of the load balancer to backend servers through the HTTP
+         * header of the packet.
+         */
+        forwardProto: boolean;
+        /**
          * Whether to transparently transmit the source port of the client to backend servers.
          */
         forwardRequestPort: boolean;
         /**
-         * Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+         * Whether to transfer the certificate ID of the load balancer to backend servers through the
+         * HTTP header of the packet.
+         */
+        forwardTlsCertificate: boolean;
+        /**
+         * Whether to transfer the algorithm suite of the load balancer to backend servers through the HTTP
+         * header of the packet.
+         */
+        forwardTlsCipher: boolean;
+        /**
+         * Whether to transfer the algorithm protocol of the load balancer to backend servers through the
+         * HTTP header of the packet.
+         */
+        forwardTlsProtocol: boolean;
+        /**
+         * Whether the gzip compression for a load balancer is enabled.
+         */
+        gzipEnable: boolean;
+        /**
+         * Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
          */
         http2Enable: boolean;
         /**
@@ -6974,23 +9136,37 @@ export namespace DedicatedElb {
          */
         id: string;
         /**
-         * The idle timeout duration, in seconds.
+         * Specifies the idle timeout for the listener.
          */
         idleTimeout: number;
+        /**
+         * The IP address group associated with the listener.
+         * The ipgroup structure is documented below.
+         */
+        ipgroups: outputs.DedicatedElb.GetListenersListenerIpgroup[];
         /**
          * Specifies the ID of the load balancer that the listener is added to.
          */
         loadbalancerId: string;
         /**
+         * The maximum number of concurrent connections that a listener can handle per second.
+         */
+        maxConnection: number;
+        /**
          * Specifies the name of the ELB listener.
          */
         name: string;
+        /**
+         * The port range, including the start and end port numbers.
+         * The portRanges structure is documented below.
+         */
+        portRanges: outputs.DedicatedElb.GetListenersListenerPortRange[];
         /**
          * The reason for update protection.
          */
         protectionReason: string;
         /**
-         * The protection status for update.
+         * Specifies the protection status.
          */
         protectionStatus: string;
         /**
@@ -7003,15 +9179,34 @@ export namespace DedicatedElb {
          */
         protocolPort: number;
         /**
-         * The timeout duration for waiting for a response from a client, in seconds.
+         * Specifies whether the proxy protocol option to pass the source IP addresses
+         * of the clients to backend servers is enabled. Value options: **true**, **false**.
+         */
+        proxyProtocolEnable: boolean;
+        /**
+         * The QUIC configuration for the current listener.
+         * The quicConfig structure is documented below.
+         */
+        quicConfigs: outputs.DedicatedElb.GetListenersListenerQuicConfig[];
+        /**
+         * Whether to transfer the source IP address of the client to backend servers through the HTTP header of the
+         * packet.
+         */
+        realIp: boolean;
+        /**
+         * Specifies the request timeout for the listener. Value range: **1** to **300**.
          */
         requestTimeout: number;
         /**
-         * The timeout duration for waiting for a response from a backend server, in seconds.
+         * Specifies the response timeout for the listener.
          */
         responseTimeout: number;
         /**
-         * The ID of the server certificate used by the listener.
+         * The ID of the custom security policy.
+         */
+        securityPolicyId: string;
+        /**
+         * Specifies the ID of the server certificate used by the listener.
          */
         serverCertificate: string;
         /**
@@ -7019,9 +9214,63 @@ export namespace DedicatedElb {
          */
         sniCertificates: string[];
         /**
-         * The security policy used by the listener.
+         * How wildcard domain name matches with the SNI certificates used by the listener.
+         */
+        sniMatchAlgo: string;
+        /**
+         * Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+         * **false**.
+         */
+        sslEarlyDataEnable: boolean;
+        /**
+         * The key/value pairs to associate with the listener.
+         */
+        tags: {[key: string]: string};
+        /**
+         * Specifies the TLS cipher policy for the listener.
          */
         tlsCiphersPolicy: string;
+        /**
+         * The update time of the listener.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetListenersListenerIpgroup {
+        /**
+         * Whether access control is enabled.
+         */
+        enableIpgroup: boolean;
+        /**
+         * The ID of the IP address group associated with the listener.
+         */
+        ipgroupId: string;
+        /**
+         * How access to the listener is controlled.
+         */
+        type: string;
+    }
+
+    export interface GetListenersListenerPortRange {
+        /**
+         * The end port.
+         */
+        endPort: number;
+        /**
+         * The start port.
+         */
+        startPort: number;
+    }
+
+    export interface GetListenersListenerQuicConfig {
+        /**
+         * Whether to enable QUIC upgrade.
+         */
+        enableQuicUpgrade: boolean;
+        /**
+         * The ID of the QUIC listener.
+         */
+        quicListenerId: string;
     }
 
     export interface GetLoadbalancerFeatureConfigurationsFeature {
@@ -7047,7 +9296,7 @@ export namespace DedicatedElb {
          */
         autoscalingEnabled: boolean;
         /**
-         * The list of AZs where the load balancer is created.
+         * Specifies the list of AZ where the load balancer is created.
          */
         availabilityZones: string[];
         /**
@@ -7055,9 +9304,26 @@ export namespace DedicatedElb {
          */
         backendSubnets: string[];
         /**
+         * Specifies the provides resource billing information.
+         */
+        billingInfo: string;
+        /**
+         * The charge mode when of the load balancer.
+         */
+        chargeMode: string;
+        /**
+         * The time when the load balancer was created.
+         */
+        createdAt: string;
+        /**
          * Whether to enable IP as a Backend Server.
          */
         crossVpcBackend: boolean;
+        /**
+         * Specifies whether the deletion protection is enabled. Value options:
+         * **true**, **false**.
+         */
+        deletionProtectionEnable: boolean;
         /**
          * Specifies the description of the ELB load balancer.
          */
@@ -7067,19 +9333,31 @@ export namespace DedicatedElb {
          */
         enterpriseProjectId: string;
         /**
+         * The scenario where the load balancer is frozen.
+         */
+        frozenScene: string;
+        /**
+         * Specifies the global EIPs bound to the load balancer. It can be queried by different
+         * conditions:
+         * + If `globalEipId` is used as the query condition, the format is **global_eip_id=xxx**
+         * + If `globalEipAddress` is used as the query condition, the format is **global_eip_address=xxx**
+         * + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+         */
+        globalEips: outputs.DedicatedElb.GetLoadbalancersLoadbalancerGlobalEip[];
+        /**
          * The flavor ID of the gateway load balancer.
          */
         gwFlavorId: string;
         /**
-         * The load balancer ID.
+         * The pool ID.
          */
         id: string;
         /**
-         * The private IPv4 address bound to the load balancer.
+         * Specifies the private IPv4 address bound to the load balancer.
          */
         ipv4Address: string;
         /**
-         * The ID of the port bound to the private IPv4 address of the load balancer.
+         * Specifies the ID of the port bound to the private IPv4 address of the load balancer.
          */
         ipv4PortId: string;
         /**
@@ -7087,13 +9365,17 @@ export namespace DedicatedElb {
          */
         ipv4SubnetId: string;
         /**
-         * The IPv6 address bound to the load balancer.
+         * Specifies the IPv6 address bound to the load balancer.
          */
         ipv6Address: string;
         /**
          * Specifies the ID of the port bound to the IPv6 address of the load balancer.
          */
         ipv6NetworkId: string;
+        /**
+         * Specifies the ID of the port bound to the IPv6 address of the load balancer.
+         */
+        ipv6VipPortId: string;
         /**
          * Specifies the ID of a flavor at Layer 4.
          */
@@ -7103,9 +9385,22 @@ export namespace DedicatedElb {
          */
         l7FlavorId: string;
         /**
+         * The list of listeners added to the load balancer.
+         * The listeners structure is documented below.
+         */
+        listeners: outputs.DedicatedElb.GetLoadbalancersLoadbalancerListener[];
+        /**
          * The type of the load balancer.
          */
         loadbalancerType: string;
+        /**
+         * Specifies the ID of the log group that is associated with the load balancer.
+         */
+        logGroupId: string;
+        /**
+         * Specifies the ID of the log topic that is associated with the load balancer.
+         */
+        logTopicId: string;
         /**
          * The minimum seven-layer specification ID (specification type L7_elastic) for elastic expansion
          * and contraction
@@ -7116,22 +9411,104 @@ export namespace DedicatedElb {
          */
         name: string;
         /**
+         * Specifies the operating status of the load balancer. Value options:
+         * + **ONLINE**: indicates that the load balancer is running normally.
+         * + **FROZEN**: indicates that the load balancer is frozen.
+         */
+        operatingStatus: string;
+        /**
+         * The list of pools associated with the load balancer.
+         * The pools structure is documented below.
+         */
+        pools: outputs.DedicatedElb.GetLoadbalancersLoadbalancerPool[];
+        /**
          * The reason for update protection.
          */
         protectionReason: string;
         /**
-         * The protection status for update.
+         * Specifies the protection status. Value options:
+         * + **nonProtection**: The load balancer is not protected.
+         * + **consoleProtection**: Modification Protection is enabled on the console.
          */
         protectionStatus: string;
+        /**
+         * Specifies the provisioning status of the load balancer. Value options:
+         * + **ACTIVE**: The load balancer is successfully provisioned.
+         * + **PENDING_DELETE**: The load balancer is being deleted.
+         */
+        provisioningStatus: string;
+        /**
+         * The AZ group to which the load balancer belongs.
+         */
+        publicBorderGroup: string;
+        /**
+         * Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+         * + If `publicipId` is used as the query condition, the format is **publicip_id=xxx**
+         * + If `publicipAddress` is used as the query condition, the format is **publicip_address=xxx**
+         * + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+         */
+        publicips: outputs.DedicatedElb.GetLoadbalancersLoadbalancerPublicip[];
         /**
          * Specifies whether the load balancer is a dedicated load balancer, Value options:
          * **dedicated**, **share**.
          */
         type: string;
         /**
+         * The time when the load balancer was updated.
+         */
+        updatedAt: string;
+        /**
          * Specifies the ID of the VPC where the load balancer resides.
          */
         vpcId: string;
+        /**
+         * The traffic distributing policies when the WAF is faulty.
+         */
+        wafFailureAction: string;
+    }
+
+    export interface GetLoadbalancersLoadbalancerGlobalEip {
+        /**
+         * The global EIP address
+         */
+        globalEipAddress: string;
+        /**
+         * The ID of the global EIP.
+         */
+        globalEipId: string;
+        /**
+         * The IP version.
+         */
+        ipVersion: number;
+    }
+
+    export interface GetLoadbalancersLoadbalancerListener {
+        /**
+         * The pool ID.
+         */
+        id: string;
+    }
+
+    export interface GetLoadbalancersLoadbalancerPool {
+        /**
+         * The pool ID.
+         */
+        id: string;
+    }
+
+    export interface GetLoadbalancersLoadbalancerPublicip {
+        /**
+         * The IP version.
+         */
+        ipVersion: number;
+        /**
+         * The IP address.
+         */
+        publicipAddress: string;
+        /**
+         * The EIP ID.
+         */
+        publicipId: string;
     }
 
     export interface GetLogtanksLogtank {
@@ -7155,10 +9532,18 @@ export namespace DedicatedElb {
 
     export interface GetMonitorsMonitor {
         /**
+         * The time when the health check was configured.
+         */
+        createdAt: string;
+        /**
          * Specifies the domain name to which HTTP requests are sent during the health check.
          * The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
          */
         domainName: string;
+        /**
+         * Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+         */
+        httpMethod: string;
         /**
          * The health check ID.
          */
@@ -7209,6 +9594,10 @@ export namespace DedicatedElb {
          */
         timeout: number;
         /**
+         * The time when the health check was updated.
+         */
+        updatedAt: string;
+        /**
          * Specifies the HTTP request path for the health check. The value must start with a slash
          * (/), and the default value is **&#47;**. This parameter is available only when type is set to **HTTP**.
          */
@@ -7216,6 +9605,13 @@ export namespace DedicatedElb {
     }
 
     export interface GetPoolsPool {
+        /**
+         * Specifies whether forward to same port for a backend server group is enabled.
+         * Value options:
+         * + **false**: Disable this option.
+         * + **true**: Enable this option.
+         */
+        anyPortEnable: boolean;
         /**
          * Whether to enable delayed logout.
          */
@@ -7225,9 +9621,17 @@ export namespace DedicatedElb {
          */
         connectionDrainTimeout: number;
         /**
+         * The time when the backend server group was created
+         */
+        createdAt: string;
+        /**
          * Specifies the description of the ELB pool.
          */
         description: string;
+        /**
+         * Specifies the ID of the enterprise project.
+         */
+        enterpriseProjectId: string;
         /**
          * Specifies the health monitor ID of the ELB pool.
          */
@@ -7237,7 +9641,7 @@ export namespace DedicatedElb {
          */
         id: string;
         /**
-         * The IP version of the LB pool.
+         * Specifies the IP address version supported by the backend server group.
          */
         ipVersion: string;
         /**
@@ -7253,6 +9657,12 @@ export namespace DedicatedElb {
          * The loadbalancer list. The object structure is documented below.
          */
         loadbalancers: outputs.DedicatedElb.GetPoolsPoolLoadbalancer[];
+        /**
+         * Specifies whether deletion protection is enabled. Value options:
+         * + **false**: Disable this option.
+         * + **true**: Enable this option.
+         */
+        memberDeletionProtectionEnable: boolean;
         /**
          * The member list. The object structure is documented below.
          */
@@ -7285,6 +9695,15 @@ export namespace DedicatedElb {
          */
         protocol: string;
         /**
+         * Specifies the public border group.
+         */
+        publicBorderGroup: string;
+        /**
+         * The multi-path forwarding policy based on destination connection IDs.
+         * The quicCidHashStrategy structure is documented below.
+         */
+        quicCidHashStrategies: outputs.DedicatedElb.GetPoolsPoolQuicCidHashStrategy[];
+        /**
          * The slow start duration, in seconds.
          */
         slowStartDuration: number;
@@ -7296,6 +9715,10 @@ export namespace DedicatedElb {
          * Specifies the type of the backend server group. Value options: **instance**, **ip**.
          */
         type: string;
+        /**
+         * The time when the backend server group was updated.
+         */
+        updatedAt: string;
         /**
          * Specifies the ID of the VPC where the backend server group works.
          */
@@ -7336,6 +9759,17 @@ export namespace DedicatedElb {
          * Specifies the type of the backend server group. Value options: **instance**, **ip**.
          */
         type: string;
+    }
+
+    export interface GetPoolsPoolQuicCidHashStrategy {
+        /**
+         * The length of the hash factor in the connection ID, in byte.
+         */
+        len: number;
+        /**
+         * The start position in the connection ID as the hash factor, in byte.
+         */
+        offset: number;
     }
 
     export interface GetSecurityPoliciesSecurityPolicy {
@@ -7802,6 +10236,52 @@ export namespace DedicatedElb {
          * Specifies the start port. Changing this creates a new listener.
          */
         startPort: number;
+    }
+
+    export interface MemberReason {
+        /**
+         * The code of the health check failures.
+         */
+        expectedResponse: string;
+        /**
+         * The expected HTTP status code.
+         */
+        healthcheckResponse: string;
+        /**
+         * The returned HTTP status code in the response.
+         */
+        reasonCode: string;
+    }
+
+    export interface MemberStatus {
+        /**
+         * The listener ID.
+         */
+        listenerId: string;
+        /**
+         * The health status of the backend server.
+         */
+        operatingStatus: string;
+        /**
+         * Why health check fails.
+         * The reason structure is documented below.
+         */
+        reasons: outputs.DedicatedElb.MemberStatusReason[];
+    }
+
+    export interface MemberStatusReason {
+        /**
+         * The code of the health check failures.
+         */
+        expectedResponse: string;
+        /**
+         * The expected HTTP status code.
+         */
+        healthcheckResponse: string;
+        /**
+         * The returned HTTP status code in the response.
+         */
+        reasonCode: string;
     }
 
     export interface PoolPersistence {
@@ -9682,11 +12162,19 @@ export namespace Eip {
 export namespace Elb {
     export interface GetListenersListener {
         /**
+         * The ID of the CA certificate used by the listener.
+         */
+        clientCaTlsContainerRef: string;
+        /**
          * The maximum number of connections allowed for the listener.
          */
         connectionLimit: number;
         /**
-         * The ID of the default pool with which the ELB listener is associated.
+         * The time when the listener was created.
+         */
+        createdAt: string;
+        /**
+         * The ID of the default pool with which the listener is associated.
          */
         defaultPoolId: string;
         /**
@@ -9694,11 +12182,11 @@ export namespace Elb {
          */
         defaultTlsContainerRef: string;
         /**
-         * The description of the ELB listener.
+         * The description for the listener.
          */
         description: string;
         /**
-         * Whether the ELB listener uses HTTP/2.
+         * Whether the ELB listener uses HTTP/2. Value options: **true**, **false**.
          */
         http2Enable: boolean;
         /**
@@ -9706,14 +12194,27 @@ export namespace Elb {
          */
         id: string;
         /**
-         * Listener list.
-         * The object structure is documented below.
+         * Whether to insert HTTP extension headers and sent them to backend servers.
+         * The insertHeaders structure is documented below.
+         */
+        insertHeaders: outputs.Elb.GetListenersListenerInsertHeader[];
+        /**
+         * The list of the associated load balancer.
+         * The loadbalancers structure is documented below.
          */
         loadbalancers: outputs.Elb.GetListenersListenerLoadbalancer[];
         /**
          * The listener name.
          */
         name: string;
+        /**
+         * The reason to enable modification protection.
+         */
+        protectionReason: string;
+        /**
+         * Whether modification protection is enabled.
+         */
+        protectionStatus: string;
         /**
          * The listener protocol.  
          * The valid values are **TCP**, **UDP**, **HTTP** and **TERMINATED_HTTPS**.
@@ -9728,6 +12229,29 @@ export namespace Elb {
          * List of the SNI certificate (server certificates with a domain name) IDs used by the listener.
          */
         sniContainerRefs: string[];
+        /**
+         * The key/value pairs to associate with the listener.
+         */
+        tags: {[key: string]: string};
+        /**
+         * The security policy used by the listener.
+         */
+        tlsCiphersPolicy: string;
+        /**
+         * The time when the listener was updated.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetListenersListenerInsertHeader {
+        /**
+         * Whether to transparently transmit the load balancer EIP to backend servers.
+         */
+        xForwardedElbIp: string;
+        /**
+         * Whether to rewrite the X-Forwarded-Host header.
+         */
+        xForwardedHost: string;
     }
 
     export interface GetListenersListenerLoadbalancer {
@@ -9777,6 +12301,14 @@ export namespace Elb {
          */
         persistences: outputs.Elb.GetPoolsPoolPersistence[];
         /**
+         * The reason to enable modification protection.
+         */
+        protectionReason: string;
+        /**
+         * Whether modification protection is enabled.
+         */
+        protectionStatus: string;
+        /**
          * Specifies the protocol of the ELB pool. This can either be TCP, UDP or HTTP.
          */
         protocol: string;
@@ -9809,9 +12341,31 @@ export namespace Elb {
          */
         cookieName: string;
         /**
+         * The sticky session timeout duration in minutes.
+         */
+        timeout: number;
+        /**
          * The type of persistence mode.
          */
         type: string;
+    }
+
+    export interface ListenerInsertHeaders {
+        /**
+         * Specifies whether to transparently transmit the load balancer EIP to backend
+         * servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+         * Value options:
+         * + **true**: This function is enabled.
+         * + **false (default)**: The function is disabled.
+         */
+        xForwardedElbIp: string;
+        /**
+         * Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+         * enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+         * + **true (default)**: This function is enabled.
+         * + **false**: The function is disabled.
+         */
+        xForwardedHost: string;
     }
 
     export interface PoolPersistence {
@@ -9833,6 +12387,494 @@ export namespace Elb {
          */
         type: string;
     }
+
+}
+
+export namespace Er {
+    export interface GetAssociationsAssociation {
+        /**
+         * Specifies the attachment ID corresponding to the association.
+         */
+        attachmentId: string;
+        /**
+         * Specifies the attachment type corresponding to the association.
+         */
+        attachmentType: string;
+        /**
+         * The creation time.
+         */
+        createdAt: string;
+        /**
+         * The association ID.
+         */
+        id: string;
+        /**
+         * The resource ID of the attachment corresponding to the association.
+         */
+        resourceId: string;
+        /**
+         * The route policy ID of the egress IPv4 protocol.
+         */
+        routePolicyId: string;
+        /**
+         * Specifies the route table ID to which the association belongs.
+         */
+        routeTableId: string;
+        /**
+         * Specifies the status of the association. Default value is `available`.
+         * The valid values are as follows:
+         * + **available**
+         * + **failed**
+         */
+        status: string;
+        /**
+         * The latest update time.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetAttachmentsAttachment {
+        /**
+         * Whether this attachment has been associated.
+         */
+        associated: boolean;
+        /**
+         * The creation time of the attachment.
+         */
+        createdAt: string;
+        /**
+         * The description of the attachment.
+         */
+        description: string;
+        /**
+         * The attachment ID.
+         */
+        id: string;
+        /**
+         * Specifies the name used to filter the attachments.
+         */
+        name: string;
+        /**
+         * Specifies the associated resource ID used to filter the attachments.
+         */
+        resourceId: string;
+        /**
+         * The associated route table ID.
+         */
+        routeTableId: string;
+        /**
+         * Specifies the status used to filter the attachments.
+         * The valid values are as follows:
+         * + **available**
+         * + **failed**
+         * + **pending_acceptance**
+         * + **rejected**
+         */
+        status: string;
+        /**
+         * The key/value pairs used to filter the attachments.
+         */
+        tags: {[key: string]: string};
+        /**
+         * Specifies the resource type to be filtered.  
+         * The valid values are as follows:
+         * + **vpc**: Virtual private cloud.
+         * + **vpn**: VPN gateway.
+         * + **vgw**: Virtual gateway of cloud private line.
+         * + **peering**: Peering connection, through the cloud connection (CC) to load ERs in different regions to create a
+         * peering connection.
+         */
+        type: string;
+        /**
+         * The latest update time of the attachment.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetAvailableRoutesRoute {
+        /**
+         * The destination address of the routes to be queried.
+         */
+        destination: string;
+        /**
+         * The route ID.
+         */
+        id: string;
+        /**
+         * Whether the route is a blackhole route.
+         */
+        isBlackhole: boolean;
+        /**
+         * The next hops of the route.
+         */
+        nextHops: outputs.Er.GetAvailableRoutesRouteNextHop[];
+        /**
+         * The route type.
+         */
+        type: string;
+    }
+
+    export interface GetAvailableRoutesRouteNextHop {
+        /**
+         * The attachment ID.
+         */
+        attachmentId: string;
+        /**
+         * The attached resource ID.
+         */
+        resourceId: string;
+        /**
+         * The attachment type.
+         * The valid values are as follows:
+         * + **vpc**: VPC attachment.
+         * + **vpn**: VPN gateway attachment.
+         * + **vgw**: virtual gateway attachment.
+         * + **peering**: peering connection attachment.
+         * + **ecn**: ECN attachment.
+         * + **cfw**: CFW instance attachment.
+         */
+        resourceType: string;
+    }
+
+    export interface GetFlowLogsFlowLog {
+        /**
+         * The creation time of the flow log.
+         */
+        createdAt: string;
+        /**
+         * The description of the flow log.
+         */
+        description: string;
+        /**
+         * Specifies the switch status of the flow log.
+         * The value can be **true** and **false**.
+         */
+        enabled: boolean;
+        /**
+         * The ID of the flow log.
+         */
+        id: string;
+        /**
+         * Specifies the ID of the log group to which the flow logs belong.
+         */
+        logGroupId: string;
+        /**
+         * The storage type of the flow log.
+         */
+        logStoreType: string;
+        /**
+         * Specifies the ID of the log stream to which the flow logs belong.
+         */
+        logStreamId: string;
+        /**
+         * Specifies the name of the flow log.
+         */
+        name: string;
+        /**
+         * Specifies the ID of the attachment to which the flow logs belong.
+         */
+        resourceId: string;
+        /**
+         * Specifies the type of the flow logs.
+         * The valid values are as follows:
+         * + **attachment**: The flow logs type are attachment.
+         */
+        resourceType: string;
+        /**
+         * Specifies the status of the flow logs.
+         */
+        status: string;
+        /**
+         * The latest update time of the flow log.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetInstancesInstance {
+        /**
+         * The BGP AS number of the ER instance.
+         */
+        asn: number;
+        /**
+         * Whether to automatically accept the creation of shared attachment.
+         */
+        autoAcceptSharedAttachments: boolean;
+        /**
+         * The availability zone list where the ER instance is located.
+         */
+        availabilityZones: string[];
+        /**
+         * The creation time of the ER instance.
+         */
+        createdAt: string;
+        /**
+         * The ID of the default association route table.
+         */
+        defaultAssociationRouteTableId: string;
+        /**
+         * The ID of the default propagation route table.
+         */
+        defaultPropagationRouteTableId: string;
+        /**
+         * The description of the ER instance.
+         */
+        description: string;
+        /**
+         * Whether to enable the association of the default route table.
+         */
+        enableDefaultAssociation: boolean;
+        /**
+         * Whether to enable the propagation of the default route table.
+         */
+        enableDefaultPropagation: boolean;
+        /**
+         * Specifies the enterprise project ID of the ER instances to be queried.
+         */
+        enterpriseProjectId: string;
+        /**
+         * The ER instance ID.
+         */
+        id: string;
+        /**
+         * Specifies the name used to filter the ER instances.
+         * The valid length is limited from `1` to `64`, only Chinese and English letters, digits, underscores (_) and
+         * hyphens (-) are allowed.
+         */
+        name: string;
+        /**
+         * Specifies the status used to filter the ER instances.
+         */
+        status: string;
+        /**
+         * Specifies the key/value pairs used to filter the ER instances.
+         */
+        tags: {[key: string]: string};
+        /**
+         * The last update time of the ER instance.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetPropagationsPropagation {
+        /**
+         * Specifies the attachment ID to which the propagation belongs.
+         */
+        attachmentId: string;
+        /**
+         * Specifies the attachment type of corresponding to the propagation.  
+         * The valid values are as follows:
+         * + **vpc**: Virtual private cloud.
+         * + **vpn**: VPN gateway.
+         * + **vgw**: Virtual gateway of cloud private line.
+         * + **peering**: Peering connection, through the cloud connection (CC) to load ERs in different regions to create a
+         * peering connection.
+         * + **enc**: Enterprise connect network in EC.
+         * + **cfw**: VPC border firewall.
+         */
+        attachmentType: string;
+        /**
+         * The creation time of the propagation.
+         */
+        createdAt: string;
+        /**
+         * The propagation ID.
+         */
+        id: string;
+        /**
+         * Specifies the ER instance ID to which the propagation belongs.
+         */
+        instanceId: string;
+        /**
+         * The resource ID of the attachment associated with the propagation.
+         */
+        resourceId: string;
+        /**
+         * The route policy ID of the ingress IPv4 protocol.
+         */
+        routePolicyId: string;
+        /**
+         * Specifies the route table ID to which the propagation belongs.
+         */
+        routeTableId: string;
+        /**
+         * Specifies the status of the propagation. Default value is `available`.
+         * The valid values are as follows:
+         * + **available**
+         * + **failed**
+         */
+        status: string;
+        /**
+         * The latest update time of the propagation.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetQuotasQuota {
+        /**
+         * The number of available quotas, `-1` means unlimited.
+         */
+        limit: number;
+        /**
+         * The quota type to be queried.
+         * The valid values are as follows:
+         * + **er_instance**: Quotas and usage for enterprise router instances.
+         * + **dc_attachment**: Quotas and usage for DC attachment.
+         * + **vpc_attachment**: Quotas and usage for VPC attachment.
+         * + **vpn_attachment**: Quotas and usage for VPN attachment.
+         * + **peering_attachment**: Quotas and usage for peering attachment.
+         * + **can_attachment**: Quotas and usage for can attachment.
+         * + **route_table**: Quotas and usage for route table.
+         * + **static_route**: Quotas and usage for static route.
+         * + **vpc_er**: The number of enterprise routers that each VPC can access and the current usage.
+         * + **flow_log**: The number of flow logs that can be created per attachment.
+         */
+        type: string;
+        /**
+         * The unit of usage.
+         */
+        unit: string;
+        /**
+         * The number of quota used.
+         */
+        used: number;
+    }
+
+    export interface GetRouteTablesRouteTable {
+        /**
+         * The association configurations of the route table.  
+         * The object structure is documented below.
+         */
+        associations: outputs.Er.GetRouteTablesRouteTableAssociation[];
+        /**
+         * The creation time.
+         */
+        createdAt: string;
+        /**
+         * The description of the route table.
+         */
+        description: string;
+        /**
+         * The route ID.
+         */
+        id: string;
+        /**
+         * Whether this route table is the default association route table.
+         */
+        isDefaultAssociation: boolean;
+        /**
+         * Whether this route table is the default propagation route table.
+         */
+        isDefaultPropagation: boolean;
+        /**
+         * Specifies the name used to filter the route tables.  
+         * The name can contain `1` to `64` characters, only English letters, Chinese characters, digits, underscore (_),
+         * hyphens (-) and dots (.) allowed.
+         */
+        name: string;
+        /**
+         * The propagation configurations of the route table.  
+         * The object structure is documented below.
+         */
+        propagations: outputs.Er.GetRouteTablesRouteTablePropagation[];
+        /**
+         * The route details of the route table.  
+         * The object structure is documented below.
+         */
+        routes: outputs.Er.GetRouteTablesRouteTableRoute[];
+        /**
+         * The current status of the route.
+         */
+        status: string;
+        /**
+         * Specifies the key/value pairs used to filter the route tables.
+         */
+        tags: {[key: string]: string};
+        /**
+         * The latest update time.
+         */
+        updatedAt: string;
+    }
+
+    export interface GetRouteTablesRouteTableAssociation {
+        /**
+         * The ID of the nexthop attachment.
+         */
+        attachmentId: string;
+        /**
+         * The type of the nexthop attachment.
+         */
+        attachmentType: string;
+        /**
+         * The route ID.
+         */
+        id: string;
+    }
+
+    export interface GetRouteTablesRouteTablePropagation {
+        /**
+         * The ID of the nexthop attachment.
+         */
+        attachmentId: string;
+        /**
+         * The type of the nexthop attachment.
+         */
+        attachmentType: string;
+        /**
+         * The route ID.
+         */
+        id: string;
+    }
+
+    export interface GetRouteTablesRouteTableRoute {
+        /**
+         * The details of the attachment corresponding to the route.  
+         * The object structure is documented below.
+         */
+        attachments: outputs.Er.GetRouteTablesRouteTableRouteAttachment[];
+        /**
+         * The destination address (CIDR) of the route.
+         */
+        destination: string;
+        /**
+         * The route ID.
+         */
+        id: string;
+        /**
+         * Whether route is the black hole route.
+         */
+        isBlackhole: boolean;
+        /**
+         * The current status of the route.
+         */
+        status: string;
+    }
+
+    export interface GetRouteTablesRouteTableRouteAttachment {
+        /**
+         * The ID of the nexthop attachment.
+         */
+        attachmentId: string;
+        /**
+         * The type of the nexthop attachment.
+         */
+        attachmentType: string;
+        /**
+         * The ID of the resource associated with the attachment.
+         */
+        resourceId: string;
+    }
+
+    export interface GetTagsTag {
+        /**
+         * The key of the resource tag.
+         */
+        key: string;
+        /**
+         * All values corresponding to the key.
+         */
+        values: string[];
+    }
+
 }
 
 export namespace Evs {
@@ -9854,6 +12896,16 @@ export namespace Evs {
          */
         createAt: string;
         /**
+         * Specifies the dedicated storage pool ID. All disks in the dedicated storage
+         * pool can be filtered by exact match.
+         */
+        dedicatedStorageId: string;
+        /**
+         * Specifies the dedicated storage pool name. All disks in the dedicated
+         * storage pool can be filtered by fuzzy match.
+         */
+        dedicatedStorageName: string;
+        /**
          * The disk description.
          */
         description: string;
@@ -9871,12 +12923,31 @@ export namespace Evs {
          */
         iops: number;
         /**
+         * The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+         * SSD V2 disk. The iopsAttribute structure is documented below.
+         */
+        iopsAttributes: outputs.Evs.GetVolumesVolumeIopsAttribute[];
+        /**
+         * The disk URI. The links structure is documented below.
+         */
+        links: outputs.Evs.GetVolumesVolumeLink[];
+        /**
+         * Specifies the disk metadata.
+         * Please pay attention to escape special characters before use. Please refer to the usage of example.
+         */
+        metadata: {[key: string]: string};
+        /**
          * Specifies the name for the disks. This field will undergo a fuzzy matching query, the
          * query result is for all disks whose names contain this value.
          */
         name: string;
         /**
-         * The service type, such as EVS, DSS or DESS.
+         * The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+         * disk mapping in the VM.
+         */
+        serialNumber: string;
+        /**
+         * Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
          */
         serviceType: string;
         /**
@@ -9887,6 +12958,10 @@ export namespace Evs {
          * The disk size, in GB.
          */
         size: number;
+        /**
+         * The snapshot ID. This attribute has a value if the disk is created from a snapshot.
+         */
+        snapshotId: string;
         /**
          * Specifies the disk status. The valid values are as following:
          * + **FREEZED**
@@ -9913,9 +12988,18 @@ export namespace Evs {
          */
         throughput: number;
         /**
+         * The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+         * The throughputAttribute structure is documented below.
+         */
+        throughputAttributes: outputs.Evs.GetVolumesVolumeThroughputAttribute[];
+        /**
          * The time when the disk was updated.
          */
         updateAt: string;
+        /**
+         * The metadata of the disk image.
+         */
+        volumeImageMetadata: {[key: string]: string};
         /**
          * The disk type. Valid values are as follows:
          * + **SAS**: High I/O type.
@@ -9942,9 +13026,17 @@ export namespace Evs {
          */
         attachedMode: string;
         /**
+         * The ID of the attached disk.
+         */
+        attachedVolumeId: string;
+        /**
          * The device name to which the disk is attached.
          */
         deviceName: string;
+        /**
+         * The name of the physical host housing the cloud server to which the disk is attached.
+         */
+        hostName: string;
         /**
          * The ID of the attached resource in UUID format.
          */
@@ -9953,13 +13045,70 @@ export namespace Evs {
          * Specifies the server ID to which the disks are attached.
          */
         serverId: string;
+        /**
+         * Specifies the ID for the disk.
+         */
+        volumeId: string;
+    }
+
+    export interface GetVolumesVolumeIopsAttribute {
+        /**
+         * The frozen tag.
+         */
+        frozened: boolean;
+        /**
+         * The ID of the attached resource in UUID format.
+         */
+        id: string;
+        /**
+         * The IOPS.
+         */
+        totalVal: number;
+    }
+
+    export interface GetVolumesVolumeLink {
+        /**
+         * The corresponding shortcut link.
+         */
+        href: string;
+        /**
+         * The shortcut link marker name.
+         */
+        rel: string;
+    }
+
+    export interface GetVolumesVolumeThroughputAttribute {
+        /**
+         * The frozen tag.
+         */
+        frozened: boolean;
+        /**
+         * The ID of the attached resource in UUID format.
+         */
+        id: string;
+        /**
+         * The IOPS.
+         */
+        totalVal: number;
     }
 
     export interface VolumeAttachment {
         /**
+         * The time when the disk was attached.
+         */
+        attachedAt: string;
+        /**
+         * The ID of the attached disk.
+         */
+        attachedVolumeId: string;
+        /**
          * The device name.
          */
         device: string;
+        /**
+         * The name of the physical host housing the cloud server to which the disk is attached.
+         */
+        hostName: string;
         /**
          * The ID of the attachment information.
          */
@@ -9968,8 +13117,52 @@ export namespace Evs {
          * The ID of the server to which the disk is attached.
          */
         instanceId: string;
+        /**
+         * The disk ID.
+         */
+        volumeId: string;
     }
 
+    export interface VolumeIopsAttribute {
+        /**
+         * The frozen tag.
+         */
+        frozened: boolean;
+        /**
+         * The ID of the attachment information.
+         */
+        id: string;
+        /**
+         * The throughput.
+         */
+        totalVal: number;
+    }
+
+    export interface VolumeLink {
+        /**
+         * The corresponding shortcut link.
+         */
+        href: string;
+        /**
+         * The shortcut link marker name.
+         */
+        rel: string;
+    }
+
+    export interface VolumeThroughputAttribute {
+        /**
+         * The frozen tag.
+         */
+        frozened: boolean;
+        /**
+         * The ID of the attachment information.
+         */
+        id: string;
+        /**
+         * The throughput.
+         */
+        totalVal: number;
+    }
 }
 
 export namespace FunctionGraph {
@@ -12645,6 +15838,208 @@ export namespace Iec {
     }
 }
 
+export namespace Ims {
+    export interface GetImagesImage {
+        /**
+         * Specifies whether the image supports host security or host monitoring.
+         * The valid values are as follows:
+         * + **hss**: Host security.
+         * + **ces**: Host monitoring.
+         * + **hss,ces**: Both support.
+         */
+        __supportAgentList: string;
+        /**
+         * The time when the image status changes to active, in RFC3339 format.
+         */
+        activeAt: string;
+        /**
+         * Specifies the image architecture type. The value can be **x86** or **arm**.
+         */
+        architecture: string;
+        /**
+         * The backup ID of the whole image in the CBR vault.
+         */
+        backupId: string;
+        /**
+         * The format of the image's container.
+         */
+        containerFormat: string;
+        /**
+         * The creation time of the image, in RFC3339 format.
+         */
+        createdAt: string;
+        /**
+         * The image source. The format is **server_backup,backup_id**,  **instance,instance_id**,
+         * **server_backup,vault_id**,  **volume,volume_id**, **file,image_url**, or **image,region,image_id**.
+         */
+        dataOrigin: string;
+        /**
+         * The description of the image.
+         */
+        description: string;
+        /**
+         * The image format. The value can be **zvhd2**, **vhd**, **zvhd**, **raw**, **qcow2**, or **iso**.
+         */
+        diskFormat: string;
+        /**
+         * Specifies the enterprise project ID of the image.
+         * For enterprise users, if omitted, will query the images under all enterprise projects.
+         */
+        enterpriseProjectId: string;
+        /**
+         * The image file download and upload links.
+         */
+        file: string;
+        /**
+         * The ID of the image
+         */
+        id: string;
+        /**
+         * Specifies the environment where the image is used.
+         * The valid values are as follows:
+         * + **FusionCompute**: Cloud server image, also known as system disk image.
+         * + **DataImage**: Data disk image.
+         * + **Ironic**: Bare metal server image.
+         * + **IsoImage**: ISO image.
+         */
+        imageType: string;
+        /**
+         * The maximum memory supported by the image, in MB unit.
+         */
+        maxRamMb: number;
+        /**
+         * The minimum disk space required to run an image, in GB unit.
+         * + When the operating system is Linux, the value ranges from `10` to `1,024`.
+         * + When the operating system is Windows, the value ranges from `20` to `1,024`.
+         */
+        minDiskGb: number;
+        /**
+         * The minimum memory required to run an image, in MB unit.
+         */
+        minRamMb: number;
+        /**
+         * Specifies the name of the image. Cannot be used simultaneously with `nameRegex`.
+         */
+        name: string;
+        /**
+         * Specifies the image OS type. The value can be **Windows**, **Ubuntu**, **RedHat**, **SUSE**,
+         * **CentOS**, **Debian**, **OpenSUSE**, **Oracle Linux**, **Fedora**, **Other**, **CoreOS**, or **EulerOS**.
+         */
+        os: string;
+        /**
+         * The operating system version of the image.
+         */
+        osVersion: string;
+        /**
+         * Specifies the owner (UUID) of the image.
+         */
+        owner: string;
+        /**
+         * Indicates whether the image is protected, protected images cannot be deleted.
+         * The valid value is **true** or **false**.
+         */
+        protected: boolean;
+        /**
+         * The image view.
+         */
+        schema: string;
+        /**
+         * The size of the image file, in bytes unit.
+         */
+        sizeBytes: number;
+        /**
+         * The status of the image. The valid value is **active**.
+         */
+        status: string;
+        /**
+         * The last update time of the image, in RFC3339 format.
+         */
+        updatedAt: string;
+        /**
+         * Specifies the visibility of the image. Must be one of **public**, **private**,
+         * **market** or **shared**.
+         */
+        visibility: string;
+    }
+
+    export interface GetOsVersionsOsVersion {
+        /**
+         * The operating system platform.
+         */
+        platform: string;
+        /**
+         * The operating system details.
+         */
+        versions: outputs.Ims.GetOsVersionsOsVersionVersion[];
+    }
+
+    export interface GetOsVersionsOsVersionVersion {
+        /**
+         * The number of bits for the operating system.
+         */
+        osBit: number;
+        /**
+         * The type of operating system.
+         */
+        osType: string;
+        /**
+         * The complete information of the operating system.
+         */
+        osVersion: string;
+        /**
+         * The operating system key value.
+         * By default, the value of `osVersion` is taken as the `osVersionKey` value.
+         */
+        osVersionKey: string;
+        /**
+         * The operating system platform.
+         */
+        platform: string;
+    }
+
+    export interface GetQuotasQuota {
+        /**
+         * The quota resources.
+         */
+        resources: outputs.Ims.GetQuotasQuotaResource[];
+    }
+
+    export interface GetQuotasQuotaResource {
+        /**
+         * The maximum quota of resources.
+         */
+        max: number;
+        /**
+         * The minimum quota of resources.
+         */
+        min: number;
+        /**
+         * The total quota of resources.
+         */
+        quota: number;
+        /**
+         * The resource type. The valid value is **image**.
+         */
+        type: string;
+        /**
+         * The number of resource quotas already in use.
+         */
+        used: number;
+    }
+
+    export interface GetTagsTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The value list of the tag. If the tag has only a key, it appears as an empty string in the value list.
+         */
+        values: string[];
+    }
+
+}
+
 export namespace IoTDA {
     export interface DataforwardingRuleTarget {
         /**
@@ -14428,13 +17823,9 @@ export namespace Mrs {
          */
         assignedRoles?: string[];
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: number;
         /**
@@ -14465,7 +17856,8 @@ export namespace Mrs {
          */
         hostIps: string[];
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: number;
         /**
@@ -14487,13 +17879,9 @@ export namespace Mrs {
          */
         assignedRoles?: string[];
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: number;
         /**
@@ -14524,7 +17912,8 @@ export namespace Mrs {
          */
         hostIps: string[];
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: number;
         /**
@@ -14628,13 +18017,9 @@ export namespace Mrs {
          */
         assignedRoles?: string[];
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: number;
         /**
@@ -14658,7 +18043,8 @@ export namespace Mrs {
          */
         flavor: string;
         /**
-         * Specifies the name of nodes for the node group.
+         * Specifies the name of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         groupName: string;
         /**
@@ -14669,7 +18055,8 @@ export namespace Mrs {
          */
         hostIps: string[];
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: number;
         /**
@@ -14721,13 +18108,9 @@ export namespace Mrs {
          */
         assignedRoles?: string[];
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: number;
         /**
@@ -14758,7 +18141,8 @@ export namespace Mrs {
          */
         hostIps: string[];
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: number;
         /**
@@ -14793,13 +18177,9 @@ export namespace Mrs {
          */
         assignedRoles?: string[];
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: number;
         /**
@@ -14830,7 +18210,8 @@ export namespace Mrs {
          */
         hostIps: string[];
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: number;
         /**
@@ -14852,13 +18233,9 @@ export namespace Mrs {
          */
         assignedRoles?: string[];
         /**
-         * Specifies the data disk number of the nodes. The number configuration
-         * of each node are as follows:
-         * + **master_nodes**: 1.
-         * + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-         * + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+         * Specifies the data disk number of the nodes.  
+         * The valid value is `1`.
+         * Changing this will create a new MapReduce cluster resource.
          */
         dataVolumeCount: number;
         /**
@@ -14889,7 +18266,8 @@ export namespace Mrs {
          */
         hostIps: string[];
         /**
-         * Specifies the number of nodes for the node group.
+         * Specifies the number of nodes for the node group.  
+         * Changing this will create a new MapReduce cluster resource.
          */
         nodeNumber: number;
         /**
@@ -20929,7 +24307,8 @@ export namespace config {
     export interface AssumeRole {
         agencyName: string;
         domainId?: string;
-        domainName: string;
+        domainName?: string;
+        duration?: number;
     }
 
 }

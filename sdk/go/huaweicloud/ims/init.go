@@ -21,8 +21,28 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "huaweicloud:Ims/cbrWholeImage:CbrWholeImage":
+		r = &CbrWholeImage{}
+	case "huaweicloud:Ims/ecsWholeImage:EcsWholeImage":
+		r = &EcsWholeImage{}
+	case "huaweicloud:Ims/evsDataImage:EvsDataImage":
+		r = &EvsDataImage{}
 	case "huaweicloud:Ims/image:Image":
 		r = &Image{}
+	case "huaweicloud:Ims/imageCopy:ImageCopy":
+		r = &ImageCopy{}
+	case "huaweicloud:Ims/imageExport:ImageExport":
+		r = &ImageExport{}
+	case "huaweicloud:Ims/imageShare:ImageShare":
+		r = &ImageShare{}
+	case "huaweicloud:Ims/imageShareAccepter:ImageShareAccepter":
+		r = &ImageShareAccepter{}
+	case "huaweicloud:Ims/obsDataImage:ObsDataImage":
+		r = &ObsDataImage{}
+	case "huaweicloud:Ims/obsIsoImage:ObsIsoImage":
+		r = &ObsIsoImage{}
+	case "huaweicloud:Ims/obsSystemImage:ObsSystemImage":
+		r = &ObsSystemImage{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -38,7 +58,57 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"huaweicloud",
+		"Ims/cbrWholeImage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/ecsWholeImage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/evsDataImage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
 		"Ims/image",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/imageCopy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/imageExport",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/imageShare",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/imageShareAccepter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/obsDataImage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/obsIsoImage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"huaweicloud",
+		"Ims/obsSystemImage",
 		&module{version},
 	)
 }

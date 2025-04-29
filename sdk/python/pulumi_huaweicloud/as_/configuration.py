@@ -80,12 +80,14 @@ class ConfigurationArgs:
 @pulumi.input_type
 class _ConfigurationState:
     def __init__(__self__, *,
+                 create_time: Optional[pulumi.Input[str]] = None,
                  instance_config: Optional[pulumi.Input['ConfigurationInstanceConfigArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_configuration_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Configuration resources.
+        :param pulumi.Input[str] create_time: The creation time of the AS configuration, in UTC format.
         :param pulumi.Input['ConfigurationInstanceConfigArgs'] instance_config: Specifies the information about instance configuration.
                The instance_config structure is documented below.
                Changing this will create a new resource.
@@ -96,6 +98,8 @@ class _ConfigurationState:
                Changing this will create a new resource.
         :param pulumi.Input[str] status: The AS configuration status, the value can be **Bound** or **Unbound**.
         """
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
         if instance_config is not None:
             pulumi.set(__self__, "instance_config", instance_config)
         if region is not None:
@@ -104,6 +108,18 @@ class _ConfigurationState:
             pulumi.set(__self__, "scaling_configuration_name", scaling_configuration_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The creation time of the AS configuration, in UTC format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create_time", value)
 
     @property
     @pulumi.getter(name="instanceConfig")
@@ -309,16 +325,26 @@ class Configuration(pulumi.CustomResource):
         AS configurations can be imported by their `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:As/configuration:Configuration test 18518c8a-9d15-416b-8add-2ee874751d18
+         $ pulumi import huaweicloud:As/configuration:Configuration test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`, `instance_config.0.admin_pass`, and `instance_config.0.metadata` are missing from the API response. You can ignore changes after importing an AS configuration as below. hcl resource "huaweicloud_as_configuration" "test" {
+         Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`, `instance_config.0.admin_pass`, `instance_config.0.user_data`, and `instance_config.0.metadata` are missing from the API response. You can ignore changes after importing an AS configuration as below. hcl resource "huaweicloud_as_configuration" "test" {
 
          ...
 
          lifecycle {
 
-         ignore_changes = [ instance_config.0.instance_id, instance_config.0.admin_pass, instance_config.0.metadata ]
+         ignore_changes = [
+
+         instance_config.0.instance_id,
+
+         instance_config.0.admin_pass,
+
+         instance_config.0.user_data,
+
+         instance_config.0.metadata,
+
+         ]
 
          } }
 
@@ -480,16 +506,26 @@ class Configuration(pulumi.CustomResource):
         AS configurations can be imported by their `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:As/configuration:Configuration test 18518c8a-9d15-416b-8add-2ee874751d18
+         $ pulumi import huaweicloud:As/configuration:Configuration test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`, `instance_config.0.admin_pass`, and `instance_config.0.metadata` are missing from the API response. You can ignore changes after importing an AS configuration as below. hcl resource "huaweicloud_as_configuration" "test" {
+         Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`, `instance_config.0.admin_pass`, `instance_config.0.user_data`, and `instance_config.0.metadata` are missing from the API response. You can ignore changes after importing an AS configuration as below. hcl resource "huaweicloud_as_configuration" "test" {
 
          ...
 
          lifecycle {
 
-         ignore_changes = [ instance_config.0.instance_id, instance_config.0.admin_pass, instance_config.0.metadata ]
+         ignore_changes = [
+
+         instance_config.0.instance_id,
+
+         instance_config.0.admin_pass,
+
+         instance_config.0.user_data,
+
+         instance_config.0.metadata,
+
+         ]
 
          } }
 
@@ -527,6 +563,7 @@ class Configuration(pulumi.CustomResource):
             if scaling_configuration_name is None and not opts.urn:
                 raise TypeError("Missing required property 'scaling_configuration_name'")
             __props__.__dict__["scaling_configuration_name"] = scaling_configuration_name
+            __props__.__dict__["create_time"] = None
             __props__.__dict__["status"] = None
         super(Configuration, __self__).__init__(
             'huaweicloud:As/configuration:Configuration',
@@ -538,6 +575,7 @@ class Configuration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
             instance_config: Optional[pulumi.Input[pulumi.InputType['ConfigurationInstanceConfigArgs']]] = None,
             region: Optional[pulumi.Input[str]] = None,
             scaling_configuration_name: Optional[pulumi.Input[str]] = None,
@@ -549,6 +587,7 @@ class Configuration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] create_time: The creation time of the AS configuration, in UTC format.
         :param pulumi.Input[pulumi.InputType['ConfigurationInstanceConfigArgs']] instance_config: Specifies the information about instance configuration.
                The instance_config structure is documented below.
                Changing this will create a new resource.
@@ -563,11 +602,20 @@ class Configuration(pulumi.CustomResource):
 
         __props__ = _ConfigurationState.__new__(_ConfigurationState)
 
+        __props__.__dict__["create_time"] = create_time
         __props__.__dict__["instance_config"] = instance_config
         __props__.__dict__["region"] = region
         __props__.__dict__["scaling_configuration_name"] = scaling_configuration_name
         __props__.__dict__["status"] = status
         return Configuration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> pulumi.Output[str]:
+        """
+        The creation time of the AS configuration, in UTC format.
+        """
+        return pulumi.get(self, "create_time")
 
     @property
     @pulumi.getter(name="instanceConfig")

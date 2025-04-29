@@ -300,6 +300,7 @@ class _L7policyState:
                  action: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  fixed_response_config: Optional[pulumi.Input['L7policyFixedResponseConfigArgs']] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -324,8 +325,9 @@ class _L7policyState:
                + **REDIRECT_TO_URL**: Requests are forwarded to another URL whose config specified by `redirect_url_config`.
                + **FIXED_RESPONSE**: Requests are forwarded to a fixed response body specified by `fixed_response_config`.
                Defaults to **REDIRECT_TO_POOL**.
-        :param pulumi.Input[str] created_at: The create time of the L7 policy.
+        :param pulumi.Input[str] created_at: The creation time of the L7 policy.
         :param pulumi.Input[str] description: Human-readable description for the L7 Policy.
+        :param pulumi.Input[str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input['L7policyFixedResponseConfigArgs'] fixed_response_config: The fixed configuration of the page to which the traffic is
                redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhance_l7policy_enable` of
                the listener must be set to **true**.
@@ -371,6 +373,8 @@ class _L7policyState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if fixed_response_config is not None:
             pulumi.set(__self__, "fixed_response_config", fixed_response_config)
         if listener_id is not None:
@@ -422,7 +426,7 @@ class _L7policyState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The create time of the L7 policy.
+        The creation time of the L7 policy.
         """
         return pulumi.get(self, "created_at")
 
@@ -441,6 +445,18 @@ class _L7policyState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @property
     @pulumi.getter(name="fixedResponseConfig")
@@ -937,6 +953,7 @@ class L7policy(pulumi.CustomResource):
             __props__.__dict__["redirect_url_config"] = redirect_url_config
             __props__.__dict__["region"] = region
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["enterprise_project_id"] = None
             __props__.__dict__["provisioning_status"] = None
             __props__.__dict__["updated_at"] = None
         super(L7policy, __self__).__init__(
@@ -952,6 +969,7 @@ class L7policy(pulumi.CustomResource):
             action: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[str]] = None,
             fixed_response_config: Optional[pulumi.Input[pulumi.InputType['L7policyFixedResponseConfigArgs']]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -981,8 +999,9 @@ class L7policy(pulumi.CustomResource):
                + **REDIRECT_TO_URL**: Requests are forwarded to another URL whose config specified by `redirect_url_config`.
                + **FIXED_RESPONSE**: Requests are forwarded to a fixed response body specified by `fixed_response_config`.
                Defaults to **REDIRECT_TO_POOL**.
-        :param pulumi.Input[str] created_at: The create time of the L7 policy.
+        :param pulumi.Input[str] created_at: The creation time of the L7 policy.
         :param pulumi.Input[str] description: Human-readable description for the L7 Policy.
+        :param pulumi.Input[str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input[pulumi.InputType['L7policyFixedResponseConfigArgs']] fixed_response_config: The fixed configuration of the page to which the traffic is
                redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhance_l7policy_enable` of
                the listener must be set to **true**.
@@ -1029,6 +1048,7 @@ class L7policy(pulumi.CustomResource):
         __props__.__dict__["action"] = action
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["fixed_response_config"] = fixed_response_config
         __props__.__dict__["listener_id"] = listener_id
         __props__.__dict__["name"] = name
@@ -1064,7 +1084,7 @@ class L7policy(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The create time of the L7 policy.
+        The creation time of the L7 policy.
         """
         return pulumi.get(self, "created_at")
 
@@ -1075,6 +1095,14 @@ class L7policy(pulumi.CustomResource):
         Human-readable description for the L7 Policy.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter(name="fixedResponseConfig")

@@ -171,7 +171,7 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import huaweicloud:As/policy:Policy test 9fcb65fe-fd79-4407-8fa0-07602044e1c3
+//	$ pulumi import huaweicloud:As/policy:Policy test <id>
 //
 // ```
 type Policy struct {
@@ -186,6 +186,8 @@ type Policy struct {
 	// Specifies the cooling duration (in seconds).
 	// The value ranges from 0 to 86400 and is 300 by default.
 	CoolDownTime pulumi.IntOutput `pulumi:"coolDownTime"`
+	// The creation time of the AS policy, in UTC format.
+	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// Specifies the region in which to create the AS policy. If omitted, the
 	// provider-level region will be used. Changing this creates a new AS policy.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -258,6 +260,8 @@ type policyState struct {
 	// Specifies the cooling duration (in seconds).
 	// The value ranges from 0 to 86400 and is 300 by default.
 	CoolDownTime *int `pulumi:"coolDownTime"`
+	// The creation time of the AS policy, in UTC format.
+	CreateTime *string `pulumi:"createTime"`
 	// Specifies the region in which to create the AS policy. If omitted, the
 	// provider-level region will be used. Changing this creates a new AS policy.
 	Region *string `pulumi:"region"`
@@ -292,6 +296,8 @@ type PolicyState struct {
 	// Specifies the cooling duration (in seconds).
 	// The value ranges from 0 to 86400 and is 300 by default.
 	CoolDownTime pulumi.IntPtrInput
+	// The creation time of the AS policy, in UTC format.
+	CreateTime pulumi.StringPtrInput
 	// Specifies the region in which to create the AS policy. If omitted, the
 	// provider-level region will be used. Changing this creates a new AS policy.
 	Region pulumi.StringPtrInput
@@ -488,6 +494,11 @@ func (o PolicyOutput) AlarmId() pulumi.StringPtrOutput {
 // The value ranges from 0 to 86400 and is 300 by default.
 func (o PolicyOutput) CoolDownTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *Policy) pulumi.IntOutput { return v.CoolDownTime }).(pulumi.IntOutput)
+}
+
+// The creation time of the AS policy, in UTC format.
+func (o PolicyOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
 // Specifies the region in which to create the AS policy. If omitted, the

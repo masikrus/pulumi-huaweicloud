@@ -55,6 +55,8 @@ func GetPools(ctx *pulumi.Context, args *GetPoolsArgs, opts ...pulumi.InvokeOpti
 type GetPoolsArgs struct {
 	// Specifies the description of the ELB pool.
 	Description *string `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies the health monitor ID of the ELB pool.
 	HealthmonitorId *string `pulumi:"healthmonitorId"`
 	// Specifies the method of the ELB pool. Must be one of ROUND_ROBIN, LEAST_CONNECTIONS,
@@ -62,6 +64,10 @@ type GetPoolsArgs struct {
 	LbMethod *string `pulumi:"lbMethod"`
 	// Specifies the loadbalancer ID of the ELB pool.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
+	// Specifies the private IP address bound to the backend server.
+	MemberAddress *string `pulumi:"memberAddress"`
+	// Specifies the ID of the cloud server that serves as a backend server.
+	MemberDeviceId *string `pulumi:"memberDeviceId"`
 	// Specifies the name of the ELB pool.
 	Name *string `pulumi:"name"`
 	// Specifies the ID of the ELB pool.
@@ -76,7 +82,8 @@ type GetPoolsArgs struct {
 // A collection of values returned by getPools.
 type GetPoolsResult struct {
 	// The description of pool.
-	Description *string `pulumi:"description"`
+	Description         *string `pulumi:"description"`
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// The health monitor ID of the LB pool.
 	HealthmonitorId *string `pulumi:"healthmonitorId"`
 	// The provider-assigned unique ID for this managed resource.
@@ -84,6 +91,8 @@ type GetPoolsResult struct {
 	// The load balancing algorithm to distribute traffic to the pool's members.
 	LbMethod       *string `pulumi:"lbMethod"`
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
+	MemberAddress  *string `pulumi:"memberAddress"`
+	MemberDeviceId *string `pulumi:"memberDeviceId"`
 	// The pool name.
 	Name   *string `pulumi:"name"`
 	PoolId *string `pulumi:"poolId"`
@@ -112,6 +121,8 @@ func GetPoolsOutput(ctx *pulumi.Context, args GetPoolsOutputArgs, opts ...pulumi
 type GetPoolsOutputArgs struct {
 	// Specifies the description of the ELB pool.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId pulumi.StringPtrInput `pulumi:"enterpriseProjectId"`
 	// Specifies the health monitor ID of the ELB pool.
 	HealthmonitorId pulumi.StringPtrInput `pulumi:"healthmonitorId"`
 	// Specifies the method of the ELB pool. Must be one of ROUND_ROBIN, LEAST_CONNECTIONS,
@@ -119,6 +130,10 @@ type GetPoolsOutputArgs struct {
 	LbMethod pulumi.StringPtrInput `pulumi:"lbMethod"`
 	// Specifies the loadbalancer ID of the ELB pool.
 	LoadbalancerId pulumi.StringPtrInput `pulumi:"loadbalancerId"`
+	// Specifies the private IP address bound to the backend server.
+	MemberAddress pulumi.StringPtrInput `pulumi:"memberAddress"`
+	// Specifies the ID of the cloud server that serves as a backend server.
+	MemberDeviceId pulumi.StringPtrInput `pulumi:"memberDeviceId"`
 	// Specifies the name of the ELB pool.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Specifies the ID of the ELB pool.
@@ -154,6 +169,10 @@ func (o GetPoolsResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+func (o GetPoolsResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
+}
+
 // The health monitor ID of the LB pool.
 func (o GetPoolsResultOutput) HealthmonitorId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.HealthmonitorId }).(pulumi.StringPtrOutput)
@@ -171,6 +190,14 @@ func (o GetPoolsResultOutput) LbMethod() pulumi.StringPtrOutput {
 
 func (o GetPoolsResultOutput) LoadbalancerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoolsResult) *string { return v.LoadbalancerId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) MemberAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.MemberAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPoolsResultOutput) MemberDeviceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPoolsResult) *string { return v.MemberDeviceId }).(pulumi.StringPtrOutput)
 }
 
 // The pool name.

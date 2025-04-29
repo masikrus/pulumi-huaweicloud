@@ -223,6 +223,62 @@ import (
 //	}
 //
 // ```
+// ### Alarm rule using the alarm template
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/huaweicloud/pulumi-huaweicloud/sdk/go/huaweicloud/Cse"
+//	"github.com/pulumi/pulumi-huaweicloud/sdk/go/huaweicloud/Cse"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			topicUrn := cfg.RequireObject("topicUrn")
+//			alarmTemplateId := cfg.RequireObject("alarmTemplateId")
+//			instanceId := cfg.RequireObject("instanceId")
+//			_, err := Cse.NewAlarmrule(ctx, "test", &Cse.AlarmruleArgs{
+//				AlarmName:          pulumi.String("rule-test"),
+//				AlarmEnabled:       pulumi.Bool(true),
+//				AlarmActionEnabled: pulumi.Bool(true),
+//				AlarmType:          pulumi.String("MULTI_INSTANCE"),
+//				AlarmTemplateId:    pulumi.Any(alarmTemplateId),
+//				Metric: &cse.AlarmruleMetricArgs{
+//					Namespace: pulumi.String("SYS.ECS"),
+//				},
+//				Resources: cse.AlarmruleResourceArray{
+//					&cse.AlarmruleResourceArgs{
+//						Dimensions: cse.AlarmruleResourceDimensionArray{
+//							&cse.AlarmruleResourceDimensionArgs{
+//								Name:  pulumi.String("instance_id"),
+//								Value: pulumi.Any(instanceId),
+//							},
+//						},
+//					},
+//				},
+//				AlarmActions: cse.AlarmruleAlarmActionArray{
+//					&cse.AlarmruleAlarmActionArgs{
+//						Type: pulumi.String("notification"),
+//						NotificationLists: pulumi.StringArray{
+//							pulumi.Any(topicUrn),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
@@ -258,10 +314,16 @@ type Alarmrule struct {
 	// + alarm: An alarm is generated;
 	// + insufficient_data: The required data is insufficient.
 	AlarmState pulumi.StringOutput `pulumi:"alarmState"`
+	// Specifies the ID of the alarm template.
+	// When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+	// and `okActions` cannot be updated.
+	// Changing this creates a new resource.
+	AlarmTemplateId pulumi.StringPtrOutput `pulumi:"alarmTemplateId"`
 	// Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
 	// **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
 	AlarmType pulumi.StringPtrOutput `pulumi:"alarmType"`
-	// Specifies the alarm triggering condition. The structure is described below.
+	// Specifies the alarm triggering condition.
+	// The condition structure is documented below.
 	Conditions AlarmruleConditionArrayOutput `pulumi:"conditions"`
 	// Specifies the enterprise project ID of the alarm rule.
 	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
@@ -300,9 +362,6 @@ func NewAlarmrule(ctx *pulumi.Context,
 
 	if args.AlarmName == nil {
 		return nil, errors.New("invalid value for required argument 'AlarmName'")
-	}
-	if args.Conditions == nil {
-		return nil, errors.New("invalid value for required argument 'Conditions'")
 	}
 	if args.Metric == nil {
 		return nil, errors.New("invalid value for required argument 'Metric'")
@@ -352,10 +411,16 @@ type alarmruleState struct {
 	// + alarm: An alarm is generated;
 	// + insufficient_data: The required data is insufficient.
 	AlarmState *string `pulumi:"alarmState"`
+	// Specifies the ID of the alarm template.
+	// When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+	// and `okActions` cannot be updated.
+	// Changing this creates a new resource.
+	AlarmTemplateId *string `pulumi:"alarmTemplateId"`
 	// Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
 	// **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
 	AlarmType *string `pulumi:"alarmType"`
-	// Specifies the alarm triggering condition. The structure is described below.
+	// Specifies the alarm triggering condition.
+	// The condition structure is documented below.
 	Conditions []AlarmruleCondition `pulumi:"conditions"`
 	// Specifies the enterprise project ID of the alarm rule.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
@@ -408,10 +473,16 @@ type AlarmruleState struct {
 	// + alarm: An alarm is generated;
 	// + insufficient_data: The required data is insufficient.
 	AlarmState pulumi.StringPtrInput
+	// Specifies the ID of the alarm template.
+	// When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+	// and `okActions` cannot be updated.
+	// Changing this creates a new resource.
+	AlarmTemplateId pulumi.StringPtrInput
 	// Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
 	// **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
 	AlarmType pulumi.StringPtrInput
-	// Specifies the alarm triggering condition. The structure is described below.
+	// Specifies the alarm triggering condition.
+	// The condition structure is documented below.
 	Conditions AlarmruleConditionArrayInput
 	// Specifies the enterprise project ID of the alarm rule.
 	EnterpriseProjectId pulumi.StringPtrInput
@@ -463,10 +534,16 @@ type alarmruleArgs struct {
 	// Specifies the name of an alarm rule. The value can be a string of `1` to `128`
 	// characters that can consist of English letters, Chinese characters, digits, underscores (_), hyphens (-).
 	AlarmName string `pulumi:"alarmName"`
+	// Specifies the ID of the alarm template.
+	// When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+	// and `okActions` cannot be updated.
+	// Changing this creates a new resource.
+	AlarmTemplateId *string `pulumi:"alarmTemplateId"`
 	// Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
 	// **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
 	AlarmType *string `pulumi:"alarmType"`
-	// Specifies the alarm triggering condition. The structure is described below.
+	// Specifies the alarm triggering condition.
+	// The condition structure is documented below.
 	Conditions []AlarmruleCondition `pulumi:"conditions"`
 	// Specifies the enterprise project ID of the alarm rule.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
@@ -513,10 +590,16 @@ type AlarmruleArgs struct {
 	// Specifies the name of an alarm rule. The value can be a string of `1` to `128`
 	// characters that can consist of English letters, Chinese characters, digits, underscores (_), hyphens (-).
 	AlarmName pulumi.StringInput
+	// Specifies the ID of the alarm template.
+	// When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+	// and `okActions` cannot be updated.
+	// Changing this creates a new resource.
+	AlarmTemplateId pulumi.StringPtrInput
 	// Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
 	// **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
 	AlarmType pulumi.StringPtrInput
-	// Specifies the alarm triggering condition. The structure is described below.
+	// Specifies the alarm triggering condition.
+	// The condition structure is documented below.
 	Conditions AlarmruleConditionArrayInput
 	// Specifies the enterprise project ID of the alarm rule.
 	EnterpriseProjectId pulumi.StringPtrInput
@@ -674,13 +757,22 @@ func (o AlarmruleOutput) AlarmState() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alarmrule) pulumi.StringOutput { return v.AlarmState }).(pulumi.StringOutput)
 }
 
+// Specifies the ID of the alarm template.
+// When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+// and `okActions` cannot be updated.
+// Changing this creates a new resource.
+func (o AlarmruleOutput) AlarmTemplateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarmrule) pulumi.StringPtrOutput { return v.AlarmTemplateId }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
 // **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
 func (o AlarmruleOutput) AlarmType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alarmrule) pulumi.StringPtrOutput { return v.AlarmType }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the alarm triggering condition. The structure is described below.
+// Specifies the alarm triggering condition.
+// The condition structure is documented below.
 func (o AlarmruleOutput) Conditions() AlarmruleConditionArrayOutput {
 	return o.ApplyT(func(v *Alarmrule) AlarmruleConditionArrayOutput { return v.Conditions }).(AlarmruleConditionArrayOutput)
 }

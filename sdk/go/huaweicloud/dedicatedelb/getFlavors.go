@@ -55,17 +55,40 @@ func GetFlavors(ctx *pulumi.Context, args *GetFlavorsArgs, opts ...pulumi.Invoke
 type GetFlavorsArgs struct {
 	// Specifies the bandwidth size(Mbit/s) in the flavor.
 	Bandwidth *int `pulumi:"bandwidth"`
+	// Specifies the category.
+	Category *int `pulumi:"category"`
 	// Specifies the cps in the flavor.
 	Cps *int `pulumi:"cps"`
+	// Specifies the flavor ID.
+	FlavorId *string `pulumi:"flavorId"`
+	// Specifies whether the flavor is available.
+	// + **true**: indicates the flavor is unavailable.
+	// + **false**: indicates the flavor is available.
+	FlavorSoldOut *string `pulumi:"flavorSoldOut"`
+	// Specifies whether return all maximum elastic specifications. Value options: **true**,
+	// **false**.
+	// + If it is set to **true**, all maximum elastic specifications defined by l4ElasticMax and l7ElasticMax are returned.
+	// + If it is set to **false**, only the largest elastic specifications will be returned.
+	// + For Layer 4 load balancers, the specification with the highest cps value is returned. If the cps values are the same,
+	//   the specification with the highest bandwidth value is returned.
+	// + For Layer 7 load balancers, the specification with highest httpsCps value is returned. If the httpsCps values are
+	//   the same, the specification with highest qps value is returned.
+	ListAll *string `pulumi:"listAll"`
 	// Specifies the maximum connections in the flavor.
 	MaxConnections *int `pulumi:"maxConnections"`
 	// Specifies the flavor name.
 	Name *string `pulumi:"name"`
+	// Specifies the public border group.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
 	// Specifies the qps in the L7 flavor.
 	Qps *int `pulumi:"qps"`
 	// The region in which to obtain the flavors. If omitted, the provider-level region will be
 	// used.
 	Region *string `pulumi:"region"`
+	// Specifies whether the flavor is available to all users. Value options:
+	// + **true**: indicates that the flavor is available to all users.
+	// + **false**: indicates that the flavor is available only to a specific user.
+	Shared *string `pulumi:"shared"`
 	// Specifies the flavor type. Values options:
 	// + **L4**: indicates Layer-4 flavor.
 	// + **L7**: indicates Layer-7 flavor.
@@ -78,24 +101,35 @@ type GetFlavorsArgs struct {
 
 // A collection of values returned by getFlavors.
 type GetFlavorsResult struct {
-	// Bandwidth size(Mbit/s) of the flavor.
+	// Indicates the bandwidth size(Mbit/s) of the flavor.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// Cps of the flavor.
-	Cps *int `pulumi:"cps"`
-	// A list of flavors. Each element contains the following attributes:
+	// Indicates the category.
+	Category *int `pulumi:"category"`
+	// Indicates the cps of the flavor.
+	Cps      *int    `pulumi:"cps"`
+	FlavorId *string `pulumi:"flavorId"`
+	// Indicates whether the flavor is available.
+	FlavorSoldOut *string `pulumi:"flavorSoldOut"`
+	// Indicates the list of flavors.
+	// The flavors structure is documented below.
 	Flavors []GetFlavorsFlavor `pulumi:"flavors"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// A list of flavor IDs.
-	Ids []string `pulumi:"ids"`
-	// Maximum connections of the flavor.
+	// Indicates the list of flavor IDs.
+	Ids     []string `pulumi:"ids"`
+	ListAll *string  `pulumi:"listAll"`
+	// Indicates the maximum connections of the flavor.
 	MaxConnections *int `pulumi:"maxConnections"`
-	// Name of the flavor.
+	// Indicates the name of the flavor.
 	Name *string `pulumi:"name"`
-	// Qps of the L7 flavor.
+	// Indicates the public border group.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
+	// Indicates the qps of the L7 flavor.
 	Qps    *int   `pulumi:"qps"`
 	Region string `pulumi:"region"`
-	// Type of the flavor.
+	// Indicates  whether the flavor is available to all users.
+	Shared *string `pulumi:"shared"`
+	// Indicates the type of the flavor.
 	Type *string `pulumi:"type"`
 }
 
@@ -116,17 +150,40 @@ func GetFlavorsOutput(ctx *pulumi.Context, args GetFlavorsOutputArgs, opts ...pu
 type GetFlavorsOutputArgs struct {
 	// Specifies the bandwidth size(Mbit/s) in the flavor.
 	Bandwidth pulumi.IntPtrInput `pulumi:"bandwidth"`
+	// Specifies the category.
+	Category pulumi.IntPtrInput `pulumi:"category"`
 	// Specifies the cps in the flavor.
 	Cps pulumi.IntPtrInput `pulumi:"cps"`
+	// Specifies the flavor ID.
+	FlavorId pulumi.StringPtrInput `pulumi:"flavorId"`
+	// Specifies whether the flavor is available.
+	// + **true**: indicates the flavor is unavailable.
+	// + **false**: indicates the flavor is available.
+	FlavorSoldOut pulumi.StringPtrInput `pulumi:"flavorSoldOut"`
+	// Specifies whether return all maximum elastic specifications. Value options: **true**,
+	// **false**.
+	// + If it is set to **true**, all maximum elastic specifications defined by l4ElasticMax and l7ElasticMax are returned.
+	// + If it is set to **false**, only the largest elastic specifications will be returned.
+	// + For Layer 4 load balancers, the specification with the highest cps value is returned. If the cps values are the same,
+	//   the specification with the highest bandwidth value is returned.
+	// + For Layer 7 load balancers, the specification with highest httpsCps value is returned. If the httpsCps values are
+	//   the same, the specification with highest qps value is returned.
+	ListAll pulumi.StringPtrInput `pulumi:"listAll"`
 	// Specifies the maximum connections in the flavor.
 	MaxConnections pulumi.IntPtrInput `pulumi:"maxConnections"`
 	// Specifies the flavor name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringPtrInput `pulumi:"publicBorderGroup"`
 	// Specifies the qps in the L7 flavor.
 	Qps pulumi.IntPtrInput `pulumi:"qps"`
 	// The region in which to obtain the flavors. If omitted, the provider-level region will be
 	// used.
 	Region pulumi.StringPtrInput `pulumi:"region"`
+	// Specifies whether the flavor is available to all users. Value options:
+	// + **true**: indicates that the flavor is available to all users.
+	// + **false**: indicates that the flavor is available only to a specific user.
+	Shared pulumi.StringPtrInput `pulumi:"shared"`
 	// Specifies the flavor type. Values options:
 	// + **L4**: indicates Layer-4 flavor.
 	// + **L7**: indicates Layer-7 flavor.
@@ -156,17 +213,32 @@ func (o GetFlavorsResultOutput) ToGetFlavorsResultOutputWithContext(ctx context.
 	return o
 }
 
-// Bandwidth size(Mbit/s) of the flavor.
+// Indicates the bandwidth size(Mbit/s) of the flavor.
 func (o GetFlavorsResultOutput) Bandwidth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetFlavorsResult) *int { return v.Bandwidth }).(pulumi.IntPtrOutput)
 }
 
-// Cps of the flavor.
+// Indicates the category.
+func (o GetFlavorsResultOutput) Category() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetFlavorsResult) *int { return v.Category }).(pulumi.IntPtrOutput)
+}
+
+// Indicates the cps of the flavor.
 func (o GetFlavorsResultOutput) Cps() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetFlavorsResult) *int { return v.Cps }).(pulumi.IntPtrOutput)
 }
 
-// A list of flavors. Each element contains the following attributes:
+func (o GetFlavorsResultOutput) FlavorId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlavorsResult) *string { return v.FlavorId }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the flavor is available.
+func (o GetFlavorsResultOutput) FlavorSoldOut() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlavorsResult) *string { return v.FlavorSoldOut }).(pulumi.StringPtrOutput)
+}
+
+// Indicates the list of flavors.
+// The flavors structure is documented below.
 func (o GetFlavorsResultOutput) Flavors() GetFlavorsFlavorArrayOutput {
 	return o.ApplyT(func(v GetFlavorsResult) []GetFlavorsFlavor { return v.Flavors }).(GetFlavorsFlavorArrayOutput)
 }
@@ -176,22 +248,31 @@ func (o GetFlavorsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlavorsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A list of flavor IDs.
+// Indicates the list of flavor IDs.
 func (o GetFlavorsResultOutput) Ids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFlavorsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
 }
 
-// Maximum connections of the flavor.
+func (o GetFlavorsResultOutput) ListAll() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlavorsResult) *string { return v.ListAll }).(pulumi.StringPtrOutput)
+}
+
+// Indicates the maximum connections of the flavor.
 func (o GetFlavorsResultOutput) MaxConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetFlavorsResult) *int { return v.MaxConnections }).(pulumi.IntPtrOutput)
 }
 
-// Name of the flavor.
+// Indicates the name of the flavor.
 func (o GetFlavorsResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetFlavorsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Qps of the L7 flavor.
+// Indicates the public border group.
+func (o GetFlavorsResultOutput) PublicBorderGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlavorsResult) *string { return v.PublicBorderGroup }).(pulumi.StringPtrOutput)
+}
+
+// Indicates the qps of the L7 flavor.
 func (o GetFlavorsResultOutput) Qps() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetFlavorsResult) *int { return v.Qps }).(pulumi.IntPtrOutput)
 }
@@ -200,7 +281,12 @@ func (o GetFlavorsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlavorsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// Type of the flavor.
+// Indicates  whether the flavor is available to all users.
+func (o GetFlavorsResultOutput) Shared() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlavorsResult) *string { return v.Shared }).(pulumi.StringPtrOutput)
+}
+
+// Indicates the type of the flavor.
 func (o GetFlavorsResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetFlavorsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }

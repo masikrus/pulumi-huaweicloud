@@ -152,16 +152,26 @@ import * as utilities from "../utilities";
  * AS configurations can be imported by their `id`, e.g. bash
  *
  * ```sh
- *  $ pulumi import huaweicloud:As/configuration:Configuration test 18518c8a-9d15-416b-8add-2ee874751d18
+ *  $ pulumi import huaweicloud:As/configuration:Configuration test <id>
  * ```
  *
- *  Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`, `instance_config.0.admin_pass`, and `instance_config.0.metadata` are missing from the API response. You can ignore changes after importing an AS configuration as below. hcl resource "huaweicloud_as_configuration" "test" {
+ *  Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`, `instance_config.0.admin_pass`, `instance_config.0.user_data`, and `instance_config.0.metadata` are missing from the API response. You can ignore changes after importing an AS configuration as below. hcl resource "huaweicloud_as_configuration" "test" {
  *
  *  ...
  *
  *  lifecycle {
  *
- *  ignore_changes = [ instance_config.0.instance_id, instance_config.0.admin_pass, instance_config.0.metadata ]
+ *  ignore_changes = [
+ *
+ *  instance_config.0.instance_id,
+ *
+ *  instance_config.0.admin_pass,
+ *
+ *  instance_config.0.user_data,
+ *
+ *  instance_config.0.metadata,
+ *
+ *  ]
  *
  *  } }
  */
@@ -193,6 +203,10 @@ export class Configuration extends pulumi.CustomResource {
         return obj['__pulumiType'] === Configuration.__pulumiType;
     }
 
+    /**
+     * The creation time of the AS configuration, in UTC format.
+     */
+    public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
      * Specifies the information about instance configuration.
      * The instanceConfig structure is documented below.
@@ -228,6 +242,7 @@ export class Configuration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ConfigurationState | undefined;
+            resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["instanceConfig"] = state ? state.instanceConfig : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["scalingConfigurationName"] = state ? state.scalingConfigurationName : undefined;
@@ -243,6 +258,7 @@ export class Configuration extends pulumi.CustomResource {
             resourceInputs["instanceConfig"] = args ? args.instanceConfig : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["scalingConfigurationName"] = args ? args.scalingConfigurationName : undefined;
+            resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -254,6 +270,10 @@ export class Configuration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Configuration resources.
  */
 export interface ConfigurationState {
+    /**
+     * The creation time of the AS configuration, in UTC format.
+     */
+    createTime?: pulumi.Input<string>;
     /**
      * Specifies the information about instance configuration.
      * The instanceConfig structure is documented below.

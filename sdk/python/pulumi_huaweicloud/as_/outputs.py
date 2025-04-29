@@ -11,6 +11,8 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'BandwidthPolicyIntervalAlarmAction',
+    'BandwidthPolicyMetaData',
     'BandwidthPolicyScalingPolicyAction',
     'BandwidthPolicyScheduledPolicy',
     'ConfigurationInstanceConfig',
@@ -27,23 +29,196 @@ __all__ = [
 ]
 
 @pulumi.output_type
+class BandwidthPolicyIntervalAlarmAction(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "lowerBound":
+            suggest = "lower_bound"
+        elif key == "upperBound":
+            suggest = "upper_bound"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BandwidthPolicyIntervalAlarmAction. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BandwidthPolicyIntervalAlarmAction.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BandwidthPolicyIntervalAlarmAction.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 limits: Optional[int] = None,
+                 lower_bound: Optional[str] = None,
+                 operation: Optional[str] = None,
+                 size: Optional[int] = None,
+                 upper_bound: Optional[str] = None):
+        """
+        :param int limits: Specifies the operation restrictions, unit is Mbit/s.
+               The valid values from `1` to `2,000`.
+               If `operation` is not **SET**, this parameter takes effect.
+               If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+               If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+        :param str lower_bound: Specifies the lower limit of the value range.
+               The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+        :param str operation: Specifies the operation to be performed.
+               The valid values are as follows:
+               + **ADD** (default): Indicates adding the bandwidth size.
+               + **REDUCE**: Indicates reducing the bandwidth size.
+               + **SET**: Indicates setting the bandwidth size to a specified value.
+        :param int size: Specifies the operation size, unit is Mbit/s.
+               The valid values from `1` to `300`, the default value is `1`.
+        :param str upper_bound: Specifies the upper limit of the value range.
+               The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+        """
+        if limits is not None:
+            pulumi.set(__self__, "limits", limits)
+        if lower_bound is not None:
+            pulumi.set(__self__, "lower_bound", lower_bound)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if upper_bound is not None:
+            pulumi.set(__self__, "upper_bound", upper_bound)
+
+    @property
+    @pulumi.getter
+    def limits(self) -> Optional[int]:
+        """
+        Specifies the operation restrictions, unit is Mbit/s.
+        The valid values from `1` to `2,000`.
+        If `operation` is not **SET**, this parameter takes effect.
+        If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+        If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+        """
+        return pulumi.get(self, "limits")
+
+    @property
+    @pulumi.getter(name="lowerBound")
+    def lower_bound(self) -> Optional[str]:
+        """
+        Specifies the lower limit of the value range.
+        The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+        """
+        return pulumi.get(self, "lower_bound")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[str]:
+        """
+        Specifies the operation to be performed.
+        The valid values are as follows:
+        + **ADD** (default): Indicates adding the bandwidth size.
+        + **REDUCE**: Indicates reducing the bandwidth size.
+        + **SET**: Indicates setting the bandwidth size to a specified value.
+        """
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[int]:
+        """
+        Specifies the operation size, unit is Mbit/s.
+        The valid values from `1` to `300`, the default value is `1`.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="upperBound")
+    def upper_bound(self) -> Optional[str]:
+        """
+        Specifies the upper limit of the value range.
+        The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+        """
+        return pulumi.get(self, "upper_bound")
+
+
+@pulumi.output_type
+class BandwidthPolicyMetaData(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "metadataBandwidthShareType":
+            suggest = "metadata_bandwidth_share_type"
+        elif key == "metadataEipAddress":
+            suggest = "metadata_eip_address"
+        elif key == "metadataEipId":
+            suggest = "metadata_eip_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BandwidthPolicyMetaData. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BandwidthPolicyMetaData.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BandwidthPolicyMetaData.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 metadata_bandwidth_share_type: Optional[str] = None,
+                 metadata_eip_address: Optional[str] = None,
+                 metadata_eip_id: Optional[str] = None):
+        """
+        :param str metadata_bandwidth_share_type: The bandwidth sharing type in the bandwidth policy.
+        :param str metadata_eip_address: The EIP IP address for the bandwidth in the bandwidth policy.
+        :param str metadata_eip_id: The EIP ID for the bandwidth in the bandwidth policy.
+        """
+        if metadata_bandwidth_share_type is not None:
+            pulumi.set(__self__, "metadata_bandwidth_share_type", metadata_bandwidth_share_type)
+        if metadata_eip_address is not None:
+            pulumi.set(__self__, "metadata_eip_address", metadata_eip_address)
+        if metadata_eip_id is not None:
+            pulumi.set(__self__, "metadata_eip_id", metadata_eip_id)
+
+    @property
+    @pulumi.getter(name="metadataBandwidthShareType")
+    def metadata_bandwidth_share_type(self) -> Optional[str]:
+        """
+        The bandwidth sharing type in the bandwidth policy.
+        """
+        return pulumi.get(self, "metadata_bandwidth_share_type")
+
+    @property
+    @pulumi.getter(name="metadataEipAddress")
+    def metadata_eip_address(self) -> Optional[str]:
+        """
+        The EIP IP address for the bandwidth in the bandwidth policy.
+        """
+        return pulumi.get(self, "metadata_eip_address")
+
+    @property
+    @pulumi.getter(name="metadataEipId")
+    def metadata_eip_id(self) -> Optional[str]:
+        """
+        The EIP ID for the bandwidth in the bandwidth policy.
+        """
+        return pulumi.get(self, "metadata_eip_id")
+
+
+@pulumi.output_type
 class BandwidthPolicyScalingPolicyAction(dict):
     def __init__(__self__, *,
                  limits: Optional[int] = None,
                  operation: Optional[str] = None,
                  size: Optional[int] = None):
         """
-        :param int limits: Specifies the operation restrictions.
-               - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-               - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-               - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
-        :param str operation: Specifies the operation to be performed. The default operation is ADD.
-               The options are as follows:
-               - **ADD**: indicates adding the bandwidth size.
-               - **REDUCE**: indicates reducing the bandwidth size.
-               - **SET**: indicates setting the bandwidth size to a specified value.
-        :param int size: Specifies the bandwidth (Mbit/s).
-               The value is an integer from 1 to 2000. The default value is 1.
+        :param int limits: Specifies the operation restrictions, unit is Mbit/s.
+               The valid values from `1` to `2,000`.
+               If `operation` is not **SET**, this parameter takes effect.
+               If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+               If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+        :param str operation: Specifies the operation to be performed.
+               The valid values are as follows:
+               + **ADD** (default): Indicates adding the bandwidth size.
+               + **REDUCE**: Indicates reducing the bandwidth size.
+               + **SET**: Indicates setting the bandwidth size to a specified value.
+        :param int size: Specifies the operation size, unit is Mbit/s.
+               The valid values from `1` to `300`, the default value is `1`.
         """
         if limits is not None:
             pulumi.set(__self__, "limits", limits)
@@ -56,10 +231,11 @@ class BandwidthPolicyScalingPolicyAction(dict):
     @pulumi.getter
     def limits(self) -> Optional[int]:
         """
-        Specifies the operation restrictions.
-        - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-        - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-        - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+        Specifies the operation restrictions, unit is Mbit/s.
+        The valid values from `1` to `2,000`.
+        If `operation` is not **SET**, this parameter takes effect.
+        If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+        If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
         """
         return pulumi.get(self, "limits")
 
@@ -67,11 +243,11 @@ class BandwidthPolicyScalingPolicyAction(dict):
     @pulumi.getter
     def operation(self) -> Optional[str]:
         """
-        Specifies the operation to be performed. The default operation is ADD.
-        The options are as follows:
-        - **ADD**: indicates adding the bandwidth size.
-        - **REDUCE**: indicates reducing the bandwidth size.
-        - **SET**: indicates setting the bandwidth size to a specified value.
+        Specifies the operation to be performed.
+        The valid values are as follows:
+        + **ADD** (default): Indicates adding the bandwidth size.
+        + **REDUCE**: Indicates reducing the bandwidth size.
+        + **SET**: Indicates setting the bandwidth size to a specified value.
         """
         return pulumi.get(self, "operation")
 
@@ -79,8 +255,8 @@ class BandwidthPolicyScalingPolicyAction(dict):
     @pulumi.getter
     def size(self) -> Optional[int]:
         """
-        Specifies the bandwidth (Mbit/s).
-        The value is an integer from 1 to 2000. The default value is 1.
+        Specifies the operation size, unit is Mbit/s.
+        The valid values from `1` to `300`, the default value is `1`.
         """
         return pulumi.get(self, "size")
 
@@ -121,27 +297,29 @@ class BandwidthPolicyScheduledPolicy(dict):
         """
         :param str launch_time: Specifies the time when the scaling action is triggered.
                The time format complies with UTC.
-               - If scaling_policy_type is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-               - If scaling_policy_type is set to RECURRENCE, the time format is hh:mm.
+               If `scaling_policy_type` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+               If `scaling_policy_type` is set to **RECURRENCE**, the time format is **hh:mm**.
         :param str end_time: Specifies the end time of the scaling action triggered periodically.
                The time format complies with UTC. This parameter is mandatory when scaling_policy_type is set to RECURRENCE.
                When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-               The time format is YYYY-MM-DDThh:mmZ.
+               The time format is **YYYY-MM-DDThh:mmZ**.
         :param str recurrence_type: Specifies the periodic triggering type.
-               This parameter is mandatory when scaling_policy_type is set to RECURRENCE. The options are as follows:
-               - **Daily**: indicates that the scaling action is triggered once a day.
-               - **Weekly**: indicates that the scaling action is triggered once a week.
-               - **Monthly**: indicates that the scaling action is triggered once a month.
+               This parameter is mandatory when `scaling_policy_type` is set to **RECURRENCE**.
+               The valid values are as follows:
+               + **Daily**: Indicates that the scaling action is triggered once a day.
+               + **Weekly**: Indicates that the scaling action is triggered once a week.
+               + **Monthly**: Indicates that the scaling action is triggered once a month.
         :param str recurrence_value: Specifies the day when a periodic scaling action is triggered.
-               This parameter is mandatory when scaling_policy_type is set to RECURRENCE.
-               - If recurrence_type is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-               - If recurrence_type is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-               The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-               - If recurrence_type is set to Monthly, the value ranges from 1 to 31.
-               The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+               This parameter is mandatory when `scaling_policy_type` is set to **RECURRENCE**.
+               <br/>If `recurrence_type` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+               once a day.
+               <br/>If `recurrence_type` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+               The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+               <br/>If `recurrence_type` is set to **Monthly**, the value ranges from `1` to `31`.
+               The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
         :param str start_time: Specifies the start time of the scaling action triggered periodically.
                The time format complies with UTC. The default value is the local time.
-               The time format is YYYY-MM-DDThh:mmZ.
+               The time format is **YYYY-MM-DDThh:mmZ**.
         """
         pulumi.set(__self__, "launch_time", launch_time)
         if end_time is not None:
@@ -159,8 +337,8 @@ class BandwidthPolicyScheduledPolicy(dict):
         """
         Specifies the time when the scaling action is triggered.
         The time format complies with UTC.
-        - If scaling_policy_type is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-        - If scaling_policy_type is set to RECURRENCE, the time format is hh:mm.
+        If `scaling_policy_type` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+        If `scaling_policy_type` is set to **RECURRENCE**, the time format is **hh:mm**.
         """
         return pulumi.get(self, "launch_time")
 
@@ -171,7 +349,7 @@ class BandwidthPolicyScheduledPolicy(dict):
         Specifies the end time of the scaling action triggered periodically.
         The time format complies with UTC. This parameter is mandatory when scaling_policy_type is set to RECURRENCE.
         When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-        The time format is YYYY-MM-DDThh:mmZ.
+        The time format is **YYYY-MM-DDThh:mmZ**.
         """
         return pulumi.get(self, "end_time")
 
@@ -180,10 +358,11 @@ class BandwidthPolicyScheduledPolicy(dict):
     def recurrence_type(self) -> Optional[str]:
         """
         Specifies the periodic triggering type.
-        This parameter is mandatory when scaling_policy_type is set to RECURRENCE. The options are as follows:
-        - **Daily**: indicates that the scaling action is triggered once a day.
-        - **Weekly**: indicates that the scaling action is triggered once a week.
-        - **Monthly**: indicates that the scaling action is triggered once a month.
+        This parameter is mandatory when `scaling_policy_type` is set to **RECURRENCE**.
+        The valid values are as follows:
+        + **Daily**: Indicates that the scaling action is triggered once a day.
+        + **Weekly**: Indicates that the scaling action is triggered once a week.
+        + **Monthly**: Indicates that the scaling action is triggered once a month.
         """
         return pulumi.get(self, "recurrence_type")
 
@@ -192,12 +371,13 @@ class BandwidthPolicyScheduledPolicy(dict):
     def recurrence_value(self) -> Optional[str]:
         """
         Specifies the day when a periodic scaling action is triggered.
-        This parameter is mandatory when scaling_policy_type is set to RECURRENCE.
-        - If recurrence_type is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-        - If recurrence_type is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-        The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-        - If recurrence_type is set to Monthly, the value ranges from 1 to 31.
-        The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+        This parameter is mandatory when `scaling_policy_type` is set to **RECURRENCE**.
+        <br/>If `recurrence_type` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+        once a day.
+        <br/>If `recurrence_type` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+        The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+        <br/>If `recurrence_type` is set to **Monthly**, the value ranges from `1` to `31`.
+        The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
         """
         return pulumi.get(self, "recurrence_value")
 
@@ -207,7 +387,7 @@ class BandwidthPolicyScheduledPolicy(dict):
         """
         Specifies the start time of the scaling action triggered periodically.
         The time format complies with UTC. The default value is the local time.
-        The time format is YYYY-MM-DDThh:mmZ.
+        The time format is **YYYY-MM-DDThh:mmZ**.
         """
         return pulumi.get(self, "start_time")
 
@@ -229,6 +409,8 @@ class ConfigurationInstanceConfig(dict):
             suggest = "flavor_priority_policy"
         elif key == "instanceId":
             suggest = "instance_id"
+        elif key == "keyFingerprint":
+            suggest = "key_fingerprint"
         elif key == "keyName":
             suggest = "key_name"
         elif key == "publicIp":
@@ -259,6 +441,7 @@ class ConfigurationInstanceConfig(dict):
                  flavor_priority_policy: Optional[str] = None,
                  image: Optional[str] = None,
                  instance_id: Optional[str] = None,
+                 key_fingerprint: Optional[str] = None,
                  key_name: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  personalities: Optional[Sequence['outputs.ConfigurationInstanceConfigPersonality']] = None,
@@ -289,6 +472,7 @@ class ConfigurationInstanceConfig(dict):
                and `dedicated_host_id` arguments do not take effect.
                If this argument is not specified, `flavor`, `image`, and `disk` arguments are mandatory.
                Changing this will create a new resource.
+        :param str key_fingerprint: The fingerprint of the SSH key pair used to log in to the instance.
         :param str key_name: Specifies the name of the SSH key pair used to log in to the instance.
                Changing this will create a new resource.
         :param Mapping[str, str] metadata: Specifies the key/value pairs to make available from within the instance.
@@ -325,6 +509,8 @@ class ConfigurationInstanceConfig(dict):
             pulumi.set(__self__, "image", image)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if key_fingerprint is not None:
+            pulumi.set(__self__, "key_fingerprint", key_fingerprint)
         if key_name is not None:
             pulumi.set(__self__, "key_name", key_name)
         if metadata is not None:
@@ -424,6 +610,14 @@ class ConfigurationInstanceConfig(dict):
         Changing this will create a new resource.
         """
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="keyFingerprint")
+    def key_fingerprint(self) -> Optional[str]:
+        """
+        The fingerprint of the SSH key pair used to log in to the instance.
+        """
+        return pulumi.get(self, "key_fingerprint")
 
     @property
     @pulumi.getter(name="keyName")
@@ -870,6 +1064,8 @@ class GroupLbaasListener(dict):
             suggest = "pool_id"
         elif key == "protocolPort":
             suggest = "protocol_port"
+        elif key == "listenerId":
+            suggest = "listener_id"
         elif key == "protocolVersion":
             suggest = "protocol_version"
 
@@ -887,12 +1083,14 @@ class GroupLbaasListener(dict):
     def __init__(__self__, *,
                  pool_id: str,
                  protocol_port: int,
+                 listener_id: Optional[str] = None,
                  protocol_version: Optional[str] = None,
                  weight: Optional[int] = None):
         """
         :param str pool_id: Specifies the backend ECS group ID.
         :param int protocol_port: Specifies the backend protocol, which is the port on which a backend ECS listens for
                traffic. The number of the port ranges from `1` to `65,535`.
+        :param str listener_id: The ID of the listener assocaite with the ELB.
         :param str protocol_version: Specifies the version of instance IP addresses to be associated with the
                load balancer. The value can be **ipv4** or **ipv6**. Defaults to **ipv4**.
         :param int weight: Specifies the weight, which determines the portion of requests a backend ECS processes
@@ -901,6 +1099,8 @@ class GroupLbaasListener(dict):
         """
         pulumi.set(__self__, "pool_id", pool_id)
         pulumi.set(__self__, "protocol_port", protocol_port)
+        if listener_id is not None:
+            pulumi.set(__self__, "listener_id", listener_id)
         if protocol_version is not None:
             pulumi.set(__self__, "protocol_version", protocol_version)
         if weight is not None:
@@ -922,6 +1122,14 @@ class GroupLbaasListener(dict):
         traffic. The number of the port ranges from `1` to `65,535`.
         """
         return pulumi.get(self, "protocol_port")
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> Optional[str]:
+        """
+        The ID of the listener assocaite with the ELB.
+        """
+        return pulumi.get(self, "listener_id")
 
     @property
     @pulumi.getter(name="protocolVersion")

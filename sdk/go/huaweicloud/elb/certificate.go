@@ -101,15 +101,15 @@ import (
 //
 // ## Import
 //
-// ELB certificate can be imported using the certificate ID, e.g. bash
+// ELB certificate can be imported using the `id` e.g. bash
 //
 // ```sh
 //
-//	$ pulumi import huaweicloud:Elb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+//	$ pulumi import huaweicloud:Elb/certificate:Certificate test <id>
 //
 // ```
 //
-//	Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "certificate_1" {
+//	Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "test" {
 //
 //	...
 //
@@ -117,7 +117,7 @@ import (
 //
 //	ignore_changes = [
 //
-//	enterprise_project_id,
+//	enterprise_project_id, private_key,
 //
 //	]
 //
@@ -132,7 +132,7 @@ type Certificate struct {
 	// Human-readable description for the Certificate.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// parameter is valid only when `type` is set to **server**.
 	Domain pulumi.StringPtrOutput `pulumi:"domain"`
 	// The enterprise project ID of the certificate. Changing this
 	// creates a new certificate.
@@ -142,16 +142,24 @@ type Certificate struct {
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	// Specifies why the modification protection is enabled.
+	ProtectionReason pulumi.StringPtrOutput `pulumi:"protectionReason"`
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus pulumi.StringOutput `pulumi:"protectionStatus"`
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// Specifies the source of the certificate.
+	Source pulumi.StringOutput `pulumi:"source"`
 	// Specifies the certificate type. The default value is "server". The value can be
 	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
+	Type pulumi.StringOutput `pulumi:"type"`
 	// Indicates the update time.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
@@ -196,7 +204,7 @@ type certificateState struct {
 	// Human-readable description for the Certificate.
 	Description *string `pulumi:"description"`
 	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// parameter is valid only when `type` is set to **server**.
 	Domain *string `pulumi:"domain"`
 	// The enterprise project ID of the certificate. Changing this
 	// creates a new certificate.
@@ -206,15 +214,23 @@ type certificateState struct {
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name *string `pulumi:"name"`
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey *string `pulumi:"privateKey"`
+	// Specifies why the modification protection is enabled.
+	ProtectionReason *string `pulumi:"protectionReason"`
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus *string `pulumi:"protectionStatus"`
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region *string `pulumi:"region"`
+	// Specifies the source of the certificate.
+	Source *string `pulumi:"source"`
 	// Specifies the certificate type. The default value is "server". The value can be
 	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
 	Type *string `pulumi:"type"`
 	// Indicates the update time.
 	UpdateTime *string `pulumi:"updateTime"`
@@ -228,7 +244,7 @@ type CertificateState struct {
 	// Human-readable description for the Certificate.
 	Description pulumi.StringPtrInput
 	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// parameter is valid only when `type` is set to **server**.
 	Domain pulumi.StringPtrInput
 	// The enterprise project ID of the certificate. Changing this
 	// creates a new certificate.
@@ -238,15 +254,23 @@ type CertificateState struct {
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name pulumi.StringPtrInput
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey pulumi.StringPtrInput
+	// Specifies why the modification protection is enabled.
+	ProtectionReason pulumi.StringPtrInput
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus pulumi.StringPtrInput
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region pulumi.StringPtrInput
+	// Specifies the source of the certificate.
+	Source pulumi.StringPtrInput
 	// Specifies the certificate type. The default value is "server". The value can be
 	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
 	Type pulumi.StringPtrInput
 	// Indicates the update time.
 	UpdateTime pulumi.StringPtrInput
@@ -262,7 +286,7 @@ type certificateArgs struct {
 	// Human-readable description for the Certificate.
 	Description *string `pulumi:"description"`
 	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// parameter is valid only when `type` is set to **server**.
 	Domain *string `pulumi:"domain"`
 	// The enterprise project ID of the certificate. Changing this
 	// creates a new certificate.
@@ -270,15 +294,23 @@ type certificateArgs struct {
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name *string `pulumi:"name"`
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey *string `pulumi:"privateKey"`
+	// Specifies why the modification protection is enabled.
+	ProtectionReason *string `pulumi:"protectionReason"`
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus *string `pulumi:"protectionStatus"`
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region *string `pulumi:"region"`
+	// Specifies the source of the certificate.
+	Source *string `pulumi:"source"`
 	// Specifies the certificate type. The default value is "server". The value can be
 	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
 	Type *string `pulumi:"type"`
 }
 
@@ -289,7 +321,7 @@ type CertificateArgs struct {
 	// Human-readable description for the Certificate.
 	Description pulumi.StringPtrInput
 	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// parameter is valid only when `type` is set to **server**.
 	Domain pulumi.StringPtrInput
 	// The enterprise project ID of the certificate. Changing this
 	// creates a new certificate.
@@ -297,15 +329,23 @@ type CertificateArgs struct {
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name pulumi.StringPtrInput
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey pulumi.StringPtrInput
+	// Specifies why the modification protection is enabled.
+	ProtectionReason pulumi.StringPtrInput
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus pulumi.StringPtrInput
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region pulumi.StringPtrInput
+	// Specifies the source of the certificate.
+	Source pulumi.StringPtrInput
 	// Specifies the certificate type. The default value is "server". The value can be
 	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
 	Type pulumi.StringPtrInput
 }
 
@@ -412,7 +452,7 @@ func (o CertificateOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The domain of the Certificate. The value contains a maximum of 100 characters. This
-// parameter is valid only when `type` is set to "server".
+// parameter is valid only when `type` is set to **server**.
 func (o CertificateOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Domain }).(pulumi.StringPtrOutput)
 }
@@ -434,9 +474,21 @@ func (o CertificateOutput) Name() pulumi.StringOutput {
 }
 
 // The private encrypted key of the Certificate, PEM format. This parameter is valid
-// and mandatory only when `type` is set to "server".
+// and mandatory only when `type` is set to **server**.
 func (o CertificateOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Specifies why the modification protection is enabled.
+func (o CertificateOutput) ProtectionReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.ProtectionReason }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the protection status. Value options:
+// + **nonProtection**: The load balancer is not protected.
+// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+func (o CertificateOutput) ProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.ProtectionStatus }).(pulumi.StringOutput)
 }
 
 // The region in which to create the ELB certificate resource. If omitted, the
@@ -445,12 +497,17 @@ func (o CertificateOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+// Specifies the source of the certificate.
+func (o CertificateOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
 // Specifies the certificate type. The default value is "server". The value can be
 // one of the following:
-// + server: indicates the server certificate.
-// + client: indicates the CA certificate.
-func (o CertificateOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+// + **server**: indicates the server certificate.
+// + **client**: indicates the CA certificate.
+func (o CertificateOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Indicates the update time.

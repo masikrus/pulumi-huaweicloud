@@ -77,7 +77,7 @@ import (
 // EG  | huaweicloudEgCustomEventChannel
 // EIP | huaweicloud_vpc_eip<br>huaweicloud_vpc_bandwidth
 // ELB | huaweicloud_elb_loadbalancer<br>huaweicloud_elb_certificate<br>huaweicloud_elb_ipgroup<br>huaweicloud_elb_security_policy
-// ER  | huaweicloudErInstance
+// ER  | Er.Instance
 // EVS | Evs.Volume
 // FGS | FunctionGraph.Function
 // GA  | huaweicloudGaAccelerator

@@ -22,6 +22,14 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * The ELB IP group can be imported using the `id`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import huaweicloud:DedicatedElb/ipgroup:Ipgroup test <id>
+ * ```
  */
 export class Ipgroup extends pulumi.CustomResource {
     /**
@@ -52,7 +60,7 @@ export class Ipgroup extends pulumi.CustomResource {
     }
 
     /**
-     * The create time of the ip group.
+     * The creation time of the ip group.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -66,7 +74,7 @@ export class Ipgroup extends pulumi.CustomResource {
     public readonly enterpriseProjectId!: pulumi.Output<string>;
     /**
      * Specifies an array of one or more ip addresses. The ipList object structure is
-     * documented below.
+     * documented below. The ipList structure is documented below.
      */
     public readonly ipLists!: pulumi.Output<outputs.DedicatedElb.IpgroupIpList[]>;
     /**
@@ -132,7 +140,7 @@ export class Ipgroup extends pulumi.CustomResource {
  */
 export interface IpgroupState {
     /**
-     * The create time of the ip group.
+     * The creation time of the ip group.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -146,7 +154,7 @@ export interface IpgroupState {
     enterpriseProjectId?: pulumi.Input<string>;
     /**
      * Specifies an array of one or more ip addresses. The ipList object structure is
-     * documented below.
+     * documented below. The ipList structure is documented below.
      */
     ipLists?: pulumi.Input<pulumi.Input<inputs.DedicatedElb.IpgroupIpList>[]>;
     /**
@@ -183,7 +191,7 @@ export interface IpgroupArgs {
     enterpriseProjectId?: pulumi.Input<string>;
     /**
      * Specifies an array of one or more ip addresses. The ipList object structure is
-     * documented below.
+     * documented below. The ipList structure is documented below.
      */
     ipLists: pulumi.Input<pulumi.Input<inputs.DedicatedElb.IpgroupIpList>[]>;
     /**

@@ -19,9 +19,11 @@ class BandwidthPolicyArgs:
                  bandwidth_id: pulumi.Input[str],
                  scaling_policy_name: pulumi.Input[str],
                  scaling_policy_type: pulumi.Input[str],
+                 action: Optional[pulumi.Input[str]] = None,
                  alarm_id: Optional[pulumi.Input[str]] = None,
                  cool_down_time: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 interval_alarm_actions: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_policy_action: Optional[pulumi.Input['BandwidthPolicyScalingPolicyActionArgs']] = None,
                  scheduled_policy: Optional[pulumi.Input['BandwidthPolicyScheduledPolicyArgs']] = None):
@@ -31,32 +33,44 @@ class BandwidthPolicyArgs:
         :param pulumi.Input[str] scaling_policy_name: Specifies the AS policy name.
                The name contains only letters, digits, underscores (_), and hyphens (-), and cannot exceed 64 characters.
         :param pulumi.Input[str] scaling_policy_type: Specifies the AS policy type. The options are as follows:
-               - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-               - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-               - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+               + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+               + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+               + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+               + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+        :param pulumi.Input[str] action: Specifies identification of operation the AS bandwidth policy.
+               After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+               The valid values are as follows:
+               + **resume**: Indicates enable the AS bandwidth policy.
+               + **pause**: Indicates disable the AS bandwidth policy.
         :param pulumi.Input[str] alarm_id: Specifies the alarm rule ID.
-               This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+               This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         :param pulumi.Input[int] cool_down_time: Specifies the cooldown period (in seconds).
-               The value ranges from 0 to 86400 and is 300 by default.
+               The value ranges from `0` to `86,400` and is `300` by default.
         :param pulumi.Input[str] description: Specifies the description of the AS policy.
-               The value can contain 0 to 256 characters.
+               The value can contain `0` to `256` characters.
+        :param pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]] interval_alarm_actions: Specifies the alarm interval of the bandwidth policy.
+               The interval_alarm_actions structure is documented below.
         :param pulumi.Input[str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input['BandwidthPolicyScalingPolicyActionArgs'] scaling_policy_action: Specifies the scaling action of the AS policy.
-               The object structure is documented below.
+               The scaling_policy_action structure is documented below.
         :param pulumi.Input['BandwidthPolicyScheduledPolicyArgs'] scheduled_policy: Specifies the periodic or scheduled AS policy.
-               This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-               The object structure is documented below.
+               This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+               The scheduled_policy structure is documented below.
         """
         pulumi.set(__self__, "bandwidth_id", bandwidth_id)
         pulumi.set(__self__, "scaling_policy_name", scaling_policy_name)
         pulumi.set(__self__, "scaling_policy_type", scaling_policy_type)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
         if alarm_id is not None:
             pulumi.set(__self__, "alarm_id", alarm_id)
         if cool_down_time is not None:
             pulumi.set(__self__, "cool_down_time", cool_down_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if interval_alarm_actions is not None:
+            pulumi.set(__self__, "interval_alarm_actions", interval_alarm_actions)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if scaling_policy_action is not None:
@@ -94,9 +108,10 @@ class BandwidthPolicyArgs:
     def scaling_policy_type(self) -> pulumi.Input[str]:
         """
         Specifies the AS policy type. The options are as follows:
-        - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-        - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-        - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+        + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+        + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+        + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+        + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
         """
         return pulumi.get(self, "scaling_policy_type")
 
@@ -105,11 +120,27 @@ class BandwidthPolicyArgs:
         pulumi.set(self, "scaling_policy_type", value)
 
     @property
+    @pulumi.getter
+    def action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies identification of operation the AS bandwidth policy.
+        After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+        The valid values are as follows:
+        + **resume**: Indicates enable the AS bandwidth policy.
+        + **pause**: Indicates disable the AS bandwidth policy.
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "action", value)
+
+    @property
     @pulumi.getter(name="alarmId")
     def alarm_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the alarm rule ID.
-        This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+        This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         """
         return pulumi.get(self, "alarm_id")
 
@@ -122,7 +153,7 @@ class BandwidthPolicyArgs:
     def cool_down_time(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the cooldown period (in seconds).
-        The value ranges from 0 to 86400 and is 300 by default.
+        The value ranges from `0` to `86,400` and is `300` by default.
         """
         return pulumi.get(self, "cool_down_time")
 
@@ -135,13 +166,26 @@ class BandwidthPolicyArgs:
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the description of the AS policy.
-        The value can contain 0 to 256 characters.
+        The value can contain `0` to `256` characters.
         """
         return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="intervalAlarmActions")
+    def interval_alarm_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]]]:
+        """
+        Specifies the alarm interval of the bandwidth policy.
+        The interval_alarm_actions structure is documented below.
+        """
+        return pulumi.get(self, "interval_alarm_actions")
+
+    @interval_alarm_actions.setter
+    def interval_alarm_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]]]):
+        pulumi.set(self, "interval_alarm_actions", value)
 
     @property
     @pulumi.getter
@@ -161,7 +205,7 @@ class BandwidthPolicyArgs:
     def scaling_policy_action(self) -> Optional[pulumi.Input['BandwidthPolicyScalingPolicyActionArgs']]:
         """
         Specifies the scaling action of the AS policy.
-        The object structure is documented below.
+        The scaling_policy_action structure is documented below.
         """
         return pulumi.get(self, "scaling_policy_action")
 
@@ -174,8 +218,8 @@ class BandwidthPolicyArgs:
     def scheduled_policy(self) -> Optional[pulumi.Input['BandwidthPolicyScheduledPolicyArgs']]:
         """
         Specifies the periodic or scheduled AS policy.
-        This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-        The object structure is documented below.
+        This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+        The scheduled_policy structure is documented below.
         """
         return pulumi.get(self, "scheduled_policy")
 
@@ -187,10 +231,14 @@ class BandwidthPolicyArgs:
 @pulumi.input_type
 class _BandwidthPolicyState:
     def __init__(__self__, *,
+                 action: Optional[pulumi.Input[str]] = None,
                  alarm_id: Optional[pulumi.Input[str]] = None,
                  bandwidth_id: Optional[pulumi.Input[str]] = None,
                  cool_down_time: Optional[pulumi.Input[int]] = None,
+                 create_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 interval_alarm_actions: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]]] = None,
+                 meta_datas: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyMetaDataArgs']]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_policy_action: Optional[pulumi.Input['BandwidthPolicyScalingPolicyActionArgs']] = None,
                  scaling_policy_name: Optional[pulumi.Input[str]] = None,
@@ -200,37 +248,56 @@ class _BandwidthPolicyState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BandwidthPolicy resources.
+        :param pulumi.Input[str] action: Specifies identification of operation the AS bandwidth policy.
+               After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+               The valid values are as follows:
+               + **resume**: Indicates enable the AS bandwidth policy.
+               + **pause**: Indicates disable the AS bandwidth policy.
         :param pulumi.Input[str] alarm_id: Specifies the alarm rule ID.
-               This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+               This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         :param pulumi.Input[str] bandwidth_id: Specifies the scaling bandwidth ID.
         :param pulumi.Input[int] cool_down_time: Specifies the cooldown period (in seconds).
-               The value ranges from 0 to 86400 and is 300 by default.
+               The value ranges from `0` to `86,400` and is `300` by default.
+        :param pulumi.Input[str] create_time: The creation time of the bandwidth policy, in UTC format.
         :param pulumi.Input[str] description: Specifies the description of the AS policy.
-               The value can contain 0 to 256 characters.
+               The value can contain `0` to `256` characters.
+        :param pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]] interval_alarm_actions: Specifies the alarm interval of the bandwidth policy.
+               The interval_alarm_actions structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyMetaDataArgs']]] meta_datas: The bandwidth policy additional information.
+               The meta_data structure is documented below.
         :param pulumi.Input[str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input['BandwidthPolicyScalingPolicyActionArgs'] scaling_policy_action: Specifies the scaling action of the AS policy.
-               The object structure is documented below.
+               The scaling_policy_action structure is documented below.
         :param pulumi.Input[str] scaling_policy_name: Specifies the AS policy name.
                The name contains only letters, digits, underscores (_), and hyphens (-), and cannot exceed 64 characters.
         :param pulumi.Input[str] scaling_policy_type: Specifies the AS policy type. The options are as follows:
-               - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-               - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-               - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+               + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+               + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+               + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+               + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
         :param pulumi.Input[str] scaling_resource_type: The scaling resource type. The value is fixed to **BANDWIDTH**.
         :param pulumi.Input['BandwidthPolicyScheduledPolicyArgs'] scheduled_policy: Specifies the periodic or scheduled AS policy.
-               This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-               The object structure is documented below.
+               This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+               The scheduled_policy structure is documented below.
         :param pulumi.Input[str] status: The AS policy status. The value can be **INSERVICE**, **PAUSED** and **EXECUTING**.
         """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
         if alarm_id is not None:
             pulumi.set(__self__, "alarm_id", alarm_id)
         if bandwidth_id is not None:
             pulumi.set(__self__, "bandwidth_id", bandwidth_id)
         if cool_down_time is not None:
             pulumi.set(__self__, "cool_down_time", cool_down_time)
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if interval_alarm_actions is not None:
+            pulumi.set(__self__, "interval_alarm_actions", interval_alarm_actions)
+        if meta_datas is not None:
+            pulumi.set(__self__, "meta_datas", meta_datas)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if scaling_policy_action is not None:
@@ -247,11 +314,27 @@ class _BandwidthPolicyState:
             pulumi.set(__self__, "status", status)
 
     @property
+    @pulumi.getter
+    def action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies identification of operation the AS bandwidth policy.
+        After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+        The valid values are as follows:
+        + **resume**: Indicates enable the AS bandwidth policy.
+        + **pause**: Indicates disable the AS bandwidth policy.
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "action", value)
+
+    @property
     @pulumi.getter(name="alarmId")
     def alarm_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the alarm rule ID.
-        This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+        This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         """
         return pulumi.get(self, "alarm_id")
 
@@ -276,7 +359,7 @@ class _BandwidthPolicyState:
     def cool_down_time(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the cooldown period (in seconds).
-        The value ranges from 0 to 86400 and is 300 by default.
+        The value ranges from `0` to `86,400` and is `300` by default.
         """
         return pulumi.get(self, "cool_down_time")
 
@@ -285,17 +368,55 @@ class _BandwidthPolicyState:
         pulumi.set(self, "cool_down_time", value)
 
     @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The creation time of the bandwidth policy, in UTC format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create_time", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the description of the AS policy.
-        The value can contain 0 to 256 characters.
+        The value can contain `0` to `256` characters.
         """
         return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="intervalAlarmActions")
+    def interval_alarm_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]]]:
+        """
+        Specifies the alarm interval of the bandwidth policy.
+        The interval_alarm_actions structure is documented below.
+        """
+        return pulumi.get(self, "interval_alarm_actions")
+
+    @interval_alarm_actions.setter
+    def interval_alarm_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyIntervalAlarmActionArgs']]]]):
+        pulumi.set(self, "interval_alarm_actions", value)
+
+    @property
+    @pulumi.getter(name="metaDatas")
+    def meta_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyMetaDataArgs']]]]:
+        """
+        The bandwidth policy additional information.
+        The meta_data structure is documented below.
+        """
+        return pulumi.get(self, "meta_datas")
+
+    @meta_datas.setter
+    def meta_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPolicyMetaDataArgs']]]]):
+        pulumi.set(self, "meta_datas", value)
 
     @property
     @pulumi.getter
@@ -315,7 +436,7 @@ class _BandwidthPolicyState:
     def scaling_policy_action(self) -> Optional[pulumi.Input['BandwidthPolicyScalingPolicyActionArgs']]:
         """
         Specifies the scaling action of the AS policy.
-        The object structure is documented below.
+        The scaling_policy_action structure is documented below.
         """
         return pulumi.get(self, "scaling_policy_action")
 
@@ -341,9 +462,10 @@ class _BandwidthPolicyState:
     def scaling_policy_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the AS policy type. The options are as follows:
-        - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-        - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-        - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+        + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+        + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+        + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+        + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
         """
         return pulumi.get(self, "scaling_policy_type")
 
@@ -368,8 +490,8 @@ class _BandwidthPolicyState:
     def scheduled_policy(self) -> Optional[pulumi.Input['BandwidthPolicyScheduledPolicyArgs']]:
         """
         Specifies the periodic or scheduled AS policy.
-        This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-        The object structure is documented below.
+        This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+        The scheduled_policy structure is documented below.
         """
         return pulumi.get(self, "scheduled_policy")
 
@@ -395,10 +517,12 @@ class BandwidthPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 action: Optional[pulumi.Input[str]] = None,
                  alarm_id: Optional[pulumi.Input[str]] = None,
                  bandwidth_id: Optional[pulumi.Input[str]] = None,
                  cool_down_time: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 interval_alarm_actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyIntervalAlarmActionArgs']]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_policy_action: Optional[pulumi.Input[pulumi.InputType['BandwidthPolicyScalingPolicyActionArgs']]] = None,
                  scaling_policy_name: Optional[pulumi.Input[str]] = None,
@@ -418,9 +542,10 @@ class BandwidthPolicy(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
         bandwidth_id = config.require_object("bandwidthId")
-        bw_policy = huaweicloud.as_.BandwidthPolicy("bwPolicy",
-            scaling_policy_name="bw_policy",
+        test = huaweicloud.as_.BandwidthPolicy("test",
+            scaling_policy_name=scaling_policy_name,
             scaling_policy_type="RECURRENCE",
             bandwidth_id=bandwidth_id,
             cool_down_time=600,
@@ -443,9 +568,10 @@ class BandwidthPolicy(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
         bandwidth_id = config.require_object("bandwidthId")
-        bw_policy = huaweicloud.as_.BandwidthPolicy("bwPolicy",
-            scaling_policy_name="bw_policy",
+        test = huaweicloud.as_.BandwidthPolicy("test",
+            scaling_policy_name=scaling_policy_name,
             scaling_policy_type="SCHEDULED",
             bandwidth_id=bandwidth_id,
             cool_down_time=600,
@@ -464,10 +590,11 @@ class BandwidthPolicy(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
         bandwidth_id = config.require_object("bandwidthId")
         alarm_id = config.require_object("alarmId")
         test = huaweicloud.as_.BandwidthPolicy("test",
-            scaling_policy_name="bw_policy",
+            scaling_policy_name=scaling_policy_name,
             scaling_policy_type="ALARM",
             bandwidth_id=bandwidth_id,
             alarm_id=alarm_id,
@@ -477,37 +604,81 @@ class BandwidthPolicy(pulumi.CustomResource):
                 limits=300,
             ))
         ```
+        ### AS Interval Alarm Policy
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
+        bandwidth_id = config.require_object("bandwidthId")
+        alarm_id = config.require_object("alarmId")
+        test = huaweicloud.as_.BandwidthPolicy("test",
+            scaling_policy_name=scaling_policy_name,
+            scaling_policy_type="INTERVAL_ALARM",
+            bandwidth_id=bandwidth_id,
+            alarm_id=alarm_id,
+            interval_alarm_actions=[huaweicloud.as_.BandwidthPolicyIntervalAlarmActionArgs(
+                lower_bound="0",
+                upper_bound="5",
+                operation="ADD",
+                size=1,
+            )])
+        ```
 
         ## Import
 
         The bandwidth scaling policies can be imported using the `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:As/bandwidthPolicy:BandwidthPolicy test 0ce123456a00f2591fabc00385ff1234
+         $ pulumi import huaweicloud:As/bandwidthPolicy:BandwidthPolicy test <id>
         ```
+
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`action`. It is generally recommended running `terraform plan` after importing the resource. You can then decide if changes should be applied to the resource, or the resource definition should be updated to align with the resource. Also you can ignore changes as below. hcl resource "huaweicloud_as_bandwidth_policy" "test" {
+
+         ...
+
+         lifecycle {
+
+         ignore_changes = [
+
+         action,
+
+         ]
+
+         } }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] action: Specifies identification of operation the AS bandwidth policy.
+               After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+               The valid values are as follows:
+               + **resume**: Indicates enable the AS bandwidth policy.
+               + **pause**: Indicates disable the AS bandwidth policy.
         :param pulumi.Input[str] alarm_id: Specifies the alarm rule ID.
-               This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+               This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         :param pulumi.Input[str] bandwidth_id: Specifies the scaling bandwidth ID.
         :param pulumi.Input[int] cool_down_time: Specifies the cooldown period (in seconds).
-               The value ranges from 0 to 86400 and is 300 by default.
+               The value ranges from `0` to `86,400` and is `300` by default.
         :param pulumi.Input[str] description: Specifies the description of the AS policy.
-               The value can contain 0 to 256 characters.
+               The value can contain `0` to `256` characters.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyIntervalAlarmActionArgs']]]] interval_alarm_actions: Specifies the alarm interval of the bandwidth policy.
+               The interval_alarm_actions structure is documented below.
         :param pulumi.Input[str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[pulumi.InputType['BandwidthPolicyScalingPolicyActionArgs']] scaling_policy_action: Specifies the scaling action of the AS policy.
-               The object structure is documented below.
+               The scaling_policy_action structure is documented below.
         :param pulumi.Input[str] scaling_policy_name: Specifies the AS policy name.
                The name contains only letters, digits, underscores (_), and hyphens (-), and cannot exceed 64 characters.
         :param pulumi.Input[str] scaling_policy_type: Specifies the AS policy type. The options are as follows:
-               - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-               - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-               - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+               + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+               + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+               + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+               + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
         :param pulumi.Input[pulumi.InputType['BandwidthPolicyScheduledPolicyArgs']] scheduled_policy: Specifies the periodic or scheduled AS policy.
-               This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-               The object structure is documented below.
+               This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+               The scheduled_policy structure is documented below.
         """
         ...
     @overload
@@ -528,9 +699,10 @@ class BandwidthPolicy(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
         bandwidth_id = config.require_object("bandwidthId")
-        bw_policy = huaweicloud.as_.BandwidthPolicy("bwPolicy",
-            scaling_policy_name="bw_policy",
+        test = huaweicloud.as_.BandwidthPolicy("test",
+            scaling_policy_name=scaling_policy_name,
             scaling_policy_type="RECURRENCE",
             bandwidth_id=bandwidth_id,
             cool_down_time=600,
@@ -553,9 +725,10 @@ class BandwidthPolicy(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
         bandwidth_id = config.require_object("bandwidthId")
-        bw_policy = huaweicloud.as_.BandwidthPolicy("bwPolicy",
-            scaling_policy_name="bw_policy",
+        test = huaweicloud.as_.BandwidthPolicy("test",
+            scaling_policy_name=scaling_policy_name,
             scaling_policy_type="SCHEDULED",
             bandwidth_id=bandwidth_id,
             cool_down_time=600,
@@ -574,10 +747,11 @@ class BandwidthPolicy(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
         bandwidth_id = config.require_object("bandwidthId")
         alarm_id = config.require_object("alarmId")
         test = huaweicloud.as_.BandwidthPolicy("test",
-            scaling_policy_name="bw_policy",
+            scaling_policy_name=scaling_policy_name,
             scaling_policy_type="ALARM",
             bandwidth_id=bandwidth_id,
             alarm_id=alarm_id,
@@ -587,14 +761,50 @@ class BandwidthPolicy(pulumi.CustomResource):
                 limits=300,
             ))
         ```
+        ### AS Interval Alarm Policy
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        scaling_policy_name = config.require_object("scalingPolicyName")
+        bandwidth_id = config.require_object("bandwidthId")
+        alarm_id = config.require_object("alarmId")
+        test = huaweicloud.as_.BandwidthPolicy("test",
+            scaling_policy_name=scaling_policy_name,
+            scaling_policy_type="INTERVAL_ALARM",
+            bandwidth_id=bandwidth_id,
+            alarm_id=alarm_id,
+            interval_alarm_actions=[huaweicloud.as_.BandwidthPolicyIntervalAlarmActionArgs(
+                lower_bound="0",
+                upper_bound="5",
+                operation="ADD",
+                size=1,
+            )])
+        ```
 
         ## Import
 
         The bandwidth scaling policies can be imported using the `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:As/bandwidthPolicy:BandwidthPolicy test 0ce123456a00f2591fabc00385ff1234
+         $ pulumi import huaweicloud:As/bandwidthPolicy:BandwidthPolicy test <id>
         ```
+
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`action`. It is generally recommended running `terraform plan` after importing the resource. You can then decide if changes should be applied to the resource, or the resource definition should be updated to align with the resource. Also you can ignore changes as below. hcl resource "huaweicloud_as_bandwidth_policy" "test" {
+
+         ...
+
+         lifecycle {
+
+         ignore_changes = [
+
+         action,
+
+         ]
+
+         } }
 
         :param str resource_name: The name of the resource.
         :param BandwidthPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -611,10 +821,12 @@ class BandwidthPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 action: Optional[pulumi.Input[str]] = None,
                  alarm_id: Optional[pulumi.Input[str]] = None,
                  bandwidth_id: Optional[pulumi.Input[str]] = None,
                  cool_down_time: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 interval_alarm_actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyIntervalAlarmActionArgs']]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_policy_action: Optional[pulumi.Input[pulumi.InputType['BandwidthPolicyScalingPolicyActionArgs']]] = None,
                  scaling_policy_name: Optional[pulumi.Input[str]] = None,
@@ -629,12 +841,14 @@ class BandwidthPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BandwidthPolicyArgs.__new__(BandwidthPolicyArgs)
 
+            __props__.__dict__["action"] = action
             __props__.__dict__["alarm_id"] = alarm_id
             if bandwidth_id is None and not opts.urn:
                 raise TypeError("Missing required property 'bandwidth_id'")
             __props__.__dict__["bandwidth_id"] = bandwidth_id
             __props__.__dict__["cool_down_time"] = cool_down_time
             __props__.__dict__["description"] = description
+            __props__.__dict__["interval_alarm_actions"] = interval_alarm_actions
             __props__.__dict__["region"] = region
             __props__.__dict__["scaling_policy_action"] = scaling_policy_action
             if scaling_policy_name is None and not opts.urn:
@@ -644,6 +858,8 @@ class BandwidthPolicy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'scaling_policy_type'")
             __props__.__dict__["scaling_policy_type"] = scaling_policy_type
             __props__.__dict__["scheduled_policy"] = scheduled_policy
+            __props__.__dict__["create_time"] = None
+            __props__.__dict__["meta_datas"] = None
             __props__.__dict__["scaling_resource_type"] = None
             __props__.__dict__["status"] = None
         super(BandwidthPolicy, __self__).__init__(
@@ -656,10 +872,14 @@ class BandwidthPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            action: Optional[pulumi.Input[str]] = None,
             alarm_id: Optional[pulumi.Input[str]] = None,
             bandwidth_id: Optional[pulumi.Input[str]] = None,
             cool_down_time: Optional[pulumi.Input[int]] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            interval_alarm_actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyIntervalAlarmActionArgs']]]]] = None,
+            meta_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyMetaDataArgs']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             scaling_policy_action: Optional[pulumi.Input[pulumi.InputType['BandwidthPolicyScalingPolicyActionArgs']]] = None,
             scaling_policy_name: Optional[pulumi.Input[str]] = None,
@@ -674,37 +894,52 @@ class BandwidthPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] action: Specifies identification of operation the AS bandwidth policy.
+               After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+               The valid values are as follows:
+               + **resume**: Indicates enable the AS bandwidth policy.
+               + **pause**: Indicates disable the AS bandwidth policy.
         :param pulumi.Input[str] alarm_id: Specifies the alarm rule ID.
-               This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+               This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         :param pulumi.Input[str] bandwidth_id: Specifies the scaling bandwidth ID.
         :param pulumi.Input[int] cool_down_time: Specifies the cooldown period (in seconds).
-               The value ranges from 0 to 86400 and is 300 by default.
+               The value ranges from `0` to `86,400` and is `300` by default.
+        :param pulumi.Input[str] create_time: The creation time of the bandwidth policy, in UTC format.
         :param pulumi.Input[str] description: Specifies the description of the AS policy.
-               The value can contain 0 to 256 characters.
+               The value can contain `0` to `256` characters.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyIntervalAlarmActionArgs']]]] interval_alarm_actions: Specifies the alarm interval of the bandwidth policy.
+               The interval_alarm_actions structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPolicyMetaDataArgs']]]] meta_datas: The bandwidth policy additional information.
+               The meta_data structure is documented below.
         :param pulumi.Input[str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[pulumi.InputType['BandwidthPolicyScalingPolicyActionArgs']] scaling_policy_action: Specifies the scaling action of the AS policy.
-               The object structure is documented below.
+               The scaling_policy_action structure is documented below.
         :param pulumi.Input[str] scaling_policy_name: Specifies the AS policy name.
                The name contains only letters, digits, underscores (_), and hyphens (-), and cannot exceed 64 characters.
         :param pulumi.Input[str] scaling_policy_type: Specifies the AS policy type. The options are as follows:
-               - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-               - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-               - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+               + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+               + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+               + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+               + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
         :param pulumi.Input[str] scaling_resource_type: The scaling resource type. The value is fixed to **BANDWIDTH**.
         :param pulumi.Input[pulumi.InputType['BandwidthPolicyScheduledPolicyArgs']] scheduled_policy: Specifies the periodic or scheduled AS policy.
-               This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-               The object structure is documented below.
+               This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+               The scheduled_policy structure is documented below.
         :param pulumi.Input[str] status: The AS policy status. The value can be **INSERVICE**, **PAUSED** and **EXECUTING**.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _BandwidthPolicyState.__new__(_BandwidthPolicyState)
 
+        __props__.__dict__["action"] = action
         __props__.__dict__["alarm_id"] = alarm_id
         __props__.__dict__["bandwidth_id"] = bandwidth_id
         __props__.__dict__["cool_down_time"] = cool_down_time
+        __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["interval_alarm_actions"] = interval_alarm_actions
+        __props__.__dict__["meta_datas"] = meta_datas
         __props__.__dict__["region"] = region
         __props__.__dict__["scaling_policy_action"] = scaling_policy_action
         __props__.__dict__["scaling_policy_name"] = scaling_policy_name
@@ -715,11 +950,23 @@ class BandwidthPolicy(pulumi.CustomResource):
         return BandwidthPolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter
+    def action(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies identification of operation the AS bandwidth policy.
+        After the AS bandwidth policy created, the status is inservice, indicates the AS bandwidth policy is enabled.
+        The valid values are as follows:
+        + **resume**: Indicates enable the AS bandwidth policy.
+        + **pause**: Indicates disable the AS bandwidth policy.
+        """
+        return pulumi.get(self, "action")
+
+    @property
     @pulumi.getter(name="alarmId")
     def alarm_id(self) -> pulumi.Output[str]:
         """
         Specifies the alarm rule ID.
-        This parameter is mandatory when `scaling_policy_type` is set to ALARM.
+        This parameter is mandatory when `scaling_policy_type` is set to **ALARM** or **INTERVAL_ALARM**.
         """
         return pulumi.get(self, "alarm_id")
 
@@ -736,18 +983,44 @@ class BandwidthPolicy(pulumi.CustomResource):
     def cool_down_time(self) -> pulumi.Output[int]:
         """
         Specifies the cooldown period (in seconds).
-        The value ranges from 0 to 86400 and is 300 by default.
+        The value ranges from `0` to `86,400` and is `300` by default.
         """
         return pulumi.get(self, "cool_down_time")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> pulumi.Output[str]:
+        """
+        The creation time of the bandwidth policy, in UTC format.
+        """
+        return pulumi.get(self, "create_time")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         """
         Specifies the description of the AS policy.
-        The value can contain 0 to 256 characters.
+        The value can contain `0` to `256` characters.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="intervalAlarmActions")
+    def interval_alarm_actions(self) -> pulumi.Output[Sequence['outputs.BandwidthPolicyIntervalAlarmAction']]:
+        """
+        Specifies the alarm interval of the bandwidth policy.
+        The interval_alarm_actions structure is documented below.
+        """
+        return pulumi.get(self, "interval_alarm_actions")
+
+    @property
+    @pulumi.getter(name="metaDatas")
+    def meta_datas(self) -> pulumi.Output[Sequence['outputs.BandwidthPolicyMetaData']]:
+        """
+        The bandwidth policy additional information.
+        The meta_data structure is documented below.
+        """
+        return pulumi.get(self, "meta_datas")
 
     @property
     @pulumi.getter
@@ -763,7 +1036,7 @@ class BandwidthPolicy(pulumi.CustomResource):
     def scaling_policy_action(self) -> pulumi.Output['outputs.BandwidthPolicyScalingPolicyAction']:
         """
         Specifies the scaling action of the AS policy.
-        The object structure is documented below.
+        The scaling_policy_action structure is documented below.
         """
         return pulumi.get(self, "scaling_policy_action")
 
@@ -781,9 +1054,10 @@ class BandwidthPolicy(pulumi.CustomResource):
     def scaling_policy_type(self) -> pulumi.Output[str]:
         """
         Specifies the AS policy type. The options are as follows:
-        - **ALARM** (corresponding to `alarm_id`): indicates that the scaling action is triggered by an alarm.
-        - **SCHEDULED** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered as scheduled.
-        - **RECURRENCE** (corresponding to `scheduled_policy`): indicates that the scaling action is triggered periodically.
+        + **ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
+        + **SCHEDULED** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered as scheduled.
+        + **RECURRENCE** (corresponding to `scheduled_policy`): Indicates that the scaling action is triggered periodically.
+        + **INTERVAL_ALARM** (corresponding to `alarm_id`): Indicates that the scaling action is triggered by an alarm.
         """
         return pulumi.get(self, "scaling_policy_type")
 
@@ -800,8 +1074,8 @@ class BandwidthPolicy(pulumi.CustomResource):
     def scheduled_policy(self) -> pulumi.Output['outputs.BandwidthPolicyScheduledPolicy']:
         """
         Specifies the periodic or scheduled AS policy.
-        This parameter is mandatory when `scaling_policy_type` is set to SCHEDULED or RECURRENCE.
-        The object structure is documented below.
+        This parameter is mandatory when `scaling_policy_type` is set to **SCHEDULED** or **RECURRENCE**.
+        The scheduled_policy structure is documented below.
         """
         return pulumi.get(self, "scheduled_policy")
 

@@ -12,6 +12,9 @@ from .. import _utilities
 __all__ = [
     'ActiveStandbyPoolHealthmonitorArgs',
     'ActiveStandbyPoolMemberArgs',
+    'ActiveStandbyPoolMemberReasonArgs',
+    'ActiveStandbyPoolMemberStatusArgs',
+    'ActiveStandbyPoolQuicCidHashStrategyArgs',
     'IpgroupIpListArgs',
     'L7policyFixedResponseConfigArgs',
     'L7policyFixedResponseConfigInsertHeadersConfigArgs',
@@ -35,6 +38,9 @@ __all__ = [
     'L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs',
     'L7ruleConditionArgs',
     'ListenerPortRangeArgs',
+    'MemberReasonArgs',
+    'MemberStatusArgs',
+    'MemberStatusReasonArgs',
     'PoolPersistenceArgs',
     'SecurityPolicyListenerArgs',
 ]
@@ -308,6 +314,8 @@ class ActiveStandbyPoolMemberArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  operating_status: Optional[pulumi.Input[str]] = None,
                  protocol_port: Optional[pulumi.Input[int]] = None,
+                 reasons: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberReasonArgs']]]] = None,
+                 statuses: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberStatusArgs']]]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] address: Specifies the private IP address bound to the member.
@@ -324,10 +332,18 @@ class ActiveStandbyPoolMemberArgs:
         :param pulumi.Input[str] member_type: The type of the member.
         :param pulumi.Input[str] name: Specifies the health check name. The length range of value is from `1` to `255`.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[str] operating_status: The health status of the member.
+        :param pulumi.Input[str] operating_status: The health status of the backend server. The value can be:
+               + **ONLINE**: The backend server is running normally.
+               + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+               + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
         :param pulumi.Input[int] protocol_port: Specifies the port used by the member to receive requests. It is mandatory
                if `any_port_enable` is **false**, and it does not take effect if `any_port_enable` is set to **true**. The value range
                is from `1` to `65,535`. Changing this parameter will create a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberReasonArgs']]] reasons: Why health check fails.
+               The reason structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberStatusArgs']]] statuses: The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+               status is not specified, operating_status of member takes precedence.
+               The status structure is documented below.
         :param pulumi.Input[str] subnet_id: Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
                + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
                + If this parameter is not passed, IP as a Backend has been enabled for the load balancer. In this case, IP as backend
@@ -350,6 +366,10 @@ class ActiveStandbyPoolMemberArgs:
             pulumi.set(__self__, "operating_status", operating_status)
         if protocol_port is not None:
             pulumi.set(__self__, "protocol_port", protocol_port)
+        if reasons is not None:
+            pulumi.set(__self__, "reasons", reasons)
+        if statuses is not None:
+            pulumi.set(__self__, "statuses", statuses)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
 
@@ -448,7 +468,10 @@ class ActiveStandbyPoolMemberArgs:
     @pulumi.getter(name="operatingStatus")
     def operating_status(self) -> Optional[pulumi.Input[str]]:
         """
-        The health status of the member.
+        The health status of the backend server. The value can be:
+        + **ONLINE**: The backend server is running normally.
+        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
         """
         return pulumi.get(self, "operating_status")
 
@@ -471,6 +494,33 @@ class ActiveStandbyPoolMemberArgs:
         pulumi.set(self, "protocol_port", value)
 
     @property
+    @pulumi.getter
+    def reasons(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberReasonArgs']]]]:
+        """
+        Why health check fails.
+        The reason structure is documented below.
+        """
+        return pulumi.get(self, "reasons")
+
+    @reasons.setter
+    def reasons(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberReasonArgs']]]]):
+        pulumi.set(self, "reasons", value)
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberStatusArgs']]]]:
+        """
+        The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+        status is not specified, operating_status of member takes precedence.
+        The status structure is documented below.
+        """
+        return pulumi.get(self, "statuses")
+
+    @statuses.setter
+    def statuses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberStatusArgs']]]]):
+        pulumi.set(self, "statuses", value)
+
+    @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -485,6 +535,195 @@ class ActiveStandbyPoolMemberArgs:
     @subnet_id.setter
     def subnet_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_id", value)
+
+
+@pulumi.input_type
+class ActiveStandbyPoolMemberReasonArgs:
+    def __init__(__self__, *,
+                 expected_response: Optional[pulumi.Input[str]] = None,
+                 healthcheck_response: Optional[pulumi.Input[str]] = None,
+                 reason_code: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] expected_response: The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+               **HTTPS** or **GRPC**.
+               + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+               to other values, the status code ranges from **200** to **599**.
+               + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+               + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+        :param pulumi.Input[str] healthcheck_response: The returned HTTP status code in the response. This parameter will take effect only when `type`
+               is set to **HTTP**, **HTTPS** or **GRPC**.
+               + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+               other values, the status code ranges from **200** to **599**.
+        :param pulumi.Input[str] reason_code: The code of the health check failures. The value can be:
+               + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+               + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+               + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+               + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+               + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+               + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+               + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+               duration during a health check.
+               + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+               check.
+               + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+               timeout duration.
+               + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+               + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+        """
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if healthcheck_response is not None:
+            pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        if reason_code is not None:
+            pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[pulumi.Input[str]]:
+        """
+        The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+        **HTTPS** or **GRPC**.
+        + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+        to other values, the status code ranges from **200** to **599**.
+        + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+        + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @expected_response.setter
+    def expected_response(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expected_response", value)
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> Optional[pulumi.Input[str]]:
+        """
+        The returned HTTP status code in the response. This parameter will take effect only when `type`
+        is set to **HTTP**, **HTTPS** or **GRPC**.
+        + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+        other values, the status code ranges from **200** to **599**.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @healthcheck_response.setter
+    def healthcheck_response(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "healthcheck_response", value)
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The code of the health check failures. The value can be:
+        + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+        + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+        + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+        + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+        + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+        + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+        + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+        duration during a health check.
+        + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+        check.
+        + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+        timeout duration.
+        + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+        + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+        """
+        return pulumi.get(self, "reason_code")
+
+    @reason_code.setter
+    def reason_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reason_code", value)
+
+
+@pulumi.input_type
+class ActiveStandbyPoolMemberStatusArgs:
+    def __init__(__self__, *,
+                 listener_id: Optional[pulumi.Input[str]] = None,
+                 operating_status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the active-standby pool is
+               associated. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] operating_status: The health status of the backend server. The value can be:
+               + **ONLINE**: The backend server is running normally.
+               + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+               + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+        """
+        if listener_id is not None:
+            pulumi.set(__self__, "listener_id", listener_id)
+        if operating_status is not None:
+            pulumi.set(__self__, "operating_status", operating_status)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ID of the listener with which the active-standby pool is
+        associated. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @listener_id.setter
+    def listener_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listener_id", value)
+
+    @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The health status of the backend server. The value can be:
+        + **ONLINE**: The backend server is running normally.
+        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @operating_status.setter
+    def operating_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operating_status", value)
+
+
+@pulumi.input_type
+class ActiveStandbyPoolQuicCidHashStrategyArgs:
+    def __init__(__self__, *,
+                 len: Optional[pulumi.Input[int]] = None,
+                 offset: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] len: The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lb_algorithm`
+               is **QUIC_CID**. Value range: **1** to **20**.
+        :param pulumi.Input[int] offset: The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+               `lb_algorithm` is **QUIC_CID**. Value range: **0** to **19**.
+        """
+        if len is not None:
+            pulumi.set(__self__, "len", len)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
+
+    @property
+    @pulumi.getter
+    def len(self) -> Optional[pulumi.Input[int]]:
+        """
+        The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lb_algorithm`
+        is **QUIC_CID**. Value range: **1** to **20**.
+        """
+        return pulumi.get(self, "len")
+
+    @len.setter
+    def len(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "len", value)
+
+    @property
+    @pulumi.getter
+    def offset(self) -> Optional[pulumi.Input[int]]:
+        """
+        The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+        `lb_algorithm` is **QUIC_CID**. Value range: **0** to **19**.
+        """
+        return pulumi.get(self, "offset")
+
+    @offset.setter
+    def offset(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "offset", value)
 
 
 @pulumi.input_type
@@ -1769,6 +2008,173 @@ class ListenerPortRangeArgs:
     @start_port.setter
     def start_port(self, value: pulumi.Input[int]):
         pulumi.set(self, "start_port", value)
+
+
+@pulumi.input_type
+class MemberReasonArgs:
+    def __init__(__self__, *,
+                 expected_response: Optional[pulumi.Input[str]] = None,
+                 healthcheck_response: Optional[pulumi.Input[str]] = None,
+                 reason_code: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] expected_response: The code of the health check failures.
+        :param pulumi.Input[str] healthcheck_response: The expected HTTP status code.
+        :param pulumi.Input[str] reason_code: The returned HTTP status code in the response.
+        """
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if healthcheck_response is not None:
+            pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        if reason_code is not None:
+            pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[pulumi.Input[str]]:
+        """
+        The code of the health check failures.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @expected_response.setter
+    def expected_response(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expected_response", value)
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> Optional[pulumi.Input[str]]:
+        """
+        The expected HTTP status code.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @healthcheck_response.setter
+    def healthcheck_response(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "healthcheck_response", value)
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The returned HTTP status code in the response.
+        """
+        return pulumi.get(self, "reason_code")
+
+    @reason_code.setter
+    def reason_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reason_code", value)
+
+
+@pulumi.input_type
+class MemberStatusArgs:
+    def __init__(__self__, *,
+                 listener_id: Optional[pulumi.Input[str]] = None,
+                 operating_status: Optional[pulumi.Input[str]] = None,
+                 reasons: Optional[pulumi.Input[Sequence[pulumi.Input['MemberStatusReasonArgs']]]] = None):
+        """
+        :param pulumi.Input[str] listener_id: The listener ID.
+        :param pulumi.Input[str] operating_status: The health status of the backend server.
+        :param pulumi.Input[Sequence[pulumi.Input['MemberStatusReasonArgs']]] reasons: Why health check fails.
+               The reason structure is documented below.
+        """
+        if listener_id is not None:
+            pulumi.set(__self__, "listener_id", listener_id)
+        if operating_status is not None:
+            pulumi.set(__self__, "operating_status", operating_status)
+        if reasons is not None:
+            pulumi.set(__self__, "reasons", reasons)
+
+    @property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The listener ID.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @listener_id.setter
+    def listener_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listener_id", value)
+
+    @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The health status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @operating_status.setter
+    def operating_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operating_status", value)
+
+    @property
+    @pulumi.getter
+    def reasons(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberStatusReasonArgs']]]]:
+        """
+        Why health check fails.
+        The reason structure is documented below.
+        """
+        return pulumi.get(self, "reasons")
+
+    @reasons.setter
+    def reasons(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberStatusReasonArgs']]]]):
+        pulumi.set(self, "reasons", value)
+
+
+@pulumi.input_type
+class MemberStatusReasonArgs:
+    def __init__(__self__, *,
+                 expected_response: Optional[pulumi.Input[str]] = None,
+                 healthcheck_response: Optional[pulumi.Input[str]] = None,
+                 reason_code: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] expected_response: The code of the health check failures.
+        :param pulumi.Input[str] healthcheck_response: The expected HTTP status code.
+        :param pulumi.Input[str] reason_code: The returned HTTP status code in the response.
+        """
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if healthcheck_response is not None:
+            pulumi.set(__self__, "healthcheck_response", healthcheck_response)
+        if reason_code is not None:
+            pulumi.set(__self__, "reason_code", reason_code)
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[pulumi.Input[str]]:
+        """
+        The code of the health check failures.
+        """
+        return pulumi.get(self, "expected_response")
+
+    @expected_response.setter
+    def expected_response(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expected_response", value)
+
+    @property
+    @pulumi.getter(name="healthcheckResponse")
+    def healthcheck_response(self) -> Optional[pulumi.Input[str]]:
+        """
+        The expected HTTP status code.
+        """
+        return pulumi.get(self, "healthcheck_response")
+
+    @healthcheck_response.setter
+    def healthcheck_response(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "healthcheck_response", value)
+
+    @property
+    @pulumi.getter(name="reasonCode")
+    def reason_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The returned HTTP status code in the response.
+        """
+        return pulumi.get(self, "reason_code")
+
+    @reason_code.setter
+    def reason_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reason_code", value)
 
 
 @pulumi.input_type

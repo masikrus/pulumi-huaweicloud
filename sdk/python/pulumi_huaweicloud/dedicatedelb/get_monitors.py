@@ -22,13 +22,16 @@ class GetMonitorsResult:
     """
     A collection of values returned by getMonitors.
     """
-    def __init__(__self__, domain_name=None, enterprise_project_id=None, id=None, interval=None, max_retries=None, max_retries_down=None, monitor_id=None, monitors=None, name=None, pool_id=None, port=None, protocol=None, region=None, status_code=None, timeout=None, url_path=None):
+    def __init__(__self__, domain_name=None, enterprise_project_id=None, http_method=None, id=None, interval=None, max_retries=None, max_retries_down=None, monitor_id=None, monitors=None, name=None, pool_id=None, port=None, protocol=None, region=None, status_code=None, timeout=None, url_path=None):
         if domain_name and not isinstance(domain_name, str):
             raise TypeError("Expected argument 'domain_name' to be a str")
         pulumi.set(__self__, "domain_name", domain_name)
         if enterprise_project_id and not isinstance(enterprise_project_id, str):
             raise TypeError("Expected argument 'enterprise_project_id' to be a str")
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if http_method and not isinstance(http_method, str):
+            raise TypeError("Expected argument 'http_method' to be a str")
+        pulumi.set(__self__, "http_method", http_method)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -84,6 +87,14 @@ class GetMonitorsResult:
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[str]:
         return pulumi.get(self, "enterprise_project_id")
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> Optional[str]:
+        """
+        The HTTP method
+        """
+        return pulumi.get(self, "http_method")
 
     @property
     @pulumi.getter
@@ -203,6 +214,7 @@ class AwaitableGetMonitorsResult(GetMonitorsResult):
         return GetMonitorsResult(
             domain_name=self.domain_name,
             enterprise_project_id=self.enterprise_project_id,
+            http_method=self.http_method,
             id=self.id,
             interval=self.interval,
             max_retries=self.max_retries,
@@ -221,6 +233,7 @@ class AwaitableGetMonitorsResult(GetMonitorsResult):
 
 def get_monitors(domain_name: Optional[str] = None,
                  enterprise_project_id: Optional[str] = None,
+                 http_method: Optional[str] = None,
                  interval: Optional[int] = None,
                  max_retries: Optional[int] = None,
                  max_retries_down: Optional[int] = None,
@@ -252,6 +265,7 @@ def get_monitors(domain_name: Optional[str] = None,
     :param str domain_name: Specifies the domain name to which HTTP requests are sent during the health check.
            The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
     :param str enterprise_project_id: Specifies the enterprise project ID.
+    :param str http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
     :param int interval: Specifies the interval between health checks, in seconds.  
            The value ranges from `1` to `50`.
     :param int max_retries: Specifies the number of consecutive health checks when the health check result of a
@@ -279,6 +293,7 @@ def get_monitors(domain_name: Optional[str] = None,
     __args__ = dict()
     __args__['domainName'] = domain_name
     __args__['enterpriseProjectId'] = enterprise_project_id
+    __args__['httpMethod'] = http_method
     __args__['interval'] = interval
     __args__['maxRetries'] = max_retries
     __args__['maxRetriesDown'] = max_retries_down
@@ -297,6 +312,7 @@ def get_monitors(domain_name: Optional[str] = None,
     return AwaitableGetMonitorsResult(
         domain_name=__ret__.domain_name,
         enterprise_project_id=__ret__.enterprise_project_id,
+        http_method=__ret__.http_method,
         id=__ret__.id,
         interval=__ret__.interval,
         max_retries=__ret__.max_retries,
@@ -316,6 +332,7 @@ def get_monitors(domain_name: Optional[str] = None,
 @_utilities.lift_output_func(get_monitors)
 def get_monitors_output(domain_name: Optional[pulumi.Input[Optional[str]]] = None,
                         enterprise_project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                        http_method: Optional[pulumi.Input[Optional[str]]] = None,
                         interval: Optional[pulumi.Input[Optional[int]]] = None,
                         max_retries: Optional[pulumi.Input[Optional[int]]] = None,
                         max_retries_down: Optional[pulumi.Input[Optional[int]]] = None,
@@ -347,6 +364,7 @@ def get_monitors_output(domain_name: Optional[pulumi.Input[Optional[str]]] = Non
     :param str domain_name: Specifies the domain name to which HTTP requests are sent during the health check.
            The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
     :param str enterprise_project_id: Specifies the enterprise project ID.
+    :param str http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
     :param int interval: Specifies the interval between health checks, in seconds.  
            The value ranges from `1` to `50`.
     :param int max_retries: Specifies the number of consecutive health checks when the health check result of a

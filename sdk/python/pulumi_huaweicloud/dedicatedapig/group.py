@@ -37,10 +37,15 @@ class GroupArgs:
                The object structure is documented below.
         :param pulumi.Input[bool] force_destroy: Specifies whether to delete all sub-resources (for API) when deleting this group.  
                Defaults to **false**.
-        :param pulumi.Input[str] name: Specifies the domain name. The valid must comply with the domian name specifications.
+        :param pulumi.Input[str] name: Specifies the variable name.  
+               The valid length is limited from `3` to `32` characters.
+               Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+               In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+               It is replaced by the actual value when the API is published in an environment.
+               The variable names are not allowed to be repeated for an API group.
         :param pulumi.Input[str] region: Specifies the region where the APIG (API) group is located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]] url_domains: Specifies independent domain names of the associated with group.  
+        :param pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]] url_domains: The associated domain information of the group.  
                The url_domains structure is documented below.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -129,7 +134,12 @@ class GroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the domain name. The valid must comply with the domian name specifications.
+        Specifies the variable name.  
+        The valid length is limited from `3` to `32` characters.
+        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+        It is replaced by the actual value when the API is published in an environment.
+        The variable names are not allowed to be repeated for an API group.
         """
         return pulumi.get(self, "name")
 
@@ -154,7 +164,7 @@ class GroupArgs:
     @pulumi.getter(name="urlDomains")
     def url_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]]]:
         """
-        Specifies independent domain names of the associated with group.  
+        The associated domain information of the group.  
         The url_domains structure is documented below.
         """
         return pulumi.get(self, "url_domains")
@@ -193,13 +203,18 @@ class _GroupState:
                Defaults to **false**.
         :param pulumi.Input[str] instance_id: Specifies the ID of the dedicated instance to which the group belongs.  
                Changing this will create a new resource.
-        :param pulumi.Input[str] name: Specifies the domain name. The valid must comply with the domian name specifications.
+        :param pulumi.Input[str] name: Specifies the variable name.  
+               The valid length is limited from `3` to `32` characters.
+               Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+               In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+               It is replaced by the actual value when the API is published in an environment.
+               The variable names are not allowed to be repeated for an API group.
         :param pulumi.Input[str] region: Specifies the region where the APIG (API) group is located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[str] registration_time: The registration time.
         :param pulumi.Input[str] update_time: The latest update time of the group.
         :param pulumi.Input[str] updated_at: The latest update time of the group, in RFC3339 format.
-        :param pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]] url_domains: Specifies independent domain names of the associated with group.  
+        :param pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]] url_domains: The associated domain information of the group.  
                The url_domains structure is documented below.
         """
         if created_at is not None:
@@ -309,7 +324,12 @@ class _GroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the domain name. The valid must comply with the domian name specifications.
+        Specifies the variable name.  
+        The valid length is limited from `3` to `32` characters.
+        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+        It is replaced by the actual value when the API is published in an environment.
+        The variable names are not allowed to be repeated for an API group.
         """
         return pulumi.get(self, "name")
 
@@ -370,7 +390,7 @@ class _GroupState:
     @pulumi.getter(name="urlDomains")
     def url_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]]]:
         """
-        Specifies independent domain names of the associated with group.  
+        The associated domain information of the group.  
         The url_domains structure is documented below.
         """
         return pulumi.get(self, "url_domains")
@@ -441,10 +461,15 @@ class Group(pulumi.CustomResource):
                Defaults to **false**.
         :param pulumi.Input[str] instance_id: Specifies the ID of the dedicated instance to which the group belongs.  
                Changing this will create a new resource.
-        :param pulumi.Input[str] name: Specifies the domain name. The valid must comply with the domian name specifications.
+        :param pulumi.Input[str] name: Specifies the variable name.  
+               The valid length is limited from `3` to `32` characters.
+               Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+               In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+               It is replaced by the actual value when the API is published in an environment.
+               The variable names are not allowed to be repeated for an API group.
         :param pulumi.Input[str] region: Specifies the region where the APIG (API) group is located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUrlDomainArgs']]]] url_domains: Specifies independent domain names of the associated with group.  
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUrlDomainArgs']]]] url_domains: The associated domain information of the group.  
                The url_domains structure is documented below.
         """
         ...
@@ -574,13 +599,18 @@ class Group(pulumi.CustomResource):
                Defaults to **false**.
         :param pulumi.Input[str] instance_id: Specifies the ID of the dedicated instance to which the group belongs.  
                Changing this will create a new resource.
-        :param pulumi.Input[str] name: Specifies the domain name. The valid must comply with the domian name specifications.
+        :param pulumi.Input[str] name: Specifies the variable name.  
+               The valid length is limited from `3` to `32` characters.
+               Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+               In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+               It is replaced by the actual value when the API is published in an environment.
+               The variable names are not allowed to be repeated for an API group.
         :param pulumi.Input[str] region: Specifies the region where the APIG (API) group is located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[str] registration_time: The registration time.
         :param pulumi.Input[str] update_time: The latest update time of the group.
         :param pulumi.Input[str] updated_at: The latest update time of the group, in RFC3339 format.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUrlDomainArgs']]]] url_domains: Specifies independent domain names of the associated with group.  
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUrlDomainArgs']]]] url_domains: The associated domain information of the group.  
                The url_domains structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -659,7 +689,12 @@ class Group(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Specifies the domain name. The valid must comply with the domian name specifications.
+        Specifies the variable name.  
+        The valid length is limited from `3` to `32` characters.
+        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+        It is replaced by the actual value when the API is published in an environment.
+        The variable names are not allowed to be repeated for an API group.
         """
         return pulumi.get(self, "name")
 
@@ -698,9 +733,9 @@ class Group(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="urlDomains")
-    def url_domains(self) -> pulumi.Output[Optional[Sequence['outputs.GroupUrlDomain']]]:
+    def url_domains(self) -> pulumi.Output[Sequence['outputs.GroupUrlDomain']]:
         """
-        Specifies independent domain names of the associated with group.  
+        The associated domain information of the group.  
         The url_domains structure is documented below.
         """
         return pulumi.get(self, "url_domains")

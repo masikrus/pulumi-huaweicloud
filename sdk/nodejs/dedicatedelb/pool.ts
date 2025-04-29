@@ -130,7 +130,6 @@ export class Pool extends pulumi.CustomResource {
     /**
      * Specifies whether to enable transparent port transmission on the backend.
      * If enable, the port of the backend server will be same as the port of the listener.
-     * Changing this creates a new pool.
      */
     public readonly anyPortEnable!: pulumi.Output<boolean>;
     /**
@@ -148,7 +147,7 @@ export class Pool extends pulumi.CustomResource {
      */
     public readonly connectionDrainTimeout!: pulumi.Output<number>;
     /**
-     * The create time of the pool.
+     * The creation time of the pool.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -159,10 +158,14 @@ export class Pool extends pulumi.CustomResource {
      * Specifies the description of the pool.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    public readonly enableForceNew!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the enterprise project.
+     */
+    public /*out*/ readonly enterpriseProjectId!: pulumi.Output<string>;
     /**
      * Specifies the IP address version supported by the backend server group.
      * The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-     * Changing this creates a new pool.
      */
     public readonly ipVersion!: pulumi.Output<string>;
     /**
@@ -179,12 +182,12 @@ export class Pool extends pulumi.CustomResource {
     public readonly lbMethod!: pulumi.Output<string>;
     /**
      * Specifies the ID of the listener with which the backend server group is
-     * associated. Changing this creates a new pool.
+     * associated.
      */
     public readonly listenerId!: pulumi.Output<string>;
     /**
      * Specifies the ID of the load balancer with which the backend server
-     * group is associated. Changing this creates a new pool.
+     * group is associated.
      */
     public readonly loadbalancerId!: pulumi.Output<string>;
     /**
@@ -234,6 +237,10 @@ export class Pool extends pulumi.CustomResource {
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
+     * Specifies the public border group.
+     */
+    public readonly publicBorderGroup!: pulumi.Output<string>;
+    /**
      * Specifies the region in which to create the ELB pool resource. If omitted, the
      * provider-level region will be used. Changing this creates a new pool.
      */
@@ -282,6 +289,8 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deletionProtectionEnable"] = state ? state.deletionProtectionEnable : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enableForceNew"] = state ? state.enableForceNew : undefined;
+            resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
             resourceInputs["lbMethod"] = state ? state.lbMethod : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
@@ -293,6 +302,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["protectionReason"] = state ? state.protectionReason : undefined;
             resourceInputs["protectionStatus"] = state ? state.protectionStatus : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["publicBorderGroup"] = state ? state.publicBorderGroup : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["slowStartDuration"] = state ? state.slowStartDuration : undefined;
             resourceInputs["slowStartEnabled"] = state ? state.slowStartEnabled : undefined;
@@ -312,6 +322,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["connectionDrainTimeout"] = args ? args.connectionDrainTimeout : undefined;
             resourceInputs["deletionProtectionEnable"] = args ? args.deletionProtectionEnable : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enableForceNew"] = args ? args.enableForceNew : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
             resourceInputs["lbMethod"] = args ? args.lbMethod : undefined;
             resourceInputs["listenerId"] = args ? args.listenerId : undefined;
@@ -322,12 +333,14 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["protectionReason"] = args ? args.protectionReason : undefined;
             resourceInputs["protectionStatus"] = args ? args.protectionStatus : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["publicBorderGroup"] = args ? args.publicBorderGroup : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["slowStartDuration"] = args ? args.slowStartDuration : undefined;
             resourceInputs["slowStartEnabled"] = args ? args.slowStartEnabled : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["enterpriseProjectId"] = undefined /*out*/;
             resourceInputs["monitorId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -343,7 +356,6 @@ export interface PoolState {
     /**
      * Specifies whether to enable transparent port transmission on the backend.
      * If enable, the port of the backend server will be same as the port of the listener.
-     * Changing this creates a new pool.
      */
     anyPortEnable?: pulumi.Input<boolean>;
     /**
@@ -361,7 +373,7 @@ export interface PoolState {
      */
     connectionDrainTimeout?: pulumi.Input<number>;
     /**
-     * The create time of the pool.
+     * The creation time of the pool.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -372,10 +384,14 @@ export interface PoolState {
      * Specifies the description of the pool.
      */
     description?: pulumi.Input<string>;
+    enableForceNew?: pulumi.Input<string>;
+    /**
+     * The ID of the enterprise project.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
     /**
      * Specifies the IP address version supported by the backend server group.
      * The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-     * Changing this creates a new pool.
      */
     ipVersion?: pulumi.Input<string>;
     /**
@@ -392,12 +408,12 @@ export interface PoolState {
     lbMethod?: pulumi.Input<string>;
     /**
      * Specifies the ID of the listener with which the backend server group is
-     * associated. Changing this creates a new pool.
+     * associated.
      */
     listenerId?: pulumi.Input<string>;
     /**
      * Specifies the ID of the load balancer with which the backend server
-     * group is associated. Changing this creates a new pool.
+     * group is associated.
      */
     loadbalancerId?: pulumi.Input<string>;
     /**
@@ -447,6 +463,10 @@ export interface PoolState {
      */
     protocol?: pulumi.Input<string>;
     /**
+     * Specifies the public border group.
+     */
+    publicBorderGroup?: pulumi.Input<string>;
+    /**
      * Specifies the region in which to create the ELB pool resource. If omitted, the
      * provider-level region will be used. Changing this creates a new pool.
      */
@@ -484,7 +504,6 @@ export interface PoolArgs {
     /**
      * Specifies whether to enable transparent port transmission on the backend.
      * If enable, the port of the backend server will be same as the port of the listener.
-     * Changing this creates a new pool.
      */
     anyPortEnable?: pulumi.Input<boolean>;
     /**
@@ -509,10 +528,10 @@ export interface PoolArgs {
      * Specifies the description of the pool.
      */
     description?: pulumi.Input<string>;
+    enableForceNew?: pulumi.Input<string>;
     /**
      * Specifies the IP address version supported by the backend server group.
      * The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-     * Changing this creates a new pool.
      */
     ipVersion?: pulumi.Input<string>;
     /**
@@ -529,12 +548,12 @@ export interface PoolArgs {
     lbMethod: pulumi.Input<string>;
     /**
      * Specifies the ID of the listener with which the backend server group is
-     * associated. Changing this creates a new pool.
+     * associated.
      */
     listenerId?: pulumi.Input<string>;
     /**
      * Specifies the ID of the load balancer with which the backend server
-     * group is associated. Changing this creates a new pool.
+     * group is associated.
      */
     loadbalancerId?: pulumi.Input<string>;
     /**
@@ -579,6 +598,10 @@ export interface PoolArgs {
      * + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
      */
     protocol: pulumi.Input<string>;
+    /**
+     * Specifies the public border group.
+     */
+    publicBorderGroup?: pulumi.Input<string>;
     /**
      * Specifies the region in which to create the ELB pool resource. If omitted, the
      * provider-level region will be used. Changing this creates a new pool.

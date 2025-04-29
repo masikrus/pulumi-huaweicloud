@@ -61,7 +61,7 @@ class ClusterArgs:
                spelled backwards. The password must contain lowercase letters, uppercase letters, digits, spaces and the special
                characters: `!?,.:-_{}[]@$^+=/`. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterMasterNodesArgs'] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
-               The `nodes` object structure of the `master_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] subnet_id: Specifies the network ID of a subnet which bound to the MapReduce cluster.
                Changing this will create a new MapReduce cluster resource.
@@ -71,11 +71,11 @@ class ClusterArgs:
                this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterAnalysisCoreNodesArgs'] analysis_core_nodes: Specifies the informations about analysis core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterAnalysisTaskNodesArgs'] analysis_task_nodes: Specifies the informations about analysis task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterBootstrapScriptArgs']]] bootstrap_scripts: Specifies the bootstrap action scripts.
                Bootstrap action scripts will be executed on specified cluster nodes before or after big data components are
@@ -87,8 +87,8 @@ class ClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterComponentConfigArgs']]] component_configs: Specifies the component configurations of the cluster.
                The object structure is documented below.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterCustomNodeArgs']]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.
-               The `nodes` object structure of the `custom_nodes` is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterCustomNodeArgs']]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.  
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] eip_id: Specifies the EIP ID which bound to the MapReduce cluster.
                The EIP must have been created and must be in the same region as the cluster.
@@ -133,11 +133,11 @@ class ClusterArgs:
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterStreamingCoreNodesArgs'] streaming_core_nodes: Specifies the informations about streaming core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterStreamingTaskNodesArgs'] streaming_task_nodes: Specifies the informations about streaming task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the key/value pairs to associate with the cluster.
         :param pulumi.Input[str] template_id: Specifies the template used for node deployment when the cluster type is
@@ -260,7 +260,7 @@ class ClusterArgs:
     def master_nodes(self) -> pulumi.Input['ClusterMasterNodesArgs']:
         """
         Specifies the informations about master nodes in the MapReduce cluster.
-        The `nodes` object structure of the `master_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "master_nodes")
@@ -314,7 +314,7 @@ class ClusterArgs:
         """
         Specifies the informations about analysis core nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `analysis_core_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "analysis_core_nodes")
@@ -329,7 +329,7 @@ class ClusterArgs:
         """
         Specifies the informations about analysis task nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `analysis_task_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "analysis_task_nodes")
@@ -385,8 +385,8 @@ class ClusterArgs:
     @pulumi.getter(name="customNodes")
     def custom_nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterCustomNodeArgs']]]]:
         """
-        Specifies the informations about custom nodes in the MapReduce cluster.
-        The `nodes` object structure of the `custom_nodes` is documented below.
+        Specifies the informations about custom nodes in the MapReduce cluster.  
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "custom_nodes")
@@ -596,7 +596,7 @@ class ClusterArgs:
         """
         Specifies the informations about streaming core nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `streaming_core_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "streaming_core_nodes")
@@ -611,7 +611,7 @@ class ClusterArgs:
         """
         Specifies the informations about streaming task nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `streaming_task_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "streaming_task_nodes")
@@ -714,11 +714,11 @@ class _ClusterState:
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input['ClusterAnalysisCoreNodesArgs'] analysis_core_nodes: Specifies the informations about analysis core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterAnalysisTaskNodesArgs'] analysis_task_nodes: Specifies the informations about analysis task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] availability_zone: Specifies the availability zone in which to create the cluster.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?all)
@@ -738,8 +738,8 @@ class _ClusterState:
                the cluster, please following [reference](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] create_time: The cluster creation time, in RFC-3339 format.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterCustomNodeArgs']]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.
-               The `nodes` object structure of the `custom_nodes` is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterCustomNodeArgs']]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.  
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] eip_id: Specifies the EIP ID which bound to the MapReduce cluster.
                The EIP must have been created and must be in the same region as the cluster.
@@ -757,7 +757,7 @@ class _ClusterState:
                characters: `!?,.:-_{}[]@$^+=/`. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] master_node_ip: The IP address of the master node.
         :param pulumi.Input['ClusterMasterNodesArgs'] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
-               The `nodes` object structure of the `master_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
@@ -794,11 +794,11 @@ class _ClusterState:
         :param pulumi.Input[str] status: The cluster state, which include: running, frozen, abnormal and failed.
         :param pulumi.Input['ClusterStreamingCoreNodesArgs'] streaming_core_nodes: Specifies the informations about streaming core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterStreamingTaskNodesArgs'] streaming_task_nodes: Specifies the informations about streaming task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] subnet_id: Specifies the network ID of a subnet which bound to the MapReduce cluster.
                Changing this will create a new MapReduce cluster resource.
@@ -908,7 +908,7 @@ class _ClusterState:
         """
         Specifies the informations about analysis core nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `analysis_core_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "analysis_core_nodes")
@@ -923,7 +923,7 @@ class _ClusterState:
         """
         Specifies the informations about analysis task nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `analysis_task_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "analysis_task_nodes")
@@ -1031,8 +1031,8 @@ class _ClusterState:
     @pulumi.getter(name="customNodes")
     def custom_nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterCustomNodeArgs']]]]:
         """
-        Specifies the informations about custom nodes in the MapReduce cluster.
-        The `nodes` object structure of the `custom_nodes` is documented below.
+        Specifies the informations about custom nodes in the MapReduce cluster.  
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "custom_nodes")
@@ -1127,7 +1127,7 @@ class _ClusterState:
     def master_nodes(self) -> Optional[pulumi.Input['ClusterMasterNodesArgs']]:
         """
         Specifies the informations about master nodes in the MapReduce cluster.
-        The `nodes` object structure of the `master_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "master_nodes")
@@ -1307,7 +1307,7 @@ class _ClusterState:
         """
         Specifies the informations about streaming core nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `streaming_core_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "streaming_core_nodes")
@@ -1322,7 +1322,7 @@ class _ClusterState:
         """
         Specifies the informations about streaming task nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `streaming_task_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "streaming_task_nodes")
@@ -1865,11 +1865,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ClusterAnalysisCoreNodesArgs']] analysis_core_nodes: Specifies the informations about analysis core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[pulumi.InputType['ClusterAnalysisTaskNodesArgs']] analysis_task_nodes: Specifies the informations about analysis task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] availability_zone: Specifies the availability zone in which to create the cluster.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?all)
@@ -1887,8 +1887,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] component_lists: Specifies the list of component names. For the components supported by
                the cluster, please following [reference](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterCustomNodeArgs']]]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.
-               The `nodes` object structure of the `custom_nodes` is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterCustomNodeArgs']]]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.  
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] eip_id: Specifies the EIP ID which bound to the MapReduce cluster.
                The EIP must have been created and must be in the same region as the cluster.
@@ -1905,7 +1905,7 @@ class Cluster(pulumi.CustomResource):
                spelled backwards. The password must contain lowercase letters, uppercase letters, digits, spaces and the special
                characters: `!?,.:-_{}[]@$^+=/`. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[pulumi.InputType['ClusterMasterNodesArgs']] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
-               The `nodes` object structure of the `master_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
@@ -1940,11 +1940,11 @@ class Cluster(pulumi.CustomResource):
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[pulumi.InputType['ClusterStreamingCoreNodesArgs']] streaming_core_nodes: Specifies the informations about streaming core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[pulumi.InputType['ClusterStreamingTaskNodesArgs']] streaming_task_nodes: Specifies the informations about streaming task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] subnet_id: Specifies the network ID of a subnet which bound to the MapReduce cluster.
                Changing this will create a new MapReduce cluster resource.
@@ -2521,11 +2521,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ClusterAnalysisCoreNodesArgs']] analysis_core_nodes: Specifies the informations about analysis core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[pulumi.InputType['ClusterAnalysisTaskNodesArgs']] analysis_task_nodes: Specifies the informations about analysis task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `analysis_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] availability_zone: Specifies the availability zone in which to create the cluster.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?all)
@@ -2545,8 +2545,8 @@ class Cluster(pulumi.CustomResource):
                the cluster, please following [reference](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] create_time: The cluster creation time, in RFC-3339 format.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterCustomNodeArgs']]]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.
-               The `nodes` object structure of the `custom_nodes` is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterCustomNodeArgs']]]] custom_nodes: Specifies the informations about custom nodes in the MapReduce cluster.  
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] eip_id: Specifies the EIP ID which bound to the MapReduce cluster.
                The EIP must have been created and must be in the same region as the cluster.
@@ -2564,7 +2564,7 @@ class Cluster(pulumi.CustomResource):
                characters: `!?,.:-_{}[]@$^+=/`. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] master_node_ip: The IP address of the master node.
         :param pulumi.Input[pulumi.InputType['ClusterMasterNodesArgs']] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
-               The `nodes` object structure of the `master_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
@@ -2601,11 +2601,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] status: The cluster state, which include: running, frozen, abnormal and failed.
         :param pulumi.Input[pulumi.InputType['ClusterStreamingCoreNodesArgs']] streaming_core_nodes: Specifies the informations about streaming core nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_core_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[pulumi.InputType['ClusterStreamingTaskNodesArgs']] streaming_task_nodes: Specifies the informations about streaming task nodes in the
                MapReduce cluster.
-               The `nodes` object structure of the `streaming_task_nodes` is documented below.
+               The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[str] subnet_id: Specifies the network ID of a subnet which bound to the MapReduce cluster.
                Changing this will create a new MapReduce cluster resource.
@@ -2681,7 +2681,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies the informations about analysis core nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `analysis_core_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "analysis_core_nodes")
@@ -2692,7 +2692,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies the informations about analysis task nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `analysis_task_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "analysis_task_nodes")
@@ -2768,8 +2768,8 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="customNodes")
     def custom_nodes(self) -> pulumi.Output[Optional[Sequence['outputs.ClusterCustomNode']]]:
         """
-        Specifies the informations about custom nodes in the MapReduce cluster.
-        The `nodes` object structure of the `custom_nodes` is documented below.
+        Specifies the informations about custom nodes in the MapReduce cluster.  
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "custom_nodes")
@@ -2836,7 +2836,7 @@ class Cluster(pulumi.CustomResource):
     def master_nodes(self) -> pulumi.Output['outputs.ClusterMasterNodes']:
         """
         Specifies the informations about master nodes in the MapReduce cluster.
-        The `nodes` object structure of the `master_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "master_nodes")
@@ -2964,7 +2964,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies the informations about streaming core nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `streaming_core_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "streaming_core_nodes")
@@ -2975,7 +2975,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies the informations about streaming task nodes in the
         MapReduce cluster.
-        The `nodes` object structure of the `streaming_task_nodes` is documented below.
+        The master_nodes structure is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "streaming_task_nodes")

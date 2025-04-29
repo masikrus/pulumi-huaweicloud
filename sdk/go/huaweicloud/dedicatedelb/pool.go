@@ -161,7 +161,6 @@ type Pool struct {
 
 	// Specifies whether to enable transparent port transmission on the backend.
 	// If enable, the port of the backend server will be same as the port of the listener.
-	// Changing this creates a new pool.
 	AnyPortEnable pulumi.BoolOutput `pulumi:"anyPortEnable"`
 	// Specifies whether to enable delayed logout. This parameter can be set to
 	// **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
@@ -173,15 +172,17 @@ type Pool struct {
 	// Specifies the timeout of the delayed logout in seconds.\
 	// Value ranges from `10` to `4000`.
 	ConnectionDrainTimeout pulumi.IntOutput `pulumi:"connectionDrainTimeout"`
-	// The create time of the pool.
+	// The creation time of the pool.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Specifies whether to enable deletion protection.
 	DeletionProtectionEnable pulumi.BoolPtrOutput `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the pool.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description    pulumi.StringPtrOutput `pulumi:"description"`
+	EnableForceNew pulumi.StringPtrOutput `pulumi:"enableForceNew"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-	// Changing this creates a new pool.
 	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
 	// Specifies the load balancing algorithm used by the load balancer to route requests
 	// to backend servers in the associated backend server group. Value options:
@@ -194,10 +195,10 @@ type Pool struct {
 	// + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
 	LbMethod pulumi.StringOutput `pulumi:"lbMethod"`
 	// Specifies the ID of the listener with which the backend server group is
-	// associated. Changing this creates a new pool.
+	// associated.
 	ListenerId pulumi.StringOutput `pulumi:"listenerId"`
 	// Specifies the ID of the load balancer with which the backend server
-	// group is associated. Changing this creates a new pool.
+	// group is associated.
 	LoadbalancerId pulumi.StringOutput `pulumi:"loadbalancerId"`
 	// Specifies the minimum healthy member count. When the number of online
 	// members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
@@ -231,6 +232,8 @@ type Pool struct {
 	// + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
 	// + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringOutput `pulumi:"publicBorderGroup"`
 	// Specifies the region in which to create the ELB pool resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new pool.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -288,7 +291,6 @@ func GetPool(ctx *pulumi.Context,
 type poolState struct {
 	// Specifies whether to enable transparent port transmission on the backend.
 	// If enable, the port of the backend server will be same as the port of the listener.
-	// Changing this creates a new pool.
 	AnyPortEnable *bool `pulumi:"anyPortEnable"`
 	// Specifies whether to enable delayed logout. This parameter can be set to
 	// **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
@@ -300,15 +302,17 @@ type poolState struct {
 	// Specifies the timeout of the delayed logout in seconds.\
 	// Value ranges from `10` to `4000`.
 	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
-	// The create time of the pool.
+	// The creation time of the pool.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Specifies whether to enable deletion protection.
 	DeletionProtectionEnable *bool `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the pool.
-	Description *string `pulumi:"description"`
+	Description    *string `pulumi:"description"`
+	EnableForceNew *string `pulumi:"enableForceNew"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-	// Changing this creates a new pool.
 	IpVersion *string `pulumi:"ipVersion"`
 	// Specifies the load balancing algorithm used by the load balancer to route requests
 	// to backend servers in the associated backend server group. Value options:
@@ -321,10 +325,10 @@ type poolState struct {
 	// + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
 	LbMethod *string `pulumi:"lbMethod"`
 	// Specifies the ID of the listener with which the backend server group is
-	// associated. Changing this creates a new pool.
+	// associated.
 	ListenerId *string `pulumi:"listenerId"`
 	// Specifies the ID of the load balancer with which the backend server
-	// group is associated. Changing this creates a new pool.
+	// group is associated.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
 	// Specifies the minimum healthy member count. When the number of online
 	// members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
@@ -358,6 +362,8 @@ type poolState struct {
 	// + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
 	// + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
 	Protocol *string `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
 	// Specifies the region in which to create the ELB pool resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new pool.
 	Region *string `pulumi:"region"`
@@ -380,7 +386,6 @@ type poolState struct {
 type PoolState struct {
 	// Specifies whether to enable transparent port transmission on the backend.
 	// If enable, the port of the backend server will be same as the port of the listener.
-	// Changing this creates a new pool.
 	AnyPortEnable pulumi.BoolPtrInput
 	// Specifies whether to enable delayed logout. This parameter can be set to
 	// **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
@@ -392,15 +397,17 @@ type PoolState struct {
 	// Specifies the timeout of the delayed logout in seconds.\
 	// Value ranges from `10` to `4000`.
 	ConnectionDrainTimeout pulumi.IntPtrInput
-	// The create time of the pool.
+	// The creation time of the pool.
 	CreatedAt pulumi.StringPtrInput
 	// Specifies whether to enable deletion protection.
 	DeletionProtectionEnable pulumi.BoolPtrInput
 	// Specifies the description of the pool.
-	Description pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
+	EnableForceNew pulumi.StringPtrInput
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringPtrInput
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-	// Changing this creates a new pool.
 	IpVersion pulumi.StringPtrInput
 	// Specifies the load balancing algorithm used by the load balancer to route requests
 	// to backend servers in the associated backend server group. Value options:
@@ -413,10 +420,10 @@ type PoolState struct {
 	// + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
 	LbMethod pulumi.StringPtrInput
 	// Specifies the ID of the listener with which the backend server group is
-	// associated. Changing this creates a new pool.
+	// associated.
 	ListenerId pulumi.StringPtrInput
 	// Specifies the ID of the load balancer with which the backend server
-	// group is associated. Changing this creates a new pool.
+	// group is associated.
 	LoadbalancerId pulumi.StringPtrInput
 	// Specifies the minimum healthy member count. When the number of online
 	// members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
@@ -450,6 +457,8 @@ type PoolState struct {
 	// + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
 	// + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
 	Protocol pulumi.StringPtrInput
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringPtrInput
 	// Specifies the region in which to create the ELB pool resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new pool.
 	Region pulumi.StringPtrInput
@@ -476,7 +485,6 @@ func (PoolState) ElementType() reflect.Type {
 type poolArgs struct {
 	// Specifies whether to enable transparent port transmission on the backend.
 	// If enable, the port of the backend server will be same as the port of the listener.
-	// Changing this creates a new pool.
 	AnyPortEnable *bool `pulumi:"anyPortEnable"`
 	// Specifies whether to enable delayed logout. This parameter can be set to
 	// **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
@@ -491,10 +499,10 @@ type poolArgs struct {
 	// Specifies whether to enable deletion protection.
 	DeletionProtectionEnable *bool `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the pool.
-	Description *string `pulumi:"description"`
+	Description    *string `pulumi:"description"`
+	EnableForceNew *string `pulumi:"enableForceNew"`
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-	// Changing this creates a new pool.
 	IpVersion *string `pulumi:"ipVersion"`
 	// Specifies the load balancing algorithm used by the load balancer to route requests
 	// to backend servers in the associated backend server group. Value options:
@@ -507,10 +515,10 @@ type poolArgs struct {
 	// + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
 	LbMethod string `pulumi:"lbMethod"`
 	// Specifies the ID of the listener with which the backend server group is
-	// associated. Changing this creates a new pool.
+	// associated.
 	ListenerId *string `pulumi:"listenerId"`
 	// Specifies the ID of the load balancer with which the backend server
-	// group is associated. Changing this creates a new pool.
+	// group is associated.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
 	// Specifies the minimum healthy member count. When the number of online
 	// members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
@@ -542,6 +550,8 @@ type poolArgs struct {
 	// + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
 	// + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
 	Protocol string `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
 	// Specifies the region in which to create the ELB pool resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new pool.
 	Region *string `pulumi:"region"`
@@ -563,7 +573,6 @@ type poolArgs struct {
 type PoolArgs struct {
 	// Specifies whether to enable transparent port transmission on the backend.
 	// If enable, the port of the backend server will be same as the port of the listener.
-	// Changing this creates a new pool.
 	AnyPortEnable pulumi.BoolPtrInput
 	// Specifies whether to enable delayed logout. This parameter can be set to
 	// **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
@@ -578,10 +587,10 @@ type PoolArgs struct {
 	// Specifies whether to enable deletion protection.
 	DeletionProtectionEnable pulumi.BoolPtrInput
 	// Specifies the description of the pool.
-	Description pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
+	EnableForceNew pulumi.StringPtrInput
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-	// Changing this creates a new pool.
 	IpVersion pulumi.StringPtrInput
 	// Specifies the load balancing algorithm used by the load balancer to route requests
 	// to backend servers in the associated backend server group. Value options:
@@ -594,10 +603,10 @@ type PoolArgs struct {
 	// + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
 	LbMethod pulumi.StringInput
 	// Specifies the ID of the listener with which the backend server group is
-	// associated. Changing this creates a new pool.
+	// associated.
 	ListenerId pulumi.StringPtrInput
 	// Specifies the ID of the load balancer with which the backend server
-	// group is associated. Changing this creates a new pool.
+	// group is associated.
 	LoadbalancerId pulumi.StringPtrInput
 	// Specifies the minimum healthy member count. When the number of online
 	// members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
@@ -629,6 +638,8 @@ type PoolArgs struct {
 	// + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
 	// + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
 	Protocol pulumi.StringInput
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringPtrInput
 	// Specifies the region in which to create the ELB pool resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new pool.
 	Region pulumi.StringPtrInput
@@ -735,7 +746,6 @@ func (o PoolOutput) ToPoolOutputWithContext(ctx context.Context) PoolOutput {
 
 // Specifies whether to enable transparent port transmission on the backend.
 // If enable, the port of the backend server will be same as the port of the listener.
-// Changing this creates a new pool.
 func (o PoolOutput) AnyPortEnable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Pool) pulumi.BoolOutput { return v.AnyPortEnable }).(pulumi.BoolOutput)
 }
@@ -756,7 +766,7 @@ func (o PoolOutput) ConnectionDrainTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Pool) pulumi.IntOutput { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
 }
 
-// The create time of the pool.
+// The creation time of the pool.
 func (o PoolOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -771,9 +781,17 @@ func (o PoolOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+func (o PoolOutput) EnableForceNew() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.EnableForceNew }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the enterprise project.
+func (o PoolOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.EnterpriseProjectId }).(pulumi.StringOutput)
+}
+
 // Specifies the IP address version supported by the backend server group.
 // The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-// Changing this creates a new pool.
 func (o PoolOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
 }
@@ -792,13 +810,13 @@ func (o PoolOutput) LbMethod() pulumi.StringOutput {
 }
 
 // Specifies the ID of the listener with which the backend server group is
-// associated. Changing this creates a new pool.
+// associated.
 func (o PoolOutput) ListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.ListenerId }).(pulumi.StringOutput)
 }
 
 // Specifies the ID of the load balancer with which the backend server
-// group is associated. Changing this creates a new pool.
+// group is associated.
 func (o PoolOutput) LoadbalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.LoadbalancerId }).(pulumi.StringOutput)
 }
@@ -854,6 +872,11 @@ func (o PoolOutput) ProtectionStatus() pulumi.StringOutput {
 // + If the value is **GRPC**, the value of `http2Enable` of the associated listener must be **true**.
 func (o PoolOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Specifies the public border group.
+func (o PoolOutput) PublicBorderGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.PublicBorderGroup }).(pulumi.StringOutput)
 }
 
 // Specifies the region in which to create the ELB pool resource. If omitted, the

@@ -29,15 +29,27 @@ export function getPools(args?: GetPoolsArgs, opts?: pulumi.InvokeOptions): Prom
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:DedicatedElb/getPools:getPools", {
+        "anyPortEnable": args.anyPortEnable,
+        "connectionDrain": args.connectionDrain,
         "description": args.description,
+        "enterpriseProjectId": args.enterpriseProjectId,
         "healthmonitorId": args.healthmonitorId,
+        "ipVersion": args.ipVersion,
         "lbMethod": args.lbMethod,
         "listenerId": args.listenerId,
         "loadbalancerId": args.loadbalancerId,
+        "memberAddress": args.memberAddress,
+        "memberDeletionProtectionEnable": args.memberDeletionProtectionEnable,
+        "memberDeviceId": args.memberDeviceId,
+        "memberInstanceId": args.memberInstanceId,
         "name": args.name,
+        "poolHealth": args.poolHealth,
         "poolId": args.poolId,
         "protectionStatus": args.protectionStatus,
         "protocol": args.protocol,
+        "publicBorderGroup": args.publicBorderGroup,
+        "quicCidLen": args.quicCidLen,
+        "quicCidOffset": args.quicCidOffset,
         "region": args.region,
         "type": args.type,
         "vpcId": args.vpcId,
@@ -49,13 +61,34 @@ export function getPools(args?: GetPoolsArgs, opts?: pulumi.InvokeOptions): Prom
  */
 export interface GetPoolsArgs {
     /**
+     * Specifies whether forward to same port for a backend server group is enabled.
+     * Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    anyPortEnable?: string;
+    /**
+     * Specifies whether delayed logout is enabled. Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    connectionDrain?: string;
+    /**
      * Specifies the description of the ELB pool.
      */
     description?: string;
     /**
+     * Specifies the ID of the enterprise project.
+     */
+    enterpriseProjectId?: string;
+    /**
      * Specifies the health monitor ID of the ELB pool.
      */
     healthmonitorId?: string;
+    /**
+     * Specifies the IP address version supported by the backend server group.
+     */
+    ipVersion?: string;
     /**
      * Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
      * **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
@@ -70,9 +103,33 @@ export interface GetPoolsArgs {
      */
     loadbalancerId?: string;
     /**
+     * Specifies the private IP address bound to the backend server.
+     */
+    memberAddress?: string;
+    /**
+     * Specifies whether deletion protection is enabled. Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    memberDeletionProtectionEnable?: string;
+    /**
+     * Specifies the ID of the cloud server that serves as a backend server.
+     */
+    memberDeviceId?: string;
+    /**
+     * Specifies the backend server ID.
+     */
+    memberInstanceId?: string;
+    /**
      * Specifies the name of the ELB pool.
      */
     name?: string;
+    /**
+     * Specifies whether pool health is enabled. Value options:
+     * + **minimum_healthy_member_count=0**
+     * + **minimum_healthy_member_count=1**
+     */
+    poolHealth?: string;
     /**
      * Specifies the ID of the ELB pool.
      */
@@ -87,6 +144,18 @@ export interface GetPoolsArgs {
      * **HTTPS**, **QUIC**, **GRPC** or **TLS**.
      */
     protocol?: string;
+    /**
+     * Specifies the public border group.
+     */
+    publicBorderGroup?: string;
+    /**
+     * Specifies the QUIC connection ID len.
+     */
+    quicCidLen?: number;
+    /**
+     * Specifies the QUIC connection ID offset.
+     */
+    quicCidOffset?: number;
     /**
      * Specifies the region in which to query the data source.
      * If omitted, the provider-level region will be used.
@@ -107,9 +176,18 @@ export interface GetPoolsArgs {
  */
 export interface GetPoolsResult {
     /**
+     * Whether forward to same port for a backend server group is enabled
+     */
+    readonly anyPortEnable?: string;
+    readonly connectionDrain?: string;
+    /**
      * The description of pool.
      */
     readonly description?: string;
+    /**
+     * The ID of the enterprise project.
+     */
+    readonly enterpriseProjectId?: string;
     /**
      * The health monitor ID of the LB pool.
      */
@@ -119,15 +197,27 @@ export interface GetPoolsResult {
      */
     readonly id: string;
     /**
+     * The IP version of the LB pool.
+     */
+    readonly ipVersion?: string;
+    /**
      * The load balancing algorithm to distribute traffic to the pool's members.
      */
     readonly lbMethod?: string;
     readonly listenerId?: string;
     readonly loadbalancerId?: string;
+    readonly memberAddress?: string;
+    /**
+     * Whether deletion protection is enabled
+     */
+    readonly memberDeletionProtectionEnable?: string;
+    readonly memberDeviceId?: string;
+    readonly memberInstanceId?: string;
     /**
      * The pool name.
      */
     readonly name?: string;
+    readonly poolHealth?: string;
     readonly poolId?: string;
     /**
      * Pool list. For details, see data structure of the pool field.
@@ -142,6 +232,12 @@ export interface GetPoolsResult {
      * The protocol of pool.
      */
     readonly protocol?: string;
+    /**
+     * The public border group.
+     */
+    readonly publicBorderGroup?: string;
+    readonly quicCidLen?: number;
+    readonly quicCidOffset?: number;
     readonly region: string;
     /**
      * The type of persistence mode.
@@ -162,13 +258,34 @@ export function getPoolsOutput(args?: GetPoolsOutputArgs, opts?: pulumi.InvokeOp
  */
 export interface GetPoolsOutputArgs {
     /**
+     * Specifies whether forward to same port for a backend server group is enabled.
+     * Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    anyPortEnable?: pulumi.Input<string>;
+    /**
+     * Specifies whether delayed logout is enabled. Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    connectionDrain?: pulumi.Input<string>;
+    /**
      * Specifies the description of the ELB pool.
      */
     description?: pulumi.Input<string>;
     /**
+     * Specifies the ID of the enterprise project.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
+    /**
      * Specifies the health monitor ID of the ELB pool.
      */
     healthmonitorId?: pulumi.Input<string>;
+    /**
+     * Specifies the IP address version supported by the backend server group.
+     */
+    ipVersion?: pulumi.Input<string>;
     /**
      * Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
      * **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
@@ -183,9 +300,33 @@ export interface GetPoolsOutputArgs {
      */
     loadbalancerId?: pulumi.Input<string>;
     /**
+     * Specifies the private IP address bound to the backend server.
+     */
+    memberAddress?: pulumi.Input<string>;
+    /**
+     * Specifies whether deletion protection is enabled. Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    memberDeletionProtectionEnable?: pulumi.Input<string>;
+    /**
+     * Specifies the ID of the cloud server that serves as a backend server.
+     */
+    memberDeviceId?: pulumi.Input<string>;
+    /**
+     * Specifies the backend server ID.
+     */
+    memberInstanceId?: pulumi.Input<string>;
+    /**
      * Specifies the name of the ELB pool.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Specifies whether pool health is enabled. Value options:
+     * + **minimum_healthy_member_count=0**
+     * + **minimum_healthy_member_count=1**
+     */
+    poolHealth?: pulumi.Input<string>;
     /**
      * Specifies the ID of the ELB pool.
      */
@@ -200,6 +341,18 @@ export interface GetPoolsOutputArgs {
      * **HTTPS**, **QUIC**, **GRPC** or **TLS**.
      */
     protocol?: pulumi.Input<string>;
+    /**
+     * Specifies the public border group.
+     */
+    publicBorderGroup?: pulumi.Input<string>;
+    /**
+     * Specifies the QUIC connection ID len.
+     */
+    quicCidLen?: pulumi.Input<number>;
+    /**
+     * Specifies the QUIC connection ID offset.
+     */
+    quicCidOffset?: pulumi.Input<number>;
     /**
      * Specifies the region in which to query the data source.
      * If omitted, the provider-level region will be used.

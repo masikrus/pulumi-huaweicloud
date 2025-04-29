@@ -14,13 +14,9 @@ type ClusterAnalysisCoreNodes struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles []string `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount int `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -41,7 +37,8 @@ type ClusterAnalysisCoreNodes struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps []string `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -66,13 +63,9 @@ type ClusterAnalysisCoreNodesArgs struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles pulumi.StringArrayInput `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount pulumi.IntInput `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -93,7 +86,8 @@ type ClusterAnalysisCoreNodesArgs struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps pulumi.StringArrayInput `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -186,13 +180,9 @@ func (o ClusterAnalysisCoreNodesOutput) AssignedRoles() pulumi.StringArrayOutput
 	return o.ApplyT(func(v ClusterAnalysisCoreNodes) []string { return v.AssignedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisCoreNodesOutput) DataVolumeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterAnalysisCoreNodes) int { return v.DataVolumeCount }).(pulumi.IntOutput)
 }
@@ -228,7 +218,8 @@ func (o ClusterAnalysisCoreNodesOutput) HostIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterAnalysisCoreNodes) []string { return v.HostIps }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisCoreNodesOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterAnalysisCoreNodes) int { return v.NodeNumber }).(pulumi.IntOutput)
 }
@@ -280,13 +271,9 @@ func (o ClusterAnalysisCoreNodesPtrOutput) AssignedRoles() pulumi.StringArrayOut
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisCoreNodesPtrOutput) DataVolumeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAnalysisCoreNodes) *int {
 		if v == nil {
@@ -347,7 +334,8 @@ func (o ClusterAnalysisCoreNodesPtrOutput) HostIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisCoreNodesPtrOutput) NodeNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAnalysisCoreNodes) *int {
 		if v == nil {
@@ -383,13 +371,9 @@ type ClusterAnalysisTaskNodes struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles []string `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount int `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -410,7 +394,8 @@ type ClusterAnalysisTaskNodes struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps []string `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -435,13 +420,9 @@ type ClusterAnalysisTaskNodesArgs struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles pulumi.StringArrayInput `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount pulumi.IntInput `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -462,7 +443,8 @@ type ClusterAnalysisTaskNodesArgs struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps pulumi.StringArrayInput `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -555,13 +537,9 @@ func (o ClusterAnalysisTaskNodesOutput) AssignedRoles() pulumi.StringArrayOutput
 	return o.ApplyT(func(v ClusterAnalysisTaskNodes) []string { return v.AssignedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisTaskNodesOutput) DataVolumeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterAnalysisTaskNodes) int { return v.DataVolumeCount }).(pulumi.IntOutput)
 }
@@ -597,7 +575,8 @@ func (o ClusterAnalysisTaskNodesOutput) HostIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterAnalysisTaskNodes) []string { return v.HostIps }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisTaskNodesOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterAnalysisTaskNodes) int { return v.NodeNumber }).(pulumi.IntOutput)
 }
@@ -649,13 +628,9 @@ func (o ClusterAnalysisTaskNodesPtrOutput) AssignedRoles() pulumi.StringArrayOut
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisTaskNodesPtrOutput) DataVolumeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAnalysisTaskNodes) *int {
 		if v == nil {
@@ -716,7 +691,8 @@ func (o ClusterAnalysisTaskNodesPtrOutput) HostIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterAnalysisTaskNodesPtrOutput) NodeNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAnalysisTaskNodes) *int {
 		if v == nil {
@@ -1202,13 +1178,9 @@ type ClusterCustomNode struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles []string `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount int `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -1224,14 +1196,16 @@ type ClusterCustomNode struct {
 	// Specifies the instance specifications for each nodes in node group.
 	// Changing this will create a new MapReduce cluster resource.
 	Flavor string `pulumi:"flavor"`
-	// Specifies the name of nodes for the node group.
+	// Specifies the name of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	GroupName string `pulumi:"groupName"`
 	// The host list of this nodes group in the cluster.
 	// * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps []string `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -1256,13 +1230,9 @@ type ClusterCustomNodeArgs struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles pulumi.StringArrayInput `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount pulumi.IntInput `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -1278,14 +1248,16 @@ type ClusterCustomNodeArgs struct {
 	// Specifies the instance specifications for each nodes in node group.
 	// Changing this will create a new MapReduce cluster resource.
 	Flavor pulumi.StringInput `pulumi:"flavor"`
-	// Specifies the name of nodes for the node group.
+	// Specifies the name of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	GroupName pulumi.StringInput `pulumi:"groupName"`
 	// The host list of this nodes group in the cluster.
 	// * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps pulumi.StringArrayInput `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -1352,13 +1324,9 @@ func (o ClusterCustomNodeOutput) AssignedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterCustomNode) []string { return v.AssignedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterCustomNodeOutput) DataVolumeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterCustomNode) int { return v.DataVolumeCount }).(pulumi.IntOutput)
 }
@@ -1386,7 +1354,8 @@ func (o ClusterCustomNodeOutput) Flavor() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterCustomNode) string { return v.Flavor }).(pulumi.StringOutput)
 }
 
-// Specifies the name of nodes for the node group.
+// Specifies the name of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterCustomNodeOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterCustomNode) string { return v.GroupName }).(pulumi.StringOutput)
 }
@@ -1399,7 +1368,8 @@ func (o ClusterCustomNodeOutput) HostIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterCustomNode) []string { return v.HostIps }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterCustomNodeOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterCustomNode) int { return v.NodeNumber }).(pulumi.IntOutput)
 }
@@ -1597,13 +1567,9 @@ type ClusterMasterNodes struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles []string `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount int `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -1624,7 +1590,8 @@ type ClusterMasterNodes struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps []string `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -1649,13 +1616,9 @@ type ClusterMasterNodesArgs struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles pulumi.StringArrayInput `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount pulumi.IntInput `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -1676,7 +1639,8 @@ type ClusterMasterNodesArgs struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps pulumi.StringArrayInput `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -1769,13 +1733,9 @@ func (o ClusterMasterNodesOutput) AssignedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterMasterNodes) []string { return v.AssignedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterMasterNodesOutput) DataVolumeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterMasterNodes) int { return v.DataVolumeCount }).(pulumi.IntOutput)
 }
@@ -1811,7 +1771,8 @@ func (o ClusterMasterNodesOutput) HostIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterMasterNodes) []string { return v.HostIps }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterMasterNodesOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterMasterNodes) int { return v.NodeNumber }).(pulumi.IntOutput)
 }
@@ -1863,13 +1824,9 @@ func (o ClusterMasterNodesPtrOutput) AssignedRoles() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterMasterNodesPtrOutput) DataVolumeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterMasterNodes) *int {
 		if v == nil {
@@ -1930,7 +1887,8 @@ func (o ClusterMasterNodesPtrOutput) HostIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterMasterNodesPtrOutput) NodeNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterMasterNodes) *int {
 		if v == nil {
@@ -2130,13 +2088,9 @@ type ClusterStreamingCoreNodes struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles []string `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount int `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -2157,7 +2111,8 @@ type ClusterStreamingCoreNodes struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps []string `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -2182,13 +2137,9 @@ type ClusterStreamingCoreNodesArgs struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles pulumi.StringArrayInput `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount pulumi.IntInput `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -2209,7 +2160,8 @@ type ClusterStreamingCoreNodesArgs struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps pulumi.StringArrayInput `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -2302,13 +2254,9 @@ func (o ClusterStreamingCoreNodesOutput) AssignedRoles() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v ClusterStreamingCoreNodes) []string { return v.AssignedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingCoreNodesOutput) DataVolumeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterStreamingCoreNodes) int { return v.DataVolumeCount }).(pulumi.IntOutput)
 }
@@ -2344,7 +2292,8 @@ func (o ClusterStreamingCoreNodesOutput) HostIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterStreamingCoreNodes) []string { return v.HostIps }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingCoreNodesOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterStreamingCoreNodes) int { return v.NodeNumber }).(pulumi.IntOutput)
 }
@@ -2396,13 +2345,9 @@ func (o ClusterStreamingCoreNodesPtrOutput) AssignedRoles() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingCoreNodesPtrOutput) DataVolumeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterStreamingCoreNodes) *int {
 		if v == nil {
@@ -2463,7 +2408,8 @@ func (o ClusterStreamingCoreNodesPtrOutput) HostIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingCoreNodesPtrOutput) NodeNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterStreamingCoreNodes) *int {
 		if v == nil {
@@ -2499,13 +2445,9 @@ type ClusterStreamingTaskNodes struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles []string `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount int `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -2526,7 +2468,8 @@ type ClusterStreamingTaskNodes struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps []string `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -2551,13 +2494,9 @@ type ClusterStreamingTaskNodesArgs struct {
 	// Specifies the roles deployed in a node group.This argument is mandatory
 	// when the cluster type is **CUSTOM**. Each character string represents a role expression.
 	AssignedRoles pulumi.StringArrayInput `pulumi:"assignedRoles"`
-	// Specifies the data disk number of the nodes. The number configuration
-	// of each node are as follows:
-	// + **master_nodes**: 1.
-	// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-	// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+	// Specifies the data disk number of the nodes.\
+	// The valid value is `1`.
+	// Changing this will create a new MapReduce cluster resource.
 	DataVolumeCount pulumi.IntInput `pulumi:"dataVolumeCount"`
 	// Specifies the data disk size of the nodes,in GB. The value range is 10
 	// to 32768. Required if `dataVolumeCount` is greater than zero. Changing this will create a new MapReduce
@@ -2578,7 +2517,8 @@ type ClusterStreamingTaskNodesArgs struct {
 	// * `bootstrap_scripts/state` - The status of one bootstrap action script.
 	//   The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
 	HostIps pulumi.StringArrayInput `pulumi:"hostIps"`
-	// Specifies the number of nodes for the node group.
+	// Specifies the number of nodes for the node group.\
+	// Changing this will create a new MapReduce cluster resource.
 	NodeNumber pulumi.IntInput `pulumi:"nodeNumber"`
 	// Specifies the system disk size of the nodes. Changing this will create
 	// a new MapReduce cluster resource.
@@ -2671,13 +2611,9 @@ func (o ClusterStreamingTaskNodesOutput) AssignedRoles() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v ClusterStreamingTaskNodes) []string { return v.AssignedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingTaskNodesOutput) DataVolumeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterStreamingTaskNodes) int { return v.DataVolumeCount }).(pulumi.IntOutput)
 }
@@ -2713,7 +2649,8 @@ func (o ClusterStreamingTaskNodesOutput) HostIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterStreamingTaskNodes) []string { return v.HostIps }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingTaskNodesOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterStreamingTaskNodes) int { return v.NodeNumber }).(pulumi.IntOutput)
 }
@@ -2765,13 +2702,9 @@ func (o ClusterStreamingTaskNodesPtrOutput) AssignedRoles() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the data disk number of the nodes. The number configuration
-// of each node are as follows:
-// + **master_nodes**: 1.
-// + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-// + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+// Specifies the data disk number of the nodes.\
+// The valid value is `1`.
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingTaskNodesPtrOutput) DataVolumeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterStreamingTaskNodes) *int {
 		if v == nil {
@@ -2832,7 +2765,8 @@ func (o ClusterStreamingTaskNodesPtrOutput) HostIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the number of nodes for the node group.
+// Specifies the number of nodes for the node group.\
+// Changing this will create a new MapReduce cluster resource.
 func (o ClusterStreamingTaskNodesPtrOutput) NodeNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterStreamingTaskNodes) *int {
 		if v == nil {

@@ -3519,7 +3519,12 @@ func (o GroupEnvironmentArrayOutput) Index(i pulumi.IntInput) GroupEnvironmentOu
 type GroupEnvironmentVariable struct {
 	// The variable ID.
 	Id *string `pulumi:"id"`
-	// Specifies the domain name. The valid must comply with the domian name specifications.
+	// Specifies the variable name.\
+	// The valid length is limited from `3` to `32` characters.
+	// Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+	// In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+	// It is replaced by the actual value when the API is published in an environment.
+	// The variable names are not allowed to be repeated for an API group.
 	Name string `pulumi:"name"`
 	// Specifies the variable value.\
 	// The valid length is limited from `1` to `255` characters.
@@ -3543,7 +3548,12 @@ type GroupEnvironmentVariableInput interface {
 type GroupEnvironmentVariableArgs struct {
 	// The variable ID.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Specifies the domain name. The valid must comply with the domian name specifications.
+	// Specifies the variable name.\
+	// The valid length is limited from `3` to `32` characters.
+	// Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+	// In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+	// It is replaced by the actual value when the API is published in an environment.
+	// The variable names are not allowed to be repeated for an API group.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the variable value.\
 	// The valid length is limited from `1` to `255` characters.
@@ -3609,7 +3619,12 @@ func (o GroupEnvironmentVariableOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupEnvironmentVariable) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the domain name. The valid must comply with the domian name specifications.
+// Specifies the variable name.\
+// The valid length is limited from `3` to `32` characters.
+// Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+// In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+// It is replaced by the actual value when the API is published in an environment.
+// The variable names are not allowed to be repeated for an API group.
 func (o GroupEnvironmentVariableOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupEnvironmentVariable) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3647,16 +3662,18 @@ func (o GroupEnvironmentVariableArrayOutput) Index(i pulumi.IntInput) GroupEnvir
 }
 
 type GroupUrlDomain struct {
-	// Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-	// The default value is `false`.
+	// Whether to enable redirection from `HTTP` to `HTTPS`.
 	IsHttpRedirectToHttps *bool `pulumi:"isHttpRedirectToHttps"`
-	// Specifies the minimum TLS version that can be used to access the domain name,
-	// the default value is `TLSv1.2`.
-	// The valid values are as follows:
+	// The minimum SSL protocol version.
 	// + **TLSv1.1**
 	// + **TLSv1.2**
 	MinSslVersion *string `pulumi:"minSslVersion"`
-	// Specifies the domain name. The valid must comply with the domian name specifications.
+	// Specifies the variable name.\
+	// The valid length is limited from `3` to `32` characters.
+	// Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+	// In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+	// It is replaced by the actual value when the API is published in an environment.
+	// The variable names are not allowed to be repeated for an API group.
 	Name string `pulumi:"name"`
 }
 
@@ -3672,16 +3689,18 @@ type GroupUrlDomainInput interface {
 }
 
 type GroupUrlDomainArgs struct {
-	// Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-	// The default value is `false`.
+	// Whether to enable redirection from `HTTP` to `HTTPS`.
 	IsHttpRedirectToHttps pulumi.BoolPtrInput `pulumi:"isHttpRedirectToHttps"`
-	// Specifies the minimum TLS version that can be used to access the domain name,
-	// the default value is `TLSv1.2`.
-	// The valid values are as follows:
+	// The minimum SSL protocol version.
 	// + **TLSv1.1**
 	// + **TLSv1.2**
 	MinSslVersion pulumi.StringPtrInput `pulumi:"minSslVersion"`
-	// Specifies the domain name. The valid must comply with the domian name specifications.
+	// Specifies the variable name.\
+	// The valid length is limited from `3` to `32` characters.
+	// Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+	// In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+	// It is replaced by the actual value when the API is published in an environment.
+	// The variable names are not allowed to be repeated for an API group.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -3736,22 +3755,24 @@ func (o GroupUrlDomainOutput) ToGroupUrlDomainOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-// The default value is `false`.
+// Whether to enable redirection from `HTTP` to `HTTPS`.
 func (o GroupUrlDomainOutput) IsHttpRedirectToHttps() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GroupUrlDomain) *bool { return v.IsHttpRedirectToHttps }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the minimum TLS version that can be used to access the domain name,
-// the default value is `TLSv1.2`.
-// The valid values are as follows:
+// The minimum SSL protocol version.
 // + **TLSv1.1**
 // + **TLSv1.2**
 func (o GroupUrlDomainOutput) MinSslVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupUrlDomain) *string { return v.MinSslVersion }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the domain name. The valid must comply with the domian name specifications.
+// Specifies the variable name.\
+// The valid length is limited from `3` to `32` characters.
+// Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+// In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+// It is replaced by the actual value when the API is published in an environment.
+// The variable names are not allowed to be repeated for an API group.
 func (o GroupUrlDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupUrlDomain) string { return v.Name }).(pulumi.StringOutput)
 }

@@ -125,13 +125,25 @@ type LoadbalancerCopy struct {
 	// + **false**: Disable deletion protection.
 	DeletionProtectionEnable pulumi.StringOutput `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the load balancer.
-	Description    pulumi.StringPtrOutput `pulumi:"description"`
-	EnableForceNew pulumi.StringPtrOutput `pulumi:"enableForceNew"`
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Indicates the type of the subnet on the downstream plane. The value can be:
+	// + **ipv4**: IPv4 subnet
+	// + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+	ElbVirsubnetType pulumi.StringOutput    `pulumi:"elbVirsubnetType"`
+	EnableForceNew   pulumi.StringPtrOutput `pulumi:"enableForceNew"`
 	// The enterprise project ID of the load balancer.
 	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
 	// Specifies whether to forcibly delete the load balancer, remove the load
 	// balancer, listeners, unbind associated pools. Defaults to **false**.
 	ForceDelete pulumi.BoolPtrOutput `pulumi:"forceDelete"`
+	// Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+	// The value can be:
+	// + **POLICE**: The load balancer is frozen due to security reasons.
+	// + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+	// + **VERIFY**: Your account has not completed real-name authentication.
+	// + **PARTNER**: The load balancer is frozen by the partner.
+	// + **ARREAR**: Your account is in arrears.
+	FrozenScene pulumi.StringOutput `pulumi:"frozenScene"`
 	// Indicates the flavor ID of the gateway load balancer.
 	GwFlavorId pulumi.StringOutput `pulumi:"gwFlavorId"`
 	// Specifies the private IPv4 address of the load balancer.
@@ -162,6 +174,10 @@ type LoadbalancerCopy struct {
 	LoadbalancerType pulumi.StringOutput `pulumi:"loadbalancerType"`
 	// Specifies the load balancer name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Indicates the operating status of the load balancer. The value can be:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus pulumi.StringOutput `pulumi:"operatingStatus"`
 	// Specifies the charging period of the ELB load balancer.
 	// If `periodUnit` is set to **month**, the value ranges from `1` to `9`.
 	// If `periodUnit` is set to **year**, the value ranges from `1` to `3`.
@@ -177,6 +193,8 @@ type LoadbalancerCopy struct {
 	// + **nonProtection**: No protection.
 	// + **consoleProtection**: Console modification protection.
 	ProtectionStatus pulumi.StringOutput `pulumi:"protectionStatus"`
+	// Indicates the AZ group to which the load balancer belongs.
+	PublicBorderGroup pulumi.StringOutput `pulumi:"publicBorderGroup"`
 	// The region in which to create the load balancer resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new load balancer.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -258,13 +276,25 @@ type loadbalancerCopyState struct {
 	// + **false**: Disable deletion protection.
 	DeletionProtectionEnable *string `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the load balancer.
-	Description    *string `pulumi:"description"`
-	EnableForceNew *string `pulumi:"enableForceNew"`
+	Description *string `pulumi:"description"`
+	// Indicates the type of the subnet on the downstream plane. The value can be:
+	// + **ipv4**: IPv4 subnet
+	// + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+	ElbVirsubnetType *string `pulumi:"elbVirsubnetType"`
+	EnableForceNew   *string `pulumi:"enableForceNew"`
 	// The enterprise project ID of the load balancer.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies whether to forcibly delete the load balancer, remove the load
 	// balancer, listeners, unbind associated pools. Defaults to **false**.
 	ForceDelete *bool `pulumi:"forceDelete"`
+	// Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+	// The value can be:
+	// + **POLICE**: The load balancer is frozen due to security reasons.
+	// + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+	// + **VERIFY**: Your account has not completed real-name authentication.
+	// + **PARTNER**: The load balancer is frozen by the partner.
+	// + **ARREAR**: Your account is in arrears.
+	FrozenScene *string `pulumi:"frozenScene"`
 	// Indicates the flavor ID of the gateway load balancer.
 	GwFlavorId *string `pulumi:"gwFlavorId"`
 	// Specifies the private IPv4 address of the load balancer.
@@ -295,6 +325,10 @@ type loadbalancerCopyState struct {
 	LoadbalancerType *string `pulumi:"loadbalancerType"`
 	// Specifies the load balancer name.
 	Name *string `pulumi:"name"`
+	// Indicates the operating status of the load balancer. The value can be:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus *string `pulumi:"operatingStatus"`
 	// Specifies the charging period of the ELB load balancer.
 	// If `periodUnit` is set to **month**, the value ranges from `1` to `9`.
 	// If `periodUnit` is set to **year**, the value ranges from `1` to `3`.
@@ -310,6 +344,8 @@ type loadbalancerCopyState struct {
 	// + **nonProtection**: No protection.
 	// + **consoleProtection**: Console modification protection.
 	ProtectionStatus *string `pulumi:"protectionStatus"`
+	// Indicates the AZ group to which the load balancer belongs.
+	PublicBorderGroup *string `pulumi:"publicBorderGroup"`
 	// The region in which to create the load balancer resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new load balancer.
 	Region *string `pulumi:"region"`
@@ -359,13 +395,25 @@ type LoadbalancerCopyState struct {
 	// + **false**: Disable deletion protection.
 	DeletionProtectionEnable pulumi.StringPtrInput
 	// Specifies the description of the load balancer.
-	Description    pulumi.StringPtrInput
-	EnableForceNew pulumi.StringPtrInput
+	Description pulumi.StringPtrInput
+	// Indicates the type of the subnet on the downstream plane. The value can be:
+	// + **ipv4**: IPv4 subnet
+	// + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+	ElbVirsubnetType pulumi.StringPtrInput
+	EnableForceNew   pulumi.StringPtrInput
 	// The enterprise project ID of the load balancer.
 	EnterpriseProjectId pulumi.StringPtrInput
 	// Specifies whether to forcibly delete the load balancer, remove the load
 	// balancer, listeners, unbind associated pools. Defaults to **false**.
 	ForceDelete pulumi.BoolPtrInput
+	// Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+	// The value can be:
+	// + **POLICE**: The load balancer is frozen due to security reasons.
+	// + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+	// + **VERIFY**: Your account has not completed real-name authentication.
+	// + **PARTNER**: The load balancer is frozen by the partner.
+	// + **ARREAR**: Your account is in arrears.
+	FrozenScene pulumi.StringPtrInput
 	// Indicates the flavor ID of the gateway load balancer.
 	GwFlavorId pulumi.StringPtrInput
 	// Specifies the private IPv4 address of the load balancer.
@@ -396,6 +444,10 @@ type LoadbalancerCopyState struct {
 	LoadbalancerType pulumi.StringPtrInput
 	// Specifies the load balancer name.
 	Name pulumi.StringPtrInput
+	// Indicates the operating status of the load balancer. The value can be:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus pulumi.StringPtrInput
 	// Specifies the charging period of the ELB load balancer.
 	// If `periodUnit` is set to **month**, the value ranges from `1` to `9`.
 	// If `periodUnit` is set to **year**, the value ranges from `1` to `3`.
@@ -411,6 +463,8 @@ type LoadbalancerCopyState struct {
 	// + **nonProtection**: No protection.
 	// + **consoleProtection**: Console modification protection.
 	ProtectionStatus pulumi.StringPtrInput
+	// Indicates the AZ group to which the load balancer belongs.
+	PublicBorderGroup pulumi.StringPtrInput
 	// The region in which to create the load balancer resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new load balancer.
 	Region pulumi.StringPtrInput
@@ -749,6 +803,13 @@ func (o LoadbalancerCopyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Indicates the type of the subnet on the downstream plane. The value can be:
+// + **ipv4**: IPv4 subnet
+// + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+func (o LoadbalancerCopyOutput) ElbVirsubnetType() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringOutput { return v.ElbVirsubnetType }).(pulumi.StringOutput)
+}
+
 func (o LoadbalancerCopyOutput) EnableForceNew() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringPtrOutput { return v.EnableForceNew }).(pulumi.StringPtrOutput)
 }
@@ -762,6 +823,17 @@ func (o LoadbalancerCopyOutput) EnterpriseProjectId() pulumi.StringOutput {
 // balancer, listeners, unbind associated pools. Defaults to **false**.
 func (o LoadbalancerCopyOutput) ForceDelete() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.BoolPtrOutput { return v.ForceDelete }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+// The value can be:
+// + **POLICE**: The load balancer is frozen due to security reasons.
+// + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+// + **VERIFY**: Your account has not completed real-name authentication.
+// + **PARTNER**: The load balancer is frozen by the partner.
+// + **ARREAR**: Your account is in arrears.
+func (o LoadbalancerCopyOutput) FrozenScene() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringOutput { return v.FrozenScene }).(pulumi.StringOutput)
 }
 
 // Indicates the flavor ID of the gateway load balancer.
@@ -830,6 +902,13 @@ func (o LoadbalancerCopyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Indicates the operating status of the load balancer. The value can be:
+// + **ONLINE**: indicates that the load balancer is running normally.
+// + **FROZEN**: indicates that the load balancer is frozen.
+func (o LoadbalancerCopyOutput) OperatingStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringOutput { return v.OperatingStatus }).(pulumi.StringOutput)
+}
+
 // Specifies the charging period of the ELB load balancer.
 // If `periodUnit` is set to **month**, the value ranges from `1` to `9`.
 // If `periodUnit` is set to **year**, the value ranges from `1` to `3`.
@@ -855,6 +934,11 @@ func (o LoadbalancerCopyOutput) ProtectionReason() pulumi.StringPtrOutput {
 // + **consoleProtection**: Console modification protection.
 func (o LoadbalancerCopyOutput) ProtectionStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringOutput { return v.ProtectionStatus }).(pulumi.StringOutput)
+}
+
+// Indicates the AZ group to which the load balancer belongs.
+func (o LoadbalancerCopyOutput) PublicBorderGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerCopy) pulumi.StringOutput { return v.PublicBorderGroup }).(pulumi.StringOutput)
 }
 
 // The region in which to create the load balancer resource. If omitted, the

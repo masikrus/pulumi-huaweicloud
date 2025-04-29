@@ -22,22 +22,46 @@ class GetLoadbalancersResult:
     """
     A collection of values returned by getLoadbalancers.
     """
-    def __init__(__self__, description=None, enterprise_project_id=None, id=None, ipv4_subnet_id=None, ipv6_network_id=None, l4_flavor_id=None, l7_flavor_id=None, loadbalancer_id=None, loadbalancers=None, name=None, region=None, type=None, vpc_id=None):
+    def __init__(__self__, availability_zone=None, billing_info=None, deletion_protection_enable=None, description=None, enterprise_project_id=None, global_eips=None, id=None, ipv4_address=None, ipv4_port_id=None, ipv4_subnet_id=None, ipv6_address=None, ipv6_network_id=None, ipv6_vip_port_id=None, l4_flavor_id=None, l7_flavor_id=None, loadbalancer_id=None, loadbalancers=None, log_group_id=None, log_topic_id=None, member_address=None, member_device_id=None, name=None, operating_status=None, protection_status=None, provisioning_status=None, publicips=None, region=None, type=None, vpc_id=None):
+        if availability_zone and not isinstance(availability_zone, str):
+            raise TypeError("Expected argument 'availability_zone' to be a str")
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        if billing_info and not isinstance(billing_info, str):
+            raise TypeError("Expected argument 'billing_info' to be a str")
+        pulumi.set(__self__, "billing_info", billing_info)
+        if deletion_protection_enable and not isinstance(deletion_protection_enable, str):
+            raise TypeError("Expected argument 'deletion_protection_enable' to be a str")
+        pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
         if enterprise_project_id and not isinstance(enterprise_project_id, str):
             raise TypeError("Expected argument 'enterprise_project_id' to be a str")
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if global_eips and not isinstance(global_eips, list):
+            raise TypeError("Expected argument 'global_eips' to be a list")
+        pulumi.set(__self__, "global_eips", global_eips)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ipv4_address and not isinstance(ipv4_address, str):
+            raise TypeError("Expected argument 'ipv4_address' to be a str")
+        pulumi.set(__self__, "ipv4_address", ipv4_address)
+        if ipv4_port_id and not isinstance(ipv4_port_id, str):
+            raise TypeError("Expected argument 'ipv4_port_id' to be a str")
+        pulumi.set(__self__, "ipv4_port_id", ipv4_port_id)
         if ipv4_subnet_id and not isinstance(ipv4_subnet_id, str):
             raise TypeError("Expected argument 'ipv4_subnet_id' to be a str")
         pulumi.set(__self__, "ipv4_subnet_id", ipv4_subnet_id)
+        if ipv6_address and not isinstance(ipv6_address, str):
+            raise TypeError("Expected argument 'ipv6_address' to be a str")
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
         if ipv6_network_id and not isinstance(ipv6_network_id, str):
             raise TypeError("Expected argument 'ipv6_network_id' to be a str")
         pulumi.set(__self__, "ipv6_network_id", ipv6_network_id)
+        if ipv6_vip_port_id and not isinstance(ipv6_vip_port_id, str):
+            raise TypeError("Expected argument 'ipv6_vip_port_id' to be a str")
+        pulumi.set(__self__, "ipv6_vip_port_id", ipv6_vip_port_id)
         if l4_flavor_id and not isinstance(l4_flavor_id, str):
             raise TypeError("Expected argument 'l4_flavor_id' to be a str")
         pulumi.set(__self__, "l4_flavor_id", l4_flavor_id)
@@ -50,9 +74,33 @@ class GetLoadbalancersResult:
         if loadbalancers and not isinstance(loadbalancers, list):
             raise TypeError("Expected argument 'loadbalancers' to be a list")
         pulumi.set(__self__, "loadbalancers", loadbalancers)
+        if log_group_id and not isinstance(log_group_id, str):
+            raise TypeError("Expected argument 'log_group_id' to be a str")
+        pulumi.set(__self__, "log_group_id", log_group_id)
+        if log_topic_id and not isinstance(log_topic_id, str):
+            raise TypeError("Expected argument 'log_topic_id' to be a str")
+        pulumi.set(__self__, "log_topic_id", log_topic_id)
+        if member_address and not isinstance(member_address, str):
+            raise TypeError("Expected argument 'member_address' to be a str")
+        pulumi.set(__self__, "member_address", member_address)
+        if member_device_id and not isinstance(member_device_id, str):
+            raise TypeError("Expected argument 'member_device_id' to be a str")
+        pulumi.set(__self__, "member_device_id", member_device_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if operating_status and not isinstance(operating_status, str):
+            raise TypeError("Expected argument 'operating_status' to be a str")
+        pulumi.set(__self__, "operating_status", operating_status)
+        if protection_status and not isinstance(protection_status, str):
+            raise TypeError("Expected argument 'protection_status' to be a str")
+        pulumi.set(__self__, "protection_status", protection_status)
+        if provisioning_status and not isinstance(provisioning_status, str):
+            raise TypeError("Expected argument 'provisioning_status' to be a str")
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        if publicips and not isinstance(publicips, list):
+            raise TypeError("Expected argument 'publicips' to be a list")
+        pulumi.set(__self__, "publicips", publicips)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -62,6 +110,30 @@ class GetLoadbalancersResult:
         if vpc_id and not isinstance(vpc_id, str):
             raise TypeError("Expected argument 'vpc_id' to be a str")
         pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[str]:
+        """
+        The list of AZs where the load balancer is created.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="billingInfo")
+    def billing_info(self) -> Optional[str]:
+        """
+        The provides resource billing information.
+        """
+        return pulumi.get(self, "billing_info")
+
+    @property
+    @pulumi.getter(name="deletionProtectionEnable")
+    def deletion_protection_enable(self) -> Optional[str]:
+        """
+        Whether the deletion protection is enabled.
+        """
+        return pulumi.get(self, "deletion_protection_enable")
 
     @property
     @pulumi.getter
@@ -80,12 +152,37 @@ class GetLoadbalancersResult:
         return pulumi.get(self, "enterprise_project_id")
 
     @property
+    @pulumi.getter(name="globalEips")
+    def global_eips(self) -> Optional[Sequence[str]]:
+        """
+        The EIPs bound to the load balancer.
+        The global_eips structure is documented below.
+        """
+        return pulumi.get(self, "global_eips")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv4Address")
+    def ipv4_address(self) -> Optional[str]:
+        """
+        The private IPv4 address bound to the load balancer.
+        """
+        return pulumi.get(self, "ipv4_address")
+
+    @property
+    @pulumi.getter(name="ipv4PortId")
+    def ipv4_port_id(self) -> Optional[str]:
+        """
+        The ID of the port bound to the private IPv4 address of the load balancer.
+        """
+        return pulumi.get(self, "ipv4_port_id")
 
     @property
     @pulumi.getter(name="ipv4SubnetId")
@@ -96,12 +193,28 @@ class GetLoadbalancersResult:
         return pulumi.get(self, "ipv4_subnet_id")
 
     @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> Optional[str]:
+        """
+        The IPv6 address bound to the load balancer.
+        """
+        return pulumi.get(self, "ipv6_address")
+
+    @property
     @pulumi.getter(name="ipv6NetworkId")
     def ipv6_network_id(self) -> Optional[str]:
         """
         The ID of the IPv6 subnet where the load balancer resides.
         """
         return pulumi.get(self, "ipv6_network_id")
+
+    @property
+    @pulumi.getter(name="ipv6VipPortId")
+    def ipv6_vip_port_id(self) -> Optional[str]:
+        """
+        The ID of the port bound to the IPv6 address of the load balancer.
+        """
+        return pulumi.get(self, "ipv6_vip_port_id")
 
     @property
     @pulumi.getter(name="l4FlavorId")
@@ -134,12 +247,71 @@ class GetLoadbalancersResult:
         return pulumi.get(self, "loadbalancers")
 
     @property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> Optional[str]:
+        """
+        The ID of the log group that is associated with the load balancer.
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @property
+    @pulumi.getter(name="logTopicId")
+    def log_topic_id(self) -> Optional[str]:
+        """
+        The ID of the log topic that is associated with the load balancer.
+        """
+        return pulumi.get(self, "log_topic_id")
+
+    @property
+    @pulumi.getter(name="memberAddress")
+    def member_address(self) -> Optional[str]:
+        return pulumi.get(self, "member_address")
+
+    @property
+    @pulumi.getter(name="memberDeviceId")
+    def member_device_id(self) -> Optional[str]:
+        return pulumi.get(self, "member_device_id")
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
         The load balancer name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> Optional[str]:
+        """
+        The operating status of the load balancer.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> Optional[str]:
+        """
+        The protection status for update.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> Optional[str]:
+        """
+        The provisioning status of the load balancer.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @property
+    @pulumi.getter
+    def publicips(self) -> Optional[Sequence[str]]:
+        """
+        The EIPs bound to the load balancer.
+        The publicips structure is documented below.
+        """
+        return pulumi.get(self, "publicips")
 
     @property
     @pulumi.getter
@@ -169,29 +341,61 @@ class AwaitableGetLoadbalancersResult(GetLoadbalancersResult):
         if False:
             yield self
         return GetLoadbalancersResult(
+            availability_zone=self.availability_zone,
+            billing_info=self.billing_info,
+            deletion_protection_enable=self.deletion_protection_enable,
             description=self.description,
             enterprise_project_id=self.enterprise_project_id,
+            global_eips=self.global_eips,
             id=self.id,
+            ipv4_address=self.ipv4_address,
+            ipv4_port_id=self.ipv4_port_id,
             ipv4_subnet_id=self.ipv4_subnet_id,
+            ipv6_address=self.ipv6_address,
             ipv6_network_id=self.ipv6_network_id,
+            ipv6_vip_port_id=self.ipv6_vip_port_id,
             l4_flavor_id=self.l4_flavor_id,
             l7_flavor_id=self.l7_flavor_id,
             loadbalancer_id=self.loadbalancer_id,
             loadbalancers=self.loadbalancers,
+            log_group_id=self.log_group_id,
+            log_topic_id=self.log_topic_id,
+            member_address=self.member_address,
+            member_device_id=self.member_device_id,
             name=self.name,
+            operating_status=self.operating_status,
+            protection_status=self.protection_status,
+            provisioning_status=self.provisioning_status,
+            publicips=self.publicips,
             region=self.region,
             type=self.type,
             vpc_id=self.vpc_id)
 
 
-def get_loadbalancers(description: Optional[str] = None,
+def get_loadbalancers(availability_zone: Optional[str] = None,
+                      billing_info: Optional[str] = None,
+                      deletion_protection_enable: Optional[str] = None,
+                      description: Optional[str] = None,
                       enterprise_project_id: Optional[str] = None,
+                      global_eips: Optional[Sequence[str]] = None,
+                      ipv4_address: Optional[str] = None,
+                      ipv4_port_id: Optional[str] = None,
                       ipv4_subnet_id: Optional[str] = None,
+                      ipv6_address: Optional[str] = None,
                       ipv6_network_id: Optional[str] = None,
+                      ipv6_vip_port_id: Optional[str] = None,
                       l4_flavor_id: Optional[str] = None,
                       l7_flavor_id: Optional[str] = None,
                       loadbalancer_id: Optional[str] = None,
+                      log_group_id: Optional[str] = None,
+                      log_topic_id: Optional[str] = None,
+                      member_address: Optional[str] = None,
+                      member_device_id: Optional[str] = None,
                       name: Optional[str] = None,
+                      operating_status: Optional[str] = None,
+                      protection_status: Optional[str] = None,
+                      provisioning_status: Optional[str] = None,
+                      publicips: Optional[Sequence[str]] = None,
                       region: Optional[str] = None,
                       type: Optional[str] = None,
                       vpc_id: Optional[str] = None,
@@ -211,14 +415,46 @@ def get_loadbalancers(description: Optional[str] = None,
     ```
 
 
+    :param str availability_zone: Specifies the list of AZ where the load balancer is created.
+    :param str billing_info: Specifies the provides resource billing information.
+    :param str deletion_protection_enable: Specifies whether the deletion protection is enabled. Value options:
+           **true**, **false**.
     :param str description: Specifies the description of the ELB load balancer.
     :param str enterprise_project_id: Specifies the enterprise project ID.
+    :param Sequence[str] global_eips: Specifies the global EIPs bound to the load balancer. It can be queried by different
+           conditions:
+           + If `global_eip_id` is used as the query condition, the format is **global_eip_id=xxx**
+           + If `global_eip_address` is used as the query condition, the format is **global_eip_address=xxx**
+           + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
+    :param str ipv4_address: Specifies the private IPv4 address bound to the load balancer.
+    :param str ipv4_port_id: Specifies the ID of the port bound to the private IPv4 address of the load balancer.
     :param str ipv4_subnet_id: Specifies the ID of the IPv4 subnet where the load balancer resides.
+    :param str ipv6_address: Specifies the IPv6 address bound to the load balancer.
     :param str ipv6_network_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
+    :param str ipv6_vip_port_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
     :param str l4_flavor_id: Specifies the ID of a flavor at Layer 4.
     :param str l7_flavor_id: Specifies the ID of a flavor at Layer 7.
     :param str loadbalancer_id: Specifies the ID of the ELB load balancer.
+    :param str log_group_id: Specifies the ID of the log group that is associated with the load balancer.
+    :param str log_topic_id: Specifies the ID of the log topic that is associated with the load balancer.
+    :param str member_address: Specifies the private IP address of the cloud server that is associated with the
+           load balancer as a backend server.
+    :param str member_device_id: Specifies the ID of the cloud server that is associated with the load balancer
+           as a backend server.
     :param str name: Specifies the name of the ELB load balancer.
+    :param str operating_status: Specifies the operating status of the load balancer. Value options:
+           + **ONLINE**: indicates that the load balancer is running normally.
+           + **FROZEN**: indicates that the load balancer is frozen.
+    :param str protection_status: Specifies the protection status. Value options:
+           + **nonProtection**: The load balancer is not protected.
+           + **consoleProtection**: Modification Protection is enabled on the console.
+    :param str provisioning_status: Specifies the provisioning status of the load balancer. Value options:
+           + **ACTIVE**: The load balancer is successfully provisioned.
+           + **PENDING_DELETE**: The load balancer is being deleted.
+    :param Sequence[str] publicips: Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+           + If `publicip_id` is used as the query condition, the format is **publicip_id=xxx**
+           + If `publicip_address` is used as the query condition, the format is **publicip_address=xxx**
+           + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
     :param str region: Specifies the region in which to query the data source.
            If omitted, the provider-level region will be used.
     :param str type: Specifies whether the load balancer is a dedicated load balancer, Value options:
@@ -226,14 +462,30 @@ def get_loadbalancers(description: Optional[str] = None,
     :param str vpc_id: Specifies the ID of the VPC where the load balancer resides.
     """
     __args__ = dict()
+    __args__['availabilityZone'] = availability_zone
+    __args__['billingInfo'] = billing_info
+    __args__['deletionProtectionEnable'] = deletion_protection_enable
     __args__['description'] = description
     __args__['enterpriseProjectId'] = enterprise_project_id
+    __args__['globalEips'] = global_eips
+    __args__['ipv4Address'] = ipv4_address
+    __args__['ipv4PortId'] = ipv4_port_id
     __args__['ipv4SubnetId'] = ipv4_subnet_id
+    __args__['ipv6Address'] = ipv6_address
     __args__['ipv6NetworkId'] = ipv6_network_id
+    __args__['ipv6VipPortId'] = ipv6_vip_port_id
     __args__['l4FlavorId'] = l4_flavor_id
     __args__['l7FlavorId'] = l7_flavor_id
     __args__['loadbalancerId'] = loadbalancer_id
+    __args__['logGroupId'] = log_group_id
+    __args__['logTopicId'] = log_topic_id
+    __args__['memberAddress'] = member_address
+    __args__['memberDeviceId'] = member_device_id
     __args__['name'] = name
+    __args__['operatingStatus'] = operating_status
+    __args__['protectionStatus'] = protection_status
+    __args__['provisioningStatus'] = provisioning_status
+    __args__['publicips'] = publicips
     __args__['region'] = region
     __args__['type'] = type
     __args__['vpcId'] = vpc_id
@@ -241,30 +493,62 @@ def get_loadbalancers(description: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('huaweicloud:DedicatedElb/getLoadbalancers:getLoadbalancers', __args__, opts=opts, typ=GetLoadbalancersResult).value
 
     return AwaitableGetLoadbalancersResult(
+        availability_zone=__ret__.availability_zone,
+        billing_info=__ret__.billing_info,
+        deletion_protection_enable=__ret__.deletion_protection_enable,
         description=__ret__.description,
         enterprise_project_id=__ret__.enterprise_project_id,
+        global_eips=__ret__.global_eips,
         id=__ret__.id,
+        ipv4_address=__ret__.ipv4_address,
+        ipv4_port_id=__ret__.ipv4_port_id,
         ipv4_subnet_id=__ret__.ipv4_subnet_id,
+        ipv6_address=__ret__.ipv6_address,
         ipv6_network_id=__ret__.ipv6_network_id,
+        ipv6_vip_port_id=__ret__.ipv6_vip_port_id,
         l4_flavor_id=__ret__.l4_flavor_id,
         l7_flavor_id=__ret__.l7_flavor_id,
         loadbalancer_id=__ret__.loadbalancer_id,
         loadbalancers=__ret__.loadbalancers,
+        log_group_id=__ret__.log_group_id,
+        log_topic_id=__ret__.log_topic_id,
+        member_address=__ret__.member_address,
+        member_device_id=__ret__.member_device_id,
         name=__ret__.name,
+        operating_status=__ret__.operating_status,
+        protection_status=__ret__.protection_status,
+        provisioning_status=__ret__.provisioning_status,
+        publicips=__ret__.publicips,
         region=__ret__.region,
         type=__ret__.type,
         vpc_id=__ret__.vpc_id)
 
 
 @_utilities.lift_output_func(get_loadbalancers)
-def get_loadbalancers_output(description: Optional[pulumi.Input[Optional[str]]] = None,
+def get_loadbalancers_output(availability_zone: Optional[pulumi.Input[Optional[str]]] = None,
+                             billing_info: Optional[pulumi.Input[Optional[str]]] = None,
+                             deletion_protection_enable: Optional[pulumi.Input[Optional[str]]] = None,
+                             description: Optional[pulumi.Input[Optional[str]]] = None,
                              enterprise_project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                             global_eips: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                             ipv4_address: Optional[pulumi.Input[Optional[str]]] = None,
+                             ipv4_port_id: Optional[pulumi.Input[Optional[str]]] = None,
                              ipv4_subnet_id: Optional[pulumi.Input[Optional[str]]] = None,
+                             ipv6_address: Optional[pulumi.Input[Optional[str]]] = None,
                              ipv6_network_id: Optional[pulumi.Input[Optional[str]]] = None,
+                             ipv6_vip_port_id: Optional[pulumi.Input[Optional[str]]] = None,
                              l4_flavor_id: Optional[pulumi.Input[Optional[str]]] = None,
                              l7_flavor_id: Optional[pulumi.Input[Optional[str]]] = None,
                              loadbalancer_id: Optional[pulumi.Input[Optional[str]]] = None,
+                             log_group_id: Optional[pulumi.Input[Optional[str]]] = None,
+                             log_topic_id: Optional[pulumi.Input[Optional[str]]] = None,
+                             member_address: Optional[pulumi.Input[Optional[str]]] = None,
+                             member_device_id: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
+                             operating_status: Optional[pulumi.Input[Optional[str]]] = None,
+                             protection_status: Optional[pulumi.Input[Optional[str]]] = None,
+                             provisioning_status: Optional[pulumi.Input[Optional[str]]] = None,
+                             publicips: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              type: Optional[pulumi.Input[Optional[str]]] = None,
                              vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -284,14 +568,46 @@ def get_loadbalancers_output(description: Optional[pulumi.Input[Optional[str]]] 
     ```
 
 
+    :param str availability_zone: Specifies the list of AZ where the load balancer is created.
+    :param str billing_info: Specifies the provides resource billing information.
+    :param str deletion_protection_enable: Specifies whether the deletion protection is enabled. Value options:
+           **true**, **false**.
     :param str description: Specifies the description of the ELB load balancer.
     :param str enterprise_project_id: Specifies the enterprise project ID.
+    :param Sequence[str] global_eips: Specifies the global EIPs bound to the load balancer. It can be queried by different
+           conditions:
+           + If `global_eip_id` is used as the query condition, the format is **global_eip_id=xxx**
+           + If `global_eip_address` is used as the query condition, the format is **global_eip_address=xxx**
+           + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
+    :param str ipv4_address: Specifies the private IPv4 address bound to the load balancer.
+    :param str ipv4_port_id: Specifies the ID of the port bound to the private IPv4 address of the load balancer.
     :param str ipv4_subnet_id: Specifies the ID of the IPv4 subnet where the load balancer resides.
+    :param str ipv6_address: Specifies the IPv6 address bound to the load balancer.
     :param str ipv6_network_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
+    :param str ipv6_vip_port_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
     :param str l4_flavor_id: Specifies the ID of a flavor at Layer 4.
     :param str l7_flavor_id: Specifies the ID of a flavor at Layer 7.
     :param str loadbalancer_id: Specifies the ID of the ELB load balancer.
+    :param str log_group_id: Specifies the ID of the log group that is associated with the load balancer.
+    :param str log_topic_id: Specifies the ID of the log topic that is associated with the load balancer.
+    :param str member_address: Specifies the private IP address of the cloud server that is associated with the
+           load balancer as a backend server.
+    :param str member_device_id: Specifies the ID of the cloud server that is associated with the load balancer
+           as a backend server.
     :param str name: Specifies the name of the ELB load balancer.
+    :param str operating_status: Specifies the operating status of the load balancer. Value options:
+           + **ONLINE**: indicates that the load balancer is running normally.
+           + **FROZEN**: indicates that the load balancer is frozen.
+    :param str protection_status: Specifies the protection status. Value options:
+           + **nonProtection**: The load balancer is not protected.
+           + **consoleProtection**: Modification Protection is enabled on the console.
+    :param str provisioning_status: Specifies the provisioning status of the load balancer. Value options:
+           + **ACTIVE**: The load balancer is successfully provisioned.
+           + **PENDING_DELETE**: The load balancer is being deleted.
+    :param Sequence[str] publicips: Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+           + If `publicip_id` is used as the query condition, the format is **publicip_id=xxx**
+           + If `publicip_address` is used as the query condition, the format is **publicip_address=xxx**
+           + If `ip_version` is used as the query condition, the format is **ip_version=xxx**
     :param str region: Specifies the region in which to query the data source.
            If omitted, the provider-level region will be used.
     :param str type: Specifies whether the load balancer is a dedicated load balancer, Value options:

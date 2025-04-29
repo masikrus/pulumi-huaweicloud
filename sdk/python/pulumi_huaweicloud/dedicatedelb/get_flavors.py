@@ -22,13 +22,22 @@ class GetFlavorsResult:
     """
     A collection of values returned by getFlavors.
     """
-    def __init__(__self__, bandwidth=None, cps=None, flavors=None, id=None, ids=None, max_connections=None, name=None, qps=None, region=None, type=None):
+    def __init__(__self__, bandwidth=None, category=None, cps=None, flavor_id=None, flavor_sold_out=None, flavors=None, id=None, ids=None, list_all=None, max_connections=None, name=None, public_border_group=None, qps=None, region=None, shared=None, type=None):
         if bandwidth and not isinstance(bandwidth, int):
             raise TypeError("Expected argument 'bandwidth' to be a int")
         pulumi.set(__self__, "bandwidth", bandwidth)
+        if category and not isinstance(category, int):
+            raise TypeError("Expected argument 'category' to be a int")
+        pulumi.set(__self__, "category", category)
         if cps and not isinstance(cps, int):
             raise TypeError("Expected argument 'cps' to be a int")
         pulumi.set(__self__, "cps", cps)
+        if flavor_id and not isinstance(flavor_id, str):
+            raise TypeError("Expected argument 'flavor_id' to be a str")
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        if flavor_sold_out and not isinstance(flavor_sold_out, str):
+            raise TypeError("Expected argument 'flavor_sold_out' to be a str")
+        pulumi.set(__self__, "flavor_sold_out", flavor_sold_out)
         if flavors and not isinstance(flavors, list):
             raise TypeError("Expected argument 'flavors' to be a list")
         pulumi.set(__self__, "flavors", flavors)
@@ -38,18 +47,27 @@ class GetFlavorsResult:
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
         pulumi.set(__self__, "ids", ids)
+        if list_all and not isinstance(list_all, str):
+            raise TypeError("Expected argument 'list_all' to be a str")
+        pulumi.set(__self__, "list_all", list_all)
         if max_connections and not isinstance(max_connections, int):
             raise TypeError("Expected argument 'max_connections' to be a int")
         pulumi.set(__self__, "max_connections", max_connections)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if public_border_group and not isinstance(public_border_group, str):
+            raise TypeError("Expected argument 'public_border_group' to be a str")
+        pulumi.set(__self__, "public_border_group", public_border_group)
         if qps and not isinstance(qps, int):
             raise TypeError("Expected argument 'qps' to be a int")
         pulumi.set(__self__, "qps", qps)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if shared and not isinstance(shared, str):
+            raise TypeError("Expected argument 'shared' to be a str")
+        pulumi.set(__self__, "shared", shared)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -58,23 +76,45 @@ class GetFlavorsResult:
     @pulumi.getter
     def bandwidth(self) -> Optional[int]:
         """
-        Bandwidth size(Mbit/s) of the flavor.
+        Indicates the bandwidth size(Mbit/s) of the flavor.
         """
         return pulumi.get(self, "bandwidth")
 
     @property
     @pulumi.getter
+    def category(self) -> Optional[int]:
+        """
+        Indicates the category.
+        """
+        return pulumi.get(self, "category")
+
+    @property
+    @pulumi.getter
     def cps(self) -> Optional[int]:
         """
-        Cps of the flavor.
+        Indicates the cps of the flavor.
         """
         return pulumi.get(self, "cps")
+
+    @property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> Optional[str]:
+        return pulumi.get(self, "flavor_id")
+
+    @property
+    @pulumi.getter(name="flavorSoldOut")
+    def flavor_sold_out(self) -> Optional[str]:
+        """
+        Indicates whether the flavor is available.
+        """
+        return pulumi.get(self, "flavor_sold_out")
 
     @property
     @pulumi.getter
     def flavors(self) -> Sequence['outputs.GetFlavorsFlavorResult']:
         """
-        A list of flavors. Each element contains the following attributes:
+        Indicates the list of flavors.
+        The flavors structure is documented below.
         """
         return pulumi.get(self, "flavors")
 
@@ -90,15 +130,20 @@ class GetFlavorsResult:
     @pulumi.getter
     def ids(self) -> Sequence[str]:
         """
-        A list of flavor IDs.
+        Indicates the list of flavor IDs.
         """
         return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter(name="listAll")
+    def list_all(self) -> Optional[str]:
+        return pulumi.get(self, "list_all")
 
     @property
     @pulumi.getter(name="maxConnections")
     def max_connections(self) -> Optional[int]:
         """
-        Maximum connections of the flavor.
+        Indicates the maximum connections of the flavor.
         """
         return pulumi.get(self, "max_connections")
 
@@ -106,15 +151,23 @@ class GetFlavorsResult:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Name of the flavor.
+        Indicates the name of the flavor.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> Optional[str]:
+        """
+        Indicates the public border group.
+        """
+        return pulumi.get(self, "public_border_group")
 
     @property
     @pulumi.getter
     def qps(self) -> Optional[int]:
         """
-        Qps of the L7 flavor.
+        Indicates the qps of the L7 flavor.
         """
         return pulumi.get(self, "qps")
 
@@ -125,9 +178,17 @@ class GetFlavorsResult:
 
     @property
     @pulumi.getter
+    def shared(self) -> Optional[str]:
+        """
+        Indicates  whether the flavor is available to all users.
+        """
+        return pulumi.get(self, "shared")
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        Type of the flavor.
+        Indicates the type of the flavor.
         """
         return pulumi.get(self, "type")
 
@@ -139,23 +200,35 @@ class AwaitableGetFlavorsResult(GetFlavorsResult):
             yield self
         return GetFlavorsResult(
             bandwidth=self.bandwidth,
+            category=self.category,
             cps=self.cps,
+            flavor_id=self.flavor_id,
+            flavor_sold_out=self.flavor_sold_out,
             flavors=self.flavors,
             id=self.id,
             ids=self.ids,
+            list_all=self.list_all,
             max_connections=self.max_connections,
             name=self.name,
+            public_border_group=self.public_border_group,
             qps=self.qps,
             region=self.region,
+            shared=self.shared,
             type=self.type)
 
 
 def get_flavors(bandwidth: Optional[int] = None,
+                category: Optional[int] = None,
                 cps: Optional[int] = None,
+                flavor_id: Optional[str] = None,
+                flavor_sold_out: Optional[str] = None,
+                list_all: Optional[str] = None,
                 max_connections: Optional[int] = None,
                 name: Optional[str] = None,
+                public_border_group: Optional[str] = None,
                 qps: Optional[int] = None,
                 region: Optional[str] = None,
+                shared: Optional[str] = None,
                 type: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFlavorsResult:
     """
@@ -175,12 +248,29 @@ def get_flavors(bandwidth: Optional[int] = None,
 
 
     :param int bandwidth: Specifies the bandwidth size(Mbit/s) in the flavor.
+    :param int category: Specifies the category.
     :param int cps: Specifies the cps in the flavor.
+    :param str flavor_id: Specifies the flavor ID.
+    :param str flavor_sold_out: Specifies whether the flavor is available.
+           + **true**: indicates the flavor is unavailable.
+           + **false**: indicates the flavor is available.
+    :param str list_all: Specifies whether return all maximum elastic specifications. Value options: **true**,
+           **false**.
+           + If it is set to **true**, all maximum elastic specifications defined by l4_elastic_max and l7_elastic_max are returned.
+           + If it is set to **false**, only the largest elastic specifications will be returned.
+           + For Layer 4 load balancers, the specification with the highest cps value is returned. If the cps values are the same,
+           the specification with the highest bandwidth value is returned.
+           + For Layer 7 load balancers, the specification with highest https_cps value is returned. If the https_cps values are
+           the same, the specification with highest qps value is returned.
     :param int max_connections: Specifies the maximum connections in the flavor.
     :param str name: Specifies the flavor name.
+    :param str public_border_group: Specifies the public border group.
     :param int qps: Specifies the qps in the L7 flavor.
     :param str region: The region in which to obtain the flavors. If omitted, the provider-level region will be
            used.
+    :param str shared: Specifies whether the flavor is available to all users. Value options:
+           + **true**: indicates that the flavor is available to all users.
+           + **false**: indicates that the flavor is available only to a specific user.
     :param str type: Specifies the flavor type. Values options:
            + **L4**: indicates Layer-4 flavor.
            + **L7**: indicates Layer-7 flavor.
@@ -191,35 +281,53 @@ def get_flavors(bandwidth: Optional[int] = None,
     """
     __args__ = dict()
     __args__['bandwidth'] = bandwidth
+    __args__['category'] = category
     __args__['cps'] = cps
+    __args__['flavorId'] = flavor_id
+    __args__['flavorSoldOut'] = flavor_sold_out
+    __args__['listAll'] = list_all
     __args__['maxConnections'] = max_connections
     __args__['name'] = name
+    __args__['publicBorderGroup'] = public_border_group
     __args__['qps'] = qps
     __args__['region'] = region
+    __args__['shared'] = shared
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('huaweicloud:DedicatedElb/getFlavors:getFlavors', __args__, opts=opts, typ=GetFlavorsResult).value
 
     return AwaitableGetFlavorsResult(
         bandwidth=__ret__.bandwidth,
+        category=__ret__.category,
         cps=__ret__.cps,
+        flavor_id=__ret__.flavor_id,
+        flavor_sold_out=__ret__.flavor_sold_out,
         flavors=__ret__.flavors,
         id=__ret__.id,
         ids=__ret__.ids,
+        list_all=__ret__.list_all,
         max_connections=__ret__.max_connections,
         name=__ret__.name,
+        public_border_group=__ret__.public_border_group,
         qps=__ret__.qps,
         region=__ret__.region,
+        shared=__ret__.shared,
         type=__ret__.type)
 
 
 @_utilities.lift_output_func(get_flavors)
 def get_flavors_output(bandwidth: Optional[pulumi.Input[Optional[int]]] = None,
+                       category: Optional[pulumi.Input[Optional[int]]] = None,
                        cps: Optional[pulumi.Input[Optional[int]]] = None,
+                       flavor_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       flavor_sold_out: Optional[pulumi.Input[Optional[str]]] = None,
+                       list_all: Optional[pulumi.Input[Optional[str]]] = None,
                        max_connections: Optional[pulumi.Input[Optional[int]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
+                       public_border_group: Optional[pulumi.Input[Optional[str]]] = None,
                        qps: Optional[pulumi.Input[Optional[int]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
+                       shared: Optional[pulumi.Input[Optional[str]]] = None,
                        type: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFlavorsResult]:
     """
@@ -239,12 +347,29 @@ def get_flavors_output(bandwidth: Optional[pulumi.Input[Optional[int]]] = None,
 
 
     :param int bandwidth: Specifies the bandwidth size(Mbit/s) in the flavor.
+    :param int category: Specifies the category.
     :param int cps: Specifies the cps in the flavor.
+    :param str flavor_id: Specifies the flavor ID.
+    :param str flavor_sold_out: Specifies whether the flavor is available.
+           + **true**: indicates the flavor is unavailable.
+           + **false**: indicates the flavor is available.
+    :param str list_all: Specifies whether return all maximum elastic specifications. Value options: **true**,
+           **false**.
+           + If it is set to **true**, all maximum elastic specifications defined by l4_elastic_max and l7_elastic_max are returned.
+           + If it is set to **false**, only the largest elastic specifications will be returned.
+           + For Layer 4 load balancers, the specification with the highest cps value is returned. If the cps values are the same,
+           the specification with the highest bandwidth value is returned.
+           + For Layer 7 load balancers, the specification with highest https_cps value is returned. If the https_cps values are
+           the same, the specification with highest qps value is returned.
     :param int max_connections: Specifies the maximum connections in the flavor.
     :param str name: Specifies the flavor name.
+    :param str public_border_group: Specifies the public border group.
     :param int qps: Specifies the qps in the L7 flavor.
     :param str region: The region in which to obtain the flavors. If omitted, the provider-level region will be
            used.
+    :param str shared: Specifies whether the flavor is available to all users. Value options:
+           + **true**: indicates that the flavor is available to all users.
+           + **false**: indicates that the flavor is available only to a specific user.
     :param str type: Specifies the flavor type. Values options:
            + **L4**: indicates Layer-4 flavor.
            + **L7**: indicates Layer-7 flavor.

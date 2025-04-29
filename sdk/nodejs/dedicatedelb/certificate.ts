@@ -72,13 +72,13 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * ELB certificate can be imported using the certificate ID, e.g. bash
+ * The ELB certificate can be imported using the `id`, e.g. bash
  *
  * ```sh
- *  $ pulumi import huaweicloud:DedicatedElb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+ *  $ pulumi import huaweicloud:DedicatedElb/certificate:Certificate test <id>
  * ```
  *
- *  Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "certificate_1" {
+ *  Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`private_key` and `enc_private_key`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "test" {
  *
  *  ...
  *
@@ -86,7 +86,7 @@ import * as utilities from "../utilities";
  *
  *  ignore_changes = [
  *
- *  enterprise_project_id,
+ *  private_key, enc_private_key
  *
  *  ]
  *
@@ -125,6 +125,10 @@ export class Certificate extends pulumi.CustomResource {
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
+     * Indicates the primary domain name of the certificate.
+     */
+    public /*out*/ readonly commonName!: pulumi.Output<string>;
+    /**
      * Indicates the creation time.
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
@@ -133,10 +137,22 @@ export class Certificate extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The domain of the Certificate. The value contains a maximum of 100 characters. This
-     * parameter is valid only when `type` is set to "server".
+     * The domain of the Certificate. The value contains a maximum of **100** characters. This
+     * parameter is valid only when `type` is set to **server**.
      */
     public readonly domain!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the body of the SM encryption certificate required by HTTPS listeners.
+     * The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+     * of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+     */
+    public readonly encCertificate!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+     * The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+     * **server_sm.**.
+     */
+    public readonly encPrivateKey!: pulumi.Output<string | undefined>;
     /**
      * The enterprise project id of the certificate.
      */
@@ -146,12 +162,16 @@ export class Certificate extends pulumi.CustomResource {
      */
     public /*out*/ readonly expireTime!: pulumi.Output<string>;
     /**
+     * Indicates the fingerprint of the certificate.
+     */
+    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
+    /**
      * Human-readable name for the Certificate. Does not have to be unique.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * The private encrypted key of the Certificate, PEM format. This parameter is valid
-     * and mandatory only when `type` is set to "server".
+     * and mandatory only when `type` is set to **server**.
      */
     public readonly privateKey!: pulumi.Output<string | undefined>;
     /**
@@ -160,12 +180,20 @@ export class Certificate extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Specifies the certificate type. The default value is "server". The value can be
-     * one of the following:
-     * + server: indicates the server certificate.
-     * + client: indicates the CA certificate.
+     * Specifies the SM certificate ID.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    public readonly scmCertificateId!: pulumi.Output<string>;
+    /**
+     * Indicates all the domain names of the certificate.
+     */
+    public /*out*/ readonly subjectAlternativeNames!: pulumi.Output<string[]>;
+    /**
+     * Specifies the certificate type. Value options:
+     * + **server**: indicates the server certificate.
+     * + **client**: indicates the CA certificate.
+     * + **server_sm**: indicates the server SM certificate.
+     */
+    public readonly type!: pulumi.Output<string>;
     /**
      * Indicates the update time.
      */
@@ -185,14 +213,20 @@ export class Certificate extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as CertificateState | undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["commonName"] = state ? state.commonName : undefined;
             resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["encCertificate"] = state ? state.encCertificate : undefined;
+            resourceInputs["encPrivateKey"] = state ? state.encPrivateKey : undefined;
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["expireTime"] = state ? state.expireTime : undefined;
+            resourceInputs["fingerprint"] = state ? state.fingerprint : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["scmCertificateId"] = state ? state.scmCertificateId : undefined;
+            resourceInputs["subjectAlternativeNames"] = state ? state.subjectAlternativeNames : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
@@ -203,13 +237,19 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["encCertificate"] = args ? args.encCertificate : undefined;
+            resourceInputs["encPrivateKey"] = args ? args.encPrivateKey : undefined;
             resourceInputs["enterpriseProjectId"] = args ? args.enterpriseProjectId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["scmCertificateId"] = args ? args.scmCertificateId : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["commonName"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["expireTime"] = undefined /*out*/;
+            resourceInputs["fingerprint"] = undefined /*out*/;
+            resourceInputs["subjectAlternativeNames"] = undefined /*out*/;
             resourceInputs["updateTime"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -226,6 +266,10 @@ export interface CertificateState {
      */
     certificate?: pulumi.Input<string>;
     /**
+     * Indicates the primary domain name of the certificate.
+     */
+    commonName?: pulumi.Input<string>;
+    /**
      * Indicates the creation time.
      */
     createTime?: pulumi.Input<string>;
@@ -234,10 +278,22 @@ export interface CertificateState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The domain of the Certificate. The value contains a maximum of 100 characters. This
-     * parameter is valid only when `type` is set to "server".
+     * The domain of the Certificate. The value contains a maximum of **100** characters. This
+     * parameter is valid only when `type` is set to **server**.
      */
     domain?: pulumi.Input<string>;
+    /**
+     * Specifies the body of the SM encryption certificate required by HTTPS listeners.
+     * The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+     * of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+     */
+    encCertificate?: pulumi.Input<string>;
+    /**
+     * Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+     * The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+     * **server_sm.**.
+     */
+    encPrivateKey?: pulumi.Input<string>;
     /**
      * The enterprise project id of the certificate.
      */
@@ -247,12 +303,16 @@ export interface CertificateState {
      */
     expireTime?: pulumi.Input<string>;
     /**
+     * Indicates the fingerprint of the certificate.
+     */
+    fingerprint?: pulumi.Input<string>;
+    /**
      * Human-readable name for the Certificate. Does not have to be unique.
      */
     name?: pulumi.Input<string>;
     /**
      * The private encrypted key of the Certificate, PEM format. This parameter is valid
-     * and mandatory only when `type` is set to "server".
+     * and mandatory only when `type` is set to **server**.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -261,10 +321,18 @@ export interface CertificateState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies the certificate type. The default value is "server". The value can be
-     * one of the following:
-     * + server: indicates the server certificate.
-     * + client: indicates the CA certificate.
+     * Specifies the SM certificate ID.
+     */
+    scmCertificateId?: pulumi.Input<string>;
+    /**
+     * Indicates all the domain names of the certificate.
+     */
+    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the certificate type. Value options:
+     * + **server**: indicates the server certificate.
+     * + **client**: indicates the CA certificate.
+     * + **server_sm**: indicates the server SM certificate.
      */
     type?: pulumi.Input<string>;
     /**
@@ -286,10 +354,22 @@ export interface CertificateArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The domain of the Certificate. The value contains a maximum of 100 characters. This
-     * parameter is valid only when `type` is set to "server".
+     * The domain of the Certificate. The value contains a maximum of **100** characters. This
+     * parameter is valid only when `type` is set to **server**.
      */
     domain?: pulumi.Input<string>;
+    /**
+     * Specifies the body of the SM encryption certificate required by HTTPS listeners.
+     * The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+     * of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+     */
+    encCertificate?: pulumi.Input<string>;
+    /**
+     * Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+     * The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+     * **server_sm.**.
+     */
+    encPrivateKey?: pulumi.Input<string>;
     /**
      * The enterprise project id of the certificate.
      */
@@ -300,7 +380,7 @@ export interface CertificateArgs {
     name?: pulumi.Input<string>;
     /**
      * The private encrypted key of the Certificate, PEM format. This parameter is valid
-     * and mandatory only when `type` is set to "server".
+     * and mandatory only when `type` is set to **server**.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -309,10 +389,14 @@ export interface CertificateArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies the certificate type. The default value is "server". The value can be
-     * one of the following:
-     * + server: indicates the server certificate.
-     * + client: indicates the CA certificate.
+     * Specifies the SM certificate ID.
+     */
+    scmCertificateId?: pulumi.Input<string>;
+    /**
+     * Specifies the certificate type. Value options:
+     * + **server**: indicates the server certificate.
+     * + **client**: indicates the CA certificate.
+     * + **server_sm**: indicates the server SM certificate.
      */
     type?: pulumi.Input<string>;
 }

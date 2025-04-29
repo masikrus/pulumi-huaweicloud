@@ -20,25 +20,33 @@ class CertificateArgs:
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
         :param pulumi.Input[str] certificate: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
         :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+               parameter is valid only when `type` is set to **server**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the certificate. Changing this
                creates a new certificate.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
+        :param pulumi.Input[str] protection_reason: Specifies why the modification protection is enabled.
+        :param pulumi.Input[str] protection_status: Specifies the protection status. Value options:
+               + **nonProtection**: The load balancer is not protected.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
+        :param pulumi.Input[str] source: Specifies the source of the certificate.
         :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
                one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
         """
         pulumi.set(__self__, "certificate", certificate)
         if description is not None:
@@ -51,8 +59,14 @@ class CertificateArgs:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if protection_reason is not None:
+            pulumi.set(__self__, "protection_reason", protection_reason)
+        if protection_status is not None:
+            pulumi.set(__self__, "protection_status", protection_status)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -85,7 +99,7 @@ class CertificateArgs:
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
         The domain of the Certificate. The value contains a maximum of 100 characters. This
-        parameter is valid only when `type` is set to "server".
+        parameter is valid only when `type` is set to **server**.
         """
         return pulumi.get(self, "domain")
 
@@ -123,13 +137,39 @@ class CertificateArgs:
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
         The private encrypted key of the Certificate, PEM format. This parameter is valid
-        and mandatory only when `type` is set to "server".
+        and mandatory only when `type` is set to **server**.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies why the modification protection is enabled.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @protection_reason.setter
+    def protection_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_reason", value)
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the protection status. Value options:
+        + **nonProtection**: The load balancer is not protected.
+        + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @protection_status.setter
+    def protection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_status", value)
 
     @property
     @pulumi.getter
@@ -146,12 +186,24 @@ class CertificateArgs:
 
     @property
     @pulumi.getter
+    def source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the source of the certificate.
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the certificate type. The default value is "server". The value can be
         one of the following:
-        + server: indicates the server certificate.
-        + client: indicates the CA certificate.
+        + **server**: indicates the server certificate.
+        + **client**: indicates the CA certificate.
         """
         return pulumi.get(self, "type")
 
@@ -171,7 +223,10 @@ class _CertificateState:
                  expire_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
@@ -180,19 +235,24 @@ class _CertificateState:
         :param pulumi.Input[str] create_time: Indicates the creation time.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
         :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+               parameter is valid only when `type` is set to **server**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the certificate. Changing this
                creates a new certificate.
         :param pulumi.Input[str] expire_time: Indicates the expire time.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
+        :param pulumi.Input[str] protection_reason: Specifies why the modification protection is enabled.
+        :param pulumi.Input[str] protection_status: Specifies the protection status. Value options:
+               + **nonProtection**: The load balancer is not protected.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
+        :param pulumi.Input[str] source: Specifies the source of the certificate.
         :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
                one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
         :param pulumi.Input[str] update_time: Indicates the update time.
         """
         if certificate is not None:
@@ -211,8 +271,14 @@ class _CertificateState:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if protection_reason is not None:
+            pulumi.set(__self__, "protection_reason", protection_reason)
+        if protection_status is not None:
+            pulumi.set(__self__, "protection_status", protection_status)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if update_time is not None:
@@ -259,7 +325,7 @@ class _CertificateState:
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
         The domain of the Certificate. The value contains a maximum of 100 characters. This
-        parameter is valid only when `type` is set to "server".
+        parameter is valid only when `type` is set to **server**.
         """
         return pulumi.get(self, "domain")
 
@@ -309,13 +375,39 @@ class _CertificateState:
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
         The private encrypted key of the Certificate, PEM format. This parameter is valid
-        and mandatory only when `type` is set to "server".
+        and mandatory only when `type` is set to **server**.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies why the modification protection is enabled.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @protection_reason.setter
+    def protection_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_reason", value)
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the protection status. Value options:
+        + **nonProtection**: The load balancer is not protected.
+        + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @protection_status.setter
+    def protection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_status", value)
 
     @property
     @pulumi.getter
@@ -332,12 +424,24 @@ class _CertificateState:
 
     @property
     @pulumi.getter
+    def source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the source of the certificate.
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the certificate type. The default value is "server". The value can be
         one of the following:
-        + server: indicates the server certificate.
-        + client: indicates the CA certificate.
+        + **server**: indicates the server certificate.
+        + **client**: indicates the CA certificate.
         """
         return pulumi.get(self, "type")
 
@@ -369,7 +473,10 @@ class Certificate(pulumi.CustomResource):
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -441,13 +548,13 @@ class Certificate(pulumi.CustomResource):
 
         ## Import
 
-        ELB certificate can be imported using the certificate ID, e.g. bash
+        ELB certificate can be imported using the `id` e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:Elb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:Elb/certificate:Certificate test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "certificate_1" {
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "test" {
 
          ...
 
@@ -455,7 +562,7 @@ class Certificate(pulumi.CustomResource):
 
          ignore_changes = [
 
-         enterprise_project_id,
+         enterprise_project_id, private_key,
 
          ]
 
@@ -466,18 +573,23 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
         :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+               parameter is valid only when `type` is set to **server**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the certificate. Changing this
                creates a new certificate.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
+        :param pulumi.Input[str] protection_reason: Specifies why the modification protection is enabled.
+        :param pulumi.Input[str] protection_status: Specifies the protection status. Value options:
+               + **nonProtection**: The load balancer is not protected.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
+        :param pulumi.Input[str] source: Specifies the source of the certificate.
         :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
                one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
         """
         ...
     @overload
@@ -554,13 +666,13 @@ class Certificate(pulumi.CustomResource):
 
         ## Import
 
-        ELB certificate can be imported using the certificate ID, e.g. bash
+        ELB certificate can be imported using the `id` e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:Elb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:Elb/certificate:Certificate test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "certificate_1" {
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "test" {
 
          ...
 
@@ -568,7 +680,7 @@ class Certificate(pulumi.CustomResource):
 
          ignore_changes = [
 
-         enterprise_project_id,
+         enterprise_project_id, private_key,
 
          ]
 
@@ -595,7 +707,10 @@ class Certificate(pulumi.CustomResource):
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -614,7 +729,10 @@ class Certificate(pulumi.CustomResource):
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["name"] = name
             __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["protection_reason"] = protection_reason
+            __props__.__dict__["protection_status"] = protection_status
             __props__.__dict__["region"] = region
+            __props__.__dict__["source"] = source
             __props__.__dict__["type"] = type
             __props__.__dict__["create_time"] = None
             __props__.__dict__["expire_time"] = None
@@ -637,7 +755,10 @@ class Certificate(pulumi.CustomResource):
             expire_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            protection_reason: Optional[pulumi.Input[str]] = None,
+            protection_status: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            source: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'Certificate':
         """
@@ -651,19 +772,24 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] create_time: Indicates the creation time.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
         :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+               parameter is valid only when `type` is set to **server**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the certificate. Changing this
                creates a new certificate.
         :param pulumi.Input[str] expire_time: Indicates the expire time.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
+        :param pulumi.Input[str] protection_reason: Specifies why the modification protection is enabled.
+        :param pulumi.Input[str] protection_status: Specifies the protection status. Value options:
+               + **nonProtection**: The load balancer is not protected.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
+        :param pulumi.Input[str] source: Specifies the source of the certificate.
         :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
                one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
         :param pulumi.Input[str] update_time: Indicates the update time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -678,7 +804,10 @@ class Certificate(pulumi.CustomResource):
         __props__.__dict__["expire_time"] = expire_time
         __props__.__dict__["name"] = name
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["protection_reason"] = protection_reason
+        __props__.__dict__["protection_status"] = protection_status
         __props__.__dict__["region"] = region
+        __props__.__dict__["source"] = source
         __props__.__dict__["type"] = type
         __props__.__dict__["update_time"] = update_time
         return Certificate(resource_name, opts=opts, __props__=__props__)
@@ -712,7 +841,7 @@ class Certificate(pulumi.CustomResource):
     def domain(self) -> pulumi.Output[Optional[str]]:
         """
         The domain of the Certificate. The value contains a maximum of 100 characters. This
-        parameter is valid only when `type` is set to "server".
+        parameter is valid only when `type` is set to **server**.
         """
         return pulumi.get(self, "domain")
 
@@ -746,9 +875,27 @@ class Certificate(pulumi.CustomResource):
     def private_key(self) -> pulumi.Output[Optional[str]]:
         """
         The private encrypted key of the Certificate, PEM format. This parameter is valid
-        and mandatory only when `type` is set to "server".
+        and mandatory only when `type` is set to **server**.
         """
         return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies why the modification protection is enabled.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> pulumi.Output[str]:
+        """
+        Specifies the protection status. Value options:
+        + **nonProtection**: The load balancer is not protected.
+        + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        """
+        return pulumi.get(self, "protection_status")
 
     @property
     @pulumi.getter
@@ -761,12 +908,20 @@ class Certificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output[Optional[str]]:
+    def source(self) -> pulumi.Output[str]:
+        """
+        Specifies the source of the certificate.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[str]:
         """
         Specifies the certificate type. The default value is "server". The value can be
         one of the following:
-        + server: indicates the server certificate.
-        + client: indicates the CA certificate.
+        + **server**: indicates the server certificate.
+        + **client**: indicates the CA certificate.
         """
         return pulumi.get(self, "type")
 

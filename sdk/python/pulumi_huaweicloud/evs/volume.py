@@ -457,13 +457,17 @@ class VolumeArgs:
 @pulumi.input_type
 class _VolumeState:
     def __init__(__self__, *,
+                 all_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 all_volume_image_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  attachments: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeAttachmentArgs']]]] = None,
                  auto_pay: Optional[pulumi.Input[str]] = None,
                  auto_renew: Optional[pulumi.Input[str]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  backup_id: Optional[pulumi.Input[str]] = None,
+                 bootable: Optional[pulumi.Input[str]] = None,
                  cascade: Optional[pulumi.Input[bool]] = None,
                  charging_mode: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
                  dedicated_storage_id: Optional[pulumi.Input[str]] = None,
                  dedicated_storage_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -471,34 +475,56 @@ class _VolumeState:
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  iops: Optional[pulumi.Input[int]] = None,
+                 iops_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeIopsAttributeArgs']]]] = None,
                  kms_id: Optional[pulumi.Input[str]] = None,
+                 links: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeLinkArgs']]]] = None,
                  multiattach: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
+                 service_type: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  throughput: Optional[pulumi.Input[int]] = None,
+                 throughput_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeThroughputAttributeArgs']]]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None,
                  wwn: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] all_metadata: The key-value pair disk metadata. Valid key-value pairs are as follows:
+               + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+               for encryption.
+               + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+               If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+               If the disk is not created from a data source, the disk is not encrypted by default.
+               + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+               + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+               access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+               the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+               If this attribute is not specified, the disk device type is VBD.
+               + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+               is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] all_volume_image_metadata: The metadata of the disk image.
         :param pulumi.Input[Sequence[pulumi.Input['VolumeAttachmentArgs']]] attachments: If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
                the device as the instance sees it. The attachment structure is documented below.
         :param pulumi.Input[str] auto_renew: Specifies whether auto-renew is enabled.
                Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[str] availability_zone: Specifies the availability zone for the disk.
         :param pulumi.Input[str] backup_id: Specifies the backup ID from which to create the disk.
+        :param pulumi.Input[str] bootable: Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
         :param pulumi.Input[bool] cascade: Specifies the delete mode of snapshot. The default value is **false**. All snapshot
                associated with the disk will also be deleted when the parameter is set to **true**.
         :param pulumi.Input[str] charging_mode: Specifies the charging mode of the disk.
                The valid values are as follows:
                + **prePaid**: the yearly/monthly billing mode.
                + **postPaid**: the pay-per-use billing mode.
+        :param pulumi.Input[str] created_at: The time when the disk was created.
         :param pulumi.Input[str] dedicated_storage_id: Specifies the ID of the DSS storage pool accommodating the disk.
         :param pulumi.Input[str] dedicated_storage_name: The name of the DSS storage pool accommodating the disk.
         :param pulumi.Input[str] description: Specifies the disk description. You can enter up to `85` characters.
@@ -510,7 +536,11 @@ class _VolumeState:
         :param pulumi.Input[int] iops: Specifies the IOPS(Input/Output Operations Per Second) for the volume.
                The field is valid and required when `volume_type` is set to **GPSSD2** or **ESSD2**.
                This field can be changed only when the disk status is Available or In-use.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeIopsAttributeArgs']]] iops_attributes: The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+               SSD V2 disk. The iops_attribute structure is documented below.
         :param pulumi.Input[str] kms_id: Specifies the Encryption KMS ID to create the disk.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeLinkArgs']]] links: The disk URI.
+               The links structure is documented below.
         :param pulumi.Input[bool] multiattach: Specifies whether the disk is shareable. Defaults to **false**.
         :param pulumi.Input[str] name: Specifies the disk name. You can enter up to `64` characters.
         :param pulumi.Input[int] period: Specifies the charging period of the disk.
@@ -520,10 +550,13 @@ class _VolumeState:
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[str] region: Specifies the region in which to create the disk. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] serial_number: The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+               disk mapping in the VM.
         :param pulumi.Input[str] server_id: Specifies the server ID to which the cloud volume is to be mounted.
                After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
                The charging_mode of the created cloud volume will be consistent with that of the cloud server.
                Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
+        :param pulumi.Input[str] service_type: The service type. Supported services are **EVS**, **DSS**, and **DESS**.
         :param pulumi.Input[int] size: Specifies the disk size, in GB.
                For system disk, the valid value ranges from `1` GB to `1,024` GB.
                For data disk, the valid value ranges from `10` GB to `32,768` GB.
@@ -534,6 +567,9 @@ class _VolumeState:
         :param pulumi.Input[int] throughput: Specifies the throughput for the volume. The Unit is MiB/s.
                The field is valid and required when `volume_type` is set to **GPSSD2**.
                This field can be changed only when the disk status is Available or In-use.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeThroughputAttributeArgs']]] throughput_attributes: The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+               The throughput_attribute structure is documented below.
+        :param pulumi.Input[str] updated_at: The time when the disk was updated.
         :param pulumi.Input[str] volume_type: Specifies the disk type. Valid values are as follows:
                + **SAS**: High I/O type.
                + **SSD**: Ultra-high I/O type.
@@ -543,6 +579,10 @@ class _VolumeState:
                + **ESSD2**: Extreme SSD V2 type.
         :param pulumi.Input[str] wwn: The unique identifier used for mounting the EVS disk.
         """
+        if all_metadata is not None:
+            pulumi.set(__self__, "all_metadata", all_metadata)
+        if all_volume_image_metadata is not None:
+            pulumi.set(__self__, "all_volume_image_metadata", all_volume_image_metadata)
         if attachments is not None:
             pulumi.set(__self__, "attachments", attachments)
         if auto_pay is not None:
@@ -556,10 +596,14 @@ class _VolumeState:
             pulumi.set(__self__, "availability_zone", availability_zone)
         if backup_id is not None:
             pulumi.set(__self__, "backup_id", backup_id)
+        if bootable is not None:
+            pulumi.set(__self__, "bootable", bootable)
         if cascade is not None:
             pulumi.set(__self__, "cascade", cascade)
         if charging_mode is not None:
             pulumi.set(__self__, "charging_mode", charging_mode)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
         if dedicated_storage_id is not None:
             pulumi.set(__self__, "dedicated_storage_id", dedicated_storage_id)
         if dedicated_storage_name is not None:
@@ -574,8 +618,12 @@ class _VolumeState:
             pulumi.set(__self__, "image_id", image_id)
         if iops is not None:
             pulumi.set(__self__, "iops", iops)
+        if iops_attributes is not None:
+            pulumi.set(__self__, "iops_attributes", iops_attributes)
         if kms_id is not None:
             pulumi.set(__self__, "kms_id", kms_id)
+        if links is not None:
+            pulumi.set(__self__, "links", links)
         if multiattach is not None:
             pulumi.set(__self__, "multiattach", multiattach)
         if name is not None:
@@ -586,8 +634,12 @@ class _VolumeState:
             pulumi.set(__self__, "period_unit", period_unit)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
+        if service_type is not None:
+            pulumi.set(__self__, "service_type", service_type)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if snapshot_id is not None:
@@ -598,10 +650,50 @@ class _VolumeState:
             pulumi.set(__self__, "tags", tags)
         if throughput is not None:
             pulumi.set(__self__, "throughput", throughput)
+        if throughput_attributes is not None:
+            pulumi.set(__self__, "throughput_attributes", throughput_attributes)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
         if volume_type is not None:
             pulumi.set(__self__, "volume_type", volume_type)
         if wwn is not None:
             pulumi.set(__self__, "wwn", wwn)
+
+    @property
+    @pulumi.getter(name="allMetadata")
+    def all_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The key-value pair disk metadata. Valid key-value pairs are as follows:
+        + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+        for encryption.
+        + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+        If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+        If the disk is not created from a data source, the disk is not encrypted by default.
+        + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+        + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+        access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+        the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+        If this attribute is not specified, the disk device type is VBD.
+        + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+        is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+        """
+        return pulumi.get(self, "all_metadata")
+
+    @all_metadata.setter
+    def all_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "all_metadata", value)
+
+    @property
+    @pulumi.getter(name="allVolumeImageMetadata")
+    def all_volume_image_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The metadata of the disk image.
+        """
+        return pulumi.get(self, "all_volume_image_metadata")
+
+    @all_volume_image_metadata.setter
+    def all_volume_image_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "all_volume_image_metadata", value)
 
     @property
     @pulumi.getter
@@ -664,6 +756,18 @@ class _VolumeState:
 
     @property
     @pulumi.getter
+    def bootable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+        """
+        return pulumi.get(self, "bootable")
+
+    @bootable.setter
+    def bootable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bootable", value)
+
+    @property
+    @pulumi.getter
     def cascade(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies the delete mode of snapshot. The default value is **false**. All snapshot
@@ -689,6 +793,18 @@ class _VolumeState:
     @charging_mode.setter
     def charging_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "charging_mode", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time when the disk was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
 
     @property
     @pulumi.getter(name="dedicatedStorageId")
@@ -779,6 +895,19 @@ class _VolumeState:
         pulumi.set(self, "iops", value)
 
     @property
+    @pulumi.getter(name="iopsAttributes")
+    def iops_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeIopsAttributeArgs']]]]:
+        """
+        The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+        SSD V2 disk. The iops_attribute structure is documented below.
+        """
+        return pulumi.get(self, "iops_attributes")
+
+    @iops_attributes.setter
+    def iops_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeIopsAttributeArgs']]]]):
+        pulumi.set(self, "iops_attributes", value)
+
+    @property
     @pulumi.getter(name="kmsId")
     def kms_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -789,6 +918,19 @@ class _VolumeState:
     @kms_id.setter
     def kms_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kms_id", value)
+
+    @property
+    @pulumi.getter
+    def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeLinkArgs']]]]:
+        """
+        The disk URI.
+        The links structure is documented below.
+        """
+        return pulumi.get(self, "links")
+
+    @links.setter
+    def links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeLinkArgs']]]]):
+        pulumi.set(self, "links", value)
 
     @property
     @pulumi.getter
@@ -855,6 +997,19 @@ class _VolumeState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+        disk mapping in the VM.
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
+
+    @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -868,6 +1023,18 @@ class _VolumeState:
     @server_id.setter
     def server_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_id", value)
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+        """
+        return pulumi.get(self, "service_type")
+
+    @service_type.setter
+    def service_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_type", value)
 
     @property
     @pulumi.getter
@@ -933,6 +1100,31 @@ class _VolumeState:
     @throughput.setter
     def throughput(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "throughput", value)
+
+    @property
+    @pulumi.getter(name="throughputAttributes")
+    def throughput_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeThroughputAttributeArgs']]]]:
+        """
+        The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+        The throughput_attribute structure is documented below.
+        """
+        return pulumi.get(self, "throughput_attributes")
+
+    @throughput_attributes.setter
+    def throughput_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeThroughputAttributeArgs']]]]):
+        pulumi.set(self, "throughput_attributes", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time when the disk was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
 
     @property
     @pulumi.getter(name="volumeType")
@@ -1324,9 +1516,19 @@ class Volume(pulumi.CustomResource):
             if volume_type is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_type'")
             __props__.__dict__["volume_type"] = volume_type
+            __props__.__dict__["all_metadata"] = None
+            __props__.__dict__["all_volume_image_metadata"] = None
             __props__.__dict__["attachments"] = None
+            __props__.__dict__["bootable"] = None
+            __props__.__dict__["created_at"] = None
             __props__.__dict__["dedicated_storage_name"] = None
+            __props__.__dict__["iops_attributes"] = None
+            __props__.__dict__["links"] = None
+            __props__.__dict__["serial_number"] = None
+            __props__.__dict__["service_type"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["throughput_attributes"] = None
+            __props__.__dict__["updated_at"] = None
             __props__.__dict__["wwn"] = None
         super(Volume, __self__).__init__(
             'huaweicloud:Evs/volume:Volume',
@@ -1338,13 +1540,17 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            all_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            all_volume_image_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             attachments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]]] = None,
             auto_pay: Optional[pulumi.Input[str]] = None,
             auto_renew: Optional[pulumi.Input[str]] = None,
             availability_zone: Optional[pulumi.Input[str]] = None,
             backup_id: Optional[pulumi.Input[str]] = None,
+            bootable: Optional[pulumi.Input[str]] = None,
             cascade: Optional[pulumi.Input[bool]] = None,
             charging_mode: Optional[pulumi.Input[str]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
             dedicated_storage_id: Optional[pulumi.Input[str]] = None,
             dedicated_storage_name: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -1352,18 +1558,24 @@ class Volume(pulumi.CustomResource):
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
             image_id: Optional[pulumi.Input[str]] = None,
             iops: Optional[pulumi.Input[int]] = None,
+            iops_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeIopsAttributeArgs']]]]] = None,
             kms_id: Optional[pulumi.Input[str]] = None,
+            links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeLinkArgs']]]]] = None,
             multiattach: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             period_unit: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            serial_number: Optional[pulumi.Input[str]] = None,
             server_id: Optional[pulumi.Input[str]] = None,
+            service_type: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             snapshot_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             throughput: Optional[pulumi.Input[int]] = None,
+            throughput_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeThroughputAttributeArgs']]]]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None,
             volume_type: Optional[pulumi.Input[str]] = None,
             wwn: Optional[pulumi.Input[str]] = None) -> 'Volume':
         """
@@ -1373,18 +1585,34 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] all_metadata: The key-value pair disk metadata. Valid key-value pairs are as follows:
+               + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+               for encryption.
+               + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+               If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+               If the disk is not created from a data source, the disk is not encrypted by default.
+               + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+               + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+               access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+               the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+               If this attribute is not specified, the disk device type is VBD.
+               + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+               is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] all_volume_image_metadata: The metadata of the disk image.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]] attachments: If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
                the device as the instance sees it. The attachment structure is documented below.
         :param pulumi.Input[str] auto_renew: Specifies whether auto-renew is enabled.
                Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[str] availability_zone: Specifies the availability zone for the disk.
         :param pulumi.Input[str] backup_id: Specifies the backup ID from which to create the disk.
+        :param pulumi.Input[str] bootable: Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
         :param pulumi.Input[bool] cascade: Specifies the delete mode of snapshot. The default value is **false**. All snapshot
                associated with the disk will also be deleted when the parameter is set to **true**.
         :param pulumi.Input[str] charging_mode: Specifies the charging mode of the disk.
                The valid values are as follows:
                + **prePaid**: the yearly/monthly billing mode.
                + **postPaid**: the pay-per-use billing mode.
+        :param pulumi.Input[str] created_at: The time when the disk was created.
         :param pulumi.Input[str] dedicated_storage_id: Specifies the ID of the DSS storage pool accommodating the disk.
         :param pulumi.Input[str] dedicated_storage_name: The name of the DSS storage pool accommodating the disk.
         :param pulumi.Input[str] description: Specifies the disk description. You can enter up to `85` characters.
@@ -1396,7 +1624,11 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] iops: Specifies the IOPS(Input/Output Operations Per Second) for the volume.
                The field is valid and required when `volume_type` is set to **GPSSD2** or **ESSD2**.
                This field can be changed only when the disk status is Available or In-use.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeIopsAttributeArgs']]]] iops_attributes: The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+               SSD V2 disk. The iops_attribute structure is documented below.
         :param pulumi.Input[str] kms_id: Specifies the Encryption KMS ID to create the disk.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeLinkArgs']]]] links: The disk URI.
+               The links structure is documented below.
         :param pulumi.Input[bool] multiattach: Specifies whether the disk is shareable. Defaults to **false**.
         :param pulumi.Input[str] name: Specifies the disk name. You can enter up to `64` characters.
         :param pulumi.Input[int] period: Specifies the charging period of the disk.
@@ -1406,10 +1638,13 @@ class Volume(pulumi.CustomResource):
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[str] region: Specifies the region in which to create the disk. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] serial_number: The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+               disk mapping in the VM.
         :param pulumi.Input[str] server_id: Specifies the server ID to which the cloud volume is to be mounted.
                After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
                The charging_mode of the created cloud volume will be consistent with that of the cloud server.
                Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
+        :param pulumi.Input[str] service_type: The service type. Supported services are **EVS**, **DSS**, and **DESS**.
         :param pulumi.Input[int] size: Specifies the disk size, in GB.
                For system disk, the valid value ranges from `1` GB to `1,024` GB.
                For data disk, the valid value ranges from `10` GB to `32,768` GB.
@@ -1420,6 +1655,9 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[int] throughput: Specifies the throughput for the volume. The Unit is MiB/s.
                The field is valid and required when `volume_type` is set to **GPSSD2**.
                This field can be changed only when the disk status is Available or In-use.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeThroughputAttributeArgs']]]] throughput_attributes: The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+               The throughput_attribute structure is documented below.
+        :param pulumi.Input[str] updated_at: The time when the disk was updated.
         :param pulumi.Input[str] volume_type: Specifies the disk type. Valid values are as follows:
                + **SAS**: High I/O type.
                + **SSD**: Ultra-high I/O type.
@@ -1433,13 +1671,17 @@ class Volume(pulumi.CustomResource):
 
         __props__ = _VolumeState.__new__(_VolumeState)
 
+        __props__.__dict__["all_metadata"] = all_metadata
+        __props__.__dict__["all_volume_image_metadata"] = all_volume_image_metadata
         __props__.__dict__["attachments"] = attachments
         __props__.__dict__["auto_pay"] = auto_pay
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["availability_zone"] = availability_zone
         __props__.__dict__["backup_id"] = backup_id
+        __props__.__dict__["bootable"] = bootable
         __props__.__dict__["cascade"] = cascade
         __props__.__dict__["charging_mode"] = charging_mode
+        __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dedicated_storage_id"] = dedicated_storage_id
         __props__.__dict__["dedicated_storage_name"] = dedicated_storage_name
         __props__.__dict__["description"] = description
@@ -1447,21 +1689,55 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["image_id"] = image_id
         __props__.__dict__["iops"] = iops
+        __props__.__dict__["iops_attributes"] = iops_attributes
         __props__.__dict__["kms_id"] = kms_id
+        __props__.__dict__["links"] = links
         __props__.__dict__["multiattach"] = multiattach
         __props__.__dict__["name"] = name
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
         __props__.__dict__["region"] = region
+        __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["server_id"] = server_id
+        __props__.__dict__["service_type"] = service_type
         __props__.__dict__["size"] = size
         __props__.__dict__["snapshot_id"] = snapshot_id
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["throughput"] = throughput
+        __props__.__dict__["throughput_attributes"] = throughput_attributes
+        __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["volume_type"] = volume_type
         __props__.__dict__["wwn"] = wwn
         return Volume(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allMetadata")
+    def all_metadata(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        The key-value pair disk metadata. Valid key-value pairs are as follows:
+        + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+        for encryption.
+        + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+        If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+        If the disk is not created from a data source, the disk is not encrypted by default.
+        + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+        + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+        access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+        the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+        If this attribute is not specified, the disk device type is VBD.
+        + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+        is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+        """
+        return pulumi.get(self, "all_metadata")
+
+    @property
+    @pulumi.getter(name="allVolumeImageMetadata")
+    def all_volume_image_metadata(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        The metadata of the disk image.
+        """
+        return pulumi.get(self, "all_volume_image_metadata")
 
     @property
     @pulumi.getter
@@ -1504,6 +1780,14 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def bootable(self) -> pulumi.Output[str]:
+        """
+        Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+        """
+        return pulumi.get(self, "bootable")
+
+    @property
+    @pulumi.getter
     def cascade(self) -> pulumi.Output[Optional[bool]]:
         """
         Specifies the delete mode of snapshot. The default value is **false**. All snapshot
@@ -1521,6 +1805,14 @@ class Volume(pulumi.CustomResource):
         + **postPaid**: the pay-per-use billing mode.
         """
         return pulumi.get(self, "charging_mode")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The time when the disk was created.
+        """
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="dedicatedStorageId")
@@ -1583,12 +1875,30 @@ class Volume(pulumi.CustomResource):
         return pulumi.get(self, "iops")
 
     @property
+    @pulumi.getter(name="iopsAttributes")
+    def iops_attributes(self) -> pulumi.Output[Sequence['outputs.VolumeIopsAttribute']]:
+        """
+        The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+        SSD V2 disk. The iops_attribute structure is documented below.
+        """
+        return pulumi.get(self, "iops_attributes")
+
+    @property
     @pulumi.getter(name="kmsId")
     def kms_id(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the Encryption KMS ID to create the disk.
         """
         return pulumi.get(self, "kms_id")
+
+    @property
+    @pulumi.getter
+    def links(self) -> pulumi.Output[Sequence['outputs.VolumeLink']]:
+        """
+        The disk URI.
+        The links structure is documented below.
+        """
+        return pulumi.get(self, "links")
 
     @property
     @pulumi.getter
@@ -1635,6 +1945,15 @@ class Volume(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> pulumi.Output[str]:
+        """
+        The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+        disk mapping in the VM.
+        """
+        return pulumi.get(self, "serial_number")
+
+    @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1644,6 +1963,14 @@ class Volume(pulumi.CustomResource):
         Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
         """
         return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> pulumi.Output[str]:
+        """
+        The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+        """
+        return pulumi.get(self, "service_type")
 
     @property
     @pulumi.getter
@@ -1689,6 +2016,23 @@ class Volume(pulumi.CustomResource):
         This field can be changed only when the disk status is Available or In-use.
         """
         return pulumi.get(self, "throughput")
+
+    @property
+    @pulumi.getter(name="throughputAttributes")
+    def throughput_attributes(self) -> pulumi.Output[Sequence['outputs.VolumeThroughputAttribute']]:
+        """
+        The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+        The throughput_attribute structure is documented below.
+        """
+        return pulumi.get(self, "throughput_attributes")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        The time when the disk was updated.
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="volumeType")

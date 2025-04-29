@@ -29,8 +29,11 @@ export function getActiveStandbyPools(args?: GetActiveStandbyPoolsArgs, opts?: p
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:DedicatedElb/getActiveStandbyPools:getActiveStandbyPools", {
+        "connectionDrain": args.connectionDrain,
         "description": args.description,
         "healthmonitorId": args.healthmonitorId,
+        "ipVersion": args.ipVersion,
+        "lbAlgorithm": args.lbAlgorithm,
         "listenerId": args.listenerId,
         "loadbalancerId": args.loadbalancerId,
         "memberAddress": args.memberAddress,
@@ -49,6 +52,12 @@ export function getActiveStandbyPools(args?: GetActiveStandbyPoolsArgs, opts?: p
  */
 export interface GetActiveStandbyPoolsArgs {
     /**
+     * Specifies whether delayed logout is enabled. Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    connectionDrain?: string;
+    /**
      * Specifies supplementary information about the active-standby pool.
      */
     description?: string;
@@ -56,6 +65,19 @@ export interface GetActiveStandbyPoolsArgs {
      * Specifies the ID of the health check configured for the active-standby pool.
      */
     healthmonitorId?: string;
+    /**
+     * Specifies the IP address version supported by the pool.
+     */
+    ipVersion?: string;
+    /**
+     * Specifies the load balancing algorithm used by the load balancer to route requests
+     * to backend servers in the associated pool. Value options:
+     * + **ROUND_ROBIN**: weighted round robin.
+     * + **LEAST_CONNECTIONS**: weighted least connections.
+     * + **SOURCE_IP**: source IP hash.
+     * + **QUIC_CID**: connection ID.
+     */
+    lbAlgorithm?: string;
     /**
      * Specifies the ID of the listener to which the forwarding policy is added.
      */
@@ -110,6 +132,7 @@ export interface GetActiveStandbyPoolsArgs {
  * A collection of values returned by getActiveStandbyPools.
  */
 export interface GetActiveStandbyPoolsResult {
+    readonly connectionDrain?: string;
     /**
      * The description of the active-standby pool.
      */
@@ -119,6 +142,18 @@ export interface GetActiveStandbyPoolsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The IP version supported by the member.
+     */
+    readonly ipVersion?: string;
+    /**
+     * The load balancing algorithm used by the load balancer to route requests to backend servers in the
+     * associated pool.
+     */
+    readonly lbAlgorithm?: string;
+    /**
+     * The ID of the listener associated with the backend server.
+     */
     readonly listenerId?: string;
     readonly loadbalancerId?: string;
     readonly memberAddress?: string;
@@ -157,6 +192,12 @@ export function getActiveStandbyPoolsOutput(args?: GetActiveStandbyPoolsOutputAr
  */
 export interface GetActiveStandbyPoolsOutputArgs {
     /**
+     * Specifies whether delayed logout is enabled. Value options:
+     * + **false**: Disable this option.
+     * + **true**: Enable this option.
+     */
+    connectionDrain?: pulumi.Input<string>;
+    /**
      * Specifies supplementary information about the active-standby pool.
      */
     description?: pulumi.Input<string>;
@@ -164,6 +205,19 @@ export interface GetActiveStandbyPoolsOutputArgs {
      * Specifies the ID of the health check configured for the active-standby pool.
      */
     healthmonitorId?: pulumi.Input<string>;
+    /**
+     * Specifies the IP address version supported by the pool.
+     */
+    ipVersion?: pulumi.Input<string>;
+    /**
+     * Specifies the load balancing algorithm used by the load balancer to route requests
+     * to backend servers in the associated pool. Value options:
+     * + **ROUND_ROBIN**: weighted round robin.
+     * + **LEAST_CONNECTIONS**: weighted least connections.
+     * + **SOURCE_IP**: source IP hash.
+     * + **QUIC_CID**: connection ID.
+     */
+    lbAlgorithm?: pulumi.Input<string>;
     /**
      * Specifies the ID of the listener to which the forwarding policy is added.
      */

@@ -48,6 +48,7 @@ const (
 	cciMod                 = "Cci"
 	cdmMod                 = "Cdm"
 	cesMod                 = "Cse"
+	cfwMod                 = "Cfw"
 	cptsMod                = "Cpts"
 	cssMod                 = "Css"
 	cseMod                 = "Cse"
@@ -70,6 +71,7 @@ const (
 	elbMod                 = "Elb" // ?
 	evsMod                 = "Evs"
 	epsMod                 = "Eps"
+	erMod                  = "Er"
 	functionGraphMod       = "FunctionGraph"
 	gaussDBMod             = "GaussDB"
 	gaussDBforNoSQLMod     = "GaussDBforNoSQL"
@@ -248,6 +250,22 @@ func Provider() tfbridge.ProviderInfo {
 			"huaweicloud_compute_eip_associate":    {Tok: tfbridge.MakeResource(mainPkg, ecsMod, "EipAssociate")},
 			"huaweicloud_compute_volume_attach":    {Tok: tfbridge.MakeResource(mainPkg, ecsMod, "VolumeAttach")},
 
+			"huaweicloud_cfw_acl_rule":             {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "AclRule")},
+			"huaweicloud_cfw_address_group":        {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "AddressGroup")},
+			"huaweicloud_cfw_address_group_member": {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "AddressGroupMember")},
+			"huaweicloud_cfw_alarm_config":         {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "AlarmConfig")},
+			"huaweicloud_cfw_anti_virus":           {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "AntiVirus")},
+			"huaweicloud_cfw_black_white_list":     {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "BlackWhiteList")},
+			"huaweicloud_cfw_capture_task":         {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "CaptureTask")},
+			"huaweicloud_cfw_dns_resolution":       {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "DnsResolution")},
+			"huaweicloud_cfw_domain_name_group":    {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "DomainNameGroup")},
+			"huaweicloud_cfw_eip_protection":       {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "EipProtection")},
+			"huaweicloud_cfw_firewall":             {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "Firewall")},
+			"huaweicloud_cfw_ips_rule_mode_change": {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "IpsRuleModeChange")},
+			"huaweicloud_cfw_lts_log":              {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "LtsLog")},
+			"huaweicloud_cfw_service_group":        {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "ServiceGroup")},
+			"huaweicloud_cfw_service_group_member": {Tok: tfbridge.MakeResource(mainPkg, cfwMod, "ServiceGroupMember")},
+
 			"huaweicloud_cse_microservice":          {Tok: tfbridge.MakeResource(mainPkg, cseMod, "Microservice")},
 			"huaweicloud_cse_microservice_engine":   {Tok: tfbridge.MakeResource(mainPkg, cseMod, "MicroserviceEngine")},
 			"huaweicloud_cse_microservice_instance": {Tok: tfbridge.MakeResource(mainPkg, cseMod, "MicroserviceInstance")},
@@ -305,6 +323,15 @@ func Provider() tfbridge.ProviderInfo {
 
 			"huaweicloud_enterprise_project": {Tok: tfbridge.MakeResource(mainPkg, epsMod, "Project")},
 
+			"huaweicloud_er_association":         {Tok: tfbridge.MakeResource(mainPkg, erMod, "Association")},
+			"huaweicloud_er_attachment_accepter": {Tok: tfbridge.MakeResource(mainPkg, erMod, "AttachmentAccepter")},
+			"huaweicloud_er_flow_log":            {Tok: tfbridge.MakeResource(mainPkg, erMod, "FlowLog")},
+			"huaweicloud_er_instance":            {Tok: tfbridge.MakeResource(mainPkg, erMod, "Instance")},
+			"huaweicloud_er_propagation":         {Tok: tfbridge.MakeResource(mainPkg, erMod, "Propagation")},
+			"huaweicloud_er_route_table":         {Tok: tfbridge.MakeResource(mainPkg, erMod, "RouteTable")},
+			"huaweicloud_er_static_route":        {Tok: tfbridge.MakeResource(mainPkg, erMod, "StaticRoute")},
+			"huaweicloud_er_vpc_attachment":      {Tok: tfbridge.MakeResource(mainPkg, erMod, "VpcAttachment")},
+
 			"huaweicloud_evs_snapshot": {Tok: tfbridge.MakeResource(mainPkg, evsMod, "Snapshot")},
 			"huaweicloud_evs_volume":   {Tok: tfbridge.MakeResource(mainPkg, evsMod, "Volume")},
 
@@ -350,7 +377,23 @@ func Provider() tfbridge.ProviderInfo {
 			"huaweicloud_iec_vpc":                 {Tok: tfbridge.MakeResource(mainPkg, iecMod, "Vpc")},
 			"huaweicloud_iec_vpc_subnet":          {Tok: tfbridge.MakeResource(mainPkg, iecMod, "VpcSubnet")},
 
-			"huaweicloud_images_image": {Tok: tfbridge.MakeResource(mainPkg, imsMod, "Image")},
+			"huaweicloud_images_image":                {Tok: tfbridge.MakeResource(mainPkg, imsMod, "Image")},
+			"huaweicloud_images_image_copy":           {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ImageCopy")},
+			"huaweicloud_images_image_share":          {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ImageShare")},
+			"huaweicloud_images_image_share_accepter": {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ImageShareAccepter")},
+			"huaweicloud_ims_cbr_whole_image":         {Tok: tfbridge.MakeResource(mainPkg, imsMod, "CbrWholeImage")},
+			// "huaweicloud_ims_ecs_system_image":        {Tok: tfbridge.MakeResource(mainPkg, imsMod, "EcsSystemImage")},
+			"huaweicloud_ims_ecs_whole_image": {Tok: tfbridge.MakeResource(mainPkg, imsMod, "EcsWholeImage")},
+			"huaweicloud_ims_evs_data_image":  {Tok: tfbridge.MakeResource(mainPkg, imsMod, "EvsDataImage")},
+			// "huaweicloud_ims_evs_system_image":         {Tok: tfbridge.MakeResource(mainPkg, imsMod, "EvsSystemImage")},
+			"huaweicloud_ims_image_export": {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ImageExport")},
+			// "huaweicloud_ims_image_metadata":           {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ImageMetadata")},
+			// "huaweicloud_ims_image_registration":       {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ImageRegistration")},
+			"huaweicloud_ims_obs_data_image":   {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ObsDataImage")},
+			"huaweicloud_ims_obs_iso_image":    {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ObsIsoImage")},
+			"huaweicloud_ims_obs_system_image": {Tok: tfbridge.MakeResource(mainPkg, imsMod, "ObsSystemImage")},
+			// "huaweicloud_ims_quickimport_data_image":   {Tok: tfbridge.MakeResource(mainPkg, imsMod, "QuickimportDataImage")},
+			// "huaweicloud_ims_quickimport_system_image": {Tok: tfbridge.MakeResource(mainPkg, imsMod, "QuickimportSystemImage")},
 
 			"huaweicloud_iotda_space":               {Tok: tfbridge.MakeResource(mainPkg, ioTDAMod, "Space")},
 			"huaweicloud_iotda_product":             {Tok: tfbridge.MakeResource(mainPkg, ioTDAMod, "Product")},
@@ -563,6 +606,27 @@ func Provider() tfbridge.ProviderInfo {
 
 			"huaweicloud_cdn_domain_statistics": {Tok: tfbridge.MakeDataSource(mainPkg, cdnMod, "getDomainStatistics")},
 
+			"huaweicloud_cfw_access_control_logs":       {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getAccessControlLogs")},
+			"huaweicloud_cfw_address_group_members":     {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getAddressGroupMembers")},
+			"huaweicloud_cfw_address_groups":            {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getAddressGroups")},
+			"huaweicloud_cfw_attack_logs":               {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getAttackLogs")},
+			"huaweicloud_cfw_black_white_lists":         {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getBlackWhiteLists")},
+			"huaweicloud_cfw_capture_task_results":      {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getCaptureTaskResults")},
+			"huaweicloud_cfw_capture_tasks":             {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getCaptureTasks")},
+			"huaweicloud_cfw_domain_name_groups":        {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getDomainNameGroups")},
+			"huaweicloud_cfw_domain_name_parse_ip_list": {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getDomainNameParseIpList")},
+			"huaweicloud_cfw_firewalls":                 {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getFirewalls")},
+			"huaweicloud_cfw_flow_logs":                 {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getFlowLogs")},
+			"huaweicloud_cfw_ips_custom_rules":          {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getIpsCustomRules")},
+			"huaweicloud_cfw_ips_rule_details":          {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getIpsRuleDetails")},
+			"huaweicloud_cfw_ips_rules":                 {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getIpsRules")},
+			"huaweicloud_cfw_protection_rules":          {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getProtectionRules")},
+			"huaweicloud_cfw_regions":                   {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getRegions")},
+			"huaweicloud_cfw_resource_tags":             {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getResourceTags")},
+			"huaweicloud_cfw_service_group_members":     {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getServiceGroupMembers")},
+			"huaweicloud_cfw_service_groups":            {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getServiceGroups")},
+			"huaweicloud_cfw_tags":                      {Tok: tfbridge.MakeDataSource(mainPkg, cfwMod, "getTags")},
+
 			"huaweicloud_compute_flavors":                 {Tok: tfbridge.MakeDataSource(mainPkg, ecsMod, "getFlavors")},
 			"huaweicloud_compute_instance":                {Tok: tfbridge.MakeDataSource(mainPkg, ecsMod, "getInstance")},
 			"huaweicloud_compute_instances":               {Tok: tfbridge.MakeDataSource(mainPkg, ecsMod, "getInstances")},
@@ -583,6 +647,18 @@ func Provider() tfbridge.ProviderInfo {
 			"huaweicloud_dms_maintainwindow":  {Tok: tfbridge.MakeDataSource(mainPkg, dmsMod, "getMaintainwindow")},
 
 			"huaweicloud_enterprise_project": {Tok: tfbridge.MakeDataSource(mainPkg, epsMod, "getProject")},
+
+			"huaweicloud_er_associations":       {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getAssociations")},
+			"huaweicloud_er_attachments":        {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getAttachments")},
+			"huaweicloud_er_availability_zones": {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getAvailabilityZones")},
+			"huaweicloud_er_available_routes":   {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getAvailableRoutes")},
+			"huaweicloud_er_flow_logs":          {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getFlowLogs")},
+			"huaweicloud_er_instances":          {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getInstances")},
+			"huaweicloud_er_propagations":       {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getPropagations")},
+			"huaweicloud_er_quotas":             {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getQuotas")},
+			"huaweicloud_er_resource_tags":      {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getResourceTags")},
+			"huaweicloud_er_route_tables":       {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getRouteTables")},
+			"huaweicloud_er_tags":               {Tok: tfbridge.MakeDataSource(mainPkg, erMod, "getTags")},
 
 			"huaweicloud_evs_volumes": {Tok: tfbridge.MakeDataSource(mainPkg, evsMod, "getVolumes")},
 
@@ -625,7 +701,11 @@ func Provider() tfbridge.ProviderInfo {
 			"huaweicloud_iec_vpc":            {Tok: tfbridge.MakeDataSource(mainPkg, iecMod, "getVpc")},
 			"huaweicloud_iec_vpc_subnets":    {Tok: tfbridge.MakeDataSource(mainPkg, iecMod, "getVpcSubnets")},
 
-			"huaweicloud_images_image": {Tok: tfbridge.MakeDataSource(mainPkg, imsMod, "getImage")},
+			"huaweicloud_images_image":    {Tok: tfbridge.MakeDataSource(mainPkg, imsMod, "getImage")},
+			"huaweicloud_images_images":   {Tok: tfbridge.MakeDataSource(mainPkg, imsMod, "getImages")},
+			"huaweicloud_ims_os_versions": {Tok: tfbridge.MakeDataSource(mainPkg, imsMod, "getOsVersions")},
+			"huaweicloud_ims_quotas":      {Tok: tfbridge.MakeDataSource(mainPkg, imsMod, "getQuotas")},
+			"huaweicloud_ims_tags":        {Tok: tfbridge.MakeDataSource(mainPkg, imsMod, "getTags")},
 
 			"huaweicloud_kms_key":      {Tok: tfbridge.MakeDataSource(mainPkg, dewMod, "getKey")},
 			"huaweicloud_kms_data_key": {Tok: tfbridge.MakeDataSource(mainPkg, dewMod, "getDataKey")},

@@ -30,9 +30,12 @@ export function getPools(args?: GetPoolsArgs, opts?: pulumi.InvokeOptions): Prom
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:Elb/getPools:getPools", {
         "description": args.description,
+        "enterpriseProjectId": args.enterpriseProjectId,
         "healthmonitorId": args.healthmonitorId,
         "lbMethod": args.lbMethod,
         "loadbalancerId": args.loadbalancerId,
+        "memberAddress": args.memberAddress,
+        "memberDeviceId": args.memberDeviceId,
         "name": args.name,
         "poolId": args.poolId,
         "protocol": args.protocol,
@@ -49,6 +52,10 @@ export interface GetPoolsArgs {
      */
     description?: string;
     /**
+     * Specifies the enterprise project ID.
+     */
+    enterpriseProjectId?: string;
+    /**
      * Specifies the health monitor ID of the ELB pool.
      */
     healthmonitorId?: string;
@@ -61,6 +68,14 @@ export interface GetPoolsArgs {
      * Specifies the loadbalancer ID of the ELB pool.
      */
     loadbalancerId?: string;
+    /**
+     * Specifies the private IP address bound to the backend server.
+     */
+    memberAddress?: string;
+    /**
+     * Specifies the ID of the cloud server that serves as a backend server.
+     */
+    memberDeviceId?: string;
     /**
      * Specifies the name of the ELB pool.
      */
@@ -88,6 +103,7 @@ export interface GetPoolsResult {
      * The description of pool.
      */
     readonly description?: string;
+    readonly enterpriseProjectId?: string;
     /**
      * The health monitor ID of the LB pool.
      */
@@ -101,6 +117,8 @@ export interface GetPoolsResult {
      */
     readonly lbMethod?: string;
     readonly loadbalancerId?: string;
+    readonly memberAddress?: string;
+    readonly memberDeviceId?: string;
     /**
      * The pool name.
      */
@@ -131,6 +149,10 @@ export interface GetPoolsOutputArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * Specifies the enterprise project ID.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
+    /**
      * Specifies the health monitor ID of the ELB pool.
      */
     healthmonitorId?: pulumi.Input<string>;
@@ -143,6 +165,14 @@ export interface GetPoolsOutputArgs {
      * Specifies the loadbalancer ID of the ELB pool.
      */
     loadbalancerId?: pulumi.Input<string>;
+    /**
+     * Specifies the private IP address bound to the backend server.
+     */
+    memberAddress?: pulumi.Input<string>;
+    /**
+     * Specifies the ID of the cloud server that serves as a backend server.
+     */
+    memberDeviceId?: pulumi.Input<string>;
     /**
      * Specifies the name of the ELB pool.
      */

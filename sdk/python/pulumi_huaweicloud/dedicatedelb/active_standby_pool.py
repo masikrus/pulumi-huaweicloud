@@ -24,6 +24,7 @@ class ActiveStandbyPoolArgs:
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 lb_algorithm: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -58,6 +59,12 @@ class ActiveStandbyPoolArgs:
                parameter will create a new resource.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by active-standby pool.
                The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route
+               requests to backend servers in the associated backend server group. Value options:
+               + **ROUND_ROBIN**: weighted round robin.
+               + **LEAST_CONNECTIONS**: weighted least connections.
+               + **SOURCE_IP**: source IP hash.
+               + **QUIC_CID**: connection ID.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the active-standby pool is
                associated. Changing this parameter will create a new resource.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the active-standby
@@ -89,6 +96,8 @@ class ActiveStandbyPoolArgs:
             pulumi.set(__self__, "description", description)
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
+        if lb_algorithm is not None:
+            pulumi.set(__self__, "lb_algorithm", lb_algorithm)
         if listener_id is not None:
             pulumi.set(__self__, "listener_id", listener_id)
         if loadbalancer_id is not None:
@@ -217,6 +226,23 @@ class ActiveStandbyPoolArgs:
         pulumi.set(self, "ip_version", value)
 
     @property
+    @pulumi.getter(name="lbAlgorithm")
+    def lb_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the load balancing algorithm used by the load balancer to route
+        requests to backend servers in the associated backend server group. Value options:
+        + **ROUND_ROBIN**: weighted round robin.
+        + **LEAST_CONNECTIONS**: weighted least connections.
+        + **SOURCE_IP**: source IP hash.
+        + **QUIC_CID**: connection ID.
+        """
+        return pulumi.get(self, "lb_algorithm")
+
+    @lb_algorithm.setter
+    def lb_algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lb_algorithm", value)
+
+    @property
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -310,11 +336,13 @@ class _ActiveStandbyPoolState:
                  description: Optional[pulumi.Input[str]] = None,
                  healthmonitor: Optional[pulumi.Input['ActiveStandbyPoolHealthmonitorArgs']] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 lb_algorithm: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic_cid_hash_strategies: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolQuicCidHashStrategyArgs']]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -341,6 +369,12 @@ class _ActiveStandbyPoolState:
                The healthmonitor structure is documented below. Changing this parameter will create a new resource.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by active-standby pool.
                The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route
+               requests to backend servers in the associated backend server group. Value options:
+               + **ROUND_ROBIN**: weighted round robin.
+               + **LEAST_CONNECTIONS**: weighted least connections.
+               + **SOURCE_IP**: source IP hash.
+               + **QUIC_CID**: connection ID.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the active-standby pool is
                associated. Changing this parameter will create a new resource.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the active-standby
@@ -354,6 +388,8 @@ class _ActiveStandbyPoolState:
                + If the listener's protocol is **UDP**, the value must be **UDP** or **QUIC**.
                + If the listener's protocol is **TCP**, the value must be **TCP**.
                + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
+        :param pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolQuicCidHashStrategyArgs']]] quic_cid_hash_strategies: The multi-path distribution configuration based on destination connection IDs.
+               The quic_cid_hash_strategy structure is documented below.
         :param pulumi.Input[str] region: Specifies the region in which to create the ELB active-standby pool resource.
                If omitted, the provider-level region will be used.
         :param pulumi.Input[str] type: Specifies the health check protocol. Value options: **TCP**, **UDP_CONNECT**,
@@ -381,6 +417,8 @@ class _ActiveStandbyPoolState:
             pulumi.set(__self__, "healthmonitor", healthmonitor)
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
+        if lb_algorithm is not None:
+            pulumi.set(__self__, "lb_algorithm", lb_algorithm)
         if listener_id is not None:
             pulumi.set(__self__, "listener_id", listener_id)
         if loadbalancer_id is not None:
@@ -391,6 +429,8 @@ class _ActiveStandbyPoolState:
             pulumi.set(__self__, "name", name)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic_cid_hash_strategies is not None:
+            pulumi.set(__self__, "quic_cid_hash_strategies", quic_cid_hash_strategies)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if type is not None:
@@ -498,6 +538,23 @@ class _ActiveStandbyPoolState:
         pulumi.set(self, "ip_version", value)
 
     @property
+    @pulumi.getter(name="lbAlgorithm")
+    def lb_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the load balancing algorithm used by the load balancer to route
+        requests to backend servers in the associated backend server group. Value options:
+        + **ROUND_ROBIN**: weighted round robin.
+        + **LEAST_CONNECTIONS**: weighted least connections.
+        + **SOURCE_IP**: source IP hash.
+        + **QUIC_CID**: connection ID.
+        """
+        return pulumi.get(self, "lb_algorithm")
+
+    @lb_algorithm.setter
+    def lb_algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lb_algorithm", value)
+
+    @property
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -564,6 +621,19 @@ class _ActiveStandbyPoolState:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="quicCidHashStrategies")
+    def quic_cid_hash_strategies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolQuicCidHashStrategyArgs']]]]:
+        """
+        The multi-path distribution configuration based on destination connection IDs.
+        The quic_cid_hash_strategy structure is documented below.
+        """
+        return pulumi.get(self, "quic_cid_hash_strategies")
+
+    @quic_cid_hash_strategies.setter
+    def quic_cid_hash_strategies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolQuicCidHashStrategyArgs']]]]):
+        pulumi.set(self, "quic_cid_hash_strategies", value)
 
     @property
     @pulumi.getter
@@ -633,6 +703,7 @@ class ActiveStandbyPool(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  healthmonitor: Optional[pulumi.Input[pulumi.InputType['ActiveStandbyPoolHealthmonitorArgs']]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 lb_algorithm: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ActiveStandbyPoolMemberArgs']]]]] = None,
@@ -711,6 +782,12 @@ class ActiveStandbyPool(pulumi.CustomResource):
                The healthmonitor structure is documented below. Changing this parameter will create a new resource.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by active-standby pool.
                The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route
+               requests to backend servers in the associated backend server group. Value options:
+               + **ROUND_ROBIN**: weighted round robin.
+               + **LEAST_CONNECTIONS**: weighted least connections.
+               + **SOURCE_IP**: source IP hash.
+               + **QUIC_CID**: connection ID.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the active-standby pool is
                associated. Changing this parameter will create a new resource.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the active-standby
@@ -811,6 +888,7 @@ class ActiveStandbyPool(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  healthmonitor: Optional[pulumi.Input[pulumi.InputType['ActiveStandbyPoolHealthmonitorArgs']]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 lb_algorithm: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ActiveStandbyPoolMemberArgs']]]]] = None,
@@ -836,6 +914,7 @@ class ActiveStandbyPool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'healthmonitor'")
             __props__.__dict__["healthmonitor"] = healthmonitor
             __props__.__dict__["ip_version"] = ip_version
+            __props__.__dict__["lb_algorithm"] = lb_algorithm
             __props__.__dict__["listener_id"] = listener_id
             __props__.__dict__["loadbalancer_id"] = loadbalancer_id
             if members is None and not opts.urn:
@@ -849,6 +928,7 @@ class ActiveStandbyPool(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["quic_cid_hash_strategies"] = None
             __props__.__dict__["updated_at"] = None
         super(ActiveStandbyPool, __self__).__init__(
             'huaweicloud:DedicatedElb/activeStandbyPool:ActiveStandbyPool',
@@ -867,11 +947,13 @@ class ActiveStandbyPool(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             healthmonitor: Optional[pulumi.Input[pulumi.InputType['ActiveStandbyPoolHealthmonitorArgs']]] = None,
             ip_version: Optional[pulumi.Input[str]] = None,
+            lb_algorithm: Optional[pulumi.Input[str]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
             loadbalancer_id: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ActiveStandbyPoolMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            quic_cid_hash_strategies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ActiveStandbyPoolQuicCidHashStrategyArgs']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
@@ -903,6 +985,12 @@ class ActiveStandbyPool(pulumi.CustomResource):
                The healthmonitor structure is documented below. Changing this parameter will create a new resource.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by active-standby pool.
                The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] lb_algorithm: Specifies the load balancing algorithm used by the load balancer to route
+               requests to backend servers in the associated backend server group. Value options:
+               + **ROUND_ROBIN**: weighted round robin.
+               + **LEAST_CONNECTIONS**: weighted least connections.
+               + **SOURCE_IP**: source IP hash.
+               + **QUIC_CID**: connection ID.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the active-standby pool is
                associated. Changing this parameter will create a new resource.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the active-standby
@@ -916,6 +1004,8 @@ class ActiveStandbyPool(pulumi.CustomResource):
                + If the listener's protocol is **UDP**, the value must be **UDP** or **QUIC**.
                + If the listener's protocol is **TCP**, the value must be **TCP**.
                + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ActiveStandbyPoolQuicCidHashStrategyArgs']]]] quic_cid_hash_strategies: The multi-path distribution configuration based on destination connection IDs.
+               The quic_cid_hash_strategy structure is documented below.
         :param pulumi.Input[str] region: Specifies the region in which to create the ELB active-standby pool resource.
                If omitted, the provider-level region will be used.
         :param pulumi.Input[str] type: Specifies the health check protocol. Value options: **TCP**, **UDP_CONNECT**,
@@ -940,11 +1030,13 @@ class ActiveStandbyPool(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["healthmonitor"] = healthmonitor
         __props__.__dict__["ip_version"] = ip_version
+        __props__.__dict__["lb_algorithm"] = lb_algorithm
         __props__.__dict__["listener_id"] = listener_id
         __props__.__dict__["loadbalancer_id"] = loadbalancer_id
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["quic_cid_hash_strategies"] = quic_cid_hash_strategies
         __props__.__dict__["region"] = region
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -1021,6 +1113,19 @@ class ActiveStandbyPool(pulumi.CustomResource):
         return pulumi.get(self, "ip_version")
 
     @property
+    @pulumi.getter(name="lbAlgorithm")
+    def lb_algorithm(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the load balancing algorithm used by the load balancer to route
+        requests to backend servers in the associated backend server group. Value options:
+        + **ROUND_ROBIN**: weighted round robin.
+        + **LEAST_CONNECTIONS**: weighted least connections.
+        + **SOURCE_IP**: source IP hash.
+        + **QUIC_CID**: connection ID.
+        """
+        return pulumi.get(self, "lb_algorithm")
+
+    @property
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> pulumi.Output[str]:
         """
@@ -1067,6 +1172,15 @@ class ActiveStandbyPool(pulumi.CustomResource):
         + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="quicCidHashStrategies")
+    def quic_cid_hash_strategies(self) -> pulumi.Output[Sequence['outputs.ActiveStandbyPoolQuicCidHashStrategy']]:
+        """
+        The multi-path distribution configuration based on destination connection IDs.
+        The quic_cid_hash_strategy structure is documented below.
+        """
+        return pulumi.get(self, "quic_cid_hash_strategies")
 
     @property
     @pulumi.getter

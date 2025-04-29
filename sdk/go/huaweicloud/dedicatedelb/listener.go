@@ -57,11 +57,11 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import huaweicloud:DedicatedElb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+//	$ pulumi import huaweicloud:DedicatedElb/listener:Listener test <id>
 //
 // ```
 //
-//	Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "listener_1" {
+//	Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "test" {
 //
 //	...
 //
@@ -86,16 +86,23 @@ type Listener struct {
 	// Specifies the ID of the CA certificate used by the listener. This parameter is
 	// valid when protocol is set to **HTTPS**.
 	CaCertificate pulumi.StringPtrOutput `pulumi:"caCertificate"`
-	// The create time of the listener.
+	// Specifies the maximum number of new connections that a listener can handle per second.
+	// Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+	// than the number defined in the load balancer specifications, the latter is used as the limit.
+	Cps pulumi.IntOutput `pulumi:"cps"`
+	// The creation time of the listener.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The ID of the default pool with which the listener is associated. Changing this
-	// creates a new listener.
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId pulumi.StringOutput `pulumi:"defaultPoolId"`
 	// Human-readable description for the listener.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Specifies whether to enable health check retries for backend servers.
 	// The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
 	EnableMemberRetry pulumi.BoolOutput `pulumi:"enableMemberRetry"`
+	// Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+	EnableQuicUpgrade pulumi.StringPtrOutput `pulumi:"enableQuicUpgrade"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
 	// Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
 	// unbind associated pools. Defaults to **false**.
 	ForceDelete pulumi.BoolPtrOutput `pulumi:"forceDelete"`
@@ -146,9 +153,15 @@ type Listener struct {
 	IdleTimeout pulumi.IntOutput `pulumi:"idleTimeout"`
 	// Specifies the ip group id for the listener.
 	IpGroup pulumi.StringPtrOutput `pulumi:"ipGroup"`
+	// Specifies whether access control is enabled. Value options: **true** and **false**.
+	IpGroupEnable pulumi.StringOutput `pulumi:"ipGroupEnable"`
 	// The load balancer on which to provision this listener. Changing this
 	// creates a new listener.
 	LoadbalancerId pulumi.StringOutput `pulumi:"loadbalancerId"`
+	// Specifies the maximum number of concurrent connections that a listener can handle per
+	// second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+	// the number defined in the load balancer specifications, the latter is used as the limit.
+	MaxConnection pulumi.IntOutput `pulumi:"maxConnection"`
 	// Human-readable name for the listener.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the port monitoring range (closed range), specify up to 10 port
@@ -265,16 +278,23 @@ type listenerState struct {
 	// Specifies the ID of the CA certificate used by the listener. This parameter is
 	// valid when protocol is set to **HTTPS**.
 	CaCertificate *string `pulumi:"caCertificate"`
-	// The create time of the listener.
+	// Specifies the maximum number of new connections that a listener can handle per second.
+	// Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+	// than the number defined in the load balancer specifications, the latter is used as the limit.
+	Cps *int `pulumi:"cps"`
+	// The creation time of the listener.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the default pool with which the listener is associated. Changing this
-	// creates a new listener.
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId *string `pulumi:"defaultPoolId"`
 	// Human-readable description for the listener.
 	Description *string `pulumi:"description"`
 	// Specifies whether to enable health check retries for backend servers.
 	// The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
 	EnableMemberRetry *bool `pulumi:"enableMemberRetry"`
+	// Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+	EnableQuicUpgrade *string `pulumi:"enableQuicUpgrade"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
 	// unbind associated pools. Defaults to **false**.
 	ForceDelete *bool `pulumi:"forceDelete"`
@@ -325,9 +345,15 @@ type listenerState struct {
 	IdleTimeout *int `pulumi:"idleTimeout"`
 	// Specifies the ip group id for the listener.
 	IpGroup *string `pulumi:"ipGroup"`
+	// Specifies whether access control is enabled. Value options: **true** and **false**.
+	IpGroupEnable *string `pulumi:"ipGroupEnable"`
 	// The load balancer on which to provision this listener. Changing this
 	// creates a new listener.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
+	// Specifies the maximum number of concurrent connections that a listener can handle per
+	// second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+	// the number defined in the load balancer specifications, the latter is used as the limit.
+	MaxConnection *int `pulumi:"maxConnection"`
 	// Human-readable name for the listener.
 	Name *string `pulumi:"name"`
 	// Specifies the port monitoring range (closed range), specify up to 10 port
@@ -409,16 +435,23 @@ type ListenerState struct {
 	// Specifies the ID of the CA certificate used by the listener. This parameter is
 	// valid when protocol is set to **HTTPS**.
 	CaCertificate pulumi.StringPtrInput
-	// The create time of the listener.
+	// Specifies the maximum number of new connections that a listener can handle per second.
+	// Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+	// than the number defined in the load balancer specifications, the latter is used as the limit.
+	Cps pulumi.IntPtrInput
+	// The creation time of the listener.
 	CreatedAt pulumi.StringPtrInput
-	// The ID of the default pool with which the listener is associated. Changing this
-	// creates a new listener.
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId pulumi.StringPtrInput
 	// Human-readable description for the listener.
 	Description pulumi.StringPtrInput
 	// Specifies whether to enable health check retries for backend servers.
 	// The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
 	EnableMemberRetry pulumi.BoolPtrInput
+	// Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+	EnableQuicUpgrade pulumi.StringPtrInput
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringPtrInput
 	// Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
 	// unbind associated pools. Defaults to **false**.
 	ForceDelete pulumi.BoolPtrInput
@@ -469,9 +502,15 @@ type ListenerState struct {
 	IdleTimeout pulumi.IntPtrInput
 	// Specifies the ip group id for the listener.
 	IpGroup pulumi.StringPtrInput
+	// Specifies whether access control is enabled. Value options: **true** and **false**.
+	IpGroupEnable pulumi.StringPtrInput
 	// The load balancer on which to provision this listener. Changing this
 	// creates a new listener.
 	LoadbalancerId pulumi.StringPtrInput
+	// Specifies the maximum number of concurrent connections that a listener can handle per
+	// second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+	// the number defined in the load balancer specifications, the latter is used as the limit.
+	MaxConnection pulumi.IntPtrInput
 	// Human-readable name for the listener.
 	Name pulumi.StringPtrInput
 	// Specifies the port monitoring range (closed range), specify up to 10 port
@@ -557,14 +596,19 @@ type listenerArgs struct {
 	// Specifies the ID of the CA certificate used by the listener. This parameter is
 	// valid when protocol is set to **HTTPS**.
 	CaCertificate *string `pulumi:"caCertificate"`
-	// The ID of the default pool with which the listener is associated. Changing this
-	// creates a new listener.
+	// Specifies the maximum number of new connections that a listener can handle per second.
+	// Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+	// than the number defined in the load balancer specifications, the latter is used as the limit.
+	Cps *int `pulumi:"cps"`
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId *string `pulumi:"defaultPoolId"`
 	// Human-readable description for the listener.
 	Description *string `pulumi:"description"`
 	// Specifies whether to enable health check retries for backend servers.
 	// The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
 	EnableMemberRetry *bool `pulumi:"enableMemberRetry"`
+	// Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+	EnableQuicUpgrade *string `pulumi:"enableQuicUpgrade"`
 	// Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
 	// unbind associated pools. Defaults to **false**.
 	ForceDelete *bool `pulumi:"forceDelete"`
@@ -615,9 +659,15 @@ type listenerArgs struct {
 	IdleTimeout *int `pulumi:"idleTimeout"`
 	// Specifies the ip group id for the listener.
 	IpGroup *string `pulumi:"ipGroup"`
+	// Specifies whether access control is enabled. Value options: **true** and **false**.
+	IpGroupEnable *string `pulumi:"ipGroupEnable"`
 	// The load balancer on which to provision this listener. Changing this
 	// creates a new listener.
 	LoadbalancerId string `pulumi:"loadbalancerId"`
+	// Specifies the maximum number of concurrent connections that a listener can handle per
+	// second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+	// the number defined in the load balancer specifications, the latter is used as the limit.
+	MaxConnection *int `pulumi:"maxConnection"`
 	// Human-readable name for the listener.
 	Name *string `pulumi:"name"`
 	// Specifies the port monitoring range (closed range), specify up to 10 port
@@ -698,14 +748,19 @@ type ListenerArgs struct {
 	// Specifies the ID of the CA certificate used by the listener. This parameter is
 	// valid when protocol is set to **HTTPS**.
 	CaCertificate pulumi.StringPtrInput
-	// The ID of the default pool with which the listener is associated. Changing this
-	// creates a new listener.
+	// Specifies the maximum number of new connections that a listener can handle per second.
+	// Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+	// than the number defined in the load balancer specifications, the latter is used as the limit.
+	Cps pulumi.IntPtrInput
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId pulumi.StringPtrInput
 	// Human-readable description for the listener.
 	Description pulumi.StringPtrInput
 	// Specifies whether to enable health check retries for backend servers.
 	// The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
 	EnableMemberRetry pulumi.BoolPtrInput
+	// Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+	EnableQuicUpgrade pulumi.StringPtrInput
 	// Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
 	// unbind associated pools. Defaults to **false**.
 	ForceDelete pulumi.BoolPtrInput
@@ -756,9 +811,15 @@ type ListenerArgs struct {
 	IdleTimeout pulumi.IntPtrInput
 	// Specifies the ip group id for the listener.
 	IpGroup pulumi.StringPtrInput
+	// Specifies whether access control is enabled. Value options: **true** and **false**.
+	IpGroupEnable pulumi.StringPtrInput
 	// The load balancer on which to provision this listener. Changing this
 	// creates a new listener.
 	LoadbalancerId pulumi.StringInput
+	// Specifies the maximum number of concurrent connections that a listener can handle per
+	// second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+	// the number defined in the load balancer specifications, the latter is used as the limit.
+	MaxConnection pulumi.IntPtrInput
 	// Human-readable name for the listener.
 	Name pulumi.StringPtrInput
 	// Specifies the port monitoring range (closed range), specify up to 10 port
@@ -933,13 +994,19 @@ func (o ListenerOutput) CaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CaCertificate }).(pulumi.StringPtrOutput)
 }
 
-// The create time of the listener.
+// Specifies the maximum number of new connections that a listener can handle per second.
+// Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+// than the number defined in the load balancer specifications, the latter is used as the limit.
+func (o ListenerOutput) Cps() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.Cps }).(pulumi.IntOutput)
+}
+
+// The creation time of the listener.
 func (o ListenerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the default pool with which the listener is associated. Changing this
-// creates a new listener.
+// The ID of the default pool with which the listener is associated.
 func (o ListenerOutput) DefaultPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.DefaultPoolId }).(pulumi.StringOutput)
 }
@@ -953,6 +1020,16 @@ func (o ListenerOutput) Description() pulumi.StringPtrOutput {
 // The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
 func (o ListenerOutput) EnableMemberRetry() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Listener) pulumi.BoolOutput { return v.EnableMemberRetry }).(pulumi.BoolOutput)
+}
+
+// Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+func (o ListenerOutput) EnableQuicUpgrade() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.EnableQuicUpgrade }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the enterprise project.
+func (o ListenerOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.EnterpriseProjectId }).(pulumi.StringOutput)
 }
 
 // Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
@@ -1047,10 +1124,22 @@ func (o ListenerOutput) IpGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.IpGroup }).(pulumi.StringPtrOutput)
 }
 
+// Specifies whether access control is enabled. Value options: **true** and **false**.
+func (o ListenerOutput) IpGroupEnable() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.IpGroupEnable }).(pulumi.StringOutput)
+}
+
 // The load balancer on which to provision this listener. Changing this
 // creates a new listener.
 func (o ListenerOutput) LoadbalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.LoadbalancerId }).(pulumi.StringOutput)
+}
+
+// Specifies the maximum number of concurrent connections that a listener can handle per
+// second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+// the number defined in the load balancer specifications, the latter is used as the limit.
+func (o ListenerOutput) MaxConnection() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.MaxConnection }).(pulumi.IntOutput)
 }
 
 // Human-readable name for the listener.

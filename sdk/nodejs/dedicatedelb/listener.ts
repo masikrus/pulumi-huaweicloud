@@ -35,10 +35,10 @@ import * as utilities from "../utilities";
  * ELB listener can be imported using the listener ID, e.g. bash
  *
  * ```sh
- *  $ pulumi import huaweicloud:DedicatedElb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+ *  $ pulumi import huaweicloud:DedicatedElb/listener:Listener test <id>
  * ```
  *
- *  Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "listener_1" {
+ *  Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "test" {
  *
  *  ...
  *
@@ -96,12 +96,17 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly caCertificate!: pulumi.Output<string | undefined>;
     /**
-     * The create time of the listener.
+     * Specifies the maximum number of new connections that a listener can handle per second.
+     * Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+     * than the number defined in the load balancer specifications, the latter is used as the limit.
+     */
+    public readonly cps!: pulumi.Output<number>;
+    /**
+     * The creation time of the listener.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The ID of the default pool with which the listener is associated. Changing this
-     * creates a new listener.
+     * The ID of the default pool with which the listener is associated.
      */
     public readonly defaultPoolId!: pulumi.Output<string>;
     /**
@@ -113,6 +118,14 @@ export class Listener extends pulumi.CustomResource {
      * The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
      */
     public readonly enableMemberRetry!: pulumi.Output<boolean>;
+    /**
+     * Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+     */
+    public readonly enableQuicUpgrade!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the enterprise project.
+     */
+    public /*out*/ readonly enterpriseProjectId!: pulumi.Output<string>;
     /**
      * Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
      * unbind associated pools. Defaults to **false**.
@@ -192,10 +205,20 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly ipGroup!: pulumi.Output<string | undefined>;
     /**
+     * Specifies whether access control is enabled. Value options: **true** and **false**.
+     */
+    public readonly ipGroupEnable!: pulumi.Output<string>;
+    /**
      * The load balancer on which to provision this listener. Changing this
      * creates a new listener.
      */
     public readonly loadbalancerId!: pulumi.Output<string>;
+    /**
+     * Specifies the maximum number of concurrent connections that a listener can handle per
+     * second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+     * the number defined in the load balancer specifications, the latter is used as the limit.
+     */
+    public readonly maxConnection!: pulumi.Output<number>;
     /**
      * Human-readable name for the listener.
      */
@@ -322,10 +345,13 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["accessPolicy"] = state ? state.accessPolicy : undefined;
             resourceInputs["advancedForwardingEnabled"] = state ? state.advancedForwardingEnabled : undefined;
             resourceInputs["caCertificate"] = state ? state.caCertificate : undefined;
+            resourceInputs["cps"] = state ? state.cps : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["defaultPoolId"] = state ? state.defaultPoolId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enableMemberRetry"] = state ? state.enableMemberRetry : undefined;
+            resourceInputs["enableQuicUpgrade"] = state ? state.enableQuicUpgrade : undefined;
+            resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["forceDelete"] = state ? state.forceDelete : undefined;
             resourceInputs["forwardEip"] = state ? state.forwardEip : undefined;
             resourceInputs["forwardElb"] = state ? state.forwardElb : undefined;
@@ -340,7 +366,9 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["http2Enable"] = state ? state.http2Enable : undefined;
             resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
             resourceInputs["ipGroup"] = state ? state.ipGroup : undefined;
+            resourceInputs["ipGroupEnable"] = state ? state.ipGroupEnable : undefined;
             resourceInputs["loadbalancerId"] = state ? state.loadbalancerId : undefined;
+            resourceInputs["maxConnection"] = state ? state.maxConnection : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["portRanges"] = state ? state.portRanges : undefined;
             resourceInputs["protectionReason"] = state ? state.protectionReason : undefined;
@@ -372,9 +400,11 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["accessPolicy"] = args ? args.accessPolicy : undefined;
             resourceInputs["advancedForwardingEnabled"] = args ? args.advancedForwardingEnabled : undefined;
             resourceInputs["caCertificate"] = args ? args.caCertificate : undefined;
+            resourceInputs["cps"] = args ? args.cps : undefined;
             resourceInputs["defaultPoolId"] = args ? args.defaultPoolId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enableMemberRetry"] = args ? args.enableMemberRetry : undefined;
+            resourceInputs["enableQuicUpgrade"] = args ? args.enableQuicUpgrade : undefined;
             resourceInputs["forceDelete"] = args ? args.forceDelete : undefined;
             resourceInputs["forwardEip"] = args ? args.forwardEip : undefined;
             resourceInputs["forwardElb"] = args ? args.forwardElb : undefined;
@@ -389,7 +419,9 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["http2Enable"] = args ? args.http2Enable : undefined;
             resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
             resourceInputs["ipGroup"] = args ? args.ipGroup : undefined;
+            resourceInputs["ipGroupEnable"] = args ? args.ipGroupEnable : undefined;
             resourceInputs["loadbalancerId"] = args ? args.loadbalancerId : undefined;
+            resourceInputs["maxConnection"] = args ? args.maxConnection : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["portRanges"] = args ? args.portRanges : undefined;
             resourceInputs["protectionReason"] = args ? args.protectionReason : undefined;
@@ -410,6 +442,7 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["tlsCiphersPolicy"] = args ? args.tlsCiphersPolicy : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["enterpriseProjectId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -437,12 +470,17 @@ export interface ListenerState {
      */
     caCertificate?: pulumi.Input<string>;
     /**
-     * The create time of the listener.
+     * Specifies the maximum number of new connections that a listener can handle per second.
+     * Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+     * than the number defined in the load balancer specifications, the latter is used as the limit.
+     */
+    cps?: pulumi.Input<number>;
+    /**
+     * The creation time of the listener.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the default pool with which the listener is associated. Changing this
-     * creates a new listener.
+     * The ID of the default pool with which the listener is associated.
      */
     defaultPoolId?: pulumi.Input<string>;
     /**
@@ -454,6 +492,14 @@ export interface ListenerState {
      * The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
      */
     enableMemberRetry?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+     */
+    enableQuicUpgrade?: pulumi.Input<string>;
+    /**
+     * The ID of the enterprise project.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
     /**
      * Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
      * unbind associated pools. Defaults to **false**.
@@ -533,10 +579,20 @@ export interface ListenerState {
      */
     ipGroup?: pulumi.Input<string>;
     /**
+     * Specifies whether access control is enabled. Value options: **true** and **false**.
+     */
+    ipGroupEnable?: pulumi.Input<string>;
+    /**
      * The load balancer on which to provision this listener. Changing this
      * creates a new listener.
      */
     loadbalancerId?: pulumi.Input<string>;
+    /**
+     * Specifies the maximum number of concurrent connections that a listener can handle per
+     * second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+     * the number defined in the load balancer specifications, the latter is used as the limit.
+     */
+    maxConnection?: pulumi.Input<number>;
     /**
      * Human-readable name for the listener.
      */
@@ -668,8 +724,13 @@ export interface ListenerArgs {
      */
     caCertificate?: pulumi.Input<string>;
     /**
-     * The ID of the default pool with which the listener is associated. Changing this
-     * creates a new listener.
+     * Specifies the maximum number of new connections that a listener can handle per second.
+     * Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+     * than the number defined in the load balancer specifications, the latter is used as the limit.
+     */
+    cps?: pulumi.Input<number>;
+    /**
+     * The ID of the default pool with which the listener is associated.
      */
     defaultPoolId?: pulumi.Input<string>;
     /**
@@ -681,6 +742,10 @@ export interface ListenerArgs {
      * The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
      */
     enableMemberRetry?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+     */
+    enableQuicUpgrade?: pulumi.Input<string>;
     /**
      * Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
      * unbind associated pools. Defaults to **false**.
@@ -760,10 +825,20 @@ export interface ListenerArgs {
      */
     ipGroup?: pulumi.Input<string>;
     /**
+     * Specifies whether access control is enabled. Value options: **true** and **false**.
+     */
+    ipGroupEnable?: pulumi.Input<string>;
+    /**
      * The load balancer on which to provision this listener. Changing this
      * creates a new listener.
      */
     loadbalancerId: pulumi.Input<string>;
+    /**
+     * Specifies the maximum number of concurrent connections that a listener can handle per
+     * second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+     * the number defined in the load balancer specifications, the latter is used as the limit.
+     */
+    maxConnection?: pulumi.Input<number>;
     /**
      * Human-readable name for the listener.
      */

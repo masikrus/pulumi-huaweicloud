@@ -11,12 +11,20 @@ import (
 )
 
 type VolumeAttachment struct {
+	// The time when the disk was attached.
+	AttachedAt *string `pulumi:"attachedAt"`
+	// The ID of the attached disk.
+	AttachedVolumeId *string `pulumi:"attachedVolumeId"`
 	// The device name.
 	Device *string `pulumi:"device"`
+	// The name of the physical host housing the cloud server to which the disk is attached.
+	HostName *string `pulumi:"hostName"`
 	// The ID of the attachment information.
 	Id *string `pulumi:"id"`
 	// The ID of the server to which the disk is attached.
 	InstanceId *string `pulumi:"instanceId"`
+	// The disk ID.
+	VolumeId *string `pulumi:"volumeId"`
 }
 
 // VolumeAttachmentInput is an input type that accepts VolumeAttachmentArgs and VolumeAttachmentOutput values.
@@ -31,12 +39,20 @@ type VolumeAttachmentInput interface {
 }
 
 type VolumeAttachmentArgs struct {
+	// The time when the disk was attached.
+	AttachedAt pulumi.StringPtrInput `pulumi:"attachedAt"`
+	// The ID of the attached disk.
+	AttachedVolumeId pulumi.StringPtrInput `pulumi:"attachedVolumeId"`
 	// The device name.
 	Device pulumi.StringPtrInput `pulumi:"device"`
+	// The name of the physical host housing the cloud server to which the disk is attached.
+	HostName pulumi.StringPtrInput `pulumi:"hostName"`
 	// The ID of the attachment information.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The ID of the server to which the disk is attached.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The disk ID.
+	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
 }
 
 func (VolumeAttachmentArgs) ElementType() reflect.Type {
@@ -90,9 +106,24 @@ func (o VolumeAttachmentOutput) ToVolumeAttachmentOutputWithContext(ctx context.
 	return o
 }
 
+// The time when the disk was attached.
+func (o VolumeAttachmentOutput) AttachedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeAttachment) *string { return v.AttachedAt }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the attached disk.
+func (o VolumeAttachmentOutput) AttachedVolumeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeAttachment) *string { return v.AttachedVolumeId }).(pulumi.StringPtrOutput)
+}
+
 // The device name.
 func (o VolumeAttachmentOutput) Device() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeAttachment) *string { return v.Device }).(pulumi.StringPtrOutput)
+}
+
+// The name of the physical host housing the cloud server to which the disk is attached.
+func (o VolumeAttachmentOutput) HostName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeAttachment) *string { return v.HostName }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the attachment information.
@@ -103,6 +134,11 @@ func (o VolumeAttachmentOutput) Id() pulumi.StringPtrOutput {
 // The ID of the server to which the disk is attached.
 func (o VolumeAttachmentOutput) InstanceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeAttachment) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+// The disk ID.
+func (o VolumeAttachmentOutput) VolumeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeAttachment) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
 
 type VolumeAttachmentArrayOutput struct{ *pulumi.OutputState }
@@ -125,6 +161,342 @@ func (o VolumeAttachmentArrayOutput) Index(i pulumi.IntInput) VolumeAttachmentOu
 	}).(VolumeAttachmentOutput)
 }
 
+type VolumeIopsAttribute struct {
+	// The frozen tag.
+	Frozened *bool `pulumi:"frozened"`
+	// The ID of the attachment information.
+	Id *string `pulumi:"id"`
+	// The throughput.
+	TotalVal *int `pulumi:"totalVal"`
+}
+
+// VolumeIopsAttributeInput is an input type that accepts VolumeIopsAttributeArgs and VolumeIopsAttributeOutput values.
+// You can construct a concrete instance of `VolumeIopsAttributeInput` via:
+//
+//	VolumeIopsAttributeArgs{...}
+type VolumeIopsAttributeInput interface {
+	pulumi.Input
+
+	ToVolumeIopsAttributeOutput() VolumeIopsAttributeOutput
+	ToVolumeIopsAttributeOutputWithContext(context.Context) VolumeIopsAttributeOutput
+}
+
+type VolumeIopsAttributeArgs struct {
+	// The frozen tag.
+	Frozened pulumi.BoolPtrInput `pulumi:"frozened"`
+	// The ID of the attachment information.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The throughput.
+	TotalVal pulumi.IntPtrInput `pulumi:"totalVal"`
+}
+
+func (VolumeIopsAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeIopsAttribute)(nil)).Elem()
+}
+
+func (i VolumeIopsAttributeArgs) ToVolumeIopsAttributeOutput() VolumeIopsAttributeOutput {
+	return i.ToVolumeIopsAttributeOutputWithContext(context.Background())
+}
+
+func (i VolumeIopsAttributeArgs) ToVolumeIopsAttributeOutputWithContext(ctx context.Context) VolumeIopsAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeIopsAttributeOutput)
+}
+
+// VolumeIopsAttributeArrayInput is an input type that accepts VolumeIopsAttributeArray and VolumeIopsAttributeArrayOutput values.
+// You can construct a concrete instance of `VolumeIopsAttributeArrayInput` via:
+//
+//	VolumeIopsAttributeArray{ VolumeIopsAttributeArgs{...} }
+type VolumeIopsAttributeArrayInput interface {
+	pulumi.Input
+
+	ToVolumeIopsAttributeArrayOutput() VolumeIopsAttributeArrayOutput
+	ToVolumeIopsAttributeArrayOutputWithContext(context.Context) VolumeIopsAttributeArrayOutput
+}
+
+type VolumeIopsAttributeArray []VolumeIopsAttributeInput
+
+func (VolumeIopsAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeIopsAttribute)(nil)).Elem()
+}
+
+func (i VolumeIopsAttributeArray) ToVolumeIopsAttributeArrayOutput() VolumeIopsAttributeArrayOutput {
+	return i.ToVolumeIopsAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i VolumeIopsAttributeArray) ToVolumeIopsAttributeArrayOutputWithContext(ctx context.Context) VolumeIopsAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeIopsAttributeArrayOutput)
+}
+
+type VolumeIopsAttributeOutput struct{ *pulumi.OutputState }
+
+func (VolumeIopsAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeIopsAttribute)(nil)).Elem()
+}
+
+func (o VolumeIopsAttributeOutput) ToVolumeIopsAttributeOutput() VolumeIopsAttributeOutput {
+	return o
+}
+
+func (o VolumeIopsAttributeOutput) ToVolumeIopsAttributeOutputWithContext(ctx context.Context) VolumeIopsAttributeOutput {
+	return o
+}
+
+// The frozen tag.
+func (o VolumeIopsAttributeOutput) Frozened() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VolumeIopsAttribute) *bool { return v.Frozened }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the attachment information.
+func (o VolumeIopsAttributeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeIopsAttribute) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The throughput.
+func (o VolumeIopsAttributeOutput) TotalVal() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VolumeIopsAttribute) *int { return v.TotalVal }).(pulumi.IntPtrOutput)
+}
+
+type VolumeIopsAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumeIopsAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeIopsAttribute)(nil)).Elem()
+}
+
+func (o VolumeIopsAttributeArrayOutput) ToVolumeIopsAttributeArrayOutput() VolumeIopsAttributeArrayOutput {
+	return o
+}
+
+func (o VolumeIopsAttributeArrayOutput) ToVolumeIopsAttributeArrayOutputWithContext(ctx context.Context) VolumeIopsAttributeArrayOutput {
+	return o
+}
+
+func (o VolumeIopsAttributeArrayOutput) Index(i pulumi.IntInput) VolumeIopsAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeIopsAttribute {
+		return vs[0].([]VolumeIopsAttribute)[vs[1].(int)]
+	}).(VolumeIopsAttributeOutput)
+}
+
+type VolumeLink struct {
+	// The corresponding shortcut link.
+	Href *string `pulumi:"href"`
+	// The shortcut link marker name.
+	Rel *string `pulumi:"rel"`
+}
+
+// VolumeLinkInput is an input type that accepts VolumeLinkArgs and VolumeLinkOutput values.
+// You can construct a concrete instance of `VolumeLinkInput` via:
+//
+//	VolumeLinkArgs{...}
+type VolumeLinkInput interface {
+	pulumi.Input
+
+	ToVolumeLinkOutput() VolumeLinkOutput
+	ToVolumeLinkOutputWithContext(context.Context) VolumeLinkOutput
+}
+
+type VolumeLinkArgs struct {
+	// The corresponding shortcut link.
+	Href pulumi.StringPtrInput `pulumi:"href"`
+	// The shortcut link marker name.
+	Rel pulumi.StringPtrInput `pulumi:"rel"`
+}
+
+func (VolumeLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeLink)(nil)).Elem()
+}
+
+func (i VolumeLinkArgs) ToVolumeLinkOutput() VolumeLinkOutput {
+	return i.ToVolumeLinkOutputWithContext(context.Background())
+}
+
+func (i VolumeLinkArgs) ToVolumeLinkOutputWithContext(ctx context.Context) VolumeLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeLinkOutput)
+}
+
+// VolumeLinkArrayInput is an input type that accepts VolumeLinkArray and VolumeLinkArrayOutput values.
+// You can construct a concrete instance of `VolumeLinkArrayInput` via:
+//
+//	VolumeLinkArray{ VolumeLinkArgs{...} }
+type VolumeLinkArrayInput interface {
+	pulumi.Input
+
+	ToVolumeLinkArrayOutput() VolumeLinkArrayOutput
+	ToVolumeLinkArrayOutputWithContext(context.Context) VolumeLinkArrayOutput
+}
+
+type VolumeLinkArray []VolumeLinkInput
+
+func (VolumeLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeLink)(nil)).Elem()
+}
+
+func (i VolumeLinkArray) ToVolumeLinkArrayOutput() VolumeLinkArrayOutput {
+	return i.ToVolumeLinkArrayOutputWithContext(context.Background())
+}
+
+func (i VolumeLinkArray) ToVolumeLinkArrayOutputWithContext(ctx context.Context) VolumeLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeLinkArrayOutput)
+}
+
+type VolumeLinkOutput struct{ *pulumi.OutputState }
+
+func (VolumeLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeLink)(nil)).Elem()
+}
+
+func (o VolumeLinkOutput) ToVolumeLinkOutput() VolumeLinkOutput {
+	return o
+}
+
+func (o VolumeLinkOutput) ToVolumeLinkOutputWithContext(ctx context.Context) VolumeLinkOutput {
+	return o
+}
+
+// The corresponding shortcut link.
+func (o VolumeLinkOutput) Href() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeLink) *string { return v.Href }).(pulumi.StringPtrOutput)
+}
+
+// The shortcut link marker name.
+func (o VolumeLinkOutput) Rel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeLink) *string { return v.Rel }).(pulumi.StringPtrOutput)
+}
+
+type VolumeLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumeLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeLink)(nil)).Elem()
+}
+
+func (o VolumeLinkArrayOutput) ToVolumeLinkArrayOutput() VolumeLinkArrayOutput {
+	return o
+}
+
+func (o VolumeLinkArrayOutput) ToVolumeLinkArrayOutputWithContext(ctx context.Context) VolumeLinkArrayOutput {
+	return o
+}
+
+func (o VolumeLinkArrayOutput) Index(i pulumi.IntInput) VolumeLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeLink {
+		return vs[0].([]VolumeLink)[vs[1].(int)]
+	}).(VolumeLinkOutput)
+}
+
+type VolumeThroughputAttribute struct {
+	// The frozen tag.
+	Frozened *bool `pulumi:"frozened"`
+	// The ID of the attachment information.
+	Id *string `pulumi:"id"`
+	// The throughput.
+	TotalVal *int `pulumi:"totalVal"`
+}
+
+// VolumeThroughputAttributeInput is an input type that accepts VolumeThroughputAttributeArgs and VolumeThroughputAttributeOutput values.
+// You can construct a concrete instance of `VolumeThroughputAttributeInput` via:
+//
+//	VolumeThroughputAttributeArgs{...}
+type VolumeThroughputAttributeInput interface {
+	pulumi.Input
+
+	ToVolumeThroughputAttributeOutput() VolumeThroughputAttributeOutput
+	ToVolumeThroughputAttributeOutputWithContext(context.Context) VolumeThroughputAttributeOutput
+}
+
+type VolumeThroughputAttributeArgs struct {
+	// The frozen tag.
+	Frozened pulumi.BoolPtrInput `pulumi:"frozened"`
+	// The ID of the attachment information.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The throughput.
+	TotalVal pulumi.IntPtrInput `pulumi:"totalVal"`
+}
+
+func (VolumeThroughputAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (i VolumeThroughputAttributeArgs) ToVolumeThroughputAttributeOutput() VolumeThroughputAttributeOutput {
+	return i.ToVolumeThroughputAttributeOutputWithContext(context.Background())
+}
+
+func (i VolumeThroughputAttributeArgs) ToVolumeThroughputAttributeOutputWithContext(ctx context.Context) VolumeThroughputAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeThroughputAttributeOutput)
+}
+
+// VolumeThroughputAttributeArrayInput is an input type that accepts VolumeThroughputAttributeArray and VolumeThroughputAttributeArrayOutput values.
+// You can construct a concrete instance of `VolumeThroughputAttributeArrayInput` via:
+//
+//	VolumeThroughputAttributeArray{ VolumeThroughputAttributeArgs{...} }
+type VolumeThroughputAttributeArrayInput interface {
+	pulumi.Input
+
+	ToVolumeThroughputAttributeArrayOutput() VolumeThroughputAttributeArrayOutput
+	ToVolumeThroughputAttributeArrayOutputWithContext(context.Context) VolumeThroughputAttributeArrayOutput
+}
+
+type VolumeThroughputAttributeArray []VolumeThroughputAttributeInput
+
+func (VolumeThroughputAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (i VolumeThroughputAttributeArray) ToVolumeThroughputAttributeArrayOutput() VolumeThroughputAttributeArrayOutput {
+	return i.ToVolumeThroughputAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i VolumeThroughputAttributeArray) ToVolumeThroughputAttributeArrayOutputWithContext(ctx context.Context) VolumeThroughputAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeThroughputAttributeArrayOutput)
+}
+
+type VolumeThroughputAttributeOutput struct{ *pulumi.OutputState }
+
+func (VolumeThroughputAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (o VolumeThroughputAttributeOutput) ToVolumeThroughputAttributeOutput() VolumeThroughputAttributeOutput {
+	return o
+}
+
+func (o VolumeThroughputAttributeOutput) ToVolumeThroughputAttributeOutputWithContext(ctx context.Context) VolumeThroughputAttributeOutput {
+	return o
+}
+
+// The frozen tag.
+func (o VolumeThroughputAttributeOutput) Frozened() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VolumeThroughputAttribute) *bool { return v.Frozened }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the attachment information.
+func (o VolumeThroughputAttributeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VolumeThroughputAttribute) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The throughput.
+func (o VolumeThroughputAttributeOutput) TotalVal() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VolumeThroughputAttribute) *int { return v.TotalVal }).(pulumi.IntPtrOutput)
+}
+
+type VolumeThroughputAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumeThroughputAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (o VolumeThroughputAttributeArrayOutput) ToVolumeThroughputAttributeArrayOutput() VolumeThroughputAttributeArrayOutput {
+	return o
+}
+
+func (o VolumeThroughputAttributeArrayOutput) ToVolumeThroughputAttributeArrayOutputWithContext(ctx context.Context) VolumeThroughputAttributeArrayOutput {
+	return o
+}
+
+func (o VolumeThroughputAttributeArrayOutput) Index(i pulumi.IntInput) VolumeThroughputAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeThroughputAttribute {
+		return vs[0].([]VolumeThroughputAttribute)[vs[1].(int)]
+	}).(VolumeThroughputAttributeOutput)
+}
+
 type GetVolumesVolume struct {
 	// The disk attachment information. Structure is documented below.
 	Attachments []GetVolumesVolumeAttachment `pulumi:"attachments"`
@@ -134,6 +506,12 @@ type GetVolumesVolume struct {
 	Bootable bool `pulumi:"bootable"`
 	// The time when the disk was created.
 	CreateAt string `pulumi:"createAt"`
+	// Specifies the dedicated storage pool ID. All disks in the dedicated storage
+	// pool can be filtered by exact match.
+	DedicatedStorageId string `pulumi:"dedicatedStorageId"`
+	// Specifies the dedicated storage pool name. All disks in the dedicated
+	// storage pool can be filtered by fuzzy match.
+	DedicatedStorageName string `pulumi:"dedicatedStorageName"`
 	// The disk description.
 	Description string `pulumi:"description"`
 	// Specifies the enterprise project ID for filtering.
@@ -143,15 +521,28 @@ type GetVolumesVolume struct {
 	// the IOPS(Input/Output Operations Per Second) of the volume. Only valid when `volumeType` is **GPSSD2** or
 	// **ESSD2**.
 	Iops int `pulumi:"iops"`
+	// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+	// SSD V2 disk. The iopsAttribute structure is documented below.
+	IopsAttributes []GetVolumesVolumeIopsAttribute `pulumi:"iopsAttributes"`
+	// The disk URI. The links structure is documented below.
+	Links []GetVolumesVolumeLink `pulumi:"links"`
+	// Specifies the disk metadata.
+	// Please pay attention to escape special characters before use. Please refer to the usage of example.
+	Metadata map[string]string `pulumi:"metadata"`
 	// Specifies the name for the disks. This field will undergo a fuzzy matching query, the
 	// query result is for all disks whose names contain this value.
 	Name string `pulumi:"name"`
-	// The service type, such as EVS, DSS or DESS.
+	// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+	// disk mapping in the VM.
+	SerialNumber string `pulumi:"serialNumber"`
+	// Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
 	ServiceType string `pulumi:"serviceType"`
 	// Specifies whether the disk is shareable.
 	Shareable bool `pulumi:"shareable"`
 	// The disk size, in GB.
 	Size int `pulumi:"size"`
+	// The snapshot ID. This attribute has a value if the disk is created from a snapshot.
+	SnapshotId string `pulumi:"snapshotId"`
 	// Specifies the disk status. The valid values are as following:
 	// + **FREEZED**
 	// + **BIND_ERROR**
@@ -171,8 +562,13 @@ type GetVolumesVolume struct {
 	Tags map[string]string `pulumi:"tags"`
 	// The throughput of the system disk. Only valid when `volumeType` is **GPSSD2**.
 	Throughput int `pulumi:"throughput"`
+	// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+	// The throughputAttribute structure is documented below.
+	ThroughputAttributes []GetVolumesVolumeThroughputAttribute `pulumi:"throughputAttributes"`
 	// The time when the disk was updated.
 	UpdateAt string `pulumi:"updateAt"`
+	// The metadata of the disk image.
+	VolumeImageMetadata map[string]string `pulumi:"volumeImageMetadata"`
 	// The disk type. Valid values are as follows:
 	// + **SAS**: High I/O type.
 	// + **SSD**: Ultra-high I/O type.
@@ -205,6 +601,12 @@ type GetVolumesVolumeArgs struct {
 	Bootable pulumi.BoolInput `pulumi:"bootable"`
 	// The time when the disk was created.
 	CreateAt pulumi.StringInput `pulumi:"createAt"`
+	// Specifies the dedicated storage pool ID. All disks in the dedicated storage
+	// pool can be filtered by exact match.
+	DedicatedStorageId pulumi.StringInput `pulumi:"dedicatedStorageId"`
+	// Specifies the dedicated storage pool name. All disks in the dedicated
+	// storage pool can be filtered by fuzzy match.
+	DedicatedStorageName pulumi.StringInput `pulumi:"dedicatedStorageName"`
 	// The disk description.
 	Description pulumi.StringInput `pulumi:"description"`
 	// Specifies the enterprise project ID for filtering.
@@ -214,15 +616,28 @@ type GetVolumesVolumeArgs struct {
 	// the IOPS(Input/Output Operations Per Second) of the volume. Only valid when `volumeType` is **GPSSD2** or
 	// **ESSD2**.
 	Iops pulumi.IntInput `pulumi:"iops"`
+	// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+	// SSD V2 disk. The iopsAttribute structure is documented below.
+	IopsAttributes GetVolumesVolumeIopsAttributeArrayInput `pulumi:"iopsAttributes"`
+	// The disk URI. The links structure is documented below.
+	Links GetVolumesVolumeLinkArrayInput `pulumi:"links"`
+	// Specifies the disk metadata.
+	// Please pay attention to escape special characters before use. Please refer to the usage of example.
+	Metadata pulumi.StringMapInput `pulumi:"metadata"`
 	// Specifies the name for the disks. This field will undergo a fuzzy matching query, the
 	// query result is for all disks whose names contain this value.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The service type, such as EVS, DSS or DESS.
+	// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+	// disk mapping in the VM.
+	SerialNumber pulumi.StringInput `pulumi:"serialNumber"`
+	// Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
 	ServiceType pulumi.StringInput `pulumi:"serviceType"`
 	// Specifies whether the disk is shareable.
 	Shareable pulumi.BoolInput `pulumi:"shareable"`
 	// The disk size, in GB.
 	Size pulumi.IntInput `pulumi:"size"`
+	// The snapshot ID. This attribute has a value if the disk is created from a snapshot.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Specifies the disk status. The valid values are as following:
 	// + **FREEZED**
 	// + **BIND_ERROR**
@@ -242,8 +657,13 @@ type GetVolumesVolumeArgs struct {
 	Tags pulumi.StringMapInput `pulumi:"tags"`
 	// The throughput of the system disk. Only valid when `volumeType` is **GPSSD2**.
 	Throughput pulumi.IntInput `pulumi:"throughput"`
+	// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+	// The throughputAttribute structure is documented below.
+	ThroughputAttributes GetVolumesVolumeThroughputAttributeArrayInput `pulumi:"throughputAttributes"`
 	// The time when the disk was updated.
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
+	// The metadata of the disk image.
+	VolumeImageMetadata pulumi.StringMapInput `pulumi:"volumeImageMetadata"`
 	// The disk type. Valid values are as follows:
 	// + **SAS**: High I/O type.
 	// + **SSD**: Ultra-high I/O type.
@@ -327,6 +747,18 @@ func (o GetVolumesVolumeOutput) CreateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolume) string { return v.CreateAt }).(pulumi.StringOutput)
 }
 
+// Specifies the dedicated storage pool ID. All disks in the dedicated storage
+// pool can be filtered by exact match.
+func (o GetVolumesVolumeOutput) DedicatedStorageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolume) string { return v.DedicatedStorageId }).(pulumi.StringOutput)
+}
+
+// Specifies the dedicated storage pool name. All disks in the dedicated
+// storage pool can be filtered by fuzzy match.
+func (o GetVolumesVolumeOutput) DedicatedStorageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolume) string { return v.DedicatedStorageName }).(pulumi.StringOutput)
+}
+
 // The disk description.
 func (o GetVolumesVolumeOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolume) string { return v.Description }).(pulumi.StringOutput)
@@ -348,13 +780,36 @@ func (o GetVolumesVolumeOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVolumesVolume) int { return v.Iops }).(pulumi.IntOutput)
 }
 
+// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+// SSD V2 disk. The iopsAttribute structure is documented below.
+func (o GetVolumesVolumeOutput) IopsAttributes() GetVolumesVolumeIopsAttributeArrayOutput {
+	return o.ApplyT(func(v GetVolumesVolume) []GetVolumesVolumeIopsAttribute { return v.IopsAttributes }).(GetVolumesVolumeIopsAttributeArrayOutput)
+}
+
+// The disk URI. The links structure is documented below.
+func (o GetVolumesVolumeOutput) Links() GetVolumesVolumeLinkArrayOutput {
+	return o.ApplyT(func(v GetVolumesVolume) []GetVolumesVolumeLink { return v.Links }).(GetVolumesVolumeLinkArrayOutput)
+}
+
+// Specifies the disk metadata.
+// Please pay attention to escape special characters before use. Please refer to the usage of example.
+func (o GetVolumesVolumeOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetVolumesVolume) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
 // Specifies the name for the disks. This field will undergo a fuzzy matching query, the
 // query result is for all disks whose names contain this value.
 func (o GetVolumesVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The service type, such as EVS, DSS or DESS.
+// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+// disk mapping in the VM.
+func (o GetVolumesVolumeOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolume) string { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
 func (o GetVolumesVolumeOutput) ServiceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolume) string { return v.ServiceType }).(pulumi.StringOutput)
 }
@@ -367,6 +822,11 @@ func (o GetVolumesVolumeOutput) Shareable() pulumi.BoolOutput {
 // The disk size, in GB.
 func (o GetVolumesVolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVolumesVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The snapshot ID. This attribute has a value if the disk is created from a snapshot.
+func (o GetVolumesVolumeOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolume) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
 // Specifies the disk status. The valid values are as following:
@@ -397,9 +857,20 @@ func (o GetVolumesVolumeOutput) Throughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVolumesVolume) int { return v.Throughput }).(pulumi.IntOutput)
 }
 
+// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+// The throughputAttribute structure is documented below.
+func (o GetVolumesVolumeOutput) ThroughputAttributes() GetVolumesVolumeThroughputAttributeArrayOutput {
+	return o.ApplyT(func(v GetVolumesVolume) []GetVolumesVolumeThroughputAttribute { return v.ThroughputAttributes }).(GetVolumesVolumeThroughputAttributeArrayOutput)
+}
+
 // The time when the disk was updated.
 func (o GetVolumesVolumeOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolume) string { return v.UpdateAt }).(pulumi.StringOutput)
+}
+
+// The metadata of the disk image.
+func (o GetVolumesVolumeOutput) VolumeImageMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetVolumesVolume) map[string]string { return v.VolumeImageMetadata }).(pulumi.StringMapOutput)
 }
 
 // The disk type. Valid values are as follows:
@@ -443,12 +914,18 @@ type GetVolumesVolumeAttachment struct {
 	AttachedAt string `pulumi:"attachedAt"`
 	// The ID of the attachment information.
 	AttachedMode string `pulumi:"attachedMode"`
+	// The ID of the attached disk.
+	AttachedVolumeId string `pulumi:"attachedVolumeId"`
 	// The device name to which the disk is attached.
 	DeviceName string `pulumi:"deviceName"`
+	// The name of the physical host housing the cloud server to which the disk is attached.
+	HostName string `pulumi:"hostName"`
 	// The ID of the attached resource in UUID format.
 	Id string `pulumi:"id"`
 	// Specifies the server ID to which the disks are attached.
 	ServerId string `pulumi:"serverId"`
+	// Specifies the ID for the disk.
+	VolumeId string `pulumi:"volumeId"`
 }
 
 // GetVolumesVolumeAttachmentInput is an input type that accepts GetVolumesVolumeAttachmentArgs and GetVolumesVolumeAttachmentOutput values.
@@ -467,12 +944,18 @@ type GetVolumesVolumeAttachmentArgs struct {
 	AttachedAt pulumi.StringInput `pulumi:"attachedAt"`
 	// The ID of the attachment information.
 	AttachedMode pulumi.StringInput `pulumi:"attachedMode"`
+	// The ID of the attached disk.
+	AttachedVolumeId pulumi.StringInput `pulumi:"attachedVolumeId"`
 	// The device name to which the disk is attached.
 	DeviceName pulumi.StringInput `pulumi:"deviceName"`
+	// The name of the physical host housing the cloud server to which the disk is attached.
+	HostName pulumi.StringInput `pulumi:"hostName"`
 	// The ID of the attached resource in UUID format.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Specifies the server ID to which the disks are attached.
 	ServerId pulumi.StringInput `pulumi:"serverId"`
+	// Specifies the ID for the disk.
+	VolumeId pulumi.StringInput `pulumi:"volumeId"`
 }
 
 func (GetVolumesVolumeAttachmentArgs) ElementType() reflect.Type {
@@ -536,9 +1019,19 @@ func (o GetVolumesVolumeAttachmentOutput) AttachedMode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolumeAttachment) string { return v.AttachedMode }).(pulumi.StringOutput)
 }
 
+// The ID of the attached disk.
+func (o GetVolumesVolumeAttachmentOutput) AttachedVolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeAttachment) string { return v.AttachedVolumeId }).(pulumi.StringOutput)
+}
+
 // The device name to which the disk is attached.
 func (o GetVolumesVolumeAttachmentOutput) DeviceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolumeAttachment) string { return v.DeviceName }).(pulumi.StringOutput)
+}
+
+// The name of the physical host housing the cloud server to which the disk is attached.
+func (o GetVolumesVolumeAttachmentOutput) HostName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeAttachment) string { return v.HostName }).(pulumi.StringOutput)
 }
 
 // The ID of the attached resource in UUID format.
@@ -549,6 +1042,11 @@ func (o GetVolumesVolumeAttachmentOutput) Id() pulumi.StringOutput {
 // Specifies the server ID to which the disks are attached.
 func (o GetVolumesVolumeAttachmentOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesVolumeAttachment) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+// Specifies the ID for the disk.
+func (o GetVolumesVolumeAttachmentOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeAttachment) string { return v.VolumeId }).(pulumi.StringOutput)
 }
 
 type GetVolumesVolumeAttachmentArrayOutput struct{ *pulumi.OutputState }
@@ -571,17 +1069,377 @@ func (o GetVolumesVolumeAttachmentArrayOutput) Index(i pulumi.IntInput) GetVolum
 	}).(GetVolumesVolumeAttachmentOutput)
 }
 
+type GetVolumesVolumeIopsAttribute struct {
+	// The frozen tag.
+	Frozened bool `pulumi:"frozened"`
+	// The ID of the attached resource in UUID format.
+	Id string `pulumi:"id"`
+	// The IOPS.
+	TotalVal int `pulumi:"totalVal"`
+}
+
+// GetVolumesVolumeIopsAttributeInput is an input type that accepts GetVolumesVolumeIopsAttributeArgs and GetVolumesVolumeIopsAttributeOutput values.
+// You can construct a concrete instance of `GetVolumesVolumeIopsAttributeInput` via:
+//
+//	GetVolumesVolumeIopsAttributeArgs{...}
+type GetVolumesVolumeIopsAttributeInput interface {
+	pulumi.Input
+
+	ToGetVolumesVolumeIopsAttributeOutput() GetVolumesVolumeIopsAttributeOutput
+	ToGetVolumesVolumeIopsAttributeOutputWithContext(context.Context) GetVolumesVolumeIopsAttributeOutput
+}
+
+type GetVolumesVolumeIopsAttributeArgs struct {
+	// The frozen tag.
+	Frozened pulumi.BoolInput `pulumi:"frozened"`
+	// The ID of the attached resource in UUID format.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The IOPS.
+	TotalVal pulumi.IntInput `pulumi:"totalVal"`
+}
+
+func (GetVolumesVolumeIopsAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesVolumeIopsAttribute)(nil)).Elem()
+}
+
+func (i GetVolumesVolumeIopsAttributeArgs) ToGetVolumesVolumeIopsAttributeOutput() GetVolumesVolumeIopsAttributeOutput {
+	return i.ToGetVolumesVolumeIopsAttributeOutputWithContext(context.Background())
+}
+
+func (i GetVolumesVolumeIopsAttributeArgs) ToGetVolumesVolumeIopsAttributeOutputWithContext(ctx context.Context) GetVolumesVolumeIopsAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVolumesVolumeIopsAttributeOutput)
+}
+
+// GetVolumesVolumeIopsAttributeArrayInput is an input type that accepts GetVolumesVolumeIopsAttributeArray and GetVolumesVolumeIopsAttributeArrayOutput values.
+// You can construct a concrete instance of `GetVolumesVolumeIopsAttributeArrayInput` via:
+//
+//	GetVolumesVolumeIopsAttributeArray{ GetVolumesVolumeIopsAttributeArgs{...} }
+type GetVolumesVolumeIopsAttributeArrayInput interface {
+	pulumi.Input
+
+	ToGetVolumesVolumeIopsAttributeArrayOutput() GetVolumesVolumeIopsAttributeArrayOutput
+	ToGetVolumesVolumeIopsAttributeArrayOutputWithContext(context.Context) GetVolumesVolumeIopsAttributeArrayOutput
+}
+
+type GetVolumesVolumeIopsAttributeArray []GetVolumesVolumeIopsAttributeInput
+
+func (GetVolumesVolumeIopsAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVolumesVolumeIopsAttribute)(nil)).Elem()
+}
+
+func (i GetVolumesVolumeIopsAttributeArray) ToGetVolumesVolumeIopsAttributeArrayOutput() GetVolumesVolumeIopsAttributeArrayOutput {
+	return i.ToGetVolumesVolumeIopsAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i GetVolumesVolumeIopsAttributeArray) ToGetVolumesVolumeIopsAttributeArrayOutputWithContext(ctx context.Context) GetVolumesVolumeIopsAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVolumesVolumeIopsAttributeArrayOutput)
+}
+
+type GetVolumesVolumeIopsAttributeOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesVolumeIopsAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesVolumeIopsAttribute)(nil)).Elem()
+}
+
+func (o GetVolumesVolumeIopsAttributeOutput) ToGetVolumesVolumeIopsAttributeOutput() GetVolumesVolumeIopsAttributeOutput {
+	return o
+}
+
+func (o GetVolumesVolumeIopsAttributeOutput) ToGetVolumesVolumeIopsAttributeOutputWithContext(ctx context.Context) GetVolumesVolumeIopsAttributeOutput {
+	return o
+}
+
+// The frozen tag.
+func (o GetVolumesVolumeIopsAttributeOutput) Frozened() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumesVolumeIopsAttribute) bool { return v.Frozened }).(pulumi.BoolOutput)
+}
+
+// The ID of the attached resource in UUID format.
+func (o GetVolumesVolumeIopsAttributeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeIopsAttribute) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IOPS.
+func (o GetVolumesVolumeIopsAttributeOutput) TotalVal() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVolumesVolumeIopsAttribute) int { return v.TotalVal }).(pulumi.IntOutput)
+}
+
+type GetVolumesVolumeIopsAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesVolumeIopsAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVolumesVolumeIopsAttribute)(nil)).Elem()
+}
+
+func (o GetVolumesVolumeIopsAttributeArrayOutput) ToGetVolumesVolumeIopsAttributeArrayOutput() GetVolumesVolumeIopsAttributeArrayOutput {
+	return o
+}
+
+func (o GetVolumesVolumeIopsAttributeArrayOutput) ToGetVolumesVolumeIopsAttributeArrayOutputWithContext(ctx context.Context) GetVolumesVolumeIopsAttributeArrayOutput {
+	return o
+}
+
+func (o GetVolumesVolumeIopsAttributeArrayOutput) Index(i pulumi.IntInput) GetVolumesVolumeIopsAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVolumesVolumeIopsAttribute {
+		return vs[0].([]GetVolumesVolumeIopsAttribute)[vs[1].(int)]
+	}).(GetVolumesVolumeIopsAttributeOutput)
+}
+
+type GetVolumesVolumeLink struct {
+	// The corresponding shortcut link.
+	Href string `pulumi:"href"`
+	// The shortcut link marker name.
+	Rel string `pulumi:"rel"`
+}
+
+// GetVolumesVolumeLinkInput is an input type that accepts GetVolumesVolumeLinkArgs and GetVolumesVolumeLinkOutput values.
+// You can construct a concrete instance of `GetVolumesVolumeLinkInput` via:
+//
+//	GetVolumesVolumeLinkArgs{...}
+type GetVolumesVolumeLinkInput interface {
+	pulumi.Input
+
+	ToGetVolumesVolumeLinkOutput() GetVolumesVolumeLinkOutput
+	ToGetVolumesVolumeLinkOutputWithContext(context.Context) GetVolumesVolumeLinkOutput
+}
+
+type GetVolumesVolumeLinkArgs struct {
+	// The corresponding shortcut link.
+	Href pulumi.StringInput `pulumi:"href"`
+	// The shortcut link marker name.
+	Rel pulumi.StringInput `pulumi:"rel"`
+}
+
+func (GetVolumesVolumeLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesVolumeLink)(nil)).Elem()
+}
+
+func (i GetVolumesVolumeLinkArgs) ToGetVolumesVolumeLinkOutput() GetVolumesVolumeLinkOutput {
+	return i.ToGetVolumesVolumeLinkOutputWithContext(context.Background())
+}
+
+func (i GetVolumesVolumeLinkArgs) ToGetVolumesVolumeLinkOutputWithContext(ctx context.Context) GetVolumesVolumeLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVolumesVolumeLinkOutput)
+}
+
+// GetVolumesVolumeLinkArrayInput is an input type that accepts GetVolumesVolumeLinkArray and GetVolumesVolumeLinkArrayOutput values.
+// You can construct a concrete instance of `GetVolumesVolumeLinkArrayInput` via:
+//
+//	GetVolumesVolumeLinkArray{ GetVolumesVolumeLinkArgs{...} }
+type GetVolumesVolumeLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetVolumesVolumeLinkArrayOutput() GetVolumesVolumeLinkArrayOutput
+	ToGetVolumesVolumeLinkArrayOutputWithContext(context.Context) GetVolumesVolumeLinkArrayOutput
+}
+
+type GetVolumesVolumeLinkArray []GetVolumesVolumeLinkInput
+
+func (GetVolumesVolumeLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVolumesVolumeLink)(nil)).Elem()
+}
+
+func (i GetVolumesVolumeLinkArray) ToGetVolumesVolumeLinkArrayOutput() GetVolumesVolumeLinkArrayOutput {
+	return i.ToGetVolumesVolumeLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetVolumesVolumeLinkArray) ToGetVolumesVolumeLinkArrayOutputWithContext(ctx context.Context) GetVolumesVolumeLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVolumesVolumeLinkArrayOutput)
+}
+
+type GetVolumesVolumeLinkOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesVolumeLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesVolumeLink)(nil)).Elem()
+}
+
+func (o GetVolumesVolumeLinkOutput) ToGetVolumesVolumeLinkOutput() GetVolumesVolumeLinkOutput {
+	return o
+}
+
+func (o GetVolumesVolumeLinkOutput) ToGetVolumesVolumeLinkOutputWithContext(ctx context.Context) GetVolumesVolumeLinkOutput {
+	return o
+}
+
+// The corresponding shortcut link.
+func (o GetVolumesVolumeLinkOutput) Href() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeLink) string { return v.Href }).(pulumi.StringOutput)
+}
+
+// The shortcut link marker name.
+func (o GetVolumesVolumeLinkOutput) Rel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeLink) string { return v.Rel }).(pulumi.StringOutput)
+}
+
+type GetVolumesVolumeLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesVolumeLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVolumesVolumeLink)(nil)).Elem()
+}
+
+func (o GetVolumesVolumeLinkArrayOutput) ToGetVolumesVolumeLinkArrayOutput() GetVolumesVolumeLinkArrayOutput {
+	return o
+}
+
+func (o GetVolumesVolumeLinkArrayOutput) ToGetVolumesVolumeLinkArrayOutputWithContext(ctx context.Context) GetVolumesVolumeLinkArrayOutput {
+	return o
+}
+
+func (o GetVolumesVolumeLinkArrayOutput) Index(i pulumi.IntInput) GetVolumesVolumeLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVolumesVolumeLink {
+		return vs[0].([]GetVolumesVolumeLink)[vs[1].(int)]
+	}).(GetVolumesVolumeLinkOutput)
+}
+
+type GetVolumesVolumeThroughputAttribute struct {
+	// The frozen tag.
+	Frozened bool `pulumi:"frozened"`
+	// The ID of the attached resource in UUID format.
+	Id string `pulumi:"id"`
+	// The IOPS.
+	TotalVal int `pulumi:"totalVal"`
+}
+
+// GetVolumesVolumeThroughputAttributeInput is an input type that accepts GetVolumesVolumeThroughputAttributeArgs and GetVolumesVolumeThroughputAttributeOutput values.
+// You can construct a concrete instance of `GetVolumesVolumeThroughputAttributeInput` via:
+//
+//	GetVolumesVolumeThroughputAttributeArgs{...}
+type GetVolumesVolumeThroughputAttributeInput interface {
+	pulumi.Input
+
+	ToGetVolumesVolumeThroughputAttributeOutput() GetVolumesVolumeThroughputAttributeOutput
+	ToGetVolumesVolumeThroughputAttributeOutputWithContext(context.Context) GetVolumesVolumeThroughputAttributeOutput
+}
+
+type GetVolumesVolumeThroughputAttributeArgs struct {
+	// The frozen tag.
+	Frozened pulumi.BoolInput `pulumi:"frozened"`
+	// The ID of the attached resource in UUID format.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The IOPS.
+	TotalVal pulumi.IntInput `pulumi:"totalVal"`
+}
+
+func (GetVolumesVolumeThroughputAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesVolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (i GetVolumesVolumeThroughputAttributeArgs) ToGetVolumesVolumeThroughputAttributeOutput() GetVolumesVolumeThroughputAttributeOutput {
+	return i.ToGetVolumesVolumeThroughputAttributeOutputWithContext(context.Background())
+}
+
+func (i GetVolumesVolumeThroughputAttributeArgs) ToGetVolumesVolumeThroughputAttributeOutputWithContext(ctx context.Context) GetVolumesVolumeThroughputAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVolumesVolumeThroughputAttributeOutput)
+}
+
+// GetVolumesVolumeThroughputAttributeArrayInput is an input type that accepts GetVolumesVolumeThroughputAttributeArray and GetVolumesVolumeThroughputAttributeArrayOutput values.
+// You can construct a concrete instance of `GetVolumesVolumeThroughputAttributeArrayInput` via:
+//
+//	GetVolumesVolumeThroughputAttributeArray{ GetVolumesVolumeThroughputAttributeArgs{...} }
+type GetVolumesVolumeThroughputAttributeArrayInput interface {
+	pulumi.Input
+
+	ToGetVolumesVolumeThroughputAttributeArrayOutput() GetVolumesVolumeThroughputAttributeArrayOutput
+	ToGetVolumesVolumeThroughputAttributeArrayOutputWithContext(context.Context) GetVolumesVolumeThroughputAttributeArrayOutput
+}
+
+type GetVolumesVolumeThroughputAttributeArray []GetVolumesVolumeThroughputAttributeInput
+
+func (GetVolumesVolumeThroughputAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVolumesVolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (i GetVolumesVolumeThroughputAttributeArray) ToGetVolumesVolumeThroughputAttributeArrayOutput() GetVolumesVolumeThroughputAttributeArrayOutput {
+	return i.ToGetVolumesVolumeThroughputAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i GetVolumesVolumeThroughputAttributeArray) ToGetVolumesVolumeThroughputAttributeArrayOutputWithContext(ctx context.Context) GetVolumesVolumeThroughputAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVolumesVolumeThroughputAttributeArrayOutput)
+}
+
+type GetVolumesVolumeThroughputAttributeOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesVolumeThroughputAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesVolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (o GetVolumesVolumeThroughputAttributeOutput) ToGetVolumesVolumeThroughputAttributeOutput() GetVolumesVolumeThroughputAttributeOutput {
+	return o
+}
+
+func (o GetVolumesVolumeThroughputAttributeOutput) ToGetVolumesVolumeThroughputAttributeOutputWithContext(ctx context.Context) GetVolumesVolumeThroughputAttributeOutput {
+	return o
+}
+
+// The frozen tag.
+func (o GetVolumesVolumeThroughputAttributeOutput) Frozened() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumesVolumeThroughputAttribute) bool { return v.Frozened }).(pulumi.BoolOutput)
+}
+
+// The ID of the attached resource in UUID format.
+func (o GetVolumesVolumeThroughputAttributeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesVolumeThroughputAttribute) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IOPS.
+func (o GetVolumesVolumeThroughputAttributeOutput) TotalVal() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVolumesVolumeThroughputAttribute) int { return v.TotalVal }).(pulumi.IntOutput)
+}
+
+type GetVolumesVolumeThroughputAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesVolumeThroughputAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVolumesVolumeThroughputAttribute)(nil)).Elem()
+}
+
+func (o GetVolumesVolumeThroughputAttributeArrayOutput) ToGetVolumesVolumeThroughputAttributeArrayOutput() GetVolumesVolumeThroughputAttributeArrayOutput {
+	return o
+}
+
+func (o GetVolumesVolumeThroughputAttributeArrayOutput) ToGetVolumesVolumeThroughputAttributeArrayOutputWithContext(ctx context.Context) GetVolumesVolumeThroughputAttributeArrayOutput {
+	return o
+}
+
+func (o GetVolumesVolumeThroughputAttributeArrayOutput) Index(i pulumi.IntInput) GetVolumesVolumeThroughputAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVolumesVolumeThroughputAttribute {
+		return vs[0].([]GetVolumesVolumeThroughputAttribute)[vs[1].(int)]
+	}).(GetVolumesVolumeThroughputAttributeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeAttachmentInput)(nil)).Elem(), VolumeAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeAttachmentArrayInput)(nil)).Elem(), VolumeAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeIopsAttributeInput)(nil)).Elem(), VolumeIopsAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeIopsAttributeArrayInput)(nil)).Elem(), VolumeIopsAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeLinkInput)(nil)).Elem(), VolumeLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeLinkArrayInput)(nil)).Elem(), VolumeLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeThroughputAttributeInput)(nil)).Elem(), VolumeThroughputAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeThroughputAttributeArrayInput)(nil)).Elem(), VolumeThroughputAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeInput)(nil)).Elem(), GetVolumesVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeArrayInput)(nil)).Elem(), GetVolumesVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeAttachmentInput)(nil)).Elem(), GetVolumesVolumeAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeAttachmentArrayInput)(nil)).Elem(), GetVolumesVolumeAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeIopsAttributeInput)(nil)).Elem(), GetVolumesVolumeIopsAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeIopsAttributeArrayInput)(nil)).Elem(), GetVolumesVolumeIopsAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeLinkInput)(nil)).Elem(), GetVolumesVolumeLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeLinkArrayInput)(nil)).Elem(), GetVolumesVolumeLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeThroughputAttributeInput)(nil)).Elem(), GetVolumesVolumeThroughputAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVolumesVolumeThroughputAttributeArrayInput)(nil)).Elem(), GetVolumesVolumeThroughputAttributeArray{})
 	pulumi.RegisterOutputType(VolumeAttachmentOutput{})
 	pulumi.RegisterOutputType(VolumeAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(VolumeIopsAttributeOutput{})
+	pulumi.RegisterOutputType(VolumeIopsAttributeArrayOutput{})
+	pulumi.RegisterOutputType(VolumeLinkOutput{})
+	pulumi.RegisterOutputType(VolumeLinkArrayOutput{})
+	pulumi.RegisterOutputType(VolumeThroughputAttributeOutput{})
+	pulumi.RegisterOutputType(VolumeThroughputAttributeArrayOutput{})
 	pulumi.RegisterOutputType(GetVolumesVolumeOutput{})
 	pulumi.RegisterOutputType(GetVolumesVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetVolumesVolumeAttachmentOutput{})
 	pulumi.RegisterOutputType(GetVolumesVolumeAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(GetVolumesVolumeIopsAttributeOutput{})
+	pulumi.RegisterOutputType(GetVolumesVolumeIopsAttributeArrayOutput{})
+	pulumi.RegisterOutputType(GetVolumesVolumeLinkOutput{})
+	pulumi.RegisterOutputType(GetVolumesVolumeLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetVolumesVolumeThroughputAttributeOutput{})
+	pulumi.RegisterOutputType(GetVolumesVolumeThroughputAttributeArrayOutput{})
 }

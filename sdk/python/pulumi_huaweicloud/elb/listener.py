@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ListenerArgs', 'Listener']
 
@@ -18,46 +20,67 @@ class ListenerArgs:
                  protocol: pulumi.Input[str],
                  protocol_port: pulumi.Input[int],
                  admin_state_up: Optional[pulumi.Input[bool]] = None,
+                 client_ca_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  connection_limit: Optional[pulumi.Input[int]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  http2_enable: Optional[pulumi.Input[bool]] = None,
+                 insert_headers: Optional[pulumi.Input['ListenerInsertHeadersArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sni_container_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 tenant_id: Optional[pulumi.Input[str]] = None):
+                 tenant_id: Optional[pulumi.Input[str]] = None,
+                 tls_ciphers_policy: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Listener resource.
-        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
-               creates a new listener.
-        :param pulumi.Input[str] protocol: The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-               creates a new listener.
-        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic. Changing this creates a
-               new listener.
-        :param pulumi.Input[int] connection_limit: The maximum number of connections allowed for the listener. The value ranges from
-               -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-               number of connections.
+        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener.
+        :param pulumi.Input[str] protocol: The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
+        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic.
+        :param pulumi.Input[str] client_ca_tls_container_ref: Specifies the ID of the CA certificate used by the listener. This
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
-               Changing this creates a new listener.
         :param pulumi.Input[str] default_tls_container_ref: Specifies the ID of the server certificate used by the listener. This
-               parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] http2_enable: Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-               only when the protocol is set to *TERMINATED_HTTPS*.
+               only when the `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input['ListenerInsertHeadersArgs'] insert_headers: Specifies whether to insert HTTP extension headers and sent them to backend servers.
+               All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+               servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+               set to **TERMINATED_HTTPS**.
+               The insert_headers structure is documented below.
         :param pulumi.Input[str] name: Human-readable name for the listener. Does not have to be unique.
+        :param pulumi.Input[str] protection_reason: The reason to enable modification protection. This parameter is valid only when
+               `protection_status` is set to **consoleProtection**.
+        :param pulumi.Input[str] protection_status: Specifies whether modification protection is enabled. Value options:
+               + **nonProtection (default)**: Modification protection is not enabled.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
         :param pulumi.Input[str] region: The region in which to create the listener resource. If omitted, the
                provider-level region will be used. Changing this creates a new listener.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] sni_container_refs: Lists the IDs of SNI certificates (server certificates with a domain name)
-               used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The key/value pairs to associate with the listener.
+               used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the reason to enable modification protection.
+        :param pulumi.Input[str] tls_ciphers_policy: Specifies the security policy used by the listener. This parameter takes effect
+               only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+               **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
         """
         pulumi.set(__self__, "loadbalancer_id", loadbalancer_id)
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "protocol_port", protocol_port)
         if admin_state_up is not None:
+            warnings.warn("""admin_state_up is deprecated""", DeprecationWarning)
+            pulumi.log.warn("""admin_state_up is deprecated: admin_state_up is deprecated""")
+        if admin_state_up is not None:
             pulumi.set(__self__, "admin_state_up", admin_state_up)
+        if client_ca_tls_container_ref is not None:
+            pulumi.set(__self__, "client_ca_tls_container_ref", client_ca_tls_container_ref)
+        if connection_limit is not None:
+            warnings.warn("""connection_limit is deprecated""", DeprecationWarning)
+            pulumi.log.warn("""connection_limit is deprecated: connection_limit is deprecated""")
         if connection_limit is not None:
             pulumi.set(__self__, "connection_limit", connection_limit)
         if default_pool_id is not None:
@@ -68,8 +91,14 @@ class ListenerArgs:
             pulumi.set(__self__, "description", description)
         if http2_enable is not None:
             pulumi.set(__self__, "http2_enable", http2_enable)
+        if insert_headers is not None:
+            pulumi.set(__self__, "insert_headers", insert_headers)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if protection_reason is not None:
+            pulumi.set(__self__, "protection_reason", protection_reason)
+        if protection_status is not None:
+            pulumi.set(__self__, "protection_status", protection_status)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if sni_container_refs is not None:
@@ -81,13 +110,14 @@ class ListenerArgs:
             pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if tls_ciphers_policy is not None:
+            pulumi.set(__self__, "tls_ciphers_policy", tls_ciphers_policy)
 
     @property
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> pulumi.Input[str]:
         """
-        The load balancer on which to provision this listener. Changing this
-        creates a new listener.
+        The load balancer on which to provision this listener.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -99,8 +129,7 @@ class ListenerArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-        creates a new listener.
+        The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "protocol")
 
@@ -112,8 +141,7 @@ class ListenerArgs:
     @pulumi.getter(name="protocolPort")
     def protocol_port(self) -> pulumi.Input[int]:
         """
-        The port on which to listen for client traffic. Changing this creates a
-        new listener.
+        The port on which to listen for client traffic.
         """
         return pulumi.get(self, "protocol_port")
 
@@ -131,13 +159,21 @@ class ListenerArgs:
         pulumi.set(self, "admin_state_up", value)
 
     @property
+    @pulumi.getter(name="clientCaTlsContainerRef")
+    def client_ca_tls_container_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ID of the CA certificate used by the listener. This
+        parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+        """
+        return pulumi.get(self, "client_ca_tls_container_ref")
+
+    @client_ca_tls_container_ref.setter
+    def client_ca_tls_container_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_ca_tls_container_ref", value)
+
+    @property
     @pulumi.getter(name="connectionLimit")
     def connection_limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum number of connections allowed for the listener. The value ranges from
-        -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-        number of connections.
-        """
         return pulumi.get(self, "connection_limit")
 
     @connection_limit.setter
@@ -149,7 +185,6 @@ class ListenerArgs:
     def default_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the default pool with which the listener is associated.
-        Changing this creates a new listener.
         """
         return pulumi.get(self, "default_pool_id")
 
@@ -162,7 +197,7 @@ class ListenerArgs:
     def default_tls_container_ref(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of the server certificate used by the listener. This
-        parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+        parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "default_tls_container_ref")
 
@@ -187,13 +222,29 @@ class ListenerArgs:
     def http2_enable(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-        only when the protocol is set to *TERMINATED_HTTPS*.
+        only when the `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "http2_enable")
 
     @http2_enable.setter
     def http2_enable(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "http2_enable", value)
+
+    @property
+    @pulumi.getter(name="insertHeaders")
+    def insert_headers(self) -> Optional[pulumi.Input['ListenerInsertHeadersArgs']]:
+        """
+        Specifies whether to insert HTTP extension headers and sent them to backend servers.
+        All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+        servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+        set to **TERMINATED_HTTPS**.
+        The insert_headers structure is documented below.
+        """
+        return pulumi.get(self, "insert_headers")
+
+    @insert_headers.setter
+    def insert_headers(self, value: Optional[pulumi.Input['ListenerInsertHeadersArgs']]):
+        pulumi.set(self, "insert_headers", value)
 
     @property
     @pulumi.getter
@@ -206,6 +257,33 @@ class ListenerArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reason to enable modification protection. This parameter is valid only when
+        `protection_status` is set to **consoleProtection**.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @protection_reason.setter
+    def protection_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_reason", value)
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether modification protection is enabled. Value options:
+        + **nonProtection (default)**: Modification protection is not enabled.
+        + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @protection_status.setter
+    def protection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_status", value)
 
     @property
     @pulumi.getter
@@ -225,7 +303,7 @@ class ListenerArgs:
     def sni_container_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Lists the IDs of SNI certificates (server certificates with a domain name)
-        used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+        used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "sni_container_refs")
 
@@ -237,7 +315,7 @@ class ListenerArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The key/value pairs to associate with the listener.
+        Specifies the reason to enable modification protection.
         """
         return pulumi.get(self, "tags")
 
@@ -254,53 +332,94 @@ class ListenerArgs:
     def tenant_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tenant_id", value)
 
+    @property
+    @pulumi.getter(name="tlsCiphersPolicy")
+    def tls_ciphers_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the security policy used by the listener. This parameter takes effect
+        only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+        **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+        """
+        return pulumi.get(self, "tls_ciphers_policy")
+
+    @tls_ciphers_policy.setter
+    def tls_ciphers_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ciphers_policy", value)
+
 
 @pulumi.input_type
 class _ListenerState:
     def __init__(__self__, *,
                  admin_state_up: Optional[pulumi.Input[bool]] = None,
+                 client_ca_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  connection_limit: Optional[pulumi.Input[int]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  http2_enable: Optional[pulumi.Input[bool]] = None,
+                 insert_headers: Optional[pulumi.Input['ListenerInsertHeadersArgs']] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_port: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sni_container_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 tenant_id: Optional[pulumi.Input[str]] = None):
+                 tenant_id: Optional[pulumi.Input[str]] = None,
+                 tls_ciphers_policy: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Listener resources.
-        :param pulumi.Input[int] connection_limit: The maximum number of connections allowed for the listener. The value ranges from
-               -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-               number of connections.
+        :param pulumi.Input[str] client_ca_tls_container_ref: Specifies the ID of the CA certificate used by the listener. This
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[str] created_at: The creation time of the listener.
         :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
-               Changing this creates a new listener.
         :param pulumi.Input[str] default_tls_container_ref: Specifies the ID of the server certificate used by the listener. This
-               parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] http2_enable: Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-               only when the protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
-               creates a new listener.
+               only when the `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input['ListenerInsertHeadersArgs'] insert_headers: Specifies whether to insert HTTP extension headers and sent them to backend servers.
+               All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+               servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+               set to **TERMINATED_HTTPS**.
+               The insert_headers structure is documented below.
+        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener.
         :param pulumi.Input[str] name: Human-readable name for the listener. Does not have to be unique.
-        :param pulumi.Input[str] protocol: The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-               creates a new listener.
-        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic. Changing this creates a
-               new listener.
+        :param pulumi.Input[str] protection_reason: The reason to enable modification protection. This parameter is valid only when
+               `protection_status` is set to **consoleProtection**.
+        :param pulumi.Input[str] protection_status: Specifies whether modification protection is enabled. Value options:
+               + **nonProtection (default)**: Modification protection is not enabled.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        :param pulumi.Input[str] protocol: The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
+        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic.
         :param pulumi.Input[str] region: The region in which to create the listener resource. If omitted, the
                provider-level region will be used. Changing this creates a new listener.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] sni_container_refs: Lists the IDs of SNI certificates (server certificates with a domain name)
-               used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The key/value pairs to associate with the listener.
+               used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the reason to enable modification protection.
+        :param pulumi.Input[str] tls_ciphers_policy: Specifies the security policy used by the listener. This parameter takes effect
+               only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+               **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+        :param pulumi.Input[str] updated_at: The update time of the listener.
         """
         if admin_state_up is not None:
+            warnings.warn("""admin_state_up is deprecated""", DeprecationWarning)
+            pulumi.log.warn("""admin_state_up is deprecated: admin_state_up is deprecated""")
+        if admin_state_up is not None:
             pulumi.set(__self__, "admin_state_up", admin_state_up)
+        if client_ca_tls_container_ref is not None:
+            pulumi.set(__self__, "client_ca_tls_container_ref", client_ca_tls_container_ref)
+        if connection_limit is not None:
+            warnings.warn("""connection_limit is deprecated""", DeprecationWarning)
+            pulumi.log.warn("""connection_limit is deprecated: connection_limit is deprecated""")
         if connection_limit is not None:
             pulumi.set(__self__, "connection_limit", connection_limit)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
         if default_pool_id is not None:
             pulumi.set(__self__, "default_pool_id", default_pool_id)
         if default_tls_container_ref is not None:
@@ -309,10 +428,16 @@ class _ListenerState:
             pulumi.set(__self__, "description", description)
         if http2_enable is not None:
             pulumi.set(__self__, "http2_enable", http2_enable)
+        if insert_headers is not None:
+            pulumi.set(__self__, "insert_headers", insert_headers)
         if loadbalancer_id is not None:
             pulumi.set(__self__, "loadbalancer_id", loadbalancer_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if protection_reason is not None:
+            pulumi.set(__self__, "protection_reason", protection_reason)
+        if protection_status is not None:
+            pulumi.set(__self__, "protection_status", protection_status)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
         if protocol_port is not None:
@@ -328,6 +453,10 @@ class _ListenerState:
             pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if tls_ciphers_policy is not None:
+            pulumi.set(__self__, "tls_ciphers_policy", tls_ciphers_policy)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="adminStateUp")
@@ -339,13 +468,21 @@ class _ListenerState:
         pulumi.set(self, "admin_state_up", value)
 
     @property
+    @pulumi.getter(name="clientCaTlsContainerRef")
+    def client_ca_tls_container_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ID of the CA certificate used by the listener. This
+        parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+        """
+        return pulumi.get(self, "client_ca_tls_container_ref")
+
+    @client_ca_tls_container_ref.setter
+    def client_ca_tls_container_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_ca_tls_container_ref", value)
+
+    @property
     @pulumi.getter(name="connectionLimit")
     def connection_limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum number of connections allowed for the listener. The value ranges from
-        -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-        number of connections.
-        """
         return pulumi.get(self, "connection_limit")
 
     @connection_limit.setter
@@ -353,11 +490,22 @@ class _ListenerState:
         pulumi.set(self, "connection_limit", value)
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The creation time of the listener.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
     @pulumi.getter(name="defaultPoolId")
     def default_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the default pool with which the listener is associated.
-        Changing this creates a new listener.
         """
         return pulumi.get(self, "default_pool_id")
 
@@ -370,7 +518,7 @@ class _ListenerState:
     def default_tls_container_ref(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of the server certificate used by the listener. This
-        parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+        parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "default_tls_container_ref")
 
@@ -395,7 +543,7 @@ class _ListenerState:
     def http2_enable(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-        only when the protocol is set to *TERMINATED_HTTPS*.
+        only when the `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "http2_enable")
 
@@ -404,11 +552,26 @@ class _ListenerState:
         pulumi.set(self, "http2_enable", value)
 
     @property
+    @pulumi.getter(name="insertHeaders")
+    def insert_headers(self) -> Optional[pulumi.Input['ListenerInsertHeadersArgs']]:
+        """
+        Specifies whether to insert HTTP extension headers and sent them to backend servers.
+        All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+        servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+        set to **TERMINATED_HTTPS**.
+        The insert_headers structure is documented below.
+        """
+        return pulumi.get(self, "insert_headers")
+
+    @insert_headers.setter
+    def insert_headers(self, value: Optional[pulumi.Input['ListenerInsertHeadersArgs']]):
+        pulumi.set(self, "insert_headers", value)
+
+    @property
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load balancer on which to provision this listener. Changing this
-        creates a new listener.
+        The load balancer on which to provision this listener.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -429,11 +592,37 @@ class _ListenerState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reason to enable modification protection. This parameter is valid only when
+        `protection_status` is set to **consoleProtection**.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @protection_reason.setter
+    def protection_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_reason", value)
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether modification protection is enabled. Value options:
+        + **nonProtection (default)**: Modification protection is not enabled.
+        + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @protection_status.setter
+    def protection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protection_status", value)
+
+    @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-        creates a new listener.
+        The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "protocol")
 
@@ -445,8 +634,7 @@ class _ListenerState:
     @pulumi.getter(name="protocolPort")
     def protocol_port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port on which to listen for client traffic. Changing this creates a
-        new listener.
+        The port on which to listen for client traffic.
         """
         return pulumi.get(self, "protocol_port")
 
@@ -472,7 +660,7 @@ class _ListenerState:
     def sni_container_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Lists the IDs of SNI certificates (server certificates with a domain name)
-        used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+        used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "sni_container_refs")
 
@@ -484,7 +672,7 @@ class _ListenerState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The key/value pairs to associate with the listener.
+        Specifies the reason to enable modification protection.
         """
         return pulumi.get(self, "tags")
 
@@ -501,6 +689,32 @@ class _ListenerState:
     def tenant_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tenant_id", value)
 
+    @property
+    @pulumi.getter(name="tlsCiphersPolicy")
+    def tls_ciphers_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the security policy used by the listener. This parameter takes effect
+        only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+        **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+        """
+        return pulumi.get(self, "tls_ciphers_policy")
+
+    @tls_ciphers_policy.setter
+    def tls_ciphers_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ciphers_policy", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The update time of the listener.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
 
 class Listener(pulumi.CustomResource):
     @overload
@@ -508,19 +722,24 @@ class Listener(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_state_up: Optional[pulumi.Input[bool]] = None,
+                 client_ca_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  connection_limit: Optional[pulumi.Input[int]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  http2_enable: Optional[pulumi.Input[bool]] = None,
+                 insert_headers: Optional[pulumi.Input[pulumi.InputType['ListenerInsertHeadersArgs']]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_port: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sni_container_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 tls_ciphers_policy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages an ELB listener resource within HuaweiCloud.
@@ -542,36 +761,44 @@ class Listener(pulumi.CustomResource):
 
         ## Import
 
-        ELB listener can be imported using the listener ID, e.g. bash
+        ELB listener can be imported using the `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:Elb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:Elb/listener:Listener test <id>
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] connection_limit: The maximum number of connections allowed for the listener. The value ranges from
-               -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-               number of connections.
+        :param pulumi.Input[str] client_ca_tls_container_ref: Specifies the ID of the CA certificate used by the listener. This
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
-               Changing this creates a new listener.
         :param pulumi.Input[str] default_tls_container_ref: Specifies the ID of the server certificate used by the listener. This
-               parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] http2_enable: Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-               only when the protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
-               creates a new listener.
+               only when the `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[pulumi.InputType['ListenerInsertHeadersArgs']] insert_headers: Specifies whether to insert HTTP extension headers and sent them to backend servers.
+               All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+               servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+               set to **TERMINATED_HTTPS**.
+               The insert_headers structure is documented below.
+        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener.
         :param pulumi.Input[str] name: Human-readable name for the listener. Does not have to be unique.
-        :param pulumi.Input[str] protocol: The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-               creates a new listener.
-        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic. Changing this creates a
-               new listener.
+        :param pulumi.Input[str] protection_reason: The reason to enable modification protection. This parameter is valid only when
+               `protection_status` is set to **consoleProtection**.
+        :param pulumi.Input[str] protection_status: Specifies whether modification protection is enabled. Value options:
+               + **nonProtection (default)**: Modification protection is not enabled.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        :param pulumi.Input[str] protocol: The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
+        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic.
         :param pulumi.Input[str] region: The region in which to create the listener resource. If omitted, the
                provider-level region will be used. Changing this creates a new listener.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] sni_container_refs: Lists the IDs of SNI certificates (server certificates with a domain name)
-               used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The key/value pairs to associate with the listener.
+               used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the reason to enable modification protection.
+        :param pulumi.Input[str] tls_ciphers_policy: Specifies the security policy used by the listener. This parameter takes effect
+               only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+               **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
         """
         ...
     @overload
@@ -599,10 +826,10 @@ class Listener(pulumi.CustomResource):
 
         ## Import
 
-        ELB listener can be imported using the listener ID, e.g. bash
+        ELB listener can be imported using the `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:Elb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:Elb/listener:Listener test <id>
         ```
 
         :param str resource_name: The name of the resource.
@@ -621,19 +848,24 @@ class Listener(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_state_up: Optional[pulumi.Input[bool]] = None,
+                 client_ca_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  connection_limit: Optional[pulumi.Input[int]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  http2_enable: Optional[pulumi.Input[bool]] = None,
+                 insert_headers: Optional[pulumi.Input[pulumi.InputType['ListenerInsertHeadersArgs']]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 protection_reason: Optional[pulumi.Input[str]] = None,
+                 protection_status: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_port: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sni_container_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 tls_ciphers_policy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -643,16 +875,26 @@ class Listener(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ListenerArgs.__new__(ListenerArgs)
 
+            if admin_state_up is not None and not opts.urn:
+                warnings.warn("""admin_state_up is deprecated""", DeprecationWarning)
+                pulumi.log.warn("""admin_state_up is deprecated: admin_state_up is deprecated""")
             __props__.__dict__["admin_state_up"] = admin_state_up
+            __props__.__dict__["client_ca_tls_container_ref"] = client_ca_tls_container_ref
+            if connection_limit is not None and not opts.urn:
+                warnings.warn("""connection_limit is deprecated""", DeprecationWarning)
+                pulumi.log.warn("""connection_limit is deprecated: connection_limit is deprecated""")
             __props__.__dict__["connection_limit"] = connection_limit
             __props__.__dict__["default_pool_id"] = default_pool_id
             __props__.__dict__["default_tls_container_ref"] = default_tls_container_ref
             __props__.__dict__["description"] = description
             __props__.__dict__["http2_enable"] = http2_enable
+            __props__.__dict__["insert_headers"] = insert_headers
             if loadbalancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'loadbalancer_id'")
             __props__.__dict__["loadbalancer_id"] = loadbalancer_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["protection_reason"] = protection_reason
+            __props__.__dict__["protection_status"] = protection_status
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
@@ -666,6 +908,9 @@ class Listener(pulumi.CustomResource):
                 warnings.warn("""tenant_id is deprecated""", DeprecationWarning)
                 pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
             __props__.__dict__["tenant_id"] = tenant_id
+            __props__.__dict__["tls_ciphers_policy"] = tls_ciphers_policy
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["updated_at"] = None
         super(Listener, __self__).__init__(
             'huaweicloud:Elb/listener:Listener',
             resource_name,
@@ -677,19 +922,26 @@ class Listener(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             admin_state_up: Optional[pulumi.Input[bool]] = None,
+            client_ca_tls_container_ref: Optional[pulumi.Input[str]] = None,
             connection_limit: Optional[pulumi.Input[int]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
             default_pool_id: Optional[pulumi.Input[str]] = None,
             default_tls_container_ref: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             http2_enable: Optional[pulumi.Input[bool]] = None,
+            insert_headers: Optional[pulumi.Input[pulumi.InputType['ListenerInsertHeadersArgs']]] = None,
             loadbalancer_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            protection_reason: Optional[pulumi.Input[str]] = None,
+            protection_status: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             protocol_port: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
             sni_container_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            tenant_id: Optional[pulumi.Input[str]] = None) -> 'Listener':
+            tenant_id: Optional[pulumi.Input[str]] = None,
+            tls_ciphers_policy: Optional[pulumi.Input[str]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None) -> 'Listener':
         """
         Get an existing Listener resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -697,47 +949,64 @@ class Listener(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] connection_limit: The maximum number of connections allowed for the listener. The value ranges from
-               -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-               number of connections.
+        :param pulumi.Input[str] client_ca_tls_container_ref: Specifies the ID of the CA certificate used by the listener. This
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[str] created_at: The creation time of the listener.
         :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
-               Changing this creates a new listener.
         :param pulumi.Input[str] default_tls_container_ref: Specifies the ID of the server certificate used by the listener. This
-               parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+               parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] http2_enable: Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-               only when the protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
-               creates a new listener.
+               only when the `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[pulumi.InputType['ListenerInsertHeadersArgs']] insert_headers: Specifies whether to insert HTTP extension headers and sent them to backend servers.
+               All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+               servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+               set to **TERMINATED_HTTPS**.
+               The insert_headers structure is documented below.
+        :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener.
         :param pulumi.Input[str] name: Human-readable name for the listener. Does not have to be unique.
-        :param pulumi.Input[str] protocol: The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-               creates a new listener.
-        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic. Changing this creates a
-               new listener.
+        :param pulumi.Input[str] protection_reason: The reason to enable modification protection. This parameter is valid only when
+               `protection_status` is set to **consoleProtection**.
+        :param pulumi.Input[str] protection_status: Specifies whether modification protection is enabled. Value options:
+               + **nonProtection (default)**: Modification protection is not enabled.
+               + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        :param pulumi.Input[str] protocol: The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
+        :param pulumi.Input[int] protocol_port: The port on which to listen for client traffic.
         :param pulumi.Input[str] region: The region in which to create the listener resource. If omitted, the
                provider-level region will be used. Changing this creates a new listener.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] sni_container_refs: Lists the IDs of SNI certificates (server certificates with a domain name)
-               used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The key/value pairs to associate with the listener.
+               used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the reason to enable modification protection.
+        :param pulumi.Input[str] tls_ciphers_policy: Specifies the security policy used by the listener. This parameter takes effect
+               only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+               **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+        :param pulumi.Input[str] updated_at: The update time of the listener.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ListenerState.__new__(_ListenerState)
 
         __props__.__dict__["admin_state_up"] = admin_state_up
+        __props__.__dict__["client_ca_tls_container_ref"] = client_ca_tls_container_ref
         __props__.__dict__["connection_limit"] = connection_limit
+        __props__.__dict__["created_at"] = created_at
         __props__.__dict__["default_pool_id"] = default_pool_id
         __props__.__dict__["default_tls_container_ref"] = default_tls_container_ref
         __props__.__dict__["description"] = description
         __props__.__dict__["http2_enable"] = http2_enable
+        __props__.__dict__["insert_headers"] = insert_headers
         __props__.__dict__["loadbalancer_id"] = loadbalancer_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["protection_reason"] = protection_reason
+        __props__.__dict__["protection_status"] = protection_status
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["protocol_port"] = protocol_port
         __props__.__dict__["region"] = region
         __props__.__dict__["sni_container_refs"] = sni_container_refs
         __props__.__dict__["tags"] = tags
         __props__.__dict__["tenant_id"] = tenant_id
+        __props__.__dict__["tls_ciphers_policy"] = tls_ciphers_policy
+        __props__.__dict__["updated_at"] = updated_at
         return Listener(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -746,30 +1015,41 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "admin_state_up")
 
     @property
+    @pulumi.getter(name="clientCaTlsContainerRef")
+    def client_ca_tls_container_ref(self) -> pulumi.Output[str]:
+        """
+        Specifies the ID of the CA certificate used by the listener. This
+        parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+        """
+        return pulumi.get(self, "client_ca_tls_container_ref")
+
+    @property
     @pulumi.getter(name="connectionLimit")
     def connection_limit(self) -> pulumi.Output[int]:
-        """
-        The maximum number of connections allowed for the listener. The value ranges from
-        -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-        number of connections.
-        """
         return pulumi.get(self, "connection_limit")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The creation time of the listener.
+        """
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="defaultPoolId")
     def default_pool_id(self) -> pulumi.Output[str]:
         """
         The ID of the default pool with which the listener is associated.
-        Changing this creates a new listener.
         """
         return pulumi.get(self, "default_pool_id")
 
     @property
     @pulumi.getter(name="defaultTlsContainerRef")
-    def default_tls_container_ref(self) -> pulumi.Output[Optional[str]]:
+    def default_tls_container_ref(self) -> pulumi.Output[str]:
         """
         Specifies the ID of the server certificate used by the listener. This
-        parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+        parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "default_tls_container_ref")
 
@@ -786,16 +1066,27 @@ class Listener(pulumi.CustomResource):
     def http2_enable(self) -> pulumi.Output[Optional[bool]]:
         """
         Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-        only when the protocol is set to *TERMINATED_HTTPS*.
+        only when the `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "http2_enable")
+
+    @property
+    @pulumi.getter(name="insertHeaders")
+    def insert_headers(self) -> pulumi.Output['outputs.ListenerInsertHeaders']:
+        """
+        Specifies whether to insert HTTP extension headers and sent them to backend servers.
+        All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+        servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+        set to **TERMINATED_HTTPS**.
+        The insert_headers structure is documented below.
+        """
+        return pulumi.get(self, "insert_headers")
 
     @property
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> pulumi.Output[str]:
         """
-        The load balancer on which to provision this listener. Changing this
-        creates a new listener.
+        The load balancer on which to provision this listener.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -808,11 +1099,29 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> pulumi.Output[Optional[str]]:
+        """
+        The reason to enable modification protection. This parameter is valid only when
+        `protection_status` is set to **consoleProtection**.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> pulumi.Output[str]:
+        """
+        Specifies whether modification protection is enabled. Value options:
+        + **nonProtection (default)**: Modification protection is not enabled.
+        + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @property
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-        creates a new listener.
+        The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "protocol")
 
@@ -820,8 +1129,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="protocolPort")
     def protocol_port(self) -> pulumi.Output[int]:
         """
-        The port on which to listen for client traffic. Changing this creates a
-        new listener.
+        The port on which to listen for client traffic.
         """
         return pulumi.get(self, "protocol_port")
 
@@ -836,10 +1144,10 @@ class Listener(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sniContainerRefs")
-    def sni_container_refs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def sni_container_refs(self) -> pulumi.Output[Sequence[str]]:
         """
         Lists the IDs of SNI certificates (server certificates with a domain name)
-        used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+        used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
         """
         return pulumi.get(self, "sni_container_refs")
 
@@ -847,7 +1155,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The key/value pairs to associate with the listener.
+        Specifies the reason to enable modification protection.
         """
         return pulumi.get(self, "tags")
 
@@ -855,4 +1163,22 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "tenant_id")
+
+    @property
+    @pulumi.getter(name="tlsCiphersPolicy")
+    def tls_ciphers_policy(self) -> pulumi.Output[str]:
+        """
+        Specifies the security policy used by the listener. This parameter takes effect
+        only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+        **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+        """
+        return pulumi.get(self, "tls_ciphers_policy")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        The update time of the listener.
+        """
+        return pulumi.get(self, "updated_at")
 

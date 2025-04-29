@@ -541,12 +541,12 @@ type Cluster struct {
 
 	// Specifies the informations about analysis core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisCoreNodes ClusterAnalysisCoreNodesPtrOutput `pulumi:"analysisCoreNodes"`
 	// Specifies the informations about analysis task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisTaskNodes ClusterAnalysisTaskNodesPtrOutput `pulumi:"analysisTaskNodes"`
 	// Specifies the availability zone in which to create the cluster.
@@ -574,8 +574,8 @@ type Cluster struct {
 	ComponentLists pulumi.StringArrayOutput `pulumi:"componentLists"`
 	// The cluster creation time, in RFC-3339 format.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
-	// Specifies the informations about custom nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `customNodes` is documented below.
+	// Specifies the informations about custom nodes in the MapReduce cluster.\
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	CustomNodes ClusterCustomNodeArrayOutput `pulumi:"customNodes"`
 	// Specifies the EIP ID which bound to the MapReduce cluster.
@@ -600,7 +600,7 @@ type Cluster struct {
 	// The IP address of the master node.
 	MasterNodeIp pulumi.StringOutput `pulumi:"masterNodeIp"`
 	// Specifies the informations about master nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `masterNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	MasterNodes ClusterMasterNodesOutput `pulumi:"masterNodes"`
 	// Specifies the name of a bootstrap action script.
@@ -650,12 +650,12 @@ type Cluster struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the informations about streaming core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingCoreNodes ClusterStreamingCoreNodesPtrOutput `pulumi:"streamingCoreNodes"`
 	// Specifies the informations about streaming task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingTaskNodes ClusterStreamingTaskNodesPtrOutput `pulumi:"streamingTaskNodes"`
 	// Specifies the network ID of a subnet which bound to the MapReduce cluster.
@@ -743,12 +743,12 @@ func GetCluster(ctx *pulumi.Context,
 type clusterState struct {
 	// Specifies the informations about analysis core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisCoreNodes *ClusterAnalysisCoreNodes `pulumi:"analysisCoreNodes"`
 	// Specifies the informations about analysis task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisTaskNodes *ClusterAnalysisTaskNodes `pulumi:"analysisTaskNodes"`
 	// Specifies the availability zone in which to create the cluster.
@@ -776,8 +776,8 @@ type clusterState struct {
 	ComponentLists []string `pulumi:"componentLists"`
 	// The cluster creation time, in RFC-3339 format.
 	CreateTime *string `pulumi:"createTime"`
-	// Specifies the informations about custom nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `customNodes` is documented below.
+	// Specifies the informations about custom nodes in the MapReduce cluster.\
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	CustomNodes []ClusterCustomNode `pulumi:"customNodes"`
 	// Specifies the EIP ID which bound to the MapReduce cluster.
@@ -802,7 +802,7 @@ type clusterState struct {
 	// The IP address of the master node.
 	MasterNodeIp *string `pulumi:"masterNodeIp"`
 	// Specifies the informations about master nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `masterNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	MasterNodes *ClusterMasterNodes `pulumi:"masterNodes"`
 	// Specifies the name of a bootstrap action script.
@@ -852,12 +852,12 @@ type clusterState struct {
 	Status *string `pulumi:"status"`
 	// Specifies the informations about streaming core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingCoreNodes *ClusterStreamingCoreNodes `pulumi:"streamingCoreNodes"`
 	// Specifies the informations about streaming task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingTaskNodes *ClusterStreamingTaskNodes `pulumi:"streamingTaskNodes"`
 	// Specifies the network ID of a subnet which bound to the MapReduce cluster.
@@ -895,12 +895,12 @@ type clusterState struct {
 type ClusterState struct {
 	// Specifies the informations about analysis core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisCoreNodes ClusterAnalysisCoreNodesPtrInput
 	// Specifies the informations about analysis task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisTaskNodes ClusterAnalysisTaskNodesPtrInput
 	// Specifies the availability zone in which to create the cluster.
@@ -928,8 +928,8 @@ type ClusterState struct {
 	ComponentLists pulumi.StringArrayInput
 	// The cluster creation time, in RFC-3339 format.
 	CreateTime pulumi.StringPtrInput
-	// Specifies the informations about custom nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `customNodes` is documented below.
+	// Specifies the informations about custom nodes in the MapReduce cluster.\
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	CustomNodes ClusterCustomNodeArrayInput
 	// Specifies the EIP ID which bound to the MapReduce cluster.
@@ -954,7 +954,7 @@ type ClusterState struct {
 	// The IP address of the master node.
 	MasterNodeIp pulumi.StringPtrInput
 	// Specifies the informations about master nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `masterNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	MasterNodes ClusterMasterNodesPtrInput
 	// Specifies the name of a bootstrap action script.
@@ -1004,12 +1004,12 @@ type ClusterState struct {
 	Status pulumi.StringPtrInput
 	// Specifies the informations about streaming core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingCoreNodes ClusterStreamingCoreNodesPtrInput
 	// Specifies the informations about streaming task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingTaskNodes ClusterStreamingTaskNodesPtrInput
 	// Specifies the network ID of a subnet which bound to the MapReduce cluster.
@@ -1051,12 +1051,12 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// Specifies the informations about analysis core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisCoreNodes *ClusterAnalysisCoreNodes `pulumi:"analysisCoreNodes"`
 	// Specifies the informations about analysis task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisTaskNodes *ClusterAnalysisTaskNodes `pulumi:"analysisTaskNodes"`
 	// Specifies the availability zone in which to create the cluster.
@@ -1080,8 +1080,8 @@ type clusterArgs struct {
 	// the cluster, please following [reference](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
 	// Changing this will create a new MapReduce cluster resource.
 	ComponentLists []string `pulumi:"componentLists"`
-	// Specifies the informations about custom nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `customNodes` is documented below.
+	// Specifies the informations about custom nodes in the MapReduce cluster.\
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	CustomNodes []ClusterCustomNode `pulumi:"customNodes"`
 	// Specifies the EIP ID which bound to the MapReduce cluster.
@@ -1104,7 +1104,7 @@ type clusterArgs struct {
 	// characters: `!?,.:-_{}[]@$^+=/`. Changing this will create a new MapReduce cluster resource.
 	ManagerAdminPass string `pulumi:"managerAdminPass"`
 	// Specifies the informations about master nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `masterNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	MasterNodes ClusterMasterNodes `pulumi:"masterNodes"`
 	// Specifies the name of a bootstrap action script.
@@ -1150,12 +1150,12 @@ type clusterArgs struct {
 	SmnNotify *ClusterSmnNotify `pulumi:"smnNotify"`
 	// Specifies the informations about streaming core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingCoreNodes *ClusterStreamingCoreNodes `pulumi:"streamingCoreNodes"`
 	// Specifies the informations about streaming task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingTaskNodes *ClusterStreamingTaskNodes `pulumi:"streamingTaskNodes"`
 	// Specifies the network ID of a subnet which bound to the MapReduce cluster.
@@ -1190,12 +1190,12 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// Specifies the informations about analysis core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisCoreNodes ClusterAnalysisCoreNodesPtrInput
 	// Specifies the informations about analysis task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `analysisTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	AnalysisTaskNodes ClusterAnalysisTaskNodesPtrInput
 	// Specifies the availability zone in which to create the cluster.
@@ -1219,8 +1219,8 @@ type ClusterArgs struct {
 	// the cluster, please following [reference](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
 	// Changing this will create a new MapReduce cluster resource.
 	ComponentLists pulumi.StringArrayInput
-	// Specifies the informations about custom nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `customNodes` is documented below.
+	// Specifies the informations about custom nodes in the MapReduce cluster.\
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	CustomNodes ClusterCustomNodeArrayInput
 	// Specifies the EIP ID which bound to the MapReduce cluster.
@@ -1243,7 +1243,7 @@ type ClusterArgs struct {
 	// characters: `!?,.:-_{}[]@$^+=/`. Changing this will create a new MapReduce cluster resource.
 	ManagerAdminPass pulumi.StringInput
 	// Specifies the informations about master nodes in the MapReduce cluster.
-	// The `nodes` object structure of the `masterNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	MasterNodes ClusterMasterNodesInput
 	// Specifies the name of a bootstrap action script.
@@ -1289,12 +1289,12 @@ type ClusterArgs struct {
 	SmnNotify ClusterSmnNotifyPtrInput
 	// Specifies the informations about streaming core nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingCoreNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingCoreNodes ClusterStreamingCoreNodesPtrInput
 	// Specifies the informations about streaming task nodes in the
 	// MapReduce cluster.
-	// The `nodes` object structure of the `streamingTaskNodes` is documented below.
+	// The masterNodes structure is documented below.
 	// Changing this will create a new MapReduce cluster resource.
 	StreamingTaskNodes ClusterStreamingTaskNodesPtrInput
 	// Specifies the network ID of a subnet which bound to the MapReduce cluster.
@@ -1414,7 +1414,7 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 
 // Specifies the informations about analysis core nodes in the
 // MapReduce cluster.
-// The `nodes` object structure of the `analysisCoreNodes` is documented below.
+// The masterNodes structure is documented below.
 // Changing this will create a new MapReduce cluster resource.
 func (o ClusterOutput) AnalysisCoreNodes() ClusterAnalysisCoreNodesPtrOutput {
 	return o.ApplyT(func(v *Cluster) ClusterAnalysisCoreNodesPtrOutput { return v.AnalysisCoreNodes }).(ClusterAnalysisCoreNodesPtrOutput)
@@ -1422,7 +1422,7 @@ func (o ClusterOutput) AnalysisCoreNodes() ClusterAnalysisCoreNodesPtrOutput {
 
 // Specifies the informations about analysis task nodes in the
 // MapReduce cluster.
-// The `nodes` object structure of the `analysisTaskNodes` is documented below.
+// The masterNodes structure is documented below.
 // Changing this will create a new MapReduce cluster resource.
 func (o ClusterOutput) AnalysisTaskNodes() ClusterAnalysisTaskNodesPtrOutput {
 	return o.ApplyT(func(v *Cluster) ClusterAnalysisTaskNodesPtrOutput { return v.AnalysisTaskNodes }).(ClusterAnalysisTaskNodesPtrOutput)
@@ -1474,8 +1474,8 @@ func (o ClusterOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
-// Specifies the informations about custom nodes in the MapReduce cluster.
-// The `nodes` object structure of the `customNodes` is documented below.
+// Specifies the informations about custom nodes in the MapReduce cluster.\
+// The masterNodes structure is documented below.
 // Changing this will create a new MapReduce cluster resource.
 func (o ClusterOutput) CustomNodes() ClusterCustomNodeArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterCustomNodeArrayOutput { return v.CustomNodes }).(ClusterCustomNodeArrayOutput)
@@ -1521,7 +1521,7 @@ func (o ClusterOutput) MasterNodeIp() pulumi.StringOutput {
 }
 
 // Specifies the informations about master nodes in the MapReduce cluster.
-// The `nodes` object structure of the `masterNodes` is documented below.
+// The masterNodes structure is documented below.
 // Changing this will create a new MapReduce cluster resource.
 func (o ClusterOutput) MasterNodes() ClusterMasterNodesOutput {
 	return o.ApplyT(func(v *Cluster) ClusterMasterNodesOutput { return v.MasterNodes }).(ClusterMasterNodesOutput)
@@ -1610,7 +1610,7 @@ func (o ClusterOutput) Status() pulumi.StringOutput {
 
 // Specifies the informations about streaming core nodes in the
 // MapReduce cluster.
-// The `nodes` object structure of the `streamingCoreNodes` is documented below.
+// The masterNodes structure is documented below.
 // Changing this will create a new MapReduce cluster resource.
 func (o ClusterOutput) StreamingCoreNodes() ClusterStreamingCoreNodesPtrOutput {
 	return o.ApplyT(func(v *Cluster) ClusterStreamingCoreNodesPtrOutput { return v.StreamingCoreNodes }).(ClusterStreamingCoreNodesPtrOutput)
@@ -1618,7 +1618,7 @@ func (o ClusterOutput) StreamingCoreNodes() ClusterStreamingCoreNodesPtrOutput {
 
 // Specifies the informations about streaming task nodes in the
 // MapReduce cluster.
-// The `nodes` object structure of the `streamingTaskNodes` is documented below.
+// The masterNodes structure is documented below.
 // Changing this will create a new MapReduce cluster resource.
 func (o ClusterOutput) StreamingTaskNodes() ClusterStreamingTaskNodesPtrOutput {
 	return o.ApplyT(func(v *Cluster) ClusterStreamingTaskNodesPtrOutput { return v.StreamingTaskNodes }).(ClusterStreamingTaskNodesPtrOutput)

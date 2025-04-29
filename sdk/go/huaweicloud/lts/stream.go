@@ -65,6 +65,9 @@ type Stream struct {
 	// Specifies the ID of a created log group. Changing this parameter will create
 	// a new resource.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
+	// Specifies whether to favorite the log stream.\
+	// Defaults to **false**.
+	IsFavorite pulumi.BoolPtrOutput `pulumi:"isFavorite"`
 	// Specifies the region in which to create the log stream resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new log stream resource.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -124,6 +127,9 @@ type streamState struct {
 	// Specifies the ID of a created log group. Changing this parameter will create
 	// a new resource.
 	GroupId *string `pulumi:"groupId"`
+	// Specifies whether to favorite the log stream.\
+	// Defaults to **false**.
+	IsFavorite *bool `pulumi:"isFavorite"`
 	// Specifies the region in which to create the log stream resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new log stream resource.
 	Region *string `pulumi:"region"`
@@ -148,6 +154,9 @@ type StreamState struct {
 	// Specifies the ID of a created log group. Changing this parameter will create
 	// a new resource.
 	GroupId pulumi.StringPtrInput
+	// Specifies whether to favorite the log stream.\
+	// Defaults to **false**.
+	IsFavorite pulumi.BoolPtrInput
 	// Specifies the region in which to create the log stream resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new log stream resource.
 	Region pulumi.StringPtrInput
@@ -172,6 +181,9 @@ type streamArgs struct {
 	// Specifies the ID of a created log group. Changing this parameter will create
 	// a new resource.
 	GroupId string `pulumi:"groupId"`
+	// Specifies whether to favorite the log stream.\
+	// Defaults to **false**.
+	IsFavorite *bool `pulumi:"isFavorite"`
 	// Specifies the region in which to create the log stream resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new log stream resource.
 	Region *string `pulumi:"region"`
@@ -193,6 +205,9 @@ type StreamArgs struct {
 	// Specifies the ID of a created log group. Changing this parameter will create
 	// a new resource.
 	GroupId pulumi.StringInput
+	// Specifies whether to favorite the log stream.\
+	// Defaults to **false**.
+	IsFavorite pulumi.BoolPtrInput
 	// Specifies the region in which to create the log stream resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new log stream resource.
 	Region pulumi.StringPtrInput
@@ -313,6 +328,12 @@ func (o StreamOutput) FilterCount() pulumi.IntOutput {
 // a new resource.
 func (o StreamOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stream) pulumi.StringOutput { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// Specifies whether to favorite the log stream.\
+// Defaults to **false**.
+func (o StreamOutput) IsFavorite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Stream) pulumi.BoolPtrOutput { return v.IsFavorite }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies the region in which to create the log stream resource. If omitted, the

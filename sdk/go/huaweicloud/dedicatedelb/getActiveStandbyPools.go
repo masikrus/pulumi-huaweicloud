@@ -53,10 +53,23 @@ func GetActiveStandbyPools(ctx *pulumi.Context, args *GetActiveStandbyPoolsArgs,
 
 // A collection of arguments for invoking getActiveStandbyPools.
 type GetActiveStandbyPoolsArgs struct {
+	// Specifies whether delayed logout is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	ConnectionDrain *string `pulumi:"connectionDrain"`
 	// Specifies supplementary information about the active-standby pool.
 	Description *string `pulumi:"description"`
 	// Specifies the ID of the health check configured for the active-standby pool.
 	HealthmonitorId *string `pulumi:"healthmonitorId"`
+	// Specifies the IP address version supported by the pool.
+	IpVersion *string `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route requests
+	// to backend servers in the associated pool. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm *string `pulumi:"lbAlgorithm"`
 	// Specifies the ID of the listener to which the forwarding policy is added.
 	ListenerId *string `pulumi:"listenerId"`
 	// Specifies the ID of the load balancer with which the active-standby pool is
@@ -89,11 +102,18 @@ type GetActiveStandbyPoolsArgs struct {
 
 // A collection of values returned by getActiveStandbyPools.
 type GetActiveStandbyPoolsResult struct {
+	ConnectionDrain *string `pulumi:"connectionDrain"`
 	// The description of the active-standby pool.
 	Description     *string `pulumi:"description"`
 	HealthmonitorId *string `pulumi:"healthmonitorId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The IP version supported by the member.
+	IpVersion *string `pulumi:"ipVersion"`
+	// The load balancing algorithm used by the load balancer to route requests to backend servers in the
+	// associated pool.
+	LbAlgorithm *string `pulumi:"lbAlgorithm"`
+	// The ID of the listener associated with the backend server.
 	ListenerId       *string `pulumi:"listenerId"`
 	LoadbalancerId   *string `pulumi:"loadbalancerId"`
 	MemberAddress    *string `pulumi:"memberAddress"`
@@ -128,10 +148,23 @@ func GetActiveStandbyPoolsOutput(ctx *pulumi.Context, args GetActiveStandbyPools
 
 // A collection of arguments for invoking getActiveStandbyPools.
 type GetActiveStandbyPoolsOutputArgs struct {
+	// Specifies whether delayed logout is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	ConnectionDrain pulumi.StringPtrInput `pulumi:"connectionDrain"`
 	// Specifies supplementary information about the active-standby pool.
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// Specifies the ID of the health check configured for the active-standby pool.
 	HealthmonitorId pulumi.StringPtrInput `pulumi:"healthmonitorId"`
+	// Specifies the IP address version supported by the pool.
+	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route requests
+	// to backend servers in the associated pool. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm pulumi.StringPtrInput `pulumi:"lbAlgorithm"`
 	// Specifies the ID of the listener to which the forwarding policy is added.
 	ListenerId pulumi.StringPtrInput `pulumi:"listenerId"`
 	// Specifies the ID of the load balancer with which the active-standby pool is
@@ -181,6 +214,10 @@ func (o GetActiveStandbyPoolsResultOutput) ToGetActiveStandbyPoolsResultOutputWi
 	return o
 }
 
+func (o GetActiveStandbyPoolsResultOutput) ConnectionDrain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsResult) *string { return v.ConnectionDrain }).(pulumi.StringPtrOutput)
+}
+
 // The description of the active-standby pool.
 func (o GetActiveStandbyPoolsResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsResult) *string { return v.Description }).(pulumi.StringPtrOutput)
@@ -195,6 +232,18 @@ func (o GetActiveStandbyPoolsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The IP version supported by the member.
+func (o GetActiveStandbyPoolsResultOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsResult) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
+}
+
+// The load balancing algorithm used by the load balancer to route requests to backend servers in the
+// associated pool.
+func (o GetActiveStandbyPoolsResultOutput) LbAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsResult) *string { return v.LbAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the listener associated with the backend server.
 func (o GetActiveStandbyPoolsResultOutput) ListenerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsResult) *string { return v.ListenerId }).(pulumi.StringPtrOutput)
 }

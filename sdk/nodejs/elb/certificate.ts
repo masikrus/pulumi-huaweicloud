@@ -72,13 +72,13 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * ELB certificate can be imported using the certificate ID, e.g. bash
+ * ELB certificate can be imported using the `id` e.g. bash
  *
  * ```sh
- *  $ pulumi import huaweicloud:Elb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+ *  $ pulumi import huaweicloud:Elb/certificate:Certificate test <id>
  * ```
  *
- *  Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "certificate_1" {
+ *  Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_lb_certificate" "test" {
  *
  *  ...
  *
@@ -86,7 +86,7 @@ import * as utilities from "../utilities";
  *
  *  ignore_changes = [
  *
- *  enterprise_project_id,
+ *  enterprise_project_id, private_key,
  *
  *  ]
  *
@@ -134,7 +134,7 @@ export class Certificate extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     /**
      * The domain of the Certificate. The value contains a maximum of 100 characters. This
-     * parameter is valid only when `type` is set to "server".
+     * parameter is valid only when `type` is set to **server**.
      */
     public readonly domain!: pulumi.Output<string | undefined>;
     /**
@@ -152,21 +152,35 @@ export class Certificate extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The private encrypted key of the Certificate, PEM format. This parameter is valid
-     * and mandatory only when `type` is set to "server".
+     * and mandatory only when `type` is set to **server**.
      */
     public readonly privateKey!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies why the modification protection is enabled.
+     */
+    public readonly protectionReason!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the protection status. Value options:
+     * + **nonProtection**: The load balancer is not protected.
+     * + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+     */
+    public readonly protectionStatus!: pulumi.Output<string>;
     /**
      * The region in which to create the ELB certificate resource. If omitted, the
      * provider-level region will be used. Changing this creates a new certificate.
      */
     public readonly region!: pulumi.Output<string>;
     /**
+     * Specifies the source of the certificate.
+     */
+    public readonly source!: pulumi.Output<string>;
+    /**
      * Specifies the certificate type. The default value is "server". The value can be
      * one of the following:
-     * + server: indicates the server certificate.
-     * + client: indicates the CA certificate.
+     * + **server**: indicates the server certificate.
+     * + **client**: indicates the CA certificate.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    public readonly type!: pulumi.Output<string>;
     /**
      * Indicates the update time.
      */
@@ -193,7 +207,10 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["expireTime"] = state ? state.expireTime : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["protectionReason"] = state ? state.protectionReason : undefined;
+            resourceInputs["protectionStatus"] = state ? state.protectionStatus : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
@@ -207,7 +224,10 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["enterpriseProjectId"] = args ? args.enterpriseProjectId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["protectionReason"] = args ? args.protectionReason : undefined;
+            resourceInputs["protectionStatus"] = args ? args.protectionStatus : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["expireTime"] = undefined /*out*/;
@@ -236,7 +256,7 @@ export interface CertificateState {
     description?: pulumi.Input<string>;
     /**
      * The domain of the Certificate. The value contains a maximum of 100 characters. This
-     * parameter is valid only when `type` is set to "server".
+     * parameter is valid only when `type` is set to **server**.
      */
     domain?: pulumi.Input<string>;
     /**
@@ -254,19 +274,33 @@ export interface CertificateState {
     name?: pulumi.Input<string>;
     /**
      * The private encrypted key of the Certificate, PEM format. This parameter is valid
-     * and mandatory only when `type` is set to "server".
+     * and mandatory only when `type` is set to **server**.
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * Specifies why the modification protection is enabled.
+     */
+    protectionReason?: pulumi.Input<string>;
+    /**
+     * Specifies the protection status. Value options:
+     * + **nonProtection**: The load balancer is not protected.
+     * + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+     */
+    protectionStatus?: pulumi.Input<string>;
     /**
      * The region in which to create the ELB certificate resource. If omitted, the
      * provider-level region will be used. Changing this creates a new certificate.
      */
     region?: pulumi.Input<string>;
     /**
+     * Specifies the source of the certificate.
+     */
+    source?: pulumi.Input<string>;
+    /**
      * Specifies the certificate type. The default value is "server". The value can be
      * one of the following:
-     * + server: indicates the server certificate.
-     * + client: indicates the CA certificate.
+     * + **server**: indicates the server certificate.
+     * + **client**: indicates the CA certificate.
      */
     type?: pulumi.Input<string>;
     /**
@@ -289,7 +323,7 @@ export interface CertificateArgs {
     description?: pulumi.Input<string>;
     /**
      * The domain of the Certificate. The value contains a maximum of 100 characters. This
-     * parameter is valid only when `type` is set to "server".
+     * parameter is valid only when `type` is set to **server**.
      */
     domain?: pulumi.Input<string>;
     /**
@@ -303,19 +337,33 @@ export interface CertificateArgs {
     name?: pulumi.Input<string>;
     /**
      * The private encrypted key of the Certificate, PEM format. This parameter is valid
-     * and mandatory only when `type` is set to "server".
+     * and mandatory only when `type` is set to **server**.
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * Specifies why the modification protection is enabled.
+     */
+    protectionReason?: pulumi.Input<string>;
+    /**
+     * Specifies the protection status. Value options:
+     * + **nonProtection**: The load balancer is not protected.
+     * + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+     */
+    protectionStatus?: pulumi.Input<string>;
     /**
      * The region in which to create the ELB certificate resource. If omitted, the
      * provider-level region will be used. Changing this creates a new certificate.
      */
     region?: pulumi.Input<string>;
     /**
+     * Specifies the source of the certificate.
+     */
+    source?: pulumi.Input<string>;
+    /**
      * Specifies the certificate type. The default value is "server". The value can be
      * one of the following:
-     * + server: indicates the server certificate.
-     * + client: indicates the CA certificate.
+     * + **server**: indicates the server certificate.
+     * + **client**: indicates the CA certificate.
      */
     type?: pulumi.Input<string>;
 }

@@ -25,6 +25,7 @@ class NodePoolArgs:
                  charging_mode: Optional[pulumi.Input[str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]]] = None,
                  ecs_group_id: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  extend_param: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  extend_params: Optional[pulumi.Input['NodePoolExtendParamsArgs']] = None,
@@ -62,37 +63,32 @@ class NodePoolArgs:
         """
         The set of arguments for constructing a NodePool resource.
         :param pulumi.Input[str] cluster_id: Specifies the cluster ID.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[str] flavor_id: Specifies the flavor ID. Changing this parameter will create a new
-               resource.
+        :param pulumi.Input[str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input[int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input['NodePoolRootVolumeArgs'] root_volume: Specifies the configuration of the system disk.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] availability_zone: Specifies the name of the available partition (AZ). Default value
-               is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+               is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[str] charging_mode: Specifies the charging mode of the CCE node pool. Valid values are
-               *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+               *prePaid* and *postPaid*, defaults to *postPaid*.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
-               the cloud server group. Changing this parameter will create a new resource.
+               the cloud server group.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
         :param pulumi.Input['NodePoolExtendParamsArgs'] extend_params: Specifies the disk expansion parameters.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
                The object structure is documented below.
         :param pulumi.Input['NodePoolHostnameConfigArgs'] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
                The object structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
-               This parameter and `password` are alternative. Changing this parameter will create a new resource.
+               This parameter and `password` are alternative.
         :param pulumi.Input[str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
                The value can be **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
@@ -100,7 +96,6 @@ class NodePoolArgs:
                during auto scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
                than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         :param pulumi.Input[int] max_pods: Specifies the maximum number of instances a node is allowed to create.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
                The value must be greater than **0**.
         :param pulumi.Input[str] name: Specifies the name of an extended scaling group.
@@ -114,25 +109,23 @@ class NodePoolArgs:
                The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
                *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+               is mandatory if `charging_mode` is set to *prePaid*.
         :param pulumi.Input[str] period_unit: Specifies the charging period unit of the CCE node pool.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
-               Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+               Only supported in CCE Turbo clusters of v1.19 and above.
         :param pulumi.Input[str] postinstall: Specifies the script to be executed after installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] preinstall: Specifies the script to be executed before installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input[str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*. Changing this creates a new resource.
+               *containerd*.
         :param pulumi.Input[int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
         :param pulumi.Input[bool] scall_enable: Specifies whether to enable auto scaling.
                If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
@@ -149,7 +142,6 @@ class NodePoolArgs:
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
@@ -178,6 +170,8 @@ class NodePoolArgs:
             pulumi.set(__self__, "data_volumes", data_volumes)
         if ecs_group_id is not None:
             pulumi.set(__self__, "ecs_group_id", ecs_group_id)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if extend_param is not None:
@@ -252,7 +246,6 @@ class NodePoolArgs:
     def cluster_id(self) -> pulumi.Input[str]:
         """
         Specifies the cluster ID.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -264,8 +257,7 @@ class NodePoolArgs:
     @pulumi.getter(name="flavorId")
     def flavor_id(self) -> pulumi.Input[str]:
         """
-        Specifies the flavor ID. Changing this parameter will create a new
-        resource.
+        Specifies the flavor ID.
         """
         return pulumi.get(self, "flavor_id")
 
@@ -291,7 +283,7 @@ class NodePoolArgs:
     def root_volume(self) -> pulumi.Input['NodePoolRootVolumeArgs']:
         """
         Specifies the configuration of the system disk.
-        The structure is described below. Changing this parameter will create a new resource.
+        The structure is described below.
         """
         return pulumi.get(self, "root_volume")
 
@@ -304,7 +296,6 @@ class NodePoolArgs:
     def auto_renew(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies whether auto renew is enabled. Valid values are "true" and "false".
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -317,7 +308,7 @@ class NodePoolArgs:
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the name of the available partition (AZ). Default value
-        is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+        is random to create nodes in a random AZ in the node pool.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -330,7 +321,7 @@ class NodePoolArgs:
     def charging_mode(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the charging mode of the CCE node pool. Valid values are
-        *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+        *prePaid* and *postPaid*, defaults to *postPaid*.
         """
         return pulumi.get(self, "charging_mode")
 
@@ -343,7 +334,7 @@ class NodePoolArgs:
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]]]:
         """
         Specifies the configuration of the data disks.
-        The structure is described below. Changing this parameter will create a new resource.
+        The structure is described below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -356,13 +347,22 @@ class NodePoolArgs:
     def ecs_group_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ECS group ID. If specified, the node will be created under
-        the cloud server group. Changing this parameter will create a new resource.
+        the cloud server group.
         """
         return pulumi.get(self, "ecs_group_id")
 
     @ecs_group_id.setter
     def ecs_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ecs_group_id", value)
+
+    @property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -394,7 +394,6 @@ class NodePoolArgs:
     def extend_params(self) -> Optional[pulumi.Input['NodePoolExtendParamsArgs']]:
         """
         Specifies the disk expansion parameters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -422,7 +421,6 @@ class NodePoolArgs:
         Specifies the hostname config of the kubernetes node,
         which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
         The object structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "hostname_config")
 
@@ -447,7 +445,7 @@ class NodePoolArgs:
     def key_pair(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the key pair name when logging in to select the key pair mode.
-        This parameter and `password` are alternative. Changing this parameter will create a new resource.
+        This parameter and `password` are alternative.
         """
         return pulumi.get(self, "key_pair")
 
@@ -499,7 +497,6 @@ class NodePoolArgs:
     def max_pods(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the maximum number of instances a node is allowed to create.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "max_pods")
 
@@ -557,7 +554,6 @@ class NodePoolArgs:
         The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
         lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
         This parameter can be plain or salted and is alternative to `key_pair`.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "password")
 
@@ -571,7 +567,7 @@ class NodePoolArgs:
         """
         Specifies the charging period of the CCE node pool. If `period_unit` is set to
         *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-        is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+        is mandatory if `charging_mode` is set to *prePaid*.
         """
         return pulumi.get(self, "period")
 
@@ -585,7 +581,6 @@ class NodePoolArgs:
         """
         Specifies the charging period unit of the CCE node pool.
         Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "period_unit")
 
@@ -598,7 +593,7 @@ class NodePoolArgs:
     def pod_security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of security group IDs for the pod.
-        Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+        Only supported in CCE Turbo clusters of v1.19 and above.
         """
         return pulumi.get(self, "pod_security_groups")
 
@@ -611,7 +606,7 @@ class NodePoolArgs:
     def postinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -624,7 +619,7 @@ class NodePoolArgs:
     def preinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -663,7 +658,7 @@ class NodePoolArgs:
     def runtime(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the runtime of the CCE node pool. Valid values are *docker* and
-        *containerd*. Changing this creates a new resource.
+        *containerd*.
         """
         return pulumi.get(self, "runtime")
 
@@ -724,7 +719,6 @@ class NodePoolArgs:
         If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
         this parameter must be specified.
         If you want to store system components in the system disk, this parameter must be specified.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "storage")
 
@@ -834,6 +828,7 @@ class _NodePoolState:
                  current_node_count: Optional[pulumi.Input[int]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]]] = None,
                  ecs_group_id: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  extend_param: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  extend_params: Optional[pulumi.Input['NodePoolExtendParamsArgs']] = None,
@@ -875,37 +870,32 @@ class _NodePoolState:
         """
         Input properties used for looking up and filtering NodePool resources.
         :param pulumi.Input[str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] availability_zone: Specifies the name of the available partition (AZ). Default value
-               is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+               is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[int] billing_mode: Billing mode of a node.
         :param pulumi.Input[str] charging_mode: Specifies the charging mode of the CCE node pool. Valid values are
-               *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+               *prePaid* and *postPaid*, defaults to *postPaid*.
         :param pulumi.Input[str] cluster_id: Specifies the cluster ID.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] current_node_count: The current number of the nodes.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
-               the cloud server group. Changing this parameter will create a new resource.
+               the cloud server group.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
         :param pulumi.Input['NodePoolExtendParamsArgs'] extend_params: Specifies the disk expansion parameters.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
                The object structure is documented below.
-        :param pulumi.Input[str] flavor_id: Specifies the flavor ID. Changing this parameter will create a new
-               resource.
+        :param pulumi.Input[str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input['NodePoolHostnameConfigArgs'] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
                The object structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
-               This parameter and `password` are alternative. Changing this parameter will create a new resource.
+               This parameter and `password` are alternative.
         :param pulumi.Input[str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
                The value can be **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
@@ -913,7 +903,6 @@ class _NodePoolState:
                during auto scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
                than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         :param pulumi.Input[int] max_pods: Specifies the maximum number of instances a node is allowed to create.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
                The value must be greater than **0**.
         :param pulumi.Input[str] name: Specifies the name of an extended scaling group.
@@ -927,27 +916,25 @@ class _NodePoolState:
                The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
                *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+               is mandatory if `charging_mode` is set to *prePaid*.
         :param pulumi.Input[str] period_unit: Specifies the charging period unit of the CCE node pool.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
-               Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+               Only supported in CCE Turbo clusters of v1.19 and above.
         :param pulumi.Input[str] postinstall: Specifies the script to be executed after installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] preinstall: Specifies the script to be executed before installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input['NodePoolRootVolumeArgs'] root_volume: Specifies the configuration of the system disk.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*. Changing this creates a new resource.
+               *containerd*.
         :param pulumi.Input[int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
         :param pulumi.Input[bool] scall_enable: Specifies whether to enable auto scaling.
                If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
@@ -965,7 +952,6 @@ class _NodePoolState:
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
@@ -996,6 +982,8 @@ class _NodePoolState:
             pulumi.set(__self__, "data_volumes", data_volumes)
         if ecs_group_id is not None:
             pulumi.set(__self__, "ecs_group_id", ecs_group_id)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if extend_param is not None:
@@ -1078,7 +1066,6 @@ class _NodePoolState:
     def auto_renew(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies whether auto renew is enabled. Valid values are "true" and "false".
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -1091,7 +1078,7 @@ class _NodePoolState:
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the name of the available partition (AZ). Default value
-        is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+        is random to create nodes in a random AZ in the node pool.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -1116,7 +1103,7 @@ class _NodePoolState:
     def charging_mode(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the charging mode of the CCE node pool. Valid values are
-        *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+        *prePaid* and *postPaid*, defaults to *postPaid*.
         """
         return pulumi.get(self, "charging_mode")
 
@@ -1129,7 +1116,6 @@ class _NodePoolState:
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the cluster ID.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -1154,7 +1140,7 @@ class _NodePoolState:
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]]]:
         """
         Specifies the configuration of the data disks.
-        The structure is described below. Changing this parameter will create a new resource.
+        The structure is described below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -1167,13 +1153,22 @@ class _NodePoolState:
     def ecs_group_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ECS group ID. If specified, the node will be created under
-        the cloud server group. Changing this parameter will create a new resource.
+        the cloud server group.
         """
         return pulumi.get(self, "ecs_group_id")
 
     @ecs_group_id.setter
     def ecs_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ecs_group_id", value)
+
+    @property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -1205,7 +1200,6 @@ class _NodePoolState:
     def extend_params(self) -> Optional[pulumi.Input['NodePoolExtendParamsArgs']]:
         """
         Specifies the disk expansion parameters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -1230,8 +1224,7 @@ class _NodePoolState:
     @pulumi.getter(name="flavorId")
     def flavor_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the flavor ID. Changing this parameter will create a new
-        resource.
+        Specifies the flavor ID.
         """
         return pulumi.get(self, "flavor_id")
 
@@ -1246,7 +1239,6 @@ class _NodePoolState:
         Specifies the hostname config of the kubernetes node,
         which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
         The object structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "hostname_config")
 
@@ -1284,7 +1276,7 @@ class _NodePoolState:
     def key_pair(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the key pair name when logging in to select the key pair mode.
-        This parameter and `password` are alternative. Changing this parameter will create a new resource.
+        This parameter and `password` are alternative.
         """
         return pulumi.get(self, "key_pair")
 
@@ -1336,7 +1328,6 @@ class _NodePoolState:
     def max_pods(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the maximum number of instances a node is allowed to create.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "max_pods")
 
@@ -1394,7 +1385,6 @@ class _NodePoolState:
         The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
         lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
         This parameter can be plain or salted and is alternative to `key_pair`.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "password")
 
@@ -1408,7 +1398,7 @@ class _NodePoolState:
         """
         Specifies the charging period of the CCE node pool. If `period_unit` is set to
         *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-        is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+        is mandatory if `charging_mode` is set to *prePaid*.
         """
         return pulumi.get(self, "period")
 
@@ -1422,7 +1412,6 @@ class _NodePoolState:
         """
         Specifies the charging period unit of the CCE node pool.
         Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "period_unit")
 
@@ -1435,7 +1424,7 @@ class _NodePoolState:
     def pod_security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of security group IDs for the pod.
-        Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+        Only supported in CCE Turbo clusters of v1.19 and above.
         """
         return pulumi.get(self, "pod_security_groups")
 
@@ -1448,7 +1437,7 @@ class _NodePoolState:
     def postinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -1461,7 +1450,7 @@ class _NodePoolState:
     def preinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -1500,7 +1489,7 @@ class _NodePoolState:
     def root_volume(self) -> Optional[pulumi.Input['NodePoolRootVolumeArgs']]:
         """
         Specifies the configuration of the system disk.
-        The structure is described below. Changing this parameter will create a new resource.
+        The structure is described below.
         """
         return pulumi.get(self, "root_volume")
 
@@ -1513,7 +1502,7 @@ class _NodePoolState:
     def runtime(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the runtime of the CCE node pool. Valid values are *docker* and
-        *containerd*. Changing this creates a new resource.
+        *containerd*.
         """
         return pulumi.get(self, "runtime")
 
@@ -1586,7 +1575,6 @@ class _NodePoolState:
         If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
         this parameter must be specified.
         If you want to store system components in the system disk, this parameter must be specified.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "storage")
 
@@ -1696,6 +1684,7 @@ class NodePool(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolDataVolumeArgs']]]]] = None,
                  ecs_group_id: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  extend_param: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  extend_params: Optional[pulumi.Input[pulumi.InputType['NodePoolExtendParamsArgs']]] = None,
@@ -1909,35 +1898,30 @@ class NodePool(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] availability_zone: Specifies the name of the available partition (AZ). Default value
-               is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+               is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[str] charging_mode: Specifies the charging mode of the CCE node pool. Valid values are
-               *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+               *prePaid* and *postPaid*, defaults to *postPaid*.
         :param pulumi.Input[str] cluster_id: Specifies the cluster ID.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolDataVolumeArgs']]]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
-               the cloud server group. Changing this parameter will create a new resource.
+               the cloud server group.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
         :param pulumi.Input[pulumi.InputType['NodePoolExtendParamsArgs']] extend_params: Specifies the disk expansion parameters.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolExtensionScaleGroupArgs']]]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
                The object structure is documented below.
-        :param pulumi.Input[str] flavor_id: Specifies the flavor ID. Changing this parameter will create a new
-               resource.
+        :param pulumi.Input[str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input[pulumi.InputType['NodePoolHostnameConfigArgs']] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
                The object structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
-               This parameter and `password` are alternative. Changing this parameter will create a new resource.
+               This parameter and `password` are alternative.
         :param pulumi.Input[str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
                The value can be **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
@@ -1945,7 +1929,6 @@ class NodePool(pulumi.CustomResource):
                during auto scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
                than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         :param pulumi.Input[int] max_pods: Specifies the maximum number of instances a node is allowed to create.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
                The value must be greater than **0**.
         :param pulumi.Input[str] name: Specifies the name of an extended scaling group.
@@ -1959,27 +1942,25 @@ class NodePool(pulumi.CustomResource):
                The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
                *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+               is mandatory if `charging_mode` is set to *prePaid*.
         :param pulumi.Input[str] period_unit: Specifies the charging period unit of the CCE node pool.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
-               Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+               Only supported in CCE Turbo clusters of v1.19 and above.
         :param pulumi.Input[str] postinstall: Specifies the script to be executed after installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] preinstall: Specifies the script to be executed before installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input[pulumi.InputType['NodePoolRootVolumeArgs']] root_volume: Specifies the configuration of the system disk.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*. Changing this creates a new resource.
+               *containerd*.
         :param pulumi.Input[int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
         :param pulumi.Input[bool] scall_enable: Specifies whether to enable auto scaling.
                If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
@@ -1996,7 +1977,6 @@ class NodePool(pulumi.CustomResource):
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
@@ -2210,6 +2190,7 @@ class NodePool(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolDataVolumeArgs']]]]] = None,
                  ecs_group_id: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  extend_param: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  extend_params: Optional[pulumi.Input[pulumi.InputType['NodePoolExtendParamsArgs']]] = None,
@@ -2264,6 +2245,7 @@ class NodePool(pulumi.CustomResource):
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["data_volumes"] = data_volumes
             __props__.__dict__["ecs_group_id"] = ecs_group_id
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["extend_param"] = extend_param
             __props__.__dict__["extend_params"] = extend_params
@@ -2328,6 +2310,7 @@ class NodePool(pulumi.CustomResource):
             current_node_count: Optional[pulumi.Input[int]] = None,
             data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolDataVolumeArgs']]]]] = None,
             ecs_group_id: Optional[pulumi.Input[str]] = None,
+            enable_force_new: Optional[pulumi.Input[str]] = None,
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
             extend_param: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             extend_params: Optional[pulumi.Input[pulumi.InputType['NodePoolExtendParamsArgs']]] = None,
@@ -2374,37 +2357,32 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] availability_zone: Specifies the name of the available partition (AZ). Default value
-               is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+               is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[int] billing_mode: Billing mode of a node.
         :param pulumi.Input[str] charging_mode: Specifies the charging mode of the CCE node pool. Valid values are
-               *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+               *prePaid* and *postPaid*, defaults to *postPaid*.
         :param pulumi.Input[str] cluster_id: Specifies the cluster ID.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] current_node_count: The current number of the nodes.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolDataVolumeArgs']]]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
-               the cloud server group. Changing this parameter will create a new resource.
+               the cloud server group.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
         :param pulumi.Input[pulumi.InputType['NodePoolExtendParamsArgs']] extend_params: Specifies the disk expansion parameters.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolExtensionScaleGroupArgs']]]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
                The object structure is documented below.
-        :param pulumi.Input[str] flavor_id: Specifies the flavor ID. Changing this parameter will create a new
-               resource.
+        :param pulumi.Input[str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input[pulumi.InputType['NodePoolHostnameConfigArgs']] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
                The object structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
-               This parameter and `password` are alternative. Changing this parameter will create a new resource.
+               This parameter and `password` are alternative.
         :param pulumi.Input[str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
                The value can be **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
@@ -2412,7 +2390,6 @@ class NodePool(pulumi.CustomResource):
                during auto scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
                than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         :param pulumi.Input[int] max_pods: Specifies the maximum number of instances a node is allowed to create.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
                The value must be greater than **0**.
         :param pulumi.Input[str] name: Specifies the name of an extended scaling group.
@@ -2426,27 +2403,25 @@ class NodePool(pulumi.CustomResource):
                The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
                *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+               is mandatory if `charging_mode` is set to *prePaid*.
         :param pulumi.Input[str] period_unit: Specifies the charging period unit of the CCE node pool.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
-               Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+               Only supported in CCE Turbo clusters of v1.19 and above.
         :param pulumi.Input[str] postinstall: Specifies the script to be executed after installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] preinstall: Specifies the script to be executed before installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input[pulumi.InputType['NodePoolRootVolumeArgs']] root_volume: Specifies the configuration of the system disk.
-               The structure is described below. Changing this parameter will create a new resource.
+               The structure is described below.
         :param pulumi.Input[str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*. Changing this creates a new resource.
+               *containerd*.
         :param pulumi.Input[int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
         :param pulumi.Input[bool] scall_enable: Specifies whether to enable auto scaling.
                If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
@@ -2464,7 +2439,6 @@ class NodePool(pulumi.CustomResource):
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
@@ -2491,6 +2465,7 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["current_node_count"] = current_node_count
         __props__.__dict__["data_volumes"] = data_volumes
         __props__.__dict__["ecs_group_id"] = ecs_group_id
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["extend_param"] = extend_param
         __props__.__dict__["extend_params"] = extend_params
@@ -2533,10 +2508,9 @@ class NodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoRenew")
-    def auto_renew(self) -> pulumi.Output[Optional[str]]:
+    def auto_renew(self) -> pulumi.Output[str]:
         """
         Specifies whether auto renew is enabled. Valid values are "true" and "false".
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -2545,7 +2519,7 @@ class NodePool(pulumi.CustomResource):
     def availability_zone(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the name of the available partition (AZ). Default value
-        is random to create nodes in a random AZ in the node pool. Changing this parameter will create a new resource.
+        is random to create nodes in a random AZ in the node pool.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -2562,7 +2536,7 @@ class NodePool(pulumi.CustomResource):
     def charging_mode(self) -> pulumi.Output[str]:
         """
         Specifies the charging mode of the CCE node pool. Valid values are
-        *prePaid* and *postPaid*, defaults to *postPaid*. Changing this parameter will create a new resource.
+        *prePaid* and *postPaid*, defaults to *postPaid*.
         """
         return pulumi.get(self, "charging_mode")
 
@@ -2571,7 +2545,6 @@ class NodePool(pulumi.CustomResource):
     def cluster_id(self) -> pulumi.Output[str]:
         """
         Specifies the cluster ID.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -2588,7 +2561,7 @@ class NodePool(pulumi.CustomResource):
     def data_volumes(self) -> pulumi.Output[Sequence['outputs.NodePoolDataVolume']]:
         """
         Specifies the configuration of the data disks.
-        The structure is described below. Changing this parameter will create a new resource.
+        The structure is described below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -2597,9 +2570,14 @@ class NodePool(pulumi.CustomResource):
     def ecs_group_id(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the ECS group ID. If specified, the node will be created under
-        the cloud server group. Changing this parameter will create a new resource.
+        the cloud server group.
         """
         return pulumi.get(self, "ecs_group_id")
+
+    @property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -2620,10 +2598,9 @@ class NodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extendParams")
-    def extend_params(self) -> pulumi.Output[Optional['outputs.NodePoolExtendParams']]:
+    def extend_params(self) -> pulumi.Output['outputs.NodePoolExtendParams']:
         """
         Specifies the disk expansion parameters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -2640,8 +2617,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="flavorId")
     def flavor_id(self) -> pulumi.Output[str]:
         """
-        Specifies the flavor ID. Changing this parameter will create a new
-        resource.
+        Specifies the flavor ID.
         """
         return pulumi.get(self, "flavor_id")
 
@@ -2652,7 +2628,6 @@ class NodePool(pulumi.CustomResource):
         Specifies the hostname config of the kubernetes node,
         which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
         The object structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "hostname_config")
 
@@ -2678,7 +2653,7 @@ class NodePool(pulumi.CustomResource):
     def key_pair(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the key pair name when logging in to select the key pair mode.
-        This parameter and `password` are alternative. Changing this parameter will create a new resource.
+        This parameter and `password` are alternative.
         """
         return pulumi.get(self, "key_pair")
 
@@ -2714,7 +2689,6 @@ class NodePool(pulumi.CustomResource):
     def max_pods(self) -> pulumi.Output[int]:
         """
         Specifies the maximum number of instances a node is allowed to create.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "max_pods")
 
@@ -2756,7 +2730,6 @@ class NodePool(pulumi.CustomResource):
         The password consists of 8 to 26 characters and must contain at least three of following: uppercase letters,
         lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
         This parameter can be plain or salted and is alternative to `key_pair`.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "password")
 
@@ -2766,7 +2739,7 @@ class NodePool(pulumi.CustomResource):
         """
         Specifies the charging period of the CCE node pool. If `period_unit` is set to
         *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-        is mandatory if `charging_mode` is set to *prePaid*. Changing this parameter will create a new resource.
+        is mandatory if `charging_mode` is set to *prePaid*.
         """
         return pulumi.get(self, "period")
 
@@ -2776,7 +2749,6 @@ class NodePool(pulumi.CustomResource):
         """
         Specifies the charging period unit of the CCE node pool.
         Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "period_unit")
 
@@ -2785,7 +2757,7 @@ class NodePool(pulumi.CustomResource):
     def pod_security_groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies the list of security group IDs for the pod.
-        Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+        Only supported in CCE Turbo clusters of v1.19 and above.
         """
         return pulumi.get(self, "pod_security_groups")
 
@@ -2794,7 +2766,7 @@ class NodePool(pulumi.CustomResource):
     def postinstall(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -2803,7 +2775,7 @@ class NodePool(pulumi.CustomResource):
     def preinstall(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -2830,7 +2802,7 @@ class NodePool(pulumi.CustomResource):
     def root_volume(self) -> pulumi.Output['outputs.NodePoolRootVolume']:
         """
         Specifies the configuration of the system disk.
-        The structure is described below. Changing this parameter will create a new resource.
+        The structure is described below.
         """
         return pulumi.get(self, "root_volume")
 
@@ -2839,7 +2811,7 @@ class NodePool(pulumi.CustomResource):
     def runtime(self) -> pulumi.Output[str]:
         """
         Specifies the runtime of the CCE node pool. Valid values are *docker* and
-        *containerd*. Changing this creates a new resource.
+        *containerd*.
         """
         return pulumi.get(self, "runtime")
 
@@ -2892,7 +2864,6 @@ class NodePool(pulumi.CustomResource):
         If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
         this parameter must be specified.
         If you want to store system components in the system disk, this parameter must be specified.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "storage")
 

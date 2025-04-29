@@ -68,16 +68,13 @@ class ClusterAnalysisCoreNodes(dict):
                  data_volume_type: Optional[str] = None,
                  host_ips: Optional[Sequence[str]] = None):
         """
-        :param int data_volume_count: Specifies the data disk number of the nodes. The number configuration
-               of each node are as follows:
-               + **master_nodes**: 1.
-               + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        :param int data_volume_count: Specifies the data disk number of the nodes.  
+               The valid value is `1`.
+               Changing this will create a new MapReduce cluster resource.
         :param str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param int node_number: Specifies the number of nodes for the node group.
+        :param int node_number: Specifies the number of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
         :param int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -116,13 +113,9 @@ class ClusterAnalysisCoreNodes(dict):
     @pulumi.getter(name="dataVolumeCount")
     def data_volume_count(self) -> int:
         """
-        Specifies the data disk number of the nodes. The number configuration
-        of each node are as follows:
-        + **master_nodes**: 1.
-        + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        Specifies the data disk number of the nodes.  
+        The valid value is `1`.
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "data_volume_count")
 
@@ -139,7 +132,8 @@ class ClusterAnalysisCoreNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> int:
         """
-        Specifies the number of nodes for the node group.
+        Specifies the number of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "node_number")
 
@@ -249,16 +243,13 @@ class ClusterAnalysisTaskNodes(dict):
                  data_volume_type: Optional[str] = None,
                  host_ips: Optional[Sequence[str]] = None):
         """
-        :param int data_volume_count: Specifies the data disk number of the nodes. The number configuration
-               of each node are as follows:
-               + **master_nodes**: 1.
-               + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        :param int data_volume_count: Specifies the data disk number of the nodes.  
+               The valid value is `1`.
+               Changing this will create a new MapReduce cluster resource.
         :param str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param int node_number: Specifies the number of nodes for the node group.
+        :param int node_number: Specifies the number of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
         :param int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -297,13 +288,9 @@ class ClusterAnalysisTaskNodes(dict):
     @pulumi.getter(name="dataVolumeCount")
     def data_volume_count(self) -> int:
         """
-        Specifies the data disk number of the nodes. The number configuration
-        of each node are as follows:
-        + **master_nodes**: 1.
-        + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        Specifies the data disk number of the nodes.  
+        The valid value is `1`.
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "data_volume_count")
 
@@ -320,7 +307,8 @@ class ClusterAnalysisTaskNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> int:
         """
-        Specifies the number of nodes for the node group.
+        Specifies the number of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "node_number")
 
@@ -697,17 +685,15 @@ class ClusterCustomNode(dict):
                  data_volume_type: Optional[str] = None,
                  host_ips: Optional[Sequence[str]] = None):
         """
-        :param int data_volume_count: Specifies the data disk number of the nodes. The number configuration
-               of each node are as follows:
-               + **master_nodes**: 1.
-               + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        :param int data_volume_count: Specifies the data disk number of the nodes.  
+               The valid value is `1`.
+               Changing this will create a new MapReduce cluster resource.
         :param str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param str group_name: Specifies the name of nodes for the node group.
-        :param int node_number: Specifies the number of nodes for the node group.
+        :param str group_name: Specifies the name of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
+        :param int node_number: Specifies the number of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
         :param int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -747,13 +733,9 @@ class ClusterCustomNode(dict):
     @pulumi.getter(name="dataVolumeCount")
     def data_volume_count(self) -> int:
         """
-        Specifies the data disk number of the nodes. The number configuration
-        of each node are as follows:
-        + **master_nodes**: 1.
-        + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        Specifies the data disk number of the nodes.  
+        The valid value is `1`.
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "data_volume_count")
 
@@ -770,7 +752,8 @@ class ClusterCustomNode(dict):
     @pulumi.getter(name="groupName")
     def group_name(self) -> str:
         """
-        Specifies the name of nodes for the node group.
+        Specifies the name of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "group_name")
 
@@ -778,7 +761,8 @@ class ClusterCustomNode(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> int:
         """
-        Specifies the number of nodes for the node group.
+        Specifies the number of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "node_number")
 
@@ -985,16 +969,13 @@ class ClusterMasterNodes(dict):
                  data_volume_type: Optional[str] = None,
                  host_ips: Optional[Sequence[str]] = None):
         """
-        :param int data_volume_count: Specifies the data disk number of the nodes. The number configuration
-               of each node are as follows:
-               + **master_nodes**: 1.
-               + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        :param int data_volume_count: Specifies the data disk number of the nodes.  
+               The valid value is `1`.
+               Changing this will create a new MapReduce cluster resource.
         :param str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param int node_number: Specifies the number of nodes for the node group.
+        :param int node_number: Specifies the number of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
         :param int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -1033,13 +1014,9 @@ class ClusterMasterNodes(dict):
     @pulumi.getter(name="dataVolumeCount")
     def data_volume_count(self) -> int:
         """
-        Specifies the data disk number of the nodes. The number configuration
-        of each node are as follows:
-        + **master_nodes**: 1.
-        + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        Specifies the data disk number of the nodes.  
+        The valid value is `1`.
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "data_volume_count")
 
@@ -1056,7 +1033,8 @@ class ClusterMasterNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> int:
         """
-        Specifies the number of nodes for the node group.
+        Specifies the number of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "node_number")
 
@@ -1218,16 +1196,13 @@ class ClusterStreamingCoreNodes(dict):
                  data_volume_type: Optional[str] = None,
                  host_ips: Optional[Sequence[str]] = None):
         """
-        :param int data_volume_count: Specifies the data disk number of the nodes. The number configuration
-               of each node are as follows:
-               + **master_nodes**: 1.
-               + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        :param int data_volume_count: Specifies the data disk number of the nodes.  
+               The valid value is `1`.
+               Changing this will create a new MapReduce cluster resource.
         :param str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param int node_number: Specifies the number of nodes for the node group.
+        :param int node_number: Specifies the number of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
         :param int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -1266,13 +1241,9 @@ class ClusterStreamingCoreNodes(dict):
     @pulumi.getter(name="dataVolumeCount")
     def data_volume_count(self) -> int:
         """
-        Specifies the data disk number of the nodes. The number configuration
-        of each node are as follows:
-        + **master_nodes**: 1.
-        + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        Specifies the data disk number of the nodes.  
+        The valid value is `1`.
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "data_volume_count")
 
@@ -1289,7 +1260,8 @@ class ClusterStreamingCoreNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> int:
         """
-        Specifies the number of nodes for the node group.
+        Specifies the number of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "node_number")
 
@@ -1399,16 +1371,13 @@ class ClusterStreamingTaskNodes(dict):
                  data_volume_type: Optional[str] = None,
                  host_ips: Optional[Sequence[str]] = None):
         """
-        :param int data_volume_count: Specifies the data disk number of the nodes. The number configuration
-               of each node are as follows:
-               + **master_nodes**: 1.
-               + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-               + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        :param int data_volume_count: Specifies the data disk number of the nodes.  
+               The valid value is `1`.
+               Changing this will create a new MapReduce cluster resource.
         :param str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param int node_number: Specifies the number of nodes for the node group.
+        :param int node_number: Specifies the number of nodes for the node group.  
+               Changing this will create a new MapReduce cluster resource.
         :param int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -1447,13 +1416,9 @@ class ClusterStreamingTaskNodes(dict):
     @pulumi.getter(name="dataVolumeCount")
     def data_volume_count(self) -> int:
         """
-        Specifies the data disk number of the nodes. The number configuration
-        of each node are as follows:
-        + **master_nodes**: 1.
-        + **analysis_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_core_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **analysis_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
-        + **streaming_task_nodes**: minimum is one and the maximum is subject to the configuration of the corresponding flavor.
+        Specifies the data disk number of the nodes.  
+        The valid value is `1`.
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "data_volume_count")
 
@@ -1470,7 +1435,8 @@ class ClusterStreamingTaskNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> int:
         """
-        Specifies the number of nodes for the node group.
+        Specifies the number of nodes for the node group.  
+        Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "node_number")
 

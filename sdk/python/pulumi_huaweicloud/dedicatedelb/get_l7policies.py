@@ -22,7 +22,7 @@ class GetL7policiesResult:
     """
     A collection of values returned by getL7policies.
     """
-    def __init__(__self__, action=None, description=None, enterprise_project_id=None, id=None, l7policies=None, l7policy_id=None, listener_id=None, name=None, priority=None, redirect_listener_id=None, redirect_pool_id=None, region=None):
+    def __init__(__self__, action=None, description=None, enterprise_project_id=None, id=None, l7policies=None, l7policy_id=None, listener_id=None, name=None, priority=None, provisioning_status=None, redirect_listener_id=None, redirect_pool_id=None, region=None):
         if action and not isinstance(action, str):
             raise TypeError("Expected argument 'action' to be a str")
         pulumi.set(__self__, "action", action)
@@ -50,6 +50,9 @@ class GetL7policiesResult:
         if priority and not isinstance(priority, int):
             raise TypeError("Expected argument 'priority' to be a int")
         pulumi.set(__self__, "priority", priority)
+        if provisioning_status and not isinstance(provisioning_status, str):
+            raise TypeError("Expected argument 'provisioning_status' to be a str")
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
         if redirect_listener_id and not isinstance(redirect_listener_id, str):
             raise TypeError("Expected argument 'redirect_listener_id' to be a str")
         pulumi.set(__self__, "redirect_listener_id", redirect_listener_id)
@@ -64,8 +67,7 @@ class GetL7policiesResult:
     @pulumi.getter
     def action(self) -> Optional[str]:
         """
-        The requests will be forwarded. The value can be one of the following:
-        **REDIRECT_TO_POOL**, **REDIRECT_TO_LISTENER**, **REDIRECT_TO_URL**, **FIXED_RESPONSE**.
+        The requests will be forwarded.
         """
         return pulumi.get(self, "action")
 
@@ -80,6 +82,9 @@ class GetL7policiesResult:
     @property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[str]:
+        """
+        The enterprise project ID.
+        """
         return pulumi.get(self, "enterprise_project_id")
 
     @property
@@ -129,6 +134,14 @@ class GetL7policiesResult:
         return pulumi.get(self, "priority")
 
     @property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> Optional[str]:
+        """
+        The provisioning status of the forwarding policy.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @property
     @pulumi.getter(name="redirectListenerId")
     def redirect_listener_id(self) -> Optional[str]:
         """
@@ -165,6 +178,7 @@ class AwaitableGetL7policiesResult(GetL7policiesResult):
             listener_id=self.listener_id,
             name=self.name,
             priority=self.priority,
+            provisioning_status=self.provisioning_status,
             redirect_listener_id=self.redirect_listener_id,
             redirect_pool_id=self.redirect_pool_id,
             region=self.region)
@@ -177,6 +191,7 @@ def get_l7policies(action: Optional[str] = None,
                    listener_id: Optional[str] = None,
                    name: Optional[str] = None,
                    priority: Optional[int] = None,
+                   provisioning_status: Optional[str] = None,
                    redirect_listener_id: Optional[str] = None,
                    redirect_pool_id: Optional[str] = None,
                    region: Optional[str] = None,
@@ -207,6 +222,7 @@ def get_l7policies(action: Optional[str] = None,
     :param str listener_id: Specifies the ID of the listener to which the forwarding policy is added.
     :param str name: Specifies the forwarding policy name.
     :param int priority: Specifies the forwarding policy priority.
+    :param str provisioning_status: Specifies the provisioning status of the forwarding policy.
     :param str redirect_listener_id: Specifies the ID of the listener to which requests are redirected.
     :param str redirect_pool_id: Specifies the ID of the backend server group to which requests will be forwarded.
     :param str region: Specifies the region in which to query the data source. If omitted, the provider-level
@@ -220,6 +236,7 @@ def get_l7policies(action: Optional[str] = None,
     __args__['listenerId'] = listener_id
     __args__['name'] = name
     __args__['priority'] = priority
+    __args__['provisioningStatus'] = provisioning_status
     __args__['redirectListenerId'] = redirect_listener_id
     __args__['redirectPoolId'] = redirect_pool_id
     __args__['region'] = region
@@ -236,6 +253,7 @@ def get_l7policies(action: Optional[str] = None,
         listener_id=__ret__.listener_id,
         name=__ret__.name,
         priority=__ret__.priority,
+        provisioning_status=__ret__.provisioning_status,
         redirect_listener_id=__ret__.redirect_listener_id,
         redirect_pool_id=__ret__.redirect_pool_id,
         region=__ret__.region)
@@ -249,6 +267,7 @@ def get_l7policies_output(action: Optional[pulumi.Input[Optional[str]]] = None,
                           listener_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           priority: Optional[pulumi.Input[Optional[int]]] = None,
+                          provisioning_status: Optional[pulumi.Input[Optional[str]]] = None,
                           redirect_listener_id: Optional[pulumi.Input[Optional[str]]] = None,
                           redirect_pool_id: Optional[pulumi.Input[Optional[str]]] = None,
                           region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -279,6 +298,7 @@ def get_l7policies_output(action: Optional[pulumi.Input[Optional[str]]] = None,
     :param str listener_id: Specifies the ID of the listener to which the forwarding policy is added.
     :param str name: Specifies the forwarding policy name.
     :param int priority: Specifies the forwarding policy priority.
+    :param str provisioning_status: Specifies the provisioning status of the forwarding policy.
     :param str redirect_listener_id: Specifies the ID of the listener to which requests are redirected.
     :param str redirect_pool_id: Specifies the ID of the backend server group to which requests will be forwarded.
     :param str region: Specifies the region in which to query the data source. If omitted, the provider-level

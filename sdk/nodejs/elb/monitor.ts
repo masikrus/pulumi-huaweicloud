@@ -89,25 +89,35 @@ export class Monitor extends pulumi.CustomResource {
         return obj['__pulumiType'] === Monitor.__pulumiType;
     }
 
+    /**
+     * @deprecated tenant_id is deprecated
+     */
     public readonly adminStateUp!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies the maximum time between health checks in the unit of second. The value ranges
-     * from 1 to 50.
+     * from **1** to **50**.
      */
     public readonly delay!: pulumi.Output<number>;
     /**
+     * Specifies the domain name of HTTP requests during the health check. It takes effect
+     * only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+     * address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+     * letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+     */
+    public readonly domainName!: pulumi.Output<string>;
+    /**
      * Specifies the expected HTTP status code. Required for HTTP type.
-     * You can either specify a single status like "200", or a range like "200-202".
+     * You can either specify a single status like **200**, or a range like **200-202**.
      */
     public readonly expectedCodes!: pulumi.Output<string>;
     /**
      * Specifies the HTTP request method. Required for HTTP type.
-     * The default value is *GET*.
+     * The default value is **GET**.
      */
     public readonly httpMethod!: pulumi.Output<string>;
     /**
      * Specifies the maximum number of consecutive health checks after which the backend
-     * servers are declared *healthy*. The value ranges from 1 to 10.
+     * servers are declared **healthy**. The value ranges from **1** to **10**.
      */
     public readonly maxRetries!: pulumi.Output<number>;
     /**
@@ -135,13 +145,13 @@ export class Monitor extends pulumi.CustomResource {
     public readonly tenantId!: pulumi.Output<string>;
     /**
      * Specifies the health check timeout duration in the unit of second.
-     * The value ranges from 1 to 50 and must be less than the `delay` value.
+     * The value ranges from **1** to **50** and must be less than the `delay` value.
      */
     public readonly timeout!: pulumi.Output<number>;
     /**
      * Specifies the monitor protocol.
-     * The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-     * If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+     * The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+     * If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -165,6 +175,7 @@ export class Monitor extends pulumi.CustomResource {
             const state = argsOrState as MonitorState | undefined;
             resourceInputs["adminStateUp"] = state ? state.adminStateUp : undefined;
             resourceInputs["delay"] = state ? state.delay : undefined;
+            resourceInputs["domainName"] = state ? state.domainName : undefined;
             resourceInputs["expectedCodes"] = state ? state.expectedCodes : undefined;
             resourceInputs["httpMethod"] = state ? state.httpMethod : undefined;
             resourceInputs["maxRetries"] = state ? state.maxRetries : undefined;
@@ -195,6 +206,7 @@ export class Monitor extends pulumi.CustomResource {
             }
             resourceInputs["adminStateUp"] = args ? args.adminStateUp : undefined;
             resourceInputs["delay"] = args ? args.delay : undefined;
+            resourceInputs["domainName"] = args ? args.domainName : undefined;
             resourceInputs["expectedCodes"] = args ? args.expectedCodes : undefined;
             resourceInputs["httpMethod"] = args ? args.httpMethod : undefined;
             resourceInputs["maxRetries"] = args ? args.maxRetries : undefined;
@@ -216,25 +228,35 @@ export class Monitor extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Monitor resources.
  */
 export interface MonitorState {
+    /**
+     * @deprecated tenant_id is deprecated
+     */
     adminStateUp?: pulumi.Input<boolean>;
     /**
      * Specifies the maximum time between health checks in the unit of second. The value ranges
-     * from 1 to 50.
+     * from **1** to **50**.
      */
     delay?: pulumi.Input<number>;
     /**
+     * Specifies the domain name of HTTP requests during the health check. It takes effect
+     * only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+     * address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+     * letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+     */
+    domainName?: pulumi.Input<string>;
+    /**
      * Specifies the expected HTTP status code. Required for HTTP type.
-     * You can either specify a single status like "200", or a range like "200-202".
+     * You can either specify a single status like **200**, or a range like **200-202**.
      */
     expectedCodes?: pulumi.Input<string>;
     /**
      * Specifies the HTTP request method. Required for HTTP type.
-     * The default value is *GET*.
+     * The default value is **GET**.
      */
     httpMethod?: pulumi.Input<string>;
     /**
      * Specifies the maximum number of consecutive health checks after which the backend
-     * servers are declared *healthy*. The value ranges from 1 to 10.
+     * servers are declared **healthy**. The value ranges from **1** to **10**.
      */
     maxRetries?: pulumi.Input<number>;
     /**
@@ -262,13 +284,13 @@ export interface MonitorState {
     tenantId?: pulumi.Input<string>;
     /**
      * Specifies the health check timeout duration in the unit of second.
-     * The value ranges from 1 to 50 and must be less than the `delay` value.
+     * The value ranges from **1** to **50** and must be less than the `delay` value.
      */
     timeout?: pulumi.Input<number>;
     /**
      * Specifies the monitor protocol.
-     * The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-     * If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+     * The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+     * If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
      */
     type?: pulumi.Input<string>;
     /**
@@ -282,25 +304,35 @@ export interface MonitorState {
  * The set of arguments for constructing a Monitor resource.
  */
 export interface MonitorArgs {
+    /**
+     * @deprecated tenant_id is deprecated
+     */
     adminStateUp?: pulumi.Input<boolean>;
     /**
      * Specifies the maximum time between health checks in the unit of second. The value ranges
-     * from 1 to 50.
+     * from **1** to **50**.
      */
     delay: pulumi.Input<number>;
     /**
+     * Specifies the domain name of HTTP requests during the health check. It takes effect
+     * only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+     * address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+     * letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+     */
+    domainName?: pulumi.Input<string>;
+    /**
      * Specifies the expected HTTP status code. Required for HTTP type.
-     * You can either specify a single status like "200", or a range like "200-202".
+     * You can either specify a single status like **200**, or a range like **200-202**.
      */
     expectedCodes?: pulumi.Input<string>;
     /**
      * Specifies the HTTP request method. Required for HTTP type.
-     * The default value is *GET*.
+     * The default value is **GET**.
      */
     httpMethod?: pulumi.Input<string>;
     /**
      * Specifies the maximum number of consecutive health checks after which the backend
-     * servers are declared *healthy*. The value ranges from 1 to 10.
+     * servers are declared **healthy**. The value ranges from **1** to **10**.
      */
     maxRetries: pulumi.Input<number>;
     /**
@@ -328,13 +360,13 @@ export interface MonitorArgs {
     tenantId?: pulumi.Input<string>;
     /**
      * Specifies the health check timeout duration in the unit of second.
-     * The value ranges from 1 to 50 and must be less than the `delay` value.
+     * The value ranges from **1** to **50** and must be less than the `delay` value.
      */
     timeout: pulumi.Input<number>;
     /**
      * Specifies the monitor protocol.
-     * The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-     * If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+     * The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+     * If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
      */
     type: pulumi.Input<string>;
     /**

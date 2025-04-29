@@ -17,12 +17,16 @@ __all__ = [
 class AssumeRole(dict):
     def __init__(__self__, *,
                  agency_name: str,
-                 domain_name: str,
-                 domain_id: Optional[str] = None):
+                 domain_id: Optional[str] = None,
+                 domain_name: Optional[str] = None,
+                 duration: Optional[int] = None):
         pulumi.set(__self__, "agency_name", agency_name)
-        pulumi.set(__self__, "domain_name", domain_name)
         if domain_id is not None:
             pulumi.set(__self__, "domain_id", domain_id)
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
 
     @property
     @pulumi.getter(name="agencyName")
@@ -30,13 +34,18 @@ class AssumeRole(dict):
         return pulumi.get(self, "agency_name")
 
     @property
-    @pulumi.getter(name="domainName")
-    def domain_name(self) -> str:
-        return pulumi.get(self, "domain_name")
-
-    @property
     @pulumi.getter(name="domainId")
     def domain_id(self) -> Optional[str]:
         return pulumi.get(self, "domain_id")
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[str]:
+        return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[int]:
+        return pulumi.get(self, "duration")
 
 

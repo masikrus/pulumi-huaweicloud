@@ -5,21 +5,75 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export * from "./cbrWholeImage";
+export * from "./ecsWholeImage";
+export * from "./evsDataImage";
 export * from "./getImage";
+export * from "./getImages";
+export * from "./getOsVersions";
+export * from "./getQuotas";
+export * from "./getTags";
 export * from "./image";
+export * from "./imageCopy";
+export * from "./imageExport";
+export * from "./imageShare";
+export * from "./imageShareAccepter";
+export * from "./obsDataImage";
+export * from "./obsIsoImage";
+export * from "./obsSystemImage";
 
 // Import resources to register:
+import { CbrWholeImage } from "./cbrWholeImage";
+import { EcsWholeImage } from "./ecsWholeImage";
+import { EvsDataImage } from "./evsDataImage";
 import { Image } from "./image";
+import { ImageCopy } from "./imageCopy";
+import { ImageExport } from "./imageExport";
+import { ImageShare } from "./imageShare";
+import { ImageShareAccepter } from "./imageShareAccepter";
+import { ObsDataImage } from "./obsDataImage";
+import { ObsIsoImage } from "./obsIsoImage";
+import { ObsSystemImage } from "./obsSystemImage";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "huaweicloud:Ims/cbrWholeImage:CbrWholeImage":
+                return new CbrWholeImage(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/ecsWholeImage:EcsWholeImage":
+                return new EcsWholeImage(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/evsDataImage:EvsDataImage":
+                return new EvsDataImage(name, <any>undefined, { urn })
             case "huaweicloud:Ims/image:Image":
                 return new Image(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/imageCopy:ImageCopy":
+                return new ImageCopy(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/imageExport:ImageExport":
+                return new ImageExport(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/imageShare:ImageShare":
+                return new ImageShare(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/imageShareAccepter:ImageShareAccepter":
+                return new ImageShareAccepter(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/obsDataImage:ObsDataImage":
+                return new ObsDataImage(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/obsIsoImage:ObsIsoImage":
+                return new ObsIsoImage(name, <any>undefined, { urn })
+            case "huaweicloud:Ims/obsSystemImage:ObsSystemImage":
+                return new ObsSystemImage(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/cbrWholeImage", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/ecsWholeImage", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/evsDataImage", _module)
 pulumi.runtime.registerResourceModule("huaweicloud", "Ims/image", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/imageCopy", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/imageExport", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/imageShare", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/imageShareAccepter", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/obsDataImage", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/obsIsoImage", _module)
+pulumi.runtime.registerResourceModule("huaweicloud", "Ims/obsSystemImage", _module)

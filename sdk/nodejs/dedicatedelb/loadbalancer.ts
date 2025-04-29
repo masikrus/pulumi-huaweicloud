@@ -240,6 +240,12 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The type of the subnet on the downstream plane. The value can be:
+     * + **ipv4**: IPv4 subnet
+     * + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+     */
+    public /*out*/ readonly elbVirsubnetType!: pulumi.Output<string>;
+    /**
      * The enterprise project id of the load balancer.
      */
     public readonly enterpriseProjectId!: pulumi.Output<string>;
@@ -248,6 +254,16 @@ export class Loadbalancer extends pulumi.CustomResource {
      * listeners, unbind associated pools. Defaults to **false**.
      */
     public readonly forceDelete!: pulumi.Output<boolean | undefined>;
+    /**
+     * The scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+     * The value can be:
+     * + **POLICE**: The load balancer is frozen due to security reasons.
+     * + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+     * + **VERIFY**: Your account has not completed real-name authentication.
+     * + **PARTNER**: The load balancer is frozen by the partner.
+     * + **ARREAR**: Your account is in arrears.
+     */
+    public /*out*/ readonly frozenScene!: pulumi.Output<string>;
     /**
      * Indicates whether the load balancer is a dedicated load balancer.
      * The value can be one of the following:
@@ -297,7 +313,9 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipv6Eip!: pulumi.Output<string>;
     /**
-     * The ipv6 eip id of the load balancer.
+     * The type of the subnet on the downstream plane. The value can be:
+     * + **ipv4**: IPv4 subnet
+     * + **dualstack**: subnet that supports IPv4/IPv6 dual stack
      */
     public /*out*/ readonly ipv6EipId!: pulumi.Output<string>;
     /**
@@ -324,6 +342,12 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The operating status of the load balancer. The value can be:
+     * + **ONLINE**: indicates that the load balancer is running normally.
+     * + **FROZEN**: indicates that the load balancer is frozen.
+     */
+    public /*out*/ readonly operatingStatus!: pulumi.Output<string>;
+    /**
      * Specifies the charging period of the ELB load balancer.
      * If `periodUnit` is set to **month**, the value ranges from `1` to `9`.
      * If `periodUnit` is set to **year**, the value ranges from `1` to `3`.
@@ -346,6 +370,10 @@ export class Loadbalancer extends pulumi.CustomResource {
      * + **consoleProtection**: Console modification protection.
      */
     public readonly protectionStatus!: pulumi.Output<string>;
+    /**
+     * The AZ group to which the load balancer belongs.
+     */
+    public /*out*/ readonly publicBorderGroup!: pulumi.Output<string>;
     /**
      * The region in which to create the load balancer resource. If omitted, the
      * provider-level region will be used. Changing this creates a new load balancer.
@@ -405,8 +433,10 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["crossVpcBackend"] = state ? state.crossVpcBackend : undefined;
             resourceInputs["deletionProtectionEnable"] = state ? state.deletionProtectionEnable : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["elbVirsubnetType"] = state ? state.elbVirsubnetType : undefined;
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["forceDelete"] = state ? state.forceDelete : undefined;
+            resourceInputs["frozenScene"] = state ? state.frozenScene : undefined;
             resourceInputs["guaranteed"] = state ? state.guaranteed : undefined;
             resourceInputs["gwFlavorId"] = state ? state.gwFlavorId : undefined;
             resourceInputs["iptype"] = state ? state.iptype : undefined;
@@ -425,10 +455,12 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["loadbalancerType"] = state ? state.loadbalancerType : undefined;
             resourceInputs["minL7FlavorId"] = state ? state.minL7FlavorId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["operatingStatus"] = state ? state.operatingStatus : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["periodUnit"] = state ? state.periodUnit : undefined;
             resourceInputs["protectionReason"] = state ? state.protectionReason : undefined;
             resourceInputs["protectionStatus"] = state ? state.protectionStatus : undefined;
+            resourceInputs["publicBorderGroup"] = state ? state.publicBorderGroup : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["sharetype"] = state ? state.sharetype : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -477,12 +509,16 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["wafFailureAction"] = args ? args.wafFailureAction : undefined;
             resourceInputs["chargeMode"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["elbVirsubnetType"] = undefined /*out*/;
+            resourceInputs["frozenScene"] = undefined /*out*/;
             resourceInputs["guaranteed"] = undefined /*out*/;
             resourceInputs["gwFlavorId"] = undefined /*out*/;
             resourceInputs["ipv4Eip"] = undefined /*out*/;
             resourceInputs["ipv4PortId"] = undefined /*out*/;
             resourceInputs["ipv6Eip"] = undefined /*out*/;
             resourceInputs["ipv6EipId"] = undefined /*out*/;
+            resourceInputs["operatingStatus"] = undefined /*out*/;
+            resourceInputs["publicBorderGroup"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -566,6 +602,12 @@ export interface LoadbalancerState {
      */
     description?: pulumi.Input<string>;
     /**
+     * The type of the subnet on the downstream plane. The value can be:
+     * + **ipv4**: IPv4 subnet
+     * + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+     */
+    elbVirsubnetType?: pulumi.Input<string>;
+    /**
      * The enterprise project id of the load balancer.
      */
     enterpriseProjectId?: pulumi.Input<string>;
@@ -574,6 +616,16 @@ export interface LoadbalancerState {
      * listeners, unbind associated pools. Defaults to **false**.
      */
     forceDelete?: pulumi.Input<boolean>;
+    /**
+     * The scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+     * The value can be:
+     * + **POLICE**: The load balancer is frozen due to security reasons.
+     * + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+     * + **VERIFY**: Your account has not completed real-name authentication.
+     * + **PARTNER**: The load balancer is frozen by the partner.
+     * + **ARREAR**: Your account is in arrears.
+     */
+    frozenScene?: pulumi.Input<string>;
     /**
      * Indicates whether the load balancer is a dedicated load balancer.
      * The value can be one of the following:
@@ -623,7 +675,9 @@ export interface LoadbalancerState {
      */
     ipv6Eip?: pulumi.Input<string>;
     /**
-     * The ipv6 eip id of the load balancer.
+     * The type of the subnet on the downstream plane. The value can be:
+     * + **ipv4**: IPv4 subnet
+     * + **dualstack**: subnet that supports IPv4/IPv6 dual stack
      */
     ipv6EipId?: pulumi.Input<string>;
     /**
@@ -650,6 +704,12 @@ export interface LoadbalancerState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The operating status of the load balancer. The value can be:
+     * + **ONLINE**: indicates that the load balancer is running normally.
+     * + **FROZEN**: indicates that the load balancer is frozen.
+     */
+    operatingStatus?: pulumi.Input<string>;
+    /**
      * Specifies the charging period of the ELB load balancer.
      * If `periodUnit` is set to **month**, the value ranges from `1` to `9`.
      * If `periodUnit` is set to **year**, the value ranges from `1` to `3`.
@@ -672,6 +732,10 @@ export interface LoadbalancerState {
      * + **consoleProtection**: Console modification protection.
      */
     protectionStatus?: pulumi.Input<string>;
+    /**
+     * The AZ group to which the load balancer belongs.
+     */
+    publicBorderGroup?: pulumi.Input<string>;
     /**
      * The region in which to create the load balancer resource. If omitted, the
      * provider-level region will be used. Changing this creates a new load balancer.

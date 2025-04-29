@@ -22,10 +22,13 @@ class GetIpgroupsResult:
     """
     A collection of values returned by getIpgroups.
     """
-    def __init__(__self__, description=None, id=None, ip_address=None, ipgroup_id=None, ipgroups=None, name=None, region=None):
+    def __init__(__self__, description=None, enterprise_project_id=None, id=None, ip_address=None, ipgroup_id=None, ipgroups=None, name=None, region=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if enterprise_project_id and not isinstance(enterprise_project_id, str):
+            raise TypeError("Expected argument 'enterprise_project_id' to be a str")
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -52,6 +55,14 @@ class GetIpgroupsResult:
         The description of the IP address group.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[str]:
+        """
+        The enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter
@@ -101,6 +112,7 @@ class AwaitableGetIpgroupsResult(GetIpgroupsResult):
             yield self
         return GetIpgroupsResult(
             description=self.description,
+            enterprise_project_id=self.enterprise_project_id,
             id=self.id,
             ip_address=self.ip_address,
             ipgroup_id=self.ipgroup_id,
@@ -110,6 +122,7 @@ class AwaitableGetIpgroupsResult(GetIpgroupsResult):
 
 
 def get_ipgroups(description: Optional[str] = None,
+                 enterprise_project_id: Optional[str] = None,
                  ip_address: Optional[str] = None,
                  ipgroup_id: Optional[str] = None,
                  name: Optional[str] = None,
@@ -131,6 +144,7 @@ def get_ipgroups(description: Optional[str] = None,
 
 
     :param str description: Specifies the description of the IP address group.
+    :param str enterprise_project_id: Specifies the enterprise project ID.
     :param str ip_address: Specifies the IP address of the IP address group.
     :param str ipgroup_id: Specifies the ID of the IP address group.
     :param str name: Specifies the name of the IP address group.
@@ -139,6 +153,7 @@ def get_ipgroups(description: Optional[str] = None,
     """
     __args__ = dict()
     __args__['description'] = description
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['ipAddress'] = ip_address
     __args__['ipgroupId'] = ipgroup_id
     __args__['name'] = name
@@ -148,6 +163,7 @@ def get_ipgroups(description: Optional[str] = None,
 
     return AwaitableGetIpgroupsResult(
         description=__ret__.description,
+        enterprise_project_id=__ret__.enterprise_project_id,
         id=__ret__.id,
         ip_address=__ret__.ip_address,
         ipgroup_id=__ret__.ipgroup_id,
@@ -158,6 +174,7 @@ def get_ipgroups(description: Optional[str] = None,
 
 @_utilities.lift_output_func(get_ipgroups)
 def get_ipgroups_output(description: Optional[pulumi.Input[Optional[str]]] = None,
+                        enterprise_project_id: Optional[pulumi.Input[Optional[str]]] = None,
                         ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                         ipgroup_id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -179,6 +196,7 @@ def get_ipgroups_output(description: Optional[pulumi.Input[Optional[str]]] = Non
 
 
     :param str description: Specifies the description of the IP address group.
+    :param str enterprise_project_id: Specifies the enterprise project ID.
     :param str ip_address: Specifies the IP address of the IP address group.
     :param str ipgroup_id: Specifies the ID of the IP address group.
     :param str name: Specifies the name of the IP address group.
