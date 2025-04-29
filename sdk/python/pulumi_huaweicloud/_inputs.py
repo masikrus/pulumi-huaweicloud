@@ -17,12 +17,16 @@ __all__ = [
 class ProviderAssumeRoleArgs:
     def __init__(__self__, *,
                  agency_name: pulumi.Input[str],
-                 domain_name: pulumi.Input[str],
-                 domain_id: Optional[pulumi.Input[str]] = None):
+                 domain_id: Optional[pulumi.Input[str]] = None,
+                 domain_name: Optional[pulumi.Input[str]] = None,
+                 duration: Optional[pulumi.Input[int]] = None):
         pulumi.set(__self__, "agency_name", agency_name)
-        pulumi.set(__self__, "domain_name", domain_name)
         if domain_id is not None:
             pulumi.set(__self__, "domain_id", domain_id)
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
 
     @property
     @pulumi.getter(name="agencyName")
@@ -34,15 +38,6 @@ class ProviderAssumeRoleArgs:
         pulumi.set(self, "agency_name", value)
 
     @property
-    @pulumi.getter(name="domainName")
-    def domain_name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "domain_name")
-
-    @domain_name.setter
-    def domain_name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "domain_name", value)
-
-    @property
     @pulumi.getter(name="domainId")
     def domain_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "domain_id")
@@ -50,5 +45,23 @@ class ProviderAssumeRoleArgs:
     @domain_id.setter
     def domain_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain_id", value)
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "domain_name")
+
+    @domain_name.setter
+    def domain_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_name", value)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "duration", value)
 
 

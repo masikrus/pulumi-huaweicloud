@@ -202,6 +202,8 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
+	// The scaling activity type of the AS group.
+	ActivityType pulumi.StringOutput `pulumi:"activityType"`
 	// Specifies the IAM agency name. If you change the agency,
 	// the new agency will be available for ECSs scaled out after the change.
 	AgencyName pulumi.StringOutput `pulumi:"agencyName"`
@@ -213,6 +215,8 @@ type Group struct {
 	// Specifies the cooling duration (in seconds). The value ranges from `0` to `86,400`.
 	// Defaults to `300`.
 	CoolDownTime pulumi.IntPtrOutput `pulumi:"coolDownTime"`
+	// The creation time of the AS group.
+	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// The number of current instances in the AS group.
 	CurrentInstanceNumber pulumi.IntOutput `pulumi:"currentInstanceNumber"`
 	// Specifies whether to delete the instances in the AS group when deleting
@@ -230,6 +234,8 @@ type Group struct {
 	// Specifies the expected number of instances. The default value is the
 	// minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
 	DesireInstanceNumber pulumi.IntOutput `pulumi:"desireInstanceNumber"`
+	// The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+	Detail pulumi.StringOutput `pulumi:"detail"`
 	// Specifies whether to enable the AS Group. Defaults to **true**.
 	Enable pulumi.BoolPtrOutput `pulumi:"enable"`
 	// Specifies the enterprise project ID of the AS group.
@@ -253,6 +259,8 @@ type Group struct {
 	InstanceTerminatePolicy pulumi.StringPtrOutput `pulumi:"instanceTerminatePolicy"`
 	// The instances IDs of the AS group.
 	Instances pulumi.StringArrayOutput `pulumi:"instances"`
+	// The scaling flag of the AS group.
+	IsScaling pulumi.BoolOutput `pulumi:"isScaling"`
 	// The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
 	//
 	// Deprecated: use lbaas_listeners instead
@@ -279,6 +287,8 @@ type Group struct {
 	// Specifies the configuration ID which defines configurations
 	// of instances in the AS group.
 	ScalingConfigurationId pulumi.StringOutput `pulumi:"scalingConfigurationId"`
+	// The name of the AS configuration to which the AS group belongs.
+	ScalingConfigurationName pulumi.StringOutput `pulumi:"scalingConfigurationName"`
 	// Specifies the name of the scaling group. The name can contain
 	// letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.
 	ScalingGroupName pulumi.StringOutput `pulumi:"scalingGroupName"`
@@ -332,6 +342,8 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
+	// The scaling activity type of the AS group.
+	ActivityType *string `pulumi:"activityType"`
 	// Specifies the IAM agency name. If you change the agency,
 	// the new agency will be available for ECSs scaled out after the change.
 	AgencyName *string `pulumi:"agencyName"`
@@ -343,6 +355,8 @@ type groupState struct {
 	// Specifies the cooling duration (in seconds). The value ranges from `0` to `86,400`.
 	// Defaults to `300`.
 	CoolDownTime *int `pulumi:"coolDownTime"`
+	// The creation time of the AS group.
+	CreateTime *string `pulumi:"createTime"`
 	// The number of current instances in the AS group.
 	CurrentInstanceNumber *int `pulumi:"currentInstanceNumber"`
 	// Specifies whether to delete the instances in the AS group when deleting
@@ -360,6 +374,8 @@ type groupState struct {
 	// Specifies the expected number of instances. The default value is the
 	// minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
 	DesireInstanceNumber *int `pulumi:"desireInstanceNumber"`
+	// The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+	Detail *string `pulumi:"detail"`
 	// Specifies whether to enable the AS Group. Defaults to **true**.
 	Enable *bool `pulumi:"enable"`
 	// Specifies the enterprise project ID of the AS group.
@@ -383,6 +399,8 @@ type groupState struct {
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
 	// The instances IDs of the AS group.
 	Instances []string `pulumi:"instances"`
+	// The scaling flag of the AS group.
+	IsScaling *bool `pulumi:"isScaling"`
 	// The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
 	//
 	// Deprecated: use lbaas_listeners instead
@@ -409,6 +427,8 @@ type groupState struct {
 	// Specifies the configuration ID which defines configurations
 	// of instances in the AS group.
 	ScalingConfigurationId *string `pulumi:"scalingConfigurationId"`
+	// The name of the AS configuration to which the AS group belongs.
+	ScalingConfigurationName *string `pulumi:"scalingConfigurationName"`
 	// Specifies the name of the scaling group. The name can contain
 	// letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.
 	ScalingGroupName *string `pulumi:"scalingGroupName"`
@@ -424,6 +444,8 @@ type groupState struct {
 }
 
 type GroupState struct {
+	// The scaling activity type of the AS group.
+	ActivityType pulumi.StringPtrInput
 	// Specifies the IAM agency name. If you change the agency,
 	// the new agency will be available for ECSs scaled out after the change.
 	AgencyName pulumi.StringPtrInput
@@ -435,6 +457,8 @@ type GroupState struct {
 	// Specifies the cooling duration (in seconds). The value ranges from `0` to `86,400`.
 	// Defaults to `300`.
 	CoolDownTime pulumi.IntPtrInput
+	// The creation time of the AS group.
+	CreateTime pulumi.StringPtrInput
 	// The number of current instances in the AS group.
 	CurrentInstanceNumber pulumi.IntPtrInput
 	// Specifies whether to delete the instances in the AS group when deleting
@@ -452,6 +476,8 @@ type GroupState struct {
 	// Specifies the expected number of instances. The default value is the
 	// minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
 	DesireInstanceNumber pulumi.IntPtrInput
+	// The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+	Detail pulumi.StringPtrInput
 	// Specifies whether to enable the AS Group. Defaults to **true**.
 	Enable pulumi.BoolPtrInput
 	// Specifies the enterprise project ID of the AS group.
@@ -475,6 +501,8 @@ type GroupState struct {
 	InstanceTerminatePolicy pulumi.StringPtrInput
 	// The instances IDs of the AS group.
 	Instances pulumi.StringArrayInput
+	// The scaling flag of the AS group.
+	IsScaling pulumi.BoolPtrInput
 	// The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
 	//
 	// Deprecated: use lbaas_listeners instead
@@ -501,6 +529,8 @@ type GroupState struct {
 	// Specifies the configuration ID which defines configurations
 	// of instances in the AS group.
 	ScalingConfigurationId pulumi.StringPtrInput
+	// The name of the AS configuration to which the AS group belongs.
+	ScalingConfigurationName pulumi.StringPtrInput
 	// Specifies the name of the scaling group. The name can contain
 	// letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.
 	ScalingGroupName pulumi.StringPtrInput
@@ -779,6 +809,11 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
+// The scaling activity type of the AS group.
+func (o GroupOutput) ActivityType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.ActivityType }).(pulumi.StringOutput)
+}
+
 // Specifies the IAM agency name. If you change the agency,
 // the new agency will be available for ECSs scaled out after the change.
 func (o GroupOutput) AgencyName() pulumi.StringOutput {
@@ -800,6 +835,11 @@ func (o GroupOutput) AvailableZones() pulumi.StringArrayOutput {
 // Defaults to `300`.
 func (o GroupOutput) CoolDownTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.IntPtrOutput { return v.CoolDownTime }).(pulumi.IntPtrOutput)
+}
+
+// The creation time of the AS group.
+func (o GroupOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
 // The number of current instances in the AS group.
@@ -835,6 +875,11 @@ func (o GroupOutput) Description() pulumi.StringOutput {
 // minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
 func (o GroupOutput) DesireInstanceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *Group) pulumi.IntOutput { return v.DesireInstanceNumber }).(pulumi.IntOutput)
+}
+
+// The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+func (o GroupOutput) Detail() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Detail }).(pulumi.StringOutput)
 }
 
 // Specifies whether to enable the AS Group. Defaults to **true**.
@@ -882,6 +927,11 @@ func (o GroupOutput) InstanceTerminatePolicy() pulumi.StringPtrOutput {
 // The instances IDs of the AS group.
 func (o GroupOutput) Instances() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.Instances }).(pulumi.StringArrayOutput)
+}
+
+// The scaling flag of the AS group.
+func (o GroupOutput) IsScaling() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolOutput { return v.IsScaling }).(pulumi.BoolOutput)
 }
 
 // The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
@@ -935,6 +985,11 @@ func (o GroupOutput) Region() pulumi.StringOutput {
 // of instances in the AS group.
 func (o GroupOutput) ScalingConfigurationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.ScalingConfigurationId }).(pulumi.StringOutput)
+}
+
+// The name of the AS configuration to which the AS group belongs.
+func (o GroupOutput) ScalingConfigurationName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.ScalingConfigurationName }).(pulumi.StringOutput)
 }
 
 // Specifies the name of the scaling group. The name can contain

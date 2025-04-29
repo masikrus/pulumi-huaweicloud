@@ -468,6 +468,7 @@ class _NodeAttachState:
                  docker_base_size: Optional[pulumi.Input[int]] = None,
                  ecs_group_id: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
+                 extension_nics: Optional[pulumi.Input[Sequence[pulumi.Input['NodeAttachExtensionNicArgs']]]] = None,
                  flavor_id: Optional[pulumi.Input[str]] = None,
                  hostname_config: Optional[pulumi.Input['NodeAttachHostnameConfigArgs']] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
@@ -507,6 +508,8 @@ class _NodeAttachState:
                node in device mapper mode. Changing this parameter will reset the node.
         :param pulumi.Input[str] ecs_group_id: The Ecs group ID.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the CCE node.
+        :param pulumi.Input[Sequence[pulumi.Input['NodeAttachExtensionNicArgs']]] extension_nics: The extension NICs of the node.
+               The object structure is documented below.
         :param pulumi.Input[str] flavor_id: The flavor ID of the CCE node.
         :param pulumi.Input['NodeAttachHostnameConfigArgs'] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
@@ -576,6 +579,8 @@ class _NodeAttachState:
             pulumi.set(__self__, "ecs_group_id", ecs_group_id)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if extension_nics is not None:
+            pulumi.set(__self__, "extension_nics", extension_nics)
         if flavor_id is not None:
             pulumi.set(__self__, "flavor_id", flavor_id)
         if hostname_config is not None:
@@ -718,6 +723,19 @@ class _NodeAttachState:
     @enterprise_project_id.setter
     def enterprise_project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enterprise_project_id", value)
+
+    @property
+    @pulumi.getter(name="extensionNics")
+    def extension_nics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodeAttachExtensionNicArgs']]]]:
+        """
+        The extension NICs of the node.
+        The object structure is documented below.
+        """
+        return pulumi.get(self, "extension_nics")
+
+    @extension_nics.setter
+    def extension_nics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodeAttachExtensionNicArgs']]]]):
+        pulumi.set(self, "extension_nics", value)
 
     @property
     @pulumi.getter(name="flavorId")
@@ -1304,6 +1322,7 @@ class NodeAttach(pulumi.CustomResource):
             __props__.__dict__["data_volumes"] = None
             __props__.__dict__["ecs_group_id"] = None
             __props__.__dict__["enterprise_project_id"] = None
+            __props__.__dict__["extension_nics"] = None
             __props__.__dict__["flavor_id"] = None
             __props__.__dict__["private_ip"] = None
             __props__.__dict__["public_ip"] = None
@@ -1327,6 +1346,7 @@ class NodeAttach(pulumi.CustomResource):
             docker_base_size: Optional[pulumi.Input[int]] = None,
             ecs_group_id: Optional[pulumi.Input[str]] = None,
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
+            extension_nics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodeAttachExtensionNicArgs']]]]] = None,
             flavor_id: Optional[pulumi.Input[str]] = None,
             hostname_config: Optional[pulumi.Input[pulumi.InputType['NodeAttachHostnameConfigArgs']]] = None,
             image_id: Optional[pulumi.Input[str]] = None,
@@ -1371,6 +1391,8 @@ class NodeAttach(pulumi.CustomResource):
                node in device mapper mode. Changing this parameter will reset the node.
         :param pulumi.Input[str] ecs_group_id: The Ecs group ID.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the CCE node.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodeAttachExtensionNicArgs']]]] extension_nics: The extension NICs of the node.
+               The object structure is documented below.
         :param pulumi.Input[str] flavor_id: The flavor ID of the CCE node.
         :param pulumi.Input[pulumi.InputType['NodeAttachHostnameConfigArgs']] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
@@ -1437,6 +1459,7 @@ class NodeAttach(pulumi.CustomResource):
         __props__.__dict__["docker_base_size"] = docker_base_size
         __props__.__dict__["ecs_group_id"] = ecs_group_id
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
+        __props__.__dict__["extension_nics"] = extension_nics
         __props__.__dict__["flavor_id"] = flavor_id
         __props__.__dict__["hostname_config"] = hostname_config
         __props__.__dict__["image_id"] = image_id
@@ -1524,6 +1547,15 @@ class NodeAttach(pulumi.CustomResource):
         The enterprise project ID of the CCE node.
         """
         return pulumi.get(self, "enterprise_project_id")
+
+    @property
+    @pulumi.getter(name="extensionNics")
+    def extension_nics(self) -> pulumi.Output[Sequence['outputs.NodeAttachExtensionNic']]:
+        """
+        The extension NICs of the node.
+        The object structure is documented below.
+        """
+        return pulumi.get(self, "extension_nics")
 
     @property
     @pulumi.getter(name="flavorId")

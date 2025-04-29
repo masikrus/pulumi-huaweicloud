@@ -35,6 +35,8 @@ if typing.TYPE_CHECKING:
     cdm = __cdm
     import pulumi_huaweicloud.cdn as __cdn
     cdn = __cdn
+    import pulumi_huaweicloud.cfw as __cfw
+    cfw = __cfw
     import pulumi_huaweicloud.cloudtable as __cloudtable
     cloudtable = __cloudtable
     import pulumi_huaweicloud.config as __config
@@ -79,6 +81,8 @@ if typing.TYPE_CHECKING:
     elb = __elb
     import pulumi_huaweicloud.eps as __eps
     eps = __eps
+    import pulumi_huaweicloud.er as __er
+    er = __er
     import pulumi_huaweicloud.evs as __evs
     evs = __evs
     import pulumi_huaweicloud.functiongraph as __functiongraph
@@ -160,6 +164,7 @@ else:
     cci = _utilities.lazy_import('pulumi_huaweicloud.cci')
     cdm = _utilities.lazy_import('pulumi_huaweicloud.cdm')
     cdn = _utilities.lazy_import('pulumi_huaweicloud.cdn')
+    cfw = _utilities.lazy_import('pulumi_huaweicloud.cfw')
     cloudtable = _utilities.lazy_import('pulumi_huaweicloud.cloudtable')
     config = _utilities.lazy_import('pulumi_huaweicloud.config')
     cpts = _utilities.lazy_import('pulumi_huaweicloud.cpts')
@@ -182,6 +187,7 @@ else:
     eip = _utilities.lazy_import('pulumi_huaweicloud.eip')
     elb = _utilities.lazy_import('pulumi_huaweicloud.elb')
     eps = _utilities.lazy_import('pulumi_huaweicloud.eps')
+    er = _utilities.lazy_import('pulumi_huaweicloud.er')
     evs = _utilities.lazy_import('pulumi_huaweicloud.evs')
     functiongraph = _utilities.lazy_import('pulumi_huaweicloud.functiongraph')
     gaussdb = _utilities.lazy_import('pulumi_huaweicloud.gaussdb')
@@ -506,6 +512,126 @@ _utilities.register(
   "fqn": "pulumi_huaweicloud.cdn",
   "classes": {
    "huaweicloud:Cdn/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/aclRule",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/aclRule:AclRule": "AclRule"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/addressGroup",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/addressGroup:AddressGroup": "AddressGroup"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/addressGroupMember",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/addressGroupMember:AddressGroupMember": "AddressGroupMember"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/alarmConfig",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/alarmConfig:AlarmConfig": "AlarmConfig"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/antiVirus",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/antiVirus:AntiVirus": "AntiVirus"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/blackWhiteList",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/blackWhiteList:BlackWhiteList": "BlackWhiteList"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/captureTask",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/captureTask:CaptureTask": "CaptureTask"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/dnsResolution",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/dnsResolution:DnsResolution": "DnsResolution"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/domainNameGroup",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/domainNameGroup:DomainNameGroup": "DomainNameGroup"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/eipProtection",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/eipProtection:EipProtection": "EipProtection"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/firewall",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/firewall:Firewall": "Firewall"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/ipsRuleModeChange",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/ipsRuleModeChange:IpsRuleModeChange": "IpsRuleModeChange"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/ltsLog",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/ltsLog:LtsLog": "LtsLog"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/serviceGroup",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/serviceGroup:ServiceGroup": "ServiceGroup"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Cfw/serviceGroupMember",
+  "fqn": "pulumi_huaweicloud.cfw",
+  "classes": {
+   "huaweicloud:Cfw/serviceGroupMember:ServiceGroupMember": "ServiceGroupMember"
   }
  },
  {
@@ -1166,6 +1292,70 @@ _utilities.register(
  },
  {
   "pkg": "huaweicloud",
+  "mod": "Er/association",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/association:Association": "Association"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/attachmentAccepter",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/attachmentAccepter:AttachmentAccepter": "AttachmentAccepter"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/flowLog",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/flowLog:FlowLog": "FlowLog"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/instance",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/propagation",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/propagation:Propagation": "Propagation"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/routeTable",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/routeTable:RouteTable": "RouteTable"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/staticRoute",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/staticRoute:StaticRoute": "StaticRoute"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Er/vpcAttachment",
+  "fqn": "pulumi_huaweicloud.er",
+  "classes": {
+   "huaweicloud:Er/vpcAttachment:VpcAttachment": "VpcAttachment"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
   "mod": "Evs/snapshot",
   "fqn": "pulumi_huaweicloud.evs",
   "classes": {
@@ -1486,10 +1676,90 @@ _utilities.register(
  },
  {
   "pkg": "huaweicloud",
+  "mod": "Ims/cbrWholeImage",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/cbrWholeImage:CbrWholeImage": "CbrWholeImage"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/ecsWholeImage",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/ecsWholeImage:EcsWholeImage": "EcsWholeImage"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/evsDataImage",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/evsDataImage:EvsDataImage": "EvsDataImage"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
   "mod": "Ims/image",
   "fqn": "pulumi_huaweicloud.ims",
   "classes": {
    "huaweicloud:Ims/image:Image": "Image"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/imageCopy",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/imageCopy:ImageCopy": "ImageCopy"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/imageExport",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/imageExport:ImageExport": "ImageExport"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/imageShare",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/imageShare:ImageShare": "ImageShare"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/imageShareAccepter",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/imageShareAccepter:ImageShareAccepter": "ImageShareAccepter"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/obsDataImage",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/obsDataImage:ObsDataImage": "ObsDataImage"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/obsIsoImage",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/obsIsoImage:ObsIsoImage": "ObsIsoImage"
+  }
+ },
+ {
+  "pkg": "huaweicloud",
+  "mod": "Ims/obsSystemImage",
+  "fqn": "pulumi_huaweicloud.ims",
+  "classes": {
+   "huaweicloud:Ims/obsSystemImage:ObsSystemImage": "ObsSystemImage"
   }
  },
  {

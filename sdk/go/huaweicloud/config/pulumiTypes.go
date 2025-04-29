@@ -13,7 +13,8 @@ import (
 type AssumeRole struct {
 	AgencyName string  `pulumi:"agencyName"`
 	DomainId   *string `pulumi:"domainId"`
-	DomainName string  `pulumi:"domainName"`
+	DomainName *string `pulumi:"domainName"`
+	Duration   *int    `pulumi:"duration"`
 }
 
 // AssumeRoleInput is an input type that accepts AssumeRoleArgs and AssumeRoleOutput values.
@@ -30,7 +31,8 @@ type AssumeRoleInput interface {
 type AssumeRoleArgs struct {
 	AgencyName pulumi.StringInput    `pulumi:"agencyName"`
 	DomainId   pulumi.StringPtrInput `pulumi:"domainId"`
-	DomainName pulumi.StringInput    `pulumi:"domainName"`
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+	Duration   pulumi.IntPtrInput    `pulumi:"duration"`
 }
 
 func (AssumeRoleArgs) ElementType() reflect.Type {
@@ -67,8 +69,12 @@ func (o AssumeRoleOutput) DomainId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AssumeRole) *string { return v.DomainId }).(pulumi.StringPtrOutput)
 }
 
-func (o AssumeRoleOutput) DomainName() pulumi.StringOutput {
-	return o.ApplyT(func(v AssumeRole) string { return v.DomainName }).(pulumi.StringOutput)
+func (o AssumeRoleOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AssumeRole) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+func (o AssumeRoleOutput) Duration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AssumeRole) *int { return v.Duration }).(pulumi.IntPtrOutput)
 }
 
 func init() {

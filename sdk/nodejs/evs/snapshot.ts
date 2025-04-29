@@ -80,6 +80,10 @@ export class Snapshot extends pulumi.CustomResource {
     }
 
     /**
+     * The time when the snapshot was created.
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
      * The description of the snapshot. The value can contain a maximum of 255 bytes.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -91,7 +95,12 @@ export class Snapshot extends pulumi.CustomResource {
      * Specifies the user-defined metadata key-value pair. Changing the parameter
      * creates a new snapshot.
      */
-    public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly metadata!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * The script configuration value of this change is also the original value used for comparison with the new value next
+     * time the change is made. The corresponding parameter name is 'metadata'.
+     */
+    public /*out*/ readonly metadataOrigin!: pulumi.Output<{[key: string]: string}>;
     /**
      * The name of the snapshot. The value can contain a maximum of 255 bytes.
      */
@@ -109,6 +118,10 @@ export class Snapshot extends pulumi.CustomResource {
      * The status of the snapshot.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * The time when the snapshot was updated.
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
      * The id of the snapshot's source disk. Changing the parameter creates a new
      * snapshot.
@@ -128,13 +141,16 @@ export class Snapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SnapshotState | undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["force"] = state ? state.force : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["metadataOrigin"] = state ? state.metadataOrigin : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
             const args = argsOrState as SnapshotArgs | undefined;
@@ -147,8 +163,11 @@ export class Snapshot extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["metadataOrigin"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Snapshot.__pulumiType, name, resourceInputs, opts);
@@ -159,6 +178,10 @@ export class Snapshot extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Snapshot resources.
  */
 export interface SnapshotState {
+    /**
+     * The time when the snapshot was created.
+     */
+    createdAt?: pulumi.Input<string>;
     /**
      * The description of the snapshot. The value can contain a maximum of 255 bytes.
      */
@@ -172,6 +195,11 @@ export interface SnapshotState {
      * creates a new snapshot.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The script configuration value of this change is also the original value used for comparison with the new value next
+     * time the change is made. The corresponding parameter name is 'metadata'.
+     */
+    metadataOrigin?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the snapshot. The value can contain a maximum of 255 bytes.
      */
@@ -189,6 +217,10 @@ export interface SnapshotState {
      * The status of the snapshot.
      */
     status?: pulumi.Input<string>;
+    /**
+     * The time when the snapshot was updated.
+     */
+    updatedAt?: pulumi.Input<string>;
     /**
      * The id of the snapshot's source disk. Changing the parameter creates a new
      * snapshot.

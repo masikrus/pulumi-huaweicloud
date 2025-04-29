@@ -124,6 +124,15 @@ export class ActiveStandbyPool extends pulumi.CustomResource {
      */
     public readonly ipVersion!: pulumi.Output<string>;
     /**
+     * Specifies the load balancing algorithm used by the load balancer to route
+     * requests to backend servers in the associated backend server group. Value options:
+     * + **ROUND_ROBIN**: weighted round robin.
+     * + **LEAST_CONNECTIONS**: weighted least connections.
+     * + **SOURCE_IP**: source IP hash.
+     * + **QUIC_CID**: connection ID.
+     */
+    public readonly lbAlgorithm!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the ID of the listener with which the active-standby pool is
      * associated. Changing this parameter will create a new resource.
      */
@@ -151,6 +160,11 @@ export class ActiveStandbyPool extends pulumi.CustomResource {
      * + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
      */
     public readonly protocol!: pulumi.Output<string>;
+    /**
+     * The multi-path distribution configuration based on destination connection IDs.
+     * The quicCidHashStrategy structure is documented below.
+     */
+    public /*out*/ readonly quicCidHashStrategies!: pulumi.Output<outputs.DedicatedElb.ActiveStandbyPoolQuicCidHashStrategy[]>;
     /**
      * Specifies the region in which to create the ELB active-standby pool resource.
      * If omitted, the provider-level region will be used.
@@ -196,11 +210,13 @@ export class ActiveStandbyPool extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["healthmonitor"] = state ? state.healthmonitor : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["lbAlgorithm"] = state ? state.lbAlgorithm : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
             resourceInputs["loadbalancerId"] = state ? state.loadbalancerId : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["quicCidHashStrategies"] = state ? state.quicCidHashStrategies : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -222,6 +238,7 @@ export class ActiveStandbyPool extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["healthmonitor"] = args ? args.healthmonitor : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["lbAlgorithm"] = args ? args.lbAlgorithm : undefined;
             resourceInputs["listenerId"] = args ? args.listenerId : undefined;
             resourceInputs["loadbalancerId"] = args ? args.loadbalancerId : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
@@ -231,6 +248,7 @@ export class ActiveStandbyPool extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["quicCidHashStrategies"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -284,6 +302,15 @@ export interface ActiveStandbyPoolState {
      */
     ipVersion?: pulumi.Input<string>;
     /**
+     * Specifies the load balancing algorithm used by the load balancer to route
+     * requests to backend servers in the associated backend server group. Value options:
+     * + **ROUND_ROBIN**: weighted round robin.
+     * + **LEAST_CONNECTIONS**: weighted least connections.
+     * + **SOURCE_IP**: source IP hash.
+     * + **QUIC_CID**: connection ID.
+     */
+    lbAlgorithm?: pulumi.Input<string>;
+    /**
      * Specifies the ID of the listener with which the active-standby pool is
      * associated. Changing this parameter will create a new resource.
      */
@@ -311,6 +338,11 @@ export interface ActiveStandbyPoolState {
      * + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
      */
     protocol?: pulumi.Input<string>;
+    /**
+     * The multi-path distribution configuration based on destination connection IDs.
+     * The quicCidHashStrategy structure is documented below.
+     */
+    quicCidHashStrategies?: pulumi.Input<pulumi.Input<inputs.DedicatedElb.ActiveStandbyPoolQuicCidHashStrategy>[]>;
     /**
      * Specifies the region in which to create the ELB active-standby pool resource.
      * If omitted, the provider-level region will be used.
@@ -378,6 +410,15 @@ export interface ActiveStandbyPoolArgs {
      * The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
      */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * Specifies the load balancing algorithm used by the load balancer to route
+     * requests to backend servers in the associated backend server group. Value options:
+     * + **ROUND_ROBIN**: weighted round robin.
+     * + **LEAST_CONNECTIONS**: weighted least connections.
+     * + **SOURCE_IP**: source IP hash.
+     * + **QUIC_CID**: connection ID.
+     */
+    lbAlgorithm?: pulumi.Input<string>;
     /**
      * Specifies the ID of the listener with which the active-standby pool is
      * associated. Changing this parameter will create a new resource.

@@ -498,16 +498,26 @@ type ActiveStandbyPoolMember struct {
 	// Specifies the health check name. The length range of value is from `1` to `255`.
 	// Changing this parameter will create a new resource.
 	Name *string `pulumi:"name"`
-	// The health status of the member.
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
 	OperatingStatus *string `pulumi:"operatingStatus"`
 	// Specifies the port used by the member to receive requests. It is mandatory
 	// if `anyPortEnable` is **false**, and it does not take effect if `anyPortEnable` is set to **true**. The value range
 	// is from `1` to `65,535`. Changing this parameter will create a new resource.
 	ProtocolPort *int `pulumi:"protocolPort"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons []ActiveStandbyPoolMemberReason `pulumi:"reasons"`
 	// Specifies the type of the member. Value options:
 	// + **master**: active backend server.
 	// + **slave**: standby backend server.
 	Role string `pulumi:"role"`
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// status is not specified, operatingStatus of member takes precedence.
+	// The status structure is documented below.
+	Statuses []ActiveStandbyPoolMemberStatus `pulumi:"statuses"`
 	// Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
 	// + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
 	// + If this parameter is not passed, IP as a Backend has been enabled for the load balancer. In this case, IP as backend
@@ -545,16 +555,26 @@ type ActiveStandbyPoolMemberArgs struct {
 	// Specifies the health check name. The length range of value is from `1` to `255`.
 	// Changing this parameter will create a new resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The health status of the member.
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
 	OperatingStatus pulumi.StringPtrInput `pulumi:"operatingStatus"`
 	// Specifies the port used by the member to receive requests. It is mandatory
 	// if `anyPortEnable` is **false**, and it does not take effect if `anyPortEnable` is set to **true**. The value range
 	// is from `1` to `65,535`. Changing this parameter will create a new resource.
 	ProtocolPort pulumi.IntPtrInput `pulumi:"protocolPort"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons ActiveStandbyPoolMemberReasonArrayInput `pulumi:"reasons"`
 	// Specifies the type of the member. Value options:
 	// + **master**: active backend server.
 	// + **slave**: standby backend server.
 	Role pulumi.StringInput `pulumi:"role"`
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// status is not specified, operatingStatus of member takes precedence.
+	// The status structure is documented below.
+	Statuses ActiveStandbyPoolMemberStatusArrayInput `pulumi:"statuses"`
 	// Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
 	// + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
 	// + If this parameter is not passed, IP as a Backend has been enabled for the load balancer. In this case, IP as backend
@@ -649,7 +669,10 @@ func (o ActiveStandbyPoolMemberOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ActiveStandbyPoolMember) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The health status of the member.
+// The health status of the backend server. The value can be:
+// + **ONLINE**: The backend server is running normally.
+// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
 func (o ActiveStandbyPoolMemberOutput) OperatingStatus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ActiveStandbyPoolMember) *string { return v.OperatingStatus }).(pulumi.StringPtrOutput)
 }
@@ -661,11 +684,24 @@ func (o ActiveStandbyPoolMemberOutput) ProtocolPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ActiveStandbyPoolMember) *int { return v.ProtocolPort }).(pulumi.IntPtrOutput)
 }
 
+// Why health check fails.
+// The reason structure is documented below.
+func (o ActiveStandbyPoolMemberOutput) Reasons() ActiveStandbyPoolMemberReasonArrayOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMember) []ActiveStandbyPoolMemberReason { return v.Reasons }).(ActiveStandbyPoolMemberReasonArrayOutput)
+}
+
 // Specifies the type of the member. Value options:
 // + **master**: active backend server.
 // + **slave**: standby backend server.
 func (o ActiveStandbyPoolMemberOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ActiveStandbyPoolMember) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+// status is not specified, operatingStatus of member takes precedence.
+// The status structure is documented below.
+func (o ActiveStandbyPoolMemberOutput) Statuses() ActiveStandbyPoolMemberStatusArrayOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMember) []ActiveStandbyPoolMemberStatus { return v.Statuses }).(ActiveStandbyPoolMemberStatusArrayOutput)
 }
 
 // Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
@@ -695,6 +731,417 @@ func (o ActiveStandbyPoolMemberArrayOutput) Index(i pulumi.IntInput) ActiveStand
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ActiveStandbyPoolMember {
 		return vs[0].([]ActiveStandbyPoolMember)[vs[1].(int)]
 	}).(ActiveStandbyPoolMemberOutput)
+}
+
+type ActiveStandbyPoolMemberReason struct {
+	// The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+	// **HTTPS** or **GRPC**.
+	// + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+	//   to other values, the status code ranges from **200** to **599**.
+	// + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+	// + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+	ExpectedResponse *string `pulumi:"expectedResponse"`
+	// The returned HTTP status code in the response. This parameter will take effect only when `type`
+	// is set to **HTTP**, **HTTPS** or **GRPC**.
+	// + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+	//   other values, the status code ranges from **200** to **599**.
+	HealthcheckResponse *string `pulumi:"healthcheckResponse"`
+	// The code of the health check failures. The value can be:
+	// + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+	// + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+	// + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+	// + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+	// + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+	// + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+	// + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+	//   duration during a health check.
+	// + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+	//   check.
+	// + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+	//   timeout duration.
+	// + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+	// + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+	ReasonCode *string `pulumi:"reasonCode"`
+}
+
+// ActiveStandbyPoolMemberReasonInput is an input type that accepts ActiveStandbyPoolMemberReasonArgs and ActiveStandbyPoolMemberReasonOutput values.
+// You can construct a concrete instance of `ActiveStandbyPoolMemberReasonInput` via:
+//
+//	ActiveStandbyPoolMemberReasonArgs{...}
+type ActiveStandbyPoolMemberReasonInput interface {
+	pulumi.Input
+
+	ToActiveStandbyPoolMemberReasonOutput() ActiveStandbyPoolMemberReasonOutput
+	ToActiveStandbyPoolMemberReasonOutputWithContext(context.Context) ActiveStandbyPoolMemberReasonOutput
+}
+
+type ActiveStandbyPoolMemberReasonArgs struct {
+	// The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+	// **HTTPS** or **GRPC**.
+	// + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+	//   to other values, the status code ranges from **200** to **599**.
+	// + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+	// + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+	ExpectedResponse pulumi.StringPtrInput `pulumi:"expectedResponse"`
+	// The returned HTTP status code in the response. This parameter will take effect only when `type`
+	// is set to **HTTP**, **HTTPS** or **GRPC**.
+	// + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+	//   other values, the status code ranges from **200** to **599**.
+	HealthcheckResponse pulumi.StringPtrInput `pulumi:"healthcheckResponse"`
+	// The code of the health check failures. The value can be:
+	// + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+	// + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+	// + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+	// + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+	// + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+	// + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+	// + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+	//   duration during a health check.
+	// + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+	//   check.
+	// + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+	//   timeout duration.
+	// + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+	// + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+	ReasonCode pulumi.StringPtrInput `pulumi:"reasonCode"`
+}
+
+func (ActiveStandbyPoolMemberReasonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ActiveStandbyPoolMemberReason)(nil)).Elem()
+}
+
+func (i ActiveStandbyPoolMemberReasonArgs) ToActiveStandbyPoolMemberReasonOutput() ActiveStandbyPoolMemberReasonOutput {
+	return i.ToActiveStandbyPoolMemberReasonOutputWithContext(context.Background())
+}
+
+func (i ActiveStandbyPoolMemberReasonArgs) ToActiveStandbyPoolMemberReasonOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberReasonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ActiveStandbyPoolMemberReasonOutput)
+}
+
+// ActiveStandbyPoolMemberReasonArrayInput is an input type that accepts ActiveStandbyPoolMemberReasonArray and ActiveStandbyPoolMemberReasonArrayOutput values.
+// You can construct a concrete instance of `ActiveStandbyPoolMemberReasonArrayInput` via:
+//
+//	ActiveStandbyPoolMemberReasonArray{ ActiveStandbyPoolMemberReasonArgs{...} }
+type ActiveStandbyPoolMemberReasonArrayInput interface {
+	pulumi.Input
+
+	ToActiveStandbyPoolMemberReasonArrayOutput() ActiveStandbyPoolMemberReasonArrayOutput
+	ToActiveStandbyPoolMemberReasonArrayOutputWithContext(context.Context) ActiveStandbyPoolMemberReasonArrayOutput
+}
+
+type ActiveStandbyPoolMemberReasonArray []ActiveStandbyPoolMemberReasonInput
+
+func (ActiveStandbyPoolMemberReasonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ActiveStandbyPoolMemberReason)(nil)).Elem()
+}
+
+func (i ActiveStandbyPoolMemberReasonArray) ToActiveStandbyPoolMemberReasonArrayOutput() ActiveStandbyPoolMemberReasonArrayOutput {
+	return i.ToActiveStandbyPoolMemberReasonArrayOutputWithContext(context.Background())
+}
+
+func (i ActiveStandbyPoolMemberReasonArray) ToActiveStandbyPoolMemberReasonArrayOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberReasonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ActiveStandbyPoolMemberReasonArrayOutput)
+}
+
+type ActiveStandbyPoolMemberReasonOutput struct{ *pulumi.OutputState }
+
+func (ActiveStandbyPoolMemberReasonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ActiveStandbyPoolMemberReason)(nil)).Elem()
+}
+
+func (o ActiveStandbyPoolMemberReasonOutput) ToActiveStandbyPoolMemberReasonOutput() ActiveStandbyPoolMemberReasonOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolMemberReasonOutput) ToActiveStandbyPoolMemberReasonOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberReasonOutput {
+	return o
+}
+
+// The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+// **HTTPS** or **GRPC**.
+//   - A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+//     to other values, the status code ranges from **200** to **599**.
+//   - A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+//   - A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+func (o ActiveStandbyPoolMemberReasonOutput) ExpectedResponse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMemberReason) *string { return v.ExpectedResponse }).(pulumi.StringPtrOutput)
+}
+
+// The returned HTTP status code in the response. This parameter will take effect only when `type`
+// is set to **HTTP**, **HTTPS** or **GRPC**.
+//   - A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+//     other values, the status code ranges from **200** to **599**.
+func (o ActiveStandbyPoolMemberReasonOutput) HealthcheckResponse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMemberReason) *string { return v.HealthcheckResponse }).(pulumi.StringPtrOutput)
+}
+
+// The code of the health check failures. The value can be:
+//   - **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+//   - **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+//   - **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+//   - **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+//   - **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+//   - **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+//   - **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+//     duration during a health check.
+//   - **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+//     check.
+//   - **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+//     timeout duration.
+//   - **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+//   - **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+func (o ActiveStandbyPoolMemberReasonOutput) ReasonCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMemberReason) *string { return v.ReasonCode }).(pulumi.StringPtrOutput)
+}
+
+type ActiveStandbyPoolMemberReasonArrayOutput struct{ *pulumi.OutputState }
+
+func (ActiveStandbyPoolMemberReasonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ActiveStandbyPoolMemberReason)(nil)).Elem()
+}
+
+func (o ActiveStandbyPoolMemberReasonArrayOutput) ToActiveStandbyPoolMemberReasonArrayOutput() ActiveStandbyPoolMemberReasonArrayOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolMemberReasonArrayOutput) ToActiveStandbyPoolMemberReasonArrayOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberReasonArrayOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolMemberReasonArrayOutput) Index(i pulumi.IntInput) ActiveStandbyPoolMemberReasonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ActiveStandbyPoolMemberReason {
+		return vs[0].([]ActiveStandbyPoolMemberReason)[vs[1].(int)]
+	}).(ActiveStandbyPoolMemberReasonOutput)
+}
+
+type ActiveStandbyPoolMemberStatus struct {
+	// Specifies the ID of the listener with which the active-standby pool is
+	// associated. Changing this parameter will create a new resource.
+	ListenerId *string `pulumi:"listenerId"`
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+	OperatingStatus *string `pulumi:"operatingStatus"`
+}
+
+// ActiveStandbyPoolMemberStatusInput is an input type that accepts ActiveStandbyPoolMemberStatusArgs and ActiveStandbyPoolMemberStatusOutput values.
+// You can construct a concrete instance of `ActiveStandbyPoolMemberStatusInput` via:
+//
+//	ActiveStandbyPoolMemberStatusArgs{...}
+type ActiveStandbyPoolMemberStatusInput interface {
+	pulumi.Input
+
+	ToActiveStandbyPoolMemberStatusOutput() ActiveStandbyPoolMemberStatusOutput
+	ToActiveStandbyPoolMemberStatusOutputWithContext(context.Context) ActiveStandbyPoolMemberStatusOutput
+}
+
+type ActiveStandbyPoolMemberStatusArgs struct {
+	// Specifies the ID of the listener with which the active-standby pool is
+	// associated. Changing this parameter will create a new resource.
+	ListenerId pulumi.StringPtrInput `pulumi:"listenerId"`
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+	OperatingStatus pulumi.StringPtrInput `pulumi:"operatingStatus"`
+}
+
+func (ActiveStandbyPoolMemberStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ActiveStandbyPoolMemberStatus)(nil)).Elem()
+}
+
+func (i ActiveStandbyPoolMemberStatusArgs) ToActiveStandbyPoolMemberStatusOutput() ActiveStandbyPoolMemberStatusOutput {
+	return i.ToActiveStandbyPoolMemberStatusOutputWithContext(context.Background())
+}
+
+func (i ActiveStandbyPoolMemberStatusArgs) ToActiveStandbyPoolMemberStatusOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ActiveStandbyPoolMemberStatusOutput)
+}
+
+// ActiveStandbyPoolMemberStatusArrayInput is an input type that accepts ActiveStandbyPoolMemberStatusArray and ActiveStandbyPoolMemberStatusArrayOutput values.
+// You can construct a concrete instance of `ActiveStandbyPoolMemberStatusArrayInput` via:
+//
+//	ActiveStandbyPoolMemberStatusArray{ ActiveStandbyPoolMemberStatusArgs{...} }
+type ActiveStandbyPoolMemberStatusArrayInput interface {
+	pulumi.Input
+
+	ToActiveStandbyPoolMemberStatusArrayOutput() ActiveStandbyPoolMemberStatusArrayOutput
+	ToActiveStandbyPoolMemberStatusArrayOutputWithContext(context.Context) ActiveStandbyPoolMemberStatusArrayOutput
+}
+
+type ActiveStandbyPoolMemberStatusArray []ActiveStandbyPoolMemberStatusInput
+
+func (ActiveStandbyPoolMemberStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ActiveStandbyPoolMemberStatus)(nil)).Elem()
+}
+
+func (i ActiveStandbyPoolMemberStatusArray) ToActiveStandbyPoolMemberStatusArrayOutput() ActiveStandbyPoolMemberStatusArrayOutput {
+	return i.ToActiveStandbyPoolMemberStatusArrayOutputWithContext(context.Background())
+}
+
+func (i ActiveStandbyPoolMemberStatusArray) ToActiveStandbyPoolMemberStatusArrayOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ActiveStandbyPoolMemberStatusArrayOutput)
+}
+
+type ActiveStandbyPoolMemberStatusOutput struct{ *pulumi.OutputState }
+
+func (ActiveStandbyPoolMemberStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ActiveStandbyPoolMemberStatus)(nil)).Elem()
+}
+
+func (o ActiveStandbyPoolMemberStatusOutput) ToActiveStandbyPoolMemberStatusOutput() ActiveStandbyPoolMemberStatusOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolMemberStatusOutput) ToActiveStandbyPoolMemberStatusOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberStatusOutput {
+	return o
+}
+
+// Specifies the ID of the listener with which the active-standby pool is
+// associated. Changing this parameter will create a new resource.
+func (o ActiveStandbyPoolMemberStatusOutput) ListenerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMemberStatus) *string { return v.ListenerId }).(pulumi.StringPtrOutput)
+}
+
+// The health status of the backend server. The value can be:
+// + **ONLINE**: The backend server is running normally.
+// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+func (o ActiveStandbyPoolMemberStatusOutput) OperatingStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolMemberStatus) *string { return v.OperatingStatus }).(pulumi.StringPtrOutput)
+}
+
+type ActiveStandbyPoolMemberStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (ActiveStandbyPoolMemberStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ActiveStandbyPoolMemberStatus)(nil)).Elem()
+}
+
+func (o ActiveStandbyPoolMemberStatusArrayOutput) ToActiveStandbyPoolMemberStatusArrayOutput() ActiveStandbyPoolMemberStatusArrayOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolMemberStatusArrayOutput) ToActiveStandbyPoolMemberStatusArrayOutputWithContext(ctx context.Context) ActiveStandbyPoolMemberStatusArrayOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolMemberStatusArrayOutput) Index(i pulumi.IntInput) ActiveStandbyPoolMemberStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ActiveStandbyPoolMemberStatus {
+		return vs[0].([]ActiveStandbyPoolMemberStatus)[vs[1].(int)]
+	}).(ActiveStandbyPoolMemberStatusOutput)
+}
+
+type ActiveStandbyPoolQuicCidHashStrategy struct {
+	// The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lbAlgorithm`
+	// is **QUIC_CID**. Value range: **1** to **20**.
+	Len *int `pulumi:"len"`
+	// The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+	// `lbAlgorithm` is **QUIC_CID**. Value range: **0** to **19**.
+	Offset *int `pulumi:"offset"`
+}
+
+// ActiveStandbyPoolQuicCidHashStrategyInput is an input type that accepts ActiveStandbyPoolQuicCidHashStrategyArgs and ActiveStandbyPoolQuicCidHashStrategyOutput values.
+// You can construct a concrete instance of `ActiveStandbyPoolQuicCidHashStrategyInput` via:
+//
+//	ActiveStandbyPoolQuicCidHashStrategyArgs{...}
+type ActiveStandbyPoolQuicCidHashStrategyInput interface {
+	pulumi.Input
+
+	ToActiveStandbyPoolQuicCidHashStrategyOutput() ActiveStandbyPoolQuicCidHashStrategyOutput
+	ToActiveStandbyPoolQuicCidHashStrategyOutputWithContext(context.Context) ActiveStandbyPoolQuicCidHashStrategyOutput
+}
+
+type ActiveStandbyPoolQuicCidHashStrategyArgs struct {
+	// The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lbAlgorithm`
+	// is **QUIC_CID**. Value range: **1** to **20**.
+	Len pulumi.IntPtrInput `pulumi:"len"`
+	// The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+	// `lbAlgorithm` is **QUIC_CID**. Value range: **0** to **19**.
+	Offset pulumi.IntPtrInput `pulumi:"offset"`
+}
+
+func (ActiveStandbyPoolQuicCidHashStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ActiveStandbyPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (i ActiveStandbyPoolQuicCidHashStrategyArgs) ToActiveStandbyPoolQuicCidHashStrategyOutput() ActiveStandbyPoolQuicCidHashStrategyOutput {
+	return i.ToActiveStandbyPoolQuicCidHashStrategyOutputWithContext(context.Background())
+}
+
+func (i ActiveStandbyPoolQuicCidHashStrategyArgs) ToActiveStandbyPoolQuicCidHashStrategyOutputWithContext(ctx context.Context) ActiveStandbyPoolQuicCidHashStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ActiveStandbyPoolQuicCidHashStrategyOutput)
+}
+
+// ActiveStandbyPoolQuicCidHashStrategyArrayInput is an input type that accepts ActiveStandbyPoolQuicCidHashStrategyArray and ActiveStandbyPoolQuicCidHashStrategyArrayOutput values.
+// You can construct a concrete instance of `ActiveStandbyPoolQuicCidHashStrategyArrayInput` via:
+//
+//	ActiveStandbyPoolQuicCidHashStrategyArray{ ActiveStandbyPoolQuicCidHashStrategyArgs{...} }
+type ActiveStandbyPoolQuicCidHashStrategyArrayInput interface {
+	pulumi.Input
+
+	ToActiveStandbyPoolQuicCidHashStrategyArrayOutput() ActiveStandbyPoolQuicCidHashStrategyArrayOutput
+	ToActiveStandbyPoolQuicCidHashStrategyArrayOutputWithContext(context.Context) ActiveStandbyPoolQuicCidHashStrategyArrayOutput
+}
+
+type ActiveStandbyPoolQuicCidHashStrategyArray []ActiveStandbyPoolQuicCidHashStrategyInput
+
+func (ActiveStandbyPoolQuicCidHashStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ActiveStandbyPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (i ActiveStandbyPoolQuicCidHashStrategyArray) ToActiveStandbyPoolQuicCidHashStrategyArrayOutput() ActiveStandbyPoolQuicCidHashStrategyArrayOutput {
+	return i.ToActiveStandbyPoolQuicCidHashStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i ActiveStandbyPoolQuicCidHashStrategyArray) ToActiveStandbyPoolQuicCidHashStrategyArrayOutputWithContext(ctx context.Context) ActiveStandbyPoolQuicCidHashStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ActiveStandbyPoolQuicCidHashStrategyArrayOutput)
+}
+
+type ActiveStandbyPoolQuicCidHashStrategyOutput struct{ *pulumi.OutputState }
+
+func (ActiveStandbyPoolQuicCidHashStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ActiveStandbyPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (o ActiveStandbyPoolQuicCidHashStrategyOutput) ToActiveStandbyPoolQuicCidHashStrategyOutput() ActiveStandbyPoolQuicCidHashStrategyOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolQuicCidHashStrategyOutput) ToActiveStandbyPoolQuicCidHashStrategyOutputWithContext(ctx context.Context) ActiveStandbyPoolQuicCidHashStrategyOutput {
+	return o
+}
+
+// The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lbAlgorithm`
+// is **QUIC_CID**. Value range: **1** to **20**.
+func (o ActiveStandbyPoolQuicCidHashStrategyOutput) Len() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolQuicCidHashStrategy) *int { return v.Len }).(pulumi.IntPtrOutput)
+}
+
+// The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+// `lbAlgorithm` is **QUIC_CID**. Value range: **0** to **19**.
+func (o ActiveStandbyPoolQuicCidHashStrategyOutput) Offset() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ActiveStandbyPoolQuicCidHashStrategy) *int { return v.Offset }).(pulumi.IntPtrOutput)
+}
+
+type ActiveStandbyPoolQuicCidHashStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (ActiveStandbyPoolQuicCidHashStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ActiveStandbyPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (o ActiveStandbyPoolQuicCidHashStrategyArrayOutput) ToActiveStandbyPoolQuicCidHashStrategyArrayOutput() ActiveStandbyPoolQuicCidHashStrategyArrayOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolQuicCidHashStrategyArrayOutput) ToActiveStandbyPoolQuicCidHashStrategyArrayOutputWithContext(ctx context.Context) ActiveStandbyPoolQuicCidHashStrategyArrayOutput {
+	return o
+}
+
+func (o ActiveStandbyPoolQuicCidHashStrategyArrayOutput) Index(i pulumi.IntInput) ActiveStandbyPoolQuicCidHashStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ActiveStandbyPoolQuicCidHashStrategy {
+		return vs[0].([]ActiveStandbyPoolQuicCidHashStrategy)[vs[1].(int)]
+	}).(ActiveStandbyPoolQuicCidHashStrategyOutput)
 }
 
 type IpgroupIpList struct {
@@ -4436,6 +4883,354 @@ func (o ListenerPortRangeArrayOutput) Index(i pulumi.IntInput) ListenerPortRange
 	}).(ListenerPortRangeOutput)
 }
 
+type MemberReason struct {
+	// The code of the health check failures.
+	ExpectedResponse *string `pulumi:"expectedResponse"`
+	// The expected HTTP status code.
+	HealthcheckResponse *string `pulumi:"healthcheckResponse"`
+	// The returned HTTP status code in the response.
+	ReasonCode *string `pulumi:"reasonCode"`
+}
+
+// MemberReasonInput is an input type that accepts MemberReasonArgs and MemberReasonOutput values.
+// You can construct a concrete instance of `MemberReasonInput` via:
+//
+//	MemberReasonArgs{...}
+type MemberReasonInput interface {
+	pulumi.Input
+
+	ToMemberReasonOutput() MemberReasonOutput
+	ToMemberReasonOutputWithContext(context.Context) MemberReasonOutput
+}
+
+type MemberReasonArgs struct {
+	// The code of the health check failures.
+	ExpectedResponse pulumi.StringPtrInput `pulumi:"expectedResponse"`
+	// The expected HTTP status code.
+	HealthcheckResponse pulumi.StringPtrInput `pulumi:"healthcheckResponse"`
+	// The returned HTTP status code in the response.
+	ReasonCode pulumi.StringPtrInput `pulumi:"reasonCode"`
+}
+
+func (MemberReasonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MemberReason)(nil)).Elem()
+}
+
+func (i MemberReasonArgs) ToMemberReasonOutput() MemberReasonOutput {
+	return i.ToMemberReasonOutputWithContext(context.Background())
+}
+
+func (i MemberReasonArgs) ToMemberReasonOutputWithContext(ctx context.Context) MemberReasonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MemberReasonOutput)
+}
+
+// MemberReasonArrayInput is an input type that accepts MemberReasonArray and MemberReasonArrayOutput values.
+// You can construct a concrete instance of `MemberReasonArrayInput` via:
+//
+//	MemberReasonArray{ MemberReasonArgs{...} }
+type MemberReasonArrayInput interface {
+	pulumi.Input
+
+	ToMemberReasonArrayOutput() MemberReasonArrayOutput
+	ToMemberReasonArrayOutputWithContext(context.Context) MemberReasonArrayOutput
+}
+
+type MemberReasonArray []MemberReasonInput
+
+func (MemberReasonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MemberReason)(nil)).Elem()
+}
+
+func (i MemberReasonArray) ToMemberReasonArrayOutput() MemberReasonArrayOutput {
+	return i.ToMemberReasonArrayOutputWithContext(context.Background())
+}
+
+func (i MemberReasonArray) ToMemberReasonArrayOutputWithContext(ctx context.Context) MemberReasonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MemberReasonArrayOutput)
+}
+
+type MemberReasonOutput struct{ *pulumi.OutputState }
+
+func (MemberReasonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MemberReason)(nil)).Elem()
+}
+
+func (o MemberReasonOutput) ToMemberReasonOutput() MemberReasonOutput {
+	return o
+}
+
+func (o MemberReasonOutput) ToMemberReasonOutputWithContext(ctx context.Context) MemberReasonOutput {
+	return o
+}
+
+// The code of the health check failures.
+func (o MemberReasonOutput) ExpectedResponse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberReason) *string { return v.ExpectedResponse }).(pulumi.StringPtrOutput)
+}
+
+// The expected HTTP status code.
+func (o MemberReasonOutput) HealthcheckResponse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberReason) *string { return v.HealthcheckResponse }).(pulumi.StringPtrOutput)
+}
+
+// The returned HTTP status code in the response.
+func (o MemberReasonOutput) ReasonCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberReason) *string { return v.ReasonCode }).(pulumi.StringPtrOutput)
+}
+
+type MemberReasonArrayOutput struct{ *pulumi.OutputState }
+
+func (MemberReasonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MemberReason)(nil)).Elem()
+}
+
+func (o MemberReasonArrayOutput) ToMemberReasonArrayOutput() MemberReasonArrayOutput {
+	return o
+}
+
+func (o MemberReasonArrayOutput) ToMemberReasonArrayOutputWithContext(ctx context.Context) MemberReasonArrayOutput {
+	return o
+}
+
+func (o MemberReasonArrayOutput) Index(i pulumi.IntInput) MemberReasonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MemberReason {
+		return vs[0].([]MemberReason)[vs[1].(int)]
+	}).(MemberReasonOutput)
+}
+
+type MemberStatus struct {
+	// The listener ID.
+	ListenerId *string `pulumi:"listenerId"`
+	// The health status of the backend server.
+	OperatingStatus *string `pulumi:"operatingStatus"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons []MemberStatusReason `pulumi:"reasons"`
+}
+
+// MemberStatusInput is an input type that accepts MemberStatusArgs and MemberStatusOutput values.
+// You can construct a concrete instance of `MemberStatusInput` via:
+//
+//	MemberStatusArgs{...}
+type MemberStatusInput interface {
+	pulumi.Input
+
+	ToMemberStatusOutput() MemberStatusOutput
+	ToMemberStatusOutputWithContext(context.Context) MemberStatusOutput
+}
+
+type MemberStatusArgs struct {
+	// The listener ID.
+	ListenerId pulumi.StringPtrInput `pulumi:"listenerId"`
+	// The health status of the backend server.
+	OperatingStatus pulumi.StringPtrInput `pulumi:"operatingStatus"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons MemberStatusReasonArrayInput `pulumi:"reasons"`
+}
+
+func (MemberStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MemberStatus)(nil)).Elem()
+}
+
+func (i MemberStatusArgs) ToMemberStatusOutput() MemberStatusOutput {
+	return i.ToMemberStatusOutputWithContext(context.Background())
+}
+
+func (i MemberStatusArgs) ToMemberStatusOutputWithContext(ctx context.Context) MemberStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MemberStatusOutput)
+}
+
+// MemberStatusArrayInput is an input type that accepts MemberStatusArray and MemberStatusArrayOutput values.
+// You can construct a concrete instance of `MemberStatusArrayInput` via:
+//
+//	MemberStatusArray{ MemberStatusArgs{...} }
+type MemberStatusArrayInput interface {
+	pulumi.Input
+
+	ToMemberStatusArrayOutput() MemberStatusArrayOutput
+	ToMemberStatusArrayOutputWithContext(context.Context) MemberStatusArrayOutput
+}
+
+type MemberStatusArray []MemberStatusInput
+
+func (MemberStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MemberStatus)(nil)).Elem()
+}
+
+func (i MemberStatusArray) ToMemberStatusArrayOutput() MemberStatusArrayOutput {
+	return i.ToMemberStatusArrayOutputWithContext(context.Background())
+}
+
+func (i MemberStatusArray) ToMemberStatusArrayOutputWithContext(ctx context.Context) MemberStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MemberStatusArrayOutput)
+}
+
+type MemberStatusOutput struct{ *pulumi.OutputState }
+
+func (MemberStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MemberStatus)(nil)).Elem()
+}
+
+func (o MemberStatusOutput) ToMemberStatusOutput() MemberStatusOutput {
+	return o
+}
+
+func (o MemberStatusOutput) ToMemberStatusOutputWithContext(ctx context.Context) MemberStatusOutput {
+	return o
+}
+
+// The listener ID.
+func (o MemberStatusOutput) ListenerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberStatus) *string { return v.ListenerId }).(pulumi.StringPtrOutput)
+}
+
+// The health status of the backend server.
+func (o MemberStatusOutput) OperatingStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberStatus) *string { return v.OperatingStatus }).(pulumi.StringPtrOutput)
+}
+
+// Why health check fails.
+// The reason structure is documented below.
+func (o MemberStatusOutput) Reasons() MemberStatusReasonArrayOutput {
+	return o.ApplyT(func(v MemberStatus) []MemberStatusReason { return v.Reasons }).(MemberStatusReasonArrayOutput)
+}
+
+type MemberStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (MemberStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MemberStatus)(nil)).Elem()
+}
+
+func (o MemberStatusArrayOutput) ToMemberStatusArrayOutput() MemberStatusArrayOutput {
+	return o
+}
+
+func (o MemberStatusArrayOutput) ToMemberStatusArrayOutputWithContext(ctx context.Context) MemberStatusArrayOutput {
+	return o
+}
+
+func (o MemberStatusArrayOutput) Index(i pulumi.IntInput) MemberStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MemberStatus {
+		return vs[0].([]MemberStatus)[vs[1].(int)]
+	}).(MemberStatusOutput)
+}
+
+type MemberStatusReason struct {
+	// The code of the health check failures.
+	ExpectedResponse *string `pulumi:"expectedResponse"`
+	// The expected HTTP status code.
+	HealthcheckResponse *string `pulumi:"healthcheckResponse"`
+	// The returned HTTP status code in the response.
+	ReasonCode *string `pulumi:"reasonCode"`
+}
+
+// MemberStatusReasonInput is an input type that accepts MemberStatusReasonArgs and MemberStatusReasonOutput values.
+// You can construct a concrete instance of `MemberStatusReasonInput` via:
+//
+//	MemberStatusReasonArgs{...}
+type MemberStatusReasonInput interface {
+	pulumi.Input
+
+	ToMemberStatusReasonOutput() MemberStatusReasonOutput
+	ToMemberStatusReasonOutputWithContext(context.Context) MemberStatusReasonOutput
+}
+
+type MemberStatusReasonArgs struct {
+	// The code of the health check failures.
+	ExpectedResponse pulumi.StringPtrInput `pulumi:"expectedResponse"`
+	// The expected HTTP status code.
+	HealthcheckResponse pulumi.StringPtrInput `pulumi:"healthcheckResponse"`
+	// The returned HTTP status code in the response.
+	ReasonCode pulumi.StringPtrInput `pulumi:"reasonCode"`
+}
+
+func (MemberStatusReasonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MemberStatusReason)(nil)).Elem()
+}
+
+func (i MemberStatusReasonArgs) ToMemberStatusReasonOutput() MemberStatusReasonOutput {
+	return i.ToMemberStatusReasonOutputWithContext(context.Background())
+}
+
+func (i MemberStatusReasonArgs) ToMemberStatusReasonOutputWithContext(ctx context.Context) MemberStatusReasonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MemberStatusReasonOutput)
+}
+
+// MemberStatusReasonArrayInput is an input type that accepts MemberStatusReasonArray and MemberStatusReasonArrayOutput values.
+// You can construct a concrete instance of `MemberStatusReasonArrayInput` via:
+//
+//	MemberStatusReasonArray{ MemberStatusReasonArgs{...} }
+type MemberStatusReasonArrayInput interface {
+	pulumi.Input
+
+	ToMemberStatusReasonArrayOutput() MemberStatusReasonArrayOutput
+	ToMemberStatusReasonArrayOutputWithContext(context.Context) MemberStatusReasonArrayOutput
+}
+
+type MemberStatusReasonArray []MemberStatusReasonInput
+
+func (MemberStatusReasonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MemberStatusReason)(nil)).Elem()
+}
+
+func (i MemberStatusReasonArray) ToMemberStatusReasonArrayOutput() MemberStatusReasonArrayOutput {
+	return i.ToMemberStatusReasonArrayOutputWithContext(context.Background())
+}
+
+func (i MemberStatusReasonArray) ToMemberStatusReasonArrayOutputWithContext(ctx context.Context) MemberStatusReasonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MemberStatusReasonArrayOutput)
+}
+
+type MemberStatusReasonOutput struct{ *pulumi.OutputState }
+
+func (MemberStatusReasonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MemberStatusReason)(nil)).Elem()
+}
+
+func (o MemberStatusReasonOutput) ToMemberStatusReasonOutput() MemberStatusReasonOutput {
+	return o
+}
+
+func (o MemberStatusReasonOutput) ToMemberStatusReasonOutputWithContext(ctx context.Context) MemberStatusReasonOutput {
+	return o
+}
+
+// The code of the health check failures.
+func (o MemberStatusReasonOutput) ExpectedResponse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberStatusReason) *string { return v.ExpectedResponse }).(pulumi.StringPtrOutput)
+}
+
+// The expected HTTP status code.
+func (o MemberStatusReasonOutput) HealthcheckResponse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberStatusReason) *string { return v.HealthcheckResponse }).(pulumi.StringPtrOutput)
+}
+
+// The returned HTTP status code in the response.
+func (o MemberStatusReasonOutput) ReasonCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MemberStatusReason) *string { return v.ReasonCode }).(pulumi.StringPtrOutput)
+}
+
+type MemberStatusReasonArrayOutput struct{ *pulumi.OutputState }
+
+func (MemberStatusReasonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MemberStatusReason)(nil)).Elem()
+}
+
+func (o MemberStatusReasonArrayOutput) ToMemberStatusReasonArrayOutput() MemberStatusReasonArrayOutput {
+	return o
+}
+
+func (o MemberStatusReasonArrayOutput) ToMemberStatusReasonArrayOutputWithContext(ctx context.Context) MemberStatusReasonArrayOutput {
+	return o
+}
+
+func (o MemberStatusReasonArrayOutput) Index(i pulumi.IntInput) MemberStatusReasonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MemberStatusReason {
+		return vs[0].([]MemberStatusReason)[vs[1].(int)]
+	}).(MemberStatusReasonOutput)
+}
+
 type PoolPersistence struct {
 	// Specifies the cookie name. The value can contain only letters, digits,
 	// hyphens (-), underscores (_), and periods (.). It is required if `type` of `persistence` is set to **APP_COOKIE**.
@@ -4747,13 +5542,26 @@ type GetActiveStandbyPoolsPool struct {
 	ConnectionDrainEnabled bool `pulumi:"connectionDrainEnabled"`
 	// The timeout of the delayed logout in seconds.
 	ConnectionDrainTimeout int `pulumi:"connectionDrainTimeout"`
+	// The time when the backend server group was created.
+	CreatedAt string `pulumi:"createdAt"`
 	// Specifies supplementary information about the active-standby pool.
 	Description string `pulumi:"description"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId string `pulumi:"enterpriseProjectId"`
 	// The health check configured for the active-standby pool.
 	// The healthmonitor structure is documented below.
 	Healthmonitors []GetActiveStandbyPoolsPoolHealthmonitor `pulumi:"healthmonitors"`
 	// The health check ID.
 	Id string `pulumi:"id"`
+	// Specifies the IP address version supported by the pool.
+	IpVersion string `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route requests
+	// to backend servers in the associated pool. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm string `pulumi:"lbAlgorithm"`
 	// The IDs of the listeners with which the active-standby pool is associated.
 	// The listeners structure is documented below.
 	Listeners []GetActiveStandbyPoolsPoolListener `pulumi:"listeners"`
@@ -4768,11 +5576,16 @@ type GetActiveStandbyPoolsPool struct {
 	// Specifies the protocol used by the active-standby pool to receive requests from the
 	// load balancer. Value options: **TCP**, **UDP**, **QUIC** or **TLS**.
 	Protocol string `pulumi:"protocol"`
+	// The multi-path distribution configuration based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies []GetActiveStandbyPoolsPoolQuicCidHashStrategy `pulumi:"quicCidHashStrategies"`
 	// Specifies the type of the active-standby pool.
 	// The valid values are as follows:
 	// + **instance**: Any type of backend servers can be added.
 	// + **ip**: Only IP as backend servers can be added.
 	Type string `pulumi:"type"`
+	// The time when the backend server group was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
 	// Specifies the ID of the VPC where the active-standby pool works.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -4795,13 +5608,26 @@ type GetActiveStandbyPoolsPoolArgs struct {
 	ConnectionDrainEnabled pulumi.BoolInput `pulumi:"connectionDrainEnabled"`
 	// The timeout of the delayed logout in seconds.
 	ConnectionDrainTimeout pulumi.IntInput `pulumi:"connectionDrainTimeout"`
+	// The time when the backend server group was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Specifies supplementary information about the active-standby pool.
 	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringInput `pulumi:"enterpriseProjectId"`
 	// The health check configured for the active-standby pool.
 	// The healthmonitor structure is documented below.
 	Healthmonitors GetActiveStandbyPoolsPoolHealthmonitorArrayInput `pulumi:"healthmonitors"`
 	// The health check ID.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Specifies the IP address version supported by the pool.
+	IpVersion pulumi.StringInput `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route requests
+	// to backend servers in the associated pool. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm pulumi.StringInput `pulumi:"lbAlgorithm"`
 	// The IDs of the listeners with which the active-standby pool is associated.
 	// The listeners structure is documented below.
 	Listeners GetActiveStandbyPoolsPoolListenerArrayInput `pulumi:"listeners"`
@@ -4816,11 +5642,16 @@ type GetActiveStandbyPoolsPoolArgs struct {
 	// Specifies the protocol used by the active-standby pool to receive requests from the
 	// load balancer. Value options: **TCP**, **UDP**, **QUIC** or **TLS**.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The multi-path distribution configuration based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayInput `pulumi:"quicCidHashStrategies"`
 	// Specifies the type of the active-standby pool.
 	// The valid values are as follows:
 	// + **instance**: Any type of backend servers can be added.
 	// + **ip**: Only IP as backend servers can be added.
 	Type pulumi.StringInput `pulumi:"type"`
+	// The time when the backend server group was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// Specifies the ID of the VPC where the active-standby pool works.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
 }
@@ -4891,9 +5722,19 @@ func (o GetActiveStandbyPoolsPoolOutput) ConnectionDrainTimeout() pulumi.IntOutp
 	return o.ApplyT(func(v GetActiveStandbyPoolsPool) int { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
 }
 
+// The time when the backend server group was created.
+func (o GetActiveStandbyPoolsPoolOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // Specifies supplementary information about the active-standby pool.
 func (o GetActiveStandbyPoolsPoolOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the enterprise project.
+func (o GetActiveStandbyPoolsPoolOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.EnterpriseProjectId }).(pulumi.StringOutput)
 }
 
 // The health check configured for the active-standby pool.
@@ -4905,6 +5746,21 @@ func (o GetActiveStandbyPoolsPoolOutput) Healthmonitors() GetActiveStandbyPoolsP
 // The health check ID.
 func (o GetActiveStandbyPoolsPoolOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specifies the IP address version supported by the pool.
+func (o GetActiveStandbyPoolsPoolOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// Specifies the load balancing algorithm used by the load balancer to route requests
+// to backend servers in the associated pool. Value options:
+// + **ROUND_ROBIN**: weighted round robin.
+// + **LEAST_CONNECTIONS**: weighted least connections.
+// + **SOURCE_IP**: source IP hash.
+// + **QUIC_CID**: connection ID.
+func (o GetActiveStandbyPoolsPoolOutput) LbAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.LbAlgorithm }).(pulumi.StringOutput)
 }
 
 // The IDs of the listeners with which the active-standby pool is associated.
@@ -4936,12 +5792,25 @@ func (o GetActiveStandbyPoolsPoolOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// The multi-path distribution configuration based on destination connection IDs.
+// The quicCidHashStrategy structure is documented below.
+func (o GetActiveStandbyPoolsPoolOutput) QuicCidHashStrategies() GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPool) []GetActiveStandbyPoolsPoolQuicCidHashStrategy {
+		return v.QuicCidHashStrategies
+	}).(GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput)
+}
+
 // Specifies the type of the active-standby pool.
 // The valid values are as follows:
 // + **instance**: Any type of backend servers can be added.
 // + **ip**: Only IP as backend servers can be added.
 func (o GetActiveStandbyPoolsPoolOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The time when the backend server group was updated.
+func (o GetActiveStandbyPoolsPoolOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPool) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // Specifies the ID of the VPC where the active-standby pool works.
@@ -5381,18 +6250,28 @@ type GetActiveStandbyPoolsPoolMember struct {
 	Id string `pulumi:"id"`
 	// The ID of the ECS used as the member.
 	InstanceId string `pulumi:"instanceId"`
-	// The IP version supported by the member.
+	// Specifies the IP address version supported by the pool.
 	IpVersion string `pulumi:"ipVersion"`
 	// The type of the member.
 	MemberType string `pulumi:"memberType"`
 	// Specifies the name of the active-standby pool.
 	Name string `pulumi:"name"`
-	// The health status of the member.
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
 	OperatingStatus string `pulumi:"operatingStatus"`
 	// The port used by the member to receive requests.
 	ProtocolPort int `pulumi:"protocolPort"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons []GetActiveStandbyPoolsPoolMemberReason `pulumi:"reasons"`
 	// The active-standby status of the member.
 	Role string `pulumi:"role"`
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// status is not specified, operatingStatus of member takes precedence.
+	// The status structure is documented below.
+	Statuses []GetActiveStandbyPoolsPoolMemberStatus `pulumi:"statuses"`
 	// The ID of the IPv4 or IPv6 subnet where the member resides.
 	SubnetId string `pulumi:"subnetId"`
 }
@@ -5415,18 +6294,28 @@ type GetActiveStandbyPoolsPoolMemberArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ID of the ECS used as the member.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
-	// The IP version supported by the member.
+	// Specifies the IP address version supported by the pool.
 	IpVersion pulumi.StringInput `pulumi:"ipVersion"`
 	// The type of the member.
 	MemberType pulumi.StringInput `pulumi:"memberType"`
 	// Specifies the name of the active-standby pool.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The health status of the member.
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
 	OperatingStatus pulumi.StringInput `pulumi:"operatingStatus"`
 	// The port used by the member to receive requests.
 	ProtocolPort pulumi.IntInput `pulumi:"protocolPort"`
+	// Why health check fails.
+	// The reason structure is documented below.
+	Reasons GetActiveStandbyPoolsPoolMemberReasonArrayInput `pulumi:"reasons"`
 	// The active-standby status of the member.
 	Role pulumi.StringInput `pulumi:"role"`
+	// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+	// status is not specified, operatingStatus of member takes precedence.
+	// The status structure is documented below.
+	Statuses GetActiveStandbyPoolsPoolMemberStatusArrayInput `pulumi:"statuses"`
 	// The ID of the IPv4 or IPv6 subnet where the member resides.
 	SubnetId pulumi.StringInput `pulumi:"subnetId"`
 }
@@ -5497,7 +6386,7 @@ func (o GetActiveStandbyPoolsPoolMemberOutput) InstanceId() pulumi.StringOutput 
 	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The IP version supported by the member.
+// Specifies the IP address version supported by the pool.
 func (o GetActiveStandbyPoolsPoolMemberOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) string { return v.IpVersion }).(pulumi.StringOutput)
 }
@@ -5512,7 +6401,10 @@ func (o GetActiveStandbyPoolsPoolMemberOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The health status of the member.
+// The health status of the backend server. The value can be:
+// + **ONLINE**: The backend server is running normally.
+// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
 func (o GetActiveStandbyPoolsPoolMemberOutput) OperatingStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) string { return v.OperatingStatus }).(pulumi.StringOutput)
 }
@@ -5522,9 +6414,22 @@ func (o GetActiveStandbyPoolsPoolMemberOutput) ProtocolPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) int { return v.ProtocolPort }).(pulumi.IntOutput)
 }
 
+// Why health check fails.
+// The reason structure is documented below.
+func (o GetActiveStandbyPoolsPoolMemberOutput) Reasons() GetActiveStandbyPoolsPoolMemberReasonArrayOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) []GetActiveStandbyPoolsPoolMemberReason { return v.Reasons }).(GetActiveStandbyPoolsPoolMemberReasonArrayOutput)
+}
+
 // The active-standby status of the member.
 func (o GetActiveStandbyPoolsPoolMemberOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server if `listenerId` under status is specified. If `listenerId` under
+// status is not specified, operatingStatus of member takes precedence.
+// The status structure is documented below.
+func (o GetActiveStandbyPoolsPoolMemberOutput) Statuses() GetActiveStandbyPoolsPoolMemberStatusArrayOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMember) []GetActiveStandbyPoolsPoolMemberStatus { return v.Statuses }).(GetActiveStandbyPoolsPoolMemberStatusArrayOutput)
 }
 
 // The ID of the IPv4 or IPv6 subnet where the member resides.
@@ -5552,6 +6457,408 @@ func (o GetActiveStandbyPoolsPoolMemberArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetActiveStandbyPoolsPoolMemberOutput)
 }
 
+type GetActiveStandbyPoolsPoolMemberReason struct {
+	// The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+	// **HTTPS** or **GRPC**.
+	// + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+	//   to other values, the status code ranges from **200** to **599**.
+	// + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+	// + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+	ExpectedResponse string `pulumi:"expectedResponse"`
+	// The returned HTTP status code in the response. This parameter will take effect only when `type`
+	// is set to **HTTP**, **HTTPS** or **GRPC**.
+	// + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+	//   other values, the status code ranges from **200** to **599**.
+	HealthcheckResponse string `pulumi:"healthcheckResponse"`
+	// The code of the health check failures. The value can be:
+	// + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+	// + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+	// + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+	// + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+	// + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+	// + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+	// + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+	//   duration during a health check.
+	// + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+	//   check.
+	// + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+	//   timeout duration.
+	// + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+	// + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+	ReasonCode string `pulumi:"reasonCode"`
+}
+
+// GetActiveStandbyPoolsPoolMemberReasonInput is an input type that accepts GetActiveStandbyPoolsPoolMemberReasonArgs and GetActiveStandbyPoolsPoolMemberReasonOutput values.
+// You can construct a concrete instance of `GetActiveStandbyPoolsPoolMemberReasonInput` via:
+//
+//	GetActiveStandbyPoolsPoolMemberReasonArgs{...}
+type GetActiveStandbyPoolsPoolMemberReasonInput interface {
+	pulumi.Input
+
+	ToGetActiveStandbyPoolsPoolMemberReasonOutput() GetActiveStandbyPoolsPoolMemberReasonOutput
+	ToGetActiveStandbyPoolsPoolMemberReasonOutputWithContext(context.Context) GetActiveStandbyPoolsPoolMemberReasonOutput
+}
+
+type GetActiveStandbyPoolsPoolMemberReasonArgs struct {
+	// The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+	// **HTTPS** or **GRPC**.
+	// + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+	//   to other values, the status code ranges from **200** to **599**.
+	// + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+	// + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+	ExpectedResponse pulumi.StringInput `pulumi:"expectedResponse"`
+	// The returned HTTP status code in the response. This parameter will take effect only when `type`
+	// is set to **HTTP**, **HTTPS** or **GRPC**.
+	// + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+	//   other values, the status code ranges from **200** to **599**.
+	HealthcheckResponse pulumi.StringInput `pulumi:"healthcheckResponse"`
+	// The code of the health check failures. The value can be:
+	// + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+	// + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+	// + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+	// + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+	// + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+	// + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+	// + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+	//   duration during a health check.
+	// + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+	//   check.
+	// + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+	//   timeout duration.
+	// + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+	// + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+	ReasonCode pulumi.StringInput `pulumi:"reasonCode"`
+}
+
+func (GetActiveStandbyPoolsPoolMemberReasonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberReason)(nil)).Elem()
+}
+
+func (i GetActiveStandbyPoolsPoolMemberReasonArgs) ToGetActiveStandbyPoolsPoolMemberReasonOutput() GetActiveStandbyPoolsPoolMemberReasonOutput {
+	return i.ToGetActiveStandbyPoolsPoolMemberReasonOutputWithContext(context.Background())
+}
+
+func (i GetActiveStandbyPoolsPoolMemberReasonArgs) ToGetActiveStandbyPoolsPoolMemberReasonOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberReasonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveStandbyPoolsPoolMemberReasonOutput)
+}
+
+// GetActiveStandbyPoolsPoolMemberReasonArrayInput is an input type that accepts GetActiveStandbyPoolsPoolMemberReasonArray and GetActiveStandbyPoolsPoolMemberReasonArrayOutput values.
+// You can construct a concrete instance of `GetActiveStandbyPoolsPoolMemberReasonArrayInput` via:
+//
+//	GetActiveStandbyPoolsPoolMemberReasonArray{ GetActiveStandbyPoolsPoolMemberReasonArgs{...} }
+type GetActiveStandbyPoolsPoolMemberReasonArrayInput interface {
+	pulumi.Input
+
+	ToGetActiveStandbyPoolsPoolMemberReasonArrayOutput() GetActiveStandbyPoolsPoolMemberReasonArrayOutput
+	ToGetActiveStandbyPoolsPoolMemberReasonArrayOutputWithContext(context.Context) GetActiveStandbyPoolsPoolMemberReasonArrayOutput
+}
+
+type GetActiveStandbyPoolsPoolMemberReasonArray []GetActiveStandbyPoolsPoolMemberReasonInput
+
+func (GetActiveStandbyPoolsPoolMemberReasonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetActiveStandbyPoolsPoolMemberReason)(nil)).Elem()
+}
+
+func (i GetActiveStandbyPoolsPoolMemberReasonArray) ToGetActiveStandbyPoolsPoolMemberReasonArrayOutput() GetActiveStandbyPoolsPoolMemberReasonArrayOutput {
+	return i.ToGetActiveStandbyPoolsPoolMemberReasonArrayOutputWithContext(context.Background())
+}
+
+func (i GetActiveStandbyPoolsPoolMemberReasonArray) ToGetActiveStandbyPoolsPoolMemberReasonArrayOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberReasonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveStandbyPoolsPoolMemberReasonArrayOutput)
+}
+
+type GetActiveStandbyPoolsPoolMemberReasonOutput struct{ *pulumi.OutputState }
+
+func (GetActiveStandbyPoolsPoolMemberReasonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberReason)(nil)).Elem()
+}
+
+func (o GetActiveStandbyPoolsPoolMemberReasonOutput) ToGetActiveStandbyPoolsPoolMemberReasonOutput() GetActiveStandbyPoolsPoolMemberReasonOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolMemberReasonOutput) ToGetActiveStandbyPoolsPoolMemberReasonOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberReasonOutput {
+	return o
+}
+
+// The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+// **HTTPS** or **GRPC**.
+//   - A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+//     to other values, the status code ranges from **200** to **599**.
+//   - A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+//   - A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+func (o GetActiveStandbyPoolsPoolMemberReasonOutput) ExpectedResponse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMemberReason) string { return v.ExpectedResponse }).(pulumi.StringOutput)
+}
+
+// The returned HTTP status code in the response. This parameter will take effect only when `type`
+// is set to **HTTP**, **HTTPS** or **GRPC**.
+//   - A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+//     other values, the status code ranges from **200** to **599**.
+func (o GetActiveStandbyPoolsPoolMemberReasonOutput) HealthcheckResponse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMemberReason) string { return v.HealthcheckResponse }).(pulumi.StringOutput)
+}
+
+// The code of the health check failures. The value can be:
+//   - **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+//   - **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+//   - **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+//   - **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+//   - **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+//   - **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+//   - **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+//     duration during a health check.
+//   - **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+//     check.
+//   - **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+//     timeout duration.
+//   - **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+//   - **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+func (o GetActiveStandbyPoolsPoolMemberReasonOutput) ReasonCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMemberReason) string { return v.ReasonCode }).(pulumi.StringOutput)
+}
+
+type GetActiveStandbyPoolsPoolMemberReasonArrayOutput struct{ *pulumi.OutputState }
+
+func (GetActiveStandbyPoolsPoolMemberReasonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetActiveStandbyPoolsPoolMemberReason)(nil)).Elem()
+}
+
+func (o GetActiveStandbyPoolsPoolMemberReasonArrayOutput) ToGetActiveStandbyPoolsPoolMemberReasonArrayOutput() GetActiveStandbyPoolsPoolMemberReasonArrayOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolMemberReasonArrayOutput) ToGetActiveStandbyPoolsPoolMemberReasonArrayOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberReasonArrayOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolMemberReasonArrayOutput) Index(i pulumi.IntInput) GetActiveStandbyPoolsPoolMemberReasonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetActiveStandbyPoolsPoolMemberReason {
+		return vs[0].([]GetActiveStandbyPoolsPoolMemberReason)[vs[1].(int)]
+	}).(GetActiveStandbyPoolsPoolMemberReasonOutput)
+}
+
+type GetActiveStandbyPoolsPoolMemberStatus struct {
+	// Specifies the ID of the listener to which the forwarding policy is added.
+	ListenerId string `pulumi:"listenerId"`
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+	OperatingStatus string `pulumi:"operatingStatus"`
+}
+
+// GetActiveStandbyPoolsPoolMemberStatusInput is an input type that accepts GetActiveStandbyPoolsPoolMemberStatusArgs and GetActiveStandbyPoolsPoolMemberStatusOutput values.
+// You can construct a concrete instance of `GetActiveStandbyPoolsPoolMemberStatusInput` via:
+//
+//	GetActiveStandbyPoolsPoolMemberStatusArgs{...}
+type GetActiveStandbyPoolsPoolMemberStatusInput interface {
+	pulumi.Input
+
+	ToGetActiveStandbyPoolsPoolMemberStatusOutput() GetActiveStandbyPoolsPoolMemberStatusOutput
+	ToGetActiveStandbyPoolsPoolMemberStatusOutputWithContext(context.Context) GetActiveStandbyPoolsPoolMemberStatusOutput
+}
+
+type GetActiveStandbyPoolsPoolMemberStatusArgs struct {
+	// Specifies the ID of the listener to which the forwarding policy is added.
+	ListenerId pulumi.StringInput `pulumi:"listenerId"`
+	// The health status of the backend server. The value can be:
+	// + **ONLINE**: The backend server is running normally.
+	// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+	// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+	OperatingStatus pulumi.StringInput `pulumi:"operatingStatus"`
+}
+
+func (GetActiveStandbyPoolsPoolMemberStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberStatus)(nil)).Elem()
+}
+
+func (i GetActiveStandbyPoolsPoolMemberStatusArgs) ToGetActiveStandbyPoolsPoolMemberStatusOutput() GetActiveStandbyPoolsPoolMemberStatusOutput {
+	return i.ToGetActiveStandbyPoolsPoolMemberStatusOutputWithContext(context.Background())
+}
+
+func (i GetActiveStandbyPoolsPoolMemberStatusArgs) ToGetActiveStandbyPoolsPoolMemberStatusOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveStandbyPoolsPoolMemberStatusOutput)
+}
+
+// GetActiveStandbyPoolsPoolMemberStatusArrayInput is an input type that accepts GetActiveStandbyPoolsPoolMemberStatusArray and GetActiveStandbyPoolsPoolMemberStatusArrayOutput values.
+// You can construct a concrete instance of `GetActiveStandbyPoolsPoolMemberStatusArrayInput` via:
+//
+//	GetActiveStandbyPoolsPoolMemberStatusArray{ GetActiveStandbyPoolsPoolMemberStatusArgs{...} }
+type GetActiveStandbyPoolsPoolMemberStatusArrayInput interface {
+	pulumi.Input
+
+	ToGetActiveStandbyPoolsPoolMemberStatusArrayOutput() GetActiveStandbyPoolsPoolMemberStatusArrayOutput
+	ToGetActiveStandbyPoolsPoolMemberStatusArrayOutputWithContext(context.Context) GetActiveStandbyPoolsPoolMemberStatusArrayOutput
+}
+
+type GetActiveStandbyPoolsPoolMemberStatusArray []GetActiveStandbyPoolsPoolMemberStatusInput
+
+func (GetActiveStandbyPoolsPoolMemberStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetActiveStandbyPoolsPoolMemberStatus)(nil)).Elem()
+}
+
+func (i GetActiveStandbyPoolsPoolMemberStatusArray) ToGetActiveStandbyPoolsPoolMemberStatusArrayOutput() GetActiveStandbyPoolsPoolMemberStatusArrayOutput {
+	return i.ToGetActiveStandbyPoolsPoolMemberStatusArrayOutputWithContext(context.Background())
+}
+
+func (i GetActiveStandbyPoolsPoolMemberStatusArray) ToGetActiveStandbyPoolsPoolMemberStatusArrayOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveStandbyPoolsPoolMemberStatusArrayOutput)
+}
+
+type GetActiveStandbyPoolsPoolMemberStatusOutput struct{ *pulumi.OutputState }
+
+func (GetActiveStandbyPoolsPoolMemberStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberStatus)(nil)).Elem()
+}
+
+func (o GetActiveStandbyPoolsPoolMemberStatusOutput) ToGetActiveStandbyPoolsPoolMemberStatusOutput() GetActiveStandbyPoolsPoolMemberStatusOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolMemberStatusOutput) ToGetActiveStandbyPoolsPoolMemberStatusOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberStatusOutput {
+	return o
+}
+
+// Specifies the ID of the listener to which the forwarding policy is added.
+func (o GetActiveStandbyPoolsPoolMemberStatusOutput) ListenerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMemberStatus) string { return v.ListenerId }).(pulumi.StringOutput)
+}
+
+// The health status of the backend server. The value can be:
+// + **ONLINE**: The backend server is running normally.
+// + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+// + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+func (o GetActiveStandbyPoolsPoolMemberStatusOutput) OperatingStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolMemberStatus) string { return v.OperatingStatus }).(pulumi.StringOutput)
+}
+
+type GetActiveStandbyPoolsPoolMemberStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetActiveStandbyPoolsPoolMemberStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetActiveStandbyPoolsPoolMemberStatus)(nil)).Elem()
+}
+
+func (o GetActiveStandbyPoolsPoolMemberStatusArrayOutput) ToGetActiveStandbyPoolsPoolMemberStatusArrayOutput() GetActiveStandbyPoolsPoolMemberStatusArrayOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolMemberStatusArrayOutput) ToGetActiveStandbyPoolsPoolMemberStatusArrayOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolMemberStatusArrayOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolMemberStatusArrayOutput) Index(i pulumi.IntInput) GetActiveStandbyPoolsPoolMemberStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetActiveStandbyPoolsPoolMemberStatus {
+		return vs[0].([]GetActiveStandbyPoolsPoolMemberStatus)[vs[1].(int)]
+	}).(GetActiveStandbyPoolsPoolMemberStatusOutput)
+}
+
+type GetActiveStandbyPoolsPoolQuicCidHashStrategy struct {
+	// The length of the hash factor in the connection ID, in byte.
+	Len int `pulumi:"len"`
+	// The start position in the connection ID as the hash factor, in byte.
+	Offset int `pulumi:"offset"`
+}
+
+// GetActiveStandbyPoolsPoolQuicCidHashStrategyInput is an input type that accepts GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs and GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput values.
+// You can construct a concrete instance of `GetActiveStandbyPoolsPoolQuicCidHashStrategyInput` via:
+//
+//	GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs{...}
+type GetActiveStandbyPoolsPoolQuicCidHashStrategyInput interface {
+	pulumi.Input
+
+	ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutput() GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput
+	ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutputWithContext(context.Context) GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput
+}
+
+type GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs struct {
+	// The length of the hash factor in the connection ID, in byte.
+	Len pulumi.IntInput `pulumi:"len"`
+	// The start position in the connection ID as the hash factor, in byte.
+	Offset pulumi.IntInput `pulumi:"offset"`
+}
+
+func (GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveStandbyPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (i GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutput() GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput {
+	return i.ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutputWithContext(context.Background())
+}
+
+func (i GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput)
+}
+
+// GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayInput is an input type that accepts GetActiveStandbyPoolsPoolQuicCidHashStrategyArray and GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput values.
+// You can construct a concrete instance of `GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayInput` via:
+//
+//	GetActiveStandbyPoolsPoolQuicCidHashStrategyArray{ GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs{...} }
+type GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayInput interface {
+	pulumi.Input
+
+	ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput() GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput
+	ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutputWithContext(context.Context) GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput
+}
+
+type GetActiveStandbyPoolsPoolQuicCidHashStrategyArray []GetActiveStandbyPoolsPoolQuicCidHashStrategyInput
+
+func (GetActiveStandbyPoolsPoolQuicCidHashStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetActiveStandbyPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (i GetActiveStandbyPoolsPoolQuicCidHashStrategyArray) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput() GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput {
+	return i.ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i GetActiveStandbyPoolsPoolQuicCidHashStrategyArray) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput)
+}
+
+type GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput struct{ *pulumi.OutputState }
+
+func (GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveStandbyPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutput() GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput {
+	return o
+}
+
+// The length of the hash factor in the connection ID, in byte.
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput) Len() pulumi.IntOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolQuicCidHashStrategy) int { return v.Len }).(pulumi.IntOutput)
+}
+
+// The start position in the connection ID as the hash factor, in byte.
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput) Offset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetActiveStandbyPoolsPoolQuicCidHashStrategy) int { return v.Offset }).(pulumi.IntOutput)
+}
+
+type GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetActiveStandbyPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput() GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput) ToGetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutputWithContext(ctx context.Context) GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput {
+	return o
+}
+
+func (o GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput) Index(i pulumi.IntInput) GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetActiveStandbyPoolsPoolQuicCidHashStrategy {
+		return vs[0].([]GetActiveStandbyPoolsPoolQuicCidHashStrategy)[vs[1].(int)]
+	}).(GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput)
+}
+
 type GetAllMembersMember struct {
 	// Specifies the IP address of the backend server.
 	// Multiple IP addresses can be queried.
@@ -5560,6 +6867,8 @@ type GetAllMembersMember struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Indicates the backend server ID.
 	Id string `pulumi:"id"`
+	// Indicates the ID of the instance associated with the backend server.
+	InstanceId string `pulumi:"instanceId"`
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **v4** or **v6**.
 	// Multiple versions can be queried.
@@ -5620,6 +6929,8 @@ type GetAllMembersMemberArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Indicates the backend server ID.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates the ID of the instance associated with the backend server.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// Specifies the IP address version supported by the backend server group.
 	// The value can be **v4** or **v6**.
 	// Multiple versions can be queried.
@@ -5726,6 +7037,11 @@ func (o GetAllMembersMemberOutput) CreatedAt() pulumi.StringOutput {
 // Indicates the backend server ID.
 func (o GetAllMembersMemberOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllMembersMember) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Indicates the ID of the instance associated with the backend server.
+func (o GetAllMembersMemberOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllMembersMember) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // Specifies the IP address version supported by the backend server group.
@@ -6629,16 +7945,32 @@ func (o GetFeatureConfigurationsConfigArrayOutput) Index(i pulumi.IntInput) GetF
 type GetFlavorsFlavor struct {
 	// Specifies the bandwidth size(Mbit/s) in the flavor.
 	Bandwidth int `pulumi:"bandwidth"`
+	// Specifies the category.
+	Category int `pulumi:"category"`
 	// Specifies the cps in the flavor.
 	Cps int `pulumi:"cps"`
-	// ID of the flavor.
+	// Specifies whether the flavor is available.
+	// + **true**: indicates the flavor is unavailable.
+	// + **false**: indicates the flavor is available.
+	FlavorSoldOut bool `pulumi:"flavorSoldOut"`
+	// Indicates the number of new HTTPS connections.
+	HttpsCps int `pulumi:"httpsCps"`
+	// Indicates the ID of the flavor.
 	Id string `pulumi:"id"`
+	// Indicates the number of LCUs in the flavor.
+	Lcu int `pulumi:"lcu"`
 	// Specifies the maximum connections in the flavor.
 	MaxConnections int `pulumi:"maxConnections"`
 	// Specifies the flavor name.
 	Name string `pulumi:"name"`
+	// Specifies the public border group.
+	PublicBorderGroup string `pulumi:"publicBorderGroup"`
 	// Specifies the qps in the L7 flavor.
 	Qps int `pulumi:"qps"`
+	// Specifies whether the flavor is available to all users. Value options:
+	// + **true**: indicates that the flavor is available to all users.
+	// + **false**: indicates that the flavor is available only to a specific user.
+	Shared bool `pulumi:"shared"`
 	// Specifies the flavor type. Values options:
 	// + **L4**: indicates Layer-4 flavor.
 	// + **L7**: indicates Layer-7 flavor.
@@ -6663,16 +7995,32 @@ type GetFlavorsFlavorInput interface {
 type GetFlavorsFlavorArgs struct {
 	// Specifies the bandwidth size(Mbit/s) in the flavor.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// Specifies the category.
+	Category pulumi.IntInput `pulumi:"category"`
 	// Specifies the cps in the flavor.
 	Cps pulumi.IntInput `pulumi:"cps"`
-	// ID of the flavor.
+	// Specifies whether the flavor is available.
+	// + **true**: indicates the flavor is unavailable.
+	// + **false**: indicates the flavor is available.
+	FlavorSoldOut pulumi.BoolInput `pulumi:"flavorSoldOut"`
+	// Indicates the number of new HTTPS connections.
+	HttpsCps pulumi.IntInput `pulumi:"httpsCps"`
+	// Indicates the ID of the flavor.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates the number of LCUs in the flavor.
+	Lcu pulumi.IntInput `pulumi:"lcu"`
 	// Specifies the maximum connections in the flavor.
 	MaxConnections pulumi.IntInput `pulumi:"maxConnections"`
 	// Specifies the flavor name.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringInput `pulumi:"publicBorderGroup"`
 	// Specifies the qps in the L7 flavor.
 	Qps pulumi.IntInput `pulumi:"qps"`
+	// Specifies whether the flavor is available to all users. Value options:
+	// + **true**: indicates that the flavor is available to all users.
+	// + **false**: indicates that the flavor is available only to a specific user.
+	Shared pulumi.BoolInput `pulumi:"shared"`
 	// Specifies the flavor type. Values options:
 	// + **L4**: indicates Layer-4 flavor.
 	// + **L7**: indicates Layer-7 flavor.
@@ -6739,14 +8087,36 @@ func (o GetFlavorsFlavorOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFlavorsFlavor) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
+// Specifies the category.
+func (o GetFlavorsFlavorOutput) Category() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFlavorsFlavor) int { return v.Category }).(pulumi.IntOutput)
+}
+
 // Specifies the cps in the flavor.
 func (o GetFlavorsFlavorOutput) Cps() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFlavorsFlavor) int { return v.Cps }).(pulumi.IntOutput)
 }
 
-// ID of the flavor.
+// Specifies whether the flavor is available.
+// + **true**: indicates the flavor is unavailable.
+// + **false**: indicates the flavor is available.
+func (o GetFlavorsFlavorOutput) FlavorSoldOut() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlavorsFlavor) bool { return v.FlavorSoldOut }).(pulumi.BoolOutput)
+}
+
+// Indicates the number of new HTTPS connections.
+func (o GetFlavorsFlavorOutput) HttpsCps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFlavorsFlavor) int { return v.HttpsCps }).(pulumi.IntOutput)
+}
+
+// Indicates the ID of the flavor.
 func (o GetFlavorsFlavorOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlavorsFlavor) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Indicates the number of LCUs in the flavor.
+func (o GetFlavorsFlavorOutput) Lcu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFlavorsFlavor) int { return v.Lcu }).(pulumi.IntOutput)
 }
 
 // Specifies the maximum connections in the flavor.
@@ -6759,9 +8129,21 @@ func (o GetFlavorsFlavorOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlavorsFlavor) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Specifies the public border group.
+func (o GetFlavorsFlavorOutput) PublicBorderGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlavorsFlavor) string { return v.PublicBorderGroup }).(pulumi.StringOutput)
+}
+
 // Specifies the qps in the L7 flavor.
 func (o GetFlavorsFlavorOutput) Qps() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFlavorsFlavor) int { return v.Qps }).(pulumi.IntOutput)
+}
+
+// Specifies whether the flavor is available to all users. Value options:
+// + **true**: indicates that the flavor is available to all users.
+// + **false**: indicates that the flavor is available only to a specific user.
+func (o GetFlavorsFlavorOutput) Shared() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlavorsFlavor) bool { return v.Shared }).(pulumi.BoolOutput)
 }
 
 // Specifies the flavor type. Values options:
@@ -6800,6 +8182,8 @@ type GetIpgroupsIpgroup struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Specifies the description of the IP address group.
 	Description string `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId string `pulumi:"enterpriseProjectId"`
 	// The listener ID.
 	Id string `pulumi:"id"`
 	// The IP addresses or CIDR blocks in the IP address group. The ipList structure is
@@ -6832,6 +8216,8 @@ type GetIpgroupsIpgroupArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Specifies the description of the IP address group.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId pulumi.StringInput `pulumi:"enterpriseProjectId"`
 	// The listener ID.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The IP addresses or CIDR blocks in the IP address group. The ipList structure is
@@ -6907,6 +8293,11 @@ func (o GetIpgroupsIpgroupOutput) CreatedAt() pulumi.StringOutput {
 // Specifies the description of the IP address group.
 func (o GetIpgroupsIpgroupOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpgroupsIpgroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Specifies the enterprise project ID.
+func (o GetIpgroupsIpgroupOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpgroupsIpgroup) string { return v.EnterpriseProjectId }).(pulumi.StringOutput)
 }
 
 // The listener ID.
@@ -7175,6 +8566,8 @@ type GetL7policiesL7policy struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Specifies the supplementary information about the forwarding policy.
 	Description string `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId string `pulumi:"enterpriseProjectId"`
 	// The configuration of the page that will be returned.
 	// The fixedResponseConfig structure is documented below.
 	FixedResponseConfigs []GetL7policiesL7policyFixedResponseConfig `pulumi:"fixedResponseConfigs"`
@@ -7186,17 +8579,28 @@ type GetL7policiesL7policy struct {
 	Name string `pulumi:"name"`
 	// Specifies the forwarding policy priority.
 	Priority int `pulumi:"priority"`
+	// Specifies the provisioning status of the forwarding policy.
+	ProvisioningStatus string `pulumi:"provisioningStatus"`
 	// Specifies the ID of the listener to which requests are redirected.
 	RedirectListenerId string `pulumi:"redirectListenerId"`
 	// Specifies the ID of the backend server group to which requests will be forwarded.
 	RedirectPoolId string `pulumi:"redirectPoolId"`
+	// The list of the backend server groups to which traffic is forwarded.
+	// The redirectPoolsConfig structure is documented below.
+	RedirectPoolsConfigs []GetL7policiesL7policyRedirectPoolsConfig `pulumi:"redirectPoolsConfigs"`
 	// The backend server group that the requests are forwarded to.
 	// The redirectPoolsExtendConfig structure is documented below.
 	RedirectPoolsExtendConfigs []GetL7policiesL7policyRedirectPoolsExtendConfig `pulumi:"redirectPoolsExtendConfigs"`
-	// The URL to which requests are forwarded. The redirectUrlConfig
-	// structure is documented below.
+	// The session persistence between backend server groups which associated with
+	// the policy.
+	// The redirectPoolsStickySessionConfig structure is documented
+	// below.
+	RedirectPoolsStickySessionConfigs []GetL7policiesL7policyRedirectPoolsStickySessionConfig `pulumi:"redirectPoolsStickySessionConfigs"`
+	// The URL to which requests are forwarded.
+	// The redirectUrlConfig structure is documented below.
 	RedirectUrlConfigs []GetL7policiesL7policyRedirectUrlConfig `pulumi:"redirectUrlConfigs"`
-	// The forwarding rules in the forwarding policy. The rules structure is documented below.
+	// The forwarding rules in the forwarding policy.
+	// The rules structure is documented below.
 	Rules []GetL7policiesL7policyRule `pulumi:"rules"`
 	// The time when the forwarding policy was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
@@ -7224,6 +8628,8 @@ type GetL7policiesL7policyArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Specifies the supplementary information about the forwarding policy.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId pulumi.StringInput `pulumi:"enterpriseProjectId"`
 	// The configuration of the page that will be returned.
 	// The fixedResponseConfig structure is documented below.
 	FixedResponseConfigs GetL7policiesL7policyFixedResponseConfigArrayInput `pulumi:"fixedResponseConfigs"`
@@ -7235,17 +8641,28 @@ type GetL7policiesL7policyArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the forwarding policy priority.
 	Priority pulumi.IntInput `pulumi:"priority"`
+	// Specifies the provisioning status of the forwarding policy.
+	ProvisioningStatus pulumi.StringInput `pulumi:"provisioningStatus"`
 	// Specifies the ID of the listener to which requests are redirected.
 	RedirectListenerId pulumi.StringInput `pulumi:"redirectListenerId"`
 	// Specifies the ID of the backend server group to which requests will be forwarded.
 	RedirectPoolId pulumi.StringInput `pulumi:"redirectPoolId"`
+	// The list of the backend server groups to which traffic is forwarded.
+	// The redirectPoolsConfig structure is documented below.
+	RedirectPoolsConfigs GetL7policiesL7policyRedirectPoolsConfigArrayInput `pulumi:"redirectPoolsConfigs"`
 	// The backend server group that the requests are forwarded to.
 	// The redirectPoolsExtendConfig structure is documented below.
 	RedirectPoolsExtendConfigs GetL7policiesL7policyRedirectPoolsExtendConfigArrayInput `pulumi:"redirectPoolsExtendConfigs"`
-	// The URL to which requests are forwarded. The redirectUrlConfig
-	// structure is documented below.
+	// The session persistence between backend server groups which associated with
+	// the policy.
+	// The redirectPoolsStickySessionConfig structure is documented
+	// below.
+	RedirectPoolsStickySessionConfigs GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayInput `pulumi:"redirectPoolsStickySessionConfigs"`
+	// The URL to which requests are forwarded.
+	// The redirectUrlConfig structure is documented below.
 	RedirectUrlConfigs GetL7policiesL7policyRedirectUrlConfigArrayInput `pulumi:"redirectUrlConfigs"`
-	// The forwarding rules in the forwarding policy. The rules structure is documented below.
+	// The forwarding rules in the forwarding policy.
+	// The rules structure is documented below.
 	Rules GetL7policiesL7policyRuleArrayInput `pulumi:"rules"`
 	// The time when the forwarding policy was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
@@ -7321,6 +8738,11 @@ func (o GetL7policiesL7policyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policy) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Specifies the enterprise project ID.
+func (o GetL7policiesL7policyOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policy) string { return v.EnterpriseProjectId }).(pulumi.StringOutput)
+}
+
 // The configuration of the page that will be returned.
 // The fixedResponseConfig structure is documented below.
 func (o GetL7policiesL7policyOutput) FixedResponseConfigs() GetL7policiesL7policyFixedResponseConfigArrayOutput {
@@ -7349,6 +8771,11 @@ func (o GetL7policiesL7policyOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v GetL7policiesL7policy) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// Specifies the provisioning status of the forwarding policy.
+func (o GetL7policiesL7policyOutput) ProvisioningStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policy) string { return v.ProvisioningStatus }).(pulumi.StringOutput)
+}
+
 // Specifies the ID of the listener to which requests are redirected.
 func (o GetL7policiesL7policyOutput) RedirectListenerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policy) string { return v.RedirectListenerId }).(pulumi.StringOutput)
@@ -7359,6 +8786,14 @@ func (o GetL7policiesL7policyOutput) RedirectPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policy) string { return v.RedirectPoolId }).(pulumi.StringOutput)
 }
 
+// The list of the backend server groups to which traffic is forwarded.
+// The redirectPoolsConfig structure is documented below.
+func (o GetL7policiesL7policyOutput) RedirectPoolsConfigs() GetL7policiesL7policyRedirectPoolsConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policy) []GetL7policiesL7policyRedirectPoolsConfig {
+		return v.RedirectPoolsConfigs
+	}).(GetL7policiesL7policyRedirectPoolsConfigArrayOutput)
+}
+
 // The backend server group that the requests are forwarded to.
 // The redirectPoolsExtendConfig structure is documented below.
 func (o GetL7policiesL7policyOutput) RedirectPoolsExtendConfigs() GetL7policiesL7policyRedirectPoolsExtendConfigArrayOutput {
@@ -7367,13 +8802,24 @@ func (o GetL7policiesL7policyOutput) RedirectPoolsExtendConfigs() GetL7policiesL
 	}).(GetL7policiesL7policyRedirectPoolsExtendConfigArrayOutput)
 }
 
-// The URL to which requests are forwarded. The redirectUrlConfig
-// structure is documented below.
+// The session persistence between backend server groups which associated with
+// the policy.
+// The redirectPoolsStickySessionConfig structure is documented
+// below.
+func (o GetL7policiesL7policyOutput) RedirectPoolsStickySessionConfigs() GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policy) []GetL7policiesL7policyRedirectPoolsStickySessionConfig {
+		return v.RedirectPoolsStickySessionConfigs
+	}).(GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput)
+}
+
+// The URL to which requests are forwarded.
+// The redirectUrlConfig structure is documented below.
 func (o GetL7policiesL7policyOutput) RedirectUrlConfigs() GetL7policiesL7policyRedirectUrlConfigArrayOutput {
 	return o.ApplyT(func(v GetL7policiesL7policy) []GetL7policiesL7policyRedirectUrlConfig { return v.RedirectUrlConfigs }).(GetL7policiesL7policyRedirectUrlConfigArrayOutput)
 }
 
-// The forwarding rules in the forwarding policy. The rules structure is documented below.
+// The forwarding rules in the forwarding policy.
+// The rules structure is documented below.
 func (o GetL7policiesL7policyOutput) Rules() GetL7policiesL7policyRuleArrayOutput {
 	return o.ApplyT(func(v GetL7policiesL7policy) []GetL7policiesL7policyRule { return v.Rules }).(GetL7policiesL7policyRuleArrayOutput)
 }
@@ -7406,10 +8852,19 @@ func (o GetL7policiesL7policyArrayOutput) Index(i pulumi.IntInput) GetL7policies
 type GetL7policiesL7policyFixedResponseConfig struct {
 	// The format of the response body.
 	ContentType string `pulumi:"contentType"`
+	// (Optional, List) The header parameters to be added.
+	// The insertHeadersConfig structure is documented below.
+	InsertHeadersConfigs []GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig `pulumi:"insertHeadersConfigs"`
 	// The content of the response message body.
 	MessageBody string `pulumi:"messageBody"`
+	// (Optional, List) The header parameters to be removed.
+	// The removeHeadersConfig structure is documented below.
+	RemoveHeadersConfigs []GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig `pulumi:"removeHeadersConfigs"`
 	// The status code returned after the requests are redirected.
 	StatusCode string `pulumi:"statusCode"`
+	// (Optional, List) The traffic limit config of the policy.
+	// The trafficLimitConfig structure is documented below.
+	TrafficLimitConfigs []GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig `pulumi:"trafficLimitConfigs"`
 }
 
 // GetL7policiesL7policyFixedResponseConfigInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigArgs and GetL7policiesL7policyFixedResponseConfigOutput values.
@@ -7426,10 +8881,19 @@ type GetL7policiesL7policyFixedResponseConfigInput interface {
 type GetL7policiesL7policyFixedResponseConfigArgs struct {
 	// The format of the response body.
 	ContentType pulumi.StringInput `pulumi:"contentType"`
+	// (Optional, List) The header parameters to be added.
+	// The insertHeadersConfig structure is documented below.
+	InsertHeadersConfigs GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayInput `pulumi:"insertHeadersConfigs"`
 	// The content of the response message body.
 	MessageBody pulumi.StringInput `pulumi:"messageBody"`
+	// (Optional, List) The header parameters to be removed.
+	// The removeHeadersConfig structure is documented below.
+	RemoveHeadersConfigs GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayInput `pulumi:"removeHeadersConfigs"`
 	// The status code returned after the requests are redirected.
 	StatusCode pulumi.StringInput `pulumi:"statusCode"`
+	// (Optional, List) The traffic limit config of the policy.
+	// The trafficLimitConfig structure is documented below.
+	TrafficLimitConfigs GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayInput `pulumi:"trafficLimitConfigs"`
 }
 
 func (GetL7policiesL7policyFixedResponseConfigArgs) ElementType() reflect.Type {
@@ -7488,14 +8952,38 @@ func (o GetL7policiesL7policyFixedResponseConfigOutput) ContentType() pulumi.Str
 	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfig) string { return v.ContentType }).(pulumi.StringOutput)
 }
 
+// (Optional, List) The header parameters to be added.
+// The insertHeadersConfig structure is documented below.
+func (o GetL7policiesL7policyFixedResponseConfigOutput) InsertHeadersConfigs() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfig) []GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig {
+		return v.InsertHeadersConfigs
+	}).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput)
+}
+
 // The content of the response message body.
 func (o GetL7policiesL7policyFixedResponseConfigOutput) MessageBody() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfig) string { return v.MessageBody }).(pulumi.StringOutput)
 }
 
+// (Optional, List) The header parameters to be removed.
+// The removeHeadersConfig structure is documented below.
+func (o GetL7policiesL7policyFixedResponseConfigOutput) RemoveHeadersConfigs() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfig) []GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig {
+		return v.RemoveHeadersConfigs
+	}).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput)
+}
+
 // The status code returned after the requests are redirected.
 func (o GetL7policiesL7policyFixedResponseConfigOutput) StatusCode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfig) string { return v.StatusCode }).(pulumi.StringOutput)
+}
+
+// (Optional, List) The traffic limit config of the policy.
+// The trafficLimitConfig structure is documented below.
+func (o GetL7policiesL7policyFixedResponseConfigOutput) TrafficLimitConfigs() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfig) []GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig {
+		return v.TrafficLimitConfigs
+	}).(GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput)
 }
 
 type GetL7policiesL7policyFixedResponseConfigArrayOutput struct{ *pulumi.OutputState }
@@ -7518,12 +9006,658 @@ func (o GetL7policiesL7policyFixedResponseConfigArrayOutput) Index(i pulumi.IntI
 	}).(GetL7policiesL7policyFixedResponseConfigOutput)
 }
 
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs []GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig `pulumi:"configs"`
+}
+
+// GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs and GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs{...}
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayInput `pulumi:"configs"`
+}
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput)
+}
+
+// GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray and GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray{ GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs{...} }
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray []GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigInput
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput {
+	return o
+}
+
+// The list of request header parameters to be removed.
+// The removeHeaderConfigs structure is documented below.
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput) Configs() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig) []GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig {
+		return v.Configs
+	}).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig {
+		return vs[0].([]GetL7policiesL7policyFixedResponseConfigInsertHeadersConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig struct {
+	// The parameter name of the removed request header.
+	Key string `pulumi:"key"`
+	// The value of the parameter.
+	Value string `pulumi:"value"`
+	// The value type of the parameter.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs and GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs{...}
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs struct {
+	// The parameter name of the removed request header.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the parameter.
+	Value pulumi.StringInput `pulumi:"value"`
+	// The value type of the parameter.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput)
+}
+
+// GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray and GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray{ GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs{...} }
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput
+	ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray []GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigInput
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput {
+	return o
+}
+
+// The parameter name of the removed request header.
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the parameter.
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig) string { return v.Value }).(pulumi.StringOutput)
+}
+
+// The value type of the parameter.
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig {
+		return vs[0].([]GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs []GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig `pulumi:"configs"`
+}
+
+// GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs and GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs{...}
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayInput `pulumi:"configs"`
+}
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput)
+}
+
+// GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray and GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray{ GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs{...} }
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray []GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigInput
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput {
+	return o
+}
+
+// The list of request header parameters to be removed.
+// The removeHeaderConfigs structure is documented below.
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput) Configs() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig) []GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig {
+		return v.Configs
+	}).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig {
+		return vs[0].([]GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig struct {
+	// The parameter name of the removed request header.
+	Key string `pulumi:"key"`
+}
+
+// GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs and GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs{...}
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs struct {
+	// The parameter name of the removed request header.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput)
+}
+
+// GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray and GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray{ GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs{...} }
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput
+	ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray []GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigInput
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput {
+	return o
+}
+
+// The parameter name of the removed request header.
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig {
+		return vs[0].([]GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig struct {
+	// (The qps buffer.
+	Burst int `pulumi:"burst"`
+	// The single source qps of the policy.
+	PerSourceIpQps int `pulumi:"perSourceIpQps"`
+	// The overall qps of the policy.
+	Qps int `pulumi:"qps"`
+}
+
+// GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs and GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs{...}
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput
+	ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs struct {
+	// (The qps buffer.
+	Burst pulumi.IntInput `pulumi:"burst"`
+	// The single source qps of the policy.
+	PerSourceIpQps pulumi.IntInput `pulumi:"perSourceIpQps"`
+	// The overall qps of the policy.
+	Qps pulumi.IntInput `pulumi:"qps"`
+}
+
+func (GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput)
+}
+
+// GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayInput is an input type that accepts GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray and GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayInput` via:
+//
+//	GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray{ GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs{...} }
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput
+	ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput
+}
+
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray []GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigInput
+
+func (GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput {
+	return i.ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput {
+	return o
+}
+
+// (The qps buffer.
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput) Burst() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig) int { return v.Burst }).(pulumi.IntOutput)
+}
+
+// The single source qps of the policy.
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput) PerSourceIpQps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig) int { return v.PerSourceIpQps }).(pulumi.IntOutput)
+}
+
+// The overall qps of the policy.
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput) Qps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig) int { return v.Qps }).(pulumi.IntOutput)
+}
+
+type GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput() GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput) ToGetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig {
+		return vs[0].([]GetL7policiesL7policyFixedResponseConfigTrafficLimitConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsConfig struct {
+	// The ID of the backend server group.
+	PoolId string `pulumi:"poolId"`
+	// The weight of the backend server group.
+	Weight int `pulumi:"weight"`
+}
+
+// GetL7policiesL7policyRedirectPoolsConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsConfigArgs and GetL7policiesL7policyRedirectPoolsConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsConfigOutput() GetL7policiesL7policyRedirectPoolsConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsConfigArgs struct {
+	// The ID of the backend server group.
+	PoolId pulumi.StringInput `pulumi:"poolId"`
+	// The weight of the backend server group.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsConfigArgs) ToGetL7policiesL7policyRedirectPoolsConfigOutput() GetL7policiesL7policyRedirectPoolsConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsConfigArgs) ToGetL7policiesL7policyRedirectPoolsConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsConfigArray and GetL7policiesL7policyRedirectPoolsConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsConfigArray{ GetL7policiesL7policyRedirectPoolsConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsConfigArrayOutput() GetL7policiesL7policyRedirectPoolsConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsConfigArray []GetL7policiesL7policyRedirectPoolsConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsConfigArray) ToGetL7policiesL7policyRedirectPoolsConfigArrayOutput() GetL7policiesL7policyRedirectPoolsConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsConfigArray) ToGetL7policiesL7policyRedirectPoolsConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsConfigOutput) ToGetL7policiesL7policyRedirectPoolsConfigOutput() GetL7policiesL7policyRedirectPoolsConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsConfigOutput) ToGetL7policiesL7policyRedirectPoolsConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsConfigOutput {
+	return o
+}
+
+// The ID of the backend server group.
+func (o GetL7policiesL7policyRedirectPoolsConfigOutput) PoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsConfig) string { return v.PoolId }).(pulumi.StringOutput)
+}
+
+// The weight of the backend server group.
+func (o GetL7policiesL7policyRedirectPoolsConfigOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsConfig) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsConfigArrayOutput() GetL7policiesL7policyRedirectPoolsConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsConfigOutput)
+}
+
 type GetL7policiesL7policyRedirectPoolsExtendConfig struct {
+	// (Optional, List) The header parameters to be added.
+	// The insertHeadersConfig structure is documented below.
+	InsertHeadersConfigs []GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig `pulumi:"insertHeadersConfigs"`
+	// (Optional, List) The header parameters to be removed.
+	// The removeHeadersConfig structure is documented below.
+	RemoveHeadersConfigs []GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig `pulumi:"removeHeadersConfigs"`
 	// The URL for the backend server group that requests are forwarded to.
 	// The rewriteUrlConfig structure is documented below.
 	RewriteUrlConfigs []GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfig `pulumi:"rewriteUrlConfigs"`
 	// Whether to enable URL redirection.
 	RewriteUrlEnabled bool `pulumi:"rewriteUrlEnabled"`
+	// (Optional, List) The traffic limit config of the policy.
+	// The trafficLimitConfig structure is documented below.
+	TrafficLimitConfigs []GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig `pulumi:"trafficLimitConfigs"`
 }
 
 // GetL7policiesL7policyRedirectPoolsExtendConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigArgs and GetL7policiesL7policyRedirectPoolsExtendConfigOutput values.
@@ -7538,11 +9672,20 @@ type GetL7policiesL7policyRedirectPoolsExtendConfigInput interface {
 }
 
 type GetL7policiesL7policyRedirectPoolsExtendConfigArgs struct {
+	// (Optional, List) The header parameters to be added.
+	// The insertHeadersConfig structure is documented below.
+	InsertHeadersConfigs GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayInput `pulumi:"insertHeadersConfigs"`
+	// (Optional, List) The header parameters to be removed.
+	// The removeHeadersConfig structure is documented below.
+	RemoveHeadersConfigs GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayInput `pulumi:"removeHeadersConfigs"`
 	// The URL for the backend server group that requests are forwarded to.
 	// The rewriteUrlConfig structure is documented below.
 	RewriteUrlConfigs GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArrayInput `pulumi:"rewriteUrlConfigs"`
 	// Whether to enable URL redirection.
 	RewriteUrlEnabled pulumi.BoolInput `pulumi:"rewriteUrlEnabled"`
+	// (Optional, List) The traffic limit config of the policy.
+	// The trafficLimitConfig structure is documented below.
+	TrafficLimitConfigs GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayInput `pulumi:"trafficLimitConfigs"`
 }
 
 func (GetL7policiesL7policyRedirectPoolsExtendConfigArgs) ElementType() reflect.Type {
@@ -7596,6 +9739,22 @@ func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) ToGetL7policiesL7p
 	return o
 }
 
+// (Optional, List) The header parameters to be added.
+// The insertHeadersConfig structure is documented below.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) InsertHeadersConfigs() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfig) []GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig {
+		return v.InsertHeadersConfigs
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput)
+}
+
+// (Optional, List) The header parameters to be removed.
+// The removeHeadersConfig structure is documented below.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) RemoveHeadersConfigs() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfig) []GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig {
+		return v.RemoveHeadersConfigs
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput)
+}
+
 // The URL for the backend server group that requests are forwarded to.
 // The rewriteUrlConfig structure is documented below.
 func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) RewriteUrlConfigs() GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArrayOutput {
@@ -7607,6 +9766,14 @@ func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) RewriteUrlConfigs(
 // Whether to enable URL redirection.
 func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) RewriteUrlEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfig) bool { return v.RewriteUrlEnabled }).(pulumi.BoolOutput)
+}
+
+// (Optional, List) The traffic limit config of the policy.
+// The trafficLimitConfig structure is documented below.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigOutput) TrafficLimitConfigs() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfig) []GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig {
+		return v.TrafficLimitConfigs
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput)
 }
 
 type GetL7policiesL7policyRedirectPoolsExtendConfigArrayOutput struct{ *pulumi.OutputState }
@@ -7627,6 +9794,424 @@ func (o GetL7policiesL7policyRedirectPoolsExtendConfigArrayOutput) Index(i pulum
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsExtendConfig {
 		return vs[0].([]GetL7policiesL7policyRedirectPoolsExtendConfig)[vs[1].(int)]
 	}).(GetL7policiesL7policyRedirectPoolsExtendConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs []GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig `pulumi:"configs"`
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs and GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayInput `pulumi:"configs"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray and GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray{ GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray []GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput {
+	return o
+}
+
+// The list of request header parameters to be removed.
+// The removeHeaderConfigs structure is documented below.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput) Configs() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig) []GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig {
+		return v.Configs
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig struct {
+	// The parameter name of the removed request header.
+	Key string `pulumi:"key"`
+	// The value of the parameter.
+	Value string `pulumi:"value"`
+	// The value type of the parameter.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs and GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs struct {
+	// The parameter name of the removed request header.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the parameter.
+	Value pulumi.StringInput `pulumi:"value"`
+	// The value type of the parameter.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray and GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray{ GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray []GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput {
+	return o
+}
+
+// The parameter name of the removed request header.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the parameter.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig) string { return v.Value }).(pulumi.StringOutput)
+}
+
+// The value type of the parameter.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig) string {
+		return v.ValueType
+	}).(pulumi.StringOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs []GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig `pulumi:"configs"`
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs and GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayInput `pulumi:"configs"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray and GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray{ GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray []GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput {
+	return o
+}
+
+// The list of request header parameters to be removed.
+// The removeHeaderConfigs structure is documented below.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput) Configs() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig) []GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig {
+		return v.Configs
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig struct {
+	// The parameter name of the removed request header.
+	Key string `pulumi:"key"`
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs and GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs struct {
+	// The parameter name of the removed request header.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray and GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray{ GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray []GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput {
+	return o
+}
+
+// The parameter name of the removed request header.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput)
 }
 
 type GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfig struct {
@@ -7744,9 +10329,233 @@ func (o GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArrayOutpu
 	}).(GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigOutput)
 }
 
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig struct {
+	// (The qps buffer.
+	Burst int `pulumi:"burst"`
+	// The single source qps of the policy.
+	PerSourceIpQps int `pulumi:"perSourceIpQps"`
+	// The overall qps of the policy.
+	Qps int `pulumi:"qps"`
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs and GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs struct {
+	// (The qps buffer.
+	Burst pulumi.IntInput `pulumi:"burst"`
+	// The single source qps of the policy.
+	PerSourceIpQps pulumi.IntInput `pulumi:"perSourceIpQps"`
+	// The overall qps of the policy.
+	Qps pulumi.IntInput `pulumi:"qps"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray and GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray{ GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray []GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput {
+	return o
+}
+
+// (The qps buffer.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput) Burst() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig) int { return v.Burst }).(pulumi.IntOutput)
+}
+
+// The single source qps of the policy.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput) PerSourceIpQps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig) int { return v.PerSourceIpQps }).(pulumi.IntOutput)
+}
+
+// The overall qps of the policy.
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput) Qps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig) int { return v.Qps }).(pulumi.IntOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput() GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsStickySessionConfig struct {
+	// Whether enable config session persistence between backend server groups.
+	Enable bool `pulumi:"enable"`
+	// The timeout of the session persistence.
+	Timeout int `pulumi:"timeout"`
+}
+
+// GetL7policiesL7policyRedirectPoolsStickySessionConfigInput is an input type that accepts GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs and GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsStickySessionConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs{...}
+type GetL7policiesL7policyRedirectPoolsStickySessionConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutput() GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput
+	ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs struct {
+	// Whether enable config session persistence between backend server groups.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// The timeout of the session persistence.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
+}
+
+func (GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsStickySessionConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutput() GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectPoolsStickySessionConfigArray and GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectPoolsStickySessionConfigArray{ GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs{...} }
+type GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput() GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput
+	ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectPoolsStickySessionConfigArray []GetL7policiesL7policyRedirectPoolsStickySessionConfigInput
+
+func (GetL7policiesL7policyRedirectPoolsStickySessionConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsStickySessionConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectPoolsStickySessionConfigArray) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput() GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectPoolsStickySessionConfigArray) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsStickySessionConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutput() GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput {
+	return o
+}
+
+// Whether enable config session persistence between backend server groups.
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsStickySessionConfig) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+// The timeout of the session persistence.
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectPoolsStickySessionConfig) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+type GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectPoolsStickySessionConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput() GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput) ToGetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectPoolsStickySessionConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectPoolsStickySessionConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput)
+}
+
 type GetL7policiesL7policyRedirectUrlConfig struct {
 	// The url host.
 	Host string `pulumi:"host"`
+	// (Optional, List) The header parameters to be added.
+	// The insertHeadersConfig structure is documented below.
+	InsertHeadersConfigs []GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig `pulumi:"insertHeadersConfigs"`
 	// The URL path.
 	Path string `pulumi:"path"`
 	// The port that requests are redirected to.
@@ -7755,6 +10564,9 @@ type GetL7policiesL7policyRedirectUrlConfig struct {
 	Protocol string `pulumi:"protocol"`
 	// The URL query character string.
 	Query string `pulumi:"query"`
+	// (Optional, List) The header parameters to be removed.
+	// The removeHeadersConfig structure is documented below.
+	RemoveHeadersConfigs []GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig `pulumi:"removeHeadersConfigs"`
 	// The status code returned after the requests are redirected.
 	StatusCode string `pulumi:"statusCode"`
 }
@@ -7773,6 +10585,9 @@ type GetL7policiesL7policyRedirectUrlConfigInput interface {
 type GetL7policiesL7policyRedirectUrlConfigArgs struct {
 	// The url host.
 	Host pulumi.StringInput `pulumi:"host"`
+	// (Optional, List) The header parameters to be added.
+	// The insertHeadersConfig structure is documented below.
+	InsertHeadersConfigs GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayInput `pulumi:"insertHeadersConfigs"`
 	// The URL path.
 	Path pulumi.StringInput `pulumi:"path"`
 	// The port that requests are redirected to.
@@ -7781,6 +10596,9 @@ type GetL7policiesL7policyRedirectUrlConfigArgs struct {
 	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// The URL query character string.
 	Query pulumi.StringInput `pulumi:"query"`
+	// (Optional, List) The header parameters to be removed.
+	// The removeHeadersConfig structure is documented below.
+	RemoveHeadersConfigs GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayInput `pulumi:"removeHeadersConfigs"`
 	// The status code returned after the requests are redirected.
 	StatusCode pulumi.StringInput `pulumi:"statusCode"`
 }
@@ -7841,6 +10659,14 @@ func (o GetL7policiesL7policyRedirectUrlConfigOutput) Host() pulumi.StringOutput
 	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfig) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// (Optional, List) The header parameters to be added.
+// The insertHeadersConfig structure is documented below.
+func (o GetL7policiesL7policyRedirectUrlConfigOutput) InsertHeadersConfigs() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfig) []GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig {
+		return v.InsertHeadersConfigs
+	}).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput)
+}
+
 // The URL path.
 func (o GetL7policiesL7policyRedirectUrlConfigOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfig) string { return v.Path }).(pulumi.StringOutput)
@@ -7859,6 +10685,14 @@ func (o GetL7policiesL7policyRedirectUrlConfigOutput) Protocol() pulumi.StringOu
 // The URL query character string.
 func (o GetL7policiesL7policyRedirectUrlConfigOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfig) string { return v.Query }).(pulumi.StringOutput)
+}
+
+// (Optional, List) The header parameters to be removed.
+// The removeHeadersConfig structure is documented below.
+func (o GetL7policiesL7policyRedirectUrlConfigOutput) RemoveHeadersConfigs() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfig) []GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig {
+		return v.RemoveHeadersConfigs
+	}).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput)
 }
 
 // The status code returned after the requests are redirected.
@@ -7884,6 +10718,422 @@ func (o GetL7policiesL7policyRedirectUrlConfigArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectUrlConfig {
 		return vs[0].([]GetL7policiesL7policyRedirectUrlConfig)[vs[1].(int)]
 	}).(GetL7policiesL7policyRedirectUrlConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs []GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig `pulumi:"configs"`
+}
+
+// GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs and GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs{...}
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayInput `pulumi:"configs"`
+}
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray and GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray{ GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs{...} }
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray []GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigInput
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput {
+	return o
+}
+
+// The list of request header parameters to be removed.
+// The removeHeaderConfigs structure is documented below.
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput) Configs() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig) []GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig {
+		return v.Configs
+	}).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig struct {
+	// The parameter name of the removed request header.
+	Key string `pulumi:"key"`
+	// The value of the parameter.
+	Value string `pulumi:"value"`
+	// The value type of the parameter.
+	ValueType string `pulumi:"valueType"`
+}
+
+// GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs and GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs{...}
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs struct {
+	// The parameter name of the removed request header.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the parameter.
+	Value pulumi.StringInput `pulumi:"value"`
+	// The value type of the parameter.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray and GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray{ GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs{...} }
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput
+	ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray []GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigInput
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput {
+	return o
+}
+
+// The parameter name of the removed request header.
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the parameter.
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig) string { return v.Value }).(pulumi.StringOutput)
+}
+
+// The value type of the parameter.
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs []GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig `pulumi:"configs"`
+}
+
+// GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs and GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs{...}
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs struct {
+	// The list of request header parameters to be removed.
+	// The removeHeaderConfigs structure is documented below.
+	Configs GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayInput `pulumi:"configs"`
+}
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray and GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray{ GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs{...} }
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray []GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigInput
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput {
+	return o
+}
+
+// The list of request header parameters to be removed.
+// The removeHeaderConfigs structure is documented below.
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput) Configs() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig) []GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig {
+		return v.Configs
+	}).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig struct {
+	// The parameter name of the removed request header.
+	Key string `pulumi:"key"`
+}
+
+// GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs and GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs{...}
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs struct {
+	// The parameter name of the removed request header.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput)
+}
+
+// GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayInput is an input type that accepts GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray and GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput values.
+// You can construct a concrete instance of `GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayInput` via:
+//
+//	GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray{ GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs{...} }
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput
+	ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutputWithContext(context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray []GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigInput
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput {
+	return i.ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput {
+	return o
+}
+
+// The parameter name of the removed request header.
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig)(nil)).Elem()
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput() GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput) ToGetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutputWithContext(ctx context.Context) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput {
+	return o
+}
+
+func (o GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput) Index(i pulumi.IntInput) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig {
+		return vs[0].([]GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfig)[vs[1].(int)]
+	}).(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput)
 }
 
 type GetL7policiesL7policyRule struct {
@@ -8250,51 +11500,105 @@ func (o GetL7rulesL7ruleConditionArrayOutput) Index(i pulumi.IntInput) GetL7rule
 }
 
 type GetListenersListener struct {
-	// Whether to enable advanced forwarding.
+	// Specifies whether the advanced forwarding is enabled. Value options:
+	// **true**, **false**.
 	AdvancedForwardingEnabled bool `pulumi:"advancedForwardingEnabled"`
-	// The ID of the CA certificate used by the listener.
+	// Specifies the ID of the CA certificate used by the listener.
 	CaCertificate string `pulumi:"caCertificate"`
-	// The ID of the default backend server group.
+	// The maximum number of new connections that a listener can handle per second.
+	Cps int `pulumi:"cps"`
+	// The creation time of the listener.
+	CreatedAt string `pulumi:"createdAt"`
+	// Specifies the ID of the default pool with which the listener is associated.
 	DefaultPoolId string `pulumi:"defaultPoolId"`
 	// Specifies the description of the ELB listener.
 	Description string `pulumi:"description"`
+	// Specifies whether the health check retries for backend servers is enabled.
+	// Value options: **true**, **false**.
+	EnableMemberRetry bool `pulumi:"enableMemberRetry"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId string `pulumi:"enterpriseProjectId"`
 	// Whether to transparently transmit the load balancer EIP to backend servers.
 	ForwardEip bool `pulumi:"forwardEip"`
+	// Whether to transfer the load balancer ID to backend servers through the HTTP header of the packet.
+	ForwardElb bool `pulumi:"forwardElb"`
 	// Whether to rewrite the X-Forwarded-Host header.
 	ForwardHost bool `pulumi:"forwardHost"`
 	// Whether to transparently transmit the listening port of the load balancer to backend servers.
 	ForwardPort bool `pulumi:"forwardPort"`
+	// Whether to transfer the listener protocol of the load balancer to backend servers through the HTTP
+	// header of the packet.
+	ForwardProto bool `pulumi:"forwardProto"`
 	// Whether to transparently transmit the source port of the client to backend servers.
 	ForwardRequestPort bool `pulumi:"forwardRequestPort"`
-	// Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+	// Whether to transfer the certificate ID of the load balancer to backend servers through the
+	// HTTP header of the packet.
+	ForwardTlsCertificate bool `pulumi:"forwardTlsCertificate"`
+	// Whether to transfer the algorithm suite of the load balancer to backend servers through the HTTP
+	// header of the packet.
+	ForwardTlsCipher bool `pulumi:"forwardTlsCipher"`
+	// Whether to transfer the algorithm protocol of the load balancer to backend servers through the
+	// HTTP header of the packet.
+	ForwardTlsProtocol bool `pulumi:"forwardTlsProtocol"`
+	// Whether the gzip compression for a load balancer is enabled.
+	GzipEnable bool `pulumi:"gzipEnable"`
+	// Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
 	Http2Enable bool `pulumi:"http2Enable"`
 	// The listener ID.
 	Id string `pulumi:"id"`
-	// The idle timeout duration, in seconds.
+	// Specifies the idle timeout for the listener.
 	IdleTimeout int `pulumi:"idleTimeout"`
+	// The IP address group associated with the listener.
+	// The ipgroup structure is documented below.
+	Ipgroups []GetListenersListenerIpgroup `pulumi:"ipgroups"`
 	// Specifies the ID of the load balancer that the listener is added to.
 	LoadbalancerId string `pulumi:"loadbalancerId"`
+	// The maximum number of concurrent connections that a listener can handle per second.
+	MaxConnection int `pulumi:"maxConnection"`
 	// Specifies the name of the ELB listener.
 	Name string `pulumi:"name"`
+	// The port range, including the start and end port numbers.
+	// The portRanges structure is documented below.
+	PortRanges []GetListenersListenerPortRange `pulumi:"portRanges"`
 	// The reason for update protection.
 	ProtectionReason string `pulumi:"protectionReason"`
-	// The protection status for update.
+	// Specifies the protection status.
 	ProtectionStatus string `pulumi:"protectionStatus"`
 	// Specifies the protocol of the ELB listener. Value options:
 	// **TCP**, **UDP**, **HTTP**, **HTTPS** or **QUIC**.
 	Protocol string `pulumi:"protocol"`
 	// Specifies the port used by the listener.
 	ProtocolPort int `pulumi:"protocolPort"`
-	// The timeout duration for waiting for a response from a client, in seconds.
+	// Specifies whether the proxy protocol option to pass the source IP addresses
+	// of the clients to backend servers is enabled. Value options: **true**, **false**.
+	ProxyProtocolEnable bool `pulumi:"proxyProtocolEnable"`
+	// The QUIC configuration for the current listener.
+	// The quicConfig structure is documented below.
+	QuicConfigs []GetListenersListenerQuicConfig `pulumi:"quicConfigs"`
+	// Whether to transfer the source IP address of the client to backend servers through the HTTP header of the
+	// packet.
+	RealIp bool `pulumi:"realIp"`
+	// Specifies the request timeout for the listener. Value range: **1** to **300**.
 	RequestTimeout int `pulumi:"requestTimeout"`
-	// The timeout duration for waiting for a response from a backend server, in seconds.
+	// Specifies the response timeout for the listener.
 	ResponseTimeout int `pulumi:"responseTimeout"`
-	// The ID of the server certificate used by the listener.
+	// The ID of the custom security policy.
+	SecurityPolicyId string `pulumi:"securityPolicyId"`
+	// Specifies the ID of the server certificate used by the listener.
 	ServerCertificate string `pulumi:"serverCertificate"`
 	// The IDs of SNI certificates (server certificates with domain names) used by the listener.
 	SniCertificates []string `pulumi:"sniCertificates"`
-	// The security policy used by the listener.
+	// How wildcard domain name matches with the SNI certificates used by the listener.
+	SniMatchAlgo string `pulumi:"sniMatchAlgo"`
+	// Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+	// **false**.
+	SslEarlyDataEnable bool `pulumi:"sslEarlyDataEnable"`
+	// The key/value pairs to associate with the listener.
+	Tags map[string]string `pulumi:"tags"`
+	// Specifies the TLS cipher policy for the listener.
 	TlsCiphersPolicy string `pulumi:"tlsCiphersPolicy"`
+	// The update time of the listener.
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 // GetListenersListenerInput is an input type that accepts GetListenersListenerArgs and GetListenersListenerOutput values.
@@ -8309,51 +11613,105 @@ type GetListenersListenerInput interface {
 }
 
 type GetListenersListenerArgs struct {
-	// Whether to enable advanced forwarding.
+	// Specifies whether the advanced forwarding is enabled. Value options:
+	// **true**, **false**.
 	AdvancedForwardingEnabled pulumi.BoolInput `pulumi:"advancedForwardingEnabled"`
-	// The ID of the CA certificate used by the listener.
+	// Specifies the ID of the CA certificate used by the listener.
 	CaCertificate pulumi.StringInput `pulumi:"caCertificate"`
-	// The ID of the default backend server group.
+	// The maximum number of new connections that a listener can handle per second.
+	Cps pulumi.IntInput `pulumi:"cps"`
+	// The creation time of the listener.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Specifies the ID of the default pool with which the listener is associated.
 	DefaultPoolId pulumi.StringInput `pulumi:"defaultPoolId"`
 	// Specifies the description of the ELB listener.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Specifies whether the health check retries for backend servers is enabled.
+	// Value options: **true**, **false**.
+	EnableMemberRetry pulumi.BoolInput `pulumi:"enableMemberRetry"`
+	// Specifies the enterprise project ID.
+	EnterpriseProjectId pulumi.StringInput `pulumi:"enterpriseProjectId"`
 	// Whether to transparently transmit the load balancer EIP to backend servers.
 	ForwardEip pulumi.BoolInput `pulumi:"forwardEip"`
+	// Whether to transfer the load balancer ID to backend servers through the HTTP header of the packet.
+	ForwardElb pulumi.BoolInput `pulumi:"forwardElb"`
 	// Whether to rewrite the X-Forwarded-Host header.
 	ForwardHost pulumi.BoolInput `pulumi:"forwardHost"`
 	// Whether to transparently transmit the listening port of the load balancer to backend servers.
 	ForwardPort pulumi.BoolInput `pulumi:"forwardPort"`
+	// Whether to transfer the listener protocol of the load balancer to backend servers through the HTTP
+	// header of the packet.
+	ForwardProto pulumi.BoolInput `pulumi:"forwardProto"`
 	// Whether to transparently transmit the source port of the client to backend servers.
 	ForwardRequestPort pulumi.BoolInput `pulumi:"forwardRequestPort"`
-	// Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+	// Whether to transfer the certificate ID of the load balancer to backend servers through the
+	// HTTP header of the packet.
+	ForwardTlsCertificate pulumi.BoolInput `pulumi:"forwardTlsCertificate"`
+	// Whether to transfer the algorithm suite of the load balancer to backend servers through the HTTP
+	// header of the packet.
+	ForwardTlsCipher pulumi.BoolInput `pulumi:"forwardTlsCipher"`
+	// Whether to transfer the algorithm protocol of the load balancer to backend servers through the
+	// HTTP header of the packet.
+	ForwardTlsProtocol pulumi.BoolInput `pulumi:"forwardTlsProtocol"`
+	// Whether the gzip compression for a load balancer is enabled.
+	GzipEnable pulumi.BoolInput `pulumi:"gzipEnable"`
+	// Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
 	Http2Enable pulumi.BoolInput `pulumi:"http2Enable"`
 	// The listener ID.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The idle timeout duration, in seconds.
+	// Specifies the idle timeout for the listener.
 	IdleTimeout pulumi.IntInput `pulumi:"idleTimeout"`
+	// The IP address group associated with the listener.
+	// The ipgroup structure is documented below.
+	Ipgroups GetListenersListenerIpgroupArrayInput `pulumi:"ipgroups"`
 	// Specifies the ID of the load balancer that the listener is added to.
 	LoadbalancerId pulumi.StringInput `pulumi:"loadbalancerId"`
+	// The maximum number of concurrent connections that a listener can handle per second.
+	MaxConnection pulumi.IntInput `pulumi:"maxConnection"`
 	// Specifies the name of the ELB listener.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The port range, including the start and end port numbers.
+	// The portRanges structure is documented below.
+	PortRanges GetListenersListenerPortRangeArrayInput `pulumi:"portRanges"`
 	// The reason for update protection.
 	ProtectionReason pulumi.StringInput `pulumi:"protectionReason"`
-	// The protection status for update.
+	// Specifies the protection status.
 	ProtectionStatus pulumi.StringInput `pulumi:"protectionStatus"`
 	// Specifies the protocol of the ELB listener. Value options:
 	// **TCP**, **UDP**, **HTTP**, **HTTPS** or **QUIC**.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
 	// Specifies the port used by the listener.
 	ProtocolPort pulumi.IntInput `pulumi:"protocolPort"`
-	// The timeout duration for waiting for a response from a client, in seconds.
+	// Specifies whether the proxy protocol option to pass the source IP addresses
+	// of the clients to backend servers is enabled. Value options: **true**, **false**.
+	ProxyProtocolEnable pulumi.BoolInput `pulumi:"proxyProtocolEnable"`
+	// The QUIC configuration for the current listener.
+	// The quicConfig structure is documented below.
+	QuicConfigs GetListenersListenerQuicConfigArrayInput `pulumi:"quicConfigs"`
+	// Whether to transfer the source IP address of the client to backend servers through the HTTP header of the
+	// packet.
+	RealIp pulumi.BoolInput `pulumi:"realIp"`
+	// Specifies the request timeout for the listener. Value range: **1** to **300**.
 	RequestTimeout pulumi.IntInput `pulumi:"requestTimeout"`
-	// The timeout duration for waiting for a response from a backend server, in seconds.
+	// Specifies the response timeout for the listener.
 	ResponseTimeout pulumi.IntInput `pulumi:"responseTimeout"`
-	// The ID of the server certificate used by the listener.
+	// The ID of the custom security policy.
+	SecurityPolicyId pulumi.StringInput `pulumi:"securityPolicyId"`
+	// Specifies the ID of the server certificate used by the listener.
 	ServerCertificate pulumi.StringInput `pulumi:"serverCertificate"`
 	// The IDs of SNI certificates (server certificates with domain names) used by the listener.
 	SniCertificates pulumi.StringArrayInput `pulumi:"sniCertificates"`
-	// The security policy used by the listener.
+	// How wildcard domain name matches with the SNI certificates used by the listener.
+	SniMatchAlgo pulumi.StringInput `pulumi:"sniMatchAlgo"`
+	// Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+	// **false**.
+	SslEarlyDataEnable pulumi.BoolInput `pulumi:"sslEarlyDataEnable"`
+	// The key/value pairs to associate with the listener.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
+	// Specifies the TLS cipher policy for the listener.
 	TlsCiphersPolicy pulumi.StringInput `pulumi:"tlsCiphersPolicy"`
+	// The update time of the listener.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
 func (GetListenersListenerArgs) ElementType() reflect.Type {
@@ -8407,17 +11765,28 @@ func (o GetListenersListenerOutput) ToGetListenersListenerOutputWithContext(ctx 
 	return o
 }
 
-// Whether to enable advanced forwarding.
+// Specifies whether the advanced forwarding is enabled. Value options:
+// **true**, **false**.
 func (o GetListenersListenerOutput) AdvancedForwardingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetListenersListener) bool { return v.AdvancedForwardingEnabled }).(pulumi.BoolOutput)
 }
 
-// The ID of the CA certificate used by the listener.
+// Specifies the ID of the CA certificate used by the listener.
 func (o GetListenersListenerOutput) CaCertificate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.CaCertificate }).(pulumi.StringOutput)
 }
 
-// The ID of the default backend server group.
+// The maximum number of new connections that a listener can handle per second.
+func (o GetListenersListenerOutput) Cps() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.Cps }).(pulumi.IntOutput)
+}
+
+// The creation time of the listener.
+func (o GetListenersListenerOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Specifies the ID of the default pool with which the listener is associated.
 func (o GetListenersListenerOutput) DefaultPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.DefaultPoolId }).(pulumi.StringOutput)
 }
@@ -8427,9 +11796,25 @@ func (o GetListenersListenerOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Specifies whether the health check retries for backend servers is enabled.
+// Value options: **true**, **false**.
+func (o GetListenersListenerOutput) EnableMemberRetry() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.EnableMemberRetry }).(pulumi.BoolOutput)
+}
+
+// Specifies the enterprise project ID.
+func (o GetListenersListenerOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.EnterpriseProjectId }).(pulumi.StringOutput)
+}
+
 // Whether to transparently transmit the load balancer EIP to backend servers.
 func (o GetListenersListenerOutput) ForwardEip() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardEip }).(pulumi.BoolOutput)
+}
+
+// Whether to transfer the load balancer ID to backend servers through the HTTP header of the packet.
+func (o GetListenersListenerOutput) ForwardElb() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardElb }).(pulumi.BoolOutput)
 }
 
 // Whether to rewrite the X-Forwarded-Host header.
@@ -8442,12 +11827,41 @@ func (o GetListenersListenerOutput) ForwardPort() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardPort }).(pulumi.BoolOutput)
 }
 
+// Whether to transfer the listener protocol of the load balancer to backend servers through the HTTP
+// header of the packet.
+func (o GetListenersListenerOutput) ForwardProto() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardProto }).(pulumi.BoolOutput)
+}
+
 // Whether to transparently transmit the source port of the client to backend servers.
 func (o GetListenersListenerOutput) ForwardRequestPort() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardRequestPort }).(pulumi.BoolOutput)
 }
 
-// Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+// Whether to transfer the certificate ID of the load balancer to backend servers through the
+// HTTP header of the packet.
+func (o GetListenersListenerOutput) ForwardTlsCertificate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardTlsCertificate }).(pulumi.BoolOutput)
+}
+
+// Whether to transfer the algorithm suite of the load balancer to backend servers through the HTTP
+// header of the packet.
+func (o GetListenersListenerOutput) ForwardTlsCipher() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardTlsCipher }).(pulumi.BoolOutput)
+}
+
+// Whether to transfer the algorithm protocol of the load balancer to backend servers through the
+// HTTP header of the packet.
+func (o GetListenersListenerOutput) ForwardTlsProtocol() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.ForwardTlsProtocol }).(pulumi.BoolOutput)
+}
+
+// Whether the gzip compression for a load balancer is enabled.
+func (o GetListenersListenerOutput) GzipEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.GzipEnable }).(pulumi.BoolOutput)
+}
+
+// Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
 func (o GetListenersListenerOutput) Http2Enable() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetListenersListener) bool { return v.Http2Enable }).(pulumi.BoolOutput)
 }
@@ -8457,9 +11871,15 @@ func (o GetListenersListenerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The idle timeout duration, in seconds.
+// Specifies the idle timeout for the listener.
 func (o GetListenersListenerOutput) IdleTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenersListener) int { return v.IdleTimeout }).(pulumi.IntOutput)
+}
+
+// The IP address group associated with the listener.
+// The ipgroup structure is documented below.
+func (o GetListenersListenerOutput) Ipgroups() GetListenersListenerIpgroupArrayOutput {
+	return o.ApplyT(func(v GetListenersListener) []GetListenersListenerIpgroup { return v.Ipgroups }).(GetListenersListenerIpgroupArrayOutput)
 }
 
 // Specifies the ID of the load balancer that the listener is added to.
@@ -8467,9 +11887,20 @@ func (o GetListenersListenerOutput) LoadbalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.LoadbalancerId }).(pulumi.StringOutput)
 }
 
+// The maximum number of concurrent connections that a listener can handle per second.
+func (o GetListenersListenerOutput) MaxConnection() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListener) int { return v.MaxConnection }).(pulumi.IntOutput)
+}
+
 // Specifies the name of the ELB listener.
 func (o GetListenersListenerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The port range, including the start and end port numbers.
+// The portRanges structure is documented below.
+func (o GetListenersListenerOutput) PortRanges() GetListenersListenerPortRangeArrayOutput {
+	return o.ApplyT(func(v GetListenersListener) []GetListenersListenerPortRange { return v.PortRanges }).(GetListenersListenerPortRangeArrayOutput)
 }
 
 // The reason for update protection.
@@ -8477,7 +11908,7 @@ func (o GetListenersListenerOutput) ProtectionReason() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.ProtectionReason }).(pulumi.StringOutput)
 }
 
-// The protection status for update.
+// Specifies the protection status.
 func (o GetListenersListenerOutput) ProtectionStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.ProtectionStatus }).(pulumi.StringOutput)
 }
@@ -8493,17 +11924,40 @@ func (o GetListenersListenerOutput) ProtocolPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenersListener) int { return v.ProtocolPort }).(pulumi.IntOutput)
 }
 
-// The timeout duration for waiting for a response from a client, in seconds.
+// Specifies whether the proxy protocol option to pass the source IP addresses
+// of the clients to backend servers is enabled. Value options: **true**, **false**.
+func (o GetListenersListenerOutput) ProxyProtocolEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.ProxyProtocolEnable }).(pulumi.BoolOutput)
+}
+
+// The QUIC configuration for the current listener.
+// The quicConfig structure is documented below.
+func (o GetListenersListenerOutput) QuicConfigs() GetListenersListenerQuicConfigArrayOutput {
+	return o.ApplyT(func(v GetListenersListener) []GetListenersListenerQuicConfig { return v.QuicConfigs }).(GetListenersListenerQuicConfigArrayOutput)
+}
+
+// Whether to transfer the source IP address of the client to backend servers through the HTTP header of the
+// packet.
+func (o GetListenersListenerOutput) RealIp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.RealIp }).(pulumi.BoolOutput)
+}
+
+// Specifies the request timeout for the listener. Value range: **1** to **300**.
 func (o GetListenersListenerOutput) RequestTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenersListener) int { return v.RequestTimeout }).(pulumi.IntOutput)
 }
 
-// The timeout duration for waiting for a response from a backend server, in seconds.
+// Specifies the response timeout for the listener.
 func (o GetListenersListenerOutput) ResponseTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenersListener) int { return v.ResponseTimeout }).(pulumi.IntOutput)
 }
 
-// The ID of the server certificate used by the listener.
+// The ID of the custom security policy.
+func (o GetListenersListenerOutput) SecurityPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.SecurityPolicyId }).(pulumi.StringOutput)
+}
+
+// Specifies the ID of the server certificate used by the listener.
 func (o GetListenersListenerOutput) ServerCertificate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.ServerCertificate }).(pulumi.StringOutput)
 }
@@ -8513,9 +11967,30 @@ func (o GetListenersListenerOutput) SniCertificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetListenersListener) []string { return v.SniCertificates }).(pulumi.StringArrayOutput)
 }
 
-// The security policy used by the listener.
+// How wildcard domain name matches with the SNI certificates used by the listener.
+func (o GetListenersListenerOutput) SniMatchAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.SniMatchAlgo }).(pulumi.StringOutput)
+}
+
+// Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+// **false**.
+func (o GetListenersListenerOutput) SslEarlyDataEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListener) bool { return v.SslEarlyDataEnable }).(pulumi.BoolOutput)
+}
+
+// The key/value pairs to associate with the listener.
+func (o GetListenersListenerOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetListenersListener) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+// Specifies the TLS cipher policy for the listener.
 func (o GetListenersListenerOutput) TlsCiphersPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.TlsCiphersPolicy }).(pulumi.StringOutput)
+}
+
+// The update time of the listener.
+func (o GetListenersListenerOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type GetListenersListenerArrayOutput struct{ *pulumi.OutputState }
@@ -8536,6 +12011,333 @@ func (o GetListenersListenerArrayOutput) Index(i pulumi.IntInput) GetListenersLi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListener {
 		return vs[0].([]GetListenersListener)[vs[1].(int)]
 	}).(GetListenersListenerOutput)
+}
+
+type GetListenersListenerIpgroup struct {
+	// Whether access control is enabled.
+	EnableIpgroup bool `pulumi:"enableIpgroup"`
+	// The ID of the IP address group associated with the listener.
+	IpgroupId string `pulumi:"ipgroupId"`
+	// How access to the listener is controlled.
+	Type string `pulumi:"type"`
+}
+
+// GetListenersListenerIpgroupInput is an input type that accepts GetListenersListenerIpgroupArgs and GetListenersListenerIpgroupOutput values.
+// You can construct a concrete instance of `GetListenersListenerIpgroupInput` via:
+//
+//	GetListenersListenerIpgroupArgs{...}
+type GetListenersListenerIpgroupInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerIpgroupOutput() GetListenersListenerIpgroupOutput
+	ToGetListenersListenerIpgroupOutputWithContext(context.Context) GetListenersListenerIpgroupOutput
+}
+
+type GetListenersListenerIpgroupArgs struct {
+	// Whether access control is enabled.
+	EnableIpgroup pulumi.BoolInput `pulumi:"enableIpgroup"`
+	// The ID of the IP address group associated with the listener.
+	IpgroupId pulumi.StringInput `pulumi:"ipgroupId"`
+	// How access to the listener is controlled.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetListenersListenerIpgroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerIpgroup)(nil)).Elem()
+}
+
+func (i GetListenersListenerIpgroupArgs) ToGetListenersListenerIpgroupOutput() GetListenersListenerIpgroupOutput {
+	return i.ToGetListenersListenerIpgroupOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerIpgroupArgs) ToGetListenersListenerIpgroupOutputWithContext(ctx context.Context) GetListenersListenerIpgroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerIpgroupOutput)
+}
+
+// GetListenersListenerIpgroupArrayInput is an input type that accepts GetListenersListenerIpgroupArray and GetListenersListenerIpgroupArrayOutput values.
+// You can construct a concrete instance of `GetListenersListenerIpgroupArrayInput` via:
+//
+//	GetListenersListenerIpgroupArray{ GetListenersListenerIpgroupArgs{...} }
+type GetListenersListenerIpgroupArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerIpgroupArrayOutput() GetListenersListenerIpgroupArrayOutput
+	ToGetListenersListenerIpgroupArrayOutputWithContext(context.Context) GetListenersListenerIpgroupArrayOutput
+}
+
+type GetListenersListenerIpgroupArray []GetListenersListenerIpgroupInput
+
+func (GetListenersListenerIpgroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerIpgroup)(nil)).Elem()
+}
+
+func (i GetListenersListenerIpgroupArray) ToGetListenersListenerIpgroupArrayOutput() GetListenersListenerIpgroupArrayOutput {
+	return i.ToGetListenersListenerIpgroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerIpgroupArray) ToGetListenersListenerIpgroupArrayOutputWithContext(ctx context.Context) GetListenersListenerIpgroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerIpgroupArrayOutput)
+}
+
+type GetListenersListenerIpgroupOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerIpgroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerIpgroup)(nil)).Elem()
+}
+
+func (o GetListenersListenerIpgroupOutput) ToGetListenersListenerIpgroupOutput() GetListenersListenerIpgroupOutput {
+	return o
+}
+
+func (o GetListenersListenerIpgroupOutput) ToGetListenersListenerIpgroupOutputWithContext(ctx context.Context) GetListenersListenerIpgroupOutput {
+	return o
+}
+
+// Whether access control is enabled.
+func (o GetListenersListenerIpgroupOutput) EnableIpgroup() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListenerIpgroup) bool { return v.EnableIpgroup }).(pulumi.BoolOutput)
+}
+
+// The ID of the IP address group associated with the listener.
+func (o GetListenersListenerIpgroupOutput) IpgroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerIpgroup) string { return v.IpgroupId }).(pulumi.StringOutput)
+}
+
+// How access to the listener is controlled.
+func (o GetListenersListenerIpgroupOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerIpgroup) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetListenersListenerIpgroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerIpgroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerIpgroup)(nil)).Elem()
+}
+
+func (o GetListenersListenerIpgroupArrayOutput) ToGetListenersListenerIpgroupArrayOutput() GetListenersListenerIpgroupArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerIpgroupArrayOutput) ToGetListenersListenerIpgroupArrayOutputWithContext(ctx context.Context) GetListenersListenerIpgroupArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerIpgroupArrayOutput) Index(i pulumi.IntInput) GetListenersListenerIpgroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListenerIpgroup {
+		return vs[0].([]GetListenersListenerIpgroup)[vs[1].(int)]
+	}).(GetListenersListenerIpgroupOutput)
+}
+
+type GetListenersListenerPortRange struct {
+	// The end port.
+	EndPort int `pulumi:"endPort"`
+	// The start port.
+	StartPort int `pulumi:"startPort"`
+}
+
+// GetListenersListenerPortRangeInput is an input type that accepts GetListenersListenerPortRangeArgs and GetListenersListenerPortRangeOutput values.
+// You can construct a concrete instance of `GetListenersListenerPortRangeInput` via:
+//
+//	GetListenersListenerPortRangeArgs{...}
+type GetListenersListenerPortRangeInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerPortRangeOutput() GetListenersListenerPortRangeOutput
+	ToGetListenersListenerPortRangeOutputWithContext(context.Context) GetListenersListenerPortRangeOutput
+}
+
+type GetListenersListenerPortRangeArgs struct {
+	// The end port.
+	EndPort pulumi.IntInput `pulumi:"endPort"`
+	// The start port.
+	StartPort pulumi.IntInput `pulumi:"startPort"`
+}
+
+func (GetListenersListenerPortRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerPortRange)(nil)).Elem()
+}
+
+func (i GetListenersListenerPortRangeArgs) ToGetListenersListenerPortRangeOutput() GetListenersListenerPortRangeOutput {
+	return i.ToGetListenersListenerPortRangeOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerPortRangeArgs) ToGetListenersListenerPortRangeOutputWithContext(ctx context.Context) GetListenersListenerPortRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerPortRangeOutput)
+}
+
+// GetListenersListenerPortRangeArrayInput is an input type that accepts GetListenersListenerPortRangeArray and GetListenersListenerPortRangeArrayOutput values.
+// You can construct a concrete instance of `GetListenersListenerPortRangeArrayInput` via:
+//
+//	GetListenersListenerPortRangeArray{ GetListenersListenerPortRangeArgs{...} }
+type GetListenersListenerPortRangeArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerPortRangeArrayOutput() GetListenersListenerPortRangeArrayOutput
+	ToGetListenersListenerPortRangeArrayOutputWithContext(context.Context) GetListenersListenerPortRangeArrayOutput
+}
+
+type GetListenersListenerPortRangeArray []GetListenersListenerPortRangeInput
+
+func (GetListenersListenerPortRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerPortRange)(nil)).Elem()
+}
+
+func (i GetListenersListenerPortRangeArray) ToGetListenersListenerPortRangeArrayOutput() GetListenersListenerPortRangeArrayOutput {
+	return i.ToGetListenersListenerPortRangeArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerPortRangeArray) ToGetListenersListenerPortRangeArrayOutputWithContext(ctx context.Context) GetListenersListenerPortRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerPortRangeArrayOutput)
+}
+
+type GetListenersListenerPortRangeOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerPortRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerPortRange)(nil)).Elem()
+}
+
+func (o GetListenersListenerPortRangeOutput) ToGetListenersListenerPortRangeOutput() GetListenersListenerPortRangeOutput {
+	return o
+}
+
+func (o GetListenersListenerPortRangeOutput) ToGetListenersListenerPortRangeOutputWithContext(ctx context.Context) GetListenersListenerPortRangeOutput {
+	return o
+}
+
+// The end port.
+func (o GetListenersListenerPortRangeOutput) EndPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListenerPortRange) int { return v.EndPort }).(pulumi.IntOutput)
+}
+
+// The start port.
+func (o GetListenersListenerPortRangeOutput) StartPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetListenersListenerPortRange) int { return v.StartPort }).(pulumi.IntOutput)
+}
+
+type GetListenersListenerPortRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerPortRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerPortRange)(nil)).Elem()
+}
+
+func (o GetListenersListenerPortRangeArrayOutput) ToGetListenersListenerPortRangeArrayOutput() GetListenersListenerPortRangeArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerPortRangeArrayOutput) ToGetListenersListenerPortRangeArrayOutputWithContext(ctx context.Context) GetListenersListenerPortRangeArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerPortRangeArrayOutput) Index(i pulumi.IntInput) GetListenersListenerPortRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListenerPortRange {
+		return vs[0].([]GetListenersListenerPortRange)[vs[1].(int)]
+	}).(GetListenersListenerPortRangeOutput)
+}
+
+type GetListenersListenerQuicConfig struct {
+	// Whether to enable QUIC upgrade.
+	EnableQuicUpgrade bool `pulumi:"enableQuicUpgrade"`
+	// The ID of the QUIC listener.
+	QuicListenerId string `pulumi:"quicListenerId"`
+}
+
+// GetListenersListenerQuicConfigInput is an input type that accepts GetListenersListenerQuicConfigArgs and GetListenersListenerQuicConfigOutput values.
+// You can construct a concrete instance of `GetListenersListenerQuicConfigInput` via:
+//
+//	GetListenersListenerQuicConfigArgs{...}
+type GetListenersListenerQuicConfigInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerQuicConfigOutput() GetListenersListenerQuicConfigOutput
+	ToGetListenersListenerQuicConfigOutputWithContext(context.Context) GetListenersListenerQuicConfigOutput
+}
+
+type GetListenersListenerQuicConfigArgs struct {
+	// Whether to enable QUIC upgrade.
+	EnableQuicUpgrade pulumi.BoolInput `pulumi:"enableQuicUpgrade"`
+	// The ID of the QUIC listener.
+	QuicListenerId pulumi.StringInput `pulumi:"quicListenerId"`
+}
+
+func (GetListenersListenerQuicConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerQuicConfig)(nil)).Elem()
+}
+
+func (i GetListenersListenerQuicConfigArgs) ToGetListenersListenerQuicConfigOutput() GetListenersListenerQuicConfigOutput {
+	return i.ToGetListenersListenerQuicConfigOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerQuicConfigArgs) ToGetListenersListenerQuicConfigOutputWithContext(ctx context.Context) GetListenersListenerQuicConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerQuicConfigOutput)
+}
+
+// GetListenersListenerQuicConfigArrayInput is an input type that accepts GetListenersListenerQuicConfigArray and GetListenersListenerQuicConfigArrayOutput values.
+// You can construct a concrete instance of `GetListenersListenerQuicConfigArrayInput` via:
+//
+//	GetListenersListenerQuicConfigArray{ GetListenersListenerQuicConfigArgs{...} }
+type GetListenersListenerQuicConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerQuicConfigArrayOutput() GetListenersListenerQuicConfigArrayOutput
+	ToGetListenersListenerQuicConfigArrayOutputWithContext(context.Context) GetListenersListenerQuicConfigArrayOutput
+}
+
+type GetListenersListenerQuicConfigArray []GetListenersListenerQuicConfigInput
+
+func (GetListenersListenerQuicConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerQuicConfig)(nil)).Elem()
+}
+
+func (i GetListenersListenerQuicConfigArray) ToGetListenersListenerQuicConfigArrayOutput() GetListenersListenerQuicConfigArrayOutput {
+	return i.ToGetListenersListenerQuicConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerQuicConfigArray) ToGetListenersListenerQuicConfigArrayOutputWithContext(ctx context.Context) GetListenersListenerQuicConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerQuicConfigArrayOutput)
+}
+
+type GetListenersListenerQuicConfigOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerQuicConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerQuicConfig)(nil)).Elem()
+}
+
+func (o GetListenersListenerQuicConfigOutput) ToGetListenersListenerQuicConfigOutput() GetListenersListenerQuicConfigOutput {
+	return o
+}
+
+func (o GetListenersListenerQuicConfigOutput) ToGetListenersListenerQuicConfigOutputWithContext(ctx context.Context) GetListenersListenerQuicConfigOutput {
+	return o
+}
+
+// Whether to enable QUIC upgrade.
+func (o GetListenersListenerQuicConfigOutput) EnableQuicUpgrade() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetListenersListenerQuicConfig) bool { return v.EnableQuicUpgrade }).(pulumi.BoolOutput)
+}
+
+// The ID of the QUIC listener.
+func (o GetListenersListenerQuicConfigOutput) QuicListenerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerQuicConfig) string { return v.QuicListenerId }).(pulumi.StringOutput)
+}
+
+type GetListenersListenerQuicConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerQuicConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerQuicConfig)(nil)).Elem()
+}
+
+func (o GetListenersListenerQuicConfigArrayOutput) ToGetListenersListenerQuicConfigArrayOutput() GetListenersListenerQuicConfigArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerQuicConfigArrayOutput) ToGetListenersListenerQuicConfigArrayOutputWithContext(ctx context.Context) GetListenersListenerQuicConfigArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerQuicConfigArrayOutput) Index(i pulumi.IntInput) GetListenersListenerQuicConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListenerQuicConfig {
+		return vs[0].([]GetListenersListenerQuicConfig)[vs[1].(int)]
+	}).(GetListenersListenerQuicConfigOutput)
 }
 
 type GetLoadbalancerFeatureConfigurationsFeature struct {
@@ -8662,50 +12464,100 @@ func (o GetLoadbalancerFeatureConfigurationsFeatureArrayOutput) Index(i pulumi.I
 type GetLoadbalancersLoadbalancer struct {
 	// Whether the current load balancer enables elastic expansion.
 	AutoscalingEnabled bool `pulumi:"autoscalingEnabled"`
-	// The list of AZs where the load balancer is created.
+	// Specifies the list of AZ where the load balancer is created.
 	AvailabilityZones []string `pulumi:"availabilityZones"`
 	// Lists the IDs of subnets on the downstream plane.
 	BackendSubnets []string `pulumi:"backendSubnets"`
+	// Specifies the provides resource billing information.
+	BillingInfo string `pulumi:"billingInfo"`
+	// The charge mode when of the load balancer.
+	ChargeMode string `pulumi:"chargeMode"`
+	// The time when the load balancer was created.
+	CreatedAt string `pulumi:"createdAt"`
 	// Whether to enable IP as a Backend Server.
 	CrossVpcBackend bool `pulumi:"crossVpcBackend"`
+	// Specifies whether the deletion protection is enabled. Value options:
+	// **true**, **false**.
+	DeletionProtectionEnable bool `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the ELB load balancer.
 	Description string `pulumi:"description"`
 	// Specifies the enterprise project ID.
 	EnterpriseProjectId string `pulumi:"enterpriseProjectId"`
+	// The scenario where the load balancer is frozen.
+	FrozenScene string `pulumi:"frozenScene"`
+	// Specifies the global EIPs bound to the load balancer. It can be queried by different
+	// conditions:
+	// + If `globalEipId` is used as the query condition, the format is **global_eip_id=xxx**
+	// + If `globalEipAddress` is used as the query condition, the format is **global_eip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	GlobalEips []GetLoadbalancersLoadbalancerGlobalEip `pulumi:"globalEips"`
 	// The flavor ID of the gateway load balancer.
 	GwFlavorId string `pulumi:"gwFlavorId"`
-	// The load balancer ID.
+	// The pool ID.
 	Id string `pulumi:"id"`
-	// The private IPv4 address bound to the load balancer.
+	// Specifies the private IPv4 address bound to the load balancer.
 	Ipv4Address string `pulumi:"ipv4Address"`
-	// The ID of the port bound to the private IPv4 address of the load balancer.
+	// Specifies the ID of the port bound to the private IPv4 address of the load balancer.
 	Ipv4PortId string `pulumi:"ipv4PortId"`
 	// Specifies the ID of the IPv4 subnet where the load balancer resides.
 	Ipv4SubnetId string `pulumi:"ipv4SubnetId"`
-	// The IPv6 address bound to the load balancer.
+	// Specifies the IPv6 address bound to the load balancer.
 	Ipv6Address string `pulumi:"ipv6Address"`
 	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
 	Ipv6NetworkId string `pulumi:"ipv6NetworkId"`
+	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
+	Ipv6VipPortId string `pulumi:"ipv6VipPortId"`
 	// Specifies the ID of a flavor at Layer 4.
 	L4FlavorId string `pulumi:"l4FlavorId"`
 	// Specifies the ID of a flavor at Layer 7.
 	L7FlavorId string `pulumi:"l7FlavorId"`
+	// The list of listeners added to the load balancer.
+	// The listeners structure is documented below.
+	Listeners []GetLoadbalancersLoadbalancerListener `pulumi:"listeners"`
 	// The type of the load balancer.
 	LoadbalancerType string `pulumi:"loadbalancerType"`
+	// Specifies the ID of the log group that is associated with the load balancer.
+	LogGroupId string `pulumi:"logGroupId"`
+	// Specifies the ID of the log topic that is associated with the load balancer.
+	LogTopicId string `pulumi:"logTopicId"`
 	// The minimum seven-layer specification ID (specification type L7_elastic) for elastic expansion
 	// and contraction
 	MinL7FlavorId string `pulumi:"minL7FlavorId"`
 	// Specifies the name of the ELB load balancer.
 	Name string `pulumi:"name"`
+	// Specifies the operating status of the load balancer. Value options:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus string `pulumi:"operatingStatus"`
+	// The list of pools associated with the load balancer.
+	// The pools structure is documented below.
+	Pools []GetLoadbalancersLoadbalancerPool `pulumi:"pools"`
 	// The reason for update protection.
 	ProtectionReason string `pulumi:"protectionReason"`
-	// The protection status for update.
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification Protection is enabled on the console.
 	ProtectionStatus string `pulumi:"protectionStatus"`
+	// Specifies the provisioning status of the load balancer. Value options:
+	// + **ACTIVE**: The load balancer is successfully provisioned.
+	// + **PENDING_DELETE**: The load balancer is being deleted.
+	ProvisioningStatus string `pulumi:"provisioningStatus"`
+	// The AZ group to which the load balancer belongs.
+	PublicBorderGroup string `pulumi:"publicBorderGroup"`
+	// Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+	// + If `publicipId` is used as the query condition, the format is **publicip_id=xxx**
+	// + If `publicipAddress` is used as the query condition, the format is **publicip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	Publicips []GetLoadbalancersLoadbalancerPublicip `pulumi:"publicips"`
 	// Specifies whether the load balancer is a dedicated load balancer, Value options:
 	// **dedicated**, **share**.
 	Type string `pulumi:"type"`
+	// The time when the load balancer was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
 	// Specifies the ID of the VPC where the load balancer resides.
 	VpcId string `pulumi:"vpcId"`
+	// The traffic distributing policies when the WAF is faulty.
+	WafFailureAction string `pulumi:"wafFailureAction"`
 }
 
 // GetLoadbalancersLoadbalancerInput is an input type that accepts GetLoadbalancersLoadbalancerArgs and GetLoadbalancersLoadbalancerOutput values.
@@ -8722,50 +12574,100 @@ type GetLoadbalancersLoadbalancerInput interface {
 type GetLoadbalancersLoadbalancerArgs struct {
 	// Whether the current load balancer enables elastic expansion.
 	AutoscalingEnabled pulumi.BoolInput `pulumi:"autoscalingEnabled"`
-	// The list of AZs where the load balancer is created.
+	// Specifies the list of AZ where the load balancer is created.
 	AvailabilityZones pulumi.StringArrayInput `pulumi:"availabilityZones"`
 	// Lists the IDs of subnets on the downstream plane.
 	BackendSubnets pulumi.StringArrayInput `pulumi:"backendSubnets"`
+	// Specifies the provides resource billing information.
+	BillingInfo pulumi.StringInput `pulumi:"billingInfo"`
+	// The charge mode when of the load balancer.
+	ChargeMode pulumi.StringInput `pulumi:"chargeMode"`
+	// The time when the load balancer was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Whether to enable IP as a Backend Server.
 	CrossVpcBackend pulumi.BoolInput `pulumi:"crossVpcBackend"`
+	// Specifies whether the deletion protection is enabled. Value options:
+	// **true**, **false**.
+	DeletionProtectionEnable pulumi.BoolInput `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the ELB load balancer.
 	Description pulumi.StringInput `pulumi:"description"`
 	// Specifies the enterprise project ID.
 	EnterpriseProjectId pulumi.StringInput `pulumi:"enterpriseProjectId"`
+	// The scenario where the load balancer is frozen.
+	FrozenScene pulumi.StringInput `pulumi:"frozenScene"`
+	// Specifies the global EIPs bound to the load balancer. It can be queried by different
+	// conditions:
+	// + If `globalEipId` is used as the query condition, the format is **global_eip_id=xxx**
+	// + If `globalEipAddress` is used as the query condition, the format is **global_eip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	GlobalEips GetLoadbalancersLoadbalancerGlobalEipArrayInput `pulumi:"globalEips"`
 	// The flavor ID of the gateway load balancer.
 	GwFlavorId pulumi.StringInput `pulumi:"gwFlavorId"`
-	// The load balancer ID.
+	// The pool ID.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The private IPv4 address bound to the load balancer.
+	// Specifies the private IPv4 address bound to the load balancer.
 	Ipv4Address pulumi.StringInput `pulumi:"ipv4Address"`
-	// The ID of the port bound to the private IPv4 address of the load balancer.
+	// Specifies the ID of the port bound to the private IPv4 address of the load balancer.
 	Ipv4PortId pulumi.StringInput `pulumi:"ipv4PortId"`
 	// Specifies the ID of the IPv4 subnet where the load balancer resides.
 	Ipv4SubnetId pulumi.StringInput `pulumi:"ipv4SubnetId"`
-	// The IPv6 address bound to the load balancer.
+	// Specifies the IPv6 address bound to the load balancer.
 	Ipv6Address pulumi.StringInput `pulumi:"ipv6Address"`
 	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
 	Ipv6NetworkId pulumi.StringInput `pulumi:"ipv6NetworkId"`
+	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
+	Ipv6VipPortId pulumi.StringInput `pulumi:"ipv6VipPortId"`
 	// Specifies the ID of a flavor at Layer 4.
 	L4FlavorId pulumi.StringInput `pulumi:"l4FlavorId"`
 	// Specifies the ID of a flavor at Layer 7.
 	L7FlavorId pulumi.StringInput `pulumi:"l7FlavorId"`
+	// The list of listeners added to the load balancer.
+	// The listeners structure is documented below.
+	Listeners GetLoadbalancersLoadbalancerListenerArrayInput `pulumi:"listeners"`
 	// The type of the load balancer.
 	LoadbalancerType pulumi.StringInput `pulumi:"loadbalancerType"`
+	// Specifies the ID of the log group that is associated with the load balancer.
+	LogGroupId pulumi.StringInput `pulumi:"logGroupId"`
+	// Specifies the ID of the log topic that is associated with the load balancer.
+	LogTopicId pulumi.StringInput `pulumi:"logTopicId"`
 	// The minimum seven-layer specification ID (specification type L7_elastic) for elastic expansion
 	// and contraction
 	MinL7FlavorId pulumi.StringInput `pulumi:"minL7FlavorId"`
 	// Specifies the name of the ELB load balancer.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the operating status of the load balancer. Value options:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus pulumi.StringInput `pulumi:"operatingStatus"`
+	// The list of pools associated with the load balancer.
+	// The pools structure is documented below.
+	Pools GetLoadbalancersLoadbalancerPoolArrayInput `pulumi:"pools"`
 	// The reason for update protection.
 	ProtectionReason pulumi.StringInput `pulumi:"protectionReason"`
-	// The protection status for update.
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification Protection is enabled on the console.
 	ProtectionStatus pulumi.StringInput `pulumi:"protectionStatus"`
+	// Specifies the provisioning status of the load balancer. Value options:
+	// + **ACTIVE**: The load balancer is successfully provisioned.
+	// + **PENDING_DELETE**: The load balancer is being deleted.
+	ProvisioningStatus pulumi.StringInput `pulumi:"provisioningStatus"`
+	// The AZ group to which the load balancer belongs.
+	PublicBorderGroup pulumi.StringInput `pulumi:"publicBorderGroup"`
+	// Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+	// + If `publicipId` is used as the query condition, the format is **publicip_id=xxx**
+	// + If `publicipAddress` is used as the query condition, the format is **publicip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	Publicips GetLoadbalancersLoadbalancerPublicipArrayInput `pulumi:"publicips"`
 	// Specifies whether the load balancer is a dedicated load balancer, Value options:
 	// **dedicated**, **share**.
 	Type pulumi.StringInput `pulumi:"type"`
+	// The time when the load balancer was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// Specifies the ID of the VPC where the load balancer resides.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The traffic distributing policies when the WAF is faulty.
+	WafFailureAction pulumi.StringInput `pulumi:"wafFailureAction"`
 }
 
 func (GetLoadbalancersLoadbalancerArgs) ElementType() reflect.Type {
@@ -8824,7 +12726,7 @@ func (o GetLoadbalancersLoadbalancerOutput) AutoscalingEnabled() pulumi.BoolOutp
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) bool { return v.AutoscalingEnabled }).(pulumi.BoolOutput)
 }
 
-// The list of AZs where the load balancer is created.
+// Specifies the list of AZ where the load balancer is created.
 func (o GetLoadbalancersLoadbalancerOutput) AvailabilityZones() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) []string { return v.AvailabilityZones }).(pulumi.StringArrayOutput)
 }
@@ -8834,9 +12736,30 @@ func (o GetLoadbalancersLoadbalancerOutput) BackendSubnets() pulumi.StringArrayO
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) []string { return v.BackendSubnets }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the provides resource billing information.
+func (o GetLoadbalancersLoadbalancerOutput) BillingInfo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.BillingInfo }).(pulumi.StringOutput)
+}
+
+// The charge mode when of the load balancer.
+func (o GetLoadbalancersLoadbalancerOutput) ChargeMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.ChargeMode }).(pulumi.StringOutput)
+}
+
+// The time when the load balancer was created.
+func (o GetLoadbalancersLoadbalancerOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // Whether to enable IP as a Backend Server.
 func (o GetLoadbalancersLoadbalancerOutput) CrossVpcBackend() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) bool { return v.CrossVpcBackend }).(pulumi.BoolOutput)
+}
+
+// Specifies whether the deletion protection is enabled. Value options:
+// **true**, **false**.
+func (o GetLoadbalancersLoadbalancerOutput) DeletionProtectionEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) bool { return v.DeletionProtectionEnable }).(pulumi.BoolOutput)
 }
 
 // Specifies the description of the ELB load balancer.
@@ -8849,22 +12772,36 @@ func (o GetLoadbalancersLoadbalancerOutput) EnterpriseProjectId() pulumi.StringO
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.EnterpriseProjectId }).(pulumi.StringOutput)
 }
 
+// The scenario where the load balancer is frozen.
+func (o GetLoadbalancersLoadbalancerOutput) FrozenScene() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.FrozenScene }).(pulumi.StringOutput)
+}
+
+// Specifies the global EIPs bound to the load balancer. It can be queried by different
+// conditions:
+// + If `globalEipId` is used as the query condition, the format is **global_eip_id=xxx**
+// + If `globalEipAddress` is used as the query condition, the format is **global_eip_address=xxx**
+// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+func (o GetLoadbalancersLoadbalancerOutput) GlobalEips() GetLoadbalancersLoadbalancerGlobalEipArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) []GetLoadbalancersLoadbalancerGlobalEip { return v.GlobalEips }).(GetLoadbalancersLoadbalancerGlobalEipArrayOutput)
+}
+
 // The flavor ID of the gateway load balancer.
 func (o GetLoadbalancersLoadbalancerOutput) GwFlavorId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.GwFlavorId }).(pulumi.StringOutput)
 }
 
-// The load balancer ID.
+// The pool ID.
 func (o GetLoadbalancersLoadbalancerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The private IPv4 address bound to the load balancer.
+// Specifies the private IPv4 address bound to the load balancer.
 func (o GetLoadbalancersLoadbalancerOutput) Ipv4Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Ipv4Address }).(pulumi.StringOutput)
 }
 
-// The ID of the port bound to the private IPv4 address of the load balancer.
+// Specifies the ID of the port bound to the private IPv4 address of the load balancer.
 func (o GetLoadbalancersLoadbalancerOutput) Ipv4PortId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Ipv4PortId }).(pulumi.StringOutput)
 }
@@ -8874,7 +12811,7 @@ func (o GetLoadbalancersLoadbalancerOutput) Ipv4SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Ipv4SubnetId }).(pulumi.StringOutput)
 }
 
-// The IPv6 address bound to the load balancer.
+// Specifies the IPv6 address bound to the load balancer.
 func (o GetLoadbalancersLoadbalancerOutput) Ipv6Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Ipv6Address }).(pulumi.StringOutput)
 }
@@ -8882,6 +12819,11 @@ func (o GetLoadbalancersLoadbalancerOutput) Ipv6Address() pulumi.StringOutput {
 // Specifies the ID of the port bound to the IPv6 address of the load balancer.
 func (o GetLoadbalancersLoadbalancerOutput) Ipv6NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Ipv6NetworkId }).(pulumi.StringOutput)
+}
+
+// Specifies the ID of the port bound to the IPv6 address of the load balancer.
+func (o GetLoadbalancersLoadbalancerOutput) Ipv6VipPortId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Ipv6VipPortId }).(pulumi.StringOutput)
 }
 
 // Specifies the ID of a flavor at Layer 4.
@@ -8894,9 +12836,25 @@ func (o GetLoadbalancersLoadbalancerOutput) L7FlavorId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.L7FlavorId }).(pulumi.StringOutput)
 }
 
+// The list of listeners added to the load balancer.
+// The listeners structure is documented below.
+func (o GetLoadbalancersLoadbalancerOutput) Listeners() GetLoadbalancersLoadbalancerListenerArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) []GetLoadbalancersLoadbalancerListener { return v.Listeners }).(GetLoadbalancersLoadbalancerListenerArrayOutput)
+}
+
 // The type of the load balancer.
 func (o GetLoadbalancersLoadbalancerOutput) LoadbalancerType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.LoadbalancerType }).(pulumi.StringOutput)
+}
+
+// Specifies the ID of the log group that is associated with the load balancer.
+func (o GetLoadbalancersLoadbalancerOutput) LogGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.LogGroupId }).(pulumi.StringOutput)
+}
+
+// Specifies the ID of the log topic that is associated with the load balancer.
+func (o GetLoadbalancersLoadbalancerOutput) LogTopicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.LogTopicId }).(pulumi.StringOutput)
 }
 
 // The minimum seven-layer specification ID (specification type L7_elastic) for elastic expansion
@@ -8910,14 +12868,49 @@ func (o GetLoadbalancersLoadbalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Specifies the operating status of the load balancer. Value options:
+// + **ONLINE**: indicates that the load balancer is running normally.
+// + **FROZEN**: indicates that the load balancer is frozen.
+func (o GetLoadbalancersLoadbalancerOutput) OperatingStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.OperatingStatus }).(pulumi.StringOutput)
+}
+
+// The list of pools associated with the load balancer.
+// The pools structure is documented below.
+func (o GetLoadbalancersLoadbalancerOutput) Pools() GetLoadbalancersLoadbalancerPoolArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) []GetLoadbalancersLoadbalancerPool { return v.Pools }).(GetLoadbalancersLoadbalancerPoolArrayOutput)
+}
+
 // The reason for update protection.
 func (o GetLoadbalancersLoadbalancerOutput) ProtectionReason() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.ProtectionReason }).(pulumi.StringOutput)
 }
 
-// The protection status for update.
+// Specifies the protection status. Value options:
+// + **nonProtection**: The load balancer is not protected.
+// + **consoleProtection**: Modification Protection is enabled on the console.
 func (o GetLoadbalancersLoadbalancerOutput) ProtectionStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.ProtectionStatus }).(pulumi.StringOutput)
+}
+
+// Specifies the provisioning status of the load balancer. Value options:
+// + **ACTIVE**: The load balancer is successfully provisioned.
+// + **PENDING_DELETE**: The load balancer is being deleted.
+func (o GetLoadbalancersLoadbalancerOutput) ProvisioningStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.ProvisioningStatus }).(pulumi.StringOutput)
+}
+
+// The AZ group to which the load balancer belongs.
+func (o GetLoadbalancersLoadbalancerOutput) PublicBorderGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.PublicBorderGroup }).(pulumi.StringOutput)
+}
+
+// Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+// + If `publicipId` is used as the query condition, the format is **publicip_id=xxx**
+// + If `publicipAddress` is used as the query condition, the format is **publicip_address=xxx**
+// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+func (o GetLoadbalancersLoadbalancerOutput) Publicips() GetLoadbalancersLoadbalancerPublicipArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) []GetLoadbalancersLoadbalancerPublicip { return v.Publicips }).(GetLoadbalancersLoadbalancerPublicipArrayOutput)
 }
 
 // Specifies whether the load balancer is a dedicated load balancer, Value options:
@@ -8926,9 +12919,19 @@ func (o GetLoadbalancersLoadbalancerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The time when the load balancer was updated.
+func (o GetLoadbalancersLoadbalancerOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 // Specifies the ID of the VPC where the load balancer resides.
 func (o GetLoadbalancersLoadbalancerOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The traffic distributing policies when the WAF is faulty.
+func (o GetLoadbalancersLoadbalancerOutput) WafFailureAction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancer) string { return v.WafFailureAction }).(pulumi.StringOutput)
 }
 
 type GetLoadbalancersLoadbalancerArrayOutput struct{ *pulumi.OutputState }
@@ -8949,6 +12952,430 @@ func (o GetLoadbalancersLoadbalancerArrayOutput) Index(i pulumi.IntInput) GetLoa
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadbalancersLoadbalancer {
 		return vs[0].([]GetLoadbalancersLoadbalancer)[vs[1].(int)]
 	}).(GetLoadbalancersLoadbalancerOutput)
+}
+
+type GetLoadbalancersLoadbalancerGlobalEip struct {
+	// The global EIP address
+	GlobalEipAddress string `pulumi:"globalEipAddress"`
+	// The ID of the global EIP.
+	GlobalEipId string `pulumi:"globalEipId"`
+	// The IP version.
+	IpVersion int `pulumi:"ipVersion"`
+}
+
+// GetLoadbalancersLoadbalancerGlobalEipInput is an input type that accepts GetLoadbalancersLoadbalancerGlobalEipArgs and GetLoadbalancersLoadbalancerGlobalEipOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerGlobalEipInput` via:
+//
+//	GetLoadbalancersLoadbalancerGlobalEipArgs{...}
+type GetLoadbalancersLoadbalancerGlobalEipInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerGlobalEipOutput() GetLoadbalancersLoadbalancerGlobalEipOutput
+	ToGetLoadbalancersLoadbalancerGlobalEipOutputWithContext(context.Context) GetLoadbalancersLoadbalancerGlobalEipOutput
+}
+
+type GetLoadbalancersLoadbalancerGlobalEipArgs struct {
+	// The global EIP address
+	GlobalEipAddress pulumi.StringInput `pulumi:"globalEipAddress"`
+	// The ID of the global EIP.
+	GlobalEipId pulumi.StringInput `pulumi:"globalEipId"`
+	// The IP version.
+	IpVersion pulumi.IntInput `pulumi:"ipVersion"`
+}
+
+func (GetLoadbalancersLoadbalancerGlobalEipArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerGlobalEip)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerGlobalEipArgs) ToGetLoadbalancersLoadbalancerGlobalEipOutput() GetLoadbalancersLoadbalancerGlobalEipOutput {
+	return i.ToGetLoadbalancersLoadbalancerGlobalEipOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerGlobalEipArgs) ToGetLoadbalancersLoadbalancerGlobalEipOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerGlobalEipOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerGlobalEipOutput)
+}
+
+// GetLoadbalancersLoadbalancerGlobalEipArrayInput is an input type that accepts GetLoadbalancersLoadbalancerGlobalEipArray and GetLoadbalancersLoadbalancerGlobalEipArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerGlobalEipArrayInput` via:
+//
+//	GetLoadbalancersLoadbalancerGlobalEipArray{ GetLoadbalancersLoadbalancerGlobalEipArgs{...} }
+type GetLoadbalancersLoadbalancerGlobalEipArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerGlobalEipArrayOutput() GetLoadbalancersLoadbalancerGlobalEipArrayOutput
+	ToGetLoadbalancersLoadbalancerGlobalEipArrayOutputWithContext(context.Context) GetLoadbalancersLoadbalancerGlobalEipArrayOutput
+}
+
+type GetLoadbalancersLoadbalancerGlobalEipArray []GetLoadbalancersLoadbalancerGlobalEipInput
+
+func (GetLoadbalancersLoadbalancerGlobalEipArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerGlobalEip)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerGlobalEipArray) ToGetLoadbalancersLoadbalancerGlobalEipArrayOutput() GetLoadbalancersLoadbalancerGlobalEipArrayOutput {
+	return i.ToGetLoadbalancersLoadbalancerGlobalEipArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerGlobalEipArray) ToGetLoadbalancersLoadbalancerGlobalEipArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerGlobalEipArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerGlobalEipArrayOutput)
+}
+
+type GetLoadbalancersLoadbalancerGlobalEipOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerGlobalEipOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerGlobalEip)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerGlobalEipOutput) ToGetLoadbalancersLoadbalancerGlobalEipOutput() GetLoadbalancersLoadbalancerGlobalEipOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerGlobalEipOutput) ToGetLoadbalancersLoadbalancerGlobalEipOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerGlobalEipOutput {
+	return o
+}
+
+// The global EIP address
+func (o GetLoadbalancersLoadbalancerGlobalEipOutput) GlobalEipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerGlobalEip) string { return v.GlobalEipAddress }).(pulumi.StringOutput)
+}
+
+// The ID of the global EIP.
+func (o GetLoadbalancersLoadbalancerGlobalEipOutput) GlobalEipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerGlobalEip) string { return v.GlobalEipId }).(pulumi.StringOutput)
+}
+
+// The IP version.
+func (o GetLoadbalancersLoadbalancerGlobalEipOutput) IpVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerGlobalEip) int { return v.IpVersion }).(pulumi.IntOutput)
+}
+
+type GetLoadbalancersLoadbalancerGlobalEipArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerGlobalEipArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerGlobalEip)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerGlobalEipArrayOutput) ToGetLoadbalancersLoadbalancerGlobalEipArrayOutput() GetLoadbalancersLoadbalancerGlobalEipArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerGlobalEipArrayOutput) ToGetLoadbalancersLoadbalancerGlobalEipArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerGlobalEipArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerGlobalEipArrayOutput) Index(i pulumi.IntInput) GetLoadbalancersLoadbalancerGlobalEipOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadbalancersLoadbalancerGlobalEip {
+		return vs[0].([]GetLoadbalancersLoadbalancerGlobalEip)[vs[1].(int)]
+	}).(GetLoadbalancersLoadbalancerGlobalEipOutput)
+}
+
+type GetLoadbalancersLoadbalancerListener struct {
+	// The pool ID.
+	Id string `pulumi:"id"`
+}
+
+// GetLoadbalancersLoadbalancerListenerInput is an input type that accepts GetLoadbalancersLoadbalancerListenerArgs and GetLoadbalancersLoadbalancerListenerOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerListenerInput` via:
+//
+//	GetLoadbalancersLoadbalancerListenerArgs{...}
+type GetLoadbalancersLoadbalancerListenerInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerListenerOutput() GetLoadbalancersLoadbalancerListenerOutput
+	ToGetLoadbalancersLoadbalancerListenerOutputWithContext(context.Context) GetLoadbalancersLoadbalancerListenerOutput
+}
+
+type GetLoadbalancersLoadbalancerListenerArgs struct {
+	// The pool ID.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetLoadbalancersLoadbalancerListenerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerListener)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerListenerArgs) ToGetLoadbalancersLoadbalancerListenerOutput() GetLoadbalancersLoadbalancerListenerOutput {
+	return i.ToGetLoadbalancersLoadbalancerListenerOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerListenerArgs) ToGetLoadbalancersLoadbalancerListenerOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerListenerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerListenerOutput)
+}
+
+// GetLoadbalancersLoadbalancerListenerArrayInput is an input type that accepts GetLoadbalancersLoadbalancerListenerArray and GetLoadbalancersLoadbalancerListenerArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerListenerArrayInput` via:
+//
+//	GetLoadbalancersLoadbalancerListenerArray{ GetLoadbalancersLoadbalancerListenerArgs{...} }
+type GetLoadbalancersLoadbalancerListenerArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerListenerArrayOutput() GetLoadbalancersLoadbalancerListenerArrayOutput
+	ToGetLoadbalancersLoadbalancerListenerArrayOutputWithContext(context.Context) GetLoadbalancersLoadbalancerListenerArrayOutput
+}
+
+type GetLoadbalancersLoadbalancerListenerArray []GetLoadbalancersLoadbalancerListenerInput
+
+func (GetLoadbalancersLoadbalancerListenerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerListener)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerListenerArray) ToGetLoadbalancersLoadbalancerListenerArrayOutput() GetLoadbalancersLoadbalancerListenerArrayOutput {
+	return i.ToGetLoadbalancersLoadbalancerListenerArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerListenerArray) ToGetLoadbalancersLoadbalancerListenerArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerListenerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerListenerArrayOutput)
+}
+
+type GetLoadbalancersLoadbalancerListenerOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerListenerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerListener)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerListenerOutput) ToGetLoadbalancersLoadbalancerListenerOutput() GetLoadbalancersLoadbalancerListenerOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerListenerOutput) ToGetLoadbalancersLoadbalancerListenerOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerListenerOutput {
+	return o
+}
+
+// The pool ID.
+func (o GetLoadbalancersLoadbalancerListenerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerListener) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetLoadbalancersLoadbalancerListenerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerListenerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerListener)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerListenerArrayOutput) ToGetLoadbalancersLoadbalancerListenerArrayOutput() GetLoadbalancersLoadbalancerListenerArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerListenerArrayOutput) ToGetLoadbalancersLoadbalancerListenerArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerListenerArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerListenerArrayOutput) Index(i pulumi.IntInput) GetLoadbalancersLoadbalancerListenerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadbalancersLoadbalancerListener {
+		return vs[0].([]GetLoadbalancersLoadbalancerListener)[vs[1].(int)]
+	}).(GetLoadbalancersLoadbalancerListenerOutput)
+}
+
+type GetLoadbalancersLoadbalancerPool struct {
+	// The pool ID.
+	Id string `pulumi:"id"`
+}
+
+// GetLoadbalancersLoadbalancerPoolInput is an input type that accepts GetLoadbalancersLoadbalancerPoolArgs and GetLoadbalancersLoadbalancerPoolOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerPoolInput` via:
+//
+//	GetLoadbalancersLoadbalancerPoolArgs{...}
+type GetLoadbalancersLoadbalancerPoolInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerPoolOutput() GetLoadbalancersLoadbalancerPoolOutput
+	ToGetLoadbalancersLoadbalancerPoolOutputWithContext(context.Context) GetLoadbalancersLoadbalancerPoolOutput
+}
+
+type GetLoadbalancersLoadbalancerPoolArgs struct {
+	// The pool ID.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetLoadbalancersLoadbalancerPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerPool)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerPoolArgs) ToGetLoadbalancersLoadbalancerPoolOutput() GetLoadbalancersLoadbalancerPoolOutput {
+	return i.ToGetLoadbalancersLoadbalancerPoolOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerPoolArgs) ToGetLoadbalancersLoadbalancerPoolOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerPoolOutput)
+}
+
+// GetLoadbalancersLoadbalancerPoolArrayInput is an input type that accepts GetLoadbalancersLoadbalancerPoolArray and GetLoadbalancersLoadbalancerPoolArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerPoolArrayInput` via:
+//
+//	GetLoadbalancersLoadbalancerPoolArray{ GetLoadbalancersLoadbalancerPoolArgs{...} }
+type GetLoadbalancersLoadbalancerPoolArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerPoolArrayOutput() GetLoadbalancersLoadbalancerPoolArrayOutput
+	ToGetLoadbalancersLoadbalancerPoolArrayOutputWithContext(context.Context) GetLoadbalancersLoadbalancerPoolArrayOutput
+}
+
+type GetLoadbalancersLoadbalancerPoolArray []GetLoadbalancersLoadbalancerPoolInput
+
+func (GetLoadbalancersLoadbalancerPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerPool)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerPoolArray) ToGetLoadbalancersLoadbalancerPoolArrayOutput() GetLoadbalancersLoadbalancerPoolArrayOutput {
+	return i.ToGetLoadbalancersLoadbalancerPoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerPoolArray) ToGetLoadbalancersLoadbalancerPoolArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerPoolArrayOutput)
+}
+
+type GetLoadbalancersLoadbalancerPoolOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerPool)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerPoolOutput) ToGetLoadbalancersLoadbalancerPoolOutput() GetLoadbalancersLoadbalancerPoolOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerPoolOutput) ToGetLoadbalancersLoadbalancerPoolOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPoolOutput {
+	return o
+}
+
+// The pool ID.
+func (o GetLoadbalancersLoadbalancerPoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerPool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetLoadbalancersLoadbalancerPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerPool)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerPoolArrayOutput) ToGetLoadbalancersLoadbalancerPoolArrayOutput() GetLoadbalancersLoadbalancerPoolArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerPoolArrayOutput) ToGetLoadbalancersLoadbalancerPoolArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPoolArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerPoolArrayOutput) Index(i pulumi.IntInput) GetLoadbalancersLoadbalancerPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadbalancersLoadbalancerPool {
+		return vs[0].([]GetLoadbalancersLoadbalancerPool)[vs[1].(int)]
+	}).(GetLoadbalancersLoadbalancerPoolOutput)
+}
+
+type GetLoadbalancersLoadbalancerPublicip struct {
+	// The IP version.
+	IpVersion int `pulumi:"ipVersion"`
+	// The IP address.
+	PublicipAddress string `pulumi:"publicipAddress"`
+	// The EIP ID.
+	PublicipId string `pulumi:"publicipId"`
+}
+
+// GetLoadbalancersLoadbalancerPublicipInput is an input type that accepts GetLoadbalancersLoadbalancerPublicipArgs and GetLoadbalancersLoadbalancerPublicipOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerPublicipInput` via:
+//
+//	GetLoadbalancersLoadbalancerPublicipArgs{...}
+type GetLoadbalancersLoadbalancerPublicipInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerPublicipOutput() GetLoadbalancersLoadbalancerPublicipOutput
+	ToGetLoadbalancersLoadbalancerPublicipOutputWithContext(context.Context) GetLoadbalancersLoadbalancerPublicipOutput
+}
+
+type GetLoadbalancersLoadbalancerPublicipArgs struct {
+	// The IP version.
+	IpVersion pulumi.IntInput `pulumi:"ipVersion"`
+	// The IP address.
+	PublicipAddress pulumi.StringInput `pulumi:"publicipAddress"`
+	// The EIP ID.
+	PublicipId pulumi.StringInput `pulumi:"publicipId"`
+}
+
+func (GetLoadbalancersLoadbalancerPublicipArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerPublicip)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerPublicipArgs) ToGetLoadbalancersLoadbalancerPublicipOutput() GetLoadbalancersLoadbalancerPublicipOutput {
+	return i.ToGetLoadbalancersLoadbalancerPublicipOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerPublicipArgs) ToGetLoadbalancersLoadbalancerPublicipOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPublicipOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerPublicipOutput)
+}
+
+// GetLoadbalancersLoadbalancerPublicipArrayInput is an input type that accepts GetLoadbalancersLoadbalancerPublicipArray and GetLoadbalancersLoadbalancerPublicipArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancersLoadbalancerPublicipArrayInput` via:
+//
+//	GetLoadbalancersLoadbalancerPublicipArray{ GetLoadbalancersLoadbalancerPublicipArgs{...} }
+type GetLoadbalancersLoadbalancerPublicipArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancersLoadbalancerPublicipArrayOutput() GetLoadbalancersLoadbalancerPublicipArrayOutput
+	ToGetLoadbalancersLoadbalancerPublicipArrayOutputWithContext(context.Context) GetLoadbalancersLoadbalancerPublicipArrayOutput
+}
+
+type GetLoadbalancersLoadbalancerPublicipArray []GetLoadbalancersLoadbalancerPublicipInput
+
+func (GetLoadbalancersLoadbalancerPublicipArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerPublicip)(nil)).Elem()
+}
+
+func (i GetLoadbalancersLoadbalancerPublicipArray) ToGetLoadbalancersLoadbalancerPublicipArrayOutput() GetLoadbalancersLoadbalancerPublicipArrayOutput {
+	return i.ToGetLoadbalancersLoadbalancerPublicipArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancersLoadbalancerPublicipArray) ToGetLoadbalancersLoadbalancerPublicipArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPublicipArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancersLoadbalancerPublicipArrayOutput)
+}
+
+type GetLoadbalancersLoadbalancerPublicipOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerPublicipOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancersLoadbalancerPublicip)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerPublicipOutput) ToGetLoadbalancersLoadbalancerPublicipOutput() GetLoadbalancersLoadbalancerPublicipOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerPublicipOutput) ToGetLoadbalancersLoadbalancerPublicipOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPublicipOutput {
+	return o
+}
+
+// The IP version.
+func (o GetLoadbalancersLoadbalancerPublicipOutput) IpVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerPublicip) int { return v.IpVersion }).(pulumi.IntOutput)
+}
+
+// The IP address.
+func (o GetLoadbalancersLoadbalancerPublicipOutput) PublicipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerPublicip) string { return v.PublicipAddress }).(pulumi.StringOutput)
+}
+
+// The EIP ID.
+func (o GetLoadbalancersLoadbalancerPublicipOutput) PublicipId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancersLoadbalancerPublicip) string { return v.PublicipId }).(pulumi.StringOutput)
+}
+
+type GetLoadbalancersLoadbalancerPublicipArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancersLoadbalancerPublicipArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancersLoadbalancerPublicip)(nil)).Elem()
+}
+
+func (o GetLoadbalancersLoadbalancerPublicipArrayOutput) ToGetLoadbalancersLoadbalancerPublicipArrayOutput() GetLoadbalancersLoadbalancerPublicipArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerPublicipArrayOutput) ToGetLoadbalancersLoadbalancerPublicipArrayOutputWithContext(ctx context.Context) GetLoadbalancersLoadbalancerPublicipArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancersLoadbalancerPublicipArrayOutput) Index(i pulumi.IntInput) GetLoadbalancersLoadbalancerPublicipOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadbalancersLoadbalancerPublicip {
+		return vs[0].([]GetLoadbalancersLoadbalancerPublicip)[vs[1].(int)]
+	}).(GetLoadbalancersLoadbalancerPublicipOutput)
 }
 
 type GetLogtanksLogtank struct {
@@ -9076,9 +13503,13 @@ func (o GetLogtanksLogtankArrayOutput) Index(i pulumi.IntInput) GetLogtanksLogta
 }
 
 type GetMonitorsMonitor struct {
+	// The time when the health check was configured.
+	CreatedAt string `pulumi:"createdAt"`
 	// Specifies the domain name to which HTTP requests are sent during the health check.
 	// The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
 	DomainName string `pulumi:"domainName"`
+	// Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+	HttpMethod string `pulumi:"httpMethod"`
 	// The health check ID.
 	Id string `pulumi:"id"`
 	// Specifies the interval between health checks, in seconds.\
@@ -9108,6 +13539,8 @@ type GetMonitorsMonitor struct {
 	// Specifies the maximum time required for waiting for a response from the health check, in
 	// seconds.
 	Timeout int `pulumi:"timeout"`
+	// The time when the health check was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
 	// Specifies the HTTP request path for the health check. The value must start with a slash
 	// (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
 	UrlPath string `pulumi:"urlPath"`
@@ -9125,9 +13558,13 @@ type GetMonitorsMonitorInput interface {
 }
 
 type GetMonitorsMonitorArgs struct {
+	// The time when the health check was configured.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Specifies the domain name to which HTTP requests are sent during the health check.
 	// The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
 	DomainName pulumi.StringInput `pulumi:"domainName"`
+	// Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+	HttpMethod pulumi.StringInput `pulumi:"httpMethod"`
 	// The health check ID.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Specifies the interval between health checks, in seconds.\
@@ -9157,6 +13594,8 @@ type GetMonitorsMonitorArgs struct {
 	// Specifies the maximum time required for waiting for a response from the health check, in
 	// seconds.
 	Timeout pulumi.IntInput `pulumi:"timeout"`
+	// The time when the health check was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// Specifies the HTTP request path for the health check. The value must start with a slash
 	// (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
 	UrlPath pulumi.StringInput `pulumi:"urlPath"`
@@ -9213,10 +13652,20 @@ func (o GetMonitorsMonitorOutput) ToGetMonitorsMonitorOutputWithContext(ctx cont
 	return o
 }
 
+// The time when the health check was configured.
+func (o GetMonitorsMonitorOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitorsMonitor) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // Specifies the domain name to which HTTP requests are sent during the health check.
 // The value can be digits, letters, hyphens (-), or periods (.) and must start with a digit or letter.
 func (o GetMonitorsMonitorOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMonitorsMonitor) string { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+func (o GetMonitorsMonitorOutput) HttpMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitorsMonitor) string { return v.HttpMethod }).(pulumi.StringOutput)
 }
 
 // The health check ID.
@@ -9278,6 +13727,11 @@ func (o GetMonitorsMonitorOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMonitorsMonitor) int { return v.Timeout }).(pulumi.IntOutput)
 }
 
+// The time when the health check was updated.
+func (o GetMonitorsMonitorOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitorsMonitor) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 // Specifies the HTTP request path for the health check. The value must start with a slash
 // (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
 func (o GetMonitorsMonitorOutput) UrlPath() pulumi.StringOutput {
@@ -9305,17 +13759,26 @@ func (o GetMonitorsMonitorArrayOutput) Index(i pulumi.IntInput) GetMonitorsMonit
 }
 
 type GetPoolsPool struct {
+	// Specifies whether forward to same port for a backend server group is enabled.
+	// Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	AnyPortEnable bool `pulumi:"anyPortEnable"`
 	// Whether to enable delayed logout.
 	ConnectionDrainEnabled bool `pulumi:"connectionDrainEnabled"`
 	// The timeout of the delayed logout in seconds.
 	ConnectionDrainTimeout int `pulumi:"connectionDrainTimeout"`
+	// The time when the backend server group was created
+	CreatedAt string `pulumi:"createdAt"`
 	// Specifies the description of the ELB pool.
 	Description string `pulumi:"description"`
+	// Specifies the ID of the enterprise project.
+	EnterpriseProjectId string `pulumi:"enterpriseProjectId"`
 	// Specifies the health monitor ID of the ELB pool.
 	HealthmonitorId string `pulumi:"healthmonitorId"`
 	// The listener, loadbalancer or member ID.
 	Id string `pulumi:"id"`
-	// The IP version of the LB pool.
+	// Specifies the IP address version supported by the backend server group.
 	IpVersion string `pulumi:"ipVersion"`
 	// Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
 	// **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
@@ -9324,6 +13787,10 @@ type GetPoolsPool struct {
 	Listeners []GetPoolsPoolListener `pulumi:"listeners"`
 	// The loadbalancer list. The object structure is documented below.
 	Loadbalancers []GetPoolsPoolLoadbalancer `pulumi:"loadbalancers"`
+	// Specifies whether deletion protection is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	MemberDeletionProtectionEnable bool `pulumi:"memberDeletionProtectionEnable"`
 	// The member list. The object structure is documented below.
 	Members []GetPoolsPoolMember `pulumi:"members"`
 	// The minimum healthy member count.
@@ -9341,12 +13808,19 @@ type GetPoolsPool struct {
 	// Specifies the protocol of the ELB pool. Value options: **TCP**, **UDP**, **HTTP**,
 	// **HTTPS**, **QUIC**, **GRPC** or **TLS**.
 	Protocol string `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup string `pulumi:"publicBorderGroup"`
+	// The multi-path forwarding policy based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies []GetPoolsPoolQuicCidHashStrategy `pulumi:"quicCidHashStrategies"`
 	// The slow start duration, in seconds.
 	SlowStartDuration int `pulumi:"slowStartDuration"`
 	// Whether to enable slow start.
 	SlowStartEnabled bool `pulumi:"slowStartEnabled"`
 	// Specifies the type of the backend server group. Value options: **instance**, **ip**.
 	Type string `pulumi:"type"`
+	// The time when the backend server group was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
 	// Specifies the ID of the VPC where the backend server group works.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -9363,17 +13837,26 @@ type GetPoolsPoolInput interface {
 }
 
 type GetPoolsPoolArgs struct {
+	// Specifies whether forward to same port for a backend server group is enabled.
+	// Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	AnyPortEnable pulumi.BoolInput `pulumi:"anyPortEnable"`
 	// Whether to enable delayed logout.
 	ConnectionDrainEnabled pulumi.BoolInput `pulumi:"connectionDrainEnabled"`
 	// The timeout of the delayed logout in seconds.
 	ConnectionDrainTimeout pulumi.IntInput `pulumi:"connectionDrainTimeout"`
+	// The time when the backend server group was created
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Specifies the description of the ELB pool.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Specifies the ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringInput `pulumi:"enterpriseProjectId"`
 	// Specifies the health monitor ID of the ELB pool.
 	HealthmonitorId pulumi.StringInput `pulumi:"healthmonitorId"`
 	// The listener, loadbalancer or member ID.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The IP version of the LB pool.
+	// Specifies the IP address version supported by the backend server group.
 	IpVersion pulumi.StringInput `pulumi:"ipVersion"`
 	// Specifies the method of the ELB pool. Value options: **ROUND_ROBIN**,
 	// **LEAST_CONNECTIONS**, **SOURCE_IP** or **QUIC_CID**.
@@ -9382,6 +13865,10 @@ type GetPoolsPoolArgs struct {
 	Listeners GetPoolsPoolListenerArrayInput `pulumi:"listeners"`
 	// The loadbalancer list. The object structure is documented below.
 	Loadbalancers GetPoolsPoolLoadbalancerArrayInput `pulumi:"loadbalancers"`
+	// Specifies whether deletion protection is enabled. Value options:
+	// + **false**: Disable this option.
+	// + **true**: Enable this option.
+	MemberDeletionProtectionEnable pulumi.BoolInput `pulumi:"memberDeletionProtectionEnable"`
 	// The member list. The object structure is documented below.
 	Members GetPoolsPoolMemberArrayInput `pulumi:"members"`
 	// The minimum healthy member count.
@@ -9399,12 +13886,19 @@ type GetPoolsPoolArgs struct {
 	// Specifies the protocol of the ELB pool. Value options: **TCP**, **UDP**, **HTTP**,
 	// **HTTPS**, **QUIC**, **GRPC** or **TLS**.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Specifies the public border group.
+	PublicBorderGroup pulumi.StringInput `pulumi:"publicBorderGroup"`
+	// The multi-path forwarding policy based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies GetPoolsPoolQuicCidHashStrategyArrayInput `pulumi:"quicCidHashStrategies"`
 	// The slow start duration, in seconds.
 	SlowStartDuration pulumi.IntInput `pulumi:"slowStartDuration"`
 	// Whether to enable slow start.
 	SlowStartEnabled pulumi.BoolInput `pulumi:"slowStartEnabled"`
 	// Specifies the type of the backend server group. Value options: **instance**, **ip**.
 	Type pulumi.StringInput `pulumi:"type"`
+	// The time when the backend server group was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// Specifies the ID of the VPC where the backend server group works.
 	VpcId pulumi.StringInput `pulumi:"vpcId"`
 }
@@ -9460,6 +13954,14 @@ func (o GetPoolsPoolOutput) ToGetPoolsPoolOutputWithContext(ctx context.Context)
 	return o
 }
 
+// Specifies whether forward to same port for a backend server group is enabled.
+// Value options:
+// + **false**: Disable this option.
+// + **true**: Enable this option.
+func (o GetPoolsPoolOutput) AnyPortEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPoolsPool) bool { return v.AnyPortEnable }).(pulumi.BoolOutput)
+}
+
 // Whether to enable delayed logout.
 func (o GetPoolsPoolOutput) ConnectionDrainEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetPoolsPool) bool { return v.ConnectionDrainEnabled }).(pulumi.BoolOutput)
@@ -9470,9 +13972,19 @@ func (o GetPoolsPoolOutput) ConnectionDrainTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPoolsPool) int { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
 }
 
+// The time when the backend server group was created
+func (o GetPoolsPoolOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolsPool) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // Specifies the description of the ELB pool.
 func (o GetPoolsPoolOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPool) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Specifies the ID of the enterprise project.
+func (o GetPoolsPoolOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolsPool) string { return v.EnterpriseProjectId }).(pulumi.StringOutput)
 }
 
 // Specifies the health monitor ID of the ELB pool.
@@ -9485,7 +13997,7 @@ func (o GetPoolsPoolOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPool) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The IP version of the LB pool.
+// Specifies the IP address version supported by the backend server group.
 func (o GetPoolsPoolOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPool) string { return v.IpVersion }).(pulumi.StringOutput)
 }
@@ -9504,6 +14016,13 @@ func (o GetPoolsPoolOutput) Listeners() GetPoolsPoolListenerArrayOutput {
 // The loadbalancer list. The object structure is documented below.
 func (o GetPoolsPoolOutput) Loadbalancers() GetPoolsPoolLoadbalancerArrayOutput {
 	return o.ApplyT(func(v GetPoolsPool) []GetPoolsPoolLoadbalancer { return v.Loadbalancers }).(GetPoolsPoolLoadbalancerArrayOutput)
+}
+
+// Specifies whether deletion protection is enabled. Value options:
+// + **false**: Disable this option.
+// + **true**: Enable this option.
+func (o GetPoolsPoolOutput) MemberDeletionProtectionEnable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPoolsPool) bool { return v.MemberDeletionProtectionEnable }).(pulumi.BoolOutput)
 }
 
 // The member list. The object structure is documented below.
@@ -9544,6 +14063,17 @@ func (o GetPoolsPoolOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPool) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// Specifies the public border group.
+func (o GetPoolsPoolOutput) PublicBorderGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolsPool) string { return v.PublicBorderGroup }).(pulumi.StringOutput)
+}
+
+// The multi-path forwarding policy based on destination connection IDs.
+// The quicCidHashStrategy structure is documented below.
+func (o GetPoolsPoolOutput) QuicCidHashStrategies() GetPoolsPoolQuicCidHashStrategyArrayOutput {
+	return o.ApplyT(func(v GetPoolsPool) []GetPoolsPoolQuicCidHashStrategy { return v.QuicCidHashStrategies }).(GetPoolsPoolQuicCidHashStrategyArrayOutput)
+}
+
 // The slow start duration, in seconds.
 func (o GetPoolsPoolOutput) SlowStartDuration() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPoolsPool) int { return v.SlowStartDuration }).(pulumi.IntOutput)
@@ -9557,6 +14087,11 @@ func (o GetPoolsPoolOutput) SlowStartEnabled() pulumi.BoolOutput {
 // Specifies the type of the backend server group. Value options: **instance**, **ip**.
 func (o GetPoolsPoolOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPool) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The time when the backend server group was updated.
+func (o GetPoolsPoolOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolsPool) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // Specifies the ID of the VPC where the backend server group works.
@@ -9990,6 +14525,112 @@ func (o GetPoolsPoolPersistenceArrayOutput) Index(i pulumi.IntInput) GetPoolsPoo
 	}).(GetPoolsPoolPersistenceOutput)
 }
 
+type GetPoolsPoolQuicCidHashStrategy struct {
+	// The length of the hash factor in the connection ID, in byte.
+	Len int `pulumi:"len"`
+	// The start position in the connection ID as the hash factor, in byte.
+	Offset int `pulumi:"offset"`
+}
+
+// GetPoolsPoolQuicCidHashStrategyInput is an input type that accepts GetPoolsPoolQuicCidHashStrategyArgs and GetPoolsPoolQuicCidHashStrategyOutput values.
+// You can construct a concrete instance of `GetPoolsPoolQuicCidHashStrategyInput` via:
+//
+//	GetPoolsPoolQuicCidHashStrategyArgs{...}
+type GetPoolsPoolQuicCidHashStrategyInput interface {
+	pulumi.Input
+
+	ToGetPoolsPoolQuicCidHashStrategyOutput() GetPoolsPoolQuicCidHashStrategyOutput
+	ToGetPoolsPoolQuicCidHashStrategyOutputWithContext(context.Context) GetPoolsPoolQuicCidHashStrategyOutput
+}
+
+type GetPoolsPoolQuicCidHashStrategyArgs struct {
+	// The length of the hash factor in the connection ID, in byte.
+	Len pulumi.IntInput `pulumi:"len"`
+	// The start position in the connection ID as the hash factor, in byte.
+	Offset pulumi.IntInput `pulumi:"offset"`
+}
+
+func (GetPoolsPoolQuicCidHashStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (i GetPoolsPoolQuicCidHashStrategyArgs) ToGetPoolsPoolQuicCidHashStrategyOutput() GetPoolsPoolQuicCidHashStrategyOutput {
+	return i.ToGetPoolsPoolQuicCidHashStrategyOutputWithContext(context.Background())
+}
+
+func (i GetPoolsPoolQuicCidHashStrategyArgs) ToGetPoolsPoolQuicCidHashStrategyOutputWithContext(ctx context.Context) GetPoolsPoolQuicCidHashStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolsPoolQuicCidHashStrategyOutput)
+}
+
+// GetPoolsPoolQuicCidHashStrategyArrayInput is an input type that accepts GetPoolsPoolQuicCidHashStrategyArray and GetPoolsPoolQuicCidHashStrategyArrayOutput values.
+// You can construct a concrete instance of `GetPoolsPoolQuicCidHashStrategyArrayInput` via:
+//
+//	GetPoolsPoolQuicCidHashStrategyArray{ GetPoolsPoolQuicCidHashStrategyArgs{...} }
+type GetPoolsPoolQuicCidHashStrategyArrayInput interface {
+	pulumi.Input
+
+	ToGetPoolsPoolQuicCidHashStrategyArrayOutput() GetPoolsPoolQuicCidHashStrategyArrayOutput
+	ToGetPoolsPoolQuicCidHashStrategyArrayOutputWithContext(context.Context) GetPoolsPoolQuicCidHashStrategyArrayOutput
+}
+
+type GetPoolsPoolQuicCidHashStrategyArray []GetPoolsPoolQuicCidHashStrategyInput
+
+func (GetPoolsPoolQuicCidHashStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (i GetPoolsPoolQuicCidHashStrategyArray) ToGetPoolsPoolQuicCidHashStrategyArrayOutput() GetPoolsPoolQuicCidHashStrategyArrayOutput {
+	return i.ToGetPoolsPoolQuicCidHashStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i GetPoolsPoolQuicCidHashStrategyArray) ToGetPoolsPoolQuicCidHashStrategyArrayOutputWithContext(ctx context.Context) GetPoolsPoolQuicCidHashStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolsPoolQuicCidHashStrategyArrayOutput)
+}
+
+type GetPoolsPoolQuicCidHashStrategyOutput struct{ *pulumi.OutputState }
+
+func (GetPoolsPoolQuicCidHashStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (o GetPoolsPoolQuicCidHashStrategyOutput) ToGetPoolsPoolQuicCidHashStrategyOutput() GetPoolsPoolQuicCidHashStrategyOutput {
+	return o
+}
+
+func (o GetPoolsPoolQuicCidHashStrategyOutput) ToGetPoolsPoolQuicCidHashStrategyOutputWithContext(ctx context.Context) GetPoolsPoolQuicCidHashStrategyOutput {
+	return o
+}
+
+// The length of the hash factor in the connection ID, in byte.
+func (o GetPoolsPoolQuicCidHashStrategyOutput) Len() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPoolsPoolQuicCidHashStrategy) int { return v.Len }).(pulumi.IntOutput)
+}
+
+// The start position in the connection ID as the hash factor, in byte.
+func (o GetPoolsPoolQuicCidHashStrategyOutput) Offset() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPoolsPoolQuicCidHashStrategy) int { return v.Offset }).(pulumi.IntOutput)
+}
+
+type GetPoolsPoolQuicCidHashStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPoolsPoolQuicCidHashStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolsPoolQuicCidHashStrategy)(nil)).Elem()
+}
+
+func (o GetPoolsPoolQuicCidHashStrategyArrayOutput) ToGetPoolsPoolQuicCidHashStrategyArrayOutput() GetPoolsPoolQuicCidHashStrategyArrayOutput {
+	return o
+}
+
+func (o GetPoolsPoolQuicCidHashStrategyArrayOutput) ToGetPoolsPoolQuicCidHashStrategyArrayOutputWithContext(ctx context.Context) GetPoolsPoolQuicCidHashStrategyArrayOutput {
+	return o
+}
+
+func (o GetPoolsPoolQuicCidHashStrategyArrayOutput) Index(i pulumi.IntInput) GetPoolsPoolQuicCidHashStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoolsPoolQuicCidHashStrategy {
+		return vs[0].([]GetPoolsPoolQuicCidHashStrategy)[vs[1].(int)]
+	}).(GetPoolsPoolQuicCidHashStrategyOutput)
+}
+
 type GetSecurityPoliciesSecurityPolicy struct {
 	// The cipher suites supported by the security policy.
 	Ciphers []string `pulumi:"ciphers"`
@@ -10266,6 +14907,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolHealthmonitorPtrInput)(nil)).Elem(), ActiveStandbyPoolHealthmonitorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolMemberInput)(nil)).Elem(), ActiveStandbyPoolMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolMemberArrayInput)(nil)).Elem(), ActiveStandbyPoolMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolMemberReasonInput)(nil)).Elem(), ActiveStandbyPoolMemberReasonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolMemberReasonArrayInput)(nil)).Elem(), ActiveStandbyPoolMemberReasonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolMemberStatusInput)(nil)).Elem(), ActiveStandbyPoolMemberStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolMemberStatusArrayInput)(nil)).Elem(), ActiveStandbyPoolMemberStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolQuicCidHashStrategyInput)(nil)).Elem(), ActiveStandbyPoolQuicCidHashStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ActiveStandbyPoolQuicCidHashStrategyArrayInput)(nil)).Elem(), ActiveStandbyPoolQuicCidHashStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpgroupIpListInput)(nil)).Elem(), IpgroupIpListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpgroupIpListArrayInput)(nil)).Elem(), IpgroupIpListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*L7policyFixedResponseConfigInput)(nil)).Elem(), L7policyFixedResponseConfigArgs{})
@@ -10312,6 +14959,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*L7ruleConditionArrayInput)(nil)).Elem(), L7ruleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenerPortRangeInput)(nil)).Elem(), ListenerPortRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenerPortRangeArrayInput)(nil)).Elem(), ListenerPortRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MemberReasonInput)(nil)).Elem(), MemberReasonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MemberReasonArrayInput)(nil)).Elem(), MemberReasonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MemberStatusInput)(nil)).Elem(), MemberStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MemberStatusArrayInput)(nil)).Elem(), MemberStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MemberStatusReasonInput)(nil)).Elem(), MemberStatusReasonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MemberStatusReasonArrayInput)(nil)).Elem(), MemberStatusReasonArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolPersistenceInput)(nil)).Elem(), PoolPersistenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolPersistencePtrInput)(nil)).Elem(), PoolPersistenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityPolicyListenerInput)(nil)).Elem(), SecurityPolicyListenerArgs{})
@@ -10326,6 +14979,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolLoadbalancerArrayInput)(nil)).Elem(), GetActiveStandbyPoolsPoolLoadbalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberInput)(nil)).Elem(), GetActiveStandbyPoolsPoolMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberArrayInput)(nil)).Elem(), GetActiveStandbyPoolsPoolMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberReasonInput)(nil)).Elem(), GetActiveStandbyPoolsPoolMemberReasonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberReasonArrayInput)(nil)).Elem(), GetActiveStandbyPoolsPoolMemberReasonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberStatusInput)(nil)).Elem(), GetActiveStandbyPoolsPoolMemberStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolMemberStatusArrayInput)(nil)).Elem(), GetActiveStandbyPoolsPoolMemberStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolQuicCidHashStrategyInput)(nil)).Elem(), GetActiveStandbyPoolsPoolQuicCidHashStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayInput)(nil)).Elem(), GetActiveStandbyPoolsPoolQuicCidHashStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAllMembersMemberInput)(nil)).Elem(), GetAllMembersMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAllMembersMemberArrayInput)(nil)).Elem(), GetAllMembersMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAllMembersMemberReasonInput)(nil)).Elem(), GetAllMembersMemberReasonArgs{})
@@ -10352,12 +15011,44 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyArrayInput)(nil)).Elem(), GetL7policiesL7policyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsStickySessionConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsStickySessionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectPoolsStickySessionConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayInput)(nil)).Elem(), GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRuleInput)(nil)).Elem(), GetL7policiesL7policyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7policiesL7policyRuleArrayInput)(nil)).Elem(), GetL7policiesL7policyRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7rulesL7ruleInput)(nil)).Elem(), GetL7rulesL7ruleArgs{})
@@ -10366,10 +15057,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetL7rulesL7ruleConditionArrayInput)(nil)).Elem(), GetL7rulesL7ruleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerInput)(nil)).Elem(), GetListenersListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerArrayInput)(nil)).Elem(), GetListenersListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerIpgroupInput)(nil)).Elem(), GetListenersListenerIpgroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerIpgroupArrayInput)(nil)).Elem(), GetListenersListenerIpgroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerPortRangeInput)(nil)).Elem(), GetListenersListenerPortRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerPortRangeArrayInput)(nil)).Elem(), GetListenersListenerPortRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerQuicConfigInput)(nil)).Elem(), GetListenersListenerQuicConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerQuicConfigArrayInput)(nil)).Elem(), GetListenersListenerQuicConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerFeatureConfigurationsFeatureInput)(nil)).Elem(), GetLoadbalancerFeatureConfigurationsFeatureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerFeatureConfigurationsFeatureArrayInput)(nil)).Elem(), GetLoadbalancerFeatureConfigurationsFeatureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerInput)(nil)).Elem(), GetLoadbalancersLoadbalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerArrayInput)(nil)).Elem(), GetLoadbalancersLoadbalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerGlobalEipInput)(nil)).Elem(), GetLoadbalancersLoadbalancerGlobalEipArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerGlobalEipArrayInput)(nil)).Elem(), GetLoadbalancersLoadbalancerGlobalEipArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerListenerInput)(nil)).Elem(), GetLoadbalancersLoadbalancerListenerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerListenerArrayInput)(nil)).Elem(), GetLoadbalancersLoadbalancerListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerPoolInput)(nil)).Elem(), GetLoadbalancersLoadbalancerPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerPoolArrayInput)(nil)).Elem(), GetLoadbalancersLoadbalancerPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerPublicipInput)(nil)).Elem(), GetLoadbalancersLoadbalancerPublicipArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancersLoadbalancerPublicipArrayInput)(nil)).Elem(), GetLoadbalancersLoadbalancerPublicipArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogtanksLogtankInput)(nil)).Elem(), GetLogtanksLogtankArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogtanksLogtankArrayInput)(nil)).Elem(), GetLogtanksLogtankArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMonitorsMonitorInput)(nil)).Elem(), GetMonitorsMonitorArgs{})
@@ -10384,6 +15089,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolMemberArrayInput)(nil)).Elem(), GetPoolsPoolMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolPersistenceInput)(nil)).Elem(), GetPoolsPoolPersistenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolPersistenceArrayInput)(nil)).Elem(), GetPoolsPoolPersistenceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolQuicCidHashStrategyInput)(nil)).Elem(), GetPoolsPoolQuicCidHashStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolQuicCidHashStrategyArrayInput)(nil)).Elem(), GetPoolsPoolQuicCidHashStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityPoliciesSecurityPolicyInput)(nil)).Elem(), GetSecurityPoliciesSecurityPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityPoliciesSecurityPolicyArrayInput)(nil)).Elem(), GetSecurityPoliciesSecurityPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityPoliciesSecurityPolicyListenerInput)(nil)).Elem(), GetSecurityPoliciesSecurityPolicyListenerArgs{})
@@ -10392,6 +15099,12 @@ func init() {
 	pulumi.RegisterOutputType(ActiveStandbyPoolHealthmonitorPtrOutput{})
 	pulumi.RegisterOutputType(ActiveStandbyPoolMemberOutput{})
 	pulumi.RegisterOutputType(ActiveStandbyPoolMemberArrayOutput{})
+	pulumi.RegisterOutputType(ActiveStandbyPoolMemberReasonOutput{})
+	pulumi.RegisterOutputType(ActiveStandbyPoolMemberReasonArrayOutput{})
+	pulumi.RegisterOutputType(ActiveStandbyPoolMemberStatusOutput{})
+	pulumi.RegisterOutputType(ActiveStandbyPoolMemberStatusArrayOutput{})
+	pulumi.RegisterOutputType(ActiveStandbyPoolQuicCidHashStrategyOutput{})
+	pulumi.RegisterOutputType(ActiveStandbyPoolQuicCidHashStrategyArrayOutput{})
 	pulumi.RegisterOutputType(IpgroupIpListOutput{})
 	pulumi.RegisterOutputType(IpgroupIpListArrayOutput{})
 	pulumi.RegisterOutputType(L7policyFixedResponseConfigOutput{})
@@ -10438,6 +15151,12 @@ func init() {
 	pulumi.RegisterOutputType(L7ruleConditionArrayOutput{})
 	pulumi.RegisterOutputType(ListenerPortRangeOutput{})
 	pulumi.RegisterOutputType(ListenerPortRangeArrayOutput{})
+	pulumi.RegisterOutputType(MemberReasonOutput{})
+	pulumi.RegisterOutputType(MemberReasonArrayOutput{})
+	pulumi.RegisterOutputType(MemberStatusOutput{})
+	pulumi.RegisterOutputType(MemberStatusArrayOutput{})
+	pulumi.RegisterOutputType(MemberStatusReasonOutput{})
+	pulumi.RegisterOutputType(MemberStatusReasonArrayOutput{})
 	pulumi.RegisterOutputType(PoolPersistenceOutput{})
 	pulumi.RegisterOutputType(PoolPersistencePtrOutput{})
 	pulumi.RegisterOutputType(SecurityPolicyListenerOutput{})
@@ -10452,6 +15171,12 @@ func init() {
 	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolLoadbalancerArrayOutput{})
 	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolMemberOutput{})
 	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolMemberArrayOutput{})
+	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolMemberReasonOutput{})
+	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolMemberReasonArrayOutput{})
+	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolMemberStatusOutput{})
+	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolMemberStatusArrayOutput{})
+	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolQuicCidHashStrategyOutput{})
+	pulumi.RegisterOutputType(GetActiveStandbyPoolsPoolQuicCidHashStrategyArrayOutput{})
 	pulumi.RegisterOutputType(GetAllMembersMemberOutput{})
 	pulumi.RegisterOutputType(GetAllMembersMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetAllMembersMemberReasonOutput{})
@@ -10478,12 +15203,44 @@ func init() {
 	pulumi.RegisterOutputType(GetL7policiesL7policyArrayOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigInsertHeadersConfigConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigRemoveHeadersConfigConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyFixedResponseConfigTrafficLimitConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigRewriteUrlConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsExtendConfigTrafficLimitConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsStickySessionConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectPoolsStickySessionConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigInsertHeadersConfigConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigOutput{})
+	pulumi.RegisterOutputType(GetL7policiesL7policyRedirectUrlConfigRemoveHeadersConfigConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRuleOutput{})
 	pulumi.RegisterOutputType(GetL7policiesL7policyRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetL7rulesL7ruleOutput{})
@@ -10492,10 +15249,24 @@ func init() {
 	pulumi.RegisterOutputType(GetL7rulesL7ruleConditionArrayOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerIpgroupOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerIpgroupArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerPortRangeOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerPortRangeArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerQuicConfigOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerQuicConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerFeatureConfigurationsFeatureOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerFeatureConfigurationsFeatureArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerGlobalEipOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerGlobalEipArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerListenerOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerPoolOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerPoolArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerPublicipOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancersLoadbalancerPublicipArrayOutput{})
 	pulumi.RegisterOutputType(GetLogtanksLogtankOutput{})
 	pulumi.RegisterOutputType(GetLogtanksLogtankArrayOutput{})
 	pulumi.RegisterOutputType(GetMonitorsMonitorOutput{})
@@ -10510,6 +15281,8 @@ func init() {
 	pulumi.RegisterOutputType(GetPoolsPoolMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetPoolsPoolPersistenceOutput{})
 	pulumi.RegisterOutputType(GetPoolsPoolPersistenceArrayOutput{})
+	pulumi.RegisterOutputType(GetPoolsPoolQuicCidHashStrategyOutput{})
+	pulumi.RegisterOutputType(GetPoolsPoolQuicCidHashStrategyArrayOutput{})
 	pulumi.RegisterOutputType(GetSecurityPoliciesSecurityPolicyOutput{})
 	pulumi.RegisterOutputType(GetSecurityPoliciesSecurityPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetSecurityPoliciesSecurityPolicyListenerOutput{})

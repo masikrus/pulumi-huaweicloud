@@ -24,7 +24,7 @@ class IpgroupArgs:
         """
         The set of arguments for constructing a Ipgroup resource.
         :param pulumi.Input[Sequence[pulumi.Input['IpgroupIpListArgs']]] ip_lists: Specifies an array of one or more ip addresses. The ip_list object structure is
-               documented below.
+               documented below. The ip_list structure is documented below.
         :param pulumi.Input[str] description: Human-readable description for the ip.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the ip group. Changing this
                creates a new ip group.
@@ -47,7 +47,7 @@ class IpgroupArgs:
     def ip_lists(self) -> pulumi.Input[Sequence[pulumi.Input['IpgroupIpListArgs']]]:
         """
         Specifies an array of one or more ip addresses. The ip_list object structure is
-        documented below.
+        documented below. The ip_list structure is documented below.
         """
         return pulumi.get(self, "ip_lists")
 
@@ -119,12 +119,12 @@ class _IpgroupState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ipgroup resources.
-        :param pulumi.Input[str] created_at: The create time of the ip group.
+        :param pulumi.Input[str] created_at: The creation time of the ip group.
         :param pulumi.Input[str] description: Human-readable description for the ip.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the ip group. Changing this
                creates a new ip group.
         :param pulumi.Input[Sequence[pulumi.Input['IpgroupIpListArgs']]] ip_lists: Specifies an array of one or more ip addresses. The ip_list object structure is
-               documented below.
+               documented below. The ip_list structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listener_ids: The listener IDs which the ip group associated with.
         :param pulumi.Input[str] name: Human-readable name for the ip group.
         :param pulumi.Input[str] region: The region in which to create the ip group resource. If omitted, the
@@ -152,7 +152,7 @@ class _IpgroupState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The create time of the ip group.
+        The creation time of the ip group.
         """
         return pulumi.get(self, "created_at")
 
@@ -190,7 +190,7 @@ class _IpgroupState:
     def ip_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpgroupIpListArgs']]]]:
         """
         Specifies an array of one or more ip addresses. The ip_list object structure is
-        documented below.
+        documented below. The ip_list structure is documented below.
         """
         return pulumi.get(self, "ip_lists")
 
@@ -276,13 +276,21 @@ class Ipgroup(pulumi.CustomResource):
             )])
         ```
 
+        ## Import
+
+        The ELB IP group can be imported using the `id`, e.g. bash
+
+        ```sh
+         $ pulumi import huaweicloud:DedicatedElb/ipgroup:Ipgroup test <id>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-readable description for the ip.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the ip group. Changing this
                creates a new ip group.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpgroupIpListArgs']]]] ip_lists: Specifies an array of one or more ip addresses. The ip_list object structure is
-               documented below.
+               documented below. The ip_list structure is documented below.
         :param pulumi.Input[str] name: Human-readable name for the ip group.
         :param pulumi.Input[str] region: The region in which to create the ip group resource. If omitted, the
                provider-level region will be used. Changing this creates a new ip group.
@@ -308,6 +316,14 @@ class Ipgroup(pulumi.CustomResource):
                 description="ECS01",
                 ip="192.168.10.10",
             )])
+        ```
+
+        ## Import
+
+        The ELB IP group can be imported using the `id`, e.g. bash
+
+        ```sh
+         $ pulumi import huaweicloud:DedicatedElb/ipgroup:Ipgroup test <id>
         ```
 
         :param str resource_name: The name of the resource.
@@ -374,12 +390,12 @@ class Ipgroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The create time of the ip group.
+        :param pulumi.Input[str] created_at: The creation time of the ip group.
         :param pulumi.Input[str] description: Human-readable description for the ip.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the ip group. Changing this
                creates a new ip group.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpgroupIpListArgs']]]] ip_lists: Specifies an array of one or more ip addresses. The ip_list object structure is
-               documented below.
+               documented below. The ip_list structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listener_ids: The listener IDs which the ip group associated with.
         :param pulumi.Input[str] name: Human-readable name for the ip group.
         :param pulumi.Input[str] region: The region in which to create the ip group resource. If omitted, the
@@ -404,7 +420,7 @@ class Ipgroup(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The create time of the ip group.
+        The creation time of the ip group.
         """
         return pulumi.get(self, "created_at")
 
@@ -430,7 +446,7 @@ class Ipgroup(pulumi.CustomResource):
     def ip_lists(self) -> pulumi.Output[Sequence['outputs.IpgroupIpList']]:
         """
         Specifies an array of one or more ip addresses. The ip_list object structure is
-        documented below.
+        documented below. The ip_list structure is documented below.
         """
         return pulumi.get(self, "ip_lists")
 

@@ -79,6 +79,8 @@ import (
 type Snapshot struct {
 	pulumi.CustomResourceState
 
+	// The time when the snapshot was created.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The description of the snapshot. The value can contain a maximum of 255 bytes.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Specifies the flag for forcibly creating a snapshot. Default to false.
@@ -86,6 +88,9 @@ type Snapshot struct {
 	// Specifies the user-defined metadata key-value pair. Changing the parameter
 	// creates a new snapshot.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// The script configuration value of this change is also the original value used for comparison with the new value next
+	// time the change is made. The corresponding parameter name is 'metadata'.
+	MetadataOrigin pulumi.StringMapOutput `pulumi:"metadataOrigin"`
 	// The name of the snapshot. The value can contain a maximum of 255 bytes.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region in which to create the evs snapshot resource. If omitted, the
@@ -95,6 +100,8 @@ type Snapshot struct {
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The status of the snapshot.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// The time when the snapshot was updated.
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The id of the snapshot's source disk. Changing the parameter creates a new
 	// snapshot.
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
@@ -133,6 +140,8 @@ func GetSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Snapshot resources.
 type snapshotState struct {
+	// The time when the snapshot was created.
+	CreatedAt *string `pulumi:"createdAt"`
 	// The description of the snapshot. The value can contain a maximum of 255 bytes.
 	Description *string `pulumi:"description"`
 	// Specifies the flag for forcibly creating a snapshot. Default to false.
@@ -140,6 +149,9 @@ type snapshotState struct {
 	// Specifies the user-defined metadata key-value pair. Changing the parameter
 	// creates a new snapshot.
 	Metadata map[string]string `pulumi:"metadata"`
+	// The script configuration value of this change is also the original value used for comparison with the new value next
+	// time the change is made. The corresponding parameter name is 'metadata'.
+	MetadataOrigin map[string]string `pulumi:"metadataOrigin"`
 	// The name of the snapshot. The value can contain a maximum of 255 bytes.
 	Name *string `pulumi:"name"`
 	// The region in which to create the evs snapshot resource. If omitted, the
@@ -149,12 +161,16 @@ type snapshotState struct {
 	Size *int `pulumi:"size"`
 	// The status of the snapshot.
 	Status *string `pulumi:"status"`
+	// The time when the snapshot was updated.
+	UpdatedAt *string `pulumi:"updatedAt"`
 	// The id of the snapshot's source disk. Changing the parameter creates a new
 	// snapshot.
 	VolumeId *string `pulumi:"volumeId"`
 }
 
 type SnapshotState struct {
+	// The time when the snapshot was created.
+	CreatedAt pulumi.StringPtrInput
 	// The description of the snapshot. The value can contain a maximum of 255 bytes.
 	Description pulumi.StringPtrInput
 	// Specifies the flag for forcibly creating a snapshot. Default to false.
@@ -162,6 +178,9 @@ type SnapshotState struct {
 	// Specifies the user-defined metadata key-value pair. Changing the parameter
 	// creates a new snapshot.
 	Metadata pulumi.StringMapInput
+	// The script configuration value of this change is also the original value used for comparison with the new value next
+	// time the change is made. The corresponding parameter name is 'metadata'.
+	MetadataOrigin pulumi.StringMapInput
 	// The name of the snapshot. The value can contain a maximum of 255 bytes.
 	Name pulumi.StringPtrInput
 	// The region in which to create the evs snapshot resource. If omitted, the
@@ -171,6 +190,8 @@ type SnapshotState struct {
 	Size pulumi.IntPtrInput
 	// The status of the snapshot.
 	Status pulumi.StringPtrInput
+	// The time when the snapshot was updated.
+	UpdatedAt pulumi.StringPtrInput
 	// The id of the snapshot's source disk. Changing the parameter creates a new
 	// snapshot.
 	VolumeId pulumi.StringPtrInput
@@ -304,6 +325,11 @@ func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) Snapsho
 	return o
 }
 
+// The time when the snapshot was created.
+func (o SnapshotOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // The description of the snapshot. The value can contain a maximum of 255 bytes.
 func (o SnapshotOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -318,6 +344,12 @@ func (o SnapshotOutput) Force() pulumi.BoolPtrOutput {
 // creates a new snapshot.
 func (o SnapshotOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// The script configuration value of this change is also the original value used for comparison with the new value next
+// time the change is made. The corresponding parameter name is 'metadata'.
+func (o SnapshotOutput) MetadataOrigin() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringMapOutput { return v.MetadataOrigin }).(pulumi.StringMapOutput)
 }
 
 // The name of the snapshot. The value can contain a maximum of 255 bytes.
@@ -339,6 +371,11 @@ func (o SnapshotOutput) Size() pulumi.IntOutput {
 // The status of the snapshot.
 func (o SnapshotOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// The time when the snapshot was updated.
+func (o SnapshotOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // The id of the snapshot's source disk. Changing the parameter creates a new

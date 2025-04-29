@@ -134,6 +134,26 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /**
+     * The key-value pair disk metadata. Valid key-value pairs are as follows:
+     * + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+     * for encryption.
+     * + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+     * If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+     * If the disk is not created from a data source, the disk is not encrypted by default.
+     * + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+     * + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+     * access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+     * the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+     * If this attribute is not specified, the disk device type is VBD.
+     * + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+     * is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+     */
+    public /*out*/ readonly allMetadata!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * The metadata of the disk image.
+     */
+    public /*out*/ readonly allVolumeImageMetadata!: pulumi.Output<{[key: string]: string}>;
+    /**
      * If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
      * the device as the instance sees it. The attachment structure is documented below.
      */
@@ -156,6 +176,10 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly backupId!: pulumi.Output<string | undefined>;
     /**
+     * Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+     */
+    public /*out*/ readonly bootable!: pulumi.Output<string>;
+    /**
      * Specifies the delete mode of snapshot. The default value is **false**. All snapshot
      * associated with the disk will also be deleted when the parameter is set to **true**.
      */
@@ -167,6 +191,10 @@ export class Volume extends pulumi.CustomResource {
      * + **postPaid**: the pay-per-use billing mode.
      */
     public readonly chargingMode!: pulumi.Output<string>;
+    /**
+     * The time when the disk was created.
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
      * Specifies the ID of the DSS storage pool accommodating the disk.
      */
@@ -200,9 +228,19 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly iops!: pulumi.Output<number>;
     /**
+     * The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+     * SSD V2 disk. The iopsAttribute structure is documented below.
+     */
+    public /*out*/ readonly iopsAttributes!: pulumi.Output<outputs.Evs.VolumeIopsAttribute[]>;
+    /**
      * Specifies the Encryption KMS ID to create the disk.
      */
     public readonly kmsId!: pulumi.Output<string | undefined>;
+    /**
+     * The disk URI.
+     * The links structure is documented below.
+     */
+    public /*out*/ readonly links!: pulumi.Output<outputs.Evs.VolumeLink[]>;
     /**
      * Specifies whether the disk is shareable. Defaults to **false**.
      */
@@ -228,12 +266,21 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
+     * The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+     * disk mapping in the VM.
+     */
+    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
+    /**
      * Specifies the server ID to which the cloud volume is to be mounted.
      * After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
      * The chargingMode of the created cloud volume will be consistent with that of the cloud server.
      * Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
      */
     public readonly serverId!: pulumi.Output<string | undefined>;
+    /**
+     * The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+     */
+    public /*out*/ readonly serviceType!: pulumi.Output<string>;
     /**
      * Specifies the disk size, in GB.
      * For system disk, the valid value ranges from `1` GB to `1,024` GB.
@@ -259,6 +306,15 @@ export class Volume extends pulumi.CustomResource {
      * This field can be changed only when the disk status is Available or In-use.
      */
     public readonly throughput!: pulumi.Output<number>;
+    /**
+     * The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+     * The throughputAttribute structure is documented below.
+     */
+    public /*out*/ readonly throughputAttributes!: pulumi.Output<outputs.Evs.VolumeThroughputAttribute[]>;
+    /**
+     * The time when the disk was updated.
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
      * Specifies the disk type. Valid values are as follows:
      * + **SAS**: High I/O type.
@@ -287,13 +343,17 @@ export class Volume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
+            resourceInputs["allMetadata"] = state ? state.allMetadata : undefined;
+            resourceInputs["allVolumeImageMetadata"] = state ? state.allVolumeImageMetadata : undefined;
             resourceInputs["attachments"] = state ? state.attachments : undefined;
             resourceInputs["autoPay"] = state ? state.autoPay : undefined;
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["backupId"] = state ? state.backupId : undefined;
+            resourceInputs["bootable"] = state ? state.bootable : undefined;
             resourceInputs["cascade"] = state ? state.cascade : undefined;
             resourceInputs["chargingMode"] = state ? state.chargingMode : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dedicatedStorageId"] = state ? state.dedicatedStorageId : undefined;
             resourceInputs["dedicatedStorageName"] = state ? state.dedicatedStorageName : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -301,18 +361,24 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["imageId"] = state ? state.imageId : undefined;
             resourceInputs["iops"] = state ? state.iops : undefined;
+            resourceInputs["iopsAttributes"] = state ? state.iopsAttributes : undefined;
             resourceInputs["kmsId"] = state ? state.kmsId : undefined;
+            resourceInputs["links"] = state ? state.links : undefined;
             resourceInputs["multiattach"] = state ? state.multiattach : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["periodUnit"] = state ? state.periodUnit : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
+            resourceInputs["serviceType"] = state ? state.serviceType : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["throughput"] = state ? state.throughput : undefined;
+            resourceInputs["throughputAttributes"] = state ? state.throughputAttributes : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["volumeType"] = state ? state.volumeType : undefined;
             resourceInputs["wwn"] = state ? state.wwn : undefined;
         } else {
@@ -347,9 +413,19 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["throughput"] = args ? args.throughput : undefined;
             resourceInputs["volumeType"] = args ? args.volumeType : undefined;
+            resourceInputs["allMetadata"] = undefined /*out*/;
+            resourceInputs["allVolumeImageMetadata"] = undefined /*out*/;
             resourceInputs["attachments"] = undefined /*out*/;
+            resourceInputs["bootable"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dedicatedStorageName"] = undefined /*out*/;
+            resourceInputs["iopsAttributes"] = undefined /*out*/;
+            resourceInputs["links"] = undefined /*out*/;
+            resourceInputs["serialNumber"] = undefined /*out*/;
+            resourceInputs["serviceType"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["throughputAttributes"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["wwn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -361,6 +437,26 @@ export class Volume extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Volume resources.
  */
 export interface VolumeState {
+    /**
+     * The key-value pair disk metadata. Valid key-value pairs are as follows:
+     * + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+     * for encryption.
+     * + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+     * If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+     * If the disk is not created from a data source, the disk is not encrypted by default.
+     * + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+     * + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+     * access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+     * the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+     * If this attribute is not specified, the disk device type is VBD.
+     * + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+     * is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+     */
+    allMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The metadata of the disk image.
+     */
+    allVolumeImageMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
      * the device as the instance sees it. The attachment structure is documented below.
@@ -384,6 +480,10 @@ export interface VolumeState {
      */
     backupId?: pulumi.Input<string>;
     /**
+     * Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+     */
+    bootable?: pulumi.Input<string>;
+    /**
      * Specifies the delete mode of snapshot. The default value is **false**. All snapshot
      * associated with the disk will also be deleted when the parameter is set to **true**.
      */
@@ -395,6 +495,10 @@ export interface VolumeState {
      * + **postPaid**: the pay-per-use billing mode.
      */
     chargingMode?: pulumi.Input<string>;
+    /**
+     * The time when the disk was created.
+     */
+    createdAt?: pulumi.Input<string>;
     /**
      * Specifies the ID of the DSS storage pool accommodating the disk.
      */
@@ -428,9 +532,19 @@ export interface VolumeState {
      */
     iops?: pulumi.Input<number>;
     /**
+     * The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+     * SSD V2 disk. The iopsAttribute structure is documented below.
+     */
+    iopsAttributes?: pulumi.Input<pulumi.Input<inputs.Evs.VolumeIopsAttribute>[]>;
+    /**
      * Specifies the Encryption KMS ID to create the disk.
      */
     kmsId?: pulumi.Input<string>;
+    /**
+     * The disk URI.
+     * The links structure is documented below.
+     */
+    links?: pulumi.Input<pulumi.Input<inputs.Evs.VolumeLink>[]>;
     /**
      * Specifies whether the disk is shareable. Defaults to **false**.
      */
@@ -456,12 +570,21 @@ export interface VolumeState {
      */
     region?: pulumi.Input<string>;
     /**
+     * The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+     * disk mapping in the VM.
+     */
+    serialNumber?: pulumi.Input<string>;
+    /**
      * Specifies the server ID to which the cloud volume is to be mounted.
      * After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
      * The chargingMode of the created cloud volume will be consistent with that of the cloud server.
      * Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
      */
     serverId?: pulumi.Input<string>;
+    /**
+     * The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+     */
+    serviceType?: pulumi.Input<string>;
     /**
      * Specifies the disk size, in GB.
      * For system disk, the valid value ranges from `1` GB to `1,024` GB.
@@ -487,6 +610,15 @@ export interface VolumeState {
      * This field can be changed only when the disk status is Available or In-use.
      */
     throughput?: pulumi.Input<number>;
+    /**
+     * The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+     * The throughputAttribute structure is documented below.
+     */
+    throughputAttributes?: pulumi.Input<pulumi.Input<inputs.Evs.VolumeThroughputAttribute>[]>;
+    /**
+     * The time when the disk was updated.
+     */
+    updatedAt?: pulumi.Input<string>;
     /**
      * Specifies the disk type. Valid values are as follows:
      * + **SAS**: High I/O type.

@@ -116,18 +116,24 @@ import (
 type Monitor struct {
 	pulumi.CustomResourceState
 
+	// Deprecated: tenant_id is deprecated
 	AdminStateUp pulumi.BoolPtrOutput `pulumi:"adminStateUp"`
 	// Specifies the maximum time between health checks in the unit of second. The value ranges
-	// from 1 to 50.
+	// from **1** to **50**.
 	Delay pulumi.IntOutput `pulumi:"delay"`
+	// Specifies the domain name of HTTP requests during the health check. It takes effect
+	// only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+	// address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+	// letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// Specifies the expected HTTP status code. Required for HTTP type.
-	// You can either specify a single status like "200", or a range like "200-202".
+	// You can either specify a single status like **200**, or a range like **200-202**.
 	ExpectedCodes pulumi.StringOutput `pulumi:"expectedCodes"`
 	// Specifies the HTTP request method. Required for HTTP type.
-	// The default value is *GET*.
+	// The default value is **GET**.
 	HttpMethod pulumi.StringOutput `pulumi:"httpMethod"`
 	// Specifies the maximum number of consecutive health checks after which the backend
-	// servers are declared *healthy*. The value ranges from 1 to 10.
+	// servers are declared **healthy**. The value ranges from **1** to **10**.
 	MaxRetries pulumi.IntOutput `pulumi:"maxRetries"`
 	// Specifies the health check name. The value contains a maximum of 255 characters.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -143,11 +149,11 @@ type Monitor struct {
 	// Deprecated: tenant_id is deprecated
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 	// Specifies the health check timeout duration in the unit of second.
-	// The value ranges from 1 to 50 and must be less than the `delay` value.
+	// The value ranges from **1** to **50** and must be less than the `delay` value.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// Specifies the monitor protocol.
-	// The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-	// If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+	// The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+	// If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the HTTP request path for the health check. Required for HTTP type.
 	// The value starts with a slash (/) and contains a maximum of 255 characters.
@@ -199,18 +205,24 @@ func GetMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Monitor resources.
 type monitorState struct {
+	// Deprecated: tenant_id is deprecated
 	AdminStateUp *bool `pulumi:"adminStateUp"`
 	// Specifies the maximum time between health checks in the unit of second. The value ranges
-	// from 1 to 50.
+	// from **1** to **50**.
 	Delay *int `pulumi:"delay"`
+	// Specifies the domain name of HTTP requests during the health check. It takes effect
+	// only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+	// address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+	// letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+	DomainName *string `pulumi:"domainName"`
 	// Specifies the expected HTTP status code. Required for HTTP type.
-	// You can either specify a single status like "200", or a range like "200-202".
+	// You can either specify a single status like **200**, or a range like **200-202**.
 	ExpectedCodes *string `pulumi:"expectedCodes"`
 	// Specifies the HTTP request method. Required for HTTP type.
-	// The default value is *GET*.
+	// The default value is **GET**.
 	HttpMethod *string `pulumi:"httpMethod"`
 	// Specifies the maximum number of consecutive health checks after which the backend
-	// servers are declared *healthy*. The value ranges from 1 to 10.
+	// servers are declared **healthy**. The value ranges from **1** to **10**.
 	MaxRetries *int `pulumi:"maxRetries"`
 	// Specifies the health check name. The value contains a maximum of 255 characters.
 	Name *string `pulumi:"name"`
@@ -226,11 +238,11 @@ type monitorState struct {
 	// Deprecated: tenant_id is deprecated
 	TenantId *string `pulumi:"tenantId"`
 	// Specifies the health check timeout duration in the unit of second.
-	// The value ranges from 1 to 50 and must be less than the `delay` value.
+	// The value ranges from **1** to **50** and must be less than the `delay` value.
 	Timeout *int `pulumi:"timeout"`
 	// Specifies the monitor protocol.
-	// The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-	// If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+	// The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+	// If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
 	Type *string `pulumi:"type"`
 	// Specifies the HTTP request path for the health check. Required for HTTP type.
 	// The value starts with a slash (/) and contains a maximum of 255 characters.
@@ -238,18 +250,24 @@ type monitorState struct {
 }
 
 type MonitorState struct {
+	// Deprecated: tenant_id is deprecated
 	AdminStateUp pulumi.BoolPtrInput
 	// Specifies the maximum time between health checks in the unit of second. The value ranges
-	// from 1 to 50.
+	// from **1** to **50**.
 	Delay pulumi.IntPtrInput
+	// Specifies the domain name of HTTP requests during the health check. It takes effect
+	// only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+	// address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+	// letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+	DomainName pulumi.StringPtrInput
 	// Specifies the expected HTTP status code. Required for HTTP type.
-	// You can either specify a single status like "200", or a range like "200-202".
+	// You can either specify a single status like **200**, or a range like **200-202**.
 	ExpectedCodes pulumi.StringPtrInput
 	// Specifies the HTTP request method. Required for HTTP type.
-	// The default value is *GET*.
+	// The default value is **GET**.
 	HttpMethod pulumi.StringPtrInput
 	// Specifies the maximum number of consecutive health checks after which the backend
-	// servers are declared *healthy*. The value ranges from 1 to 10.
+	// servers are declared **healthy**. The value ranges from **1** to **10**.
 	MaxRetries pulumi.IntPtrInput
 	// Specifies the health check name. The value contains a maximum of 255 characters.
 	Name pulumi.StringPtrInput
@@ -265,11 +283,11 @@ type MonitorState struct {
 	// Deprecated: tenant_id is deprecated
 	TenantId pulumi.StringPtrInput
 	// Specifies the health check timeout duration in the unit of second.
-	// The value ranges from 1 to 50 and must be less than the `delay` value.
+	// The value ranges from **1** to **50** and must be less than the `delay` value.
 	Timeout pulumi.IntPtrInput
 	// Specifies the monitor protocol.
-	// The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-	// If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+	// The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+	// If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
 	Type pulumi.StringPtrInput
 	// Specifies the HTTP request path for the health check. Required for HTTP type.
 	// The value starts with a slash (/) and contains a maximum of 255 characters.
@@ -281,18 +299,24 @@ func (MonitorState) ElementType() reflect.Type {
 }
 
 type monitorArgs struct {
+	// Deprecated: tenant_id is deprecated
 	AdminStateUp *bool `pulumi:"adminStateUp"`
 	// Specifies the maximum time between health checks in the unit of second. The value ranges
-	// from 1 to 50.
+	// from **1** to **50**.
 	Delay int `pulumi:"delay"`
+	// Specifies the domain name of HTTP requests during the health check. It takes effect
+	// only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+	// address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+	// letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+	DomainName *string `pulumi:"domainName"`
 	// Specifies the expected HTTP status code. Required for HTTP type.
-	// You can either specify a single status like "200", or a range like "200-202".
+	// You can either specify a single status like **200**, or a range like **200-202**.
 	ExpectedCodes *string `pulumi:"expectedCodes"`
 	// Specifies the HTTP request method. Required for HTTP type.
-	// The default value is *GET*.
+	// The default value is **GET**.
 	HttpMethod *string `pulumi:"httpMethod"`
 	// Specifies the maximum number of consecutive health checks after which the backend
-	// servers are declared *healthy*. The value ranges from 1 to 10.
+	// servers are declared **healthy**. The value ranges from **1** to **10**.
 	MaxRetries int `pulumi:"maxRetries"`
 	// Specifies the health check name. The value contains a maximum of 255 characters.
 	Name *string `pulumi:"name"`
@@ -308,11 +332,11 @@ type monitorArgs struct {
 	// Deprecated: tenant_id is deprecated
 	TenantId *string `pulumi:"tenantId"`
 	// Specifies the health check timeout duration in the unit of second.
-	// The value ranges from 1 to 50 and must be less than the `delay` value.
+	// The value ranges from **1** to **50** and must be less than the `delay` value.
 	Timeout int `pulumi:"timeout"`
 	// Specifies the monitor protocol.
-	// The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-	// If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+	// The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+	// If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
 	Type string `pulumi:"type"`
 	// Specifies the HTTP request path for the health check. Required for HTTP type.
 	// The value starts with a slash (/) and contains a maximum of 255 characters.
@@ -321,18 +345,24 @@ type monitorArgs struct {
 
 // The set of arguments for constructing a Monitor resource.
 type MonitorArgs struct {
+	// Deprecated: tenant_id is deprecated
 	AdminStateUp pulumi.BoolPtrInput
 	// Specifies the maximum time between health checks in the unit of second. The value ranges
-	// from 1 to 50.
+	// from **1** to **50**.
 	Delay pulumi.IntInput
+	// Specifies the domain name of HTTP requests during the health check. It takes effect
+	// only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+	// address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+	// letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+	DomainName pulumi.StringPtrInput
 	// Specifies the expected HTTP status code. Required for HTTP type.
-	// You can either specify a single status like "200", or a range like "200-202".
+	// You can either specify a single status like **200**, or a range like **200-202**.
 	ExpectedCodes pulumi.StringPtrInput
 	// Specifies the HTTP request method. Required for HTTP type.
-	// The default value is *GET*.
+	// The default value is **GET**.
 	HttpMethod pulumi.StringPtrInput
 	// Specifies the maximum number of consecutive health checks after which the backend
-	// servers are declared *healthy*. The value ranges from 1 to 10.
+	// servers are declared **healthy**. The value ranges from **1** to **10**.
 	MaxRetries pulumi.IntInput
 	// Specifies the health check name. The value contains a maximum of 255 characters.
 	Name pulumi.StringPtrInput
@@ -348,11 +378,11 @@ type MonitorArgs struct {
 	// Deprecated: tenant_id is deprecated
 	TenantId pulumi.StringPtrInput
 	// Specifies the health check timeout duration in the unit of second.
-	// The value ranges from 1 to 50 and must be less than the `delay` value.
+	// The value ranges from **1** to **50** and must be less than the `delay` value.
 	Timeout pulumi.IntInput
 	// Specifies the monitor protocol.
-	// The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-	// If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+	// The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+	// If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
 	Type pulumi.StringInput
 	// Specifies the HTTP request path for the health check. Required for HTTP type.
 	// The value starts with a slash (/) and contains a maximum of 255 characters.
@@ -446,30 +476,39 @@ func (o MonitorOutput) ToMonitorOutputWithContext(ctx context.Context) MonitorOu
 	return o
 }
 
+// Deprecated: tenant_id is deprecated
 func (o MonitorOutput) AdminStateUp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.BoolPtrOutput { return v.AdminStateUp }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies the maximum time between health checks in the unit of second. The value ranges
-// from 1 to 50.
+// from **1** to **50**.
 func (o MonitorOutput) Delay() pulumi.IntOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.IntOutput { return v.Delay }).(pulumi.IntOutput)
 }
 
+// Specifies the domain name of HTTP requests during the health check. It takes effect
+// only when the value of `type` is set to **HTTP**. The value is left blank by default, indicating that the private IP
+// address of the load balancer is used as the destination address of HTTP requests. The value can contain only digits,
+// letters, hyphens (-), and periods (.) and must start with a digit or letter, the value contains a maximum of 100 characters.
+func (o MonitorOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
+}
+
 // Specifies the expected HTTP status code. Required for HTTP type.
-// You can either specify a single status like "200", or a range like "200-202".
+// You can either specify a single status like **200**, or a range like **200-202**.
 func (o MonitorOutput) ExpectedCodes() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.ExpectedCodes }).(pulumi.StringOutput)
 }
 
 // Specifies the HTTP request method. Required for HTTP type.
-// The default value is *GET*.
+// The default value is **GET**.
 func (o MonitorOutput) HttpMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.HttpMethod }).(pulumi.StringOutput)
 }
 
 // Specifies the maximum number of consecutive health checks after which the backend
-// servers are declared *healthy*. The value ranges from 1 to 10.
+// servers are declared **healthy**. The value ranges from **1** to **10**.
 func (o MonitorOutput) MaxRetries() pulumi.IntOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.IntOutput { return v.MaxRetries }).(pulumi.IntOutput)
 }
@@ -503,14 +542,14 @@ func (o MonitorOutput) TenantId() pulumi.StringOutput {
 }
 
 // Specifies the health check timeout duration in the unit of second.
-// The value ranges from 1 to 50 and must be less than the `delay` value.
+// The value ranges from **1** to **50** and must be less than the `delay` value.
 func (o MonitorOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
 // Specifies the monitor protocol.
-// The value can be *TCP*, *UDP_CONNECT*, or *HTTP*.
-// If the listener protocol is UDP, the monitor protocol must be *UDP_CONNECT*. Changing this creates a new monitor.
+// The value can be **TCP**, **UDP_CONNECT** or **HTTP**.
+// If the listener protocol is **UDP**, the monitor protocol must be **UDP_CONNECT**.
 func (o MonitorOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

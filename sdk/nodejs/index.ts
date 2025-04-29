@@ -21,6 +21,7 @@ import * as cce from "./cce";
 import * as cci from "./cci";
 import * as cdm from "./cdm";
 import * as cdn from "./cdn";
+import * as cfw from "./cfw";
 import * as cloudtable from "./cloudtable";
 import * as config from "./config";
 import * as cpts from "./cpts";
@@ -43,6 +44,7 @@ import * as ecs from "./ecs";
 import * as eip from "./eip";
 import * as elb from "./elb";
 import * as eps from "./eps";
+import * as er from "./er";
 import * as evs from "./evs";
 import * as functiongraph from "./functiongraph";
 import * as gaussdb from "./gaussdb";
@@ -92,6 +94,7 @@ export {
     cci,
     cdm,
     cdn,
+    cfw,
     cloudtable,
     config,
     cpts,
@@ -114,6 +117,7 @@ export {
     eip,
     elb,
     eps,
+    er,
     evs,
     functiongraph,
     gaussdb,

@@ -145,6 +145,37 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * ### Alarm rule using the alarm template
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@huaweicloudos/pulumi";
+ *
+ * const config = new pulumi.Config();
+ * const topicUrn = config.requireObject("topicUrn");
+ * const alarmTemplateId = config.requireObject("alarmTemplateId");
+ * const instanceId = config.requireObject("instanceId");
+ * const test = new huaweicloud.cse.Alarmrule("test", {
+ *     alarmName: "rule-test",
+ *     alarmEnabled: true,
+ *     alarmActionEnabled: true,
+ *     alarmType: "MULTI_INSTANCE",
+ *     alarmTemplateId: alarmTemplateId,
+ *     metric: {
+ *         namespace: "SYS.ECS",
+ *     },
+ *     resources: [{
+ *         dimensions: [{
+ *             name: "instance_id",
+ *             value: instanceId,
+ *         }],
+ *     }],
+ *     alarmActions: [{
+ *         type: "notification",
+ *         notificationLists: [topicUrn],
+ *     }],
+ * });
+ * ```
  *
  * ## Import
  *
@@ -219,12 +250,20 @@ export class Alarmrule extends pulumi.CustomResource {
      */
     public /*out*/ readonly alarmState!: pulumi.Output<string>;
     /**
+     * Specifies the ID of the alarm template.
+     * When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+     * and `okActions` cannot be updated.
+     * Changing this creates a new resource.
+     */
+    public readonly alarmTemplateId!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
      * **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
      */
     public readonly alarmType!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the alarm triggering condition. The structure is described below.
+     * Specifies the alarm triggering condition.
+     * The condition structure is documented below.
      */
     public readonly conditions!: pulumi.Output<outputs.Cse.AlarmruleCondition[]>;
     /**
@@ -294,6 +333,7 @@ export class Alarmrule extends pulumi.CustomResource {
             resourceInputs["alarmLevel"] = state ? state.alarmLevel : undefined;
             resourceInputs["alarmName"] = state ? state.alarmName : undefined;
             resourceInputs["alarmState"] = state ? state.alarmState : undefined;
+            resourceInputs["alarmTemplateId"] = state ? state.alarmTemplateId : undefined;
             resourceInputs["alarmType"] = state ? state.alarmType : undefined;
             resourceInputs["conditions"] = state ? state.conditions : undefined;
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
@@ -311,9 +351,6 @@ export class Alarmrule extends pulumi.CustomResource {
             if ((!args || args.alarmName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alarmName'");
             }
-            if ((!args || args.conditions === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'conditions'");
-            }
             if ((!args || args.metric === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metric'");
             }
@@ -323,6 +360,7 @@ export class Alarmrule extends pulumi.CustomResource {
             resourceInputs["alarmEnabled"] = args ? args.alarmEnabled : undefined;
             resourceInputs["alarmLevel"] = args ? args.alarmLevel : undefined;
             resourceInputs["alarmName"] = args ? args.alarmName : undefined;
+            resourceInputs["alarmTemplateId"] = args ? args.alarmTemplateId : undefined;
             resourceInputs["alarmType"] = args ? args.alarmType : undefined;
             resourceInputs["conditions"] = args ? args.conditions : undefined;
             resourceInputs["enterpriseProjectId"] = args ? args.enterpriseProjectId : undefined;
@@ -383,12 +421,20 @@ export interface AlarmruleState {
      */
     alarmState?: pulumi.Input<string>;
     /**
+     * Specifies the ID of the alarm template.
+     * When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+     * and `okActions` cannot be updated.
+     * Changing this creates a new resource.
+     */
+    alarmTemplateId?: pulumi.Input<string>;
+    /**
      * Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
      * **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
      */
     alarmType?: pulumi.Input<string>;
     /**
-     * Specifies the alarm triggering condition. The structure is described below.
+     * Specifies the alarm triggering condition.
+     * The condition structure is documented below.
      */
     conditions?: pulumi.Input<pulumi.Input<inputs.Cse.AlarmruleCondition>[]>;
     /**
@@ -473,14 +519,22 @@ export interface AlarmruleArgs {
      */
     alarmName: pulumi.Input<string>;
     /**
+     * Specifies the ID of the alarm template.
+     * When using `alarmTemplateId`, the fields `alarmName`, `alarmDescription`, `alarmActionEnabled`, `alarmActions`
+     * and `okActions` cannot be updated.
+     * Changing this creates a new resource.
+     */
+    alarmTemplateId?: pulumi.Input<string>;
+    /**
      * Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
      * **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
      */
     alarmType?: pulumi.Input<string>;
     /**
-     * Specifies the alarm triggering condition. The structure is described below.
+     * Specifies the alarm triggering condition.
+     * The condition structure is documented below.
      */
-    conditions: pulumi.Input<pulumi.Input<inputs.Cse.AlarmruleCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.Cse.AlarmruleCondition>[]>;
     /**
      * Specifies the enterprise project ID of the alarm rule.
      */

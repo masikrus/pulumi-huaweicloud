@@ -10,6 +10,190 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type ListenerInsertHeaders struct {
+	// Specifies whether to transparently transmit the load balancer EIP to backend
+	// servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+	// Value options:
+	// + **true**: This function is enabled.
+	// + **false (default)**: The function is disabled.
+	XForwardedElbIp *string `pulumi:"xForwardedElbIp"`
+	// Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+	// enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+	// + **true (default)**: This function is enabled.
+	// + **false**: The function is disabled.
+	XForwardedHost *string `pulumi:"xForwardedHost"`
+}
+
+// ListenerInsertHeadersInput is an input type that accepts ListenerInsertHeadersArgs and ListenerInsertHeadersOutput values.
+// You can construct a concrete instance of `ListenerInsertHeadersInput` via:
+//
+//	ListenerInsertHeadersArgs{...}
+type ListenerInsertHeadersInput interface {
+	pulumi.Input
+
+	ToListenerInsertHeadersOutput() ListenerInsertHeadersOutput
+	ToListenerInsertHeadersOutputWithContext(context.Context) ListenerInsertHeadersOutput
+}
+
+type ListenerInsertHeadersArgs struct {
+	// Specifies whether to transparently transmit the load balancer EIP to backend
+	// servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+	// Value options:
+	// + **true**: This function is enabled.
+	// + **false (default)**: The function is disabled.
+	XForwardedElbIp pulumi.StringPtrInput `pulumi:"xForwardedElbIp"`
+	// Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+	// enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+	// + **true (default)**: This function is enabled.
+	// + **false**: The function is disabled.
+	XForwardedHost pulumi.StringPtrInput `pulumi:"xForwardedHost"`
+}
+
+func (ListenerInsertHeadersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerInsertHeaders)(nil)).Elem()
+}
+
+func (i ListenerInsertHeadersArgs) ToListenerInsertHeadersOutput() ListenerInsertHeadersOutput {
+	return i.ToListenerInsertHeadersOutputWithContext(context.Background())
+}
+
+func (i ListenerInsertHeadersArgs) ToListenerInsertHeadersOutputWithContext(ctx context.Context) ListenerInsertHeadersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerInsertHeadersOutput)
+}
+
+func (i ListenerInsertHeadersArgs) ToListenerInsertHeadersPtrOutput() ListenerInsertHeadersPtrOutput {
+	return i.ToListenerInsertHeadersPtrOutputWithContext(context.Background())
+}
+
+func (i ListenerInsertHeadersArgs) ToListenerInsertHeadersPtrOutputWithContext(ctx context.Context) ListenerInsertHeadersPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerInsertHeadersOutput).ToListenerInsertHeadersPtrOutputWithContext(ctx)
+}
+
+// ListenerInsertHeadersPtrInput is an input type that accepts ListenerInsertHeadersArgs, ListenerInsertHeadersPtr and ListenerInsertHeadersPtrOutput values.
+// You can construct a concrete instance of `ListenerInsertHeadersPtrInput` via:
+//
+//	        ListenerInsertHeadersArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListenerInsertHeadersPtrInput interface {
+	pulumi.Input
+
+	ToListenerInsertHeadersPtrOutput() ListenerInsertHeadersPtrOutput
+	ToListenerInsertHeadersPtrOutputWithContext(context.Context) ListenerInsertHeadersPtrOutput
+}
+
+type listenerInsertHeadersPtrType ListenerInsertHeadersArgs
+
+func ListenerInsertHeadersPtr(v *ListenerInsertHeadersArgs) ListenerInsertHeadersPtrInput {
+	return (*listenerInsertHeadersPtrType)(v)
+}
+
+func (*listenerInsertHeadersPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListenerInsertHeaders)(nil)).Elem()
+}
+
+func (i *listenerInsertHeadersPtrType) ToListenerInsertHeadersPtrOutput() ListenerInsertHeadersPtrOutput {
+	return i.ToListenerInsertHeadersPtrOutputWithContext(context.Background())
+}
+
+func (i *listenerInsertHeadersPtrType) ToListenerInsertHeadersPtrOutputWithContext(ctx context.Context) ListenerInsertHeadersPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListenerInsertHeadersPtrOutput)
+}
+
+type ListenerInsertHeadersOutput struct{ *pulumi.OutputState }
+
+func (ListenerInsertHeadersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListenerInsertHeaders)(nil)).Elem()
+}
+
+func (o ListenerInsertHeadersOutput) ToListenerInsertHeadersOutput() ListenerInsertHeadersOutput {
+	return o
+}
+
+func (o ListenerInsertHeadersOutput) ToListenerInsertHeadersOutputWithContext(ctx context.Context) ListenerInsertHeadersOutput {
+	return o
+}
+
+func (o ListenerInsertHeadersOutput) ToListenerInsertHeadersPtrOutput() ListenerInsertHeadersPtrOutput {
+	return o.ToListenerInsertHeadersPtrOutputWithContext(context.Background())
+}
+
+func (o ListenerInsertHeadersOutput) ToListenerInsertHeadersPtrOutputWithContext(ctx context.Context) ListenerInsertHeadersPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListenerInsertHeaders) *ListenerInsertHeaders {
+		return &v
+	}).(ListenerInsertHeadersPtrOutput)
+}
+
+// Specifies whether to transparently transmit the load balancer EIP to backend
+// servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+// Value options:
+// + **true**: This function is enabled.
+// + **false (default)**: The function is disabled.
+func (o ListenerInsertHeadersOutput) XForwardedElbIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerInsertHeaders) *string { return v.XForwardedElbIp }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+// enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+// + **true (default)**: This function is enabled.
+// + **false**: The function is disabled.
+func (o ListenerInsertHeadersOutput) XForwardedHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerInsertHeaders) *string { return v.XForwardedHost }).(pulumi.StringPtrOutput)
+}
+
+type ListenerInsertHeadersPtrOutput struct{ *pulumi.OutputState }
+
+func (ListenerInsertHeadersPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListenerInsertHeaders)(nil)).Elem()
+}
+
+func (o ListenerInsertHeadersPtrOutput) ToListenerInsertHeadersPtrOutput() ListenerInsertHeadersPtrOutput {
+	return o
+}
+
+func (o ListenerInsertHeadersPtrOutput) ToListenerInsertHeadersPtrOutputWithContext(ctx context.Context) ListenerInsertHeadersPtrOutput {
+	return o
+}
+
+func (o ListenerInsertHeadersPtrOutput) Elem() ListenerInsertHeadersOutput {
+	return o.ApplyT(func(v *ListenerInsertHeaders) ListenerInsertHeaders {
+		if v != nil {
+			return *v
+		}
+		var ret ListenerInsertHeaders
+		return ret
+	}).(ListenerInsertHeadersOutput)
+}
+
+// Specifies whether to transparently transmit the load balancer EIP to backend
+// servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+// Value options:
+// + **true**: This function is enabled.
+// + **false (default)**: The function is disabled.
+func (o ListenerInsertHeadersPtrOutput) XForwardedElbIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerInsertHeaders) *string {
+		if v == nil {
+			return nil
+		}
+		return v.XForwardedElbIp
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+// enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+// + **true (default)**: This function is enabled.
+// + **false**: The function is disabled.
+func (o ListenerInsertHeadersPtrOutput) XForwardedHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerInsertHeaders) *string {
+		if v == nil {
+			return nil
+		}
+		return v.XForwardedHost
+	}).(pulumi.StringPtrOutput)
+}
+
 type PoolPersistence struct {
 	// The name of the cookie if persistence mode is set appropriately. Required
 	// if `type = APP_COOKIE`.
@@ -141,23 +325,34 @@ func (o PoolPersistenceArrayOutput) Index(i pulumi.IntInput) PoolPersistenceOutp
 }
 
 type GetListenersListener struct {
+	// The ID of the CA certificate used by the listener.
+	ClientCaTlsContainerRef string `pulumi:"clientCaTlsContainerRef"`
 	// The maximum number of connections allowed for the listener.
 	ConnectionLimit int `pulumi:"connectionLimit"`
-	// The ID of the default pool with which the ELB listener is associated.
+	// The time when the listener was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId string `pulumi:"defaultPoolId"`
 	// The ID of the server certificate used by the listener.
 	DefaultTlsContainerRef string `pulumi:"defaultTlsContainerRef"`
-	// The description of the ELB listener.
+	// The description for the listener.
 	Description string `pulumi:"description"`
-	// Whether the ELB listener uses HTTP/2.
+	// Whether the ELB listener uses HTTP/2. Value options: **true**, **false**.
 	Http2Enable bool `pulumi:"http2Enable"`
 	// The ELB loadbalancer ID.
 	Id string `pulumi:"id"`
-	// Listener list.
-	// The object structure is documented below.
+	// Whether to insert HTTP extension headers and sent them to backend servers.
+	// The insertHeaders structure is documented below.
+	InsertHeaders []GetListenersListenerInsertHeader `pulumi:"insertHeaders"`
+	// The list of the associated load balancer.
+	// The loadbalancers structure is documented below.
 	Loadbalancers []GetListenersListenerLoadbalancer `pulumi:"loadbalancers"`
 	// The listener name.
 	Name string `pulumi:"name"`
+	// The reason to enable modification protection.
+	ProtectionReason string `pulumi:"protectionReason"`
+	// Whether modification protection is enabled.
+	ProtectionStatus string `pulumi:"protectionStatus"`
 	// The listener protocol.\
 	// The valid values are **TCP**, **UDP**, **HTTP** and **TERMINATED_HTTPS**.
 	Protocol string `pulumi:"protocol"`
@@ -166,6 +361,12 @@ type GetListenersListener struct {
 	ProtocolPort int `pulumi:"protocolPort"`
 	// List of the SNI certificate (server certificates with a domain name) IDs used by the listener.
 	SniContainerRefs []string `pulumi:"sniContainerRefs"`
+	// The key/value pairs to associate with the listener.
+	Tags map[string]string `pulumi:"tags"`
+	// The security policy used by the listener.
+	TlsCiphersPolicy string `pulumi:"tlsCiphersPolicy"`
+	// The time when the listener was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 // GetListenersListenerInput is an input type that accepts GetListenersListenerArgs and GetListenersListenerOutput values.
@@ -180,23 +381,34 @@ type GetListenersListenerInput interface {
 }
 
 type GetListenersListenerArgs struct {
+	// The ID of the CA certificate used by the listener.
+	ClientCaTlsContainerRef pulumi.StringInput `pulumi:"clientCaTlsContainerRef"`
 	// The maximum number of connections allowed for the listener.
 	ConnectionLimit pulumi.IntInput `pulumi:"connectionLimit"`
-	// The ID of the default pool with which the ELB listener is associated.
+	// The time when the listener was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the default pool with which the listener is associated.
 	DefaultPoolId pulumi.StringInput `pulumi:"defaultPoolId"`
 	// The ID of the server certificate used by the listener.
 	DefaultTlsContainerRef pulumi.StringInput `pulumi:"defaultTlsContainerRef"`
-	// The description of the ELB listener.
+	// The description for the listener.
 	Description pulumi.StringInput `pulumi:"description"`
-	// Whether the ELB listener uses HTTP/2.
+	// Whether the ELB listener uses HTTP/2. Value options: **true**, **false**.
 	Http2Enable pulumi.BoolInput `pulumi:"http2Enable"`
 	// The ELB loadbalancer ID.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Listener list.
-	// The object structure is documented below.
+	// Whether to insert HTTP extension headers and sent them to backend servers.
+	// The insertHeaders structure is documented below.
+	InsertHeaders GetListenersListenerInsertHeaderArrayInput `pulumi:"insertHeaders"`
+	// The list of the associated load balancer.
+	// The loadbalancers structure is documented below.
 	Loadbalancers GetListenersListenerLoadbalancerArrayInput `pulumi:"loadbalancers"`
 	// The listener name.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The reason to enable modification protection.
+	ProtectionReason pulumi.StringInput `pulumi:"protectionReason"`
+	// Whether modification protection is enabled.
+	ProtectionStatus pulumi.StringInput `pulumi:"protectionStatus"`
 	// The listener protocol.\
 	// The valid values are **TCP**, **UDP**, **HTTP** and **TERMINATED_HTTPS**.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
@@ -205,6 +417,12 @@ type GetListenersListenerArgs struct {
 	ProtocolPort pulumi.IntInput `pulumi:"protocolPort"`
 	// List of the SNI certificate (server certificates with a domain name) IDs used by the listener.
 	SniContainerRefs pulumi.StringArrayInput `pulumi:"sniContainerRefs"`
+	// The key/value pairs to associate with the listener.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
+	// The security policy used by the listener.
+	TlsCiphersPolicy pulumi.StringInput `pulumi:"tlsCiphersPolicy"`
+	// The time when the listener was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
 func (GetListenersListenerArgs) ElementType() reflect.Type {
@@ -258,12 +476,22 @@ func (o GetListenersListenerOutput) ToGetListenersListenerOutputWithContext(ctx 
 	return o
 }
 
+// The ID of the CA certificate used by the listener.
+func (o GetListenersListenerOutput) ClientCaTlsContainerRef() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ClientCaTlsContainerRef }).(pulumi.StringOutput)
+}
+
 // The maximum number of connections allowed for the listener.
 func (o GetListenersListenerOutput) ConnectionLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetListenersListener) int { return v.ConnectionLimit }).(pulumi.IntOutput)
 }
 
-// The ID of the default pool with which the ELB listener is associated.
+// The time when the listener was created.
+func (o GetListenersListenerOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the default pool with which the listener is associated.
 func (o GetListenersListenerOutput) DefaultPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.DefaultPoolId }).(pulumi.StringOutput)
 }
@@ -273,12 +501,12 @@ func (o GetListenersListenerOutput) DefaultTlsContainerRef() pulumi.StringOutput
 	return o.ApplyT(func(v GetListenersListener) string { return v.DefaultTlsContainerRef }).(pulumi.StringOutput)
 }
 
-// The description of the ELB listener.
+// The description for the listener.
 func (o GetListenersListenerOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Whether the ELB listener uses HTTP/2.
+// Whether the ELB listener uses HTTP/2. Value options: **true**, **false**.
 func (o GetListenersListenerOutput) Http2Enable() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetListenersListener) bool { return v.Http2Enable }).(pulumi.BoolOutput)
 }
@@ -288,8 +516,14 @@ func (o GetListenersListenerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Listener list.
-// The object structure is documented below.
+// Whether to insert HTTP extension headers and sent them to backend servers.
+// The insertHeaders structure is documented below.
+func (o GetListenersListenerOutput) InsertHeaders() GetListenersListenerInsertHeaderArrayOutput {
+	return o.ApplyT(func(v GetListenersListener) []GetListenersListenerInsertHeader { return v.InsertHeaders }).(GetListenersListenerInsertHeaderArrayOutput)
+}
+
+// The list of the associated load balancer.
+// The loadbalancers structure is documented below.
 func (o GetListenersListenerOutput) Loadbalancers() GetListenersListenerLoadbalancerArrayOutput {
 	return o.ApplyT(func(v GetListenersListener) []GetListenersListenerLoadbalancer { return v.Loadbalancers }).(GetListenersListenerLoadbalancerArrayOutput)
 }
@@ -297,6 +531,16 @@ func (o GetListenersListenerOutput) Loadbalancers() GetListenersListenerLoadbala
 // The listener name.
 func (o GetListenersListenerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetListenersListener) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The reason to enable modification protection.
+func (o GetListenersListenerOutput) ProtectionReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ProtectionReason }).(pulumi.StringOutput)
+}
+
+// Whether modification protection is enabled.
+func (o GetListenersListenerOutput) ProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.ProtectionStatus }).(pulumi.StringOutput)
 }
 
 // The listener protocol.\
@@ -314,6 +558,21 @@ func (o GetListenersListenerOutput) ProtocolPort() pulumi.IntOutput {
 // List of the SNI certificate (server certificates with a domain name) IDs used by the listener.
 func (o GetListenersListenerOutput) SniContainerRefs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetListenersListener) []string { return v.SniContainerRefs }).(pulumi.StringArrayOutput)
+}
+
+// The key/value pairs to associate with the listener.
+func (o GetListenersListenerOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetListenersListener) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+// The security policy used by the listener.
+func (o GetListenersListenerOutput) TlsCiphersPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.TlsCiphersPolicy }).(pulumi.StringOutput)
+}
+
+// The time when the listener was updated.
+func (o GetListenersListenerOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListener) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type GetListenersListenerArrayOutput struct{ *pulumi.OutputState }
@@ -334,6 +593,112 @@ func (o GetListenersListenerArrayOutput) Index(i pulumi.IntInput) GetListenersLi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListener {
 		return vs[0].([]GetListenersListener)[vs[1].(int)]
 	}).(GetListenersListenerOutput)
+}
+
+type GetListenersListenerInsertHeader struct {
+	// Whether to transparently transmit the load balancer EIP to backend servers.
+	XForwardedElbIp string `pulumi:"xForwardedElbIp"`
+	// Whether to rewrite the X-Forwarded-Host header.
+	XForwardedHost string `pulumi:"xForwardedHost"`
+}
+
+// GetListenersListenerInsertHeaderInput is an input type that accepts GetListenersListenerInsertHeaderArgs and GetListenersListenerInsertHeaderOutput values.
+// You can construct a concrete instance of `GetListenersListenerInsertHeaderInput` via:
+//
+//	GetListenersListenerInsertHeaderArgs{...}
+type GetListenersListenerInsertHeaderInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerInsertHeaderOutput() GetListenersListenerInsertHeaderOutput
+	ToGetListenersListenerInsertHeaderOutputWithContext(context.Context) GetListenersListenerInsertHeaderOutput
+}
+
+type GetListenersListenerInsertHeaderArgs struct {
+	// Whether to transparently transmit the load balancer EIP to backend servers.
+	XForwardedElbIp pulumi.StringInput `pulumi:"xForwardedElbIp"`
+	// Whether to rewrite the X-Forwarded-Host header.
+	XForwardedHost pulumi.StringInput `pulumi:"xForwardedHost"`
+}
+
+func (GetListenersListenerInsertHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerInsertHeader)(nil)).Elem()
+}
+
+func (i GetListenersListenerInsertHeaderArgs) ToGetListenersListenerInsertHeaderOutput() GetListenersListenerInsertHeaderOutput {
+	return i.ToGetListenersListenerInsertHeaderOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerInsertHeaderArgs) ToGetListenersListenerInsertHeaderOutputWithContext(ctx context.Context) GetListenersListenerInsertHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerInsertHeaderOutput)
+}
+
+// GetListenersListenerInsertHeaderArrayInput is an input type that accepts GetListenersListenerInsertHeaderArray and GetListenersListenerInsertHeaderArrayOutput values.
+// You can construct a concrete instance of `GetListenersListenerInsertHeaderArrayInput` via:
+//
+//	GetListenersListenerInsertHeaderArray{ GetListenersListenerInsertHeaderArgs{...} }
+type GetListenersListenerInsertHeaderArrayInput interface {
+	pulumi.Input
+
+	ToGetListenersListenerInsertHeaderArrayOutput() GetListenersListenerInsertHeaderArrayOutput
+	ToGetListenersListenerInsertHeaderArrayOutputWithContext(context.Context) GetListenersListenerInsertHeaderArrayOutput
+}
+
+type GetListenersListenerInsertHeaderArray []GetListenersListenerInsertHeaderInput
+
+func (GetListenersListenerInsertHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerInsertHeader)(nil)).Elem()
+}
+
+func (i GetListenersListenerInsertHeaderArray) ToGetListenersListenerInsertHeaderArrayOutput() GetListenersListenerInsertHeaderArrayOutput {
+	return i.ToGetListenersListenerInsertHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i GetListenersListenerInsertHeaderArray) ToGetListenersListenerInsertHeaderArrayOutputWithContext(ctx context.Context) GetListenersListenerInsertHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetListenersListenerInsertHeaderArrayOutput)
+}
+
+type GetListenersListenerInsertHeaderOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerInsertHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetListenersListenerInsertHeader)(nil)).Elem()
+}
+
+func (o GetListenersListenerInsertHeaderOutput) ToGetListenersListenerInsertHeaderOutput() GetListenersListenerInsertHeaderOutput {
+	return o
+}
+
+func (o GetListenersListenerInsertHeaderOutput) ToGetListenersListenerInsertHeaderOutputWithContext(ctx context.Context) GetListenersListenerInsertHeaderOutput {
+	return o
+}
+
+// Whether to transparently transmit the load balancer EIP to backend servers.
+func (o GetListenersListenerInsertHeaderOutput) XForwardedElbIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerInsertHeader) string { return v.XForwardedElbIp }).(pulumi.StringOutput)
+}
+
+// Whether to rewrite the X-Forwarded-Host header.
+func (o GetListenersListenerInsertHeaderOutput) XForwardedHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetListenersListenerInsertHeader) string { return v.XForwardedHost }).(pulumi.StringOutput)
+}
+
+type GetListenersListenerInsertHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetListenersListenerInsertHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetListenersListenerInsertHeader)(nil)).Elem()
+}
+
+func (o GetListenersListenerInsertHeaderArrayOutput) ToGetListenersListenerInsertHeaderArrayOutput() GetListenersListenerInsertHeaderArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerInsertHeaderArrayOutput) ToGetListenersListenerInsertHeaderArrayOutputWithContext(ctx context.Context) GetListenersListenerInsertHeaderArrayOutput {
+	return o
+}
+
+func (o GetListenersListenerInsertHeaderArrayOutput) Index(i pulumi.IntInput) GetListenersListenerInsertHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetListenersListenerInsertHeader {
+		return vs[0].([]GetListenersListenerInsertHeader)[vs[1].(int)]
+	}).(GetListenersListenerInsertHeaderOutput)
 }
 
 type GetListenersListenerLoadbalancer struct {
@@ -454,6 +819,10 @@ type GetPoolsPool struct {
 	// Indicates whether connections in the same session will be processed by the same pool member or not.
 	// The object structure is documented below.
 	Persistences []GetPoolsPoolPersistence `pulumi:"persistences"`
+	// The reason to enable modification protection.
+	ProtectionReason string `pulumi:"protectionReason"`
+	// Whether modification protection is enabled.
+	ProtectionStatus string `pulumi:"protectionStatus"`
 	// Specifies the protocol of the ELB pool. This can either be TCP, UDP or HTTP.
 	Protocol string `pulumi:"protocol"`
 }
@@ -490,6 +859,10 @@ type GetPoolsPoolArgs struct {
 	// Indicates whether connections in the same session will be processed by the same pool member or not.
 	// The object structure is documented below.
 	Persistences GetPoolsPoolPersistenceArrayInput `pulumi:"persistences"`
+	// The reason to enable modification protection.
+	ProtectionReason pulumi.StringInput `pulumi:"protectionReason"`
+	// Whether modification protection is enabled.
+	ProtectionStatus pulumi.StringInput `pulumi:"protectionStatus"`
 	// Specifies the protocol of the ELB pool. This can either be TCP, UDP or HTTP.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
 }
@@ -590,6 +963,16 @@ func (o GetPoolsPoolOutput) Name() pulumi.StringOutput {
 // The object structure is documented below.
 func (o GetPoolsPoolOutput) Persistences() GetPoolsPoolPersistenceArrayOutput {
 	return o.ApplyT(func(v GetPoolsPool) []GetPoolsPoolPersistence { return v.Persistences }).(GetPoolsPoolPersistenceArrayOutput)
+}
+
+// The reason to enable modification protection.
+func (o GetPoolsPoolOutput) ProtectionReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolsPool) string { return v.ProtectionReason }).(pulumi.StringOutput)
+}
+
+// Whether modification protection is enabled.
+func (o GetPoolsPoolOutput) ProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolsPool) string { return v.ProtectionStatus }).(pulumi.StringOutput)
 }
 
 // Specifies the protocol of the ELB pool. This can either be TCP, UDP or HTTP.
@@ -911,6 +1294,8 @@ func (o GetPoolsPoolMemberArrayOutput) Index(i pulumi.IntInput) GetPoolsPoolMemb
 type GetPoolsPoolPersistence struct {
 	// The name of the cookie if persistence mode is set appropriately.
 	CookieName string `pulumi:"cookieName"`
+	// The sticky session timeout duration in minutes.
+	Timeout int `pulumi:"timeout"`
 	// The type of persistence mode.
 	Type string `pulumi:"type"`
 }
@@ -929,6 +1314,8 @@ type GetPoolsPoolPersistenceInput interface {
 type GetPoolsPoolPersistenceArgs struct {
 	// The name of the cookie if persistence mode is set appropriately.
 	CookieName pulumi.StringInput `pulumi:"cookieName"`
+	// The sticky session timeout duration in minutes.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
 	// The type of persistence mode.
 	Type pulumi.StringInput `pulumi:"type"`
 }
@@ -989,6 +1376,11 @@ func (o GetPoolsPoolPersistenceOutput) CookieName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPoolPersistence) string { return v.CookieName }).(pulumi.StringOutput)
 }
 
+// The sticky session timeout duration in minutes.
+func (o GetPoolsPoolPersistenceOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPoolsPoolPersistence) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
 // The type of persistence mode.
 func (o GetPoolsPoolPersistenceOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolsPoolPersistence) string { return v.Type }).(pulumi.StringOutput)
@@ -1015,10 +1407,14 @@ func (o GetPoolsPoolPersistenceArrayOutput) Index(i pulumi.IntInput) GetPoolsPoo
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerInsertHeadersInput)(nil)).Elem(), ListenerInsertHeadersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListenerInsertHeadersPtrInput)(nil)).Elem(), ListenerInsertHeadersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolPersistenceInput)(nil)).Elem(), PoolPersistenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolPersistenceArrayInput)(nil)).Elem(), PoolPersistenceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerInput)(nil)).Elem(), GetListenersListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerArrayInput)(nil)).Elem(), GetListenersListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerInsertHeaderInput)(nil)).Elem(), GetListenersListenerInsertHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerInsertHeaderArrayInput)(nil)).Elem(), GetListenersListenerInsertHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerLoadbalancerInput)(nil)).Elem(), GetListenersListenerLoadbalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetListenersListenerLoadbalancerArrayInput)(nil)).Elem(), GetListenersListenerLoadbalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolInput)(nil)).Elem(), GetPoolsPoolArgs{})
@@ -1031,10 +1427,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolMemberArrayInput)(nil)).Elem(), GetPoolsPoolMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolPersistenceInput)(nil)).Elem(), GetPoolsPoolPersistenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolsPoolPersistenceArrayInput)(nil)).Elem(), GetPoolsPoolPersistenceArray{})
+	pulumi.RegisterOutputType(ListenerInsertHeadersOutput{})
+	pulumi.RegisterOutputType(ListenerInsertHeadersPtrOutput{})
 	pulumi.RegisterOutputType(PoolPersistenceOutput{})
 	pulumi.RegisterOutputType(PoolPersistenceArrayOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerArrayOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerInsertHeaderOutput{})
+	pulumi.RegisterOutputType(GetListenersListenerInsertHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerLoadbalancerOutput{})
 	pulumi.RegisterOutputType(GetListenersListenerLoadbalancerArrayOutput{})
 	pulumi.RegisterOutputType(GetPoolsPoolOutput{})

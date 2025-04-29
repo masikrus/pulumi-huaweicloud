@@ -17,6 +17,7 @@ class StreamArgs:
                  group_id: pulumi.Input[str],
                  stream_name: pulumi.Input[str],
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
+                 is_favorite: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  ttl_in_days: Optional[pulumi.Input[int]] = None):
@@ -28,6 +29,8 @@ class StreamArgs:
                resource.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[bool] is_favorite: Specifies whether to favorite the log stream.  
+               Defaults to **false**.
         :param pulumi.Input[str] region: Specifies the region in which to create the log stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new log stream resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the key/value pairs of the log stream.
@@ -38,6 +41,8 @@ class StreamArgs:
         pulumi.set(__self__, "stream_name", stream_name)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if is_favorite is not None:
+            pulumi.set(__self__, "is_favorite", is_favorite)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
@@ -85,6 +90,19 @@ class StreamArgs:
         pulumi.set(self, "enterprise_project_id", value)
 
     @property
+    @pulumi.getter(name="isFavorite")
+    def is_favorite(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to favorite the log stream.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "is_favorite")
+
+    @is_favorite.setter
+    def is_favorite(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_favorite", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -130,6 +148,7 @@ class _StreamState:
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  filter_count: Optional[pulumi.Input[int]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
+                 is_favorite: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  stream_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -142,6 +161,8 @@ class _StreamState:
         :param pulumi.Input[int] filter_count: Number of log stream filters.
         :param pulumi.Input[str] group_id: Specifies the ID of a created log group. Changing this parameter will create
                a new resource.
+        :param pulumi.Input[bool] is_favorite: Specifies whether to favorite the log stream.  
+               Defaults to **false**.
         :param pulumi.Input[str] region: Specifies the region in which to create the log stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new log stream resource.
         :param pulumi.Input[str] stream_name: Specifies the log stream name. Changing this parameter will create a new
@@ -158,6 +179,8 @@ class _StreamState:
             pulumi.set(__self__, "filter_count", filter_count)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
+        if is_favorite is not None:
+            pulumi.set(__self__, "is_favorite", is_favorite)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if stream_name is not None:
@@ -218,6 +241,19 @@ class _StreamState:
         pulumi.set(self, "group_id", value)
 
     @property
+    @pulumi.getter(name="isFavorite")
+    def is_favorite(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to favorite the log stream.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "is_favorite")
+
+    @is_favorite.setter
+    def is_favorite(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_favorite", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -276,6 +312,7 @@ class Stream(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
+                 is_favorite: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  stream_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -311,6 +348,8 @@ class Stream(pulumi.CustomResource):
                Changing this parameter will create a new resource.
         :param pulumi.Input[str] group_id: Specifies the ID of a created log group. Changing this parameter will create
                a new resource.
+        :param pulumi.Input[bool] is_favorite: Specifies whether to favorite the log stream.  
+               Defaults to **false**.
         :param pulumi.Input[str] region: Specifies the region in which to create the log stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new log stream resource.
         :param pulumi.Input[str] stream_name: Specifies the log stream name. Changing this parameter will create a new
@@ -366,6 +405,7 @@ class Stream(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
+                 is_favorite: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  stream_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -383,6 +423,7 @@ class Stream(pulumi.CustomResource):
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
+            __props__.__dict__["is_favorite"] = is_favorite
             __props__.__dict__["region"] = region
             if stream_name is None and not opts.urn:
                 raise TypeError("Missing required property 'stream_name'")
@@ -405,6 +446,7 @@ class Stream(pulumi.CustomResource):
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
             filter_count: Optional[pulumi.Input[int]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
+            is_favorite: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             stream_name: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -422,6 +464,8 @@ class Stream(pulumi.CustomResource):
         :param pulumi.Input[int] filter_count: Number of log stream filters.
         :param pulumi.Input[str] group_id: Specifies the ID of a created log group. Changing this parameter will create
                a new resource.
+        :param pulumi.Input[bool] is_favorite: Specifies whether to favorite the log stream.  
+               Defaults to **false**.
         :param pulumi.Input[str] region: Specifies the region in which to create the log stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new log stream resource.
         :param pulumi.Input[str] stream_name: Specifies the log stream name. Changing this parameter will create a new
@@ -438,6 +482,7 @@ class Stream(pulumi.CustomResource):
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["filter_count"] = filter_count
         __props__.__dict__["group_id"] = group_id
+        __props__.__dict__["is_favorite"] = is_favorite
         __props__.__dict__["region"] = region
         __props__.__dict__["stream_name"] = stream_name
         __props__.__dict__["tags"] = tags
@@ -477,6 +522,15 @@ class Stream(pulumi.CustomResource):
         a new resource.
         """
         return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="isFavorite")
+    def is_favorite(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies whether to favorite the log stream.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "is_favorite")
 
     @property
     @pulumi.getter

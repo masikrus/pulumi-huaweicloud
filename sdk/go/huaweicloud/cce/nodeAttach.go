@@ -69,6 +69,9 @@ type NodeAttach struct {
 	EcsGroupId pulumi.StringOutput `pulumi:"ecsGroupId"`
 	// The enterprise project ID of the CCE node.
 	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
+	// The extension NICs of the node.
+	// The object structure is documented below.
+	ExtensionNics NodeAttachExtensionNicArrayOutput `pulumi:"extensionNics"`
 	// The flavor ID of the CCE node.
 	FlavorId pulumi.StringOutput `pulumi:"flavorId"`
 	// Specifies the hostname config of the kubernetes node,
@@ -208,6 +211,9 @@ type nodeAttachState struct {
 	EcsGroupId *string `pulumi:"ecsGroupId"`
 	// The enterprise project ID of the CCE node.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
+	// The extension NICs of the node.
+	// The object structure is documented below.
+	ExtensionNics []NodeAttachExtensionNic `pulumi:"extensionNics"`
 	// The flavor ID of the CCE node.
 	FlavorId *string `pulumi:"flavorId"`
 	// Specifies the hostname config of the kubernetes node,
@@ -309,6 +315,9 @@ type NodeAttachState struct {
 	EcsGroupId pulumi.StringPtrInput
 	// The enterprise project ID of the CCE node.
 	EnterpriseProjectId pulumi.StringPtrInput
+	// The extension NICs of the node.
+	// The object structure is documented below.
+	ExtensionNics NodeAttachExtensionNicArrayInput
 	// The flavor ID of the CCE node.
 	FlavorId pulumi.StringPtrInput
 	// Specifies the hostname config of the kubernetes node,
@@ -678,6 +687,12 @@ func (o NodeAttachOutput) EcsGroupId() pulumi.StringOutput {
 // The enterprise project ID of the CCE node.
 func (o NodeAttachOutput) EnterpriseProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodeAttach) pulumi.StringOutput { return v.EnterpriseProjectId }).(pulumi.StringOutput)
+}
+
+// The extension NICs of the node.
+// The object structure is documented below.
+func (o NodeAttachOutput) ExtensionNics() NodeAttachExtensionNicArrayOutput {
+	return o.ApplyT(func(v *NodeAttach) NodeAttachExtensionNicArrayOutput { return v.ExtensionNics }).(NodeAttachExtensionNicArrayOutput)
 }
 
 // The flavor ID of the CCE node.

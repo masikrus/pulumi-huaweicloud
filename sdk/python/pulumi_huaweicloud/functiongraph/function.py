@@ -50,6 +50,7 @@ class FunctionArgs:
                  log_group_name: Optional[pulumi.Input[str]] = None,
                  log_stream_id: Optional[pulumi.Input[str]] = None,
                  log_stream_name: Optional[pulumi.Input[str]] = None,
+                 lts_custom_tag: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_instance_num: Optional[pulumi.Input[str]] = None,
                  mount_user_group_id: Optional[pulumi.Input[int]] = None,
                  mount_user_id: Optional[pulumi.Input[int]] = None,
@@ -165,6 +166,7 @@ class FunctionArgs:
         :param pulumi.Input[str] log_group_name: Specifies the LTS group name for collecting logs.
         :param pulumi.Input[str] log_stream_id: Specifies the LTS stream IID for collecting logs.
         :param pulumi.Input[str] log_stream_name: Specifies the LTS stream name for collecting logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] lts_custom_tag: Specifies the custom tags configuration that used to filter the LTS logs.
         :param pulumi.Input[str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -264,6 +266,8 @@ class FunctionArgs:
             pulumi.set(__self__, "log_stream_id", log_stream_id)
         if log_stream_name is not None:
             pulumi.set(__self__, "log_stream_name", log_stream_name)
+        if lts_custom_tag is not None:
+            pulumi.set(__self__, "lts_custom_tag", lts_custom_tag)
         if max_instance_num is not None:
             pulumi.set(__self__, "max_instance_num", max_instance_num)
         if mount_user_group_id is not None:
@@ -778,6 +782,18 @@ class FunctionArgs:
         pulumi.set(self, "log_stream_name", value)
 
     @property
+    @pulumi.getter(name="ltsCustomTag")
+    def lts_custom_tag(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Specifies the custom tags configuration that used to filter the LTS logs.
+        """
+        return pulumi.get(self, "lts_custom_tag")
+
+    @lts_custom_tag.setter
+    def lts_custom_tag(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "lts_custom_tag", value)
+
+    @property
     @pulumi.getter(name="maxInstanceNum")
     def max_instance_num(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1050,6 +1066,8 @@ class _FunctionState:
                  log_group_name: Optional[pulumi.Input[str]] = None,
                  log_stream_id: Optional[pulumi.Input[str]] = None,
                  log_stream_name: Optional[pulumi.Input[str]] = None,
+                 lts_custom_tag: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 lts_custom_tag_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_instance_num: Optional[pulumi.Input[str]] = None,
                  memory_size: Optional[pulumi.Input[int]] = None,
                  mount_user_group_id: Optional[pulumi.Input[int]] = None,
@@ -1145,6 +1163,9 @@ class _FunctionState:
         :param pulumi.Input[str] log_group_name: Specifies the LTS group name for collecting logs.
         :param pulumi.Input[str] log_stream_id: Specifies the LTS stream IID for collecting logs.
         :param pulumi.Input[str] log_stream_name: Specifies the LTS stream name for collecting logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] lts_custom_tag: Specifies the custom tags configuration that used to filter the LTS logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
+               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -1268,6 +1289,10 @@ class _FunctionState:
             pulumi.set(__self__, "log_stream_id", log_stream_id)
         if log_stream_name is not None:
             pulumi.set(__self__, "log_stream_name", log_stream_name)
+        if lts_custom_tag is not None:
+            pulumi.set(__self__, "lts_custom_tag", lts_custom_tag)
+        if lts_custom_tag_origin is not None:
+            pulumi.set(__self__, "lts_custom_tag_origin", lts_custom_tag_origin)
         if max_instance_num is not None:
             pulumi.set(__self__, "max_instance_num", max_instance_num)
         if memory_size is not None:
@@ -1734,6 +1759,31 @@ class _FunctionState:
         pulumi.set(self, "log_stream_name", value)
 
     @property
+    @pulumi.getter(name="ltsCustomTag")
+    def lts_custom_tag(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Specifies the custom tags configuration that used to filter the LTS logs.
+        """
+        return pulumi.get(self, "lts_custom_tag")
+
+    @lts_custom_tag.setter
+    def lts_custom_tag(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "lts_custom_tag", value)
+
+    @property
+    @pulumi.getter(name="ltsCustomTagOrigin")
+    def lts_custom_tag_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with the new value next
+        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        """
+        return pulumi.get(self, "lts_custom_tag_origin")
+
+    @lts_custom_tag_origin.setter
+    def lts_custom_tag_origin(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "lts_custom_tag_origin", value)
+
+    @property
     @pulumi.getter(name="maxInstanceNum")
     def max_instance_num(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2090,6 +2140,7 @@ class Function(pulumi.CustomResource):
                  log_group_name: Optional[pulumi.Input[str]] = None,
                  log_stream_id: Optional[pulumi.Input[str]] = None,
                  log_stream_name: Optional[pulumi.Input[str]] = None,
+                 lts_custom_tag: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_instance_num: Optional[pulumi.Input[str]] = None,
                  memory_size: Optional[pulumi.Input[int]] = None,
                  mount_user_group_id: Optional[pulumi.Input[int]] = None,
@@ -2296,6 +2347,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] log_group_name: Specifies the LTS group name for collecting logs.
         :param pulumi.Input[str] log_stream_id: Specifies the LTS stream IID for collecting logs.
         :param pulumi.Input[str] log_stream_name: Specifies the LTS stream name for collecting logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] lts_custom_tag: Specifies the custom tags configuration that used to filter the LTS logs.
         :param pulumi.Input[str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -2519,6 +2571,7 @@ class Function(pulumi.CustomResource):
                  log_group_name: Optional[pulumi.Input[str]] = None,
                  log_stream_id: Optional[pulumi.Input[str]] = None,
                  log_stream_name: Optional[pulumi.Input[str]] = None,
+                 lts_custom_tag: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_instance_num: Optional[pulumi.Input[str]] = None,
                  memory_size: Optional[pulumi.Input[int]] = None,
                  mount_user_group_id: Optional[pulumi.Input[int]] = None,
@@ -2581,6 +2634,7 @@ class Function(pulumi.CustomResource):
             __props__.__dict__["log_group_name"] = log_group_name
             __props__.__dict__["log_stream_id"] = log_stream_id
             __props__.__dict__["log_stream_name"] = log_stream_name
+            __props__.__dict__["lts_custom_tag"] = lts_custom_tag
             __props__.__dict__["max_instance_num"] = max_instance_num
             if memory_size is None and not opts.urn:
                 raise TypeError("Missing required property 'memory_size'")
@@ -2615,6 +2669,7 @@ class Function(pulumi.CustomResource):
                 warnings.warn("""use agency instead""", DeprecationWarning)
                 pulumi.log.warn("""xrole is deprecated: use agency instead""")
             __props__.__dict__["xrole"] = xrole
+            __props__.__dict__["lts_custom_tag_origin"] = None
             __props__.__dict__["urn"] = None
             __props__.__dict__["version"] = None
         super(Function, __self__).__init__(
@@ -2658,6 +2713,8 @@ class Function(pulumi.CustomResource):
             log_group_name: Optional[pulumi.Input[str]] = None,
             log_stream_id: Optional[pulumi.Input[str]] = None,
             log_stream_name: Optional[pulumi.Input[str]] = None,
+            lts_custom_tag: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            lts_custom_tag_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             max_instance_num: Optional[pulumi.Input[str]] = None,
             memory_size: Optional[pulumi.Input[int]] = None,
             mount_user_group_id: Optional[pulumi.Input[int]] = None,
@@ -2758,6 +2815,9 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] log_group_name: Specifies the LTS group name for collecting logs.
         :param pulumi.Input[str] log_stream_id: Specifies the LTS stream IID for collecting logs.
         :param pulumi.Input[str] log_stream_name: Specifies the LTS stream name for collecting logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] lts_custom_tag: Specifies the custom tags configuration that used to filter the LTS logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
+               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -2854,6 +2914,8 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["log_group_name"] = log_group_name
         __props__.__dict__["log_stream_id"] = log_stream_id
         __props__.__dict__["log_stream_name"] = log_stream_name
+        __props__.__dict__["lts_custom_tag"] = lts_custom_tag
+        __props__.__dict__["lts_custom_tag_origin"] = lts_custom_tag_origin
         __props__.__dict__["max_instance_num"] = max_instance_num
         __props__.__dict__["memory_size"] = memory_size
         __props__.__dict__["mount_user_group_id"] = mount_user_group_id
@@ -3165,6 +3227,23 @@ class Function(pulumi.CustomResource):
         Specifies the LTS stream name for collecting logs.
         """
         return pulumi.get(self, "log_stream_name")
+
+    @property
+    @pulumi.getter(name="ltsCustomTag")
+    def lts_custom_tag(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Specifies the custom tags configuration that used to filter the LTS logs.
+        """
+        return pulumi.get(self, "lts_custom_tag")
+
+    @property
+    @pulumi.getter(name="ltsCustomTagOrigin")
+    def lts_custom_tag_origin(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with the new value next
+        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        """
+        return pulumi.get(self, "lts_custom_tag_origin")
 
     @property
     @pulumi.getter(name="maxInstanceNum")

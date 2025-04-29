@@ -534,16 +534,19 @@ class GroupArgs:
 @pulumi.input_type
 class _GroupState:
     def __init__(__self__, *,
+                 activity_type: Optional[pulumi.Input[str]] = None,
                  agency_name: Optional[pulumi.Input[str]] = None,
                  availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  available_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cool_down_time: Optional[pulumi.Input[int]] = None,
+                 create_time: Optional[pulumi.Input[str]] = None,
                  current_instance_number: Optional[pulumi.Input[int]] = None,
                  delete_instances: Optional[pulumi.Input[str]] = None,
                  delete_publicip: Optional[pulumi.Input[bool]] = None,
                  delete_volume: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  desire_instance_number: Optional[pulumi.Input[int]] = None,
+                 detail: Optional[pulumi.Input[str]] = None,
                  enable: Optional[pulumi.Input[bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  force_delete: Optional[pulumi.Input[bool]] = None,
@@ -552,6 +555,7 @@ class _GroupState:
                  health_periodic_audit_time: Optional[pulumi.Input[int]] = None,
                  instance_terminate_policy: Optional[pulumi.Input[str]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_scaling: Optional[pulumi.Input[bool]] = None,
                  lb_listener_id: Optional[pulumi.Input[str]] = None,
                  lbaas_listeners: Optional[pulumi.Input[Sequence[pulumi.Input['GroupLbaasListenerArgs']]]] = None,
                  max_instance_number: Optional[pulumi.Input[int]] = None,
@@ -561,6 +565,7 @@ class _GroupState:
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  scaling_configuration_id: Optional[pulumi.Input[str]] = None,
+                 scaling_configuration_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_name: Optional[pulumi.Input[str]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input['GroupSecurityGroupArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -568,6 +573,7 @@ class _GroupState:
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+        :param pulumi.Input[str] activity_type: The scaling activity type of the AS group.
         :param pulumi.Input[str] agency_name: Specifies the IAM agency name. If you change the agency,
                the new agency will be available for ECSs scaled out after the change.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] availability_zones: Specifies the availability zones in which to create the instances in the
@@ -575,6 +581,7 @@ class _GroupState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] available_zones: schema: Deprecated; use availability_zones instead
         :param pulumi.Input[int] cool_down_time: Specifies the cooling duration (in seconds). The value ranges from `0` to `86,400`.
                Defaults to `300`.
+        :param pulumi.Input[str] create_time: The creation time of the AS group.
         :param pulumi.Input[int] current_instance_number: The number of current instances in the AS group.
         :param pulumi.Input[str] delete_instances: Specifies whether to delete the instances in the AS group when deleting
                the AS group. The options are **yes** and **no**.
@@ -586,6 +593,7 @@ class _GroupState:
                The value can contain `0` to `256` characters.
         :param pulumi.Input[int] desire_instance_number: Specifies the expected number of instances. The default value is the
                minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
+        :param pulumi.Input[str] detail: The details about the AS group. If a scaling action fails, this parameter is used to record errors.
         :param pulumi.Input[bool] enable: Specifies whether to enable the AS Group. Defaults to **true**.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the AS group.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the AS group, remove the ECS instances and
@@ -601,6 +609,7 @@ class _GroupState:
         :param pulumi.Input[str] instance_terminate_policy: Specifies the instance removal policy. The policy has four
                options: **OLD_CONFIG_OLD_INSTANCE** (default), **OLD_CONFIG_NEW_INSTANCE**, **OLD_INSTANCE**, and **NEW_INSTANCE**.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instances: The instances IDs of the AS group.
+        :param pulumi.Input[bool] is_scaling: The scaling flag of the AS group.
         :param pulumi.Input[str] lb_listener_id: The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
         :param pulumi.Input[Sequence[pulumi.Input['GroupLbaasListenerArgs']]] lbaas_listeners: Specifies an array of one or more enhanced load balancer. The system supports
                the binding of up to six load balancers. The lbaas_listeners structure is documented below.
@@ -616,6 +625,7 @@ class _GroupState:
                If omitted, the provider-level region will be used. Changing this creates a new group.
         :param pulumi.Input[str] scaling_configuration_id: Specifies the configuration ID which defines configurations
                of instances in the AS group.
+        :param pulumi.Input[str] scaling_configuration_name: The name of the AS configuration to which the AS group belongs.
         :param pulumi.Input[str] scaling_group_name: Specifies the name of the scaling group. The name can contain
                letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.
         :param pulumi.Input[Sequence[pulumi.Input['GroupSecurityGroupArgs']]] security_groups: Specifies an array of one or more security group IDs to associate with the group.
@@ -624,6 +634,8 @@ class _GroupState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies the key/value pairs to associate with the AS group.
         :param pulumi.Input[str] vpc_id: Specifies the VPC ID. Changing this creates a new group.
         """
+        if activity_type is not None:
+            pulumi.set(__self__, "activity_type", activity_type)
         if agency_name is not None:
             pulumi.set(__self__, "agency_name", agency_name)
         if availability_zones is not None:
@@ -632,6 +644,8 @@ class _GroupState:
             pulumi.set(__self__, "available_zones", available_zones)
         if cool_down_time is not None:
             pulumi.set(__self__, "cool_down_time", cool_down_time)
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
         if current_instance_number is not None:
             pulumi.set(__self__, "current_instance_number", current_instance_number)
         if delete_instances is not None:
@@ -644,6 +658,8 @@ class _GroupState:
             pulumi.set(__self__, "description", description)
         if desire_instance_number is not None:
             pulumi.set(__self__, "desire_instance_number", desire_instance_number)
+        if detail is not None:
+            pulumi.set(__self__, "detail", detail)
         if enable is not None:
             pulumi.set(__self__, "enable", enable)
         if enterprise_project_id is not None:
@@ -660,6 +676,8 @@ class _GroupState:
             pulumi.set(__self__, "instance_terminate_policy", instance_terminate_policy)
         if instances is not None:
             pulumi.set(__self__, "instances", instances)
+        if is_scaling is not None:
+            pulumi.set(__self__, "is_scaling", is_scaling)
         if lb_listener_id is not None:
             warnings.warn("""use lbaas_listeners instead""", DeprecationWarning)
             pulumi.log.warn("""lb_listener_id is deprecated: use lbaas_listeners instead""")
@@ -681,6 +699,8 @@ class _GroupState:
             pulumi.set(__self__, "region", region)
         if scaling_configuration_id is not None:
             pulumi.set(__self__, "scaling_configuration_id", scaling_configuration_id)
+        if scaling_configuration_name is not None:
+            pulumi.set(__self__, "scaling_configuration_name", scaling_configuration_name)
         if scaling_group_name is not None:
             pulumi.set(__self__, "scaling_group_name", scaling_group_name)
         if security_groups is not None:
@@ -691,6 +711,18 @@ class _GroupState:
             pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="activityType")
+    def activity_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The scaling activity type of the AS group.
+        """
+        return pulumi.get(self, "activity_type")
+
+    @activity_type.setter
+    def activity_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "activity_type", value)
 
     @property
     @pulumi.getter(name="agencyName")
@@ -742,6 +774,18 @@ class _GroupState:
     @cool_down_time.setter
     def cool_down_time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cool_down_time", value)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The creation time of the AS group.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create_time", value)
 
     @property
     @pulumi.getter(name="currentInstanceNumber")
@@ -819,6 +863,18 @@ class _GroupState:
     @desire_instance_number.setter
     def desire_instance_number(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "desire_instance_number", value)
+
+    @property
+    @pulumi.getter
+    def detail(self) -> Optional[pulumi.Input[str]]:
+        """
+        The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+        """
+        return pulumi.get(self, "detail")
+
+    @detail.setter
+    def detail(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detail", value)
 
     @property
     @pulumi.getter
@@ -922,6 +978,18 @@ class _GroupState:
     @instances.setter
     def instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instances", value)
+
+    @property
+    @pulumi.getter(name="isScaling")
+    def is_scaling(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The scaling flag of the AS group.
+        """
+        return pulumi.get(self, "is_scaling")
+
+    @is_scaling.setter
+    def is_scaling(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_scaling", value)
 
     @property
     @pulumi.getter(name="lbListenerId")
@@ -1036,6 +1104,18 @@ class _GroupState:
     @scaling_configuration_id.setter
     def scaling_configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "scaling_configuration_id", value)
+
+    @property
+    @pulumi.getter(name="scalingConfigurationName")
+    def scaling_configuration_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the AS configuration to which the AS group belongs.
+        """
+        return pulumi.get(self, "scaling_configuration_name")
+
+    @scaling_configuration_name.setter
+    def scaling_configuration_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scaling_configuration_name", value)
 
     @property
     @pulumi.getter(name="scalingGroupName")
@@ -1511,8 +1591,13 @@ class Group(pulumi.CustomResource):
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["activity_type"] = None
+            __props__.__dict__["create_time"] = None
             __props__.__dict__["current_instance_number"] = None
+            __props__.__dict__["detail"] = None
             __props__.__dict__["instances"] = None
+            __props__.__dict__["is_scaling"] = None
+            __props__.__dict__["scaling_configuration_name"] = None
             __props__.__dict__["status"] = None
         super(Group, __self__).__init__(
             'huaweicloud:As/group:Group',
@@ -1524,16 +1609,19 @@ class Group(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            activity_type: Optional[pulumi.Input[str]] = None,
             agency_name: Optional[pulumi.Input[str]] = None,
             availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             available_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             cool_down_time: Optional[pulumi.Input[int]] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
             current_instance_number: Optional[pulumi.Input[int]] = None,
             delete_instances: Optional[pulumi.Input[str]] = None,
             delete_publicip: Optional[pulumi.Input[bool]] = None,
             delete_volume: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             desire_instance_number: Optional[pulumi.Input[int]] = None,
+            detail: Optional[pulumi.Input[str]] = None,
             enable: Optional[pulumi.Input[bool]] = None,
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
             force_delete: Optional[pulumi.Input[bool]] = None,
@@ -1542,6 +1630,7 @@ class Group(pulumi.CustomResource):
             health_periodic_audit_time: Optional[pulumi.Input[int]] = None,
             instance_terminate_policy: Optional[pulumi.Input[str]] = None,
             instances: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            is_scaling: Optional[pulumi.Input[bool]] = None,
             lb_listener_id: Optional[pulumi.Input[str]] = None,
             lbaas_listeners: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupLbaasListenerArgs']]]]] = None,
             max_instance_number: Optional[pulumi.Input[int]] = None,
@@ -1551,6 +1640,7 @@ class Group(pulumi.CustomResource):
             notifications: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             scaling_configuration_id: Optional[pulumi.Input[str]] = None,
+            scaling_configuration_name: Optional[pulumi.Input[str]] = None,
             scaling_group_name: Optional[pulumi.Input[str]] = None,
             security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupSecurityGroupArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -1563,6 +1653,7 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] activity_type: The scaling activity type of the AS group.
         :param pulumi.Input[str] agency_name: Specifies the IAM agency name. If you change the agency,
                the new agency will be available for ECSs scaled out after the change.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] availability_zones: Specifies the availability zones in which to create the instances in the
@@ -1570,6 +1661,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] available_zones: schema: Deprecated; use availability_zones instead
         :param pulumi.Input[int] cool_down_time: Specifies the cooling duration (in seconds). The value ranges from `0` to `86,400`.
                Defaults to `300`.
+        :param pulumi.Input[str] create_time: The creation time of the AS group.
         :param pulumi.Input[int] current_instance_number: The number of current instances in the AS group.
         :param pulumi.Input[str] delete_instances: Specifies whether to delete the instances in the AS group when deleting
                the AS group. The options are **yes** and **no**.
@@ -1581,6 +1673,7 @@ class Group(pulumi.CustomResource):
                The value can contain `0` to `256` characters.
         :param pulumi.Input[int] desire_instance_number: Specifies the expected number of instances. The default value is the
                minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
+        :param pulumi.Input[str] detail: The details about the AS group. If a scaling action fails, this parameter is used to record errors.
         :param pulumi.Input[bool] enable: Specifies whether to enable the AS Group. Defaults to **true**.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the AS group.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the AS group, remove the ECS instances and
@@ -1596,6 +1689,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] instance_terminate_policy: Specifies the instance removal policy. The policy has four
                options: **OLD_CONFIG_OLD_INSTANCE** (default), **OLD_CONFIG_NEW_INSTANCE**, **OLD_INSTANCE**, and **NEW_INSTANCE**.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instances: The instances IDs of the AS group.
+        :param pulumi.Input[bool] is_scaling: The scaling flag of the AS group.
         :param pulumi.Input[str] lb_listener_id: The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupLbaasListenerArgs']]]] lbaas_listeners: Specifies an array of one or more enhanced load balancer. The system supports
                the binding of up to six load balancers. The lbaas_listeners structure is documented below.
@@ -1611,6 +1705,7 @@ class Group(pulumi.CustomResource):
                If omitted, the provider-level region will be used. Changing this creates a new group.
         :param pulumi.Input[str] scaling_configuration_id: Specifies the configuration ID which defines configurations
                of instances in the AS group.
+        :param pulumi.Input[str] scaling_configuration_name: The name of the AS configuration to which the AS group belongs.
         :param pulumi.Input[str] scaling_group_name: Specifies the name of the scaling group. The name can contain
                letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupSecurityGroupArgs']]]] security_groups: Specifies an array of one or more security group IDs to associate with the group.
@@ -1623,16 +1718,19 @@ class Group(pulumi.CustomResource):
 
         __props__ = _GroupState.__new__(_GroupState)
 
+        __props__.__dict__["activity_type"] = activity_type
         __props__.__dict__["agency_name"] = agency_name
         __props__.__dict__["availability_zones"] = availability_zones
         __props__.__dict__["available_zones"] = available_zones
         __props__.__dict__["cool_down_time"] = cool_down_time
+        __props__.__dict__["create_time"] = create_time
         __props__.__dict__["current_instance_number"] = current_instance_number
         __props__.__dict__["delete_instances"] = delete_instances
         __props__.__dict__["delete_publicip"] = delete_publicip
         __props__.__dict__["delete_volume"] = delete_volume
         __props__.__dict__["description"] = description
         __props__.__dict__["desire_instance_number"] = desire_instance_number
+        __props__.__dict__["detail"] = detail
         __props__.__dict__["enable"] = enable
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["force_delete"] = force_delete
@@ -1641,6 +1739,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["health_periodic_audit_time"] = health_periodic_audit_time
         __props__.__dict__["instance_terminate_policy"] = instance_terminate_policy
         __props__.__dict__["instances"] = instances
+        __props__.__dict__["is_scaling"] = is_scaling
         __props__.__dict__["lb_listener_id"] = lb_listener_id
         __props__.__dict__["lbaas_listeners"] = lbaas_listeners
         __props__.__dict__["max_instance_number"] = max_instance_number
@@ -1650,12 +1749,21 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["notifications"] = notifications
         __props__.__dict__["region"] = region
         __props__.__dict__["scaling_configuration_id"] = scaling_configuration_id
+        __props__.__dict__["scaling_configuration_name"] = scaling_configuration_name
         __props__.__dict__["scaling_group_name"] = scaling_group_name
         __props__.__dict__["security_groups"] = security_groups
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         return Group(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="activityType")
+    def activity_type(self) -> pulumi.Output[str]:
+        """
+        The scaling activity type of the AS group.
+        """
+        return pulumi.get(self, "activity_type")
 
     @property
     @pulumi.getter(name="agencyName")
@@ -1691,6 +1799,14 @@ class Group(pulumi.CustomResource):
         Defaults to `300`.
         """
         return pulumi.get(self, "cool_down_time")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> pulumi.Output[str]:
+        """
+        The creation time of the AS group.
+        """
+        return pulumi.get(self, "create_time")
 
     @property
     @pulumi.getter(name="currentInstanceNumber")
@@ -1744,6 +1860,14 @@ class Group(pulumi.CustomResource):
         minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
         """
         return pulumi.get(self, "desire_instance_number")
+
+    @property
+    @pulumi.getter
+    def detail(self) -> pulumi.Output[str]:
+        """
+        The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+        """
+        return pulumi.get(self, "detail")
 
     @property
     @pulumi.getter
@@ -1815,6 +1939,14 @@ class Group(pulumi.CustomResource):
         The instances IDs of the AS group.
         """
         return pulumi.get(self, "instances")
+
+    @property
+    @pulumi.getter(name="isScaling")
+    def is_scaling(self) -> pulumi.Output[bool]:
+        """
+        The scaling flag of the AS group.
+        """
+        return pulumi.get(self, "is_scaling")
 
     @property
     @pulumi.getter(name="lbListenerId")
@@ -1893,6 +2025,14 @@ class Group(pulumi.CustomResource):
         of instances in the AS group.
         """
         return pulumi.get(self, "scaling_configuration_id")
+
+    @property
+    @pulumi.getter(name="scalingConfigurationName")
+    def scaling_configuration_name(self) -> pulumi.Output[str]:
+        """
+        The name of the AS configuration to which the AS group belongs.
+        """
+        return pulumi.get(self, "scaling_configuration_name")
 
     @property
     @pulumi.getter(name="scalingGroupName")

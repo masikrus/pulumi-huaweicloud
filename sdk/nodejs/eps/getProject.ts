@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  * EG  | huaweicloudEgCustomEventChannel
  * EIP | huaweicloud_vpc_eip<br>huaweicloud_vpc_bandwidth
  * ELB | huaweicloud_elb_loadbalancer<br>huaweicloud_elb_certificate<br>huaweicloud_elb_ipgroup<br>huaweicloud_elb_security_policy
- * ER  | huaweicloudErInstance
+ * ER  | huaweicloud.Er.Instance
  * EVS | huaweicloud.Evs.Volume
  * FGS | huaweicloud.FunctionGraph.Function
  * GA  | huaweicloudGaAccelerator

@@ -143,13 +143,17 @@ export class L7policy extends pulumi.CustomResource {
      */
     public readonly action!: pulumi.Output<string | undefined>;
     /**
-     * The create time of the L7 policy.
+     * The creation time of the L7 policy.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
      * Human-readable description for the L7 Policy.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the enterprise project.
+     */
+    public /*out*/ readonly enterpriseProjectId!: pulumi.Output<string>;
     /**
      * The fixed configuration of the page to which the traffic is
      * redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhanceL7policyEnable` of
@@ -244,6 +248,7 @@ export class L7policy extends pulumi.CustomResource {
             resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["fixedResponseConfig"] = state ? state.fixedResponseConfig : undefined;
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -276,6 +281,7 @@ export class L7policy extends pulumi.CustomResource {
             resourceInputs["redirectUrlConfig"] = args ? args.redirectUrlConfig : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["enterpriseProjectId"] = undefined /*out*/;
             resourceInputs["provisioningStatus"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -301,13 +307,17 @@ export interface L7policyState {
      */
     action?: pulumi.Input<string>;
     /**
-     * The create time of the L7 policy.
+     * The creation time of the L7 policy.
      */
     createdAt?: pulumi.Input<string>;
     /**
      * Human-readable description for the L7 Policy.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the enterprise project.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
     /**
      * The fixed configuration of the page to which the traffic is
      * redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhanceL7policyEnable` of

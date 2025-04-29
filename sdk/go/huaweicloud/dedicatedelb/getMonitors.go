@@ -58,6 +58,8 @@ type GetMonitorsArgs struct {
 	DomainName *string `pulumi:"domainName"`
 	// Specifies the enterprise project ID.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
+	// Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+	HttpMethod *string `pulumi:"httpMethod"`
 	// Specifies the interval between health checks, in seconds.\
 	// The value ranges from `1` to `50`.
 	Interval *int `pulumi:"interval"`
@@ -100,6 +102,8 @@ type GetMonitorsResult struct {
 	// The domain name that HTTP requests are sent to during the health check.
 	DomainName          *string `pulumi:"domainName"`
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
+	// The HTTP method
+	HttpMethod *string `pulumi:"httpMethod"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The interval between health checks, in seconds.
@@ -151,6 +155,8 @@ type GetMonitorsOutputArgs struct {
 	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
 	// Specifies the enterprise project ID.
 	EnterpriseProjectId pulumi.StringPtrInput `pulumi:"enterpriseProjectId"`
+	// Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**.
+	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
 	// Specifies the interval between health checks, in seconds.\
 	// The value ranges from `1` to `50`.
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
@@ -214,6 +220,11 @@ func (o GetMonitorsResultOutput) DomainName() pulumi.StringPtrOutput {
 
 func (o GetMonitorsResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetMonitorsResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
+}
+
+// The HTTP method
+func (o GetMonitorsResultOutput) HttpMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMonitorsResult) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

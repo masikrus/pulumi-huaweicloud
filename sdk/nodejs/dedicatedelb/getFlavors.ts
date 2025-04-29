@@ -31,11 +31,17 @@ export function getFlavors(args?: GetFlavorsArgs, opts?: pulumi.InvokeOptions): 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:DedicatedElb/getFlavors:getFlavors", {
         "bandwidth": args.bandwidth,
+        "category": args.category,
         "cps": args.cps,
+        "flavorId": args.flavorId,
+        "flavorSoldOut": args.flavorSoldOut,
+        "listAll": args.listAll,
         "maxConnections": args.maxConnections,
         "name": args.name,
+        "publicBorderGroup": args.publicBorderGroup,
         "qps": args.qps,
         "region": args.region,
+        "shared": args.shared,
         "type": args.type,
     }, opts);
 }
@@ -49,9 +55,34 @@ export interface GetFlavorsArgs {
      */
     bandwidth?: number;
     /**
+     * Specifies the category.
+     */
+    category?: number;
+    /**
      * Specifies the cps in the flavor.
      */
     cps?: number;
+    /**
+     * Specifies the flavor ID.
+     */
+    flavorId?: string;
+    /**
+     * Specifies whether the flavor is available.
+     * + **true**: indicates the flavor is unavailable.
+     * + **false**: indicates the flavor is available.
+     */
+    flavorSoldOut?: string;
+    /**
+     * Specifies whether return all maximum elastic specifications. Value options: **true**,
+     * **false**.
+     * + If it is set to **true**, all maximum elastic specifications defined by l4ElasticMax and l7ElasticMax are returned.
+     * + If it is set to **false**, only the largest elastic specifications will be returned.
+     * + For Layer 4 load balancers, the specification with the highest cps value is returned. If the cps values are the same,
+     * the specification with the highest bandwidth value is returned.
+     * + For Layer 7 load balancers, the specification with highest httpsCps value is returned. If the httpsCps values are
+     * the same, the specification with highest qps value is returned.
+     */
+    listAll?: string;
     /**
      * Specifies the maximum connections in the flavor.
      */
@@ -61,6 +92,10 @@ export interface GetFlavorsArgs {
      */
     name?: string;
     /**
+     * Specifies the public border group.
+     */
+    publicBorderGroup?: string;
+    /**
      * Specifies the qps in the L7 flavor.
      */
     qps?: number;
@@ -69,6 +104,12 @@ export interface GetFlavorsArgs {
      * used.
      */
     region?: string;
+    /**
+     * Specifies whether the flavor is available to all users. Value options:
+     * + **true**: indicates that the flavor is available to all users.
+     * + **false**: indicates that the flavor is available only to a specific user.
+     */
+    shared?: string;
     /**
      * Specifies the flavor type. Values options:
      * + **L4**: indicates Layer-4 flavor.
@@ -86,15 +127,25 @@ export interface GetFlavorsArgs {
  */
 export interface GetFlavorsResult {
     /**
-     * Bandwidth size(Mbit/s) of the flavor.
+     * Indicates the bandwidth size(Mbit/s) of the flavor.
      */
     readonly bandwidth?: number;
     /**
-     * Cps of the flavor.
+     * Indicates the category.
+     */
+    readonly category?: number;
+    /**
+     * Indicates the cps of the flavor.
      */
     readonly cps?: number;
+    readonly flavorId?: string;
     /**
-     * A list of flavors. Each element contains the following attributes:
+     * Indicates whether the flavor is available.
+     */
+    readonly flavorSoldOut?: string;
+    /**
+     * Indicates the list of flavors.
+     * The flavors structure is documented below.
      */
     readonly flavors: outputs.DedicatedElb.GetFlavorsFlavor[];
     /**
@@ -102,24 +153,33 @@ export interface GetFlavorsResult {
      */
     readonly id: string;
     /**
-     * A list of flavor IDs.
+     * Indicates the list of flavor IDs.
      */
     readonly ids: string[];
+    readonly listAll?: string;
     /**
-     * Maximum connections of the flavor.
+     * Indicates the maximum connections of the flavor.
      */
     readonly maxConnections?: number;
     /**
-     * Name of the flavor.
+     * Indicates the name of the flavor.
      */
     readonly name?: string;
     /**
-     * Qps of the L7 flavor.
+     * Indicates the public border group.
+     */
+    readonly publicBorderGroup?: string;
+    /**
+     * Indicates the qps of the L7 flavor.
      */
     readonly qps?: number;
     readonly region: string;
     /**
-     * Type of the flavor.
+     * Indicates  whether the flavor is available to all users.
+     */
+    readonly shared?: string;
+    /**
+     * Indicates the type of the flavor.
      */
     readonly type?: string;
 }
@@ -137,9 +197,34 @@ export interface GetFlavorsOutputArgs {
      */
     bandwidth?: pulumi.Input<number>;
     /**
+     * Specifies the category.
+     */
+    category?: pulumi.Input<number>;
+    /**
      * Specifies the cps in the flavor.
      */
     cps?: pulumi.Input<number>;
+    /**
+     * Specifies the flavor ID.
+     */
+    flavorId?: pulumi.Input<string>;
+    /**
+     * Specifies whether the flavor is available.
+     * + **true**: indicates the flavor is unavailable.
+     * + **false**: indicates the flavor is available.
+     */
+    flavorSoldOut?: pulumi.Input<string>;
+    /**
+     * Specifies whether return all maximum elastic specifications. Value options: **true**,
+     * **false**.
+     * + If it is set to **true**, all maximum elastic specifications defined by l4ElasticMax and l7ElasticMax are returned.
+     * + If it is set to **false**, only the largest elastic specifications will be returned.
+     * + For Layer 4 load balancers, the specification with the highest cps value is returned. If the cps values are the same,
+     * the specification with the highest bandwidth value is returned.
+     * + For Layer 7 load balancers, the specification with highest httpsCps value is returned. If the httpsCps values are
+     * the same, the specification with highest qps value is returned.
+     */
+    listAll?: pulumi.Input<string>;
     /**
      * Specifies the maximum connections in the flavor.
      */
@@ -149,6 +234,10 @@ export interface GetFlavorsOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * Specifies the public border group.
+     */
+    publicBorderGroup?: pulumi.Input<string>;
+    /**
      * Specifies the qps in the L7 flavor.
      */
     qps?: pulumi.Input<number>;
@@ -157,6 +246,12 @@ export interface GetFlavorsOutputArgs {
      * used.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Specifies whether the flavor is available to all users. Value options:
+     * + **true**: indicates that the flavor is available to all users.
+     * + **false**: indicates that the flavor is available only to a specific user.
+     */
+    shared?: pulumi.Input<string>;
     /**
      * Specifies the flavor type. Values options:
      * + **L4**: indicates Layer-4 flavor.

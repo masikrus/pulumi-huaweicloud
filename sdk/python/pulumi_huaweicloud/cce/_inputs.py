@@ -22,6 +22,7 @@ __all__ = [
     'ClusterUpgradeStrategyArgs',
     'ClusterUpgradeStrategyInPlaceRollingUpdateArgs',
     'NodeAttachDataVolumeArgs',
+    'NodeAttachExtensionNicArgs',
     'NodeAttachHostnameConfigArgs',
     'NodeAttachRootVolumeArgs',
     'NodeAttachStorageArgs',
@@ -871,6 +872,29 @@ class NodeAttachDataVolumeArgs:
 
 
 @pulumi.input_type
+class NodeAttachExtensionNicArgs:
+    def __init__(__self__, *,
+                 subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: The ID of the subnet to which the NIC belongs.
+        """
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet to which the NIC belongs.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+
+@pulumi.input_type
 class NodeAttachHostnameConfigArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str]):
@@ -1489,18 +1513,13 @@ class NodeDataVolumeArgs:
         """
         :param pulumi.Input[int] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] volumetype: Specifies the disk type.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] dss_pool_id: Specifies the DSS pool ID. This field is used only for
-               dedicated storage. Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_params: Specifies the extended parameters.
                The object structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] iops: Specifies the iops of the disk,
                required when `volumetype` is **GPSSD2** or **ESSD2**.
         :param pulumi.Input[str] kms_key_id: Specifies the ID of a KMS key. This is used to encrypt the volume.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
         """
@@ -1530,7 +1549,6 @@ class NodeDataVolumeArgs:
         """
         Specifies the size of a virtual space. Only an integer percentage is supported.
         Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "size")
 
@@ -1543,7 +1561,6 @@ class NodeDataVolumeArgs:
     def volumetype(self) -> pulumi.Input[str]:
         """
         Specifies the disk type.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "volumetype")
 
@@ -1556,7 +1573,6 @@ class NodeDataVolumeArgs:
     def dss_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the DSS pool ID. This field is used only for
-        dedicated storage. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "dss_pool_id")
 
@@ -1579,7 +1595,6 @@ class NodeDataVolumeArgs:
         """
         Specifies the extended parameters.
         The object structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -1614,7 +1629,6 @@ class NodeDataVolumeArgs:
     def kms_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of a KMS key. This is used to encrypt the volume.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "kms_key_id")
 
@@ -1654,27 +1668,24 @@ class NodeExtendParamsArgs:
                  system_reserved_mem: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] agency_name: Specifies the agency name.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] docker_base_size: Specifies the available disk space of a single container on a node,
-               in GB. Changing this parameter will create a new resource.
+               in GB.
         :param pulumi.Input[int] kube_reserved_mem: Specifies the reserved node memory, which is reserved for
-               Kubernetes-related components. Changing this parameter will create a new resource.
+               Kubernetes-related components.
         :param pulumi.Input[int] max_pods: Specifies the maximum number of instances a node is allowed to create.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] nic_threshold: Specifies the ENI pre-binding thresholds.
-               Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+               Example setting: **"0.3:0.6"**.
         :param pulumi.Input[str] node_image_id: Specifies the image ID to create the node.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] node_multi_queue: Specifies the number of ENI queues.
-               Example setting: **"[{\\"queue\\":4}]"**. Changing this parameter will create a new resource.
+               Example setting: **"[{\\"queue\\":4}]"**.
         :param pulumi.Input[str] postinstall: Specifies the script to be executed after installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] preinstall: Specifies the script to be executed before installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] security_reinforcement_type: Specifies the security reinforcement type.
-               The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+               The value can be: **null** or **cybersecurity**.
         :param pulumi.Input[int] system_reserved_mem: Specifies the reserved node memory, which is reserved
-               value for system components. Changing this parameter will create a new resource.
+               value for system components.
         """
         if agency_name is not None:
             pulumi.set(__self__, "agency_name", agency_name)
@@ -1708,7 +1719,6 @@ class NodeExtendParamsArgs:
     def agency_name(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the agency name.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "agency_name")
 
@@ -1721,7 +1731,7 @@ class NodeExtendParamsArgs:
     def docker_base_size(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the available disk space of a single container on a node,
-        in GB. Changing this parameter will create a new resource.
+        in GB.
         """
         return pulumi.get(self, "docker_base_size")
 
@@ -1734,7 +1744,7 @@ class NodeExtendParamsArgs:
     def kube_reserved_mem(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the reserved node memory, which is reserved for
-        Kubernetes-related components. Changing this parameter will create a new resource.
+        Kubernetes-related components.
         """
         return pulumi.get(self, "kube_reserved_mem")
 
@@ -1756,7 +1766,6 @@ class NodeExtendParamsArgs:
     def max_pods(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the maximum number of instances a node is allowed to create.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "max_pods")
 
@@ -1769,7 +1778,7 @@ class NodeExtendParamsArgs:
     def nic_threshold(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ENI pre-binding thresholds.
-        Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+        Example setting: **"0.3:0.6"**.
         """
         return pulumi.get(self, "nic_threshold")
 
@@ -1782,7 +1791,6 @@ class NodeExtendParamsArgs:
     def node_image_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the image ID to create the node.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "node_image_id")
 
@@ -1795,7 +1803,7 @@ class NodeExtendParamsArgs:
     def node_multi_queue(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the number of ENI queues.
-        Example setting: **"[{\\"queue\\":4}]"**. Changing this parameter will create a new resource.
+        Example setting: **"[{\\"queue\\":4}]"**.
         """
         return pulumi.get(self, "node_multi_queue")
 
@@ -1808,7 +1816,7 @@ class NodeExtendParamsArgs:
     def postinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -1821,7 +1829,7 @@ class NodeExtendParamsArgs:
     def preinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -1834,7 +1842,7 @@ class NodeExtendParamsArgs:
     def security_reinforcement_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the security reinforcement type.
-        The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+        The value can be: **null** or **cybersecurity**.
         """
         return pulumi.get(self, "security_reinforcement_type")
 
@@ -1856,7 +1864,7 @@ class NodeExtendParamsArgs:
     def system_reserved_mem(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the reserved node memory, which is reserved
-        value for system components. Changing this parameter will create a new resource.
+        value for system components.
         """
         return pulumi.get(self, "system_reserved_mem")
 
@@ -1871,7 +1879,6 @@ class NodeExtensionNicArgs:
                  subnet_id: pulumi.Input[str]):
         """
         :param pulumi.Input[str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
 
@@ -1880,7 +1887,6 @@ class NodeExtensionNicArgs:
     def subnet_id(self) -> pulumi.Input[str]:
         """
         Specifies the ID of the subnet to which the NIC belongs.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "subnet_id")
 
@@ -1932,16 +1938,12 @@ class NodePoolDataVolumeArgs:
         """
         :param pulumi.Input[int] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[str] volumetype: Specifies the disk type. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] volumetype: Specifies the disk type.
         :param pulumi.Input[str] dss_pool_id: Specifies the DSS pool ID. This field is used only for dedicated storage.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_params: Specifies the disk expansion parameters.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] iops: Specifies the iops of the disk,
                required when `volumetype` is **GPSSD2** or **ESSD2**.
         :param pulumi.Input[str] kms_key_id: Specifies the KMS key ID. This is used to encrypt the volume.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
         """
@@ -1971,7 +1973,6 @@ class NodePoolDataVolumeArgs:
         """
         Specifies the size of a virtual space. Only an integer percentage is supported.
         Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "size")
 
@@ -1983,7 +1984,7 @@ class NodePoolDataVolumeArgs:
     @pulumi.getter
     def volumetype(self) -> pulumi.Input[str]:
         """
-        Specifies the disk type. Changing this parameter will create a new resource.
+        Specifies the disk type.
         """
         return pulumi.get(self, "volumetype")
 
@@ -1996,7 +1997,6 @@ class NodePoolDataVolumeArgs:
     def dss_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the DSS pool ID. This field is used only for dedicated storage.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "dss_pool_id")
 
@@ -2018,7 +2018,6 @@ class NodePoolDataVolumeArgs:
     def extend_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies the disk expansion parameters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -2053,7 +2052,6 @@ class NodePoolDataVolumeArgs:
     def kms_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the KMS key ID. This is used to encrypt the volume.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "kms_key_id")
 
@@ -2093,27 +2091,24 @@ class NodePoolExtendParamsArgs:
                  system_reserved_mem: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] agency_name: Specifies the agency name.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] docker_base_size: Specifies the available disk space of a single container on a node,
-               in GB. Changing this parameter will create a new resource.
+               in GB.
         :param pulumi.Input[int] kube_reserved_mem: Specifies the reserved node memory, which is reserved for
-               Kubernetes-related components. Changing this parameter will create a new resource.
+               Kubernetes-related components.
         :param pulumi.Input[int] max_pods: Specifies the maximum number of instances a node is allowed to create.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] nic_threshold: Specifies the ENI pre-binding thresholds.
-               Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+               Example setting: **"0.3:0.6"**.
         :param pulumi.Input[str] node_image_id: Specifies the image ID to create the node.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] node_multi_queue: Specifies the number of ENI queues.
-               Example setting: **"[{\\"queue\\":4}]"**. Changing this parameter will create a new resource.
+               Example setting: **"[{\\"queue\\":4}]"**.
         :param pulumi.Input[str] postinstall: Specifies the script to be executed after installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] preinstall: Specifies the script to be executed before installation.
-               The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[str] security_reinforcement_type: Specifies the security reinforcement type.
-               The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+               The value can be: **null** or **cybersecurity**.
         :param pulumi.Input[int] system_reserved_mem: Specifies the reserved node memory, which is reserved
-               value for system components. Changing this parameter will create a new resource.
+               value for system components.
         """
         if agency_name is not None:
             pulumi.set(__self__, "agency_name", agency_name)
@@ -2147,7 +2142,6 @@ class NodePoolExtendParamsArgs:
     def agency_name(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the agency name.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "agency_name")
 
@@ -2160,7 +2154,7 @@ class NodePoolExtendParamsArgs:
     def docker_base_size(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the available disk space of a single container on a node,
-        in GB. Changing this parameter will create a new resource.
+        in GB.
         """
         return pulumi.get(self, "docker_base_size")
 
@@ -2173,7 +2167,7 @@ class NodePoolExtendParamsArgs:
     def kube_reserved_mem(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the reserved node memory, which is reserved for
-        Kubernetes-related components. Changing this parameter will create a new resource.
+        Kubernetes-related components.
         """
         return pulumi.get(self, "kube_reserved_mem")
 
@@ -2195,7 +2189,6 @@ class NodePoolExtendParamsArgs:
     def max_pods(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the maximum number of instances a node is allowed to create.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "max_pods")
 
@@ -2208,7 +2201,7 @@ class NodePoolExtendParamsArgs:
     def nic_threshold(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ENI pre-binding thresholds.
-        Example setting: **"0.3:0.6"**. Changing this parameter will create a new resource.
+        Example setting: **"0.3:0.6"**.
         """
         return pulumi.get(self, "nic_threshold")
 
@@ -2221,7 +2214,6 @@ class NodePoolExtendParamsArgs:
     def node_image_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the image ID to create the node.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "node_image_id")
 
@@ -2234,7 +2226,7 @@ class NodePoolExtendParamsArgs:
     def node_multi_queue(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the number of ENI queues.
-        Example setting: **"[{\\"queue\\":4}]"**. Changing this parameter will create a new resource.
+        Example setting: **"[{\\"queue\\":4}]"**.
         """
         return pulumi.get(self, "node_multi_queue")
 
@@ -2247,7 +2239,7 @@ class NodePoolExtendParamsArgs:
     def postinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -2260,7 +2252,7 @@ class NodePoolExtendParamsArgs:
     def preinstall(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -2273,7 +2265,7 @@ class NodePoolExtendParamsArgs:
     def security_reinforcement_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the security reinforcement type.
-        The value can be: **null** or **cybersecurity**. Changing this parameter will create a new resource.
+        The value can be: **null** or **cybersecurity**.
         """
         return pulumi.get(self, "security_reinforcement_type")
 
@@ -2295,7 +2287,7 @@ class NodePoolExtendParamsArgs:
     def system_reserved_mem(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the reserved node memory, which is reserved
-        value for system components. Changing this parameter will create a new resource.
+        value for system components.
         """
         return pulumi.get(self, "system_reserved_mem")
 
@@ -2644,16 +2636,12 @@ class NodePoolRootVolumeArgs:
         """
         :param pulumi.Input[int] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[str] volumetype: Specifies the disk type. Changing this parameter will create a new resource.
+        :param pulumi.Input[str] volumetype: Specifies the disk type.
         :param pulumi.Input[str] dss_pool_id: Specifies the DSS pool ID. This field is used only for dedicated storage.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_params: Specifies the disk expansion parameters.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] iops: Specifies the iops of the disk,
                required when `volumetype` is **GPSSD2** or **ESSD2**.
         :param pulumi.Input[str] kms_key_id: Specifies the KMS key ID. This is used to encrypt the volume.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
         """
@@ -2683,7 +2671,6 @@ class NodePoolRootVolumeArgs:
         """
         Specifies the size of a virtual space. Only an integer percentage is supported.
         Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "size")
 
@@ -2695,7 +2682,7 @@ class NodePoolRootVolumeArgs:
     @pulumi.getter
     def volumetype(self) -> pulumi.Input[str]:
         """
-        Specifies the disk type. Changing this parameter will create a new resource.
+        Specifies the disk type.
         """
         return pulumi.get(self, "volumetype")
 
@@ -2708,7 +2695,6 @@ class NodePoolRootVolumeArgs:
     def dss_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the DSS pool ID. This field is used only for dedicated storage.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "dss_pool_id")
 
@@ -2730,7 +2716,6 @@ class NodePoolRootVolumeArgs:
     def extend_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies the disk expansion parameters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -2765,7 +2750,6 @@ class NodePoolRootVolumeArgs:
     def kms_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the KMS key ID. This is used to encrypt the volume.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "kms_key_id")
 
@@ -2795,10 +2779,8 @@ class NodePoolStorageArgs:
         """
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgs']]] groups: Specifies the storage group consists of multiple storage devices.
                This is used to divide storage space. Structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgs']]] selectors: Specifies the disk selection.
                Matched disks are managed according to match labels and storage type. Structure is documented below.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "selectors", selectors)
@@ -2809,7 +2791,6 @@ class NodePoolStorageArgs:
         """
         Specifies the storage group consists of multiple storage devices.
         This is used to divide storage space. Structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "groups")
 
@@ -2823,7 +2804,6 @@ class NodePoolStorageArgs:
         """
         Specifies the disk selection.
         Matched disks are managed according to match labels and storage type. Structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "selectors")
 
@@ -2845,12 +2825,10 @@ class NodePoolStorageGroupArgs:
                Only digits, lowercase letters, and hyphens (-) are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] selector_names: Specifies the list of names of selectors to match.
                This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-               but a selector can match only one group. Changing this parameter will create a new resource.
+               but a selector can match only one group.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupVirtualSpaceArgs']]] virtual_spaces: Specifies the detailed management of space configuration in a group.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[bool] cce_managed: Specifies the whether the storage space is for **kubernetes** and
                **runtime** components. Only one group can be set to true. The default value is **false**.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "selector_names", selector_names)
@@ -2878,7 +2856,7 @@ class NodePoolStorageGroupArgs:
         """
         Specifies the list of names of selectors to match.
         This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group. Changing this parameter will create a new resource.
+        but a selector can match only one group.
         """
         return pulumi.get(self, "selector_names")
 
@@ -2891,7 +2869,6 @@ class NodePoolStorageGroupArgs:
     def virtual_spaces(self) -> pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupVirtualSpaceArgs']]]:
         """
         Specifies the detailed management of space configuration in a group.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "virtual_spaces")
 
@@ -2905,7 +2882,6 @@ class NodePoolStorageGroupArgs:
         """
         Specifies the whether the storage space is for **kubernetes** and
         **runtime** components. Only one group can be set to true. The default value is **false**.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "cce_managed")
 
@@ -2928,14 +2904,12 @@ class NodePoolStorageGroupVirtualSpaceArgs:
                Only digits, lowercase letters, and hyphens (-) are allowed.
         :param pulumi.Input[str] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] lvm_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
-               This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-               a new resource.
+               This parameter takes effect only in **kubernetes** and **user** configuration.
         :param pulumi.Input[str] lvm_path: Specifies the absolute path to which the disk is attached.
-               This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+               This parameter takes effect only in **user** configuration.
         :param pulumi.Input[str] runtime_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
-               This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+               This parameter takes effect only in **runtime** configuration.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "size", size)
@@ -2966,7 +2940,6 @@ class NodePoolStorageGroupVirtualSpaceArgs:
         """
         Specifies the size of a virtual space. Only an integer percentage is supported.
         Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "size")
 
@@ -2979,8 +2952,7 @@ class NodePoolStorageGroupVirtualSpaceArgs:
     def lvm_lv_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-        a new resource.
+        This parameter takes effect only in **kubernetes** and **user** configuration.
         """
         return pulumi.get(self, "lvm_lv_type")
 
@@ -2993,7 +2965,7 @@ class NodePoolStorageGroupVirtualSpaceArgs:
     def lvm_path(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the absolute path to which the disk is attached.
-        This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+        This parameter takes effect only in **user** configuration.
         """
         return pulumi.get(self, "lvm_path")
 
@@ -3006,7 +2978,7 @@ class NodePoolStorageGroupVirtualSpaceArgs:
     def runtime_lv_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+        This parameter takes effect only in **runtime** configuration.
         """
         return pulumi.get(self, "runtime_lv_type")
 
@@ -3030,17 +3002,16 @@ class NodePoolStorageSelectorArgs:
                The value cannot be default and can contain a maximum of 55 characters.
                Only digits, lowercase letters, and hyphens (-) are allowed.
         :param pulumi.Input[str] match_label_count: Specifies the number of disks to be selected. If omitted,
-               all disks of this type are selected. Changing this parameter will create a new resource.
+               all disks of this type are selected.
         :param pulumi.Input[str] match_label_metadata_cmkid: Specifies the customer master key ID of an encrypted
-               disk. Changing this parameter will create a new resource.
+               disk.
         :param pulumi.Input[str] match_label_metadata_encrypted: Specifies the disk encryption identifier.
                Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-               If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+               If omitted, whether the disk is encrypted is not limited.
         :param pulumi.Input[str] match_label_size: Specifies the matched disk size. If omitted,
-               the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+               the disk size is not limited. Example: 100.
         :param pulumi.Input[str] match_label_volume_type: Specifies the EVS disk type. Currently,
                **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] type: Specifies the hostname type of the kubernetes node.
                The value can be:
                + **privateIp**: The Kubernetes node is named after its IP address.
@@ -3079,7 +3050,7 @@ class NodePoolStorageSelectorArgs:
     def match_label_count(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected. Changing this parameter will create a new resource.
+        all disks of this type are selected.
         """
         return pulumi.get(self, "match_label_count")
 
@@ -3092,7 +3063,7 @@ class NodePoolStorageSelectorArgs:
     def match_label_metadata_cmkid(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the customer master key ID of an encrypted
-        disk. Changing this parameter will create a new resource.
+        disk.
         """
         return pulumi.get(self, "match_label_metadata_cmkid")
 
@@ -3106,7 +3077,7 @@ class NodePoolStorageSelectorArgs:
         """
         Specifies the disk encryption identifier.
         Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-        If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+        If omitted, whether the disk is encrypted is not limited.
         """
         return pulumi.get(self, "match_label_metadata_encrypted")
 
@@ -3119,7 +3090,7 @@ class NodePoolStorageSelectorArgs:
     def match_label_size(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+        the disk size is not limited. Example: 100.
         """
         return pulumi.get(self, "match_label_size")
 
@@ -3133,7 +3104,6 @@ class NodePoolStorageSelectorArgs:
         """
         Specifies the EVS disk type. Currently,
         **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "match_label_volume_type")
 
@@ -3230,18 +3200,13 @@ class NodeRootVolumeArgs:
         """
         :param pulumi.Input[int] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] volumetype: Specifies the disk type.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] dss_pool_id: Specifies the DSS pool ID. This field is used only for
-               dedicated storage. Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extend_params: Specifies the extended parameters.
                The object structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] iops: Specifies the iops of the disk,
                required when `volumetype` is **GPSSD2** or **ESSD2**.
         :param pulumi.Input[str] kms_key_id: Specifies the ID of a KMS key. This is used to encrypt the volume.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[int] throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
         """
@@ -3271,7 +3236,6 @@ class NodeRootVolumeArgs:
         """
         Specifies the size of a virtual space. Only an integer percentage is supported.
         Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "size")
 
@@ -3284,7 +3248,6 @@ class NodeRootVolumeArgs:
     def volumetype(self) -> pulumi.Input[str]:
         """
         Specifies the disk type.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "volumetype")
 
@@ -3297,7 +3260,6 @@ class NodeRootVolumeArgs:
     def dss_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the DSS pool ID. This field is used only for
-        dedicated storage. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "dss_pool_id")
 
@@ -3320,7 +3282,6 @@ class NodeRootVolumeArgs:
         """
         Specifies the extended parameters.
         The object structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "extend_params")
 
@@ -3355,7 +3316,6 @@ class NodeRootVolumeArgs:
     def kms_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of a KMS key. This is used to encrypt the volume.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "kms_key_id")
 
@@ -3385,10 +3345,8 @@ class NodeStorageArgs:
         """
         :param pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupArgs']]] groups: Specifies the storage group consists of multiple storage devices.
                This is used to divide storage space. Structure is documented below.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['NodeStorageSelectorArgs']]] selectors: Specifies the disk selection.
                Matched disks are managed according to match labels and storage type. Structure is documented below.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "selectors", selectors)
@@ -3399,7 +3357,6 @@ class NodeStorageArgs:
         """
         Specifies the storage group consists of multiple storage devices.
         This is used to divide storage space. Structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "groups")
 
@@ -3413,7 +3370,6 @@ class NodeStorageArgs:
         """
         Specifies the disk selection.
         Matched disks are managed according to match labels and storage type. Structure is documented below.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "selectors")
 
@@ -3431,15 +3387,13 @@ class NodeStorageGroupArgs:
                  cce_managed: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] name: Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-               and **user** are supported. Changing this parameter will create a new resource.
+               and **user** are supported.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] selector_names: Specifies the list of names of selectors to match.
                This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-               but a selector can match only one group. Changing this parameter will create a new resource.
+               but a selector can match only one group.
         :param pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupVirtualSpaceArgs']]] virtual_spaces: Specifies the detailed management of space configuration in a group.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[bool] cce_managed: Specifies the whether the storage space is for **kubernetes** and
                **runtime** components. Only one group can be set to true. The default value is **false**.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "selector_names", selector_names)
@@ -3452,7 +3406,7 @@ class NodeStorageGroupArgs:
     def name(self) -> pulumi.Input[str]:
         """
         Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported. Changing this parameter will create a new resource.
+        and **user** are supported.
         """
         return pulumi.get(self, "name")
 
@@ -3466,7 +3420,7 @@ class NodeStorageGroupArgs:
         """
         Specifies the list of names of selectors to match.
         This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group. Changing this parameter will create a new resource.
+        but a selector can match only one group.
         """
         return pulumi.get(self, "selector_names")
 
@@ -3479,7 +3433,6 @@ class NodeStorageGroupArgs:
     def virtual_spaces(self) -> pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupVirtualSpaceArgs']]]:
         """
         Specifies the detailed management of space configuration in a group.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "virtual_spaces")
 
@@ -3493,7 +3446,6 @@ class NodeStorageGroupArgs:
         """
         Specifies the whether the storage space is for **kubernetes** and
         **runtime** components. Only one group can be set to true. The default value is **false**.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "cce_managed")
 
@@ -3512,17 +3464,15 @@ class NodeStorageGroupVirtualSpaceArgs:
                  runtime_lv_type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-               and **user** are supported. Changing this parameter will create a new resource.
+               and **user** are supported.
         :param pulumi.Input[str] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] lvm_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
-               This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-               a new resource.
+               This parameter takes effect only in **kubernetes** and **user** configuration.
         :param pulumi.Input[str] lvm_path: Specifies the absolute path to which the disk is attached.
-               This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+               This parameter takes effect only in **user** configuration.
         :param pulumi.Input[str] runtime_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
-               This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+               This parameter takes effect only in **runtime** configuration.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "size", size)
@@ -3538,7 +3488,7 @@ class NodeStorageGroupVirtualSpaceArgs:
     def name(self) -> pulumi.Input[str]:
         """
         Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported. Changing this parameter will create a new resource.
+        and **user** are supported.
         """
         return pulumi.get(self, "name")
 
@@ -3552,7 +3502,6 @@ class NodeStorageGroupVirtualSpaceArgs:
         """
         Specifies the size of a virtual space. Only an integer percentage is supported.
         Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "size")
 
@@ -3565,8 +3514,7 @@ class NodeStorageGroupVirtualSpaceArgs:
     def lvm_lv_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-        a new resource.
+        This parameter takes effect only in **kubernetes** and **user** configuration.
         """
         return pulumi.get(self, "lvm_lv_type")
 
@@ -3579,7 +3527,7 @@ class NodeStorageGroupVirtualSpaceArgs:
     def lvm_path(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the absolute path to which the disk is attached.
-        This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+        This parameter takes effect only in **user** configuration.
         """
         return pulumi.get(self, "lvm_path")
 
@@ -3592,7 +3540,7 @@ class NodeStorageGroupVirtualSpaceArgs:
     def runtime_lv_type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+        This parameter takes effect only in **runtime** configuration.
         """
         return pulumi.get(self, "runtime_lv_type")
 
@@ -3613,19 +3561,18 @@ class NodeStorageSelectorArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-               and **user** are supported. Changing this parameter will create a new resource.
+               and **user** are supported.
         :param pulumi.Input[str] match_label_count: Specifies the number of disks to be selected. If omitted,
-               all disks of this type are selected. Changing this parameter will create a new resource.
+               all disks of this type are selected.
         :param pulumi.Input[str] match_label_metadata_cmkid: Specifies the customer master key ID of an encrypted
-               disk. Changing this parameter will create a new resource.
+               disk.
         :param pulumi.Input[str] match_label_metadata_encrypted: Specifies the disk encryption identifier.
                Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-               If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+               If omitted, whether the disk is encrypted is not limited.
         :param pulumi.Input[str] match_label_size: Specifies the matched disk size. If omitted,
-               the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+               the disk size is not limited. Example: 100.
         :param pulumi.Input[str] match_label_volume_type: Specifies the EVS disk type. Currently,
                **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] type: Specifies the hostname type of the kubernetes node.
                The value can be:
                + **privateIp**: The Kubernetes node is named after its IP address.
@@ -3650,7 +3597,7 @@ class NodeStorageSelectorArgs:
     def name(self) -> pulumi.Input[str]:
         """
         Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported. Changing this parameter will create a new resource.
+        and **user** are supported.
         """
         return pulumi.get(self, "name")
 
@@ -3663,7 +3610,7 @@ class NodeStorageSelectorArgs:
     def match_label_count(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected. Changing this parameter will create a new resource.
+        all disks of this type are selected.
         """
         return pulumi.get(self, "match_label_count")
 
@@ -3676,7 +3623,7 @@ class NodeStorageSelectorArgs:
     def match_label_metadata_cmkid(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the customer master key ID of an encrypted
-        disk. Changing this parameter will create a new resource.
+        disk.
         """
         return pulumi.get(self, "match_label_metadata_cmkid")
 
@@ -3690,7 +3637,7 @@ class NodeStorageSelectorArgs:
         """
         Specifies the disk encryption identifier.
         Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-        If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+        If omitted, whether the disk is encrypted is not limited.
         """
         return pulumi.get(self, "match_label_metadata_encrypted")
 
@@ -3703,7 +3650,7 @@ class NodeStorageSelectorArgs:
     def match_label_size(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+        the disk size is not limited. Example: 100.
         """
         return pulumi.get(self, "match_label_size")
 
@@ -3717,7 +3664,6 @@ class NodeStorageSelectorArgs:
         """
         Specifies the EVS disk type. Currently,
         **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "match_label_volume_type")
 
@@ -3749,13 +3695,11 @@ class NodeTaintArgs:
                  value: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] effect: Available options are NoSchedule, PreferNoSchedule, and NoExecute.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[str] key: A key must contain 1 to 63 characters starting with a letter or digit.
                Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-               as the prefix of a key. Changing this parameter will create a new resource.
+               as the prefix of a key.
         :param pulumi.Input[str] value: A value must start with a letter or digit and can contain a maximum of 63
-               characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
-               create a new resource.
+               characters, including letters, digits, hyphens (-), underscores (_), and periods (.).
         """
         pulumi.set(__self__, "effect", effect)
         pulumi.set(__self__, "key", key)
@@ -3767,7 +3711,6 @@ class NodeTaintArgs:
     def effect(self) -> pulumi.Input[str]:
         """
         Available options are NoSchedule, PreferNoSchedule, and NoExecute.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "effect")
 
@@ -3781,7 +3724,7 @@ class NodeTaintArgs:
         """
         A key must contain 1 to 63 characters starting with a letter or digit.
         Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-        as the prefix of a key. Changing this parameter will create a new resource.
+        as the prefix of a key.
         """
         return pulumi.get(self, "key")
 
@@ -3794,8 +3737,7 @@ class NodeTaintArgs:
     def value(self) -> Optional[pulumi.Input[str]]:
         """
         A value must start with a letter or digit and can contain a maximum of 63
-        characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
-        create a new resource.
+        characters, including letters, digits, hyphens (-), underscores (_), and periods (.).
         """
         return pulumi.get(self, "value")
 

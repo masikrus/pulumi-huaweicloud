@@ -151,6 +151,10 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
+     * The scaling activity type of the AS group.
+     */
+    public /*out*/ readonly activityType!: pulumi.Output<string>;
+    /**
      * Specifies the IAM agency name. If you change the agency,
      * the new agency will be available for ECSs scaled out after the change.
      */
@@ -169,6 +173,10 @@ export class Group extends pulumi.CustomResource {
      * Defaults to `300`.
      */
     public readonly coolDownTime!: pulumi.Output<number | undefined>;
+    /**
+     * The creation time of the AS group.
+     */
+    public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
      * The number of current instances in the AS group.
      */
@@ -198,6 +206,10 @@ export class Group extends pulumi.CustomResource {
      * minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
      */
     public readonly desireInstanceNumber!: pulumi.Output<number>;
+    /**
+     * The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+     */
+    public /*out*/ readonly detail!: pulumi.Output<string>;
     /**
      * Specifies whether to enable the AS Group. Defaults to **true**.
      */
@@ -237,6 +249,10 @@ export class Group extends pulumi.CustomResource {
      * The instances IDs of the AS group.
      */
     public /*out*/ readonly instances!: pulumi.Output<string[]>;
+    /**
+     * The scaling flag of the AS group.
+     */
+    public /*out*/ readonly isScaling!: pulumi.Output<boolean>;
     /**
      * The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
      *
@@ -282,6 +298,10 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly scalingConfigurationId!: pulumi.Output<string>;
     /**
+     * The name of the AS configuration to which the AS group belongs.
+     */
+    public /*out*/ readonly scalingConfigurationName!: pulumi.Output<string>;
+    /**
      * Specifies the name of the scaling group. The name can contain
      * letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.
      */
@@ -317,16 +337,19 @@ export class Group extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupState | undefined;
+            resourceInputs["activityType"] = state ? state.activityType : undefined;
             resourceInputs["agencyName"] = state ? state.agencyName : undefined;
             resourceInputs["availabilityZones"] = state ? state.availabilityZones : undefined;
             resourceInputs["availableZones"] = state ? state.availableZones : undefined;
             resourceInputs["coolDownTime"] = state ? state.coolDownTime : undefined;
+            resourceInputs["createTime"] = state ? state.createTime : undefined;
             resourceInputs["currentInstanceNumber"] = state ? state.currentInstanceNumber : undefined;
             resourceInputs["deleteInstances"] = state ? state.deleteInstances : undefined;
             resourceInputs["deletePublicip"] = state ? state.deletePublicip : undefined;
             resourceInputs["deleteVolume"] = state ? state.deleteVolume : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["desireInstanceNumber"] = state ? state.desireInstanceNumber : undefined;
+            resourceInputs["detail"] = state ? state.detail : undefined;
             resourceInputs["enable"] = state ? state.enable : undefined;
             resourceInputs["enterpriseProjectId"] = state ? state.enterpriseProjectId : undefined;
             resourceInputs["forceDelete"] = state ? state.forceDelete : undefined;
@@ -335,6 +358,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["healthPeriodicAuditTime"] = state ? state.healthPeriodicAuditTime : undefined;
             resourceInputs["instanceTerminatePolicy"] = state ? state.instanceTerminatePolicy : undefined;
             resourceInputs["instances"] = state ? state.instances : undefined;
+            resourceInputs["isScaling"] = state ? state.isScaling : undefined;
             resourceInputs["lbListenerId"] = state ? state.lbListenerId : undefined;
             resourceInputs["lbaasListeners"] = state ? state.lbaasListeners : undefined;
             resourceInputs["maxInstanceNumber"] = state ? state.maxInstanceNumber : undefined;
@@ -344,6 +368,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["notifications"] = state ? state.notifications : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["scalingConfigurationId"] = state ? state.scalingConfigurationId : undefined;
+            resourceInputs["scalingConfigurationName"] = state ? state.scalingConfigurationName : undefined;
             resourceInputs["scalingGroupName"] = state ? state.scalingGroupName : undefined;
             resourceInputs["securityGroups"] = state ? state.securityGroups : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -389,8 +414,13 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["securityGroups"] = args ? args.securityGroups : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["activityType"] = undefined /*out*/;
+            resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["currentInstanceNumber"] = undefined /*out*/;
+            resourceInputs["detail"] = undefined /*out*/;
             resourceInputs["instances"] = undefined /*out*/;
+            resourceInputs["isScaling"] = undefined /*out*/;
+            resourceInputs["scalingConfigurationName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -402,6 +432,10 @@ export class Group extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Group resources.
  */
 export interface GroupState {
+    /**
+     * The scaling activity type of the AS group.
+     */
+    activityType?: pulumi.Input<string>;
     /**
      * Specifies the IAM agency name. If you change the agency,
      * the new agency will be available for ECSs scaled out after the change.
@@ -421,6 +455,10 @@ export interface GroupState {
      * Defaults to `300`.
      */
     coolDownTime?: pulumi.Input<number>;
+    /**
+     * The creation time of the AS group.
+     */
+    createTime?: pulumi.Input<string>;
     /**
      * The number of current instances in the AS group.
      */
@@ -450,6 +488,10 @@ export interface GroupState {
      * minimum number of instances. The value ranges from the minimum number of instances to the maximum number of instances.
      */
     desireInstanceNumber?: pulumi.Input<number>;
+    /**
+     * The details about the AS group. If a scaling action fails, this parameter is used to record errors.
+     */
+    detail?: pulumi.Input<string>;
     /**
      * Specifies whether to enable the AS Group. Defaults to **true**.
      */
@@ -489,6 +531,10 @@ export interface GroupState {
      * The instances IDs of the AS group.
      */
     instances?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The scaling flag of the AS group.
+     */
+    isScaling?: pulumi.Input<boolean>;
     /**
      * The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
      *
@@ -533,6 +579,10 @@ export interface GroupState {
      * of instances in the AS group.
      */
     scalingConfigurationId?: pulumi.Input<string>;
+    /**
+     * The name of the AS configuration to which the AS group belongs.
+     */
+    scalingConfigurationName?: pulumi.Input<string>;
     /**
      * Specifies the name of the scaling group. The name can contain
      * letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.

@@ -7,19 +7,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query the detailed information list of the EVS disks within HuaweiCloud.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as huaweicloud from "@pulumi/huaweicloud";
- *
- * const config = new pulumi.Config();
- * const targetServer = config.requireObject("targetServer");
- * const test = huaweicloud.Evs.getVolumes({
- *     serverId: targetServer,
- * });
- * ```
  */
 export function getVolumes(args?: GetVolumesArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumesResult> {
     args = args || {};
@@ -30,11 +17,18 @@ export function getVolumes(args?: GetVolumesArgs, opts?: pulumi.InvokeOptions): 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:Evs/getVolumes:getVolumes", {
         "availabilityZone": args.availabilityZone,
+        "dedicatedStorageId": args.dedicatedStorageId,
+        "dedicatedStorageName": args.dedicatedStorageName,
         "enterpriseProjectId": args.enterpriseProjectId,
+        "ids": args.ids,
+        "metadata": args.metadata,
         "name": args.name,
         "region": args.region,
         "serverId": args.serverId,
+        "serviceType": args.serviceType,
         "shareable": args.shareable,
+        "sortDir": args.sortDir,
+        "sortKey": args.sortKey,
         "status": args.status,
         "tags": args.tags,
         "volumeId": args.volumeId,
@@ -51,9 +45,32 @@ export interface GetVolumesArgs {
      */
     availabilityZone?: string;
     /**
+     * Specifies the dedicated storage pool ID. All disks in the dedicated storage
+     * pool can be filtered by exact match.
+     */
+    dedicatedStorageId?: string;
+    /**
+     * Specifies the dedicated storage pool name. All disks in the dedicated
+     * storage pool can be filtered by fuzzy match.
+     */
+    dedicatedStorageName?: string;
+    /**
      * Specifies the enterprise project ID for filtering.
      */
     enterpriseProjectId?: string;
+    /**
+     * Specifies the disk IDs. The value is in the ids=['id1','id2',...,'idx'] format.
+     * In the response, the `ids` value contains valid disk IDs only. Invalid disk IDs are ignored.
+     * The details about a maximum of `60` disks can be queried. If `volumeId` and `ids` are both specified in the request,
+     * `volumeId` will be ignored.
+     * Please pay attention to escape special characters before use. Please refer to the usage of example.
+     */
+    ids?: string;
+    /**
+     * Specifies the disk metadata.
+     * Please pay attention to escape special characters before use. Please refer to the usage of example.
+     */
+    metadata?: string;
     /**
      * Specifies the name for the disks. This field will undergo a fuzzy matching query, the
      * query result is for all disks whose names contain this value.
@@ -69,9 +86,24 @@ export interface GetVolumesArgs {
      */
     serverId?: string;
     /**
+     * Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
+     */
+    serviceType?: string;
+    /**
      * Specifies whether the disk is shareable.
      */
     shareable?: boolean;
+    /**
+     * Specifies the result sorting order. The default value is **desc**.
+     * + **desc**: The descending order.
+     * + **asc**: The ascending order.
+     */
+    sortDir?: string;
+    /**
+     * Specifies the keyword based on which the returned results are sorted.
+     * The value can be **id**, **status**, **size**, or **created_at**, and the default value is **created_at**.
+     */
+    sortKey?: string;
     /**
      * Specifies the disk status. The valid values are as following:
      * + **FREEZED**
@@ -112,6 +144,14 @@ export interface GetVolumesResult {
      */
     readonly availabilityZone?: string;
     /**
+     * The ID of the dedicated storage pool housing the disk.
+     */
+    readonly dedicatedStorageId?: string;
+    /**
+     * The name of the dedicated storage pool housing the disk.
+     */
+    readonly dedicatedStorageName?: string;
+    /**
      * The ID of the enterprise project associated with the disk.
      */
     readonly enterpriseProjectId?: string;
@@ -119,6 +159,23 @@ export interface GetVolumesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly ids?: string;
+    /**
+     * The key-value pair disk metadata. Valid key-value pairs are as follows:
+     * + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+     * for encryption.
+     * + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+     * If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+     * If the disk is not created from a data source, the disk is not encrypted by default.
+     * + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+     * + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+     * access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+     * the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+     * If this attribute is not specified, the disk device type is VBD.
+     * + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+     * is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+     */
+    readonly metadata?: string;
     /**
      * The disk name.
      */
@@ -129,9 +186,15 @@ export interface GetVolumesResult {
      */
     readonly serverId?: string;
     /**
+     * The service type, such as EVS, DSS or DESS.
+     */
+    readonly serviceType?: string;
+    /**
      * Whether the disk is shareable.
      */
     readonly shareable?: boolean;
+    readonly sortDir?: string;
+    readonly sortKey?: string;
     /**
      * The disk status.
      */
@@ -140,6 +203,9 @@ export interface GetVolumesResult {
      * The disk tags.
      */
     readonly tags?: {[key: string]: string};
+    /**
+     * The disk ID.
+     */
     readonly volumeId?: string;
     readonly volumeTypeId?: string;
     /**
@@ -161,9 +227,32 @@ export interface GetVolumesOutputArgs {
      */
     availabilityZone?: pulumi.Input<string>;
     /**
+     * Specifies the dedicated storage pool ID. All disks in the dedicated storage
+     * pool can be filtered by exact match.
+     */
+    dedicatedStorageId?: pulumi.Input<string>;
+    /**
+     * Specifies the dedicated storage pool name. All disks in the dedicated
+     * storage pool can be filtered by fuzzy match.
+     */
+    dedicatedStorageName?: pulumi.Input<string>;
+    /**
      * Specifies the enterprise project ID for filtering.
      */
     enterpriseProjectId?: pulumi.Input<string>;
+    /**
+     * Specifies the disk IDs. The value is in the ids=['id1','id2',...,'idx'] format.
+     * In the response, the `ids` value contains valid disk IDs only. Invalid disk IDs are ignored.
+     * The details about a maximum of `60` disks can be queried. If `volumeId` and `ids` are both specified in the request,
+     * `volumeId` will be ignored.
+     * Please pay attention to escape special characters before use. Please refer to the usage of example.
+     */
+    ids?: pulumi.Input<string>;
+    /**
+     * Specifies the disk metadata.
+     * Please pay attention to escape special characters before use. Please refer to the usage of example.
+     */
+    metadata?: pulumi.Input<string>;
     /**
      * Specifies the name for the disks. This field will undergo a fuzzy matching query, the
      * query result is for all disks whose names contain this value.
@@ -179,9 +268,24 @@ export interface GetVolumesOutputArgs {
      */
     serverId?: pulumi.Input<string>;
     /**
+     * Specifies the service type. Supported services are **EVS**, **DSS**, and **DESS**.
+     */
+    serviceType?: pulumi.Input<string>;
+    /**
      * Specifies whether the disk is shareable.
      */
     shareable?: pulumi.Input<boolean>;
+    /**
+     * Specifies the result sorting order. The default value is **desc**.
+     * + **desc**: The descending order.
+     * + **asc**: The ascending order.
+     */
+    sortDir?: pulumi.Input<string>;
+    /**
+     * Specifies the keyword based on which the returned results are sorted.
+     * The value can be **id**, **status**, **size**, or **created_at**, and the default value is **created_at**.
+     */
+    sortKey?: pulumi.Input<string>;
     /**
      * Specifies the disk status. The valid values are as following:
      * + **FREEZED**

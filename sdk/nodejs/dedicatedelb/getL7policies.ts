@@ -36,6 +36,7 @@ export function getL7policies(args?: GetL7policiesArgs, opts?: pulumi.InvokeOpti
         "listenerId": args.listenerId,
         "name": args.name,
         "priority": args.priority,
+        "provisioningStatus": args.provisioningStatus,
         "redirectListenerId": args.redirectListenerId,
         "redirectPoolId": args.redirectPoolId,
         "region": args.region,
@@ -79,6 +80,10 @@ export interface GetL7policiesArgs {
      */
     priority?: number;
     /**
+     * Specifies the provisioning status of the forwarding policy.
+     */
+    provisioningStatus?: string;
+    /**
      * Specifies the ID of the listener to which requests are redirected.
      */
     redirectListenerId?: string;
@@ -98,14 +103,16 @@ export interface GetL7policiesArgs {
  */
 export interface GetL7policiesResult {
     /**
-     * The requests will be forwarded. The value can be one of the following:
-     * **REDIRECT_TO_POOL**, **REDIRECT_TO_LISTENER**, **REDIRECT_TO_URL**, **FIXED_RESPONSE**.
+     * The requests will be forwarded.
      */
     readonly action?: string;
     /**
      * The supplementary information about the forwarding policy.
      */
     readonly description?: string;
+    /**
+     * The enterprise project ID.
+     */
     readonly enterpriseProjectId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -129,6 +136,10 @@ export interface GetL7policiesResult {
      * The forwarding policy priority.
      */
     readonly priority?: number;
+    /**
+     * The provisioning status of the forwarding policy.
+     */
+    readonly provisioningStatus?: string;
     /**
      * The ID of the listener to which requests are redirected.
      */
@@ -180,6 +191,10 @@ export interface GetL7policiesOutputArgs {
      * Specifies the forwarding policy priority.
      */
     priority?: pulumi.Input<number>;
+    /**
+     * Specifies the provisioning status of the forwarding policy.
+     */
+    provisioningStatus?: pulumi.Input<string>;
     /**
      * Specifies the ID of the listener to which requests are redirected.
      */

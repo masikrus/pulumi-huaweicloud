@@ -17,33 +17,47 @@ class CertificateArgs:
                  certificate: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 enc_certificate: Optional[pulumi.Input[str]] = None,
+                 enc_private_key: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 scm_certificate_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
         :param pulumi.Input[str] certificate: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
-        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of **100** characters. This
+               parameter is valid only when `type` is set to **server**.
+        :param pulumi.Input[str] enc_certificate: Specifies the body of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+               of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        :param pulumi.Input[str] enc_private_key: Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+               **server_sm.**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the certificate.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
-        :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
-               one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+        :param pulumi.Input[str] scm_certificate_id: Specifies the SM certificate ID.
+        :param pulumi.Input[str] type: Specifies the certificate type. Value options:
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
+               + **server_sm**: indicates the server SM certificate.
         """
         pulumi.set(__self__, "certificate", certificate)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if enc_certificate is not None:
+            pulumi.set(__self__, "enc_certificate", enc_certificate)
+        if enc_private_key is not None:
+            pulumi.set(__self__, "enc_private_key", enc_private_key)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
@@ -52,6 +66,8 @@ class CertificateArgs:
             pulumi.set(__self__, "private_key", private_key)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if scm_certificate_id is not None:
+            pulumi.set(__self__, "scm_certificate_id", scm_certificate_id)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -83,14 +99,42 @@ class CertificateArgs:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the Certificate. The value contains a maximum of 100 characters. This
-        parameter is valid only when `type` is set to "server".
+        The domain of the Certificate. The value contains a maximum of **100** characters. This
+        parameter is valid only when `type` is set to **server**.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
     def domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="encCertificate")
+    def enc_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the body of the SM encryption certificate required by HTTPS listeners.
+        The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+        of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        """
+        return pulumi.get(self, "enc_certificate")
+
+    @enc_certificate.setter
+    def enc_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enc_certificate", value)
+
+    @property
+    @pulumi.getter(name="encPrivateKey")
+    def enc_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+        The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+        **server_sm.**.
+        """
+        return pulumi.get(self, "enc_private_key")
+
+    @enc_private_key.setter
+    def enc_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enc_private_key", value)
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -121,7 +165,7 @@ class CertificateArgs:
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
         The private encrypted key of the Certificate, PEM format. This parameter is valid
-        and mandatory only when `type` is set to "server".
+        and mandatory only when `type` is set to **server**.
         """
         return pulumi.get(self, "private_key")
 
@@ -143,13 +187,25 @@ class CertificateArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="scmCertificateId")
+    def scm_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the SM certificate ID.
+        """
+        return pulumi.get(self, "scm_certificate_id")
+
+    @scm_certificate_id.setter
+    def scm_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scm_certificate_id", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the certificate type. The default value is "server". The value can be
-        one of the following:
-        + server: indicates the server certificate.
-        + client: indicates the CA certificate.
+        Specifies the certificate type. Value options:
+        + **server**: indicates the server certificate.
+        + **client**: indicates the CA certificate.
+        + **server_sm**: indicates the server SM certificate.
         """
         return pulumi.get(self, "type")
 
@@ -162,54 +218,82 @@ class CertificateArgs:
 class _CertificateState:
     def __init__(__self__, *,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 common_name: Optional[pulumi.Input[str]] = None,
                  create_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 enc_certificate: Optional[pulumi.Input[str]] = None,
+                 enc_private_key: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  expire_time: Optional[pulumi.Input[str]] = None,
+                 fingerprint: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 scm_certificate_id: Optional[pulumi.Input[str]] = None,
+                 subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
         :param pulumi.Input[str] certificate: The public encrypted key of the Certificate, PEM format.
+        :param pulumi.Input[str] common_name: Indicates the primary domain name of the certificate.
         :param pulumi.Input[str] create_time: Indicates the creation time.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
-        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of **100** characters. This
+               parameter is valid only when `type` is set to **server**.
+        :param pulumi.Input[str] enc_certificate: Specifies the body of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+               of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        :param pulumi.Input[str] enc_private_key: Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+               **server_sm.**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the certificate.
         :param pulumi.Input[str] expire_time: Indicates the expiration time.
+        :param pulumi.Input[str] fingerprint: Indicates the fingerprint of the certificate.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
-        :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
-               one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+        :param pulumi.Input[str] scm_certificate_id: Specifies the SM certificate ID.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: Indicates all the domain names of the certificate.
+        :param pulumi.Input[str] type: Specifies the certificate type. Value options:
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
+               + **server_sm**: indicates the server SM certificate.
         :param pulumi.Input[str] update_time: Indicates the update time.
         """
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if common_name is not None:
+            pulumi.set(__self__, "common_name", common_name)
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if enc_certificate is not None:
+            pulumi.set(__self__, "enc_certificate", enc_certificate)
+        if enc_private_key is not None:
+            pulumi.set(__self__, "enc_private_key", enc_private_key)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if expire_time is not None:
             pulumi.set(__self__, "expire_time", expire_time)
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if scm_certificate_id is not None:
+            pulumi.set(__self__, "scm_certificate_id", scm_certificate_id)
+        if subject_alternative_names is not None:
+            pulumi.set(__self__, "subject_alternative_names", subject_alternative_names)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if update_time is not None:
@@ -226,6 +310,18 @@ class _CertificateState:
     @certificate.setter
     def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="commonName")
+    def common_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the primary domain name of the certificate.
+        """
+        return pulumi.get(self, "common_name")
+
+    @common_name.setter
+    def common_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "common_name", value)
 
     @property
     @pulumi.getter(name="createTime")
@@ -255,14 +351,42 @@ class _CertificateState:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the Certificate. The value contains a maximum of 100 characters. This
-        parameter is valid only when `type` is set to "server".
+        The domain of the Certificate. The value contains a maximum of **100** characters. This
+        parameter is valid only when `type` is set to **server**.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
     def domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="encCertificate")
+    def enc_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the body of the SM encryption certificate required by HTTPS listeners.
+        The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+        of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        """
+        return pulumi.get(self, "enc_certificate")
+
+    @enc_certificate.setter
+    def enc_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enc_certificate", value)
+
+    @property
+    @pulumi.getter(name="encPrivateKey")
+    def enc_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+        The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+        **server_sm.**.
+        """
+        return pulumi.get(self, "enc_private_key")
+
+    @enc_private_key.setter
+    def enc_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enc_private_key", value)
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -290,6 +414,18 @@ class _CertificateState:
 
     @property
     @pulumi.getter
+    def fingerprint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the fingerprint of the certificate.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @fingerprint.setter
+    def fingerprint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fingerprint", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Human-readable name for the Certificate. Does not have to be unique.
@@ -305,7 +441,7 @@ class _CertificateState:
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
         The private encrypted key of the Certificate, PEM format. This parameter is valid
-        and mandatory only when `type` is set to "server".
+        and mandatory only when `type` is set to **server**.
         """
         return pulumi.get(self, "private_key")
 
@@ -327,13 +463,37 @@ class _CertificateState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="scmCertificateId")
+    def scm_certificate_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the SM certificate ID.
+        """
+        return pulumi.get(self, "scm_certificate_id")
+
+    @scm_certificate_id.setter
+    def scm_certificate_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scm_certificate_id", value)
+
+    @property
+    @pulumi.getter(name="subjectAlternativeNames")
+    def subject_alternative_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Indicates all the domain names of the certificate.
+        """
+        return pulumi.get(self, "subject_alternative_names")
+
+    @subject_alternative_names.setter
+    def subject_alternative_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "subject_alternative_names", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the certificate type. The default value is "server". The value can be
-        one of the following:
-        + server: indicates the server certificate.
-        + client: indicates the CA certificate.
+        Specifies the certificate type. Value options:
+        + **server**: indicates the server certificate.
+        + **client**: indicates the CA certificate.
+        + **server_sm**: indicates the server SM certificate.
         """
         return pulumi.get(self, "type")
 
@@ -362,10 +522,13 @@ class Certificate(pulumi.CustomResource):
                  certificate: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 enc_certificate: Optional[pulumi.Input[str]] = None,
+                 enc_private_key: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 scm_certificate_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -437,13 +600,13 @@ class Certificate(pulumi.CustomResource):
 
         ## Import
 
-        ELB certificate can be imported using the certificate ID, e.g. bash
+        The ELB certificate can be imported using the `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:DedicatedElb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:DedicatedElb/certificate:Certificate test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "certificate_1" {
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`private_key` and `enc_private_key`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "test" {
 
          ...
 
@@ -451,7 +614,7 @@ class Certificate(pulumi.CustomResource):
 
          ignore_changes = [
 
-         enterprise_project_id,
+         private_key, enc_private_key
 
          ]
 
@@ -461,18 +624,25 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
-        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of **100** characters. This
+               parameter is valid only when `type` is set to **server**.
+        :param pulumi.Input[str] enc_certificate: Specifies the body of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+               of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        :param pulumi.Input[str] enc_private_key: Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+               **server_sm.**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the certificate.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
-        :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
-               one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+        :param pulumi.Input[str] scm_certificate_id: Specifies the SM certificate ID.
+        :param pulumi.Input[str] type: Specifies the certificate type. Value options:
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
+               + **server_sm**: indicates the server SM certificate.
         """
         ...
     @overload
@@ -549,13 +719,13 @@ class Certificate(pulumi.CustomResource):
 
         ## Import
 
-        ELB certificate can be imported using the certificate ID, e.g. bash
+        The ELB certificate can be imported using the `id`, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:DedicatedElb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:DedicatedElb/certificate:Certificate test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "certificate_1" {
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`private_key` and `enc_private_key`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "test" {
 
          ...
 
@@ -563,7 +733,7 @@ class Certificate(pulumi.CustomResource):
 
          ignore_changes = [
 
-         enterprise_project_id,
+         private_key, enc_private_key
 
          ]
 
@@ -587,10 +757,13 @@ class Certificate(pulumi.CustomResource):
                  certificate: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 enc_certificate: Optional[pulumi.Input[str]] = None,
+                 enc_private_key: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 scm_certificate_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -606,13 +779,19 @@ class Certificate(pulumi.CustomResource):
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["description"] = description
             __props__.__dict__["domain"] = domain
+            __props__.__dict__["enc_certificate"] = enc_certificate
+            __props__.__dict__["enc_private_key"] = enc_private_key
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["name"] = name
             __props__.__dict__["private_key"] = private_key
             __props__.__dict__["region"] = region
+            __props__.__dict__["scm_certificate_id"] = scm_certificate_id
             __props__.__dict__["type"] = type
+            __props__.__dict__["common_name"] = None
             __props__.__dict__["create_time"] = None
             __props__.__dict__["expire_time"] = None
+            __props__.__dict__["fingerprint"] = None
+            __props__.__dict__["subject_alternative_names"] = None
             __props__.__dict__["update_time"] = None
         super(Certificate, __self__).__init__(
             'huaweicloud:DedicatedElb/certificate:Certificate',
@@ -625,14 +804,20 @@ class Certificate(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             certificate: Optional[pulumi.Input[str]] = None,
+            common_name: Optional[pulumi.Input[str]] = None,
             create_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
+            enc_certificate: Optional[pulumi.Input[str]] = None,
+            enc_private_key: Optional[pulumi.Input[str]] = None,
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
             expire_time: Optional[pulumi.Input[str]] = None,
+            fingerprint: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            scm_certificate_id: Optional[pulumi.Input[str]] = None,
+            subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'Certificate':
         """
@@ -643,21 +828,31 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate: The public encrypted key of the Certificate, PEM format.
+        :param pulumi.Input[str] common_name: Indicates the primary domain name of the certificate.
         :param pulumi.Input[str] create_time: Indicates the creation time.
         :param pulumi.Input[str] description: Human-readable description for the Certificate.
-        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
-               parameter is valid only when `type` is set to "server".
+        :param pulumi.Input[str] domain: The domain of the Certificate. The value contains a maximum of **100** characters. This
+               parameter is valid only when `type` is set to **server**.
+        :param pulumi.Input[str] enc_certificate: Specifies the body of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+               of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        :param pulumi.Input[str] enc_private_key: Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+               The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+               **server_sm.**.
         :param pulumi.Input[str] enterprise_project_id: The enterprise project id of the certificate.
         :param pulumi.Input[str] expire_time: Indicates the expiration time.
+        :param pulumi.Input[str] fingerprint: Indicates the fingerprint of the certificate.
         :param pulumi.Input[str] name: Human-readable name for the Certificate. Does not have to be unique.
         :param pulumi.Input[str] private_key: The private encrypted key of the Certificate, PEM format. This parameter is valid
-               and mandatory only when `type` is set to "server".
+               and mandatory only when `type` is set to **server**.
         :param pulumi.Input[str] region: The region in which to create the ELB certificate resource. If omitted, the
                provider-level region will be used. Changing this creates a new certificate.
-        :param pulumi.Input[str] type: Specifies the certificate type. The default value is "server". The value can be
-               one of the following:
-               + server: indicates the server certificate.
-               + client: indicates the CA certificate.
+        :param pulumi.Input[str] scm_certificate_id: Specifies the SM certificate ID.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: Indicates all the domain names of the certificate.
+        :param pulumi.Input[str] type: Specifies the certificate type. Value options:
+               + **server**: indicates the server certificate.
+               + **client**: indicates the CA certificate.
+               + **server_sm**: indicates the server SM certificate.
         :param pulumi.Input[str] update_time: Indicates the update time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -665,14 +860,20 @@ class Certificate(pulumi.CustomResource):
         __props__ = _CertificateState.__new__(_CertificateState)
 
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["common_name"] = common_name
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
+        __props__.__dict__["enc_certificate"] = enc_certificate
+        __props__.__dict__["enc_private_key"] = enc_private_key
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["expire_time"] = expire_time
+        __props__.__dict__["fingerprint"] = fingerprint
         __props__.__dict__["name"] = name
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["region"] = region
+        __props__.__dict__["scm_certificate_id"] = scm_certificate_id
+        __props__.__dict__["subject_alternative_names"] = subject_alternative_names
         __props__.__dict__["type"] = type
         __props__.__dict__["update_time"] = update_time
         return Certificate(resource_name, opts=opts, __props__=__props__)
@@ -684,6 +885,14 @@ class Certificate(pulumi.CustomResource):
         The public encrypted key of the Certificate, PEM format.
         """
         return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="commonName")
+    def common_name(self) -> pulumi.Output[str]:
+        """
+        Indicates the primary domain name of the certificate.
+        """
+        return pulumi.get(self, "common_name")
 
     @property
     @pulumi.getter(name="createTime")
@@ -705,10 +914,30 @@ class Certificate(pulumi.CustomResource):
     @pulumi.getter
     def domain(self) -> pulumi.Output[Optional[str]]:
         """
-        The domain of the Certificate. The value contains a maximum of 100 characters. This
-        parameter is valid only when `type` is set to "server".
+        The domain of the Certificate. The value contains a maximum of **100** characters. This
+        parameter is valid only when `type` is set to **server**.
         """
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="encCertificate")
+    def enc_certificate(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the body of the SM encryption certificate required by HTTPS listeners.
+        The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+        of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+        """
+        return pulumi.get(self, "enc_certificate")
+
+    @property
+    @pulumi.getter(name="encPrivateKey")
+    def enc_private_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+        The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+        **server_sm.**.
+        """
+        return pulumi.get(self, "enc_private_key")
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -728,6 +957,14 @@ class Certificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def fingerprint(self) -> pulumi.Output[str]:
+        """
+        Indicates the fingerprint of the certificate.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @property
+    @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
         Human-readable name for the Certificate. Does not have to be unique.
@@ -739,7 +976,7 @@ class Certificate(pulumi.CustomResource):
     def private_key(self) -> pulumi.Output[Optional[str]]:
         """
         The private encrypted key of the Certificate, PEM format. This parameter is valid
-        and mandatory only when `type` is set to "server".
+        and mandatory only when `type` is set to **server**.
         """
         return pulumi.get(self, "private_key")
 
@@ -753,13 +990,29 @@ class Certificate(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @property
-    @pulumi.getter
-    def type(self) -> pulumi.Output[Optional[str]]:
+    @pulumi.getter(name="scmCertificateId")
+    def scm_certificate_id(self) -> pulumi.Output[str]:
         """
-        Specifies the certificate type. The default value is "server". The value can be
-        one of the following:
-        + server: indicates the server certificate.
-        + client: indicates the CA certificate.
+        Specifies the SM certificate ID.
+        """
+        return pulumi.get(self, "scm_certificate_id")
+
+    @property
+    @pulumi.getter(name="subjectAlternativeNames")
+    def subject_alternative_names(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Indicates all the domain names of the certificate.
+        """
+        return pulumi.get(self, "subject_alternative_names")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[str]:
+        """
+        Specifies the certificate type. Value options:
+        + **server**: indicates the server certificate.
+        + **client**: indicates the CA certificate.
+        + **server_sm**: indicates the server SM certificate.
         """
         return pulumi.get(self, "type")
 

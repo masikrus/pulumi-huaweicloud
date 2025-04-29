@@ -53,22 +53,70 @@ func GetLoadbalancers(ctx *pulumi.Context, args *GetLoadbalancersArgs, opts ...p
 
 // A collection of arguments for invoking getLoadbalancers.
 type GetLoadbalancersArgs struct {
+	// Specifies the list of AZ where the load balancer is created.
+	AvailabilityZone *string `pulumi:"availabilityZone"`
+	// Specifies the provides resource billing information.
+	BillingInfo *string `pulumi:"billingInfo"`
+	// Specifies whether the deletion protection is enabled. Value options:
+	// **true**, **false**.
+	DeletionProtectionEnable *string `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the ELB load balancer.
 	Description *string `pulumi:"description"`
 	// Specifies the enterprise project ID.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
+	// Specifies the global EIPs bound to the load balancer. It can be queried by different
+	// conditions:
+	// + If `globalEipId` is used as the query condition, the format is **global_eip_id=xxx**
+	// + If `globalEipAddress` is used as the query condition, the format is **global_eip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	GlobalEips []string `pulumi:"globalEips"`
+	// Specifies the private IPv4 address bound to the load balancer.
+	Ipv4Address *string `pulumi:"ipv4Address"`
+	// Specifies the ID of the port bound to the private IPv4 address of the load balancer.
+	Ipv4PortId *string `pulumi:"ipv4PortId"`
 	// Specifies the ID of the IPv4 subnet where the load balancer resides.
 	Ipv4SubnetId *string `pulumi:"ipv4SubnetId"`
+	// Specifies the IPv6 address bound to the load balancer.
+	Ipv6Address *string `pulumi:"ipv6Address"`
 	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
 	Ipv6NetworkId *string `pulumi:"ipv6NetworkId"`
+	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
+	Ipv6VipPortId *string `pulumi:"ipv6VipPortId"`
 	// Specifies the ID of a flavor at Layer 4.
 	L4FlavorId *string `pulumi:"l4FlavorId"`
 	// Specifies the ID of a flavor at Layer 7.
 	L7FlavorId *string `pulumi:"l7FlavorId"`
 	// Specifies the ID of the ELB load balancer.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
+	// Specifies the ID of the log group that is associated with the load balancer.
+	LogGroupId *string `pulumi:"logGroupId"`
+	// Specifies the ID of the log topic that is associated with the load balancer.
+	LogTopicId *string `pulumi:"logTopicId"`
+	// Specifies the private IP address of the cloud server that is associated with the
+	// load balancer as a backend server.
+	MemberAddress *string `pulumi:"memberAddress"`
+	// Specifies the ID of the cloud server that is associated with the load balancer
+	// as a backend server.
+	MemberDeviceId *string `pulumi:"memberDeviceId"`
 	// Specifies the name of the ELB load balancer.
 	Name *string `pulumi:"name"`
+	// Specifies the operating status of the load balancer. Value options:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus *string `pulumi:"operatingStatus"`
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification Protection is enabled on the console.
+	ProtectionStatus *string `pulumi:"protectionStatus"`
+	// Specifies the provisioning status of the load balancer. Value options:
+	// + **ACTIVE**: The load balancer is successfully provisioned.
+	// + **PENDING_DELETE**: The load balancer is being deleted.
+	ProvisioningStatus *string `pulumi:"provisioningStatus"`
+	// Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+	// + If `publicipId` is used as the query condition, the format is **publicip_id=xxx**
+	// + If `publicipAddress` is used as the query condition, the format is **publicip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	Publicips []string `pulumi:"publicips"`
 	// Specifies the region in which to query the data source.
 	// If omitted, the provider-level region will be used.
 	Region *string `pulumi:"region"`
@@ -81,16 +129,33 @@ type GetLoadbalancersArgs struct {
 
 // A collection of values returned by getLoadbalancers.
 type GetLoadbalancersResult struct {
+	// The list of AZs where the load balancer is created.
+	AvailabilityZone *string `pulumi:"availabilityZone"`
+	// The provides resource billing information.
+	BillingInfo *string `pulumi:"billingInfo"`
+	// Whether the deletion protection is enabled.
+	DeletionProtectionEnable *string `pulumi:"deletionProtectionEnable"`
 	// The description of load balancer.
 	Description *string `pulumi:"description"`
 	// The enterprise project ID.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
+	// The EIPs bound to the load balancer.
+	// The globalEips structure is documented below.
+	GlobalEips []string `pulumi:"globalEips"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// The private IPv4 address bound to the load balancer.
+	Ipv4Address *string `pulumi:"ipv4Address"`
+	// The ID of the port bound to the private IPv4 address of the load balancer.
+	Ipv4PortId *string `pulumi:"ipv4PortId"`
 	// The  ID of the IPv4 subnet where the load balancer resides.
 	Ipv4SubnetId *string `pulumi:"ipv4SubnetId"`
+	// The IPv6 address bound to the load balancer.
+	Ipv6Address *string `pulumi:"ipv6Address"`
 	// The ID of the IPv6 subnet where the load balancer resides.
 	Ipv6NetworkId *string `pulumi:"ipv6NetworkId"`
+	// The ID of the port bound to the IPv6 address of the load balancer.
+	Ipv6VipPortId *string `pulumi:"ipv6VipPortId"`
 	// The ID of a flavor at Layer 4.
 	L4FlavorId *string `pulumi:"l4FlavorId"`
 	// The ID of a flavor at Layer 7.
@@ -99,9 +164,24 @@ type GetLoadbalancersResult struct {
 	// The List of load balancers.
 	// The loadbalancers structure is documented below.
 	Loadbalancers []GetLoadbalancersLoadbalancer `pulumi:"loadbalancers"`
+	// The ID of the log group that is associated with the load balancer.
+	LogGroupId *string `pulumi:"logGroupId"`
+	// The ID of the log topic that is associated with the load balancer.
+	LogTopicId     *string `pulumi:"logTopicId"`
+	MemberAddress  *string `pulumi:"memberAddress"`
+	MemberDeviceId *string `pulumi:"memberDeviceId"`
 	// The load balancer name.
-	Name   *string `pulumi:"name"`
-	Region string  `pulumi:"region"`
+	Name *string `pulumi:"name"`
+	// The operating status of the load balancer.
+	OperatingStatus *string `pulumi:"operatingStatus"`
+	// The protection status for update.
+	ProtectionStatus *string `pulumi:"protectionStatus"`
+	// The provisioning status of the load balancer.
+	ProvisioningStatus *string `pulumi:"provisioningStatus"`
+	// The EIPs bound to the load balancer.
+	// The publicips structure is documented below.
+	Publicips []string `pulumi:"publicips"`
+	Region    string   `pulumi:"region"`
 	// Whether the load balancer is a dedicated load balancer.
 	Type *string `pulumi:"type"`
 	// The ID of the VPC where the load balancer resides.
@@ -123,22 +203,70 @@ func GetLoadbalancersOutput(ctx *pulumi.Context, args GetLoadbalancersOutputArgs
 
 // A collection of arguments for invoking getLoadbalancers.
 type GetLoadbalancersOutputArgs struct {
+	// Specifies the list of AZ where the load balancer is created.
+	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
+	// Specifies the provides resource billing information.
+	BillingInfo pulumi.StringPtrInput `pulumi:"billingInfo"`
+	// Specifies whether the deletion protection is enabled. Value options:
+	// **true**, **false**.
+	DeletionProtectionEnable pulumi.StringPtrInput `pulumi:"deletionProtectionEnable"`
 	// Specifies the description of the ELB load balancer.
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// Specifies the enterprise project ID.
 	EnterpriseProjectId pulumi.StringPtrInput `pulumi:"enterpriseProjectId"`
+	// Specifies the global EIPs bound to the load balancer. It can be queried by different
+	// conditions:
+	// + If `globalEipId` is used as the query condition, the format is **global_eip_id=xxx**
+	// + If `globalEipAddress` is used as the query condition, the format is **global_eip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	GlobalEips pulumi.StringArrayInput `pulumi:"globalEips"`
+	// Specifies the private IPv4 address bound to the load balancer.
+	Ipv4Address pulumi.StringPtrInput `pulumi:"ipv4Address"`
+	// Specifies the ID of the port bound to the private IPv4 address of the load balancer.
+	Ipv4PortId pulumi.StringPtrInput `pulumi:"ipv4PortId"`
 	// Specifies the ID of the IPv4 subnet where the load balancer resides.
 	Ipv4SubnetId pulumi.StringPtrInput `pulumi:"ipv4SubnetId"`
+	// Specifies the IPv6 address bound to the load balancer.
+	Ipv6Address pulumi.StringPtrInput `pulumi:"ipv6Address"`
 	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
 	Ipv6NetworkId pulumi.StringPtrInput `pulumi:"ipv6NetworkId"`
+	// Specifies the ID of the port bound to the IPv6 address of the load balancer.
+	Ipv6VipPortId pulumi.StringPtrInput `pulumi:"ipv6VipPortId"`
 	// Specifies the ID of a flavor at Layer 4.
 	L4FlavorId pulumi.StringPtrInput `pulumi:"l4FlavorId"`
 	// Specifies the ID of a flavor at Layer 7.
 	L7FlavorId pulumi.StringPtrInput `pulumi:"l7FlavorId"`
 	// Specifies the ID of the ELB load balancer.
 	LoadbalancerId pulumi.StringPtrInput `pulumi:"loadbalancerId"`
+	// Specifies the ID of the log group that is associated with the load balancer.
+	LogGroupId pulumi.StringPtrInput `pulumi:"logGroupId"`
+	// Specifies the ID of the log topic that is associated with the load balancer.
+	LogTopicId pulumi.StringPtrInput `pulumi:"logTopicId"`
+	// Specifies the private IP address of the cloud server that is associated with the
+	// load balancer as a backend server.
+	MemberAddress pulumi.StringPtrInput `pulumi:"memberAddress"`
+	// Specifies the ID of the cloud server that is associated with the load balancer
+	// as a backend server.
+	MemberDeviceId pulumi.StringPtrInput `pulumi:"memberDeviceId"`
 	// Specifies the name of the ELB load balancer.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Specifies the operating status of the load balancer. Value options:
+	// + **ONLINE**: indicates that the load balancer is running normally.
+	// + **FROZEN**: indicates that the load balancer is frozen.
+	OperatingStatus pulumi.StringPtrInput `pulumi:"operatingStatus"`
+	// Specifies the protection status. Value options:
+	// + **nonProtection**: The load balancer is not protected.
+	// + **consoleProtection**: Modification Protection is enabled on the console.
+	ProtectionStatus pulumi.StringPtrInput `pulumi:"protectionStatus"`
+	// Specifies the provisioning status of the load balancer. Value options:
+	// + **ACTIVE**: The load balancer is successfully provisioned.
+	// + **PENDING_DELETE**: The load balancer is being deleted.
+	ProvisioningStatus pulumi.StringPtrInput `pulumi:"provisioningStatus"`
+	// Specifies the EIPs bound to the load balancer. It can be queried by different conditions:
+	// + If `publicipId` is used as the query condition, the format is **publicip_id=xxx**
+	// + If `publicipAddress` is used as the query condition, the format is **publicip_address=xxx**
+	// + If `ipVersion` is used as the query condition, the format is **ip_version=xxx**
+	Publicips pulumi.StringArrayInput `pulumi:"publicips"`
 	// Specifies the region in which to query the data source.
 	// If omitted, the provider-level region will be used.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -168,6 +296,21 @@ func (o GetLoadbalancersResultOutput) ToGetLoadbalancersResultOutputWithContext(
 	return o
 }
 
+// The list of AZs where the load balancer is created.
+func (o GetLoadbalancersResultOutput) AvailabilityZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
+}
+
+// The provides resource billing information.
+func (o GetLoadbalancersResultOutput) BillingInfo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.BillingInfo }).(pulumi.StringPtrOutput)
+}
+
+// Whether the deletion protection is enabled.
+func (o GetLoadbalancersResultOutput) DeletionProtectionEnable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.DeletionProtectionEnable }).(pulumi.StringPtrOutput)
+}
+
 // The description of load balancer.
 func (o GetLoadbalancersResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Description }).(pulumi.StringPtrOutput)
@@ -178,9 +321,25 @@ func (o GetLoadbalancersResultOutput) EnterpriseProjectId() pulumi.StringPtrOutp
 	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
 }
 
+// The EIPs bound to the load balancer.
+// The globalEips structure is documented below.
+func (o GetLoadbalancersResultOutput) GlobalEips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) []string { return v.GlobalEips }).(pulumi.StringArrayOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetLoadbalancersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The private IPv4 address bound to the load balancer.
+func (o GetLoadbalancersResultOutput) Ipv4Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Ipv4Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the port bound to the private IPv4 address of the load balancer.
+func (o GetLoadbalancersResultOutput) Ipv4PortId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Ipv4PortId }).(pulumi.StringPtrOutput)
 }
 
 // The  ID of the IPv4 subnet where the load balancer resides.
@@ -188,9 +347,19 @@ func (o GetLoadbalancersResultOutput) Ipv4SubnetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Ipv4SubnetId }).(pulumi.StringPtrOutput)
 }
 
+// The IPv6 address bound to the load balancer.
+func (o GetLoadbalancersResultOutput) Ipv6Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Ipv6Address }).(pulumi.StringPtrOutput)
+}
+
 // The ID of the IPv6 subnet where the load balancer resides.
 func (o GetLoadbalancersResultOutput) Ipv6NetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Ipv6NetworkId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the port bound to the IPv6 address of the load balancer.
+func (o GetLoadbalancersResultOutput) Ipv6VipPortId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Ipv6VipPortId }).(pulumi.StringPtrOutput)
 }
 
 // The ID of a flavor at Layer 4.
@@ -213,9 +382,48 @@ func (o GetLoadbalancersResultOutput) Loadbalancers() GetLoadbalancersLoadbalanc
 	return o.ApplyT(func(v GetLoadbalancersResult) []GetLoadbalancersLoadbalancer { return v.Loadbalancers }).(GetLoadbalancersLoadbalancerArrayOutput)
 }
 
+// The ID of the log group that is associated with the load balancer.
+func (o GetLoadbalancersResultOutput) LogGroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.LogGroupId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the log topic that is associated with the load balancer.
+func (o GetLoadbalancersResultOutput) LogTopicId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.LogTopicId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetLoadbalancersResultOutput) MemberAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.MemberAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o GetLoadbalancersResultOutput) MemberDeviceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.MemberDeviceId }).(pulumi.StringPtrOutput)
+}
+
 // The load balancer name.
 func (o GetLoadbalancersResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The operating status of the load balancer.
+func (o GetLoadbalancersResultOutput) OperatingStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.OperatingStatus }).(pulumi.StringPtrOutput)
+}
+
+// The protection status for update.
+func (o GetLoadbalancersResultOutput) ProtectionStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.ProtectionStatus }).(pulumi.StringPtrOutput)
+}
+
+// The provisioning status of the load balancer.
+func (o GetLoadbalancersResultOutput) ProvisioningStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) *string { return v.ProvisioningStatus }).(pulumi.StringPtrOutput)
+}
+
+// The EIPs bound to the load balancer.
+// The publicips structure is documented below.
+func (o GetLoadbalancersResultOutput) Publicips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancersResult) []string { return v.Publicips }).(pulumi.StringArrayOutput)
 }
 
 func (o GetLoadbalancersResultOutput) Region() pulumi.StringOutput {

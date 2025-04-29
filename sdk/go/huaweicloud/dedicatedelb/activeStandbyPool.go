@@ -107,6 +107,13 @@ type ActiveStandbyPool struct {
 	// Specifies the IP address version supported by active-standby pool.
 	// The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
 	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route
+	// requests to backend servers in the associated backend server group. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm pulumi.StringPtrOutput `pulumi:"lbAlgorithm"`
 	// Specifies the ID of the listener with which the active-standby pool is
 	// associated. Changing this parameter will create a new resource.
 	ListenerId pulumi.StringOutput `pulumi:"listenerId"`
@@ -125,6 +132,9 @@ type ActiveStandbyPool struct {
 	// + If the listener's protocol is **TCP**, the value must be **TCP**.
 	// + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// The multi-path distribution configuration based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies ActiveStandbyPoolQuicCidHashStrategyArrayOutput `pulumi:"quicCidHashStrategies"`
 	// Specifies the region in which to create the ELB active-standby pool resource.
 	// If omitted, the provider-level region will be used.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -209,6 +219,13 @@ type activeStandbyPoolState struct {
 	// Specifies the IP address version supported by active-standby pool.
 	// The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
 	IpVersion *string `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route
+	// requests to backend servers in the associated backend server group. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm *string `pulumi:"lbAlgorithm"`
 	// Specifies the ID of the listener with which the active-standby pool is
 	// associated. Changing this parameter will create a new resource.
 	ListenerId *string `pulumi:"listenerId"`
@@ -227,6 +244,9 @@ type activeStandbyPoolState struct {
 	// + If the listener's protocol is **TCP**, the value must be **TCP**.
 	// + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
 	Protocol *string `pulumi:"protocol"`
+	// The multi-path distribution configuration based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies []ActiveStandbyPoolQuicCidHashStrategy `pulumi:"quicCidHashStrategies"`
 	// Specifies the region in which to create the ELB active-standby pool resource.
 	// If omitted, the provider-level region will be used.
 	Region *string `pulumi:"region"`
@@ -273,6 +293,13 @@ type ActiveStandbyPoolState struct {
 	// Specifies the IP address version supported by active-standby pool.
 	// The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
 	IpVersion pulumi.StringPtrInput
+	// Specifies the load balancing algorithm used by the load balancer to route
+	// requests to backend servers in the associated backend server group. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm pulumi.StringPtrInput
 	// Specifies the ID of the listener with which the active-standby pool is
 	// associated. Changing this parameter will create a new resource.
 	ListenerId pulumi.StringPtrInput
@@ -291,6 +318,9 @@ type ActiveStandbyPoolState struct {
 	// + If the listener's protocol is **TCP**, the value must be **TCP**.
 	// + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
 	Protocol pulumi.StringPtrInput
+	// The multi-path distribution configuration based on destination connection IDs.
+	// The quicCidHashStrategy structure is documented below.
+	QuicCidHashStrategies ActiveStandbyPoolQuicCidHashStrategyArrayInput
 	// Specifies the region in which to create the ELB active-standby pool resource.
 	// If omitted, the provider-level region will be used.
 	Region pulumi.StringPtrInput
@@ -339,6 +369,13 @@ type activeStandbyPoolArgs struct {
 	// Specifies the IP address version supported by active-standby pool.
 	// The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
 	IpVersion *string `pulumi:"ipVersion"`
+	// Specifies the load balancing algorithm used by the load balancer to route
+	// requests to backend servers in the associated backend server group. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm *string `pulumi:"lbAlgorithm"`
 	// Specifies the ID of the listener with which the active-standby pool is
 	// associated. Changing this parameter will create a new resource.
 	ListenerId *string `pulumi:"listenerId"`
@@ -400,6 +437,13 @@ type ActiveStandbyPoolArgs struct {
 	// Specifies the IP address version supported by active-standby pool.
 	// The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
 	IpVersion pulumi.StringPtrInput
+	// Specifies the load balancing algorithm used by the load balancer to route
+	// requests to backend servers in the associated backend server group. Value options:
+	// + **ROUND_ROBIN**: weighted round robin.
+	// + **LEAST_CONNECTIONS**: weighted least connections.
+	// + **SOURCE_IP**: source IP hash.
+	// + **QUIC_CID**: connection ID.
+	LbAlgorithm pulumi.StringPtrInput
 	// Specifies the ID of the listener with which the active-standby pool is
 	// associated. Changing this parameter will create a new resource.
 	ListenerId pulumi.StringPtrInput
@@ -569,6 +613,16 @@ func (o ActiveStandbyPoolOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *ActiveStandbyPool) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
 }
 
+// Specifies the load balancing algorithm used by the load balancer to route
+// requests to backend servers in the associated backend server group. Value options:
+// + **ROUND_ROBIN**: weighted round robin.
+// + **LEAST_CONNECTIONS**: weighted least connections.
+// + **SOURCE_IP**: source IP hash.
+// + **QUIC_CID**: connection ID.
+func (o ActiveStandbyPoolOutput) LbAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ActiveStandbyPool) pulumi.StringPtrOutput { return v.LbAlgorithm }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the ID of the listener with which the active-standby pool is
 // associated. Changing this parameter will create a new resource.
 func (o ActiveStandbyPoolOutput) ListenerId() pulumi.StringOutput {
@@ -600,6 +654,14 @@ func (o ActiveStandbyPoolOutput) Name() pulumi.StringOutput {
 // + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
 func (o ActiveStandbyPoolOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *ActiveStandbyPool) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The multi-path distribution configuration based on destination connection IDs.
+// The quicCidHashStrategy structure is documented below.
+func (o ActiveStandbyPoolOutput) QuicCidHashStrategies() ActiveStandbyPoolQuicCidHashStrategyArrayOutput {
+	return o.ApplyT(func(v *ActiveStandbyPool) ActiveStandbyPoolQuicCidHashStrategyArrayOutput {
+		return v.QuicCidHashStrategies
+	}).(ActiveStandbyPoolQuicCidHashStrategyArrayOutput)
 }
 
 // Specifies the region in which to create the ELB active-standby pool resource.

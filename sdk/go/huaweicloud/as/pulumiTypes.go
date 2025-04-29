@@ -10,20 +10,302 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type BandwidthPolicyScalingPolicyAction struct {
-	// Specifies the operation restrictions.
-	// - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-	// - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-	// - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+type BandwidthPolicyIntervalAlarmAction struct {
+	// Specifies the operation restrictions, unit is Mbit/s.
+	// The valid values from `1` to `2,000`.
+	// If `operation` is not **SET**, this parameter takes effect.
+	// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+	// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
 	Limits *int `pulumi:"limits"`
-	// Specifies the operation to be performed. The default operation is ADD.
-	// The options are as follows:
-	// - **ADD**: indicates adding the bandwidth size.
-	// - **REDUCE**: indicates reducing the bandwidth size.
-	// - **SET**: indicates setting the bandwidth size to a specified value.
+	// Specifies the lower limit of the value range.
+	// The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+	LowerBound *string `pulumi:"lowerBound"`
+	// Specifies the operation to be performed.
+	// The valid values are as follows:
+	// + **ADD** (default): Indicates adding the bandwidth size.
+	// + **REDUCE**: Indicates reducing the bandwidth size.
+	// + **SET**: Indicates setting the bandwidth size to a specified value.
 	Operation *string `pulumi:"operation"`
-	// Specifies the bandwidth (Mbit/s).
-	// The value is an integer from 1 to 2000. The default value is 1.
+	// Specifies the operation size, unit is Mbit/s.
+	// The valid values from `1` to `300`, the default value is `1`.
+	Size *int `pulumi:"size"`
+	// Specifies the upper limit of the value range.
+	// The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+	UpperBound *string `pulumi:"upperBound"`
+}
+
+// BandwidthPolicyIntervalAlarmActionInput is an input type that accepts BandwidthPolicyIntervalAlarmActionArgs and BandwidthPolicyIntervalAlarmActionOutput values.
+// You can construct a concrete instance of `BandwidthPolicyIntervalAlarmActionInput` via:
+//
+//	BandwidthPolicyIntervalAlarmActionArgs{...}
+type BandwidthPolicyIntervalAlarmActionInput interface {
+	pulumi.Input
+
+	ToBandwidthPolicyIntervalAlarmActionOutput() BandwidthPolicyIntervalAlarmActionOutput
+	ToBandwidthPolicyIntervalAlarmActionOutputWithContext(context.Context) BandwidthPolicyIntervalAlarmActionOutput
+}
+
+type BandwidthPolicyIntervalAlarmActionArgs struct {
+	// Specifies the operation restrictions, unit is Mbit/s.
+	// The valid values from `1` to `2,000`.
+	// If `operation` is not **SET**, this parameter takes effect.
+	// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+	// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+	Limits pulumi.IntPtrInput `pulumi:"limits"`
+	// Specifies the lower limit of the value range.
+	// The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+	LowerBound pulumi.StringPtrInput `pulumi:"lowerBound"`
+	// Specifies the operation to be performed.
+	// The valid values are as follows:
+	// + **ADD** (default): Indicates adding the bandwidth size.
+	// + **REDUCE**: Indicates reducing the bandwidth size.
+	// + **SET**: Indicates setting the bandwidth size to a specified value.
+	Operation pulumi.StringPtrInput `pulumi:"operation"`
+	// Specifies the operation size, unit is Mbit/s.
+	// The valid values from `1` to `300`, the default value is `1`.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// Specifies the upper limit of the value range.
+	// The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+	UpperBound pulumi.StringPtrInput `pulumi:"upperBound"`
+}
+
+func (BandwidthPolicyIntervalAlarmActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPolicyIntervalAlarmAction)(nil)).Elem()
+}
+
+func (i BandwidthPolicyIntervalAlarmActionArgs) ToBandwidthPolicyIntervalAlarmActionOutput() BandwidthPolicyIntervalAlarmActionOutput {
+	return i.ToBandwidthPolicyIntervalAlarmActionOutputWithContext(context.Background())
+}
+
+func (i BandwidthPolicyIntervalAlarmActionArgs) ToBandwidthPolicyIntervalAlarmActionOutputWithContext(ctx context.Context) BandwidthPolicyIntervalAlarmActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPolicyIntervalAlarmActionOutput)
+}
+
+// BandwidthPolicyIntervalAlarmActionArrayInput is an input type that accepts BandwidthPolicyIntervalAlarmActionArray and BandwidthPolicyIntervalAlarmActionArrayOutput values.
+// You can construct a concrete instance of `BandwidthPolicyIntervalAlarmActionArrayInput` via:
+//
+//	BandwidthPolicyIntervalAlarmActionArray{ BandwidthPolicyIntervalAlarmActionArgs{...} }
+type BandwidthPolicyIntervalAlarmActionArrayInput interface {
+	pulumi.Input
+
+	ToBandwidthPolicyIntervalAlarmActionArrayOutput() BandwidthPolicyIntervalAlarmActionArrayOutput
+	ToBandwidthPolicyIntervalAlarmActionArrayOutputWithContext(context.Context) BandwidthPolicyIntervalAlarmActionArrayOutput
+}
+
+type BandwidthPolicyIntervalAlarmActionArray []BandwidthPolicyIntervalAlarmActionInput
+
+func (BandwidthPolicyIntervalAlarmActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPolicyIntervalAlarmAction)(nil)).Elem()
+}
+
+func (i BandwidthPolicyIntervalAlarmActionArray) ToBandwidthPolicyIntervalAlarmActionArrayOutput() BandwidthPolicyIntervalAlarmActionArrayOutput {
+	return i.ToBandwidthPolicyIntervalAlarmActionArrayOutputWithContext(context.Background())
+}
+
+func (i BandwidthPolicyIntervalAlarmActionArray) ToBandwidthPolicyIntervalAlarmActionArrayOutputWithContext(ctx context.Context) BandwidthPolicyIntervalAlarmActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPolicyIntervalAlarmActionArrayOutput)
+}
+
+type BandwidthPolicyIntervalAlarmActionOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPolicyIntervalAlarmActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPolicyIntervalAlarmAction)(nil)).Elem()
+}
+
+func (o BandwidthPolicyIntervalAlarmActionOutput) ToBandwidthPolicyIntervalAlarmActionOutput() BandwidthPolicyIntervalAlarmActionOutput {
+	return o
+}
+
+func (o BandwidthPolicyIntervalAlarmActionOutput) ToBandwidthPolicyIntervalAlarmActionOutputWithContext(ctx context.Context) BandwidthPolicyIntervalAlarmActionOutput {
+	return o
+}
+
+// Specifies the operation restrictions, unit is Mbit/s.
+// The valid values from `1` to `2,000`.
+// If `operation` is not **SET**, this parameter takes effect.
+// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+func (o BandwidthPolicyIntervalAlarmActionOutput) Limits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyIntervalAlarmAction) *int { return v.Limits }).(pulumi.IntPtrOutput)
+}
+
+// Specifies the lower limit of the value range.
+// The value is null by default. The minimum lower limit allowed is `-1.174271E108`.
+func (o BandwidthPolicyIntervalAlarmActionOutput) LowerBound() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyIntervalAlarmAction) *string { return v.LowerBound }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the operation to be performed.
+// The valid values are as follows:
+// + **ADD** (default): Indicates adding the bandwidth size.
+// + **REDUCE**: Indicates reducing the bandwidth size.
+// + **SET**: Indicates setting the bandwidth size to a specified value.
+func (o BandwidthPolicyIntervalAlarmActionOutput) Operation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyIntervalAlarmAction) *string { return v.Operation }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the operation size, unit is Mbit/s.
+// The valid values from `1` to `300`, the default value is `1`.
+func (o BandwidthPolicyIntervalAlarmActionOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyIntervalAlarmAction) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// Specifies the upper limit of the value range.
+// The value is null by default. The maximum upper limit allowed is `1.174271E108`.
+func (o BandwidthPolicyIntervalAlarmActionOutput) UpperBound() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyIntervalAlarmAction) *string { return v.UpperBound }).(pulumi.StringPtrOutput)
+}
+
+type BandwidthPolicyIntervalAlarmActionArrayOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPolicyIntervalAlarmActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPolicyIntervalAlarmAction)(nil)).Elem()
+}
+
+func (o BandwidthPolicyIntervalAlarmActionArrayOutput) ToBandwidthPolicyIntervalAlarmActionArrayOutput() BandwidthPolicyIntervalAlarmActionArrayOutput {
+	return o
+}
+
+func (o BandwidthPolicyIntervalAlarmActionArrayOutput) ToBandwidthPolicyIntervalAlarmActionArrayOutputWithContext(ctx context.Context) BandwidthPolicyIntervalAlarmActionArrayOutput {
+	return o
+}
+
+func (o BandwidthPolicyIntervalAlarmActionArrayOutput) Index(i pulumi.IntInput) BandwidthPolicyIntervalAlarmActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BandwidthPolicyIntervalAlarmAction {
+		return vs[0].([]BandwidthPolicyIntervalAlarmAction)[vs[1].(int)]
+	}).(BandwidthPolicyIntervalAlarmActionOutput)
+}
+
+type BandwidthPolicyMetaData struct {
+	// The bandwidth sharing type in the bandwidth policy.
+	MetadataBandwidthShareType *string `pulumi:"metadataBandwidthShareType"`
+	// The EIP IP address for the bandwidth in the bandwidth policy.
+	MetadataEipAddress *string `pulumi:"metadataEipAddress"`
+	// The EIP ID for the bandwidth in the bandwidth policy.
+	MetadataEipId *string `pulumi:"metadataEipId"`
+}
+
+// BandwidthPolicyMetaDataInput is an input type that accepts BandwidthPolicyMetaDataArgs and BandwidthPolicyMetaDataOutput values.
+// You can construct a concrete instance of `BandwidthPolicyMetaDataInput` via:
+//
+//	BandwidthPolicyMetaDataArgs{...}
+type BandwidthPolicyMetaDataInput interface {
+	pulumi.Input
+
+	ToBandwidthPolicyMetaDataOutput() BandwidthPolicyMetaDataOutput
+	ToBandwidthPolicyMetaDataOutputWithContext(context.Context) BandwidthPolicyMetaDataOutput
+}
+
+type BandwidthPolicyMetaDataArgs struct {
+	// The bandwidth sharing type in the bandwidth policy.
+	MetadataBandwidthShareType pulumi.StringPtrInput `pulumi:"metadataBandwidthShareType"`
+	// The EIP IP address for the bandwidth in the bandwidth policy.
+	MetadataEipAddress pulumi.StringPtrInput `pulumi:"metadataEipAddress"`
+	// The EIP ID for the bandwidth in the bandwidth policy.
+	MetadataEipId pulumi.StringPtrInput `pulumi:"metadataEipId"`
+}
+
+func (BandwidthPolicyMetaDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPolicyMetaData)(nil)).Elem()
+}
+
+func (i BandwidthPolicyMetaDataArgs) ToBandwidthPolicyMetaDataOutput() BandwidthPolicyMetaDataOutput {
+	return i.ToBandwidthPolicyMetaDataOutputWithContext(context.Background())
+}
+
+func (i BandwidthPolicyMetaDataArgs) ToBandwidthPolicyMetaDataOutputWithContext(ctx context.Context) BandwidthPolicyMetaDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPolicyMetaDataOutput)
+}
+
+// BandwidthPolicyMetaDataArrayInput is an input type that accepts BandwidthPolicyMetaDataArray and BandwidthPolicyMetaDataArrayOutput values.
+// You can construct a concrete instance of `BandwidthPolicyMetaDataArrayInput` via:
+//
+//	BandwidthPolicyMetaDataArray{ BandwidthPolicyMetaDataArgs{...} }
+type BandwidthPolicyMetaDataArrayInput interface {
+	pulumi.Input
+
+	ToBandwidthPolicyMetaDataArrayOutput() BandwidthPolicyMetaDataArrayOutput
+	ToBandwidthPolicyMetaDataArrayOutputWithContext(context.Context) BandwidthPolicyMetaDataArrayOutput
+}
+
+type BandwidthPolicyMetaDataArray []BandwidthPolicyMetaDataInput
+
+func (BandwidthPolicyMetaDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPolicyMetaData)(nil)).Elem()
+}
+
+func (i BandwidthPolicyMetaDataArray) ToBandwidthPolicyMetaDataArrayOutput() BandwidthPolicyMetaDataArrayOutput {
+	return i.ToBandwidthPolicyMetaDataArrayOutputWithContext(context.Background())
+}
+
+func (i BandwidthPolicyMetaDataArray) ToBandwidthPolicyMetaDataArrayOutputWithContext(ctx context.Context) BandwidthPolicyMetaDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPolicyMetaDataArrayOutput)
+}
+
+type BandwidthPolicyMetaDataOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPolicyMetaDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPolicyMetaData)(nil)).Elem()
+}
+
+func (o BandwidthPolicyMetaDataOutput) ToBandwidthPolicyMetaDataOutput() BandwidthPolicyMetaDataOutput {
+	return o
+}
+
+func (o BandwidthPolicyMetaDataOutput) ToBandwidthPolicyMetaDataOutputWithContext(ctx context.Context) BandwidthPolicyMetaDataOutput {
+	return o
+}
+
+// The bandwidth sharing type in the bandwidth policy.
+func (o BandwidthPolicyMetaDataOutput) MetadataBandwidthShareType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyMetaData) *string { return v.MetadataBandwidthShareType }).(pulumi.StringPtrOutput)
+}
+
+// The EIP IP address for the bandwidth in the bandwidth policy.
+func (o BandwidthPolicyMetaDataOutput) MetadataEipAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyMetaData) *string { return v.MetadataEipAddress }).(pulumi.StringPtrOutput)
+}
+
+// The EIP ID for the bandwidth in the bandwidth policy.
+func (o BandwidthPolicyMetaDataOutput) MetadataEipId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPolicyMetaData) *string { return v.MetadataEipId }).(pulumi.StringPtrOutput)
+}
+
+type BandwidthPolicyMetaDataArrayOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPolicyMetaDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPolicyMetaData)(nil)).Elem()
+}
+
+func (o BandwidthPolicyMetaDataArrayOutput) ToBandwidthPolicyMetaDataArrayOutput() BandwidthPolicyMetaDataArrayOutput {
+	return o
+}
+
+func (o BandwidthPolicyMetaDataArrayOutput) ToBandwidthPolicyMetaDataArrayOutputWithContext(ctx context.Context) BandwidthPolicyMetaDataArrayOutput {
+	return o
+}
+
+func (o BandwidthPolicyMetaDataArrayOutput) Index(i pulumi.IntInput) BandwidthPolicyMetaDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BandwidthPolicyMetaData {
+		return vs[0].([]BandwidthPolicyMetaData)[vs[1].(int)]
+	}).(BandwidthPolicyMetaDataOutput)
+}
+
+type BandwidthPolicyScalingPolicyAction struct {
+	// Specifies the operation restrictions, unit is Mbit/s.
+	// The valid values from `1` to `2,000`.
+	// If `operation` is not **SET**, this parameter takes effect.
+	// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+	// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
+	Limits *int `pulumi:"limits"`
+	// Specifies the operation to be performed.
+	// The valid values are as follows:
+	// + **ADD** (default): Indicates adding the bandwidth size.
+	// + **REDUCE**: Indicates reducing the bandwidth size.
+	// + **SET**: Indicates setting the bandwidth size to a specified value.
+	Operation *string `pulumi:"operation"`
+	// Specifies the operation size, unit is Mbit/s.
+	// The valid values from `1` to `300`, the default value is `1`.
 	Size *int `pulumi:"size"`
 }
 
@@ -39,19 +321,20 @@ type BandwidthPolicyScalingPolicyActionInput interface {
 }
 
 type BandwidthPolicyScalingPolicyActionArgs struct {
-	// Specifies the operation restrictions.
-	// - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-	// - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-	// - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+	// Specifies the operation restrictions, unit is Mbit/s.
+	// The valid values from `1` to `2,000`.
+	// If `operation` is not **SET**, this parameter takes effect.
+	// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+	// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
 	Limits pulumi.IntPtrInput `pulumi:"limits"`
-	// Specifies the operation to be performed. The default operation is ADD.
-	// The options are as follows:
-	// - **ADD**: indicates adding the bandwidth size.
-	// - **REDUCE**: indicates reducing the bandwidth size.
-	// - **SET**: indicates setting the bandwidth size to a specified value.
+	// Specifies the operation to be performed.
+	// The valid values are as follows:
+	// + **ADD** (default): Indicates adding the bandwidth size.
+	// + **REDUCE**: Indicates reducing the bandwidth size.
+	// + **SET**: Indicates setting the bandwidth size to a specified value.
 	Operation pulumi.StringPtrInput `pulumi:"operation"`
-	// Specifies the bandwidth (Mbit/s).
-	// The value is an integer from 1 to 2000. The default value is 1.
+	// Specifies the operation size, unit is Mbit/s.
+	// The valid values from `1` to `300`, the default value is `1`.
 	Size pulumi.IntPtrInput `pulumi:"size"`
 }
 
@@ -132,25 +415,26 @@ func (o BandwidthPolicyScalingPolicyActionOutput) ToBandwidthPolicyScalingPolicy
 	}).(BandwidthPolicyScalingPolicyActionPtrOutput)
 }
 
-// Specifies the operation restrictions.
-// - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-// - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-// - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+// Specifies the operation restrictions, unit is Mbit/s.
+// The valid values from `1` to `2,000`.
+// If `operation` is not **SET**, this parameter takes effect.
+// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
 func (o BandwidthPolicyScalingPolicyActionOutput) Limits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScalingPolicyAction) *int { return v.Limits }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the operation to be performed. The default operation is ADD.
-// The options are as follows:
-// - **ADD**: indicates adding the bandwidth size.
-// - **REDUCE**: indicates reducing the bandwidth size.
-// - **SET**: indicates setting the bandwidth size to a specified value.
+// Specifies the operation to be performed.
+// The valid values are as follows:
+// + **ADD** (default): Indicates adding the bandwidth size.
+// + **REDUCE**: Indicates reducing the bandwidth size.
+// + **SET**: Indicates setting the bandwidth size to a specified value.
 func (o BandwidthPolicyScalingPolicyActionOutput) Operation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScalingPolicyAction) *string { return v.Operation }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the bandwidth (Mbit/s).
-// The value is an integer from 1 to 2000. The default value is 1.
+// Specifies the operation size, unit is Mbit/s.
+// The valid values from `1` to `300`, the default value is `1`.
 func (o BandwidthPolicyScalingPolicyActionOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScalingPolicyAction) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
@@ -179,10 +463,11 @@ func (o BandwidthPolicyScalingPolicyActionPtrOutput) Elem() BandwidthPolicyScali
 	}).(BandwidthPolicyScalingPolicyActionOutput)
 }
 
-// Specifies the operation restrictions.
-// - If operation is not SET, this parameter takes effect and the unit is Mbit/s.
-// - If operation is set to ADD, this parameter indicates the maximum bandwidth allowed.
-// - If operation is set to REDUCE, this parameter indicates the minimum bandwidth allowed.
+// Specifies the operation restrictions, unit is Mbit/s.
+// The valid values from `1` to `2,000`.
+// If `operation` is not **SET**, this parameter takes effect.
+// If `operation` is set to **ADD**, this parameter indicates the maximum bandwidth allowed.
+// If `operation` is set to **REDUCE**, this parameter indicates the minimum bandwidth allowed.
 func (o BandwidthPolicyScalingPolicyActionPtrOutput) Limits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScalingPolicyAction) *int {
 		if v == nil {
@@ -192,11 +477,11 @@ func (o BandwidthPolicyScalingPolicyActionPtrOutput) Limits() pulumi.IntPtrOutpu
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the operation to be performed. The default operation is ADD.
-// The options are as follows:
-// - **ADD**: indicates adding the bandwidth size.
-// - **REDUCE**: indicates reducing the bandwidth size.
-// - **SET**: indicates setting the bandwidth size to a specified value.
+// Specifies the operation to be performed.
+// The valid values are as follows:
+// + **ADD** (default): Indicates adding the bandwidth size.
+// + **REDUCE**: Indicates reducing the bandwidth size.
+// + **SET**: Indicates setting the bandwidth size to a specified value.
 func (o BandwidthPolicyScalingPolicyActionPtrOutput) Operation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScalingPolicyAction) *string {
 		if v == nil {
@@ -206,8 +491,8 @@ func (o BandwidthPolicyScalingPolicyActionPtrOutput) Operation() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the bandwidth (Mbit/s).
-// The value is an integer from 1 to 2000. The default value is 1.
+// Specifies the operation size, unit is Mbit/s.
+// The valid values from `1` to `300`, the default value is `1`.
 func (o BandwidthPolicyScalingPolicyActionPtrOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScalingPolicyAction) *int {
 		if v == nil {
@@ -221,30 +506,32 @@ type BandwidthPolicyScheduledPolicy struct {
 	// Specifies the end time of the scaling action triggered periodically.
 	// The time format complies with UTC. This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
 	// When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-	// The time format is YYYY-MM-DDThh:mmZ.
+	// The time format is **YYYY-MM-DDThh:mmZ**.
 	EndTime *string `pulumi:"endTime"`
 	// Specifies the time when the scaling action is triggered.
 	// The time format complies with UTC.
-	// - If scalingPolicyType is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-	// - If scalingPolicyType is set to RECURRENCE, the time format is hh:mm.
+	// If `scalingPolicyType` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+	// If `scalingPolicyType` is set to **RECURRENCE**, the time format is **hh:mm**.
 	LaunchTime string `pulumi:"launchTime"`
 	// Specifies the periodic triggering type.
-	// This parameter is mandatory when scalingPolicyType is set to RECURRENCE. The options are as follows:
-	// - **Daily**: indicates that the scaling action is triggered once a day.
-	// - **Weekly**: indicates that the scaling action is triggered once a week.
-	// - **Monthly**: indicates that the scaling action is triggered once a month.
+	// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+	// The valid values are as follows:
+	// + **Daily**: Indicates that the scaling action is triggered once a day.
+	// + **Weekly**: Indicates that the scaling action is triggered once a week.
+	// + **Monthly**: Indicates that the scaling action is triggered once a month.
 	RecurrenceType *string `pulumi:"recurrenceType"`
 	// Specifies the day when a periodic scaling action is triggered.
-	// This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
-	// - If recurrenceType is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-	// - If recurrenceType is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-	//   The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-	// - If recurrenceType is set to Monthly, the value ranges from 1 to 31.
-	//   The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+	// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+	// <br/>If `recurrenceType` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+	// once a day.
+	// <br/>If `recurrenceType` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+	// The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+	// <br/>If `recurrenceType` is set to **Monthly**, the value ranges from `1` to `31`.
+	// The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
 	RecurrenceValue *string `pulumi:"recurrenceValue"`
 	// Specifies the start time of the scaling action triggered periodically.
 	// The time format complies with UTC. The default value is the local time.
-	// The time format is YYYY-MM-DDThh:mmZ.
+	// The time format is **YYYY-MM-DDThh:mmZ**.
 	StartTime *string `pulumi:"startTime"`
 }
 
@@ -263,30 +550,32 @@ type BandwidthPolicyScheduledPolicyArgs struct {
 	// Specifies the end time of the scaling action triggered periodically.
 	// The time format complies with UTC. This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
 	// When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-	// The time format is YYYY-MM-DDThh:mmZ.
+	// The time format is **YYYY-MM-DDThh:mmZ**.
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
 	// Specifies the time when the scaling action is triggered.
 	// The time format complies with UTC.
-	// - If scalingPolicyType is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-	// - If scalingPolicyType is set to RECURRENCE, the time format is hh:mm.
+	// If `scalingPolicyType` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+	// If `scalingPolicyType` is set to **RECURRENCE**, the time format is **hh:mm**.
 	LaunchTime pulumi.StringInput `pulumi:"launchTime"`
 	// Specifies the periodic triggering type.
-	// This parameter is mandatory when scalingPolicyType is set to RECURRENCE. The options are as follows:
-	// - **Daily**: indicates that the scaling action is triggered once a day.
-	// - **Weekly**: indicates that the scaling action is triggered once a week.
-	// - **Monthly**: indicates that the scaling action is triggered once a month.
+	// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+	// The valid values are as follows:
+	// + **Daily**: Indicates that the scaling action is triggered once a day.
+	// + **Weekly**: Indicates that the scaling action is triggered once a week.
+	// + **Monthly**: Indicates that the scaling action is triggered once a month.
 	RecurrenceType pulumi.StringPtrInput `pulumi:"recurrenceType"`
 	// Specifies the day when a periodic scaling action is triggered.
-	// This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
-	// - If recurrenceType is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-	// - If recurrenceType is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-	//   The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-	// - If recurrenceType is set to Monthly, the value ranges from 1 to 31.
-	//   The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+	// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+	// <br/>If `recurrenceType` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+	// once a day.
+	// <br/>If `recurrenceType` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+	// The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+	// <br/>If `recurrenceType` is set to **Monthly**, the value ranges from `1` to `31`.
+	// The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
 	RecurrenceValue pulumi.StringPtrInput `pulumi:"recurrenceValue"`
 	// Specifies the start time of the scaling action triggered periodically.
 	// The time format complies with UTC. The default value is the local time.
-	// The time format is YYYY-MM-DDThh:mmZ.
+	// The time format is **YYYY-MM-DDThh:mmZ**.
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
 }
 
@@ -370,42 +659,44 @@ func (o BandwidthPolicyScheduledPolicyOutput) ToBandwidthPolicyScheduledPolicyPt
 // Specifies the end time of the scaling action triggered periodically.
 // The time format complies with UTC. This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
 // When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-// The time format is YYYY-MM-DDThh:mmZ.
+// The time format is **YYYY-MM-DDThh:mmZ**.
 func (o BandwidthPolicyScheduledPolicyOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScheduledPolicy) *string { return v.EndTime }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the time when the scaling action is triggered.
 // The time format complies with UTC.
-// - If scalingPolicyType is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-// - If scalingPolicyType is set to RECURRENCE, the time format is hh:mm.
+// If `scalingPolicyType` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+// If `scalingPolicyType` is set to **RECURRENCE**, the time format is **hh:mm**.
 func (o BandwidthPolicyScheduledPolicyOutput) LaunchTime() pulumi.StringOutput {
 	return o.ApplyT(func(v BandwidthPolicyScheduledPolicy) string { return v.LaunchTime }).(pulumi.StringOutput)
 }
 
 // Specifies the periodic triggering type.
-// This parameter is mandatory when scalingPolicyType is set to RECURRENCE. The options are as follows:
-// - **Daily**: indicates that the scaling action is triggered once a day.
-// - **Weekly**: indicates that the scaling action is triggered once a week.
-// - **Monthly**: indicates that the scaling action is triggered once a month.
+// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+// The valid values are as follows:
+// + **Daily**: Indicates that the scaling action is triggered once a day.
+// + **Weekly**: Indicates that the scaling action is triggered once a week.
+// + **Monthly**: Indicates that the scaling action is triggered once a month.
 func (o BandwidthPolicyScheduledPolicyOutput) RecurrenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScheduledPolicy) *string { return v.RecurrenceType }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the day when a periodic scaling action is triggered.
-// This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
-//   - If recurrenceType is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-//   - If recurrenceType is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-//     The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-//   - If recurrenceType is set to Monthly, the value ranges from 1 to 31.
-//     The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+// <br/>If `recurrenceType` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+// once a day.
+// <br/>If `recurrenceType` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+// The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+// <br/>If `recurrenceType` is set to **Monthly**, the value ranges from `1` to `31`.
+// The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
 func (o BandwidthPolicyScheduledPolicyOutput) RecurrenceValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScheduledPolicy) *string { return v.RecurrenceValue }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the start time of the scaling action triggered periodically.
 // The time format complies with UTC. The default value is the local time.
-// The time format is YYYY-MM-DDThh:mmZ.
+// The time format is **YYYY-MM-DDThh:mmZ**.
 func (o BandwidthPolicyScheduledPolicyOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPolicyScheduledPolicy) *string { return v.StartTime }).(pulumi.StringPtrOutput)
 }
@@ -437,7 +728,7 @@ func (o BandwidthPolicyScheduledPolicyPtrOutput) Elem() BandwidthPolicyScheduled
 // Specifies the end time of the scaling action triggered periodically.
 // The time format complies with UTC. This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
 // When the scaling action is triggered periodically, the end time cannot be earlier than the current and start time.
-// The time format is YYYY-MM-DDThh:mmZ.
+// The time format is **YYYY-MM-DDThh:mmZ**.
 func (o BandwidthPolicyScheduledPolicyPtrOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScheduledPolicy) *string {
 		if v == nil {
@@ -449,8 +740,8 @@ func (o BandwidthPolicyScheduledPolicyPtrOutput) EndTime() pulumi.StringPtrOutpu
 
 // Specifies the time when the scaling action is triggered.
 // The time format complies with UTC.
-// - If scalingPolicyType is set to SCHEDULED, the time format is YYYY-MM-DDThh:mmZ.
-// - If scalingPolicyType is set to RECURRENCE, the time format is hh:mm.
+// If `scalingPolicyType` is set to **SCHEDULED**, the time format is **YYYY-MM-DDThh:mmZ**.
+// If `scalingPolicyType` is set to **RECURRENCE**, the time format is **hh:mm**.
 func (o BandwidthPolicyScheduledPolicyPtrOutput) LaunchTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScheduledPolicy) *string {
 		if v == nil {
@@ -461,10 +752,11 @@ func (o BandwidthPolicyScheduledPolicyPtrOutput) LaunchTime() pulumi.StringPtrOu
 }
 
 // Specifies the periodic triggering type.
-// This parameter is mandatory when scalingPolicyType is set to RECURRENCE. The options are as follows:
-// - **Daily**: indicates that the scaling action is triggered once a day.
-// - **Weekly**: indicates that the scaling action is triggered once a week.
-// - **Monthly**: indicates that the scaling action is triggered once a month.
+// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+// The valid values are as follows:
+// + **Daily**: Indicates that the scaling action is triggered once a day.
+// + **Weekly**: Indicates that the scaling action is triggered once a week.
+// + **Monthly**: Indicates that the scaling action is triggered once a month.
 func (o BandwidthPolicyScheduledPolicyPtrOutput) RecurrenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScheduledPolicy) *string {
 		if v == nil {
@@ -475,12 +767,13 @@ func (o BandwidthPolicyScheduledPolicyPtrOutput) RecurrenceType() pulumi.StringP
 }
 
 // Specifies the day when a periodic scaling action is triggered.
-// This parameter is mandatory when scalingPolicyType is set to RECURRENCE.
-//   - If recurrenceType is set to Daily, the value is null, indicating that the scaling action is triggered once a day.
-//   - If recurrenceType is set to Weekly, the value ranges from 1 (Sunday) to 7 (Saturday).
-//     The digits refer to dates in each week and separated by a comma, such as 1,3,5.
-//   - If recurrenceType is set to Monthly, the value ranges from 1 to 31.
-//     The digits refer to the dates in each month and separated by a comma, such as 1,10,13,28.
+// This parameter is mandatory when `scalingPolicyType` is set to **RECURRENCE**.
+// <br/>If `recurrenceType` is set to **Daily**, the value is null, indicating that the scaling action is triggered
+// once a day.
+// <br/>If `recurrenceType` is set to **Weekly**, the value ranges from `1` (Sunday) to `7` (Saturday).
+// The digits refer to dates in each week and separated by a comma, such as **1,3,5**.
+// <br/>If `recurrenceType` is set to **Monthly**, the value ranges from `1` to `31`.
+// The digits refer to the dates in each month and separated by a comma, such as **1,10,13,28**.
 func (o BandwidthPolicyScheduledPolicyPtrOutput) RecurrenceValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScheduledPolicy) *string {
 		if v == nil {
@@ -492,7 +785,7 @@ func (o BandwidthPolicyScheduledPolicyPtrOutput) RecurrenceValue() pulumi.String
 
 // Specifies the start time of the scaling action triggered periodically.
 // The time format complies with UTC. The default value is the local time.
-// The time format is YYYY-MM-DDThh:mmZ.
+// The time format is **YYYY-MM-DDThh:mmZ**.
 func (o BandwidthPolicyScheduledPolicyPtrOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPolicyScheduledPolicy) *string {
 		if v == nil {
@@ -534,6 +827,8 @@ type ConfigurationInstanceConfig struct {
 	// If this argument is not specified, `flavor`, `image`, and `disk` arguments are mandatory.
 	// Changing this will create a new resource.
 	InstanceId *string `pulumi:"instanceId"`
+	// The fingerprint of the SSH key pair used to log in to the instance.
+	KeyFingerprint *string `pulumi:"keyFingerprint"`
 	// Specifies the name of the SSH key pair used to log in to the instance.
 	// Changing this will create a new resource.
 	KeyName *string `pulumi:"keyName"`
@@ -603,6 +898,8 @@ type ConfigurationInstanceConfigArgs struct {
 	// If this argument is not specified, `flavor`, `image`, and `disk` arguments are mandatory.
 	// Changing this will create a new resource.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The fingerprint of the SSH key pair used to log in to the instance.
+	KeyFingerprint pulumi.StringPtrInput `pulumi:"keyFingerprint"`
 	// Specifies the name of the SSH key pair used to log in to the instance.
 	// Changing this will create a new resource.
 	KeyName pulumi.StringPtrInput `pulumi:"keyName"`
@@ -762,6 +1059,11 @@ func (o ConfigurationInstanceConfigOutput) Image() pulumi.StringPtrOutput {
 // Changing this will create a new resource.
 func (o ConfigurationInstanceConfigOutput) InstanceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ConfigurationInstanceConfig) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+// The fingerprint of the SSH key pair used to log in to the instance.
+func (o ConfigurationInstanceConfigOutput) KeyFingerprint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConfigurationInstanceConfig) *string { return v.KeyFingerprint }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the name of the SSH key pair used to log in to the instance.
@@ -933,6 +1235,16 @@ func (o ConfigurationInstanceConfigPtrOutput) InstanceId() pulumi.StringPtrOutpu
 			return nil
 		}
 		return v.InstanceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The fingerprint of the SSH key pair used to log in to the instance.
+func (o ConfigurationInstanceConfigPtrOutput) KeyFingerprint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConfigurationInstanceConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyFingerprint
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1888,6 +2200,8 @@ func (o ConfigurationInstanceConfigPublicIpEipBandwidthPtrOutput) Size() pulumi.
 }
 
 type GroupLbaasListener struct {
+	// The ID of the listener assocaite with the ELB.
+	ListenerId *string `pulumi:"listenerId"`
 	// Specifies the backend ECS group ID.
 	PoolId string `pulumi:"poolId"`
 	// Specifies the backend protocol, which is the port on which a backend ECS listens for
@@ -1914,6 +2228,8 @@ type GroupLbaasListenerInput interface {
 }
 
 type GroupLbaasListenerArgs struct {
+	// The ID of the listener assocaite with the ELB.
+	ListenerId pulumi.StringPtrInput `pulumi:"listenerId"`
 	// Specifies the backend ECS group ID.
 	PoolId pulumi.StringInput `pulumi:"poolId"`
 	// Specifies the backend protocol, which is the port on which a backend ECS listens for
@@ -1977,6 +2293,11 @@ func (o GroupLbaasListenerOutput) ToGroupLbaasListenerOutput() GroupLbaasListene
 
 func (o GroupLbaasListenerOutput) ToGroupLbaasListenerOutputWithContext(ctx context.Context) GroupLbaasListenerOutput {
 	return o
+}
+
+// The ID of the listener assocaite with the ELB.
+func (o GroupLbaasListenerOutput) ListenerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GroupLbaasListener) *string { return v.ListenerId }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the backend ECS group ID.
@@ -2664,6 +2985,10 @@ func (o PolicyScheduledPolicyPtrOutput) StartTime() pulumi.StringPtrOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyIntervalAlarmActionInput)(nil)).Elem(), BandwidthPolicyIntervalAlarmActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyIntervalAlarmActionArrayInput)(nil)).Elem(), BandwidthPolicyIntervalAlarmActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyMetaDataInput)(nil)).Elem(), BandwidthPolicyMetaDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyMetaDataArrayInput)(nil)).Elem(), BandwidthPolicyMetaDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyScalingPolicyActionInput)(nil)).Elem(), BandwidthPolicyScalingPolicyActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyScalingPolicyActionPtrInput)(nil)).Elem(), BandwidthPolicyScalingPolicyActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPolicyScheduledPolicyInput)(nil)).Elem(), BandwidthPolicyScheduledPolicyArgs{})
@@ -2690,6 +3015,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyScalingPolicyActionPtrInput)(nil)).Elem(), PolicyScalingPolicyActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyScheduledPolicyInput)(nil)).Elem(), PolicyScheduledPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyScheduledPolicyPtrInput)(nil)).Elem(), PolicyScheduledPolicyArgs{})
+	pulumi.RegisterOutputType(BandwidthPolicyIntervalAlarmActionOutput{})
+	pulumi.RegisterOutputType(BandwidthPolicyIntervalAlarmActionArrayOutput{})
+	pulumi.RegisterOutputType(BandwidthPolicyMetaDataOutput{})
+	pulumi.RegisterOutputType(BandwidthPolicyMetaDataArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPolicyScalingPolicyActionOutput{})
 	pulumi.RegisterOutputType(BandwidthPolicyScalingPolicyActionPtrOutput{})
 	pulumi.RegisterOutputType(BandwidthPolicyScheduledPolicyOutput{})

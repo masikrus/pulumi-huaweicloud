@@ -29,10 +29,19 @@ export function getListeners(args?: GetListenersArgs, opts?: pulumi.InvokeOption
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:Elb/getListeners:getListeners", {
+        "clientCaTlsContainerRef": args.clientCaTlsContainerRef,
+        "defaultPoolId": args.defaultPoolId,
+        "defaultTlsContainerRef": args.defaultTlsContainerRef,
+        "description": args.description,
+        "enterpriseProjectId": args.enterpriseProjectId,
+        "http2Enable": args.http2Enable,
+        "listenerId": args.listenerId,
+        "loadbalancerId": args.loadbalancerId,
         "name": args.name,
         "protocol": args.protocol,
         "protocolPort": args.protocolPort,
         "region": args.region,
+        "tlsCiphersPolicy": args.tlsCiphersPolicy,
     }, opts);
 }
 
@@ -40,6 +49,38 @@ export function getListeners(args?: GetListenersArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getListeners.
  */
 export interface GetListenersArgs {
+    /**
+     * The ID of the CA certificate used by the listener.
+     */
+    clientCaTlsContainerRef?: string;
+    /**
+     * The ID of the default pool with which the listener is associated.
+     */
+    defaultPoolId?: string;
+    /**
+     * The ID of the server certificate used by the listener.
+     */
+    defaultTlsContainerRef?: string;
+    /**
+     * The description for the listener.
+     */
+    description?: string;
+    /**
+     * The ID of the enterprise project.
+     */
+    enterpriseProjectId?: string;
+    /**
+     * Whether the ELB listener uses HTTP/2. Value options: **true**, **false**.
+     */
+    http2Enable?: string;
+    /**
+     * ID of the listener.
+     */
+    listenerId?: string;
+    /**
+     * The ID of the load balancer that the listener is added to.
+     */
+    loadbalancerId?: string;
     /**
      * The listener name.
      */
@@ -59,6 +100,10 @@ export interface GetListenersArgs {
      * If omitted, the provider-level region will be used.
      */
     region?: string;
+    /**
+     * The security policy used by the listener.
+     */
+    tlsCiphersPolicy?: string;
 }
 
 /**
@@ -66,14 +111,37 @@ export interface GetListenersArgs {
  */
 export interface GetListenersResult {
     /**
+     * The ID of the CA certificate used by the listener.
+     */
+    readonly clientCaTlsContainerRef?: string;
+    /**
+     * The ID of the default pool with which the ELB listener is associated.
+     */
+    readonly defaultPoolId?: string;
+    /**
+     * The ID of the server certificate used by the listener.
+     */
+    readonly defaultTlsContainerRef?: string;
+    /**
+     * The description of the ELB listener.
+     */
+    readonly description?: string;
+    readonly enterpriseProjectId?: string;
+    /**
+     * Whether the ELB listener uses HTTP/2.
+     */
+    readonly http2Enable?: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly listenerId?: string;
     /**
      * Listener list.
-     * The object structure is documented below.
+     * The listeners structure is documented below.
      */
     readonly listeners: outputs.Elb.GetListenersListener[];
+    readonly loadbalancerId?: string;
     /**
      * The listener name.
      */
@@ -87,6 +155,10 @@ export interface GetListenersResult {
      */
     readonly protocolPort?: string;
     readonly region: string;
+    /**
+     * security policy used by the listener.
+     */
+    readonly tlsCiphersPolicy?: string;
 }
 
 export function getListenersOutput(args?: GetListenersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetListenersResult> {
@@ -97,6 +169,38 @@ export function getListenersOutput(args?: GetListenersOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getListeners.
  */
 export interface GetListenersOutputArgs {
+    /**
+     * The ID of the CA certificate used by the listener.
+     */
+    clientCaTlsContainerRef?: pulumi.Input<string>;
+    /**
+     * The ID of the default pool with which the listener is associated.
+     */
+    defaultPoolId?: pulumi.Input<string>;
+    /**
+     * The ID of the server certificate used by the listener.
+     */
+    defaultTlsContainerRef?: pulumi.Input<string>;
+    /**
+     * The description for the listener.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * The ID of the enterprise project.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
+    /**
+     * Whether the ELB listener uses HTTP/2. Value options: **true**, **false**.
+     */
+    http2Enable?: pulumi.Input<string>;
+    /**
+     * ID of the listener.
+     */
+    listenerId?: pulumi.Input<string>;
+    /**
+     * The ID of the load balancer that the listener is added to.
+     */
+    loadbalancerId?: pulumi.Input<string>;
     /**
      * The listener name.
      */
@@ -116,4 +220,8 @@ export interface GetListenersOutputArgs {
      * If omitted, the provider-level region will be used.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The security policy used by the listener.
+     */
+    tlsCiphersPolicy?: pulumi.Input<string>;
 }

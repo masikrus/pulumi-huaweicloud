@@ -516,9 +516,11 @@ class _LoadbalancerCopyState:
                  cross_vpc_backend: Optional[pulumi.Input[str]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 elb_virsubnet_type: Optional[pulumi.Input[str]] = None,
                  enable_force_new: Optional[pulumi.Input[str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  force_delete: Optional[pulumi.Input[bool]] = None,
+                 frozen_scene: Optional[pulumi.Input[str]] = None,
                  gw_flavor_id: Optional[pulumi.Input[str]] = None,
                  ipv4_address: Optional[pulumi.Input[str]] = None,
                  ipv4_port_id: Optional[pulumi.Input[str]] = None,
@@ -531,10 +533,12 @@ class _LoadbalancerCopyState:
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  loadbalancer_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 operating_status: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
                  protection_reason: Optional[pulumi.Input[str]] = None,
                  protection_status: Optional[pulumi.Input[str]] = None,
+                 public_border_group: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  reuse_pool: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -561,9 +565,19 @@ class _LoadbalancerCopyState:
                + **true**: Enable deletion protection.
                + **false**: Disable deletion protection.
         :param pulumi.Input[str] description: Specifies the description of the load balancer.
+        :param pulumi.Input[str] elb_virsubnet_type: Indicates the type of the subnet on the downstream plane. The value can be:
+               + **ipv4**: IPv4 subnet
+               + **dualstack**: subnet that supports IPv4/IPv6 dual stack
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the load balancer.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the load balancer, remove the load
                balancer, listeners, unbind associated pools. Defaults to **false**.
+        :param pulumi.Input[str] frozen_scene: Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+               The value can be:
+               + **POLICE**: The load balancer is frozen due to security reasons.
+               + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+               + **VERIFY**: Your account has not completed real-name authentication.
+               + **PARTNER**: The load balancer is frozen by the partner.
+               + **ARREAR**: Your account is in arrears.
         :param pulumi.Input[str] gw_flavor_id: Indicates the flavor ID of the gateway load balancer.
         :param pulumi.Input[str] ipv4_address: Specifies the private IPv4 address of the load balancer.
         :param pulumi.Input[str] ipv4_port_id: Indicates the ID of the port bound to the private IPv4 address of the load balancer.
@@ -582,6 +596,9 @@ class _LoadbalancerCopyState:
         :param pulumi.Input[str] loadbalancer_id: Specifies the source load balancer ID.
         :param pulumi.Input[str] loadbalancer_type: Indicates the type of the load balancer.
         :param pulumi.Input[str] name: Specifies the load balancer name.
+        :param pulumi.Input[str] operating_status: Indicates the operating status of the load balancer. The value can be:
+               + **ONLINE**: indicates that the load balancer is running normally.
+               + **FROZEN**: indicates that the load balancer is frozen.
         :param pulumi.Input[int] period: Specifies the charging period of the ELB load balancer.
                If `period_unit` is set to **month**, the value ranges from `1` to `9`.
                If `period_unit` is set to **year**, the value ranges from `1` to `3`.
@@ -593,6 +610,7 @@ class _LoadbalancerCopyState:
         :param pulumi.Input[str] protection_status: Specifies the protection status for update. Value options:
                + **nonProtection**: No protection.
                + **consoleProtection**: Console modification protection.
+        :param pulumi.Input[str] public_border_group: Indicates the AZ group to which the load balancer belongs.
         :param pulumi.Input[str] region: The region in which to create the load balancer resource. If omitted, the
                provider-level region will be used. Changing this creates a new load balancer.
         :param pulumi.Input[str] reuse_pool: Specifies whether to reuse the backend server group and backend server
@@ -626,12 +644,16 @@ class _LoadbalancerCopyState:
             pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if elb_virsubnet_type is not None:
+            pulumi.set(__self__, "elb_virsubnet_type", elb_virsubnet_type)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if force_delete is not None:
             pulumi.set(__self__, "force_delete", force_delete)
+        if frozen_scene is not None:
+            pulumi.set(__self__, "frozen_scene", frozen_scene)
         if gw_flavor_id is not None:
             pulumi.set(__self__, "gw_flavor_id", gw_flavor_id)
         if ipv4_address is not None:
@@ -656,6 +678,8 @@ class _LoadbalancerCopyState:
             pulumi.set(__self__, "loadbalancer_type", loadbalancer_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if operating_status is not None:
+            pulumi.set(__self__, "operating_status", operating_status)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
@@ -664,6 +688,8 @@ class _LoadbalancerCopyState:
             pulumi.set(__self__, "protection_reason", protection_reason)
         if protection_status is not None:
             pulumi.set(__self__, "protection_status", protection_status)
+        if public_border_group is not None:
+            pulumi.set(__self__, "public_border_group", public_border_group)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if reuse_pool is not None:
@@ -795,6 +821,20 @@ class _LoadbalancerCopyState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="elbVirsubnetType")
+    def elb_virsubnet_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the type of the subnet on the downstream plane. The value can be:
+        + **ipv4**: IPv4 subnet
+        + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+        """
+        return pulumi.get(self, "elb_virsubnet_type")
+
+    @elb_virsubnet_type.setter
+    def elb_virsubnet_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "elb_virsubnet_type", value)
+
+    @property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "enable_force_new")
@@ -827,6 +867,24 @@ class _LoadbalancerCopyState:
     @force_delete.setter
     def force_delete(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_delete", value)
+
+    @property
+    @pulumi.getter(name="frozenScene")
+    def frozen_scene(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+        The value can be:
+        + **POLICE**: The load balancer is frozen due to security reasons.
+        + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+        + **VERIFY**: Your account has not completed real-name authentication.
+        + **PARTNER**: The load balancer is frozen by the partner.
+        + **ARREAR**: Your account is in arrears.
+        """
+        return pulumi.get(self, "frozen_scene")
+
+    @frozen_scene.setter
+    def frozen_scene(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frozen_scene", value)
 
     @property
     @pulumi.getter(name="gwFlavorId")
@@ -979,6 +1037,20 @@ class _LoadbalancerCopyState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the operating status of the load balancer. The value can be:
+        + **ONLINE**: indicates that the load balancer is running normally.
+        + **FROZEN**: indicates that the load balancer is frozen.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @operating_status.setter
+    def operating_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operating_status", value)
+
+    @property
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1032,6 +1104,18 @@ class _LoadbalancerCopyState:
     @protection_status.setter
     def protection_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protection_status", value)
+
+    @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the AZ group to which the load balancer belongs.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @public_border_group.setter
+    def public_border_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_border_group", value)
 
     @property
     @pulumi.getter
@@ -1425,9 +1509,13 @@ class LoadbalancerCopy(pulumi.CustomResource):
             __props__.__dict__["waf_failure_action"] = waf_failure_action
             __props__.__dict__["charge_mode"] = None
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["elb_virsubnet_type"] = None
+            __props__.__dict__["frozen_scene"] = None
             __props__.__dict__["gw_flavor_id"] = None
             __props__.__dict__["ipv4_port_id"] = None
             __props__.__dict__["loadbalancer_type"] = None
+            __props__.__dict__["operating_status"] = None
+            __props__.__dict__["public_border_group"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["vpc_id"] = None
         super(LoadbalancerCopy, __self__).__init__(
@@ -1449,9 +1537,11 @@ class LoadbalancerCopy(pulumi.CustomResource):
             cross_vpc_backend: Optional[pulumi.Input[str]] = None,
             deletion_protection_enable: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            elb_virsubnet_type: Optional[pulumi.Input[str]] = None,
             enable_force_new: Optional[pulumi.Input[str]] = None,
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
             force_delete: Optional[pulumi.Input[bool]] = None,
+            frozen_scene: Optional[pulumi.Input[str]] = None,
             gw_flavor_id: Optional[pulumi.Input[str]] = None,
             ipv4_address: Optional[pulumi.Input[str]] = None,
             ipv4_port_id: Optional[pulumi.Input[str]] = None,
@@ -1464,10 +1554,12 @@ class LoadbalancerCopy(pulumi.CustomResource):
             loadbalancer_id: Optional[pulumi.Input[str]] = None,
             loadbalancer_type: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            operating_status: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             period_unit: Optional[pulumi.Input[str]] = None,
             protection_reason: Optional[pulumi.Input[str]] = None,
             protection_status: Optional[pulumi.Input[str]] = None,
+            public_border_group: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             reuse_pool: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -1499,9 +1591,19 @@ class LoadbalancerCopy(pulumi.CustomResource):
                + **true**: Enable deletion protection.
                + **false**: Disable deletion protection.
         :param pulumi.Input[str] description: Specifies the description of the load balancer.
+        :param pulumi.Input[str] elb_virsubnet_type: Indicates the type of the subnet on the downstream plane. The value can be:
+               + **ipv4**: IPv4 subnet
+               + **dualstack**: subnet that supports IPv4/IPv6 dual stack
         :param pulumi.Input[str] enterprise_project_id: The enterprise project ID of the load balancer.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the load balancer, remove the load
                balancer, listeners, unbind associated pools. Defaults to **false**.
+        :param pulumi.Input[str] frozen_scene: Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+               The value can be:
+               + **POLICE**: The load balancer is frozen due to security reasons.
+               + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+               + **VERIFY**: Your account has not completed real-name authentication.
+               + **PARTNER**: The load balancer is frozen by the partner.
+               + **ARREAR**: Your account is in arrears.
         :param pulumi.Input[str] gw_flavor_id: Indicates the flavor ID of the gateway load balancer.
         :param pulumi.Input[str] ipv4_address: Specifies the private IPv4 address of the load balancer.
         :param pulumi.Input[str] ipv4_port_id: Indicates the ID of the port bound to the private IPv4 address of the load balancer.
@@ -1520,6 +1622,9 @@ class LoadbalancerCopy(pulumi.CustomResource):
         :param pulumi.Input[str] loadbalancer_id: Specifies the source load balancer ID.
         :param pulumi.Input[str] loadbalancer_type: Indicates the type of the load balancer.
         :param pulumi.Input[str] name: Specifies the load balancer name.
+        :param pulumi.Input[str] operating_status: Indicates the operating status of the load balancer. The value can be:
+               + **ONLINE**: indicates that the load balancer is running normally.
+               + **FROZEN**: indicates that the load balancer is frozen.
         :param pulumi.Input[int] period: Specifies the charging period of the ELB load balancer.
                If `period_unit` is set to **month**, the value ranges from `1` to `9`.
                If `period_unit` is set to **year**, the value ranges from `1` to `3`.
@@ -1531,6 +1636,7 @@ class LoadbalancerCopy(pulumi.CustomResource):
         :param pulumi.Input[str] protection_status: Specifies the protection status for update. Value options:
                + **nonProtection**: No protection.
                + **consoleProtection**: Console modification protection.
+        :param pulumi.Input[str] public_border_group: Indicates the AZ group to which the load balancer belongs.
         :param pulumi.Input[str] region: The region in which to create the load balancer resource. If omitted, the
                provider-level region will be used. Changing this creates a new load balancer.
         :param pulumi.Input[str] reuse_pool: Specifies whether to reuse the backend server group and backend server
@@ -1559,9 +1665,11 @@ class LoadbalancerCopy(pulumi.CustomResource):
         __props__.__dict__["cross_vpc_backend"] = cross_vpc_backend
         __props__.__dict__["deletion_protection_enable"] = deletion_protection_enable
         __props__.__dict__["description"] = description
+        __props__.__dict__["elb_virsubnet_type"] = elb_virsubnet_type
         __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["force_delete"] = force_delete
+        __props__.__dict__["frozen_scene"] = frozen_scene
         __props__.__dict__["gw_flavor_id"] = gw_flavor_id
         __props__.__dict__["ipv4_address"] = ipv4_address
         __props__.__dict__["ipv4_port_id"] = ipv4_port_id
@@ -1574,10 +1682,12 @@ class LoadbalancerCopy(pulumi.CustomResource):
         __props__.__dict__["loadbalancer_id"] = loadbalancer_id
         __props__.__dict__["loadbalancer_type"] = loadbalancer_type
         __props__.__dict__["name"] = name
+        __props__.__dict__["operating_status"] = operating_status
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
         __props__.__dict__["protection_reason"] = protection_reason
         __props__.__dict__["protection_status"] = protection_status
+        __props__.__dict__["public_border_group"] = public_border_group
         __props__.__dict__["region"] = region
         __props__.__dict__["reuse_pool"] = reuse_pool
         __props__.__dict__["tags"] = tags
@@ -1668,6 +1778,16 @@ class LoadbalancerCopy(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="elbVirsubnetType")
+    def elb_virsubnet_type(self) -> pulumi.Output[str]:
+        """
+        Indicates the type of the subnet on the downstream plane. The value can be:
+        + **ipv4**: IPv4 subnet
+        + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+        """
+        return pulumi.get(self, "elb_virsubnet_type")
+
+    @property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "enable_force_new")
@@ -1688,6 +1808,20 @@ class LoadbalancerCopy(pulumi.CustomResource):
         balancer, listeners, unbind associated pools. Defaults to **false**.
         """
         return pulumi.get(self, "force_delete")
+
+    @property
+    @pulumi.getter(name="frozenScene")
+    def frozen_scene(self) -> pulumi.Output[str]:
+        """
+        Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+        The value can be:
+        + **POLICE**: The load balancer is frozen due to security reasons.
+        + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
+        + **VERIFY**: Your account has not completed real-name authentication.
+        + **PARTNER**: The load balancer is frozen by the partner.
+        + **ARREAR**: Your account is in arrears.
+        """
+        return pulumi.get(self, "frozen_scene")
 
     @property
     @pulumi.getter(name="gwFlavorId")
@@ -1792,6 +1926,16 @@ class LoadbalancerCopy(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> pulumi.Output[str]:
+        """
+        Indicates the operating status of the load balancer. The value can be:
+        + **ONLINE**: indicates that the load balancer is running normally.
+        + **FROZEN**: indicates that the load balancer is frozen.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @property
     @pulumi.getter
     def period(self) -> pulumi.Output[Optional[int]]:
         """
@@ -1829,6 +1973,14 @@ class LoadbalancerCopy(pulumi.CustomResource):
         + **consoleProtection**: Console modification protection.
         """
         return pulumi.get(self, "protection_status")
+
+    @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> pulumi.Output[str]:
+        """
+        Indicates the AZ group to which the load balancer belongs.
+        """
+        return pulumi.get(self, "public_border_group")
 
     @property
     @pulumi.getter

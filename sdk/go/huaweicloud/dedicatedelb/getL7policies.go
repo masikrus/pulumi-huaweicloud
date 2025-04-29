@@ -71,6 +71,8 @@ type GetL7policiesArgs struct {
 	Name *string `pulumi:"name"`
 	// Specifies the forwarding policy priority.
 	Priority *int `pulumi:"priority"`
+	// Specifies the provisioning status of the forwarding policy.
+	ProvisioningStatus *string `pulumi:"provisioningStatus"`
 	// Specifies the ID of the listener to which requests are redirected.
 	RedirectListenerId *string `pulumi:"redirectListenerId"`
 	// Specifies the ID of the backend server group to which requests will be forwarded.
@@ -82,11 +84,11 @@ type GetL7policiesArgs struct {
 
 // A collection of values returned by getL7policies.
 type GetL7policiesResult struct {
-	// The requests will be forwarded. The value can be one of the following:
-	// **REDIRECT_TO_POOL**, **REDIRECT_TO_LISTENER**, **REDIRECT_TO_URL**, **FIXED_RESPONSE**.
+	// The requests will be forwarded.
 	Action *string `pulumi:"action"`
 	// The supplementary information about the forwarding policy.
-	Description         *string `pulumi:"description"`
+	Description *string `pulumi:"description"`
+	// The enterprise project ID.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -100,6 +102,8 @@ type GetL7policiesResult struct {
 	Name *string `pulumi:"name"`
 	// The forwarding policy priority.
 	Priority *int `pulumi:"priority"`
+	// The provisioning status of the forwarding policy.
+	ProvisioningStatus *string `pulumi:"provisioningStatus"`
 	// The ID of the listener to which requests are redirected.
 	RedirectListenerId *string `pulumi:"redirectListenerId"`
 	// The ID of the backend server group that requests will be forwarded to.
@@ -140,6 +144,8 @@ type GetL7policiesOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Specifies the forwarding policy priority.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// Specifies the provisioning status of the forwarding policy.
+	ProvisioningStatus pulumi.StringPtrInput `pulumi:"provisioningStatus"`
 	// Specifies the ID of the listener to which requests are redirected.
 	RedirectListenerId pulumi.StringPtrInput `pulumi:"redirectListenerId"`
 	// Specifies the ID of the backend server group to which requests will be forwarded.
@@ -168,8 +174,7 @@ func (o GetL7policiesResultOutput) ToGetL7policiesResultOutputWithContext(ctx co
 	return o
 }
 
-// The requests will be forwarded. The value can be one of the following:
-// **REDIRECT_TO_POOL**, **REDIRECT_TO_LISTENER**, **REDIRECT_TO_URL**, **FIXED_RESPONSE**.
+// The requests will be forwarded.
 func (o GetL7policiesResultOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetL7policiesResult) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
@@ -179,6 +184,7 @@ func (o GetL7policiesResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetL7policiesResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The enterprise project ID.
 func (o GetL7policiesResultOutput) EnterpriseProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetL7policiesResult) *string { return v.EnterpriseProjectId }).(pulumi.StringPtrOutput)
 }
@@ -211,6 +217,11 @@ func (o GetL7policiesResultOutput) Name() pulumi.StringPtrOutput {
 // The forwarding policy priority.
 func (o GetL7policiesResultOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetL7policiesResult) *int { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The provisioning status of the forwarding policy.
+func (o GetL7policiesResultOutput) ProvisioningStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetL7policiesResult) *string { return v.ProvisioningStatus }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the listener to which requests are redirected.

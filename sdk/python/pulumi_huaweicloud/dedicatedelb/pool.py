@@ -23,6 +23,7 @@ class PoolArgs:
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,7 @@ class PoolArgs:
                  persistence: Optional[pulumi.Input['PoolPersistenceArgs']] = None,
                  protection_reason: Optional[pulumi.Input[str]] = None,
                  protection_status: Optional[pulumi.Input[str]] = None,
+                 public_border_group: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  slow_start_duration: Optional[pulumi.Input[int]] = None,
                  slow_start_enabled: Optional[pulumi.Input[bool]] = None,
@@ -61,7 +63,6 @@ class PoolArgs:
                + If the value is **GRPC**, the value of `http2_enable` of the associated listener must be **true**.
         :param pulumi.Input[bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
                If enable, the port of the backend server will be same as the port of the listener.
-               Changing this creates a new pool.
         :param pulumi.Input[bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -74,11 +75,10 @@ class PoolArgs:
         :param pulumi.Input[str] description: Specifies the description of the pool.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by the backend server group.
                The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-               Changing this creates a new pool.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated. Changing this creates a new pool.
+               associated.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated. Changing this creates a new pool.
+               group is associated.
         :param pulumi.Input[int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
                members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
                + **0** (default value): Not take effect.
@@ -91,6 +91,7 @@ class PoolArgs:
         :param pulumi.Input[str] protection_status: The protection status for update. Value options:
                + **nonProtection**: No protection.
                + **consoleProtection**: Console modification protection.
+        :param pulumi.Input[str] public_border_group: Specifies the public border group.
         :param pulumi.Input[str] region: Specifies the region in which to create the ELB pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new pool.
         :param pulumi.Input[int] slow_start_duration: Specifies the slow start duration, in seconds.  
@@ -114,6 +115,8 @@ class PoolArgs:
             pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
         if listener_id is not None:
@@ -130,6 +133,8 @@ class PoolArgs:
             pulumi.set(__self__, "protection_reason", protection_reason)
         if protection_status is not None:
             pulumi.set(__self__, "protection_status", protection_status)
+        if public_border_group is not None:
+            pulumi.set(__self__, "public_border_group", public_border_group)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if slow_start_duration is not None:
@@ -190,7 +195,6 @@ class PoolArgs:
         """
         Specifies whether to enable transparent port transmission on the backend.
         If enable, the port of the backend server will be same as the port of the listener.
-        Changing this creates a new pool.
         """
         return pulumi.get(self, "any_port_enable")
 
@@ -253,12 +257,20 @@ class PoolArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the IP address version supported by the backend server group.
         The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-        Changing this creates a new pool.
         """
         return pulumi.get(self, "ip_version")
 
@@ -271,7 +283,7 @@ class PoolArgs:
     def listener_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of the listener with which the backend server group is
-        associated. Changing this creates a new pool.
+        associated.
         """
         return pulumi.get(self, "listener_id")
 
@@ -284,7 +296,7 @@ class PoolArgs:
     def loadbalancer_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of the load balancer with which the backend server
-        group is associated. Changing this creates a new pool.
+        group is associated.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -358,6 +370,18 @@ class PoolArgs:
     @protection_status.setter
     def protection_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protection_status", value)
+
+    @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the public border group.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @public_border_group.setter
+    def public_border_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_border_group", value)
 
     @property
     @pulumi.getter
@@ -434,6 +458,8 @@ class _PoolState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
                  lb_method: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
@@ -445,6 +471,7 @@ class _PoolState:
                  protection_reason: Optional[pulumi.Input[str]] = None,
                  protection_status: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 public_border_group: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  slow_start_duration: Optional[pulumi.Input[int]] = None,
                  slow_start_enabled: Optional[pulumi.Input[bool]] = None,
@@ -455,7 +482,6 @@ class _PoolState:
         Input properties used for looking up and filtering Pool resources.
         :param pulumi.Input[bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
                If enable, the port of the backend server will be same as the port of the listener.
-               Changing this creates a new pool.
         :param pulumi.Input[bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -464,12 +490,12 @@ class _PoolState:
                + The pool member weight is changed to `0`.
         :param pulumi.Input[int] connection_drain_timeout: Specifies the timeout of the delayed logout in seconds.  
                Value ranges from `10` to `4000`.
-        :param pulumi.Input[str] created_at: The create time of the pool.
+        :param pulumi.Input[str] created_at: The creation time of the pool.
         :param pulumi.Input[bool] deletion_protection_enable: Specifies whether to enable deletion protection.
         :param pulumi.Input[str] description: Specifies the description of the pool.
+        :param pulumi.Input[str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by the backend server group.
                The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-               Changing this creates a new pool.
         :param pulumi.Input[str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -480,9 +506,9 @@ class _PoolState:
                + **3_TUPLE_HASH**: 3-tuple hash that is only available for IP backend server groups.
                + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated. Changing this creates a new pool.
+               associated.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated. Changing this creates a new pool.
+               group is associated.
         :param pulumi.Input[int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
                members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
                + **0** (default value): Not take effect.
@@ -508,6 +534,7 @@ class _PoolState:
                + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
                + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
                + If the value is **GRPC**, the value of `http2_enable` of the associated listener must be **true**.
+        :param pulumi.Input[str] public_border_group: Specifies the public border group.
         :param pulumi.Input[str] region: Specifies the region in which to create the ELB pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new pool.
         :param pulumi.Input[int] slow_start_duration: Specifies the slow start duration, in seconds.  
@@ -532,6 +559,10 @@ class _PoolState:
             pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
         if lb_method is not None:
@@ -554,6 +585,8 @@ class _PoolState:
             pulumi.set(__self__, "protection_status", protection_status)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if public_border_group is not None:
+            pulumi.set(__self__, "public_border_group", public_border_group)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if slow_start_duration is not None:
@@ -573,7 +606,6 @@ class _PoolState:
         """
         Specifies whether to enable transparent port transmission on the backend.
         If enable, the port of the backend server will be same as the port of the listener.
-        Changing this creates a new pool.
         """
         return pulumi.get(self, "any_port_enable")
 
@@ -615,7 +647,7 @@ class _PoolState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The create time of the pool.
+        The creation time of the pool.
         """
         return pulumi.get(self, "created_at")
 
@@ -648,12 +680,32 @@ class _PoolState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the IP address version supported by the backend server group.
         The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-        Changing this creates a new pool.
         """
         return pulumi.get(self, "ip_version")
 
@@ -686,7 +738,7 @@ class _PoolState:
     def listener_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of the listener with which the backend server group is
-        associated. Changing this creates a new pool.
+        associated.
         """
         return pulumi.get(self, "listener_id")
 
@@ -699,7 +751,7 @@ class _PoolState:
     def loadbalancer_id(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the ID of the load balancer with which the backend server
-        group is associated. Changing this creates a new pool.
+        group is associated.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -810,6 +862,18 @@ class _PoolState:
         pulumi.set(self, "protocol", value)
 
     @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the public border group.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @public_border_group.setter
+    def public_border_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_border_group", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -897,6 +961,7 @@ class Pool(pulumi.CustomResource):
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
                  lb_method: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
@@ -907,6 +972,7 @@ class Pool(pulumi.CustomResource):
                  protection_reason: Optional[pulumi.Input[str]] = None,
                  protection_status: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 public_border_group: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  slow_start_duration: Optional[pulumi.Input[int]] = None,
                  slow_start_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1008,7 +1074,6 @@ class Pool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
                If enable, the port of the backend server will be same as the port of the listener.
-               Changing this creates a new pool.
         :param pulumi.Input[bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -1021,7 +1086,6 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[str] description: Specifies the description of the pool.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by the backend server group.
                The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-               Changing this creates a new pool.
         :param pulumi.Input[str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -1032,9 +1096,9 @@ class Pool(pulumi.CustomResource):
                + **3_TUPLE_HASH**: 3-tuple hash that is only available for IP backend server groups.
                + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated. Changing this creates a new pool.
+               associated.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated. Changing this creates a new pool.
+               group is associated.
         :param pulumi.Input[int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
                members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
                + **0** (default value): Not take effect.
@@ -1059,6 +1123,7 @@ class Pool(pulumi.CustomResource):
                + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
                + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
                + If the value is **GRPC**, the value of `http2_enable` of the associated listener must be **true**.
+        :param pulumi.Input[str] public_border_group: Specifies the public border group.
         :param pulumi.Input[str] region: Specifies the region in which to create the ELB pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new pool.
         :param pulumi.Input[int] slow_start_duration: Specifies the slow start duration, in seconds.  
@@ -1187,6 +1252,7 @@ class Pool(pulumi.CustomResource):
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_force_new: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
                  lb_method: Optional[pulumi.Input[str]] = None,
                  listener_id: Optional[pulumi.Input[str]] = None,
@@ -1197,6 +1263,7 @@ class Pool(pulumi.CustomResource):
                  protection_reason: Optional[pulumi.Input[str]] = None,
                  protection_status: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 public_border_group: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  slow_start_duration: Optional[pulumi.Input[int]] = None,
                  slow_start_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1216,6 +1283,7 @@ class Pool(pulumi.CustomResource):
             __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
             __props__.__dict__["deletion_protection_enable"] = deletion_protection_enable
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["ip_version"] = ip_version
             if lb_method is None and not opts.urn:
                 raise TypeError("Missing required property 'lb_method'")
@@ -1230,12 +1298,14 @@ class Pool(pulumi.CustomResource):
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["public_border_group"] = public_border_group
             __props__.__dict__["region"] = region
             __props__.__dict__["slow_start_duration"] = slow_start_duration
             __props__.__dict__["slow_start_enabled"] = slow_start_enabled
             __props__.__dict__["type"] = type
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["enterprise_project_id"] = None
             __props__.__dict__["monitor_id"] = None
             __props__.__dict__["updated_at"] = None
         super(Pool, __self__).__init__(
@@ -1254,6 +1324,8 @@ class Pool(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             deletion_protection_enable: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            enable_force_new: Optional[pulumi.Input[str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[str]] = None,
             ip_version: Optional[pulumi.Input[str]] = None,
             lb_method: Optional[pulumi.Input[str]] = None,
             listener_id: Optional[pulumi.Input[str]] = None,
@@ -1265,6 +1337,7 @@ class Pool(pulumi.CustomResource):
             protection_reason: Optional[pulumi.Input[str]] = None,
             protection_status: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            public_border_group: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             slow_start_duration: Optional[pulumi.Input[int]] = None,
             slow_start_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1280,7 +1353,6 @@ class Pool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
                If enable, the port of the backend server will be same as the port of the listener.
-               Changing this creates a new pool.
         :param pulumi.Input[bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -1289,12 +1361,12 @@ class Pool(pulumi.CustomResource):
                + The pool member weight is changed to `0`.
         :param pulumi.Input[int] connection_drain_timeout: Specifies the timeout of the delayed logout in seconds.  
                Value ranges from `10` to `4000`.
-        :param pulumi.Input[str] created_at: The create time of the pool.
+        :param pulumi.Input[str] created_at: The creation time of the pool.
         :param pulumi.Input[bool] deletion_protection_enable: Specifies whether to enable deletion protection.
         :param pulumi.Input[str] description: Specifies the description of the pool.
+        :param pulumi.Input[str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input[str] ip_version: Specifies the IP address version supported by the backend server group.
                The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-               Changing this creates a new pool.
         :param pulumi.Input[str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -1305,9 +1377,9 @@ class Pool(pulumi.CustomResource):
                + **3_TUPLE_HASH**: 3-tuple hash that is only available for IP backend server groups.
                + **5_TUPLE_HASH**: 5-tuple hash that is only available for IP backend server groups Note.
         :param pulumi.Input[str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated. Changing this creates a new pool.
+               associated.
         :param pulumi.Input[str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated. Changing this creates a new pool.
+               group is associated.
         :param pulumi.Input[int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
                members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
                + **0** (default value): Not take effect.
@@ -1333,6 +1405,7 @@ class Pool(pulumi.CustomResource):
                + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
                + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
                + If the value is **GRPC**, the value of `http2_enable` of the associated listener must be **true**.
+        :param pulumi.Input[str] public_border_group: Specifies the public border group.
         :param pulumi.Input[str] region: Specifies the region in which to create the ELB pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new pool.
         :param pulumi.Input[int] slow_start_duration: Specifies the slow start duration, in seconds.  
@@ -1355,6 +1428,8 @@ class Pool(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["deletion_protection_enable"] = deletion_protection_enable
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_force_new"] = enable_force_new
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["ip_version"] = ip_version
         __props__.__dict__["lb_method"] = lb_method
         __props__.__dict__["listener_id"] = listener_id
@@ -1366,6 +1441,7 @@ class Pool(pulumi.CustomResource):
         __props__.__dict__["protection_reason"] = protection_reason
         __props__.__dict__["protection_status"] = protection_status
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["public_border_group"] = public_border_group
         __props__.__dict__["region"] = region
         __props__.__dict__["slow_start_duration"] = slow_start_duration
         __props__.__dict__["slow_start_enabled"] = slow_start_enabled
@@ -1380,7 +1456,6 @@ class Pool(pulumi.CustomResource):
         """
         Specifies whether to enable transparent port transmission on the backend.
         If enable, the port of the backend server will be same as the port of the listener.
-        Changing this creates a new pool.
         """
         return pulumi.get(self, "any_port_enable")
 
@@ -1410,7 +1485,7 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The create time of the pool.
+        The creation time of the pool.
         """
         return pulumi.get(self, "created_at")
 
@@ -1431,12 +1506,24 @@ class Pool(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> pulumi.Output[str]:
         """
         Specifies the IP address version supported by the backend server group.
         The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-        Changing this creates a new pool.
         """
         return pulumi.get(self, "ip_version")
 
@@ -1461,7 +1548,7 @@ class Pool(pulumi.CustomResource):
     def listener_id(self) -> pulumi.Output[str]:
         """
         Specifies the ID of the listener with which the backend server group is
-        associated. Changing this creates a new pool.
+        associated.
         """
         return pulumi.get(self, "listener_id")
 
@@ -1470,7 +1557,7 @@ class Pool(pulumi.CustomResource):
     def loadbalancer_id(self) -> pulumi.Output[str]:
         """
         Specifies the ID of the load balancer with which the backend server
-        group is associated. Changing this creates a new pool.
+        group is associated.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -1547,6 +1634,14 @@ class Pool(pulumi.CustomResource):
         + If the value is **GRPC**, the value of `http2_enable` of the associated listener must be **true**.
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> pulumi.Output[str]:
+        """
+        Specifies the public border group.
+        """
+        return pulumi.get(self, "public_border_group")
 
     @property
     @pulumi.getter

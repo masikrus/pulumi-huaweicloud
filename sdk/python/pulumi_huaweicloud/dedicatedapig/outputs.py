@@ -2382,7 +2382,12 @@ class GroupEnvironmentVariable(dict):
                  id: Optional[str] = None,
                  variable_id: Optional[str] = None):
         """
-        :param str name: Specifies the domain name. The valid must comply with the domian name specifications.
+        :param str name: Specifies the variable name.  
+               The valid length is limited from `3` to `32` characters.
+               Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+               In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+               It is replaced by the actual value when the API is published in an environment.
+               The variable names are not allowed to be repeated for an API group.
         :param str value: Specifies the variable value.  
                The valid length is limited from `1` to `255` characters.
                Only letters, digits and special characters (_-/.:) are allowed.
@@ -2399,7 +2404,12 @@ class GroupEnvironmentVariable(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        Specifies the domain name. The valid must comply with the domian name specifications.
+        Specifies the variable name.  
+        The valid length is limited from `3` to `32` characters.
+        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+        It is replaced by the actual value when the API is published in an environment.
+        The variable names are not allowed to be repeated for an API group.
         """
         return pulumi.get(self, "name")
 
@@ -2453,12 +2463,14 @@ class GroupUrlDomain(dict):
                  is_http_redirect_to_https: Optional[bool] = None,
                  min_ssl_version: Optional[str] = None):
         """
-        :param str name: Specifies the domain name. The valid must comply with the domian name specifications.
-        :param bool is_http_redirect_to_https: Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-               The default value is `false`.
-        :param str min_ssl_version: Specifies the minimum TLS version that can be used to access the domain name,
-               the default value is `TLSv1.2`.
-               The valid values are as follows:
+        :param str name: Specifies the variable name.  
+               The valid length is limited from `3` to `32` characters.
+               Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+               In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+               It is replaced by the actual value when the API is published in an environment.
+               The variable names are not allowed to be repeated for an API group.
+        :param bool is_http_redirect_to_https: Whether to enable redirection from `HTTP` to `HTTPS`.
+        :param str min_ssl_version: The minimum SSL protocol version.
                + **TLSv1.1**
                + **TLSv1.2**
         """
@@ -2472,7 +2484,12 @@ class GroupUrlDomain(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        Specifies the domain name. The valid must comply with the domian name specifications.
+        Specifies the variable name.  
+        The valid length is limited from `3` to `32` characters.
+        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+        It is replaced by the actual value when the API is published in an environment.
+        The variable names are not allowed to be repeated for an API group.
         """
         return pulumi.get(self, "name")
 
@@ -2480,8 +2497,7 @@ class GroupUrlDomain(dict):
     @pulumi.getter(name="isHttpRedirectToHttps")
     def is_http_redirect_to_https(self) -> Optional[bool]:
         """
-        Specifies whether to enable redirection from `HTTP` to `HTTPS`.
-        The default value is `false`.
+        Whether to enable redirection from `HTTP` to `HTTPS`.
         """
         return pulumi.get(self, "is_http_redirect_to_https")
 
@@ -2489,9 +2505,7 @@ class GroupUrlDomain(dict):
     @pulumi.getter(name="minSslVersion")
     def min_ssl_version(self) -> Optional[str]:
         """
-        Specifies the minimum TLS version that can be used to access the domain name,
-        the default value is `TLSv1.2`.
-        The valid values are as follows:
+        The minimum SSL protocol version.
         + **TLSv1.1**
         + **TLSv1.2**
         """

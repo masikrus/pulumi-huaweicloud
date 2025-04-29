@@ -46,53 +46,72 @@ import (
 //
 // ## Import
 //
-// ELB listener can be imported using the listener ID, e.g. bash
+// ELB listener can be imported using the `id`, e.g. bash
 //
 // ```sh
 //
-//	$ pulumi import huaweicloud:Elb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+//	$ pulumi import huaweicloud:Elb/listener:Listener test <id>
 //
 // ```
 type Listener struct {
 	pulumi.CustomResourceState
 
+	// Deprecated: admin_state_up is deprecated
 	AdminStateUp pulumi.BoolPtrOutput `pulumi:"adminStateUp"`
-	// The maximum number of connections allowed for the listener. The value ranges from
-	// -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-	// number of connections.
+	// Specifies the ID of the CA certificate used by the listener. This
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+	ClientCaTlsContainerRef pulumi.StringOutput `pulumi:"clientCaTlsContainerRef"`
+	// Deprecated: connection_limit is deprecated
 	ConnectionLimit pulumi.IntOutput `pulumi:"connectionLimit"`
+	// The creation time of the listener.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the default pool with which the listener is associated.
-	// Changing this creates a new listener.
 	DefaultPoolId pulumi.StringOutput `pulumi:"defaultPoolId"`
 	// Specifies the ID of the server certificate used by the listener. This
-	// parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
-	DefaultTlsContainerRef pulumi.StringPtrOutput `pulumi:"defaultTlsContainerRef"`
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+	DefaultTlsContainerRef pulumi.StringOutput `pulumi:"defaultTlsContainerRef"`
 	// Human-readable description for the listener.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-	// only when the protocol is set to *TERMINATED_HTTPS*.
+	// only when the `protocol` is set to **TERMINATED_HTTPS**.
 	Http2Enable pulumi.BoolPtrOutput `pulumi:"http2Enable"`
-	// The load balancer on which to provision this listener. Changing this
-	// creates a new listener.
+	// Specifies whether to insert HTTP extension headers and sent them to backend servers.
+	// All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+	// servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+	// set to **TERMINATED_HTTPS**.
+	// The insertHeaders structure is documented below.
+	InsertHeaders ListenerInsertHeadersOutput `pulumi:"insertHeaders"`
+	// The load balancer on which to provision this listener.
 	LoadbalancerId pulumi.StringOutput `pulumi:"loadbalancerId"`
 	// Human-readable name for the listener. Does not have to be unique.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-	// creates a new listener.
+	// The reason to enable modification protection. This parameter is valid only when
+	// `protectionStatus` is set to **consoleProtection**.
+	ProtectionReason pulumi.StringPtrOutput `pulumi:"protectionReason"`
+	// Specifies whether modification protection is enabled. Value options:
+	// + **nonProtection (default)**: Modification protection is not enabled.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus pulumi.StringOutput `pulumi:"protectionStatus"`
+	// The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// The port on which to listen for client traffic. Changing this creates a
-	// new listener.
+	// The port on which to listen for client traffic.
 	ProtocolPort pulumi.IntOutput `pulumi:"protocolPort"`
 	// The region in which to create the listener resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new listener.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Lists the IDs of SNI certificates (server certificates with a domain name)
-	// used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+	// used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
 	SniContainerRefs pulumi.StringArrayOutput `pulumi:"sniContainerRefs"`
-	// The key/value pairs to associate with the listener.
+	// Specifies the reason to enable modification protection.
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// Deprecated: tenant_id is deprecated
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
+	// Specifies the security policy used by the listener. This parameter takes effect
+	// only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+	// **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+	TlsCiphersPolicy pulumi.StringOutput `pulumi:"tlsCiphersPolicy"`
+	// The update time of the listener.
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
 // NewListener registers a new resource with the given unique name, arguments, and options.
@@ -134,83 +153,121 @@ func GetListener(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Listener resources.
 type listenerState struct {
+	// Deprecated: admin_state_up is deprecated
 	AdminStateUp *bool `pulumi:"adminStateUp"`
-	// The maximum number of connections allowed for the listener. The value ranges from
-	// -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-	// number of connections.
+	// Specifies the ID of the CA certificate used by the listener. This
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+	ClientCaTlsContainerRef *string `pulumi:"clientCaTlsContainerRef"`
+	// Deprecated: connection_limit is deprecated
 	ConnectionLimit *int `pulumi:"connectionLimit"`
+	// The creation time of the listener.
+	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the default pool with which the listener is associated.
-	// Changing this creates a new listener.
 	DefaultPoolId *string `pulumi:"defaultPoolId"`
 	// Specifies the ID of the server certificate used by the listener. This
-	// parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
 	DefaultTlsContainerRef *string `pulumi:"defaultTlsContainerRef"`
 	// Human-readable description for the listener.
 	Description *string `pulumi:"description"`
 	// Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-	// only when the protocol is set to *TERMINATED_HTTPS*.
+	// only when the `protocol` is set to **TERMINATED_HTTPS**.
 	Http2Enable *bool `pulumi:"http2Enable"`
-	// The load balancer on which to provision this listener. Changing this
-	// creates a new listener.
+	// Specifies whether to insert HTTP extension headers and sent them to backend servers.
+	// All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+	// servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+	// set to **TERMINATED_HTTPS**.
+	// The insertHeaders structure is documented below.
+	InsertHeaders *ListenerInsertHeaders `pulumi:"insertHeaders"`
+	// The load balancer on which to provision this listener.
 	LoadbalancerId *string `pulumi:"loadbalancerId"`
 	// Human-readable name for the listener. Does not have to be unique.
 	Name *string `pulumi:"name"`
-	// The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-	// creates a new listener.
+	// The reason to enable modification protection. This parameter is valid only when
+	// `protectionStatus` is set to **consoleProtection**.
+	ProtectionReason *string `pulumi:"protectionReason"`
+	// Specifies whether modification protection is enabled. Value options:
+	// + **nonProtection (default)**: Modification protection is not enabled.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus *string `pulumi:"protectionStatus"`
+	// The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
 	Protocol *string `pulumi:"protocol"`
-	// The port on which to listen for client traffic. Changing this creates a
-	// new listener.
+	// The port on which to listen for client traffic.
 	ProtocolPort *int `pulumi:"protocolPort"`
 	// The region in which to create the listener resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new listener.
 	Region *string `pulumi:"region"`
 	// Lists the IDs of SNI certificates (server certificates with a domain name)
-	// used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+	// used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
 	SniContainerRefs []string `pulumi:"sniContainerRefs"`
-	// The key/value pairs to associate with the listener.
+	// Specifies the reason to enable modification protection.
 	Tags map[string]string `pulumi:"tags"`
 	// Deprecated: tenant_id is deprecated
 	TenantId *string `pulumi:"tenantId"`
+	// Specifies the security policy used by the listener. This parameter takes effect
+	// only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+	// **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+	TlsCiphersPolicy *string `pulumi:"tlsCiphersPolicy"`
+	// The update time of the listener.
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type ListenerState struct {
+	// Deprecated: admin_state_up is deprecated
 	AdminStateUp pulumi.BoolPtrInput
-	// The maximum number of connections allowed for the listener. The value ranges from
-	// -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-	// number of connections.
+	// Specifies the ID of the CA certificate used by the listener. This
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+	ClientCaTlsContainerRef pulumi.StringPtrInput
+	// Deprecated: connection_limit is deprecated
 	ConnectionLimit pulumi.IntPtrInput
+	// The creation time of the listener.
+	CreatedAt pulumi.StringPtrInput
 	// The ID of the default pool with which the listener is associated.
-	// Changing this creates a new listener.
 	DefaultPoolId pulumi.StringPtrInput
 	// Specifies the ID of the server certificate used by the listener. This
-	// parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
 	DefaultTlsContainerRef pulumi.StringPtrInput
 	// Human-readable description for the listener.
 	Description pulumi.StringPtrInput
 	// Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-	// only when the protocol is set to *TERMINATED_HTTPS*.
+	// only when the `protocol` is set to **TERMINATED_HTTPS**.
 	Http2Enable pulumi.BoolPtrInput
-	// The load balancer on which to provision this listener. Changing this
-	// creates a new listener.
+	// Specifies whether to insert HTTP extension headers and sent them to backend servers.
+	// All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+	// servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+	// set to **TERMINATED_HTTPS**.
+	// The insertHeaders structure is documented below.
+	InsertHeaders ListenerInsertHeadersPtrInput
+	// The load balancer on which to provision this listener.
 	LoadbalancerId pulumi.StringPtrInput
 	// Human-readable name for the listener. Does not have to be unique.
 	Name pulumi.StringPtrInput
-	// The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-	// creates a new listener.
+	// The reason to enable modification protection. This parameter is valid only when
+	// `protectionStatus` is set to **consoleProtection**.
+	ProtectionReason pulumi.StringPtrInput
+	// Specifies whether modification protection is enabled. Value options:
+	// + **nonProtection (default)**: Modification protection is not enabled.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus pulumi.StringPtrInput
+	// The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
 	Protocol pulumi.StringPtrInput
-	// The port on which to listen for client traffic. Changing this creates a
-	// new listener.
+	// The port on which to listen for client traffic.
 	ProtocolPort pulumi.IntPtrInput
 	// The region in which to create the listener resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new listener.
 	Region pulumi.StringPtrInput
 	// Lists the IDs of SNI certificates (server certificates with a domain name)
-	// used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+	// used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
 	SniContainerRefs pulumi.StringArrayInput
-	// The key/value pairs to associate with the listener.
+	// Specifies the reason to enable modification protection.
 	Tags pulumi.StringMapInput
 	// Deprecated: tenant_id is deprecated
 	TenantId pulumi.StringPtrInput
+	// Specifies the security policy used by the listener. This parameter takes effect
+	// only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+	// **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+	TlsCiphersPolicy pulumi.StringPtrInput
+	// The update time of the listener.
+	UpdatedAt pulumi.StringPtrInput
 }
 
 func (ListenerState) ElementType() reflect.Type {
@@ -218,84 +275,114 @@ func (ListenerState) ElementType() reflect.Type {
 }
 
 type listenerArgs struct {
+	// Deprecated: admin_state_up is deprecated
 	AdminStateUp *bool `pulumi:"adminStateUp"`
-	// The maximum number of connections allowed for the listener. The value ranges from
-	// -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-	// number of connections.
+	// Specifies the ID of the CA certificate used by the listener. This
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+	ClientCaTlsContainerRef *string `pulumi:"clientCaTlsContainerRef"`
+	// Deprecated: connection_limit is deprecated
 	ConnectionLimit *int `pulumi:"connectionLimit"`
 	// The ID of the default pool with which the listener is associated.
-	// Changing this creates a new listener.
 	DefaultPoolId *string `pulumi:"defaultPoolId"`
 	// Specifies the ID of the server certificate used by the listener. This
-	// parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
 	DefaultTlsContainerRef *string `pulumi:"defaultTlsContainerRef"`
 	// Human-readable description for the listener.
 	Description *string `pulumi:"description"`
 	// Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-	// only when the protocol is set to *TERMINATED_HTTPS*.
+	// only when the `protocol` is set to **TERMINATED_HTTPS**.
 	Http2Enable *bool `pulumi:"http2Enable"`
-	// The load balancer on which to provision this listener. Changing this
-	// creates a new listener.
+	// Specifies whether to insert HTTP extension headers and sent them to backend servers.
+	// All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+	// servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+	// set to **TERMINATED_HTTPS**.
+	// The insertHeaders structure is documented below.
+	InsertHeaders *ListenerInsertHeaders `pulumi:"insertHeaders"`
+	// The load balancer on which to provision this listener.
 	LoadbalancerId string `pulumi:"loadbalancerId"`
 	// Human-readable name for the listener. Does not have to be unique.
 	Name *string `pulumi:"name"`
-	// The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-	// creates a new listener.
+	// The reason to enable modification protection. This parameter is valid only when
+	// `protectionStatus` is set to **consoleProtection**.
+	ProtectionReason *string `pulumi:"protectionReason"`
+	// Specifies whether modification protection is enabled. Value options:
+	// + **nonProtection (default)**: Modification protection is not enabled.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus *string `pulumi:"protectionStatus"`
+	// The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
 	Protocol string `pulumi:"protocol"`
-	// The port on which to listen for client traffic. Changing this creates a
-	// new listener.
+	// The port on which to listen for client traffic.
 	ProtocolPort int `pulumi:"protocolPort"`
 	// The region in which to create the listener resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new listener.
 	Region *string `pulumi:"region"`
 	// Lists the IDs of SNI certificates (server certificates with a domain name)
-	// used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+	// used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
 	SniContainerRefs []string `pulumi:"sniContainerRefs"`
-	// The key/value pairs to associate with the listener.
+	// Specifies the reason to enable modification protection.
 	Tags map[string]string `pulumi:"tags"`
 	// Deprecated: tenant_id is deprecated
 	TenantId *string `pulumi:"tenantId"`
+	// Specifies the security policy used by the listener. This parameter takes effect
+	// only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+	// **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+	TlsCiphersPolicy *string `pulumi:"tlsCiphersPolicy"`
 }
 
 // The set of arguments for constructing a Listener resource.
 type ListenerArgs struct {
+	// Deprecated: admin_state_up is deprecated
 	AdminStateUp pulumi.BoolPtrInput
-	// The maximum number of connections allowed for the listener. The value ranges from
-	// -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-	// number of connections.
+	// Specifies the ID of the CA certificate used by the listener. This
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+	ClientCaTlsContainerRef pulumi.StringPtrInput
+	// Deprecated: connection_limit is deprecated
 	ConnectionLimit pulumi.IntPtrInput
 	// The ID of the default pool with which the listener is associated.
-	// Changing this creates a new listener.
 	DefaultPoolId pulumi.StringPtrInput
 	// Specifies the ID of the server certificate used by the listener. This
-	// parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
+	// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
 	DefaultTlsContainerRef pulumi.StringPtrInput
 	// Human-readable description for the listener.
 	Description pulumi.StringPtrInput
 	// Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-	// only when the protocol is set to *TERMINATED_HTTPS*.
+	// only when the `protocol` is set to **TERMINATED_HTTPS**.
 	Http2Enable pulumi.BoolPtrInput
-	// The load balancer on which to provision this listener. Changing this
-	// creates a new listener.
+	// Specifies whether to insert HTTP extension headers and sent them to backend servers.
+	// All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+	// servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+	// set to **TERMINATED_HTTPS**.
+	// The insertHeaders structure is documented below.
+	InsertHeaders ListenerInsertHeadersPtrInput
+	// The load balancer on which to provision this listener.
 	LoadbalancerId pulumi.StringInput
 	// Human-readable name for the listener. Does not have to be unique.
 	Name pulumi.StringPtrInput
-	// The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-	// creates a new listener.
+	// The reason to enable modification protection. This parameter is valid only when
+	// `protectionStatus` is set to **consoleProtection**.
+	ProtectionReason pulumi.StringPtrInput
+	// Specifies whether modification protection is enabled. Value options:
+	// + **nonProtection (default)**: Modification protection is not enabled.
+	// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+	ProtectionStatus pulumi.StringPtrInput
+	// The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
 	Protocol pulumi.StringInput
-	// The port on which to listen for client traffic. Changing this creates a
-	// new listener.
+	// The port on which to listen for client traffic.
 	ProtocolPort pulumi.IntInput
 	// The region in which to create the listener resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new listener.
 	Region pulumi.StringPtrInput
 	// Lists the IDs of SNI certificates (server certificates with a domain name)
-	// used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+	// used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
 	SniContainerRefs pulumi.StringArrayInput
-	// The key/value pairs to associate with the listener.
+	// Specifies the reason to enable modification protection.
 	Tags pulumi.StringMapInput
 	// Deprecated: tenant_id is deprecated
 	TenantId pulumi.StringPtrInput
+	// Specifies the security policy used by the listener. This parameter takes effect
+	// only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+	// **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+	TlsCiphersPolicy pulumi.StringPtrInput
 }
 
 func (ListenerArgs) ElementType() reflect.Type {
@@ -385,27 +472,36 @@ func (o ListenerOutput) ToListenerOutputWithContext(ctx context.Context) Listene
 	return o
 }
 
+// Deprecated: admin_state_up is deprecated
 func (o ListenerOutput) AdminStateUp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.BoolPtrOutput { return v.AdminStateUp }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of connections allowed for the listener. The value ranges from
-// -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum
-// number of connections.
+// Specifies the ID of the CA certificate used by the listener. This
+// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+func (o ListenerOutput) ClientCaTlsContainerRef() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.ClientCaTlsContainerRef }).(pulumi.StringOutput)
+}
+
+// Deprecated: connection_limit is deprecated
 func (o ListenerOutput) ConnectionLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ConnectionLimit }).(pulumi.IntOutput)
 }
 
+// The creation time of the listener.
+func (o ListenerOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // The ID of the default pool with which the listener is associated.
-// Changing this creates a new listener.
 func (o ListenerOutput) DefaultPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.DefaultPoolId }).(pulumi.StringOutput)
 }
 
 // Specifies the ID of the server certificate used by the listener. This
-// parameter is mandatory when protocol is set to *TERMINATED_HTTPS*.
-func (o ListenerOutput) DefaultTlsContainerRef() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.DefaultTlsContainerRef }).(pulumi.StringPtrOutput)
+// parameter is mandatory when `protocol` is set to **TERMINATED_HTTPS**.
+func (o ListenerOutput) DefaultTlsContainerRef() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.DefaultTlsContainerRef }).(pulumi.StringOutput)
 }
 
 // Human-readable description for the listener.
@@ -414,13 +510,21 @@ func (o ListenerOutput) Description() pulumi.StringPtrOutput {
 }
 
 // Specifies whether to use HTTP/2. The default value is false. This parameter is valid
-// only when the protocol is set to *TERMINATED_HTTPS*.
+// only when the `protocol` is set to **TERMINATED_HTTPS**.
 func (o ListenerOutput) Http2Enable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.BoolPtrOutput { return v.Http2Enable }).(pulumi.BoolPtrOutput)
 }
 
-// The load balancer on which to provision this listener. Changing this
-// creates a new listener.
+// Specifies whether to insert HTTP extension headers and sent them to backend servers.
+// All headers are synchronized. If this parameter is not set, default values are used. Information required by backend
+// servers can be written into HTTP headers and passed to backend servers. This parameter is mandatory when `protocol` is
+// set to **TERMINATED_HTTPS**.
+// The insertHeaders structure is documented below.
+func (o ListenerOutput) InsertHeaders() ListenerInsertHeadersOutput {
+	return o.ApplyT(func(v *Listener) ListenerInsertHeadersOutput { return v.InsertHeaders }).(ListenerInsertHeadersOutput)
+}
+
+// The load balancer on which to provision this listener.
 func (o ListenerOutput) LoadbalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.LoadbalancerId }).(pulumi.StringOutput)
 }
@@ -430,14 +534,25 @@ func (o ListenerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The protocol can either be TCP, UDP, HTTP or TERMINATED_HTTPS. Changing this
-// creates a new listener.
+// The reason to enable modification protection. This parameter is valid only when
+// `protectionStatus` is set to **consoleProtection**.
+func (o ListenerOutput) ProtectionReason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.ProtectionReason }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether modification protection is enabled. Value options:
+// + **nonProtection (default)**: Modification protection is not enabled.
+// + **consoleProtection**: Modification protection is enabled to avoid that resources are modified by accident on the console.
+func (o ListenerOutput) ProtectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.ProtectionStatus }).(pulumi.StringOutput)
+}
+
+// The protocol can either be **TCP**, **UDP**, **HTTP** or **TERMINATED_HTTPS**.
 func (o ListenerOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// The port on which to listen for client traffic. Changing this creates a
-// new listener.
+// The port on which to listen for client traffic.
 func (o ListenerOutput) ProtocolPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ProtocolPort }).(pulumi.IntOutput)
 }
@@ -449,12 +564,12 @@ func (o ListenerOutput) Region() pulumi.StringOutput {
 }
 
 // Lists the IDs of SNI certificates (server certificates with a domain name)
-// used by the listener. This parameter is valid when protocol is set to *TERMINATED_HTTPS*.
+// used by the listener. This parameter is valid when `protocol` is set to **TERMINATED_HTTPS**.
 func (o ListenerOutput) SniContainerRefs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringArrayOutput { return v.SniContainerRefs }).(pulumi.StringArrayOutput)
 }
 
-// The key/value pairs to associate with the listener.
+// Specifies the reason to enable modification protection.
 func (o ListenerOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
@@ -462,6 +577,18 @@ func (o ListenerOutput) Tags() pulumi.StringMapOutput {
 // Deprecated: tenant_id is deprecated
 func (o ListenerOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
+}
+
+// Specifies the security policy used by the listener. This parameter takes effect
+// only when the `protocol` used by the listener is set to **TERMINATED_HTTPS**. Value options: **tls-1-0-inherit**,
+// **tls-1-0**, **tls-1-1**, **tls-1-2** or **tls-1-2-strict**. Defaults to **tls-1-0**.
+func (o ListenerOutput) TlsCiphersPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.TlsCiphersPolicy }).(pulumi.StringOutput)
+}
+
+// The update time of the listener.
+func (o ListenerOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type ListenerArrayOutput struct{ *pulumi.OutputState }

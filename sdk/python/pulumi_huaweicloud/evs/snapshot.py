@@ -123,34 +123,45 @@ class SnapshotArgs:
 @pulumi.input_type
 class _SnapshotState:
     def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  force: Optional[pulumi.Input[bool]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metadata_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
+        :param pulumi.Input[str] created_at: The time when the snapshot was created.
         :param pulumi.Input[str] description: The description of the snapshot. The value can contain a maximum of 255 bytes.
         :param pulumi.Input[bool] force: Specifies the flag for forcibly creating a snapshot. Default to false.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Specifies the user-defined metadata key-value pair. Changing the parameter
                creates a new snapshot.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata_origin: The script configuration value of this change is also the original value used for comparison with the new value next
+               time the change is made. The corresponding parameter name is 'metadata'.
         :param pulumi.Input[str] name: The name of the snapshot. The value can contain a maximum of 255 bytes.
         :param pulumi.Input[str] region: The region in which to create the evs snapshot resource. If omitted, the
                provider-level region will be used. Changing this creates a new EVS snapshot resource.
         :param pulumi.Input[int] size: The size of the snapshot in GB.
         :param pulumi.Input[str] status: The status of the snapshot.
+        :param pulumi.Input[str] updated_at: The time when the snapshot was updated.
         :param pulumi.Input[str] volume_id: The id of the snapshot's source disk. Changing the parameter creates a new
                snapshot.
         """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if force is not None:
             pulumi.set(__self__, "force", force)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if metadata_origin is not None:
+            pulumi.set(__self__, "metadata_origin", metadata_origin)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -159,8 +170,22 @@ class _SnapshotState:
             pulumi.set(__self__, "size", size)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
         if volume_id is not None:
             pulumi.set(__self__, "volume_id", volume_id)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time when the snapshot was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
 
     @property
     @pulumi.getter
@@ -198,6 +223,19 @@ class _SnapshotState:
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="metadataOrigin")
+    def metadata_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with the new value next
+        time the change is made. The corresponding parameter name is 'metadata'.
+        """
+        return pulumi.get(self, "metadata_origin")
+
+    @metadata_origin.setter
+    def metadata_origin(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "metadata_origin", value)
 
     @property
     @pulumi.getter
@@ -247,6 +285,18 @@ class _SnapshotState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time when the snapshot was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
 
     @property
     @pulumi.getter(name="volumeId")
@@ -420,8 +470,11 @@ class Snapshot(pulumi.CustomResource):
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")
             __props__.__dict__["volume_id"] = volume_id
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["metadata_origin"] = None
             __props__.__dict__["size"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["updated_at"] = None
         super(Snapshot, __self__).__init__(
             'huaweicloud:Evs/snapshot:Snapshot',
             resource_name,
@@ -432,13 +485,16 @@ class Snapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             force: Optional[pulumi.Input[bool]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            metadata_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None,
             volume_id: Optional[pulumi.Input[str]] = None) -> 'Snapshot':
         """
         Get an existing Snapshot resource's state with the given name, id, and optional extra
@@ -447,15 +503,19 @@ class Snapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: The time when the snapshot was created.
         :param pulumi.Input[str] description: The description of the snapshot. The value can contain a maximum of 255 bytes.
         :param pulumi.Input[bool] force: Specifies the flag for forcibly creating a snapshot. Default to false.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Specifies the user-defined metadata key-value pair. Changing the parameter
                creates a new snapshot.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata_origin: The script configuration value of this change is also the original value used for comparison with the new value next
+               time the change is made. The corresponding parameter name is 'metadata'.
         :param pulumi.Input[str] name: The name of the snapshot. The value can contain a maximum of 255 bytes.
         :param pulumi.Input[str] region: The region in which to create the evs snapshot resource. If omitted, the
                provider-level region will be used. Changing this creates a new EVS snapshot resource.
         :param pulumi.Input[int] size: The size of the snapshot in GB.
         :param pulumi.Input[str] status: The status of the snapshot.
+        :param pulumi.Input[str] updated_at: The time when the snapshot was updated.
         :param pulumi.Input[str] volume_id: The id of the snapshot's source disk. Changing the parameter creates a new
                snapshot.
         """
@@ -463,15 +523,26 @@ class Snapshot(pulumi.CustomResource):
 
         __props__ = _SnapshotState.__new__(_SnapshotState)
 
+        __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["force"] = force
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["metadata_origin"] = metadata_origin
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
+        __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["volume_id"] = volume_id
         return Snapshot(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The time when the snapshot was created.
+        """
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
@@ -491,12 +562,21 @@ class Snapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def metadata(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Specifies the user-defined metadata key-value pair. Changing the parameter
         creates a new snapshot.
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="metadataOrigin")
+    def metadata_origin(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with the new value next
+        time the change is made. The corresponding parameter name is 'metadata'.
+        """
+        return pulumi.get(self, "metadata_origin")
 
     @property
     @pulumi.getter
@@ -530,6 +610,14 @@ class Snapshot(pulumi.CustomResource):
         The status of the snapshot.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        The time when the snapshot was updated.
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="volumeId")

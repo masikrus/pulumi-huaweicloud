@@ -30,6 +30,7 @@ export function getIpgroups(args?: GetIpgroupsArgs, opts?: pulumi.InvokeOptions)
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:DedicatedElb/getIpgroups:getIpgroups", {
         "description": args.description,
+        "enterpriseProjectId": args.enterpriseProjectId,
         "ipAddress": args.ipAddress,
         "ipgroupId": args.ipgroupId,
         "name": args.name,
@@ -45,6 +46,10 @@ export interface GetIpgroupsArgs {
      * Specifies the description of the IP address group.
      */
     description?: string;
+    /**
+     * Specifies the enterprise project ID.
+     */
+    enterpriseProjectId?: string;
     /**
      * Specifies the IP address of the IP address group.
      */
@@ -72,6 +77,10 @@ export interface GetIpgroupsResult {
      * The description of the IP address group.
      */
     readonly description?: string;
+    /**
+     * The enterprise project ID.
+     */
+    readonly enterpriseProjectId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -102,6 +111,10 @@ export interface GetIpgroupsOutputArgs {
      * Specifies the description of the IP address group.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Specifies the enterprise project ID.
+     */
+    enterpriseProjectId?: pulumi.Input<string>;
     /**
      * Specifies the IP address of the IP address group.
      */

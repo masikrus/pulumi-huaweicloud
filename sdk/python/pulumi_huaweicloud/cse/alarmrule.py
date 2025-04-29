@@ -17,14 +17,15 @@ __all__ = ['AlarmruleArgs', 'Alarmrule']
 class AlarmruleArgs:
     def __init__(__self__, *,
                  alarm_name: pulumi.Input[str],
-                 conditions: pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]],
                  metric: pulumi.Input['AlarmruleMetricArgs'],
                  alarm_action_enabled: Optional[pulumi.Input[bool]] = None,
                  alarm_actions: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleAlarmActionArgs']]]] = None,
                  alarm_description: Optional[pulumi.Input[str]] = None,
                  alarm_enabled: Optional[pulumi.Input[bool]] = None,
                  alarm_level: Optional[pulumi.Input[int]] = None,
+                 alarm_template_id: Optional[pulumi.Input[str]] = None,
                  alarm_type: Optional[pulumi.Input[str]] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  insufficientdata_actions: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleInsufficientdataActionArgs']]]] = None,
                  notification_begin_time: Optional[pulumi.Input[str]] = None,
@@ -37,7 +38,6 @@ class AlarmruleArgs:
         The set of arguments for constructing a Alarmrule resource.
         :param pulumi.Input[str] alarm_name: Specifies the name of an alarm rule. The value can be a string of `1` to `128`
                characters that can consist of English letters, Chinese characters, digits, underscores (_), hyphens (-).
-        :param pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]] conditions: Specifies the alarm triggering condition. The structure is described below.
         :param pulumi.Input['AlarmruleMetricArgs'] metric: Specifies the alarm metrics. The structure is described below. Changing this
                creates a new resource.
         :param pulumi.Input[bool] alarm_action_enabled: Specifies whether to enable the action to be triggered by an alarm. The
@@ -49,8 +49,14 @@ class AlarmruleArgs:
         :param pulumi.Input[int] alarm_level: Specifies the alarm severity of the condition. The value can be 1, 2, 3 or 4,
                which indicates *critical*, *major*, *minor*, and *informational*, respectively.
                The default value is 2.
+        :param pulumi.Input[str] alarm_template_id: Specifies the ID of the alarm template.
+               When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+               and `ok_actions` cannot be updated.
+               Changing this creates a new resource.
         :param pulumi.Input[str] alarm_type: Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
                **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]] conditions: Specifies the alarm triggering condition.
+               The condition structure is documented below.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the alarm rule.
         :param pulumi.Input[str] notification_begin_time: Specifies the alarm notification start time, for
                example: **05:30**. Changing this creates a new resource.
@@ -65,7 +71,6 @@ class AlarmruleArgs:
                The structure is described below.
         """
         pulumi.set(__self__, "alarm_name", alarm_name)
-        pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "metric", metric)
         if alarm_action_enabled is not None:
             pulumi.set(__self__, "alarm_action_enabled", alarm_action_enabled)
@@ -77,8 +82,12 @@ class AlarmruleArgs:
             pulumi.set(__self__, "alarm_enabled", alarm_enabled)
         if alarm_level is not None:
             pulumi.set(__self__, "alarm_level", alarm_level)
+        if alarm_template_id is not None:
+            pulumi.set(__self__, "alarm_template_id", alarm_template_id)
         if alarm_type is not None:
             pulumi.set(__self__, "alarm_type", alarm_type)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if insufficientdata_actions is not None:
@@ -111,18 +120,6 @@ class AlarmruleArgs:
     @alarm_name.setter
     def alarm_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "alarm_name", value)
-
-    @property
-    @pulumi.getter
-    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]:
-        """
-        Specifies the alarm triggering condition. The structure is described below.
-        """
-        return pulumi.get(self, "conditions")
-
-    @conditions.setter
-    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]):
-        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter
@@ -202,6 +199,21 @@ class AlarmruleArgs:
         pulumi.set(self, "alarm_level", value)
 
     @property
+    @pulumi.getter(name="alarmTemplateId")
+    def alarm_template_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ID of the alarm template.
+        When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+        and `ok_actions` cannot be updated.
+        Changing this creates a new resource.
+        """
+        return pulumi.get(self, "alarm_template_id")
+
+    @alarm_template_id.setter
+    def alarm_template_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_template_id", value)
+
+    @property
     @pulumi.getter(name="alarmType")
     def alarm_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -213,6 +225,19 @@ class AlarmruleArgs:
     @alarm_type.setter
     def alarm_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "alarm_type", value)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]]:
+        """
+        Specifies the alarm triggering condition.
+        The condition structure is documented below.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter(name="enterpriseProjectId")
@@ -323,6 +348,7 @@ class _AlarmruleState:
                  alarm_level: Optional[pulumi.Input[int]] = None,
                  alarm_name: Optional[pulumi.Input[str]] = None,
                  alarm_state: Optional[pulumi.Input[str]] = None,
+                 alarm_template_id: Optional[pulumi.Input[str]] = None,
                  alarm_type: Optional[pulumi.Input[str]] = None,
                  conditions: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
@@ -352,9 +378,14 @@ class _AlarmruleState:
                + ok: The alarm status is normal;
                + alarm: An alarm is generated;
                + insufficient_data: The required data is insufficient.
+        :param pulumi.Input[str] alarm_template_id: Specifies the ID of the alarm template.
+               When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+               and `ok_actions` cannot be updated.
+               Changing this creates a new resource.
         :param pulumi.Input[str] alarm_type: Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
                **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
-        :param pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]] conditions: Specifies the alarm triggering condition. The structure is described below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]] conditions: Specifies the alarm triggering condition.
+               The condition structure is documented below.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the alarm rule.
         :param pulumi.Input['AlarmruleMetricArgs'] metric: Specifies the alarm metrics. The structure is described below. Changing this
                creates a new resource.
@@ -385,6 +416,8 @@ class _AlarmruleState:
             pulumi.set(__self__, "alarm_name", alarm_name)
         if alarm_state is not None:
             pulumi.set(__self__, "alarm_state", alarm_state)
+        if alarm_template_id is not None:
+            pulumi.set(__self__, "alarm_template_id", alarm_template_id)
         if alarm_type is not None:
             pulumi.set(__self__, "alarm_type", alarm_type)
         if conditions is not None:
@@ -506,6 +539,21 @@ class _AlarmruleState:
         pulumi.set(self, "alarm_state", value)
 
     @property
+    @pulumi.getter(name="alarmTemplateId")
+    def alarm_template_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ID of the alarm template.
+        When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+        and `ok_actions` cannot be updated.
+        Changing this creates a new resource.
+        """
+        return pulumi.get(self, "alarm_template_id")
+
+    @alarm_template_id.setter
+    def alarm_template_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alarm_template_id", value)
+
+    @property
     @pulumi.getter(name="alarmType")
     def alarm_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -522,7 +570,8 @@ class _AlarmruleState:
     @pulumi.getter
     def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmruleConditionArgs']]]]:
         """
-        Specifies the alarm triggering condition. The structure is described below.
+        Specifies the alarm triggering condition.
+        The condition structure is documented below.
         """
         return pulumi.get(self, "conditions")
 
@@ -665,6 +714,7 @@ class Alarmrule(pulumi.CustomResource):
                  alarm_enabled: Optional[pulumi.Input[bool]] = None,
                  alarm_level: Optional[pulumi.Input[int]] = None,
                  alarm_name: Optional[pulumi.Input[str]] = None,
+                 alarm_template_id: Optional[pulumi.Input[str]] = None,
                  alarm_type: Optional[pulumi.Input[str]] = None,
                  conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
@@ -814,6 +864,36 @@ class Alarmrule(pulumi.CustomResource):
                 notification_lists=[topic_urn],
             )])
         ```
+        ### Alarm rule using the alarm template
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        topic_urn = config.require_object("topicUrn")
+        alarm_template_id = config.require_object("alarmTemplateId")
+        instance_id = config.require_object("instanceId")
+        test = huaweicloud.cse.Alarmrule("test",
+            alarm_name="rule-test",
+            alarm_enabled=True,
+            alarm_action_enabled=True,
+            alarm_type="MULTI_INSTANCE",
+            alarm_template_id=alarm_template_id,
+            metric=huaweicloud.cse.AlarmruleMetricArgs(
+                namespace="SYS.ECS",
+            ),
+            resources=[huaweicloud.cse.AlarmruleResourceArgs(
+                dimensions=[huaweicloud.cse.AlarmruleResourceDimensionArgs(
+                    name="instance_id",
+                    value=instance_id,
+                )],
+            )],
+            alarm_actions=[huaweicloud.cse.AlarmruleAlarmActionArgs(
+                type="notification",
+                notification_lists=[topic_urn],
+            )])
+        ```
 
         ## Import
 
@@ -836,9 +916,14 @@ class Alarmrule(pulumi.CustomResource):
                The default value is 2.
         :param pulumi.Input[str] alarm_name: Specifies the name of an alarm rule. The value can be a string of `1` to `128`
                characters that can consist of English letters, Chinese characters, digits, underscores (_), hyphens (-).
+        :param pulumi.Input[str] alarm_template_id: Specifies the ID of the alarm template.
+               When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+               and `ok_actions` cannot be updated.
+               Changing this creates a new resource.
         :param pulumi.Input[str] alarm_type: Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
                **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]] conditions: Specifies the alarm triggering condition. The structure is described below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]] conditions: Specifies the alarm triggering condition.
+               The condition structure is documented below.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the alarm rule.
         :param pulumi.Input[pulumi.InputType['AlarmruleMetricArgs']] metric: Specifies the alarm metrics. The structure is described below. Changing this
                creates a new resource.
@@ -997,6 +1082,36 @@ class Alarmrule(pulumi.CustomResource):
                 notification_lists=[topic_urn],
             )])
         ```
+        ### Alarm rule using the alarm template
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        topic_urn = config.require_object("topicUrn")
+        alarm_template_id = config.require_object("alarmTemplateId")
+        instance_id = config.require_object("instanceId")
+        test = huaweicloud.cse.Alarmrule("test",
+            alarm_name="rule-test",
+            alarm_enabled=True,
+            alarm_action_enabled=True,
+            alarm_type="MULTI_INSTANCE",
+            alarm_template_id=alarm_template_id,
+            metric=huaweicloud.cse.AlarmruleMetricArgs(
+                namespace="SYS.ECS",
+            ),
+            resources=[huaweicloud.cse.AlarmruleResourceArgs(
+                dimensions=[huaweicloud.cse.AlarmruleResourceDimensionArgs(
+                    name="instance_id",
+                    value=instance_id,
+                )],
+            )],
+            alarm_actions=[huaweicloud.cse.AlarmruleAlarmActionArgs(
+                type="notification",
+                notification_lists=[topic_urn],
+            )])
+        ```
 
         ## Import
 
@@ -1027,6 +1142,7 @@ class Alarmrule(pulumi.CustomResource):
                  alarm_enabled: Optional[pulumi.Input[bool]] = None,
                  alarm_level: Optional[pulumi.Input[int]] = None,
                  alarm_name: Optional[pulumi.Input[str]] = None,
+                 alarm_template_id: Optional[pulumi.Input[str]] = None,
                  alarm_type: Optional[pulumi.Input[str]] = None,
                  conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[str]] = None,
@@ -1055,9 +1171,8 @@ class Alarmrule(pulumi.CustomResource):
             if alarm_name is None and not opts.urn:
                 raise TypeError("Missing required property 'alarm_name'")
             __props__.__dict__["alarm_name"] = alarm_name
+            __props__.__dict__["alarm_template_id"] = alarm_template_id
             __props__.__dict__["alarm_type"] = alarm_type
-            if conditions is None and not opts.urn:
-                raise TypeError("Missing required property 'conditions'")
             __props__.__dict__["conditions"] = conditions
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if insufficientdata_actions is not None and not opts.urn:
@@ -1092,6 +1207,7 @@ class Alarmrule(pulumi.CustomResource):
             alarm_level: Optional[pulumi.Input[int]] = None,
             alarm_name: Optional[pulumi.Input[str]] = None,
             alarm_state: Optional[pulumi.Input[str]] = None,
+            alarm_template_id: Optional[pulumi.Input[str]] = None,
             alarm_type: Optional[pulumi.Input[str]] = None,
             conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]]] = None,
             enterprise_project_id: Optional[pulumi.Input[str]] = None,
@@ -1126,9 +1242,14 @@ class Alarmrule(pulumi.CustomResource):
                + ok: The alarm status is normal;
                + alarm: An alarm is generated;
                + insufficient_data: The required data is insufficient.
+        :param pulumi.Input[str] alarm_template_id: Specifies the ID of the alarm template.
+               When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+               and `ok_actions` cannot be updated.
+               Changing this creates a new resource.
         :param pulumi.Input[str] alarm_type: Specifies the alarm type. The value can be **EVENT.SYS**, **EVENT.CUSTOM**,
                **MULTI_INSTANCE** and **ALL_INSTANCE**. Defaults to **MULTI_INSTANCE**.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]] conditions: Specifies the alarm triggering condition. The structure is described below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmruleConditionArgs']]]] conditions: Specifies the alarm triggering condition.
+               The condition structure is documented below.
         :param pulumi.Input[str] enterprise_project_id: Specifies the enterprise project ID of the alarm rule.
         :param pulumi.Input[pulumi.InputType['AlarmruleMetricArgs']] metric: Specifies the alarm metrics. The structure is described below. Changing this
                creates a new resource.
@@ -1156,6 +1277,7 @@ class Alarmrule(pulumi.CustomResource):
         __props__.__dict__["alarm_level"] = alarm_level
         __props__.__dict__["alarm_name"] = alarm_name
         __props__.__dict__["alarm_state"] = alarm_state
+        __props__.__dict__["alarm_template_id"] = alarm_template_id
         __props__.__dict__["alarm_type"] = alarm_type
         __props__.__dict__["conditions"] = conditions
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
@@ -1235,6 +1357,17 @@ class Alarmrule(pulumi.CustomResource):
         return pulumi.get(self, "alarm_state")
 
     @property
+    @pulumi.getter(name="alarmTemplateId")
+    def alarm_template_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the ID of the alarm template.
+        When using `alarm_template_id`, the fields `alarm_name`, `alarm_description`, `alarm_action_enabled`, `alarm_actions`
+        and `ok_actions` cannot be updated.
+        Changing this creates a new resource.
+        """
+        return pulumi.get(self, "alarm_template_id")
+
+    @property
     @pulumi.getter(name="alarmType")
     def alarm_type(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1247,7 +1380,8 @@ class Alarmrule(pulumi.CustomResource):
     @pulumi.getter
     def conditions(self) -> pulumi.Output[Sequence['outputs.AlarmruleCondition']]:
         """
-        Specifies the alarm triggering condition. The structure is described below.
+        Specifies the alarm triggering condition.
+        The condition structure is documented below.
         """
         return pulumi.get(self, "conditions")
 

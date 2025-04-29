@@ -99,7 +99,12 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Specifies the domain name. The valid must comply with the domian name specifications.
+     * Specifies the variable name.  
+     * The valid length is limited from `3` to `32` characters.
+     * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+     * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+     * It is replaced by the actual value when the API is published in an environment.
+     * The variable names are not allowed to be repeated for an API group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -120,10 +125,10 @@ export class Group extends pulumi.CustomResource {
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * Specifies independent domain names of the associated with group.  
+     * The associated domain information of the group.  
      * The urlDomains structure is documented below.
      */
-    public readonly urlDomains!: pulumi.Output<outputs.DedicatedApig.GroupUrlDomain[] | undefined>;
+    public readonly urlDomains!: pulumi.Output<outputs.DedicatedApig.GroupUrlDomain[]>;
 
     /**
      * Create a Group resource with the given unique name, arguments, and options.
@@ -208,7 +213,12 @@ export interface GroupState {
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Specifies the domain name. The valid must comply with the domian name specifications.
+     * Specifies the variable name.  
+     * The valid length is limited from `3` to `32` characters.
+     * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+     * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+     * It is replaced by the actual value when the API is published in an environment.
+     * The variable names are not allowed to be repeated for an API group.
      */
     name?: pulumi.Input<string>;
     /**
@@ -229,7 +239,7 @@ export interface GroupState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * Specifies independent domain names of the associated with group.  
+     * The associated domain information of the group.  
      * The urlDomains structure is documented below.
      */
     urlDomains?: pulumi.Input<pulumi.Input<inputs.DedicatedApig.GroupUrlDomain>[]>;
@@ -266,7 +276,12 @@ export interface GroupArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Specifies the domain name. The valid must comply with the domian name specifications.
+     * Specifies the variable name.  
+     * The valid length is limited from `3` to `32` characters.
+     * Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+     * In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+     * It is replaced by the actual value when the API is published in an environment.
+     * The variable names are not allowed to be repeated for an API group.
      */
     name?: pulumi.Input<string>;
     /**
@@ -275,7 +290,7 @@ export interface GroupArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies independent domain names of the associated with group.  
+     * The associated domain information of the group.  
      * The urlDomains structure is documented below.
      */
     urlDomains?: pulumi.Input<pulumi.Input<inputs.DedicatedApig.GroupUrlDomain>[]>;

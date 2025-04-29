@@ -101,15 +101,15 @@ import (
 //
 // ## Import
 //
-// ELB certificate can be imported using the certificate ID, e.g. bash
+// The ELB certificate can be imported using the `id`, e.g. bash
 //
 // ```sh
 //
-//	$ pulumi import huaweicloud:DedicatedElb/certificate:Certificate certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+//	$ pulumi import huaweicloud:DedicatedElb/certificate:Certificate test <id>
 //
 // ```
 //
-//	Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`enterprise_project_id`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "certificate_1" {
+//	Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`private_key` and `enc_private_key`. It is generally recommended running `terraform plan` after importing a certificate. You can then decide if changes should be applied to the certificate, or the resource definition should be updated to align with the certificate. Also you can ignore changes as below. hcl resource "huaweicloud_elb_certificate" "test" {
 //
 //	...
 //
@@ -117,7 +117,7 @@ import (
 //
 //	ignore_changes = [
 //
-//	enterprise_project_id,
+//	private_key, enc_private_key
 //
 //	]
 //
@@ -127,30 +127,46 @@ type Certificate struct {
 
 	// The public encrypted key of the Certificate, PEM format.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// Indicates the primary domain name of the certificate.
+	CommonName pulumi.StringOutput `pulumi:"commonName"`
 	// Indicates the creation time.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
 	// Human-readable description for the Certificate.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// The domain of the Certificate. The value contains a maximum of **100** characters. This
+	// parameter is valid only when `type` is set to **server**.
 	Domain pulumi.StringPtrOutput `pulumi:"domain"`
+	// Specifies the body of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+	// of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+	EncCertificate pulumi.StringPtrOutput `pulumi:"encCertificate"`
+	// Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+	// **server_sm.**.
+	EncPrivateKey pulumi.StringPtrOutput `pulumi:"encPrivateKey"`
 	// The enterprise project id of the certificate.
 	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
 	// Indicates the expiration time.
 	ExpireTime pulumi.StringOutput `pulumi:"expireTime"`
+	// Indicates the fingerprint of the certificate.
+	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Specifies the certificate type. The default value is "server". The value can be
-	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// Specifies the SM certificate ID.
+	ScmCertificateId pulumi.StringOutput `pulumi:"scmCertificateId"`
+	// Indicates all the domain names of the certificate.
+	SubjectAlternativeNames pulumi.StringArrayOutput `pulumi:"subjectAlternativeNames"`
+	// Specifies the certificate type. Value options:
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
+	// + **server_sm**: indicates the server SM certificate.
+	Type pulumi.StringOutput `pulumi:"type"`
 	// Indicates the update time.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
@@ -190,29 +206,45 @@ func GetCertificate(ctx *pulumi.Context,
 type certificateState struct {
 	// The public encrypted key of the Certificate, PEM format.
 	Certificate *string `pulumi:"certificate"`
+	// Indicates the primary domain name of the certificate.
+	CommonName *string `pulumi:"commonName"`
 	// Indicates the creation time.
 	CreateTime *string `pulumi:"createTime"`
 	// Human-readable description for the Certificate.
 	Description *string `pulumi:"description"`
-	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// The domain of the Certificate. The value contains a maximum of **100** characters. This
+	// parameter is valid only when `type` is set to **server**.
 	Domain *string `pulumi:"domain"`
+	// Specifies the body of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+	// of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+	EncCertificate *string `pulumi:"encCertificate"`
+	// Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+	// **server_sm.**.
+	EncPrivateKey *string `pulumi:"encPrivateKey"`
 	// The enterprise project id of the certificate.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Indicates the expiration time.
 	ExpireTime *string `pulumi:"expireTime"`
+	// Indicates the fingerprint of the certificate.
+	Fingerprint *string `pulumi:"fingerprint"`
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name *string `pulumi:"name"`
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region *string `pulumi:"region"`
-	// Specifies the certificate type. The default value is "server". The value can be
-	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// Specifies the SM certificate ID.
+	ScmCertificateId *string `pulumi:"scmCertificateId"`
+	// Indicates all the domain names of the certificate.
+	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
+	// Specifies the certificate type. Value options:
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
+	// + **server_sm**: indicates the server SM certificate.
 	Type *string `pulumi:"type"`
 	// Indicates the update time.
 	UpdateTime *string `pulumi:"updateTime"`
@@ -221,29 +253,45 @@ type certificateState struct {
 type CertificateState struct {
 	// The public encrypted key of the Certificate, PEM format.
 	Certificate pulumi.StringPtrInput
+	// Indicates the primary domain name of the certificate.
+	CommonName pulumi.StringPtrInput
 	// Indicates the creation time.
 	CreateTime pulumi.StringPtrInput
 	// Human-readable description for the Certificate.
 	Description pulumi.StringPtrInput
-	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// The domain of the Certificate. The value contains a maximum of **100** characters. This
+	// parameter is valid only when `type` is set to **server**.
 	Domain pulumi.StringPtrInput
+	// Specifies the body of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+	// of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+	EncCertificate pulumi.StringPtrInput
+	// Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+	// **server_sm.**.
+	EncPrivateKey pulumi.StringPtrInput
 	// The enterprise project id of the certificate.
 	EnterpriseProjectId pulumi.StringPtrInput
 	// Indicates the expiration time.
 	ExpireTime pulumi.StringPtrInput
+	// Indicates the fingerprint of the certificate.
+	Fingerprint pulumi.StringPtrInput
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name pulumi.StringPtrInput
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey pulumi.StringPtrInput
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region pulumi.StringPtrInput
-	// Specifies the certificate type. The default value is "server". The value can be
-	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// Specifies the SM certificate ID.
+	ScmCertificateId pulumi.StringPtrInput
+	// Indicates all the domain names of the certificate.
+	SubjectAlternativeNames pulumi.StringArrayInput
+	// Specifies the certificate type. Value options:
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
+	// + **server_sm**: indicates the server SM certificate.
 	Type pulumi.StringPtrInput
 	// Indicates the update time.
 	UpdateTime pulumi.StringPtrInput
@@ -258,23 +306,33 @@ type certificateArgs struct {
 	Certificate string `pulumi:"certificate"`
 	// Human-readable description for the Certificate.
 	Description *string `pulumi:"description"`
-	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// The domain of the Certificate. The value contains a maximum of **100** characters. This
+	// parameter is valid only when `type` is set to **server**.
 	Domain *string `pulumi:"domain"`
+	// Specifies the body of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+	// of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+	EncCertificate *string `pulumi:"encCertificate"`
+	// Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+	// **server_sm.**.
+	EncPrivateKey *string `pulumi:"encPrivateKey"`
 	// The enterprise project id of the certificate.
 	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name *string `pulumi:"name"`
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region *string `pulumi:"region"`
-	// Specifies the certificate type. The default value is "server". The value can be
-	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// Specifies the SM certificate ID.
+	ScmCertificateId *string `pulumi:"scmCertificateId"`
+	// Specifies the certificate type. Value options:
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
+	// + **server_sm**: indicates the server SM certificate.
 	Type *string `pulumi:"type"`
 }
 
@@ -284,23 +342,33 @@ type CertificateArgs struct {
 	Certificate pulumi.StringInput
 	// Human-readable description for the Certificate.
 	Description pulumi.StringPtrInput
-	// The domain of the Certificate. The value contains a maximum of 100 characters. This
-	// parameter is valid only when `type` is set to "server".
+	// The domain of the Certificate. The value contains a maximum of **100** characters. This
+	// parameter is valid only when `type` is set to **server**.
 	Domain pulumi.StringPtrInput
+	// Specifies the body of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+	// of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+	EncCertificate pulumi.StringPtrInput
+	// Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+	// The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+	// **server_sm.**.
+	EncPrivateKey pulumi.StringPtrInput
 	// The enterprise project id of the certificate.
 	EnterpriseProjectId pulumi.StringPtrInput
 	// Human-readable name for the Certificate. Does not have to be unique.
 	Name pulumi.StringPtrInput
 	// The private encrypted key of the Certificate, PEM format. This parameter is valid
-	// and mandatory only when `type` is set to "server".
+	// and mandatory only when `type` is set to **server**.
 	PrivateKey pulumi.StringPtrInput
 	// The region in which to create the ELB certificate resource. If omitted, the
 	// provider-level region will be used. Changing this creates a new certificate.
 	Region pulumi.StringPtrInput
-	// Specifies the certificate type. The default value is "server". The value can be
-	// one of the following:
-	// + server: indicates the server certificate.
-	// + client: indicates the CA certificate.
+	// Specifies the SM certificate ID.
+	ScmCertificateId pulumi.StringPtrInput
+	// Specifies the certificate type. Value options:
+	// + **server**: indicates the server certificate.
+	// + **client**: indicates the CA certificate.
+	// + **server_sm**: indicates the server SM certificate.
 	Type pulumi.StringPtrInput
 }
 
@@ -396,6 +464,11 @@ func (o CertificateOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
+// Indicates the primary domain name of the certificate.
+func (o CertificateOutput) CommonName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.CommonName }).(pulumi.StringOutput)
+}
+
 // Indicates the creation time.
 func (o CertificateOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
@@ -406,10 +479,24 @@ func (o CertificateOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The domain of the Certificate. The value contains a maximum of 100 characters. This
-// parameter is valid only when `type` is set to "server".
+// The domain of the Certificate. The value contains a maximum of **100** characters. This
+// parameter is valid only when `type` is set to **server**.
 func (o CertificateOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the body of the SM encryption certificate required by HTTPS listeners.
+// The value must be PEM encoded. Maximum 65,536-character length is allowed, supports certificate chains with a maximum
+// of 11 layers (including certificates and certificate chains). It is mandatory only when `type` is set to **server_sm**.
+func (o CertificateOutput) EncCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.EncCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the private key of the SM encryption certificate required by HTTPS listeners.
+// The value must be PEM encoded. Maximum 8,192-character length is allowed. It is mandatory only when `type` is set to
+// **server_sm.**.
+func (o CertificateOutput) EncPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.EncPrivateKey }).(pulumi.StringPtrOutput)
 }
 
 // The enterprise project id of the certificate.
@@ -422,13 +509,18 @@ func (o CertificateOutput) ExpireTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.ExpireTime }).(pulumi.StringOutput)
 }
 
+// Indicates the fingerprint of the certificate.
+func (o CertificateOutput) Fingerprint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Fingerprint }).(pulumi.StringOutput)
+}
+
 // Human-readable name for the Certificate. Does not have to be unique.
 func (o CertificateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // The private encrypted key of the Certificate, PEM format. This parameter is valid
-// and mandatory only when `type` is set to "server".
+// and mandatory only when `type` is set to **server**.
 func (o CertificateOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
@@ -439,12 +531,22 @@ func (o CertificateOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Specifies the certificate type. The default value is "server". The value can be
-// one of the following:
-// + server: indicates the server certificate.
-// + client: indicates the CA certificate.
-func (o CertificateOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+// Specifies the SM certificate ID.
+func (o CertificateOutput) ScmCertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.ScmCertificateId }).(pulumi.StringOutput)
+}
+
+// Indicates all the domain names of the certificate.
+func (o CertificateOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringArrayOutput { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the certificate type. Value options:
+// + **server**: indicates the server certificate.
+// + **client**: indicates the CA certificate.
+// + **server_sm**: indicates the server SM certificate.
+func (o CertificateOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Indicates the update time.

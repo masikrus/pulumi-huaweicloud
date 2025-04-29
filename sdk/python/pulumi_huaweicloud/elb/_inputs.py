@@ -10,8 +10,62 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'ListenerInsertHeadersArgs',
     'PoolPersistenceArgs',
 ]
+
+@pulumi.input_type
+class ListenerInsertHeadersArgs:
+    def __init__(__self__, *,
+                 x_forwarded_elb_ip: Optional[pulumi.Input[str]] = None,
+                 x_forwarded_host: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] x_forwarded_elb_ip: Specifies whether to transparently transmit the load balancer EIP to backend
+               servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+               Value options:
+               + **true**: This function is enabled.
+               + **false (default)**: The function is disabled.
+        :param pulumi.Input[str] x_forwarded_host: Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+               enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+               + **true (default)**: This function is enabled.
+               + **false**: The function is disabled.
+        """
+        if x_forwarded_elb_ip is not None:
+            pulumi.set(__self__, "x_forwarded_elb_ip", x_forwarded_elb_ip)
+        if x_forwarded_host is not None:
+            pulumi.set(__self__, "x_forwarded_host", x_forwarded_host)
+
+    @property
+    @pulumi.getter(name="xForwardedElbIp")
+    def x_forwarded_elb_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to transparently transmit the load balancer EIP to backend
+        servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+        Value options:
+        + **true**: This function is enabled.
+        + **false (default)**: The function is disabled.
+        """
+        return pulumi.get(self, "x_forwarded_elb_ip")
+
+    @x_forwarded_elb_ip.setter
+    def x_forwarded_elb_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "x_forwarded_elb_ip", value)
+
+    @property
+    @pulumi.getter(name="xForwardedHost")
+    def x_forwarded_host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+        enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+        + **true (default)**: This function is enabled.
+        + **false**: The function is disabled.
+        """
+        return pulumi.get(self, "x_forwarded_host")
+
+    @x_forwarded_host.setter
+    def x_forwarded_host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "x_forwarded_host", value)
+
 
 @pulumi.input_type
 class PoolPersistenceArgs:

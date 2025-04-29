@@ -171,6 +171,22 @@ import (
 type Volume struct {
 	pulumi.CustomResourceState
 
+	// The key-value pair disk metadata. Valid key-value pairs are as follows:
+	// + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+	//   for encryption.
+	// + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+	//   If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+	//   If the disk is not created from a data source, the disk is not encrypted by default.
+	// + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+	// + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+	//   access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+	//   the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+	//   If this attribute is not specified, the disk device type is VBD.
+	// + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+	//   is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+	AllMetadata pulumi.StringMapOutput `pulumi:"allMetadata"`
+	// The metadata of the disk image.
+	AllVolumeImageMetadata pulumi.StringMapOutput `pulumi:"allVolumeImageMetadata"`
 	// If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
 	// the device as the instance sees it. The attachment structure is documented below.
 	Attachments VolumeAttachmentArrayOutput `pulumi:"attachments"`
@@ -183,6 +199,8 @@ type Volume struct {
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
 	// Specifies the backup ID from which to create the disk.
 	BackupId pulumi.StringPtrOutput `pulumi:"backupId"`
+	// Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+	Bootable pulumi.StringOutput `pulumi:"bootable"`
 	// Specifies the delete mode of snapshot. The default value is **false**. All snapshot
 	// associated with the disk will also be deleted when the parameter is set to **true**.
 	Cascade pulumi.BoolPtrOutput `pulumi:"cascade"`
@@ -191,6 +209,8 @@ type Volume struct {
 	// + **prePaid**: the yearly/monthly billing mode.
 	// + **postPaid**: the pay-per-use billing mode.
 	ChargingMode pulumi.StringOutput `pulumi:"chargingMode"`
+	// The time when the disk was created.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Specifies the ID of the DSS storage pool accommodating the disk.
 	DedicatedStorageId pulumi.StringPtrOutput `pulumi:"dedicatedStorageId"`
 	// The name of the DSS storage pool accommodating the disk.
@@ -209,8 +229,14 @@ type Volume struct {
 	// The field is valid and required when `volumeType` is set to **GPSSD2** or **ESSD2**.
 	// This field can be changed only when the disk status is Available or In-use.
 	Iops pulumi.IntOutput `pulumi:"iops"`
+	// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+	// SSD V2 disk. The iopsAttribute structure is documented below.
+	IopsAttributes VolumeIopsAttributeArrayOutput `pulumi:"iopsAttributes"`
 	// Specifies the Encryption KMS ID to create the disk.
 	KmsId pulumi.StringPtrOutput `pulumi:"kmsId"`
+	// The disk URI.
+	// The links structure is documented below.
+	Links VolumeLinkArrayOutput `pulumi:"links"`
 	// Specifies whether the disk is shareable. Defaults to **false**.
 	Multiattach pulumi.BoolPtrOutput `pulumi:"multiattach"`
 	// Specifies the disk name. You can enter up to `64` characters.
@@ -225,11 +251,16 @@ type Volume struct {
 	// Specifies the region in which to create the disk. If omitted, the
 	// provider-level region will be used. Changing this parameter will create a new resource.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+	// disk mapping in the VM.
+	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Specifies the server ID to which the cloud volume is to be mounted.
 	// After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
 	// The chargingMode of the created cloud volume will be consistent with that of the cloud server.
 	// Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
 	ServerId pulumi.StringPtrOutput `pulumi:"serverId"`
+	// The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+	ServiceType pulumi.StringOutput `pulumi:"serviceType"`
 	// Specifies the disk size, in GB.
 	// For system disk, the valid value ranges from `1` GB to `1,024` GB.
 	// For data disk, the valid value ranges from `10` GB to `32,768` GB.
@@ -245,6 +276,11 @@ type Volume struct {
 	// The field is valid and required when `volumeType` is set to **GPSSD2**.
 	// This field can be changed only when the disk status is Available or In-use.
 	Throughput pulumi.IntOutput `pulumi:"throughput"`
+	// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+	// The throughputAttribute structure is documented below.
+	ThroughputAttributes VolumeThroughputAttributeArrayOutput `pulumi:"throughputAttributes"`
+	// The time when the disk was updated.
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Specifies the disk type. Valid values are as follows:
 	// + **SAS**: High I/O type.
 	// + **SSD**: Ultra-high I/O type.
@@ -293,6 +329,22 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
+	// The key-value pair disk metadata. Valid key-value pairs are as follows:
+	// + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+	//   for encryption.
+	// + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+	//   If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+	//   If the disk is not created from a data source, the disk is not encrypted by default.
+	// + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+	// + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+	//   access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+	//   the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+	//   If this attribute is not specified, the disk device type is VBD.
+	// + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+	//   is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+	AllMetadata map[string]string `pulumi:"allMetadata"`
+	// The metadata of the disk image.
+	AllVolumeImageMetadata map[string]string `pulumi:"allVolumeImageMetadata"`
 	// If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
 	// the device as the instance sees it. The attachment structure is documented below.
 	Attachments []VolumeAttachment `pulumi:"attachments"`
@@ -305,6 +357,8 @@ type volumeState struct {
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// Specifies the backup ID from which to create the disk.
 	BackupId *string `pulumi:"backupId"`
+	// Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+	Bootable *string `pulumi:"bootable"`
 	// Specifies the delete mode of snapshot. The default value is **false**. All snapshot
 	// associated with the disk will also be deleted when the parameter is set to **true**.
 	Cascade *bool `pulumi:"cascade"`
@@ -313,6 +367,8 @@ type volumeState struct {
 	// + **prePaid**: the yearly/monthly billing mode.
 	// + **postPaid**: the pay-per-use billing mode.
 	ChargingMode *string `pulumi:"chargingMode"`
+	// The time when the disk was created.
+	CreatedAt *string `pulumi:"createdAt"`
 	// Specifies the ID of the DSS storage pool accommodating the disk.
 	DedicatedStorageId *string `pulumi:"dedicatedStorageId"`
 	// The name of the DSS storage pool accommodating the disk.
@@ -331,8 +387,14 @@ type volumeState struct {
 	// The field is valid and required when `volumeType` is set to **GPSSD2** or **ESSD2**.
 	// This field can be changed only when the disk status is Available or In-use.
 	Iops *int `pulumi:"iops"`
+	// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+	// SSD V2 disk. The iopsAttribute structure is documented below.
+	IopsAttributes []VolumeIopsAttribute `pulumi:"iopsAttributes"`
 	// Specifies the Encryption KMS ID to create the disk.
 	KmsId *string `pulumi:"kmsId"`
+	// The disk URI.
+	// The links structure is documented below.
+	Links []VolumeLink `pulumi:"links"`
 	// Specifies whether the disk is shareable. Defaults to **false**.
 	Multiattach *bool `pulumi:"multiattach"`
 	// Specifies the disk name. You can enter up to `64` characters.
@@ -347,11 +409,16 @@ type volumeState struct {
 	// Specifies the region in which to create the disk. If omitted, the
 	// provider-level region will be used. Changing this parameter will create a new resource.
 	Region *string `pulumi:"region"`
+	// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+	// disk mapping in the VM.
+	SerialNumber *string `pulumi:"serialNumber"`
 	// Specifies the server ID to which the cloud volume is to be mounted.
 	// After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
 	// The chargingMode of the created cloud volume will be consistent with that of the cloud server.
 	// Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
 	ServerId *string `pulumi:"serverId"`
+	// The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+	ServiceType *string `pulumi:"serviceType"`
 	// Specifies the disk size, in GB.
 	// For system disk, the valid value ranges from `1` GB to `1,024` GB.
 	// For data disk, the valid value ranges from `10` GB to `32,768` GB.
@@ -367,6 +434,11 @@ type volumeState struct {
 	// The field is valid and required when `volumeType` is set to **GPSSD2**.
 	// This field can be changed only when the disk status is Available or In-use.
 	Throughput *int `pulumi:"throughput"`
+	// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+	// The throughputAttribute structure is documented below.
+	ThroughputAttributes []VolumeThroughputAttribute `pulumi:"throughputAttributes"`
+	// The time when the disk was updated.
+	UpdatedAt *string `pulumi:"updatedAt"`
 	// Specifies the disk type. Valid values are as follows:
 	// + **SAS**: High I/O type.
 	// + **SSD**: Ultra-high I/O type.
@@ -380,6 +452,22 @@ type volumeState struct {
 }
 
 type VolumeState struct {
+	// The key-value pair disk metadata. Valid key-value pairs are as follows:
+	// + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+	//   for encryption.
+	// + **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+	//   If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+	//   If the disk is not created from a data source, the disk is not encrypted by default.
+	// + **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+	// + **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+	//   access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+	//   the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+	//   If this attribute is not specified, the disk device type is VBD.
+	// + **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+	//   is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+	AllMetadata pulumi.StringMapInput
+	// The metadata of the disk image.
+	AllVolumeImageMetadata pulumi.StringMapInput
 	// If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
 	// the device as the instance sees it. The attachment structure is documented below.
 	Attachments VolumeAttachmentArrayInput
@@ -392,6 +480,8 @@ type VolumeState struct {
 	AvailabilityZone pulumi.StringPtrInput
 	// Specifies the backup ID from which to create the disk.
 	BackupId pulumi.StringPtrInput
+	// Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+	Bootable pulumi.StringPtrInput
 	// Specifies the delete mode of snapshot. The default value is **false**. All snapshot
 	// associated with the disk will also be deleted when the parameter is set to **true**.
 	Cascade pulumi.BoolPtrInput
@@ -400,6 +490,8 @@ type VolumeState struct {
 	// + **prePaid**: the yearly/monthly billing mode.
 	// + **postPaid**: the pay-per-use billing mode.
 	ChargingMode pulumi.StringPtrInput
+	// The time when the disk was created.
+	CreatedAt pulumi.StringPtrInput
 	// Specifies the ID of the DSS storage pool accommodating the disk.
 	DedicatedStorageId pulumi.StringPtrInput
 	// The name of the DSS storage pool accommodating the disk.
@@ -418,8 +510,14 @@ type VolumeState struct {
 	// The field is valid and required when `volumeType` is set to **GPSSD2** or **ESSD2**.
 	// This field can be changed only when the disk status is Available or In-use.
 	Iops pulumi.IntPtrInput
+	// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+	// SSD V2 disk. The iopsAttribute structure is documented below.
+	IopsAttributes VolumeIopsAttributeArrayInput
 	// Specifies the Encryption KMS ID to create the disk.
 	KmsId pulumi.StringPtrInput
+	// The disk URI.
+	// The links structure is documented below.
+	Links VolumeLinkArrayInput
 	// Specifies whether the disk is shareable. Defaults to **false**.
 	Multiattach pulumi.BoolPtrInput
 	// Specifies the disk name. You can enter up to `64` characters.
@@ -434,11 +532,16 @@ type VolumeState struct {
 	// Specifies the region in which to create the disk. If omitted, the
 	// provider-level region will be used. Changing this parameter will create a new resource.
 	Region pulumi.StringPtrInput
+	// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+	// disk mapping in the VM.
+	SerialNumber pulumi.StringPtrInput
 	// Specifies the server ID to which the cloud volume is to be mounted.
 	// After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
 	// The chargingMode of the created cloud volume will be consistent with that of the cloud server.
 	// Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
 	ServerId pulumi.StringPtrInput
+	// The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+	ServiceType pulumi.StringPtrInput
 	// Specifies the disk size, in GB.
 	// For system disk, the valid value ranges from `1` GB to `1,024` GB.
 	// For data disk, the valid value ranges from `10` GB to `32,768` GB.
@@ -454,6 +557,11 @@ type VolumeState struct {
 	// The field is valid and required when `volumeType` is set to **GPSSD2**.
 	// This field can be changed only when the disk status is Available or In-use.
 	Throughput pulumi.IntPtrInput
+	// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+	// The throughputAttribute structure is documented below.
+	ThroughputAttributes VolumeThroughputAttributeArrayInput
+	// The time when the disk was updated.
+	UpdatedAt pulumi.StringPtrInput
 	// Specifies the disk type. Valid values are as follows:
 	// + **SAS**: High I/O type.
 	// + **SSD**: Ultra-high I/O type.
@@ -712,6 +820,28 @@ func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutpu
 	return o
 }
 
+// The key-value pair disk metadata. Valid key-value pairs are as follows:
+//   - **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
+//     for encryption.
+//   - **__system__encrypted**: The encryption field in metadata. The value can be `0` (no encryption) or `1` (encryption).
+//     If this attribute is not specified, the encryption attribute of the disk is the same as that of the data source.
+//     If the disk is not created from a data source, the disk is not encrypted by default.
+//   - **full_clone**: The creation method when the disk is created from a snapshot. `0`: linked clone. `1`: full clone.
+//   - **hw:passthrough**: If this attribute value is **true**, the disk device type is SCSI, which allows ECS OSs to directly
+//     access the underlying storage media and supports SCSI reservation commands. If this attribute is set to **false**,
+//     the disk device type is VBD, which is also the default type. VBD supports only simple SCSI read/write commands.
+//     If this attribute is not specified, the disk device type is VBD.
+//   - **orderID**: The attribute that describes the disk billing mode in metadata. If this attribute has a value, the disk
+//     is billed on a yearly/monthly basis. If this attribute is empty, the disk is billed on a pay-per-use basis.
+func (o VolumeOutput) AllMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.AllMetadata }).(pulumi.StringMapOutput)
+}
+
+// The metadata of the disk image.
+func (o VolumeOutput) AllVolumeImageMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.AllVolumeImageMetadata }).(pulumi.StringMapOutput)
+}
+
 // If a disk is attached to an instance, this attribute will display the attachment ID, instance ID, and
 // the device as the instance sees it. The attachment structure is documented below.
 func (o VolumeOutput) Attachments() VolumeAttachmentArrayOutput {
@@ -739,6 +869,11 @@ func (o VolumeOutput) BackupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.BackupId }).(pulumi.StringPtrOutput)
 }
 
+// Whether the disk is bootable. **true**: The disk is bootable. **false**: The disk is not bootable.
+func (o VolumeOutput) Bootable() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Bootable }).(pulumi.StringOutput)
+}
+
 // Specifies the delete mode of snapshot. The default value is **false**. All snapshot
 // associated with the disk will also be deleted when the parameter is set to **true**.
 func (o VolumeOutput) Cascade() pulumi.BoolPtrOutput {
@@ -751,6 +886,11 @@ func (o VolumeOutput) Cascade() pulumi.BoolPtrOutput {
 // + **postPaid**: the pay-per-use billing mode.
 func (o VolumeOutput) ChargingMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ChargingMode }).(pulumi.StringOutput)
+}
+
+// The time when the disk was created.
+func (o VolumeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // Specifies the ID of the DSS storage pool accommodating the disk.
@@ -792,9 +932,21 @@ func (o VolumeOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Iops }).(pulumi.IntOutput)
 }
 
+// The disk IOPS information. This attribute appears only for a general purpose SSD V2 or an extreme
+// SSD V2 disk. The iopsAttribute structure is documented below.
+func (o VolumeOutput) IopsAttributes() VolumeIopsAttributeArrayOutput {
+	return o.ApplyT(func(v *Volume) VolumeIopsAttributeArrayOutput { return v.IopsAttributes }).(VolumeIopsAttributeArrayOutput)
+}
+
 // Specifies the Encryption KMS ID to create the disk.
 func (o VolumeOutput) KmsId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.KmsId }).(pulumi.StringPtrOutput)
+}
+
+// The disk URI.
+// The links structure is documented below.
+func (o VolumeOutput) Links() VolumeLinkArrayOutput {
+	return o.ApplyT(func(v *Volume) VolumeLinkArrayOutput { return v.Links }).(VolumeLinkArrayOutput)
 }
 
 // Specifies whether the disk is shareable. Defaults to **false**.
@@ -826,12 +978,23 @@ func (o VolumeOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+// The disk serial number. This field is returned only for non-HyperMetro SCSI disks and is used for
+// disk mapping in the VM.
+func (o VolumeOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
 // Specifies the server ID to which the cloud volume is to be mounted.
 // After specifying the value of this field, the cloud volume will be automatically attached on the cloud server.
 // The chargingMode of the created cloud volume will be consistent with that of the cloud server.
 // Currently, only ECS cloud-servers are supported, and BMS bare metal cloud-servers are not supported yet.
 func (o VolumeOutput) ServerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ServerId }).(pulumi.StringPtrOutput)
+}
+
+// The service type. Supported services are **EVS**, **DSS**, and **DESS**.
+func (o VolumeOutput) ServiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ServiceType }).(pulumi.StringOutput)
 }
 
 // Specifies the disk size, in GB.
@@ -862,6 +1025,17 @@ func (o VolumeOutput) Tags() pulumi.StringMapOutput {
 // This field can be changed only when the disk status is Available or In-use.
 func (o VolumeOutput) Throughput() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Throughput }).(pulumi.IntOutput)
+}
+
+// The disk throughput information. This attribute appears only for a general purpose SSD V2 disk.
+// The throughputAttribute structure is documented below.
+func (o VolumeOutput) ThroughputAttributes() VolumeThroughputAttributeArrayOutput {
+	return o.ApplyT(func(v *Volume) VolumeThroughputAttributeArrayOutput { return v.ThroughputAttributes }).(VolumeThroughputAttributeArrayOutput)
+}
+
+// The time when the disk was updated.
+func (o VolumeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // Specifies the disk type. Valid values are as follows:

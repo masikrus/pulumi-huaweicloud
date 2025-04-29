@@ -21,9 +21,11 @@ class ListenerArgs:
                  access_policy: Optional[pulumi.Input[str]] = None,
                  advanced_forwarding_enabled: Optional[pulumi.Input[bool]] = None,
                  ca_certificate: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_member_retry: Optional[pulumi.Input[bool]] = None,
+                 enable_quic_upgrade: Optional[pulumi.Input[str]] = None,
                  force_delete: Optional[pulumi.Input[bool]] = None,
                  forward_eip: Optional[pulumi.Input[bool]] = None,
                  forward_elb: Optional[pulumi.Input[bool]] = None,
@@ -38,6 +40,8 @@ class ListenerArgs:
                  http2_enable: Optional[pulumi.Input[bool]] = None,
                  idle_timeout: Optional[pulumi.Input[int]] = None,
                  ip_group: Optional[pulumi.Input[str]] = None,
+                 ip_group_enable: Optional[pulumi.Input[str]] = None,
+                 max_connection: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerPortRangeArgs']]]] = None,
                  protection_reason: Optional[pulumi.Input[str]] = None,
@@ -69,11 +73,14 @@ class ListenerArgs:
                If advanced forwarding is enabled, more flexible forwarding policies and rules are supported.
         :param pulumi.Input[str] ca_certificate: Specifies the ID of the CA certificate used by the listener. This parameter is
                valid when protocol is set to **HTTPS**.
-        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated. Changing this
-               creates a new listener.
+        :param pulumi.Input[int] cps: Specifies the maximum number of new connections that a listener can handle per second.
+               Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+               than the number defined in the load balancer specifications, the latter is used as the limit.
+        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] enable_member_retry: Specifies whether to enable health check retries for backend servers.
                The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
+        :param pulumi.Input[str] enable_quic_upgrade: Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
                unbind associated pools. Defaults to **false**.
         :param pulumi.Input[bool] forward_eip: Specifies whether transfer the load balancer EIP in the X-Forward-EIP header to
@@ -110,6 +117,10 @@ class ListenerArgs:
                only when the protocol is set to **HTTPS**.
         :param pulumi.Input[int] idle_timeout: Specifies the idle timeout for the listener. Value range: 0 to 4000.
         :param pulumi.Input[str] ip_group: Specifies the ip group id for the listener.
+        :param pulumi.Input[str] ip_group_enable: Specifies whether access control is enabled. Value options: **true** and **false**.
+        :param pulumi.Input[int] max_connection: Specifies the maximum number of concurrent connections that a listener can handle per
+               second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+               the number defined in the load balancer specifications, the latter is used as the limit.
         :param pulumi.Input[str] name: Human-readable name for the listener.
         :param pulumi.Input[Sequence[pulumi.Input['ListenerPortRangeArgs']]] port_ranges: Specifies the port monitoring range (closed range), specify up to 10 port
                groups, each group range must not overlap. This field can only be passed in when `protocol_port` is `0` or empty.
@@ -164,12 +175,16 @@ class ListenerArgs:
             pulumi.set(__self__, "advanced_forwarding_enabled", advanced_forwarding_enabled)
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
+        if cps is not None:
+            pulumi.set(__self__, "cps", cps)
         if default_pool_id is not None:
             pulumi.set(__self__, "default_pool_id", default_pool_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enable_member_retry is not None:
             pulumi.set(__self__, "enable_member_retry", enable_member_retry)
+        if enable_quic_upgrade is not None:
+            pulumi.set(__self__, "enable_quic_upgrade", enable_quic_upgrade)
         if force_delete is not None:
             pulumi.set(__self__, "force_delete", force_delete)
         if forward_eip is not None:
@@ -198,6 +213,10 @@ class ListenerArgs:
             pulumi.set(__self__, "idle_timeout", idle_timeout)
         if ip_group is not None:
             pulumi.set(__self__, "ip_group", ip_group)
+        if ip_group_enable is not None:
+            pulumi.set(__self__, "ip_group_enable", ip_group_enable)
+        if max_connection is not None:
+            pulumi.set(__self__, "max_connection", max_connection)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if port_ranges is not None:
@@ -302,11 +321,24 @@ class ListenerArgs:
         pulumi.set(self, "ca_certificate", value)
 
     @property
+    @pulumi.getter
+    def cps(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the maximum number of new connections that a listener can handle per second.
+        Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+        than the number defined in the load balancer specifications, the latter is used as the limit.
+        """
+        return pulumi.get(self, "cps")
+
+    @cps.setter
+    def cps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cps", value)
+
+    @property
     @pulumi.getter(name="defaultPoolId")
     def default_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the default pool with which the listener is associated. Changing this
-        creates a new listener.
+        The ID of the default pool with which the listener is associated.
         """
         return pulumi.get(self, "default_pool_id")
 
@@ -338,6 +370,18 @@ class ListenerArgs:
     @enable_member_retry.setter
     def enable_member_retry(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_member_retry", value)
+
+    @property
+    @pulumi.getter(name="enableQuicUpgrade")
+    def enable_quic_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+        """
+        return pulumi.get(self, "enable_quic_upgrade")
+
+    @enable_quic_upgrade.setter
+    def enable_quic_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enable_quic_upgrade", value)
 
     @property
     @pulumi.getter(name="forceDelete")
@@ -528,6 +572,32 @@ class ListenerArgs:
     @ip_group.setter
     def ip_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_group", value)
+
+    @property
+    @pulumi.getter(name="ipGroupEnable")
+    def ip_group_enable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether access control is enabled. Value options: **true** and **false**.
+        """
+        return pulumi.get(self, "ip_group_enable")
+
+    @ip_group_enable.setter
+    def ip_group_enable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_group_enable", value)
+
+    @property
+    @pulumi.getter(name="maxConnection")
+    def max_connection(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the maximum number of concurrent connections that a listener can handle per
+        second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+        the number defined in the load balancer specifications, the latter is used as the limit.
+        """
+        return pulumi.get(self, "max_connection")
+
+    @max_connection.setter
+    def max_connection(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connection", value)
 
     @property
     @pulumi.getter
@@ -779,10 +849,13 @@ class _ListenerState:
                  access_policy: Optional[pulumi.Input[str]] = None,
                  advanced_forwarding_enabled: Optional[pulumi.Input[bool]] = None,
                  ca_certificate: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_member_retry: Optional[pulumi.Input[bool]] = None,
+                 enable_quic_upgrade: Optional[pulumi.Input[str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[str]] = None,
                  force_delete: Optional[pulumi.Input[bool]] = None,
                  forward_eip: Optional[pulumi.Input[bool]] = None,
                  forward_elb: Optional[pulumi.Input[bool]] = None,
@@ -797,7 +870,9 @@ class _ListenerState:
                  http2_enable: Optional[pulumi.Input[bool]] = None,
                  idle_timeout: Optional[pulumi.Input[int]] = None,
                  ip_group: Optional[pulumi.Input[str]] = None,
+                 ip_group_enable: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
+                 max_connection: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['ListenerPortRangeArgs']]]] = None,
                  protection_reason: Optional[pulumi.Input[str]] = None,
@@ -826,12 +901,16 @@ class _ListenerState:
                If advanced forwarding is enabled, more flexible forwarding policies and rules are supported.
         :param pulumi.Input[str] ca_certificate: Specifies the ID of the CA certificate used by the listener. This parameter is
                valid when protocol is set to **HTTPS**.
-        :param pulumi.Input[str] created_at: The create time of the listener.
-        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated. Changing this
-               creates a new listener.
+        :param pulumi.Input[int] cps: Specifies the maximum number of new connections that a listener can handle per second.
+               Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+               than the number defined in the load balancer specifications, the latter is used as the limit.
+        :param pulumi.Input[str] created_at: The creation time of the listener.
+        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] enable_member_retry: Specifies whether to enable health check retries for backend servers.
                The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
+        :param pulumi.Input[str] enable_quic_upgrade: Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+        :param pulumi.Input[str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
                unbind associated pools. Defaults to **false**.
         :param pulumi.Input[bool] forward_eip: Specifies whether transfer the load balancer EIP in the X-Forward-EIP header to
@@ -868,8 +947,12 @@ class _ListenerState:
                only when the protocol is set to **HTTPS**.
         :param pulumi.Input[int] idle_timeout: Specifies the idle timeout for the listener. Value range: 0 to 4000.
         :param pulumi.Input[str] ip_group: Specifies the ip group id for the listener.
+        :param pulumi.Input[str] ip_group_enable: Specifies whether access control is enabled. Value options: **true** and **false**.
         :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
                creates a new listener.
+        :param pulumi.Input[int] max_connection: Specifies the maximum number of concurrent connections that a listener can handle per
+               second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+               the number defined in the load balancer specifications, the latter is used as the limit.
         :param pulumi.Input[str] name: Human-readable name for the listener.
         :param pulumi.Input[Sequence[pulumi.Input['ListenerPortRangeArgs']]] port_ranges: Specifies the port monitoring range (closed range), specify up to 10 port
                groups, each group range must not overlap. This field can only be passed in when `protocol_port` is `0` or empty.
@@ -926,6 +1009,8 @@ class _ListenerState:
             pulumi.set(__self__, "advanced_forwarding_enabled", advanced_forwarding_enabled)
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
+        if cps is not None:
+            pulumi.set(__self__, "cps", cps)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if default_pool_id is not None:
@@ -934,6 +1019,10 @@ class _ListenerState:
             pulumi.set(__self__, "description", description)
         if enable_member_retry is not None:
             pulumi.set(__self__, "enable_member_retry", enable_member_retry)
+        if enable_quic_upgrade is not None:
+            pulumi.set(__self__, "enable_quic_upgrade", enable_quic_upgrade)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if force_delete is not None:
             pulumi.set(__self__, "force_delete", force_delete)
         if forward_eip is not None:
@@ -962,8 +1051,12 @@ class _ListenerState:
             pulumi.set(__self__, "idle_timeout", idle_timeout)
         if ip_group is not None:
             pulumi.set(__self__, "ip_group", ip_group)
+        if ip_group_enable is not None:
+            pulumi.set(__self__, "ip_group_enable", ip_group_enable)
         if loadbalancer_id is not None:
             pulumi.set(__self__, "loadbalancer_id", loadbalancer_id)
+        if max_connection is not None:
+            pulumi.set(__self__, "max_connection", max_connection)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if port_ranges is not None:
@@ -1045,10 +1138,24 @@ class _ListenerState:
         pulumi.set(self, "ca_certificate", value)
 
     @property
+    @pulumi.getter
+    def cps(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the maximum number of new connections that a listener can handle per second.
+        Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+        than the number defined in the load balancer specifications, the latter is used as the limit.
+        """
+        return pulumi.get(self, "cps")
+
+    @cps.setter
+    def cps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cps", value)
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The create time of the listener.
+        The creation time of the listener.
         """
         return pulumi.get(self, "created_at")
 
@@ -1060,8 +1167,7 @@ class _ListenerState:
     @pulumi.getter(name="defaultPoolId")
     def default_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the default pool with which the listener is associated. Changing this
-        creates a new listener.
+        The ID of the default pool with which the listener is associated.
         """
         return pulumi.get(self, "default_pool_id")
 
@@ -1093,6 +1199,30 @@ class _ListenerState:
     @enable_member_retry.setter
     def enable_member_retry(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_member_retry", value)
+
+    @property
+    @pulumi.getter(name="enableQuicUpgrade")
+    def enable_quic_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+        """
+        return pulumi.get(self, "enable_quic_upgrade")
+
+    @enable_quic_upgrade.setter
+    def enable_quic_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enable_quic_upgrade", value)
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @property
     @pulumi.getter(name="forceDelete")
@@ -1285,6 +1415,18 @@ class _ListenerState:
         pulumi.set(self, "ip_group", value)
 
     @property
+    @pulumi.getter(name="ipGroupEnable")
+    def ip_group_enable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether access control is enabled. Value options: **true** and **false**.
+        """
+        return pulumi.get(self, "ip_group_enable")
+
+    @ip_group_enable.setter
+    def ip_group_enable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_group_enable", value)
+
+    @property
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1296,6 +1438,20 @@ class _ListenerState:
     @loadbalancer_id.setter
     def loadbalancer_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "loadbalancer_id", value)
+
+    @property
+    @pulumi.getter(name="maxConnection")
+    def max_connection(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the maximum number of concurrent connections that a listener can handle per
+        second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+        the number defined in the load balancer specifications, the latter is used as the limit.
+        """
+        return pulumi.get(self, "max_connection")
+
+    @max_connection.setter
+    def max_connection(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connection", value)
 
     @property
     @pulumi.getter
@@ -1575,9 +1731,11 @@ class Listener(pulumi.CustomResource):
                  access_policy: Optional[pulumi.Input[str]] = None,
                  advanced_forwarding_enabled: Optional[pulumi.Input[bool]] = None,
                  ca_certificate: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_member_retry: Optional[pulumi.Input[bool]] = None,
+                 enable_quic_upgrade: Optional[pulumi.Input[str]] = None,
                  force_delete: Optional[pulumi.Input[bool]] = None,
                  forward_eip: Optional[pulumi.Input[bool]] = None,
                  forward_elb: Optional[pulumi.Input[bool]] = None,
@@ -1592,7 +1750,9 @@ class Listener(pulumi.CustomResource):
                  http2_enable: Optional[pulumi.Input[bool]] = None,
                  idle_timeout: Optional[pulumi.Input[int]] = None,
                  ip_group: Optional[pulumi.Input[str]] = None,
+                 ip_group_enable: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
+                 max_connection: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerPortRangeArgs']]]]] = None,
                  protection_reason: Optional[pulumi.Input[str]] = None,
@@ -1642,10 +1802,10 @@ class Listener(pulumi.CustomResource):
         ELB listener can be imported using the listener ID, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:DedicatedElb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:DedicatedElb/listener:Listener test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "listener_1" {
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "test" {
 
          ...
 
@@ -1667,11 +1827,14 @@ class Listener(pulumi.CustomResource):
                If advanced forwarding is enabled, more flexible forwarding policies and rules are supported.
         :param pulumi.Input[str] ca_certificate: Specifies the ID of the CA certificate used by the listener. This parameter is
                valid when protocol is set to **HTTPS**.
-        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated. Changing this
-               creates a new listener.
+        :param pulumi.Input[int] cps: Specifies the maximum number of new connections that a listener can handle per second.
+               Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+               than the number defined in the load balancer specifications, the latter is used as the limit.
+        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] enable_member_retry: Specifies whether to enable health check retries for backend servers.
                The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
+        :param pulumi.Input[str] enable_quic_upgrade: Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
                unbind associated pools. Defaults to **false**.
         :param pulumi.Input[bool] forward_eip: Specifies whether transfer the load balancer EIP in the X-Forward-EIP header to
@@ -1708,8 +1871,12 @@ class Listener(pulumi.CustomResource):
                only when the protocol is set to **HTTPS**.
         :param pulumi.Input[int] idle_timeout: Specifies the idle timeout for the listener. Value range: 0 to 4000.
         :param pulumi.Input[str] ip_group: Specifies the ip group id for the listener.
+        :param pulumi.Input[str] ip_group_enable: Specifies whether access control is enabled. Value options: **true** and **false**.
         :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
                creates a new listener.
+        :param pulumi.Input[int] max_connection: Specifies the maximum number of concurrent connections that a listener can handle per
+               second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+               the number defined in the load balancer specifications, the latter is used as the limit.
         :param pulumi.Input[str] name: Human-readable name for the listener.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerPortRangeArgs']]]] port_ranges: Specifies the port monitoring range (closed range), specify up to 10 port
                groups, each group range must not overlap. This field can only be passed in when `protocol_port` is `0` or empty.
@@ -1794,10 +1961,10 @@ class Listener(pulumi.CustomResource):
         ELB listener can be imported using the listener ID, e.g. bash
 
         ```sh
-         $ pulumi import huaweicloud:DedicatedElb/listener:Listener listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+         $ pulumi import huaweicloud:DedicatedElb/listener:Listener test <id>
         ```
 
-         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "listener_1" {
+         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include`force_delete`. It is generally recommended running `terraform plan` after importing a listener. You can then decide if changes should be applied to the listener, or the resource definition should be updated to align with the listener. Also you can ignore changes as below. hcl resource "huaweicloud_elb_listener" "test" {
 
          ...
 
@@ -1829,9 +1996,11 @@ class Listener(pulumi.CustomResource):
                  access_policy: Optional[pulumi.Input[str]] = None,
                  advanced_forwarding_enabled: Optional[pulumi.Input[bool]] = None,
                  ca_certificate: Optional[pulumi.Input[str]] = None,
+                 cps: Optional[pulumi.Input[int]] = None,
                  default_pool_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_member_retry: Optional[pulumi.Input[bool]] = None,
+                 enable_quic_upgrade: Optional[pulumi.Input[str]] = None,
                  force_delete: Optional[pulumi.Input[bool]] = None,
                  forward_eip: Optional[pulumi.Input[bool]] = None,
                  forward_elb: Optional[pulumi.Input[bool]] = None,
@@ -1846,7 +2015,9 @@ class Listener(pulumi.CustomResource):
                  http2_enable: Optional[pulumi.Input[bool]] = None,
                  idle_timeout: Optional[pulumi.Input[int]] = None,
                  ip_group: Optional[pulumi.Input[str]] = None,
+                 ip_group_enable: Optional[pulumi.Input[str]] = None,
                  loadbalancer_id: Optional[pulumi.Input[str]] = None,
+                 max_connection: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerPortRangeArgs']]]]] = None,
                  protection_reason: Optional[pulumi.Input[str]] = None,
@@ -1878,9 +2049,11 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["access_policy"] = access_policy
             __props__.__dict__["advanced_forwarding_enabled"] = advanced_forwarding_enabled
             __props__.__dict__["ca_certificate"] = ca_certificate
+            __props__.__dict__["cps"] = cps
             __props__.__dict__["default_pool_id"] = default_pool_id
             __props__.__dict__["description"] = description
             __props__.__dict__["enable_member_retry"] = enable_member_retry
+            __props__.__dict__["enable_quic_upgrade"] = enable_quic_upgrade
             __props__.__dict__["force_delete"] = force_delete
             __props__.__dict__["forward_eip"] = forward_eip
             __props__.__dict__["forward_elb"] = forward_elb
@@ -1895,9 +2068,11 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["http2_enable"] = http2_enable
             __props__.__dict__["idle_timeout"] = idle_timeout
             __props__.__dict__["ip_group"] = ip_group
+            __props__.__dict__["ip_group_enable"] = ip_group_enable
             if loadbalancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'loadbalancer_id'")
             __props__.__dict__["loadbalancer_id"] = loadbalancer_id
+            __props__.__dict__["max_connection"] = max_connection
             __props__.__dict__["name"] = name
             __props__.__dict__["port_ranges"] = port_ranges
             __props__.__dict__["protection_reason"] = protection_reason
@@ -1920,6 +2095,7 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["tls_ciphers_policy"] = tls_ciphers_policy
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["enterprise_project_id"] = None
             __props__.__dict__["updated_at"] = None
         super(Listener, __self__).__init__(
             'huaweicloud:DedicatedElb/listener:Listener',
@@ -1934,10 +2110,13 @@ class Listener(pulumi.CustomResource):
             access_policy: Optional[pulumi.Input[str]] = None,
             advanced_forwarding_enabled: Optional[pulumi.Input[bool]] = None,
             ca_certificate: Optional[pulumi.Input[str]] = None,
+            cps: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             default_pool_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enable_member_retry: Optional[pulumi.Input[bool]] = None,
+            enable_quic_upgrade: Optional[pulumi.Input[str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[str]] = None,
             force_delete: Optional[pulumi.Input[bool]] = None,
             forward_eip: Optional[pulumi.Input[bool]] = None,
             forward_elb: Optional[pulumi.Input[bool]] = None,
@@ -1952,7 +2131,9 @@ class Listener(pulumi.CustomResource):
             http2_enable: Optional[pulumi.Input[bool]] = None,
             idle_timeout: Optional[pulumi.Input[int]] = None,
             ip_group: Optional[pulumi.Input[str]] = None,
+            ip_group_enable: Optional[pulumi.Input[str]] = None,
             loadbalancer_id: Optional[pulumi.Input[str]] = None,
+            max_connection: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             port_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerPortRangeArgs']]]]] = None,
             protection_reason: Optional[pulumi.Input[str]] = None,
@@ -1986,12 +2167,16 @@ class Listener(pulumi.CustomResource):
                If advanced forwarding is enabled, more flexible forwarding policies and rules are supported.
         :param pulumi.Input[str] ca_certificate: Specifies the ID of the CA certificate used by the listener. This parameter is
                valid when protocol is set to **HTTPS**.
-        :param pulumi.Input[str] created_at: The create time of the listener.
-        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated. Changing this
-               creates a new listener.
+        :param pulumi.Input[int] cps: Specifies the maximum number of new connections that a listener can handle per second.
+               Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+               than the number defined in the load balancer specifications, the latter is used as the limit.
+        :param pulumi.Input[str] created_at: The creation time of the listener.
+        :param pulumi.Input[str] default_pool_id: The ID of the default pool with which the listener is associated.
         :param pulumi.Input[str] description: Human-readable description for the listener.
         :param pulumi.Input[bool] enable_member_retry: Specifies whether to enable health check retries for backend servers.
                The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
+        :param pulumi.Input[str] enable_quic_upgrade: Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+        :param pulumi.Input[str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input[bool] force_delete: Specifies whether to forcibly delete the listener, remove the listener, l7 policies,
                unbind associated pools. Defaults to **false**.
         :param pulumi.Input[bool] forward_eip: Specifies whether transfer the load balancer EIP in the X-Forward-EIP header to
@@ -2028,8 +2213,12 @@ class Listener(pulumi.CustomResource):
                only when the protocol is set to **HTTPS**.
         :param pulumi.Input[int] idle_timeout: Specifies the idle timeout for the listener. Value range: 0 to 4000.
         :param pulumi.Input[str] ip_group: Specifies the ip group id for the listener.
+        :param pulumi.Input[str] ip_group_enable: Specifies whether access control is enabled. Value options: **true** and **false**.
         :param pulumi.Input[str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
                creates a new listener.
+        :param pulumi.Input[int] max_connection: Specifies the maximum number of concurrent connections that a listener can handle per
+               second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+               the number defined in the load balancer specifications, the latter is used as the limit.
         :param pulumi.Input[str] name: Human-readable name for the listener.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListenerPortRangeArgs']]]] port_ranges: Specifies the port monitoring range (closed range), specify up to 10 port
                groups, each group range must not overlap. This field can only be passed in when `protocol_port` is `0` or empty.
@@ -2087,10 +2276,13 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["access_policy"] = access_policy
         __props__.__dict__["advanced_forwarding_enabled"] = advanced_forwarding_enabled
         __props__.__dict__["ca_certificate"] = ca_certificate
+        __props__.__dict__["cps"] = cps
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["default_pool_id"] = default_pool_id
         __props__.__dict__["description"] = description
         __props__.__dict__["enable_member_retry"] = enable_member_retry
+        __props__.__dict__["enable_quic_upgrade"] = enable_quic_upgrade
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["force_delete"] = force_delete
         __props__.__dict__["forward_eip"] = forward_eip
         __props__.__dict__["forward_elb"] = forward_elb
@@ -2105,7 +2297,9 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["http2_enable"] = http2_enable
         __props__.__dict__["idle_timeout"] = idle_timeout
         __props__.__dict__["ip_group"] = ip_group
+        __props__.__dict__["ip_group_enable"] = ip_group_enable
         __props__.__dict__["loadbalancer_id"] = loadbalancer_id
+        __props__.__dict__["max_connection"] = max_connection
         __props__.__dict__["name"] = name
         __props__.__dict__["port_ranges"] = port_ranges
         __props__.__dict__["protection_reason"] = protection_reason
@@ -2156,10 +2350,20 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "ca_certificate")
 
     @property
+    @pulumi.getter
+    def cps(self) -> pulumi.Output[int]:
+        """
+        Specifies the maximum number of new connections that a listener can handle per second.
+        Value range: **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater
+        than the number defined in the load balancer specifications, the latter is used as the limit.
+        """
+        return pulumi.get(self, "cps")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The create time of the listener.
+        The creation time of the listener.
         """
         return pulumi.get(self, "created_at")
 
@@ -2167,8 +2371,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="defaultPoolId")
     def default_pool_id(self) -> pulumi.Output[str]:
         """
-        The ID of the default pool with which the listener is associated. Changing this
-        creates a new listener.
+        The ID of the default pool with which the listener is associated.
         """
         return pulumi.get(self, "default_pool_id")
 
@@ -2188,6 +2391,22 @@ class Listener(pulumi.CustomResource):
         The default value is true. It is available only when protocol is set to **HTTP**, **HTTPS**, or **QUIC**.
         """
         return pulumi.get(self, "enable_member_retry")
+
+    @property
+    @pulumi.getter(name="enableQuicUpgrade")
+    def enable_quic_upgrade(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies whether to enable QUIC upgrade. Value options: **true** and **false**.
+        """
+        return pulumi.get(self, "enable_quic_upgrade")
+
+    @property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @property
     @pulumi.getter(name="forceDelete")
@@ -2324,6 +2543,14 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "ip_group")
 
     @property
+    @pulumi.getter(name="ipGroupEnable")
+    def ip_group_enable(self) -> pulumi.Output[str]:
+        """
+        Specifies whether access control is enabled. Value options: **true** and **false**.
+        """
+        return pulumi.get(self, "ip_group_enable")
+
+    @property
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> pulumi.Output[str]:
         """
@@ -2331,6 +2558,16 @@ class Listener(pulumi.CustomResource):
         creates a new listener.
         """
         return pulumi.get(self, "loadbalancer_id")
+
+    @property
+    @pulumi.getter(name="maxConnection")
+    def max_connection(self) -> pulumi.Output[int]:
+        """
+        Specifies the maximum number of concurrent connections that a listener can handle per
+        second. **0** to **1000000**. Defaults to **0**, indicating that the number is not limited. If the value is greater than
+        the number defined in the load balancer specifications, the latter is used as the limit.
+        """
+        return pulumi.get(self, "max_connection")
 
     @property
     @pulumi.getter

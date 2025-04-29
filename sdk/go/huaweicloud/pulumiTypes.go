@@ -13,7 +13,8 @@ import (
 type ProviderAssumeRole struct {
 	AgencyName string  `pulumi:"agencyName"`
 	DomainId   *string `pulumi:"domainId"`
-	DomainName string  `pulumi:"domainName"`
+	DomainName *string `pulumi:"domainName"`
+	Duration   *int    `pulumi:"duration"`
 }
 
 // ProviderAssumeRoleInput is an input type that accepts ProviderAssumeRoleArgs and ProviderAssumeRoleOutput values.
@@ -30,7 +31,8 @@ type ProviderAssumeRoleInput interface {
 type ProviderAssumeRoleArgs struct {
 	AgencyName pulumi.StringInput    `pulumi:"agencyName"`
 	DomainId   pulumi.StringPtrInput `pulumi:"domainId"`
-	DomainName pulumi.StringInput    `pulumi:"domainName"`
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+	Duration   pulumi.IntPtrInput    `pulumi:"duration"`
 }
 
 func (ProviderAssumeRoleArgs) ElementType() reflect.Type {
@@ -118,8 +120,12 @@ func (o ProviderAssumeRoleOutput) DomainId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.DomainId }).(pulumi.StringPtrOutput)
 }
 
-func (o ProviderAssumeRoleOutput) DomainName() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAssumeRole) string { return v.DomainName }).(pulumi.StringOutput)
+func (o ProviderAssumeRoleOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) Duration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *int { return v.Duration }).(pulumi.IntPtrOutput)
 }
 
 type ProviderAssumeRolePtrOutput struct{ *pulumi.OutputState }
@@ -169,8 +175,17 @@ func (o ProviderAssumeRolePtrOutput) DomainName() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.DomainName
+		return v.DomainName
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) Duration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Duration
+	}).(pulumi.IntPtrOutput)
 }
 
 func init() {

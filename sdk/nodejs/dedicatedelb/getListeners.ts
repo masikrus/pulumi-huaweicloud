@@ -29,14 +29,30 @@ export function getListeners(args?: GetListenersArgs, opts?: pulumi.InvokeOption
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("huaweicloud:DedicatedElb/getListeners:getListeners", {
+        "advancedForwardingEnabled": args.advancedForwardingEnabled,
+        "caCertificate": args.caCertificate,
+        "defaultPoolId": args.defaultPoolId,
         "description": args.description,
+        "enableMemberRetry": args.enableMemberRetry,
         "enterpriseProjectId": args.enterpriseProjectId,
+        "http2Enable": args.http2Enable,
+        "idleTimeout": args.idleTimeout,
         "listenerId": args.listenerId,
         "loadbalancerId": args.loadbalancerId,
+        "memberAddress": args.memberAddress,
+        "memberDeviceId": args.memberDeviceId,
+        "memberInstanceId": args.memberInstanceId,
         "name": args.name,
+        "protectionStatus": args.protectionStatus,
         "protocol": args.protocol,
         "protocolPort": args.protocolPort,
+        "proxyProtocolEnable": args.proxyProtocolEnable,
         "region": args.region,
+        "requestTimeout": args.requestTimeout,
+        "responseTimeout": args.responseTimeout,
+        "serverCertificate": args.serverCertificate,
+        "sslEarlyDataEnable": args.sslEarlyDataEnable,
+        "tlsCiphersPolicy": args.tlsCiphersPolicy,
     }, opts);
 }
 
@@ -45,13 +61,39 @@ export function getListeners(args?: GetListenersArgs, opts?: pulumi.InvokeOption
  */
 export interface GetListenersArgs {
     /**
+     * Specifies whether the advanced forwarding is enabled. Value options:
+     * **true**, **false**.
+     */
+    advancedForwardingEnabled?: string;
+    /**
+     * Specifies the ID of the CA certificate used by the listener.
+     */
+    caCertificate?: string;
+    /**
+     * Specifies the ID of the default pool with which the listener is associated.
+     */
+    defaultPoolId?: string;
+    /**
      * Specifies the description of the ELB listener.
      */
     description?: string;
     /**
+     * Specifies whether the health check retries for backend servers is enabled.
+     * Value options: **true**, **false**.
+     */
+    enableMemberRetry?: string;
+    /**
      * Specifies the enterprise project ID.
      */
     enterpriseProjectId?: string;
+    /**
+     * Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
+     */
+    http2Enable?: string;
+    /**
+     * Specifies the idle timeout for the listener.
+     */
+    idleTimeout?: number;
     /**
      * Specifies the ID of the ELB listener.
      */
@@ -61,9 +103,25 @@ export interface GetListenersArgs {
      */
     loadbalancerId?: string;
     /**
+     * Specifies the private IP address bound to the backend server.
+     */
+    memberAddress?: string;
+    /**
+     * Specifies the ID of the cloud server that serves as a backend server.
+     */
+    memberDeviceId?: string;
+    /**
+     * Specifies the backend server ID.
+     */
+    memberInstanceId?: string;
+    /**
      * Specifies the name of the ELB listener.
      */
     name?: string;
+    /**
+     * Specifies the protection status.
+     */
+    protectionStatus?: string;
     /**
      * Specifies the protocol of the ELB listener. Value options:
      * **TCP**, **UDP**, **HTTP**, **HTTPS** or **QUIC**.
@@ -74,10 +132,36 @@ export interface GetListenersArgs {
      */
     protocolPort?: number;
     /**
+     * Specifies whether the proxy protocol option to pass the source IP addresses
+     * of the clients to backend servers is enabled. Value options: **true**, **false**.
+     */
+    proxyProtocolEnable?: string;
+    /**
      * Specifies the region in which to query the data source.
      * If omitted, the provider-level region will be used.
      */
     region?: string;
+    /**
+     * Specifies the request timeout for the listener. Value range: **1** to **300**.
+     */
+    requestTimeout?: number;
+    /**
+     * Specifies the response timeout for the listener.
+     */
+    responseTimeout?: number;
+    /**
+     * Specifies the ID of the server certificate used by the listener.
+     */
+    serverCertificate?: string;
+    /**
+     * Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+     * **false**.
+     */
+    sslEarlyDataEnable?: string;
+    /**
+     * Specifies the TLS cipher policy for the listener.
+     */
+    tlsCiphersPolicy?: string;
 }
 
 /**
@@ -85,14 +169,41 @@ export interface GetListenersArgs {
  */
 export interface GetListenersResult {
     /**
+     * Whether to enable advanced forwarding.
+     */
+    readonly advancedForwardingEnabled?: string;
+    /**
+     * The ID of the CA certificate used by the listener.
+     */
+    readonly caCertificate?: string;
+    /**
+     * The ID of the default backend server group.
+     */
+    readonly defaultPoolId?: string;
+    /**
      * The description of the listener.
      */
     readonly description?: string;
+    /**
+     * Whether the health check retries for backend servers is enabled.
+     */
+    readonly enableMemberRetry?: string;
+    /**
+     * The ID of the enterprise project.
+     */
     readonly enterpriseProjectId?: string;
+    /**
+     * Whether to use HTTP/2 if you want the clients to use HTTP/2 to communicate with the listener.
+     */
+    readonly http2Enable?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The idle timeout duration, in seconds.
+     */
+    readonly idleTimeout?: number;
     readonly listenerId?: string;
     /**
      * Lists the listeners.
@@ -103,10 +214,17 @@ export interface GetListenersResult {
      * The ID of the load balancer that the listener is added to.
      */
     readonly loadbalancerId?: string;
+    readonly memberAddress?: string;
+    readonly memberDeviceId?: string;
+    readonly memberInstanceId?: string;
     /**
      * The listener name.
      */
     readonly name?: string;
+    /**
+     * The protection status for update.
+     */
+    readonly protectionStatus?: string;
     /**
      * The protocol used by the listener.
      */
@@ -115,7 +233,32 @@ export interface GetListenersResult {
      * The port used by the listener.
      */
     readonly protocolPort?: number;
+    /**
+     * Whether to enable the proxy protocol option to pass the source IP addresses of the clients
+     * to backend servers.
+     */
+    readonly proxyProtocolEnable?: string;
     readonly region: string;
+    /**
+     * The timeout duration for waiting for a response from a client, in seconds.
+     */
+    readonly requestTimeout?: number;
+    /**
+     * The timeout duration for waiting for a response from a backend server, in seconds.
+     */
+    readonly responseTimeout?: number;
+    /**
+     * The ID of the server certificate used by the listener.
+     */
+    readonly serverCertificate?: string;
+    /**
+     * Whether the 0-RTT capability is enabled.
+     */
+    readonly sslEarlyDataEnable?: string;
+    /**
+     * The security policy used by the listener.
+     */
+    readonly tlsCiphersPolicy?: string;
 }
 
 export function getListenersOutput(args?: GetListenersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetListenersResult> {
@@ -127,13 +270,39 @@ export function getListenersOutput(args?: GetListenersOutputArgs, opts?: pulumi.
  */
 export interface GetListenersOutputArgs {
     /**
+     * Specifies whether the advanced forwarding is enabled. Value options:
+     * **true**, **false**.
+     */
+    advancedForwardingEnabled?: pulumi.Input<string>;
+    /**
+     * Specifies the ID of the CA certificate used by the listener.
+     */
+    caCertificate?: pulumi.Input<string>;
+    /**
+     * Specifies the ID of the default pool with which the listener is associated.
+     */
+    defaultPoolId?: pulumi.Input<string>;
+    /**
      * Specifies the description of the ELB listener.
      */
     description?: pulumi.Input<string>;
     /**
+     * Specifies whether the health check retries for backend servers is enabled.
+     * Value options: **true**, **false**.
+     */
+    enableMemberRetry?: pulumi.Input<string>;
+    /**
      * Specifies the enterprise project ID.
      */
     enterpriseProjectId?: pulumi.Input<string>;
+    /**
+     * Specifies whether the HTTP/2 is used. Value options: **true**, **false**.
+     */
+    http2Enable?: pulumi.Input<string>;
+    /**
+     * Specifies the idle timeout for the listener.
+     */
+    idleTimeout?: pulumi.Input<number>;
     /**
      * Specifies the ID of the ELB listener.
      */
@@ -143,9 +312,25 @@ export interface GetListenersOutputArgs {
      */
     loadbalancerId?: pulumi.Input<string>;
     /**
+     * Specifies the private IP address bound to the backend server.
+     */
+    memberAddress?: pulumi.Input<string>;
+    /**
+     * Specifies the ID of the cloud server that serves as a backend server.
+     */
+    memberDeviceId?: pulumi.Input<string>;
+    /**
+     * Specifies the backend server ID.
+     */
+    memberInstanceId?: pulumi.Input<string>;
+    /**
      * Specifies the name of the ELB listener.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Specifies the protection status.
+     */
+    protectionStatus?: pulumi.Input<string>;
     /**
      * Specifies the protocol of the ELB listener. Value options:
      * **TCP**, **UDP**, **HTTP**, **HTTPS** or **QUIC**.
@@ -156,8 +341,34 @@ export interface GetListenersOutputArgs {
      */
     protocolPort?: pulumi.Input<number>;
     /**
+     * Specifies whether the proxy protocol option to pass the source IP addresses
+     * of the clients to backend servers is enabled. Value options: **true**, **false**.
+     */
+    proxyProtocolEnable?: pulumi.Input<string>;
+    /**
      * Specifies the region in which to query the data source.
      * If omitted, the provider-level region will be used.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Specifies the request timeout for the listener. Value range: **1** to **300**.
+     */
+    requestTimeout?: pulumi.Input<number>;
+    /**
+     * Specifies the response timeout for the listener.
+     */
+    responseTimeout?: pulumi.Input<number>;
+    /**
+     * Specifies the ID of the server certificate used by the listener.
+     */
+    serverCertificate?: pulumi.Input<string>;
+    /**
+     * Specifies whether the 0-RTT capability is enabled. Value options: **true**,
+     * **false**.
+     */
+    sslEarlyDataEnable?: pulumi.Input<string>;
+    /**
+     * Specifies the TLS cipher policy for the listener.
+     */
+    tlsCiphersPolicy?: pulumi.Input<string>;
 }

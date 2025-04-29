@@ -188,10 +188,12 @@ type L7policy struct {
 	// + **FIXED_RESPONSE**: Requests are forwarded to a fixed response body specified by `fixedResponseConfig`.
 	//   Defaults to **REDIRECT_TO_POOL**.
 	Action pulumi.StringPtrOutput `pulumi:"action"`
-	// The create time of the L7 policy.
+	// The creation time of the L7 policy.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Human-readable description for the L7 Policy.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringOutput `pulumi:"enterpriseProjectId"`
 	// The fixed configuration of the page to which the traffic is
 	// redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhanceL7policyEnable` of
 	// the listener must be set to **true**.
@@ -288,10 +290,12 @@ type l7policyState struct {
 	// + **FIXED_RESPONSE**: Requests are forwarded to a fixed response body specified by `fixedResponseConfig`.
 	//   Defaults to **REDIRECT_TO_POOL**.
 	Action *string `pulumi:"action"`
-	// The create time of the L7 policy.
+	// The creation time of the L7 policy.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Human-readable description for the L7 Policy.
 	Description *string `pulumi:"description"`
+	// The ID of the enterprise project.
+	EnterpriseProjectId *string `pulumi:"enterpriseProjectId"`
 	// The fixed configuration of the page to which the traffic is
 	// redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhanceL7policyEnable` of
 	// the listener must be set to **true**.
@@ -356,10 +360,12 @@ type L7policyState struct {
 	// + **FIXED_RESPONSE**: Requests are forwarded to a fixed response body specified by `fixedResponseConfig`.
 	//   Defaults to **REDIRECT_TO_POOL**.
 	Action pulumi.StringPtrInput
-	// The create time of the L7 policy.
+	// The creation time of the L7 policy.
 	CreatedAt pulumi.StringPtrInput
 	// Human-readable description for the L7 Policy.
 	Description pulumi.StringPtrInput
+	// The ID of the enterprise project.
+	EnterpriseProjectId pulumi.StringPtrInput
 	// The fixed configuration of the page to which the traffic is
 	// redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `enhanceL7policyEnable` of
 	// the listener must be set to **true**.
@@ -642,7 +648,7 @@ func (o L7policyOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *L7policy) pulumi.StringPtrOutput { return v.Action }).(pulumi.StringPtrOutput)
 }
 
-// The create time of the L7 policy.
+// The creation time of the L7 policy.
 func (o L7policyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *L7policy) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -650,6 +656,11 @@ func (o L7policyOutput) CreatedAt() pulumi.StringOutput {
 // Human-readable description for the L7 Policy.
 func (o L7policyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *L7policy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the enterprise project.
+func (o L7policyOutput) EnterpriseProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *L7policy) pulumi.StringOutput { return v.EnterpriseProjectId }).(pulumi.StringOutput)
 }
 
 // The fixed configuration of the page to which the traffic is

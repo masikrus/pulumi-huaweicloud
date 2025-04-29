@@ -311,6 +311,15 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly logStreamName!: pulumi.Output<string>;
     /**
+     * Specifies the custom tags configuration that used to filter the LTS logs.
+     */
+    public readonly ltsCustomTag!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The script configuration value of this change is also the original value used for comparison with the new value next
+     * time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+     */
+    public /*out*/ readonly ltsCustomTagOrigin!: pulumi.Output<{[key: string]: string}>;
+    /**
      * Specifies the maximum number of instances of the function.  
      * The valid value is range from `-1` to `1,000`, defaults to `400`.
      * + The minimum value is `-1` and means the number of instances is unlimited.
@@ -489,6 +498,8 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["logGroupName"] = state ? state.logGroupName : undefined;
             resourceInputs["logStreamId"] = state ? state.logStreamId : undefined;
             resourceInputs["logStreamName"] = state ? state.logStreamName : undefined;
+            resourceInputs["ltsCustomTag"] = state ? state.ltsCustomTag : undefined;
+            resourceInputs["ltsCustomTagOrigin"] = state ? state.ltsCustomTagOrigin : undefined;
             resourceInputs["maxInstanceNum"] = state ? state.maxInstanceNum : undefined;
             resourceInputs["memorySize"] = state ? state.memorySize : undefined;
             resourceInputs["mountUserGroupId"] = state ? state.mountUserGroupId : undefined;
@@ -555,6 +566,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["logGroupName"] = args ? args.logGroupName : undefined;
             resourceInputs["logStreamId"] = args ? args.logStreamId : undefined;
             resourceInputs["logStreamName"] = args ? args.logStreamName : undefined;
+            resourceInputs["ltsCustomTag"] = args ? args.ltsCustomTag : undefined;
             resourceInputs["maxInstanceNum"] = args ? args.maxInstanceNum : undefined;
             resourceInputs["memorySize"] = args ? args.memorySize : undefined;
             resourceInputs["mountUserGroupId"] = args ? args.mountUserGroupId : undefined;
@@ -577,6 +589,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["versions"] = args ? args.versions : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["xrole"] = args ? args.xrole : undefined;
+            resourceInputs["ltsCustomTagOrigin"] = undefined /*out*/;
             resourceInputs["urn"] = undefined /*out*/;
             resourceInputs["version"] = undefined /*out*/;
         }
@@ -751,6 +764,15 @@ export interface FunctionState {
      * Specifies the LTS stream name for collecting logs.
      */
     logStreamName?: pulumi.Input<string>;
+    /**
+     * Specifies the custom tags configuration that used to filter the LTS logs.
+     */
+    ltsCustomTag?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The script configuration value of this change is also the original value used for comparison with the new value next
+     * time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+     */
+    ltsCustomTagOrigin?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the maximum number of instances of the function.  
      * The valid value is range from `-1` to `1,000`, defaults to `400`.
@@ -1053,6 +1075,10 @@ export interface FunctionArgs {
      * Specifies the LTS stream name for collecting logs.
      */
     logStreamName?: pulumi.Input<string>;
+    /**
+     * Specifies the custom tags configuration that used to filter the LTS logs.
+     */
+    ltsCustomTag?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the maximum number of instances of the function.  
      * The valid value is range from `-1` to `1,000`, defaults to `400`.
