@@ -1,4 +1,4 @@
-module github.com/masikmos/pulumi-huaweicloud/provider
+module github.com/masikrus/pulumi-huaweicloud/provider
 
 go 1.23.11
 

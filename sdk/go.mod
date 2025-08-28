@@ -1,4 +1,4 @@
-module github.com/masikmos/pulumi-huaweicloud/sdk
+module github.com/masikrus/pulumi-huaweicloud/sdk
 
 go 1.17
 

@@ -19,7 +19,7 @@ import (
 	"path/filepath"
 
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
-	"github.com/masikmos/pulumi-huaweicloud/provider/pkg/version"
+	"github.com/masikrus/pulumi-huaweicloud/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -139,7 +139,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github.com/masikmos/pulumi-huaweicloud/releases/download/${VERSION}",
+		PluginDownloadURL: "https://github.com/masikrus/pulumi-huaweicloud/releases/download/${VERSION}",
 		Description:       "A Pulumi package for creating and managing Huaweicloud cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -147,7 +147,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:   []string{"pulumi", "huaweicloud", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://huaweicloud-pulumi-provider.readthedocs.io",
-		Repository: "https://github.com/masikmos/pulumi-huaweicloud",
+		Repository: "https://github.com/masikrus/pulumi-huaweicloud",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg: "masikmos",
@@ -860,7 +860,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/masikmos/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/masikrus/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,

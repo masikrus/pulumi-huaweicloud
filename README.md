@@ -36,7 +36,7 @@ pip install pulumi_huaweicloud
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/masikmos/pulumi-huaweicloud/sdk/go/...
+go get github.com/masikrus/pulumi-huaweicloud/sdk/go/...
 ```
 
 ## Configuration
