@@ -19,8 +19,8 @@ package main
 import (
 	_ "embed"
 
-	huaweicloud "github.com/huaweicloud/pulumi-huaweicloud/provider"
-	"github.com/huaweicloud/pulumi-huaweicloud/provider/pkg/version"
+	huaweicloud "github.com/masikmos/pulumi-huaweicloud/provider"
+	"github.com/masikmos/pulumi-huaweicloud/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 

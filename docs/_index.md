@@ -52,7 +52,7 @@ vpc = huaweicloud.VPC("my-vpc",
 
 ```go
 import (
-    huaweicloud "github.com/huaweicloud/pulumi-huaweicloud/sdk/go/huaweicloud"
+    huaweicloud "github.com/masikmos/pulumi-huaweicloud/sdk/go/huaweicloud"
     "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -73,4 +73,4 @@ func main() {
 {{% /choosable %}}
 {{< /chooser >}}
 
-> You could find more complete and detailed examples in the [pulumi-huaweicloud repository](https://github.com/huaweicloud/pulumi-huaweicloud/tree/main/examples)
+> You could find more complete and detailed examples in the [pulumi-huaweicloud repository](https://github.com/masikmos/pulumi-huaweicloud/tree/main/examples)

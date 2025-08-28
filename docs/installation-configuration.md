@@ -35,7 +35,7 @@ pip install pulumi_huaweicloud
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/huaweicloud/pulumi-huaweicloud/sdk/go/...
+go get github.com/masikmos/pulumi-huaweicloud/sdk/go/...
 ```
 
 ### .NET
@@ -64,4 +64,4 @@ pulumi config set huaweicloud:secret_key YYYYYYYYYYYYYY --secret
 
 Remember to pass --secret when setting huaweicloud:access_key and huaweicloud:secret_key so that they are properly encrypted.
 The complete list of configuration parameters is in the
-[HuaweiCloud provider](https://github.com/huaweicloud/pulumi-huaweicloud/blob/main/README.md).
+[HuaweiCloud provider](https://github.com/masikmos/pulumi-huaweicloud/blob/main/README.md).

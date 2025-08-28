@@ -19,11 +19,11 @@ sed -i 's+/logos/+/pulumi-huaweicloud/logos/+g' dist/js/bundle.*
 sed -i 's+/icons/+/pulumi-huaweicloud/icons/+g' dist/js/bundle.*
 sed -i 's+/images/+/pulumi-huaweicloud/images/+g' dist/css/bundle.*
 
-sed -i 's+<a href=https://github.com/huaweicloud/pulumi-huaweicloud/tree/main/examples>pulumi-huaweicloud repository</a>+<a target=_blank href=https://github.com/huaweicloud/pulumi-huaweicloud/tree/main/examples>pulumi-huaweicloud repository</a>+g' dist/registry/packages/huaweicloud/index.html
-sed -i 's+<a href=https://github.com/huaweicloud/pulumi-huaweicloud/blob/main/README.md>HuaweiCloud provider</a>+<a target=_blank href=https://github.com/huaweicloud/pulumi-huaweicloud/blob/main/README.md>HuaweiCloud provider</a>+g' dist/registry/packages/huaweicloud/installation-configuration/index.html
+sed -i 's+<a href=https://github.com/masikmos/pulumi-huaweicloud/tree/main/examples>pulumi-huaweicloud repository</a>+<a target=_blank href=https://github.com/masikmos/pulumi-huaweicloud/tree/main/examples>pulumi-huaweicloud repository</a>+g' dist/registry/packages/huaweicloud/index.html
+sed -i 's+<a href=https://github.com/masikmos/pulumi-huaweicloud/blob/main/README.md>HuaweiCloud provider</a>+<a target=_blank href=https://github.com/masikmos/pulumi-huaweicloud/blob/main/README.md>HuaweiCloud provider</a>+g' dist/registry/packages/huaweicloud/installation-configuration/index.html
 
 find dist/registry/packages/huaweicloud/api-docs/ -type f -name "*.html" -exec sed -i 's+base-directory=/registry/+base-directory=/pulumi-huaweicloud/registry/+g' {} +
-find dist/registry/packages/huaweicloud/api-docs/ -type f -name "*.html" -exec sed -i 's+<a href=https://github.com/huaweicloud/pulumi-huaweicloud>+<a target=_blank href=https://github.com/huaweicloud/pulumi-huaweicloud>+g' {} +
+find dist/registry/packages/huaweicloud/api-docs/ -type f -name "*.html" -exec sed -i 's+<a href=https://github.com/masikmos/pulumi-huaweicloud>+<a target=_blank href=https://github.com/masikmos/pulumi-huaweicloud>+g' {} +
 find dist/registry/packages/huaweicloud/api-docs/ -type f -name "*.html" -exec sed -i 's+<a href=https://github.com/huaweicloud/terraform-provider-huaweicloud>+<a target=_blank href=https://github.com/huaweicloud/terraform-provider-huaweicloud>+g' {} +
 
 echo >> dist/css/bundle.*
